@@ -40,6 +40,9 @@ data/*.db
 Thumbs.db
 
 # Project specific (aggregated from sub-projects)
+海报与图表素材/
+风格参考/
+
 data/sources/zip-response.json
 data/sources/assets-20261018.csv
 data/sources/evidence-20261018.zip
