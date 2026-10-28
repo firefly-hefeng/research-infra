@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "profile": "legacy",
+  "resource": {
+    "id": "rdc-example-model",
+    "slug": "example-model",
+    "title": "演示模型（虚构）",
+    "kind": "model",
+    "summary": "仅演示 legacy 模型卡与旧根来源/历史路径，不代表真实权重、评估或迁移完成。",
+    "tasks": [],
+    "tags": [],
+    "legacy_ids": []
+  },
+  "release": {
+    "version": null,
+    "upstream_revision": null,
+    "origin": "unknown",
+    "state": "observed",
+    "metadata_revision": 1,
+    "updated_at": null
+  },
+  "maintainer": {
+    "id": null,
+    "display_name": null,
+    "contact": null
+  },
+  "sources": [],
+  "rights": {
+    "metadata_visibility": "unknown",
+    "team_use": "unknown",
+    "external_distribution": "unknown",
+    "license_id": null,
+    "license_reference": null,
+    "evidence_refs": []
+  },
+  "locations": [
+    {
+      "host_id": "aliyun",
+      "path": "/data/models/example-only",
+      "role": "legacy",
+      "access": "unknown",
+      "checked_at": null,
+      "evidence_refs": []
+    }
+  ],
+  "relations": [],
+  "dataset": null,
+  "model": {
+    "base_model": null,
+    "framework": null,
+    "architectures": [],
+    "precision": null,
+    "input_description": null,
+    "output_description": null,
+    "loading_reference": null,
+    "evaluation_reference": null
+  },
+  "manifest": {
+    "path": null,
+    "manifest_sha256": null,
+    "content_coverage": "none",
+    "file_count": null,
+    "total_bytes": null,
+    "checked_at": null
+  },
+  "evidence": [],
+  "field_evidence": {},
+  "unknowns": []
+}

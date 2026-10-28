@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191221"><title>增补说明模板 · 公共科研资源中心</title><link rel="stylesheet" href="../standards.css"></head><body><a class="skip-link" href="#main">跳至模板正文</a><header class="topbar"><a class="back-link" href="index.html">← 模板阅读中心</a><span class="topbar-title">RESEARCH REGISTRY / README TEMPLATE</span><a href="submission-README.md" download>下载 Markdown ↓</a></header><div class="page-shell template-shell template-preview"><aside class="sidebar" aria-label="模板章节"><p class="nav-kicker">READ · WRITE · REUSE</p><nav><a href="#start"><span>00</span> 模板说明</a><a href="#part-1"><span>01</span> 资料说明</a><a href="#part-2"><span>02</span> 来源和共享依据</a><a href="#part-3"><span>03</span> 文件与使用方式</a><a href="#part-4"><span>04</span> 原位登记还是新传输</a><a href="#part-5"><span>05</span> 与已有资料的关系</a><a href="#part-6"><span>06</span> 提交完成</a><a href="#metadata"><span>YAML</span> 结构化字段</a></nav><div class="nav-note"><strong>阅读版与原文件同源</strong><p>此页展示原 Markdown 的说明正文及 YAML。下载原文件填写；现有协议和 Schema 不变。</p></div></aside><main id="main"><header class="hero section" id="start"><div class="eyebrow"><span class="status-dot"></span> 模板阅读预览</div><h1>增补说明模板</h1><p class="hero-lead">首次准备贡献时，从最少的资料说明开始。接收入口当前尚未启用。</p><div class="readable-actions"><a class="primary-download" href="submission-README.md" download>下载原始 Markdown ↓</a><a class="text-button" href="../standards.html">查看整理规范 →</a></div><p class="preview-origin">原文件：submission-README.md · 说明仍为草稿，不表示已提交或发布。</p></header><article class="preview-body"><p>先填写 YAML 中 title、kind、summary、contributor、source.description、rights 与 delivery。未知值保留 null/unknown，不猜测；允许先形成待补充记录。resource ID、清单、校验、发布路径由后续流程生成，不要求成员手填。</p><section id="part-1"><h2>资料说明</h2><p>用几句话介绍是什么、用途、主要格式和重要限制。</p></section><section id="part-2"><h2>来源和共享依据</h2><p>写明来源 URL、资料责任方或采集/产生方式；说明团队使用依据及外部分发条件。提交者不一定是未来维护人。</p></section><section id="part-3"><h2>文件与使用方式</h2><p>列出主要目录和文件、估计容量、最小使用说明。服务器侧大文件将通过 CLI/SFTP/rsync 接入，网页小文件为可选设计。</p></section><section id="part-4"><h2>原位登记还是新传输</h2><ul><li>register：existing_path 填经核验的实际公共资料位置。未来 canonical 为 <code>/data/share/datasets</code> 或 <code>/data/share/models</code>；当前复制未完成时保留 <code>/data/datasets</code> 或 <code>/data/models</code> 来源，切换后旧根仅作为已核验的兼容别名。路径与迁移回执一致才可采用；只登记，不复制、不改权限、不移动。</li><li>transfer：existing_path 设为 null；未来流程分配 <code>/data/share/incoming/&lt;submission-id&gt;/</code> 后再传入。该增补根尚未创建，接收接口尚未启用；现在不要按本模板创建目录或开始上传。</li></ul></section><section id="part-5"><h2>与已有资料的关系</h2><p>如果知道对应旧资源或版本，填 proposed_resource_id / proposed_version / relation_note；不知道则留空。重复疑点由 Agent 提示，不自动删除原件。</p></section><section id="part-6"><h2>提交完成</h2><p>未来提交工具确认全部传输和写入结束后，生成 <code>manifest.jsonl</code> 及 <code>READY.json</code>；完成标记只含工具生成的 <code>submission_id</code>、<code>manifest_sha256</code>、<code>submitted_at</code>，分别绑定本次编号、清单原始字节的 SHA-256 和带时区完成时间。<code>ready</code> 仅由工具同步为 true，不由成员手改触发任务。完整 JSON 结构见 <a href="ready.example.json">ready.example.json</a>，字段约束见 <a href="ready.schema.json">ready.schema.json</a>。</p><p>Agent 核对标记、清单和内容稳定性后，在任务库登记接手并返回回执/状态；生成 READY.json 不等于已接手或已发布。标记不会冻结打开的文件，提交前必须停止所有写入；未来接入实现需要专属暂存的可验证隔离机制，并在发布前重新确认内容未漂移，不能只靠标记、改权限或目录重命名保证。</p><p>同一编号与清单摘要的重试返回同一任务，不重复发布；同一编号换清单视为冲突。内容改变后用新编号重新提交，关联前次任务；说明更正需显式修订记录，不静默改接手证据。详细协议见 <a href="field-guide.md">field-guide.md</a>。当前只是说明模板，不存在正在执行的上传或定时整理任务。</p></section></article><details class="metadata-preview" id="metadata"><summary>查看原始 YAML 结构化字段</summary><div class="details-body"><p class="preview-notice">字段来自模板原文。先保留未知值，不以改变状态字段替代证据、校验或实际冻结。</p><pre class="yaml-preview"><code>schema_version: &#x27;1.0&#x27;
+submission_id: null
+title: 待填写：提交名称
+kind: dataset
+summary: 待填写：是什么、有什么用、主要文件格式。
+contributor:
+  name: 待填写：提交者姓名或团队账号
+  contact: 待填写：团队内可联系渠道
+source:
+  reference: null
+  description: 待填写：下载来源、采集/产生方式或为什么尚未明确。
+  upstream_revision: null
+rights:
+  team_use: unknown
+  external_distribution: unknown
+  license_id: null
+  basis: null
+delivery:
+  mode: transfer
+  existing_path: null
+  estimated_bytes: null
+proposed_resource_id: null
+proposed_version: null
+relation_note: null
+ready: false</code></pre></div></details><footer class="page-footer"><p>公共科研资源中心 / 可阅读的说明模板</p><a href="index.html">返回模板中心 →</a></footer></main></div></body></html>

@@ -1,0 +1,4909 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-10-19",
+  "entries": {
+    "asset-c622379f185625da": {
+      "summary": "TalkBank 多研究领域资料的本地镜像总入口。",
+      "background": "TalkBank 围绕人类交际建设多个资料库；CHAT 是转写规范，CLAN 用于分析符合该规范的材料。目录层级包含库、集合和具体语料，不能把每个文件夹视为独立数据集。",
+      "research_uses": [
+        "研究建议：先按儿童发展、会话、课堂、双语或临床问题选择资料库。",
+        "研究建议：从具体语料说明建立任务、说话人和记录单元，再设计实验划分。"
+      ],
+      "starter_notes": [
+        "先选下面的 bank，再读具体语料页及引用要求。",
+        "需要文本分析时先确认对应 CHAT 文件和媒体配对，音频镜像根本身不保证转写齐全。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "TalkBank 官方入口",
+          "url": "https://talkbank.org/"
+        },
+        {
+          "title": "CHAT 官方手册",
+          "url": "https://talkbank.org/0info/manuals/CHAT.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-development",
+        "clinical-speech",
+        "language-learning",
+        "phonetics",
+        "methods"
+      ]
+    },
+    "asset-a57817547ebce578": {
+      "summary": "ASDBank：自闭症相关交流研究资料。",
+      "background": "上游以交流情境中的语言使用为研究对象，不同子语料的活动和参与者条件不同。",
+      "research_uses": [
+        "研究建议：在明确任务和群体定义后考察互动、叙事或交流支持。"
+      ],
+      "starter_notes": [
+        "不要将目录名当作个体诊断标签；先阅读具体研究的入组与任务说明。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/asd 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "asd 官方介绍",
+          "url": "https://talkbank.org/asd/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-755e196b85b4ee3d": {
+      "summary": "BilingBank：双语与多语使用资料。",
+      "background": "该库关注双语使用及语言接触；其集合可包含自然交谈或访谈等不同体裁。",
+      "research_uses": [
+        "研究建议：选择语言组合后研究语码转换与交际策略。"
+      ],
+      "starter_notes": [
+        "先记录每个项目的语言对、说话人背景与语言编码规则。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/biling 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "biling 官方介绍",
+          "url": "https://talkbank.org/biling/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning",
+        "speech-interaction"
+      ]
+    },
+    "asset-295f719ff1a806d0": {
+      "summary": "CABank：自然会话与社会互动资料集合。",
+      "background": "会话分析关心一个话轮如何回应前文并引出后续行动；不同语料的转写细致程度并不相同。",
+      "research_uses": [
+        "研究建议：在具体情境中分析轮替、修复和回应；再决定是否适合计算建模。"
+      ],
+      "starter_notes": [
+        "先查看该语料采用普通 CHAT 还是更细的会话分析符号。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "ca 官方介绍",
+          "url": "https://talkbank.org/ca/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "methods"
+      ]
+    },
+    "asset-24a7d209effb9239": {
+      "summary": "CHILDES：儿童语言习得资料的集合入口。",
+      "background": "这是 TalkBank 的儿童语言部分，按语言与任务组织。它适合追问语言怎样随发展与交往情境变化，不能把所有子库当作同一测验。",
+      "research_uses": [
+        "研究建议：按年龄、采集任务和纵向或横断面设计选择可比较样本。"
+      ],
+      "starter_notes": [
+        "阅读具体子库说明并引用该语料的原始研究；别只引用 CHILDES 系统。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "childes 官方介绍",
+          "url": "https://talkbank.org/childes/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-029c2fc979d92924": {
+      "summary": "ClassBank：课堂、辅导与学习互动资料。",
+      "background": "上游保存教学与学习活动中的交流，既有学校课堂，也有博物馆或一对一辅导等情境。",
+      "research_uses": [
+        "研究建议：研究提问、解释、反馈与共同解题。"
+      ],
+      "starter_notes": [
+        "先区分教师、学生、辅导者及任务，再确定一个分析单元。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "class 官方介绍",
+          "url": "https://talkbank.org/class/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-c8c6c24eb919188d": {
+      "summary": "FluencyBank：语言流畅性发展与障碍资料。",
+      "background": "上游涵盖多种流畅性现象和教学材料，口吃与言语急促不能合并为一个标签。",
+      "research_uses": [
+        "研究建议：围绕具体言语行为与任务选择样本，研究编码一致性。"
+      ],
+      "starter_notes": [
+        "先核对是否有人工流畅性标注；存在转写不等于存在事件标签。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "fluency 官方介绍",
+          "url": "https://talkbank.org/fluency/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-5866a6ccdc71e6ab": {
+      "summary": "HomeBank：日常家庭环境中的长时语言经验资料。",
+      "background": "上游以现实环境中的儿童日常经验和长时录音为特色，材料的访问条件与转写覆盖差异较大。",
+      "research_uses": [
+        "研究建议：在有相应标注时研究语言输入、说话人活动及环境采样方法。"
+      ],
+      "starter_notes": [
+        "先确认语料、取样时段与转写范围；不要把整日录音默认视为逐字标注。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/homebank 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "homebank 官方介绍",
+          "url": "https://talkbank.org/homebank/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-development",
+        "speech-interaction"
+      ]
+    },
+    "asset-03ea6074d3455e55": {
+      "summary": "PhonBank：发音与音系发展研究资料。",
+      "background": "PhonBank 侧重儿童音系发展，并与 Phon 分析工具配合；部分语料也在 CHILDES 中有转写入口。",
+      "research_uses": [
+        "研究建议：在具体子库具备相应标注时研究音段、音节结构与发展差异。"
+      ],
+      "starter_notes": [
+        "先核对音系转写体系和目标词信息，再决定怎样统计发音模式。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "phon 官方介绍",
+          "url": "https://talkbank.org/phon/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-9c087f5985df8c70": {
+      "summary": "SamtaleBank：丹麦语口语互动集合。",
+      "background": "上游按交谈人数、电话及第二语言等情境组织资料。它提供互动研究入口，目录分组不代表统一实验条件。",
+      "research_uses": [
+        "研究建议：比较相近情境下的参与方式与话轮组织。"
+      ],
+      "starter_notes": [
+        "先选具体 Sam 系列、电话或学习者资料，不直接混合全部文件。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/samtale 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "samtale 官方介绍",
+          "url": "https://talkbank.org/samtale/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-0725838081dacc8d": {
+      "summary": "SLABank：第二语言习得资料集合。",
+      "background": "它汇集学习者语言研究。这里的语言分支主要用于寻找目标语言资料，并不直接说明参与者母语或熟练度。",
+      "research_uses": [
+        "研究建议：分析学习者语言发展、任务表现与交际策略。"
+      ],
+      "starter_notes": [
+        "先核对母语、目标语、任务、测量时点和水平指标。",
+        "从具体语料页面确认媒体、转写、任务和引用的对应关系。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子库而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/slabank 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "slabank 官方介绍",
+          "url": "https://talkbank.org/slabank/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-77a81341405837fb": {
+      "summary": "ASDBank 英语语料的语言分支，包含不同交流研究项目。",
+      "background": "官方英语索引中各项目的媒体条件不同；语言分支是集合，不是统一的自闭症识别数据集。",
+      "research_uses": [
+        "研究建议：选择任务一致的研究，再分析对话回应或表达组织。"
+      ],
+      "starter_notes": [
+        "逐项确认项目名、采集任务与对照条件。",
+        "避免用跨项目录音差异替代研究变量。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/asd/English 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "ASDBank 官方语料索引",
+          "url": "https://talkbank.org/asd/access/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-78f5827262267f1e": {
+      "summary": "ASDBank 希腊语资料分支。",
+      "background": "官方该分支列出 Thessaloniki 项目，内容为临床面对面交流；本地是否完整包含该项目尚未核对。",
+      "research_uses": [
+        "研究建议：作为细读交流情境与叙事组织的候选材料。"
+      ],
+      "starter_notes": [
+        "先核对 Thessaloniki 文件对应关系。",
+        "区分自发话题、程序性说明与个人故事。"
+      ],
+      "modalities": [
+        "上游：视频及转写"
+      ],
+      "languages": [
+        "希腊语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/asd/Greek 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "ASDBank Greek Thessaloniki",
+          "url": "https://talkbank.org/asd/access/Greek/Thessaloniki.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech"
+      ]
+    },
+    "asset-1cd321f498bb488a": {
+      "summary": "Bangor 双语会话语料集合，适合研究自然语码转换。",
+      "background": "上游 Bangor 包括不同语言组合；Miami 项目以西班牙语—英语自然交谈检验语码转换理论，并非所有 Bangor 材料都是同一种语言对。",
+      "research_uses": [
+        "研究建议：比较话轮内、话轮间转换及其交际功能。",
+        "研究建议：检验多语转写或语言识别方法，保留语言标签差异。"
+      ],
+      "starter_notes": [
+        "先选 Miami、Siarad 等具体项目，核对语言编码约定。",
+        "划分数据时检查同一说话人跨会话重复，避免泄漏。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语",
+        "西班牙语",
+        "威尔士语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/biling/Bangor 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "BilingBank 语料索引",
+          "url": "https://talkbank.org/biling/access/index.html"
+        },
+        {
+          "title": "Bangor Miami 官方说明",
+          "url": "https://talkbank.org/biling/access/Bangor/Miami.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning",
+        "speech-interaction"
+      ]
+    },
+    "asset-f938df462fcb6b5f": {
+      "summary": "BraPoRus：巴西俄语传承语使用者的语言接触访谈。",
+      "background": "上游围绕俄语与巴西葡萄牙语接触，包含以家庭经历为话题的半结构访谈；官方自动形态句法标注尚需人工核查。",
+      "research_uses": [
+        "研究建议：研究传承语保持、词汇选择与语言接触。",
+        "研究建议：抽样审计自动转写及语法标注。"
+      ],
+      "starter_notes": [
+        "先区分采访者和受访者、俄语与葡语片段。",
+        "核对远程录音条件及自动标注误差，再做群体比较。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "俄语",
+        "葡萄牙语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/biling/BraPoRus 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "BraPoRus 官方语料说明",
+          "url": "https://talkbank.org/biling/access/BraPoRus.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方自动标注说明不能当作本地已存在这些标注的证据。"
+      ],
+      "topics": [
+        "language-learning",
+        "speech-interaction"
+      ]
+    },
+    "asset-e86b73816c01aaf4": {
+      "summary": "CABNC：BNC 自然口语的会话分析重转写资料。",
+      "background": "它将 BNC 部分自然会话按 Jefferson 式细致约定重转写，使轮替、重叠等互动现象可被系统分析。",
+      "research_uses": [
+        "研究建议：用相邻话轮检验轮替、修复或回应组织。"
+      ],
+      "starter_notes": [
+        "先掌握 CA 符号并核对具体转写与录音的时轴；原音频与重转写的条件需分别查。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CABNC 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CABNC 官方语料说明",
+          "url": "https://talkbank.org/ca/access/CABNC.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-4213d6ddc668c6cd": {
+      "summary": "CLAPI：法语互动资料在 CABank 的入口。",
+      "background": "官方说明将该项关联到 CLAPI 的口语互动项目；TalkBank 中的部分不能直接等同于完整 CLAPI 库。",
+      "research_uses": [
+        "研究建议：观察法语会话中的回应、修复与参与方式。"
+      ],
+      "starter_notes": [
+        "先确认具体互动场景和文件对应，跨站同名资源需检查版本。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "法语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CLAPI 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CLAPI 官方语料说明",
+          "url": "https://talkbank.org/ca/access/CLAPI.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-5dd7371b2f70ec5e": {
+      "summary": "CMU：用于学习会话记录与转写的学生采集材料。",
+      "background": "官方说明来自 Language and Thought 课程中的短会话作业，内容与语言情境多样。",
+      "research_uses": [
+        "研究建议：用于会话转写、说话人标记与分析单元设计练习。"
+      ],
+      "starter_notes": [
+        "先按每段的采集说明和语言挑选，不能把课程汇编视为统一抽样。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CMU 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CMU 官方语料说明",
+          "url": "https://talkbank.org/ca/access/CMU.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "CABank 当前总索引标有教学用途限制；使用前应核对该限制与具体材料来源。"
+      ],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-4f23e1ad5a9c4c69": {
+      "summary": "CORAAL：非裔美国英语地区变异资料的 TalkBank 转换入口。",
+      "background": "它连接到 Corpus of Regional African American Language；方言差异是研究对象，不能视为英语使用缺陷。",
+      "research_uses": [
+        "研究建议：研究语言变异；在可比任务下审计 ASR 对方言的误差差异。"
+      ],
+      "starter_notes": [
+        "先核对具体地区、访谈和转换版本；官方曾说明转换会改变时间链接，分析对齐须另验。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语（非裔美国英语）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CORAAL 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CORAAL 官方语料说明",
+          "url": "https://talkbank.org/ca/access/CORAAL.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-4d07cfa2f9619169": {
+      "summary": "Croatian / HrAL：克罗地亚语成人自然交谈。",
+      "background": "上游从熟人、朋友和家庭等非正式互动采样，研究关注实际口语及说话人背景差异。",
+      "research_uses": [
+        "研究建议：研究口语词汇、话语组织和地区差异。"
+      ],
+      "starter_notes": [
+        "检查采样场景及人口背景缺失情况，按说话人或会话划分样本。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "克罗地亚语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Croatian 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Croatian 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Croatian.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-cda5a0ec81cc7837": {
+      "summary": "CABank Examples：会话分析编码与媒体链接示例。",
+      "background": "官方将这些短片段用于演示或检验 TalkBank 浏览器的 CA 编码及媒体链接；它们不是同一实验的重复样本。",
+      "research_uses": [
+        "研究建议：用来熟悉符号、回放和标注流程。"
+      ],
+      "starter_notes": [
+        "逐个查看示例背景，技术演示结果不作为群体结论。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依示例而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Examples 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Examples 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Examples.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-1ee9ee12cacf2aeb": {
+      "summary": "FreeLunch：CMU 学生用餐时的讨论。",
+      "background": "官方将其描述为学生享用免费午餐时的交谈，并说明转写只覆盖部分记录。",
+      "research_uses": [
+        "研究建议：观察熟人小组中的话题推进与互动。"
+      ],
+      "starter_notes": [
+        "先对齐已转写的会话，别假设所有媒体都有文字。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/FreeLunch 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "FreeLunch 官方语料说明",
+          "url": "https://talkbank.org/ca/access/FreeLunch.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-2a4f171532f0274c": {
+      "summary": "GCSAusE：澳大利亚英语口语互动。",
+      "background": "Griffith Corpus of Spoken Australian English 采用会话分析转写约定，收集澳大利亚语境中的英语互动。",
+      "research_uses": [
+        "研究建议：研究澳大利亚语境下的语用、轮替与回应表达。"
+      ],
+      "starter_notes": [
+        "先识别会话参与者及采集情境，避免把国别标签当同质口音。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/GCSAusE 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "GCSAusE 官方语料说明",
+          "url": "https://talkbank.org/ca/access/GCSAusE.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-62cf645ce04beb59": {
+      "summary": "Garfinkel：民族方法学研讨讲座资料。",
+      "background": "官方关联 Harold Garfinkel 在波士顿的讲座研讨记录；它是学术讲话材料，并非日常家庭会话。",
+      "research_uses": [
+        "研究建议：用于学术话语分析或民族方法学方法学习。"
+      ],
+      "starter_notes": [
+        "区分讲者长段陈述与听众互动，并核对 CHAT 和原文差异。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Garfinkel 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Garfinkel 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Garfinkel.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-7d3fb5b4df65ae6d": {
+      "summary": "Goodwin：情境互动与具身行动分析材料。",
+      "background": "官方连接 Charles Goodwin 的互动研究视频及相关论文，适合从具体活动理解语言与身体行动的关系。",
+      "research_uses": [
+        "研究建议：在视频可用时联合观察目光、手势与话轮。"
+      ],
+      "starter_notes": [
+        "若本地只有音轨，不能据此复现视觉行动分析。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Goodwin 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Goodwin 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Goodwin.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-83f2a5afcc6b745b": {
+      "summary": "Grimshaw：博士论文答辩中的专业互动。",
+      "background": "上游材料为论文答辩，关联同侪专业话语研究，与闲聊在角色及任务结构上有明显差别。",
+      "research_uses": [
+        "研究建议：研究答问、论证和专业身份在互动中的呈现。"
+      ],
+      "starter_notes": [
+        "先标明答辩者与提问者角色，保留问答序列。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Grimshaw 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Grimshaw 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Grimshaw.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-0057a1bdb802ad52": {
+      "summary": "GulfWar：战争话题广播热线来电材料。",
+      "background": "官方语料关联广播来电与互动韵律研究。网页中的历史时间描述存在疑点，因此此处不据它填写精确事件年份。",
+      "research_uses": [
+        "研究建议：研究来电理由、立场表达和互动韵律。"
+      ],
+      "starter_notes": [
+        "先读原研究确认节目录音背景，再核对声学测量区间。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/GulfWar 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "GulfWar 官方语料说明",
+          "url": "https://talkbank.org/ca/access/GulfWar.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-98c1890660d738b7": {
+      "summary": "ISL Meeting Corpus：会议语音与互动资料。",
+      "background": "上游为 CMU 会议室记录，原 ISL 转写转换为 CHAT，并有会议类型与言语风格研究。",
+      "research_uses": [
+        "研究建议：在核对渠道和标注后研究会议 ASR、轮替或说话人互动。"
+      ],
+      "starter_notes": [
+        "先确认会议类型、录音通道和说话人映射，不默认具备当前基准划分。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/ISL 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "ISL 官方语料说明",
+          "url": "https://talkbank.org/ca/access/ISL.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-faf65be1b738aeaf": {
+      "summary": "Istriot：伊斯特里亚地区的双语自然交谈资料。",
+      "background": "上游以伊斯特里奥特语使用者的非正式互动记录语言接触，同时提供社会语言背景说明。",
+      "research_uses": [
+        "研究建议：研究语言接触、语域与小语种口语资源构建。"
+      ],
+      "starter_notes": [
+        "先核对具体语言变体及转写约定，避免混同当地其他语言。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "伊斯特里奥特语；其他语言依会话而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Istriot 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Istriot 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Istriot.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-8e5b44ad88d85630": {
+      "summary": "JOC：言语与非言语交际研究配套资料。",
+      "background": "上游与 Journal of Communication 的相关专题研究相联，包含不同交际情境，适合结合原论文理解分析问题。",
+      "research_uses": [
+        "研究建议：复核回应、目光或具身交流的具体分析示例。"
+      ],
+      "starter_notes": [
+        "先定位对应论文与片段；若无视频，不进行目光或手势判断。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/JOC 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "JOC 官方语料说明",
+          "url": "https://talkbank.org/ca/access/JOC.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-0cf5fc253609dbf6": {
+      "summary": "MICASE：密歇根学术英语口语资料。",
+      "background": "Michigan Corpus of Academic Spoken English 由密歇根大学英语语言研究机构建设；TalkBank 提供其 CHAT 转换入口。",
+      "research_uses": [
+        "研究建议：研究学术口语表达、互动及学术英语教学。"
+      ],
+      "starter_notes": [
+        "按具体言语事件选材，不能把所有记录当讲座；核对转换后的检索字段。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/MICASE 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "MICASE 官方语料说明",
+          "url": "https://talkbank.org/ca/access/MICASE.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-643065c2a9f4f933": {
+      "summary": "MOVIN：跨语言话语与会话分析示例集合。",
+      "background": "官方介绍涉及政治对话等研究，收录不同语言和场景的样例，如媒体访谈、现实节目或协商活动。",
+      "research_uses": [
+        "研究建议：比较特定互动行动在不同场景的实现。"
+      ],
+      "starter_notes": [
+        "先按语言、体裁与来源分层；不要直接合并计算一个总体指标。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/MOVIN 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "MOVIN 官方语料说明",
+          "url": "https://talkbank.org/ca/access/MOVIN.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-ad0eab75ef4414f7": {
+      "summary": "Mambila：喀麦隆家庭会话与社会指称研究资料。",
+      "background": "上游来自亲属与语言研究，关注姓名、代词、亲属称谓如何在会话中指向人物，并记录转写与现场解释过程。",
+      "research_uses": [
+        "研究建议：分析指称选择、受话人和语境关系。"
+      ],
+      "starter_notes": [
+        "先读专用编码；背景声音与参与者进出会影响说话人和受话人判断。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "曼比拉语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Mambila 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Mambila 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Mambila.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-7a57648d9b8eb518": {
+      "summary": "Mopan：用于手势研究的莫潘语叙事材料。",
+      "background": "官方将此语料描述为故事讲述，并关联空间图式与自发手势的研究。",
+      "research_uses": [
+        "研究建议：在有对应视频和标注时分析叙事与空间表达。"
+      ],
+      "starter_notes": [
+        "先确认视听对应及转写语言；仅有音频时限定为口语层面。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "莫潘语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Mopan 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Mopan 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Mopan.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-3171d7f0efd69e59": {
+      "summary": "Nahuatl：墨西哥纳瓦特尔语自然交谈与口述故事。",
+      "background": "上游语料关联 Jane Hill 的口头艺术与民族志研究；阅读时需要具体故事和交谈背景。",
+      "research_uses": [
+        "研究建议：分析叙事组织、引语或转写与翻译之间的关系。"
+      ],
+      "starter_notes": [
+        "先核对原语与译文层，不把译文结构直接视作原语语法。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "纳瓦特尔语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Nahuatl 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Nahuatl 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Nahuatl.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-038c206d90a7f503": {
+      "summary": "SBCSAE：圣巴巴拉美国英语口语语料。",
+      "background": "上游由 UCSB 组织，涵盖不同自然言语活动，提供研究现实美国英语使用的材料；体裁差异是分析设计的重要部分。",
+      "research_uses": [
+        "研究建议：比较日常交谈、工作或公共场合中的口语组织。"
+      ],
+      "starter_notes": [
+        "先按言语事件分层；官方说明存在隐私处理音段，做声学测量前须识别。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/SBCSAE 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "SBCSAE 官方语料说明",
+          "url": "https://talkbank.org/ca/access/SBCSAE.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-71a8dc592aa19d83": {
+      "summary": "SCoSE：萨尔布吕肯美国英语自然会话语料。",
+      "background": "上游样例包括家庭聚会、合租者交谈等，关联语用学中夸张与极端表达研究。",
+      "research_uses": [
+        "研究建议：研究叙事、夸张和熟人会话中的共同知识。"
+      ],
+      "starter_notes": [
+        "从一段完整互动起步，记录说话人关系及录音影响。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/SCoSE 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "SCoSE 官方语料说明",
+          "url": "https://talkbank.org/ca/access/SCoSE.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-15e5e4ae0f344137": {
+      "summary": "SLX：Labov 及其学生采集的经典社会语言学访谈。",
+      "background": "官方命名为经典社会语言学访谈语料，并提供变量编码；早期字符编码会影响部分语音形式检索。",
+      "research_uses": [
+        "研究建议：研究变异语言学的访谈方法和变量定义。"
+      ],
+      "starter_notes": [
+        "先检查旧字符映射与变量说明，再复现检索；不要无声修正原转写。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/SLX 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "SLX 官方语料说明",
+          "url": "https://talkbank.org/ca/access/SLX.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "phonetics",
+        "speech-interaction",
+        "methods"
+      ]
+    },
+    "asset-92724abf4bd1b9f3": {
+      "summary": "SPIRE：设计工作坊中的讨论与协作。",
+      "background": "上游参与者与演员团队为设计挑战准备短剧，关联参与式创新和设计交流研究。",
+      "research_uses": [
+        "研究建议：分析协同构思、问题表述与解释过程。"
+      ],
+      "starter_notes": [
+        "先辨认设计讨论与表演片段，保留任务上下文。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/SPIRE 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "SPIRE 官方语料说明",
+          "url": "https://talkbank.org/ca/access/SPIRE.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-6d1be656bd9ba83b": {
+      "summary": "Sakura：日本大学生小组交谈资料。",
+      "background": "上游以熟悉彼此的学生分组交谈研究群体谈话；话题提示、组别与参与者重复均可能影响分析。",
+      "research_uses": [
+        "研究建议：研究日语小组互动、回应和话题推进。"
+      ],
+      "starter_notes": [
+        "先核对参与者跨会话重复，并确认日文与拉丁字母转写的对应。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "日语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Sakura 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Sakura 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Sakura.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-cfd04035318b1614": {
+      "summary": "TaiwanHakka：台湾客家语面对面口语资料。",
+      "background": "它属于 NCCU Spoken Chinese 语言记录项目的客家语部分，重点记录自然口语使用。",
+      "research_uses": [
+        "研究建议：研究客家语互动、话语标记与语言记录方法。"
+      ],
+      "starter_notes": [
+        "先确认客家语变体与转写规则，不与普通话分支混为一个语种。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "客家语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/TaiwanHakka 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "TaiwanHakka 官方语料说明",
+          "url": "https://talkbank.org/ca/access/TaiwanHakka.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-3333b76951117f21": {
+      "summary": "TaiwanMandarin：台湾普通话面对面口语资料。",
+      "background": "它属于 NCCU Spoken Chinese 项目的普通话部分，采用与相关分支相联系的口语采集思路。",
+      "research_uses": [
+        "研究建议：研究普通话自然交谈中的指称、回应及话语标记。"
+      ],
+      "starter_notes": [
+        "核对采集情境和转写约定，跨分支比较需明确语言差异。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "普通话"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/TaiwanMandarin 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "TaiwanMandarin 官方语料说明",
+          "url": "https://talkbank.org/ca/access/TaiwanMandarin.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-ffa9c7000401fa10": {
+      "summary": "Yiddish：纽约哈西德社群的故事与交谈。",
+      "background": "上游收集意第绪语叙事和对话，相关研究讨论传承语中的话语标记与语法变化。",
+      "research_uses": [
+        "研究建议：研究传承语、叙事结构与语言接触。"
+      ],
+      "starter_notes": [
+        "先读社群和采样背景，不把该样本概括为全部意第绪语使用者。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "意第绪语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Yiddish 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Yiddish 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Yiddish.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-af44e918a68e9224": {
+      "summary": "Yucatec：尤卡坦玛雅语故事讲述材料。",
+      "background": "官方将其归为墨西哥的叙事视频资料；它适合以具体讲述事件为单位细读。",
+      "research_uses": [
+        "研究建议：在视听和转写配套时分析叙事中的语言与行动。"
+      ],
+      "starter_notes": [
+        "先确认视频、音轨与译文是否配套，避免只按文件名推断故事主题。",
+        "需要量化分析时先抽样核对转写、时间范围与媒体配对。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "尤卡坦玛雅语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Yucatec 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "Yucatec 官方语料说明",
+          "url": "https://talkbank.org/ca/access/Yucatec.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-398dc567c799b33f": {
+      "summary": "CallFriend：按语言组织的电话交谈语料集合。",
+      "background": "TalkBank 官方索引将它关联到 LDC 电话语料。此处是多个语言分支的入口，与 CallHome 应分别追踪来源与文件身份。",
+      "research_uses": [
+        "研究建议：研究电话场景中的语言识别、会话语音或交谈结构。"
+      ],
+      "starter_notes": [
+        "先选具体语言版本，再确认音轨、转写范围与说话人。",
+        "实验需按实际版本重新核对任务和划分，不沿用其他电话库的假设。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CallFriend 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CABank CallFriend 官方索引",
+          "url": "https://talkbank.org/ca/access/CallFriend/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-8398bd0ca18f72b3": {
+      "summary": "CallHome：多语言非脚本电话交谈集合。",
+      "background": "英语子库官方说明其源于 LDC 会话语音识别项目，多为自主选择对象的通话；其他语言子库需独立核对。",
+      "research_uses": [
+        "研究建议：研究电话会话 ASR、说话人轮替与口语表达。"
+      ],
+      "starter_notes": [
+        "先确定语言和发行版；全通话时长与已转写片段可能不同。",
+        "核对说话人重复和通道，避免直接把目录当标准训练测试集。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/CallHome 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CABank CallHome 官方索引",
+          "url": "https://talkbank.org/ca/access/CallHome/"
+        },
+        {
+          "title": "CallHome English 官方说明",
+          "url": "https://talkbank.org/ca/access/CallHome/eng.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-dfe29f015d831a4b": {
+      "summary": "Jefferson：以 Gail Jefferson 名义归组的会话分析资料入口。",
+      "background": "CABank 官方索引在该组下列出不同历史会话资料。它是相关材料的集合，并不表示每项都来自相同采集任务。",
+      "research_uses": [
+        "研究建议：学习精细会话转写如何支持序列分析。"
+      ],
+      "starter_notes": [
+        "先辨认子语料的独立名称、场景与出处。",
+        "保留停顿、重叠和自我修复等符号，避免先做会破坏互动信息的文本清洗。"
+      ],
+      "modalities": [
+        "上游含口语媒体；本地文件类型未逐项核验"
+      ],
+      "languages": [
+        "依子语料而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/ca/Jefferson 对照上游说明。背景、语言及模态描述适用于上游；未读取本地媒体或转写，不证明本地完整性、版本、标注质量或使用授权。",
+      "sources": [
+        {
+          "title": "CABank 官方语料索引",
+          "url": "https://talkbank.org/ca/access/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 的路径、名称与原台账分类；未做文件内容验证。",
+        "官方证据：所列页面用于语料身份或所属资料体系背景。研究用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "methods"
+      ]
+    },
+    "asset-26ede326d50e2847": {
+      "summary": "CHILDES 双语儿童资料，按具体语言组合与项目进一步选择。",
+      "background": "上游分支汇集双语儿童项目；部分双语叙事材料还列在 Frogs 等任务分支。",
+      "research_uses": [
+        "研究建议：比较同一儿童不同语言的使用与发展，控制接触经历。"
+      ],
+      "starter_notes": [
+        "先记录母语、其他语言及接触背景；检查任务目录中的同源入口。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Biling 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Biling 官方分类",
+          "url": "https://talkbank.org/childes/access/Biling/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-16ffb09087ec6b36": {
+      "summary": "CHILDES 汉语儿童语言资料集合，含不同汉语变体与任务。",
+      "background": "官方索引区分粤语、普通话与台湾闽南语等，并有家庭互动、阅读或叙事等不同项目。",
+      "research_uses": [
+        "研究建议：分别研究汉语儿童的词汇、话语和叙事发展。"
+      ],
+      "starter_notes": [
+        "先确定语种和简繁转写约定；不要把 Chinese 分支全部当普通话。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "粤语",
+        "普通话",
+        "台湾闽南语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Chinese 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Chinese 官方分类",
+          "url": "https://talkbank.org/childes/access/Chinese/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-fb54f544ffc77e88": {
+      "summary": "CHILDES 以英语临床语言项目为主的儿童资料集合。",
+      "background": "该官方索引保留了与形态标注历史有关的分类，包含不同语言障碍及比较研究。",
+      "research_uses": [
+        "研究建议：在诊断、年龄和任务明确时比较语言组织特征。"
+      ],
+      "starter_notes": [
+        "先查每个项目原始入组标准；不从分支名推断统一疾病或标签。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Clinical-Eng 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Clinical-Eng 官方分类",
+          "url": "https://talkbank.org/childes/access/Clinical-Eng/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development",
+        "clinical-speech"
+      ]
+    },
+    "asset-deaab343d0321cda": {
+      "summary": "CHILDES CHILDES 其他临床资料分支，分类不等于仅有非英语。",
+      "background": "官方页按历史标注方式组织，实际包含粤语、荷兰语、英语及其他语言项目。",
+      "research_uses": [
+        "研究建议：开展跨项目资料筛选，比较适配的语言发展问题。"
+      ],
+      "starter_notes": [
+        "先读具体语料说明；Other 不能被自动翻译为非英语或其他诊断。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言，包括英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Clinical-Other 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Clinical-Other 官方分类",
+          "url": "https://talkbank.org/childes/access/Clinical-Other/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development",
+        "clinical-speech"
+      ]
+    },
+    "asset-495c0b9f64a4fc91": {
+      "summary": "CHILDES 荷兰语与南非荷兰语儿童资料分支。",
+      "background": "官方在一个语言分支组织两种语言的项目，并列有家庭记录、叙事和音系相关入口。",
+      "research_uses": [
+        "研究建议：在任务可比时探索相关语言的习得差异。"
+      ],
+      "starter_notes": [
+        "先区分 Dutch 与 Afrikaans，再核对方言、年龄和重复测量。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "荷兰语",
+        "南非荷兰语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/DutchAfrikaans 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES DutchAfrikaans 官方分类",
+          "url": "https://talkbank.org/childes/access/DutchAfrikaans/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-562ad3a183abcf34": {
+      "summary": "CHILDES 东亚及邻近语言的 CHILDES 集合；中文和日语另有分支。",
+      "background": "官方本分支列有印尼语、韩语和泰语儿童项目，具体采集设计各不相同。",
+      "research_uses": [
+        "研究建议：把语言类型与交际情境纳入儿童语言比较。"
+      ],
+      "starter_notes": [
+        "按具体语言建立样本表，避免根据区域名称推断同一语系。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "印尼语",
+        "韩语",
+        "泰语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/EastAsian 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES EastAsian 官方分类",
+          "url": "https://talkbank.org/childes/access/EastAsian/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-9fef0583071ab8b2": {
+      "summary": "CHILDES 非裔美国英语儿童资料分支。",
+      "background": "官方以 AAE 作为语言变体组织相关儿童资料，并指出其他分支也可能包含 AAE 使用者。",
+      "research_uses": [
+        "研究建议：研究儿童方言发展或审计转写工具的方言适配。"
+      ],
+      "starter_notes": [
+        "将语言变体与语言障碍区分；不要仅凭目录推定参与者身份或诊断。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "英语（非裔美国英语）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Eng-AAE 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Eng-AAE 官方分类",
+          "url": "https://talkbank.org/childes/access/Eng-AAE/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-74108ff83d7aec34": {
+      "summary": "CHILDES 北美英语儿童语言资料集合。",
+      "background": "官方索引包含不同纵向与横断面项目，部分关注儿童与成人的日常交流。",
+      "research_uses": [
+        "研究建议：以具体项目追踪词汇、句法或照护者输入变化。"
+      ],
+      "starter_notes": [
+        "先核对年龄单位、采样间隔和说话人角色；避免把跨项目差异当发展效应。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Eng-NA 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Eng-NA 官方分类",
+          "url": "https://talkbank.org/childes/access/Eng-NA/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-c4b96899b1851539": {
+      "summary": "CHILDES 英国儿童语言资料集合。",
+      "background": "该分支按英国来源组织项目，任务和标注覆盖不完全一致。",
+      "research_uses": [
+        "研究建议：与合适的北美英语项目比较语言输入或表达组织。"
+      ],
+      "starter_notes": [
+        "先控制年龄与活动，再考虑地区差异；不能默认所有子库标注相同。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Eng-UK 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Eng-UK 官方分类",
+          "url": "https://talkbank.org/childes/access/Eng-UK/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-da150ea604d5e88f": {
+      "summary": "CHILDES 芬兰—乌戈尔语言儿童资料的聚合分支。",
+      "background": "官方按该语言类群组织项目，既有发展记录也有任务资料；具体语言须按子库确认。",
+      "research_uses": [
+        "研究建议：选择适当语言研究形态丰富语言的习得问题。"
+      ],
+      "starter_notes": [
+        "先确定实际语种与分析单位，词数不能直接替代跨语言可比的形态指标。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "芬兰—乌戈尔诸语言（按子库确认）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Finno-Ugric 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Finno-Ugric 官方分类",
+          "url": "https://talkbank.org/childes/access/Finno-Ugric/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-dcea5ac2449e995f": {
+      "summary": "CHILDES 法语儿童语言资料集合。",
+      "background": "官方法语索引与 PhonBank 的部分项目互相链接，因此两个入口未必代表独立样本。",
+      "research_uses": [
+        "研究建议：研究法语儿童的词汇、语法与互动发展。"
+      ],
+      "starter_notes": [
+        "先核对项目名及记录身份；跨库合并前检查同源记录。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "法语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/French 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES French 官方分类",
+          "url": "https://talkbank.org/childes/access/French/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-ecc97cc44be82fbe": {
+      "summary": "CHILDES 德语儿童语言资料集合。",
+      "background": "上游既有个案、密集采样，也有不同听觉条件相关研究，不能视作统一对照群体。",
+      "research_uses": [
+        "研究建议：分析德语儿童语言发展中的个体轨迹与输入。"
+      ],
+      "starter_notes": [
+        "区分采样密度和参与者条件，统计时按儿童而非录音数计算独立单位。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "德语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/German 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES German 官方分类",
+          "url": "https://talkbank.org/childes/access/German/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-78d2aed91815c88d": {
+      "summary": "CHILDES 日语儿童语言资料集合。",
+      "background": "官方提供日语专用转写指引，项目同时包括音视频记录和日记类资料。",
+      "research_uses": [
+        "研究建议：研究日语儿童表达、互动及语法发展。"
+      ],
+      "starter_notes": [
+        "先读日语转写规则；只有日记或文本的项目不能用于直接声学测量。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "日语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Japanese 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Japanese 官方分类",
+          "url": "https://talkbank.org/childes/access/Japanese/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-01f4f4e3a6944441": {
+      "summary": "CHILDES CHILDES 其他语言资料的发现入口。",
+      "background": "此分支包含不同语系和采集传统；Other 是目录分组，不是一个语言类别或单一数据集。",
+      "research_uses": [
+        "研究建议：为低资源语言或类型学比较寻找合适子库。"
+      ],
+      "starter_notes": [
+        "首先确认语种、文字和转写规则，再制定可比较的分析问题。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Other 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Other 官方分类",
+          "url": "https://talkbank.org/childes/access/Other/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-9c5495c093a8025e": {
+      "summary": "CHILDES 法语、西班牙语之外的罗曼语言儿童资料。",
+      "background": "官方该分支组织加泰罗尼亚语、意大利语、葡萄牙语、罗马尼亚语等项目。",
+      "research_uses": [
+        "研究建议：研究相关语言的词汇与形态句法习得差异。"
+      ],
+      "starter_notes": [
+        "先选定语种和任务，不能以同属罗曼语族替代匹配样本。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "加泰罗尼亚语",
+        "意大利语",
+        "葡萄牙语",
+        "罗马尼亚语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Romance 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Romance 官方分类",
+          "url": "https://talkbank.org/childes/access/Romance/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-2e168ae26ed5b252": {
+      "summary": "CHILDES 斯堪的纳维亚语言儿童资料集合。",
+      "background": "上游索引包含丹麦语、冰岛语、挪威语与瑞典语项目，采样形式随子库变化。",
+      "research_uses": [
+        "研究建议：比较具体语言中的早期互动或表达发展。"
+      ],
+      "starter_notes": [
+        "先核对转写体系及纵向时点；地域总称不意味着语音或语法可直接合并。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "丹麦语",
+        "冰岛语",
+        "挪威语",
+        "瑞典语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Scandinavian 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Scandinavian 官方分类",
+          "url": "https://talkbank.org/childes/access/Scandinavian/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-892d1b5f10b9a852": {
+      "summary": "CHILDES 斯拉夫语言儿童资料集合。",
+      "background": "上游按不同斯拉夫语言排列研究项目，包含自然发展记录与叙事等任务。",
+      "research_uses": [
+        "研究建议：为格、数或动词变化等习得问题选择子库。"
+      ],
+      "starter_notes": [
+        "按语种和任务核对编码，区分语言分组与真正独立的采集项目。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "斯拉夫诸语言（按子库确认）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Slavic 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Slavic 官方分类",
+          "url": "https://talkbank.org/childes/access/Slavic/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-716f9749ea8221b7": {
+      "summary": "CHILDES 西班牙语儿童语言资料集合。",
+      "background": "官方提供多个儿童研究的独立说明；录音与转写的可用程度因项目而异。",
+      "research_uses": [
+        "研究建议：分析儿童表达发展并比较明确的西班牙语变体。"
+      ],
+      "starter_notes": [
+        "先读具体采集地与任务说明，不能从 Spanish 名称确定地区口音。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "西班牙语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Spanish 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES Spanish 官方分类",
+          "url": "https://talkbank.org/childes/access/Spanish/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-6c587ae7ddf4bc52": {
+      "summary": "CHILDES XLing：面向跨语言比较的儿童语言项目集合。",
+      "background": "官方索引列有看图、影片描述及伴随手势的研究，并非全部采用同一刺激或媒体。",
+      "research_uses": [
+        "研究建议：比较不同语言对同类事件的表达。"
+      ],
+      "starter_notes": [
+        "先核对刺激、任务和年龄是否匹配，再定义跨语言指标。",
+        "从具体子语料确定文件身份、引用与媒体配套。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/XLing 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES XLing 官方分类",
+          "url": "https://talkbank.org/childes/access/XLing/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development"
+      ]
+    },
+    "asset-a694d5e34b07a44a": {
+      "summary": "Frogs：以无字青蛙故事图画书诱发的叙事资料集合。",
+      "background": "上游使用 Mercer Mayer 的 Frog, where are you? 组织跨语言叙事采集；Berman 与 Slobin 的工作提供了该研究框架的重要背景。",
+      "research_uses": [
+        "研究建议：比较叙事结构、事件组织与指称衔接。",
+        "研究建议：在任务和年龄匹配后开展跨语言或发展比较。"
+      ],
+      "starter_notes": [
+        "先确认实际使用的故事版本、诱发方式及语言。",
+        "勿与 Cookie Theft 或 MAIN 混为一种看图任务。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/Frogs 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "Frog Story 官方语料说明",
+          "url": "https://talkbank.org/childes/access/Frogs/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development",
+        "methods"
+      ]
+    },
+    "asset-cd67ba8c12a49bb0": {
+      "summary": "MAIN：采用多语叙事评估框架的语料集合。",
+      "background": "CHILDES 此入口收集采用 MAIN 协议的不同语言项目；它与 Frogs 分别组织，不是其别名。",
+      "research_uses": [
+        "研究建议：在核对协议与评分规则后研究叙事组织及双语表现。"
+      ],
+      "starter_notes": [
+        "先核对具体项目采用的 MAIN 材料与施测方式。",
+        "区分叙事原始记录和评分结果，不假设本地已含分数。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/childes/MAIN 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "CHILDES MAIN 官方索引",
+          "url": "https://talkbank.org/childes/access/MAIN/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "language-development",
+        "language-learning",
+        "methods"
+      ]
+    },
+    "asset-3bc8826ec1e9f881": {
+      "summary": "PhonBank 双语及第二语言发音资料。",
+      "background": "官方分支包含不同语言组合，研究对象既有双语儿童，也有第二语言学习者。",
+      "research_uses": [
+        "研究建议：在语言接触背景明确后比较音系发展或跨语言影响。"
+      ],
+      "starter_notes": [
+        "先区分同时双语与后续学习，再核对年龄、目标音和任务。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Biling 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Biling 官方分类",
+          "url": "https://talkbank.org/phon/access/Biling/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-743c7fcd366f2e4d": {
+      "summary": "PhonBank 汉语相关音系发展项目。",
+      "background": "当前官方分支明确列有粤语和台湾闽南语项目，不能据 Chinese 名称推定普通话覆盖。",
+      "research_uses": [
+        "研究建议：研究相应汉语变体的音段或音系发展。"
+      ],
+      "starter_notes": [
+        "先确认具体语种、转写符号及声调标注是否具备。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "粤语",
+        "台湾闽南语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Chinese 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Chinese 官方分类",
+          "url": "https://talkbank.org/phon/access/Chinese/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-49c20dbd9351e57a": {
+      "summary": "PhonBank 临床发音与音系资料。",
+      "background": "官方索引有音系障碍、命名和构音评估等不同项目，并非统一诊断集。",
+      "research_uses": [
+        "研究建议：比较定义清楚的发音模式，开展人工标注一致性研究。"
+      ],
+      "starter_notes": [
+        "先核对原研究入组、任务和目标词；不能从声音自行生成临床诊断。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "依子语料而定"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Clinical 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Clinical 官方分类",
+          "url": "https://talkbank.org/phon/access/Clinical/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development",
+        "clinical-speech"
+      ]
+    },
+    "asset-8775739bf14b2385": {
+      "summary": "PhonBank 荷兰语相关发音发展资料。",
+      "background": "官方提供 CLPF、Utrecht 等项目入口；并非每项都可获得相同的媒体支持。",
+      "research_uses": [
+        "研究建议：研究儿童发音轨迹与词形中的音段模式。"
+      ],
+      "starter_notes": [
+        "先核对项目的音频链接和记录时点，区分缺失媒体与无该现象。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "荷兰语；其他变体按子库确认"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Dutch 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Dutch 官方分类",
+          "url": "https://talkbank.org/phon/access/Dutch/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-9807c59f54297a19": {
+      "summary": "PhonBank 北美英语发音与音系发展资料。",
+      "background": "上游有词表和纵向项目；Davis、Providence 等与 CHILDES 转写入口有关联。",
+      "research_uses": [
+        "研究建议：研究目标发音与儿童实际产出的关系。"
+      ],
+      "starter_notes": [
+        "先核对词表或自然话语任务；与 CHILDES 合并时按记录去重。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Eng-NA 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Eng-NA 官方分类",
+          "url": "https://talkbank.org/phon/access/Eng-NA/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-d82584daac91ca90": {
+      "summary": "PhonBank 法语发音与音系发展资料。",
+      "background": "官方项目包含不同法语来源，部分同时提供形态分析或视频链接。",
+      "research_uses": [
+        "研究建议：观察音系发展及其与词汇语法的关系。"
+      ],
+      "starter_notes": [
+        "先确认是否为魁北克法语等具体变体，并检查音系与词法层对齐。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "法语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/French 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank French 官方分类",
+          "url": "https://talkbank.org/phon/access/French/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-3806e1a3474c3b16": {
+      "summary": "PhonBank 德语相关音系项目的集合。",
+      "background": "官方分支中也有卢森堡语项目，因此目录名不代表全部材料都是德语。",
+      "research_uses": [
+        "研究建议：按具体语言比较发音模式与发展轨迹。"
+      ],
+      "starter_notes": [
+        "先确认实际语种和命名或自然采样任务，不把分支名直接写为说话人母语。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "德语",
+        "卢森堡语（上游分支中含相关项目）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/German 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank German 官方分类",
+          "url": "https://talkbank.org/phon/access/German/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-e40b581302825ef8": {
+      "summary": "PhonBank 日语儿童音系资料集合。",
+      "background": "官方列有 Ota、Paidologos-Japanese 和 Stanford-Japanese 等不同项目。",
+      "research_uses": [
+        "研究建议：研究日语音系发展，选择适合的自然或诱发资料。"
+      ],
+      "starter_notes": [
+        "在统计前核对项目转写、目标词与采集任务。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "日语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Japanese 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Japanese 官方分类",
+          "url": "https://talkbank.org/phon/access/Japanese/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-9cac5de08957860d": {
+      "summary": "PhonBank PhonBank 其他语言的发音研究入口。",
+      "background": "上游该分支包括阿拉伯语、柏柏尔语、克里语、希腊语、基丘亚语等项目。",
+      "research_uses": [
+        "研究建议：为不同语言的音系习得比较寻找材料。"
+      ],
+      "starter_notes": [
+        "先建立语言与项目清单；不同正字法或音位系统不能直接合并编码。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Other 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Other 官方分类",
+          "url": "https://talkbank.org/phon/access/Other/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-99591b1b1db5f359": {
+      "summary": "PhonBank 罗曼语言发音发展资料。",
+      "background": "当前官方索引列有加泰罗尼亚语、葡萄牙语和罗马尼亚语研究，部分项目注明媒体缺失。",
+      "research_uses": [
+        "研究建议：比较相关语言的音节或音段发展问题。"
+      ],
+      "starter_notes": [
+        "按项目确认目标词和媒体可用性，缺失文件不能视作零产出。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "加泰罗尼亚语",
+        "葡萄牙语",
+        "罗马尼亚语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Romance 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Romance 官方分类",
+          "url": "https://talkbank.org/phon/access/Romance/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-55e62c99202f8004": {
+      "summary": "PhonBank 冰岛语、挪威语与瑞典语音系资料。",
+      "background": "官方该分支同时存在横断面与纵向研究，需要分别处理其统计单位。",
+      "research_uses": [
+        "研究建议：在具体项目中研究发音随年龄或记录时点的变化。"
+      ],
+      "starter_notes": [
+        "先识别研究设计，再决定按个体轨迹还是年龄组比较。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "冰岛语",
+        "挪威语",
+        "瑞典语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Scandinavian 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Scandinavian 官方分类",
+          "url": "https://talkbank.org/phon/access/Scandinavian/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-4ae633e9f16e12e9": {
+      "summary": "PhonBank 斯拉夫语音系资料分支，当前官方列出波兰语项目。",
+      "background": "官方入口对应 WeistJarosz 波兰语资料；目录分组的宽泛名称不等于覆盖所有斯拉夫语言。",
+      "research_uses": [
+        "研究建议：围绕波兰语发音发展制定小规模可复核分析。"
+      ],
+      "starter_notes": [
+        "先匹配 WeistJarosz 具体记录，核对与其他库是否同源。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "波兰语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Slavic 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Slavic 官方分类",
+          "url": "https://talkbank.org/phon/access/Slavic/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-3f687150878bb5c1": {
+      "summary": "PhonBank 西班牙语儿童发音资料集合。",
+      "background": "官方列出不同项目，包含加利西亚地区的西班牙语资料及音视频记录。",
+      "research_uses": [
+        "研究建议：研究发音发展及明确语言变体间的可比差异。"
+      ],
+      "starter_notes": [
+        "先核对项目和转写体系，再选择音段、音节或词级指标。",
+        "仅当本地有对应 Phon/CHAT 标注时才使用标注派生指标。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "西班牙语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/Spanish 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank Spanish 官方分类",
+          "url": "https://talkbank.org/phon/access/Spanish/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "此项是聚合目录；实验应引用实际使用的子语料，不把语言分支计为单一采样设计。"
+      ],
+      "topics": [
+        "phonetics",
+        "language-development"
+      ]
+    },
+    "asset-f7745bb23d67435f": {
+      "summary": "PhonBank 0extra：尚未明确项目身份的补充目录。",
+      "background": "本地台账将它归入 PhonBank；本轮未在官方语料索引找到该名称的独立项目说明，不能将它自动解释为某个衍生数据集。",
+      "research_uses": [
+        "研究建议：先用于资料身份和文件关系清理；任务与研究用途待具体材料确认。"
+      ],
+      "starter_notes": [
+        "后续由有权限的维护人核对 README、文件清单与上游链接。",
+        "身份确认前不将该目录作为可复现数据集名称引用。"
+      ],
+      "modalities": [
+        "上游包含转写和部分音视频，覆盖因子语料而异"
+      ],
+      "languages": [
+        "未确认"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/phon/0extra 与官方分类建立对应。语言、任务及标注背景描述上游集合，不表示本地已含列举的子库或配套文件；未核验本地内容、版本或授权。",
+      "sources": [
+        {
+          "title": "PhonBank 官方语料索引",
+          "url": "https://talkbank.org/phon/access/index.html"
+        }
+      ],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "本地证据：catalog 中的目录身份与既有分类。",
+        "官方证据：语言或任务索引。下列用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "仅确认原台账目录归属；不推定语言、参与者、标注或任务。"
+      ],
+      "topics": [
+        "phonetics",
+        "methods"
+      ]
+    },
+    "asset-846ba60d41dc686a": {
+      "summary": "APT：以促进学习的课堂对话为主题的资料。",
+      "background": "Academically Productive Talk 汇集多种课堂情境，官方关联 LIDO 等观察编码；不同材料的编码覆盖并不一致。",
+      "research_uses": [
+        "研究建议：设计课堂提问、解释和学生参与的观察方案。"
+      ],
+      "starter_notes": [
+        "先核对具体课例及其编码体系，不能默认每份都具备所有编码。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/APT 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "APT 官方项目说明",
+          "url": "https://talkbank.org/class/access/APT.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方 APT 页面明确视频不得下载或转载；本地登记不构成其使用或再分发许可。"
+      ],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-8372e8ddfa7b0d9f": {
+      "summary": "Bradford：儿童文化知识的问答访谈。",
+      "background": "上游通过有关文化知识的提问观察儿童表达；这不是自由课堂对话，也不是一般知识能力的无偏测量。",
+      "research_uses": [
+        "研究建议：分析访谈中的知识表达与提问方式。"
+      ],
+      "starter_notes": [
+        "先查访谈题目和文化背景，谨慎区分表达表现与知识熟悉程度。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Bradford 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Bradford 官方项目说明",
+          "url": "https://talkbank.org/class/access/Bradford.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-1d45f169caffebba": {
+      "summary": "CarlaJim：Greeno 与 van de Sande 的数学解题互动。",
+      "background": "本地目录名与官方 Greeno/van de Sande 项目页路径一致，相关工作研究交流中如何协调问题理解。",
+      "research_uses": [
+        "研究建议：观察共同解题中的概念协商与解释。"
+      ],
+      "starter_notes": [
+        "先确定问题、参与者角色和解释序列，再编码概念变化。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/CarlaJim 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "CarlaJim 官方项目说明",
+          "url": "https://talkbank.org/class/access/CarlaJim.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-663a16249f2bc3ce": {
+      "summary": "CogInst：医学生基于问题的学习讨论。",
+      "background": "官方 Cognition & Instruction 项目保存医学问题讨论，采用 CA-CHAT 转写，关注理解和表达如何在互动中形成。",
+      "research_uses": [
+        "研究建议：研究小组推理、解释和具身交流。"
+      ],
+      "starter_notes": [
+        "先读病例或概念讨论背景；有视频才能分析手势贡献。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/CogInst 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "CogInst 官方项目说明",
+          "url": "https://talkbank.org/class/access/CogInst.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-8e2c7436ddc882a3": {
+      "summary": "Crowley：科学博物馆参观中的学习互动。",
+      "background": "上游项目属于博物馆学习会话研究，其情境区别于固定课堂授课。",
+      "research_uses": [
+        "研究建议：分析参与者如何借助展品提问和解释。"
+      ],
+      "starter_notes": [
+        "先确认展项与互动对象；缺少视觉材料时限制结论范围。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Crowley 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Crowley 官方项目说明",
+          "url": "https://talkbank.org/class/access/Crowley.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-312811555544eca5": {
+      "summary": "Curtis：小学几何学习中的课堂讨论。",
+      "background": "官方语料记录 Geometry in Design 教学单元，转写针对部分相关片段，并未覆盖全部视频。",
+      "research_uses": [
+        "研究建议：研究数学论证和概念表达随教学活动的变化。"
+      ],
+      "starter_notes": [
+        "先对应教学活动和转写区间，不把未转写部分当作沉默。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Curtis 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Curtis 官方项目说明",
+          "url": "https://talkbank.org/class/access/Curtis.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-2c88ad74f6cbd569": {
+      "summary": "DISPEL：游戏新手与熟手的协作教学对话。",
+      "background": "上游让熟手指导新手进行策略游戏，关注自发交流中的相关言语现象与交互模式。",
+      "research_uses": [
+        "研究建议：研究帮助请求、指令和人机交互中可借鉴的解释模式。"
+      ],
+      "starter_notes": [
+        "区分专家与新手角色，核对实际标注范围；不要将目录名称当临床诊断。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/DISPEL 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "DISPEL 官方项目说明",
+          "url": "https://talkbank.org/class/access/DISPEL.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-b4ead06d5ad58a4c": {
+      "summary": "Frederiksen：方差分析知识的一对一辅导。",
+      "background": "上游围绕统计学 ANOVA 的教程互动，关联以人类辅导启发计算机教练的研究。",
+      "research_uses": [
+        "研究建议：分析学习困难如何被询问、解释和逐步澄清。"
+      ],
+      "starter_notes": [
+        "先理解具体统计题目和辅导步骤，再编码提示或反馈。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Frederiksen 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Frederiksen 官方项目说明",
+          "url": "https://talkbank.org/class/access/Frederiksen.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-5ef1675199ce2fc8": {
+      "summary": "Goldman：Susan Goldman 提供的课堂互动资料。",
+      "background": "官方页仅提供简短课堂说明，未充分交代课题和完整引文；此处不额外推断具体教学设计。",
+      "research_uses": [
+        "研究建议：先进行互动类型和分析单位的探索性整理。"
+      ],
+      "starter_notes": [
+        "使用前补核课例背景、任务及原始引用，不能按姓名推定研究结论。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Goldman 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Goldman 官方项目说明",
+          "url": "https://talkbank.org/class/access/Goldman.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方页面的引用栏仍不完整；正式研究引用需要补核。"
+      ],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-8a7120ef268dbf84": {
+      "summary": "Graesser：心理学研究方法的一对一辅导。",
+      "background": "官方围绕大学研究方法学习记录师生对话，相关研究讨论提问、协同对话与辅导过程。",
+      "research_uses": [
+        "研究建议：研究学习者提问、导师反馈和解释策略。"
+      ],
+      "starter_notes": [
+        "按研究主题及辅导角色分层，保留板书与话语之间的关系。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Graesser 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Graesser 官方项目说明",
+          "url": "https://talkbank.org/class/access/Graesser.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-ed8ec901daf40f68": {
+      "summary": "Horowitz：儿童介绍骆驼的课堂呈现。",
+      "background": "官方材料包含教师引入和儿童主题报告，关联口头表达、书面文本及来源说明的研究。",
+      "research_uses": [
+        "研究建议：分析儿童如何将资料组织成口头介绍。"
+      ],
+      "starter_notes": [
+        "区分教师示范与学生呈现，核对其依赖的文本或提示。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Horowitz 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Horowitz 官方项目说明",
+          "url": "https://talkbank.org/class/access/Horowitz.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-1736b29e24e03ab2": {
+      "summary": "JLS：统计分布讨论的多视角课堂分析材料。",
+      "background": "上游与 Journal of the Learning Sciences 专题相联，不同研究者对相关课堂互动作过不同分析。",
+      "research_uses": [
+        "研究建议：对同一互动比较不同编码框架与解释。"
+      ],
+      "starter_notes": [
+        "先核对原论文选取的片段，再比较分析单位和理论前提。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/JLS 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "JLS 官方项目说明",
+          "url": "https://talkbank.org/class/access/JLS.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-31476693b9842aba": {
+      "summary": "Looney：科学教学相关课堂资料。",
+      "background": "官方项目页将材料定位为课堂记录，并明确限定教学用途；页面没有足够细节支持更具体的采样说明。",
+      "research_uses": [
+        "研究建议：在符合上游条件时用于课堂话语的教学分析练习。"
+      ],
+      "starter_notes": [
+        "先确认教学使用条件；研究性利用需另核相应授权。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Looney 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Looney 官方项目说明",
+          "url": "https://talkbank.org/class/access/Looney.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方页面明确材料只能用于教学；本中心保留目录记录，不改变上游条件。"
+      ],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-b06ca3d3df314400": {
+      "summary": "MacWhinney：认知研究方法课程讲授资料。",
+      "background": "官方说明为 CMU 的课程讲授，已有转写只覆盖部分讲座媒体。",
+      "research_uses": [
+        "研究建议：分析专业概念讲解、课堂提问与讲授结构。"
+      ],
+      "starter_notes": [
+        "先核对已转写时段，不把额外媒体自动纳入同一有标注样本。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/MacWhinney 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "MacWhinney 官方项目说明",
+          "url": "https://talkbank.org/class/access/MacWhinney.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-0244d0a781b22d5a": {
+      "summary": "Moschkovich：数学文字题与概念学习互动。",
+      "background": "官方项目关联数学概念理解与问题解决研究，适合结合题目看解释如何展开。",
+      "research_uses": [
+        "研究建议：研究文字问题如何转换为数学表述。"
+      ],
+      "starter_notes": [
+        "先找到对应题目与参与者角色，保留修正及协商过程。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Moschkovich 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Moschkovich 官方项目说明",
+          "url": "https://talkbank.org/class/access/Moschkovich.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-09b631230420c61a": {
+      "summary": "MultiEd：印度英语教学中的多语教师话语。",
+      "background": "上游研究英语授课情境中的跨语实践，关注教师如何利用学生已有语言资源支持学习。",
+      "research_uses": [
+        "研究建议：研究教师的语言切换、解释与学习支持。"
+      ],
+      "starter_notes": [
+        "区分课堂语言与参与者已掌握语言；核对匿名化音段与转写对应。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语及印度当地语言（按课堂确认）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/MultiEd 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "MultiEd 官方项目说明",
+          "url": "https://talkbank.org/class/access/MultiEd.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-cf627e2b4c97b87b": {
+      "summary": "Person：统计图表相关辅导资料。",
+      "background": "官方说明为 Stat Graphs，并关联 AutoTutor 与人类辅导比较研究；不能据论文名认定每个片段都含机器导师。",
+      "research_uses": [
+        "研究建议：研究图表解释、辅导提问与反馈序列。"
+      ],
+      "starter_notes": [
+        "先核对每段究竟是人类辅导还是系统条件，再设计比较。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Person 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Person 官方项目说明",
+          "url": "https://talkbank.org/class/access/Person.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-8f510e3435c062e1": {
+      "summary": "Rahm：科学博物馆里关于天空颜色的学习活动。",
+      "background": "上游关联科学中心的多模态意义建构研究；页面的媒体类型栏与文字说明并不完全一致。",
+      "research_uses": [
+        "研究建议：分析科学解释如何依赖展项和多人互动。"
+      ],
+      "starter_notes": [
+        "先核实实际视听文件，只有音频时不要标注视觉行为。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Rahm 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Rahm 官方项目说明",
+          "url": "https://talkbank.org/class/access/Rahm.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "上游元数据与项目描述对媒体类型的表述存在差异，实际文件类型未核。"
+      ],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-56961f651ba61910": {
+      "summary": "Roth：温哥华地区地理课堂的图像与讲解。",
+      "background": "官方材料为中学地理课，并关联讲授中的照片、手势及身体方位研究。",
+      "research_uses": [
+        "研究建议：分析语言、图像和手势如何共同支持空间解释。"
+      ],
+      "starter_notes": [
+        "先核对课堂展示图片与视频；无视觉证据时只研究口语层面。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Roth 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Roth 官方项目说明",
+          "url": "https://talkbank.org/class/access/Roth.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-634470902ce78f1f": {
+      "summary": "Stevens：跨工作与学校场景的学习互动。",
+      "background": "官方列出建筑规划、儿童计数和课堂讨论等片段；它是多情境集合，并非仅建筑会议。",
+      "research_uses": [
+        "研究建议：比较知识如何在不同活动中被共同使用。"
+      ],
+      "starter_notes": [
+        "先按情境分组，不把各片段合成同一实验任务。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Stevens 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Stevens 官方项目说明",
+          "url": "https://talkbank.org/class/access/Stevens.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-e23dc8f7d0e78957": {
+      "summary": "TIMSS-Math：跨国家和地区的数学课堂资料。",
+      "background": "TalkBank 入口将数学课堂材料与 CHAT 转写、媒体建立关联，为比较教学过程提供资料。",
+      "research_uses": [
+        "研究建议：在匹配课堂与课程背景后比较教学活动和数学表达。"
+      ],
+      "starter_notes": [
+        "先确定国家或地区、语言、课题及转写身份，防止把教学差异简化为语言差异。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "多语言（按国家或地区子库确认）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/TIMSS-Math 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "TIMSS-Math 官方项目说明",
+          "url": "https://talkbank.org/class/access/TIMSS-Math/TIMSS-Math.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-3564787560c94991": {
+      "summary": "TIMSS-Science：跨国家的科学课堂资料。",
+      "background": "这与 TIMSS-Math 分属学科入口，官方提供不同国家课堂的媒体和转写资源链接。",
+      "research_uses": [
+        "研究建议：研究科学解释、证据讨论和课堂参与方式。"
+      ],
+      "starter_notes": [
+        "先按学科主题及教学情境匹配，不直接与数学课量化混合。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "多语言（按国家或地区子库确认）"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/TIMSS-Science 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "TIMSS-Science 官方项目说明",
+          "url": "https://talkbank.org/class/access/TIMSS-Science/TIMSS-Science.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-64cb547e08274c48": {
+      "summary": "Warren：教师科学学习相关短片段。",
+      "background": "官方总索引将该项关联教师关于重力的讨论，项目页说明片段选自长时记录。",
+      "research_uses": [
+        "研究建议：分析教师如何交流科学概念及学习经验。"
+      ],
+      "starter_notes": [
+        "把片段放回相关活动背景；短摘录不能代表完整一天的活动频率。",
+        "使用时引用具体课例或语料原研究，核对本地文件与官方项目的对应。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/class/Warren 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Warren 官方项目说明",
+          "url": "https://talkbank.org/class/access/Warren.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "language-learning"
+      ]
+    },
+    "asset-258236310f524e00": {
+      "summary": "Brejon：法语儿童特定不流畅现象资料。",
+      "background": "上游关联法语儿童词尾不流畅的音系研究，官方说明原始转写不能直接转为标准 CHAT，另有 ASR 版本尚未标注不流畅。",
+      "research_uses": [
+        "研究建议：先研究标注规范与音系现象定义，再设计人工复核。"
+      ],
+      "starter_notes": [
+        "区分原始转写与 ASR 转写，不把后者当口吃事件金标准。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "法语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Brejon 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Brejon 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Brejon.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方 ASR 转写尚未编码不流畅，原始与转换版本需要区分。"
+      ],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-8a0b97c546570bcb": {
+      "summary": "FluencyBank Examples：口吃言语的教学示例。",
+      "background": "官方将其定位为口吃者样例，适合认识具体行为，不代表可用于群体推断的平衡样本。",
+      "research_uses": [
+        "研究建议：练习观察与描述不流畅事件及标注分歧。"
+      ],
+      "starter_notes": [
+        "先记录任务和片段范围；不要从示例形成诊断阈值。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Examples 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Examples 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Examples.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech"
+      ]
+    },
+    "asset-771b1c166a8cd785": {
+      "summary": "Hakim：口吃儿童与对照的非词重复研究。",
+      "background": "上游主要任务是非词重复，自发语言样本用于补充确认情况；不同任务的目的不能混同。",
+      "research_uses": [
+        "研究建议：在核对任务后研究非词重复表现与言语加工。"
+      ],
+      "starter_notes": [
+        "分开非词重复和自发语言片段，先读刺激、匹配条件与原论文。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Hakim 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Hakim 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Hakim.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-4af59deb83dc114a": {
+      "summary": "UMD-CMU：儿童流畅性发展的纵向亲子会话。",
+      "background": "官方项目追踪口吃起始附近儿童与匹配的流畅儿童，采样为母子在玩具情境中的交流。",
+      "research_uses": [
+        "研究建议：研究语言条件、不流畅类型与发展变化的关系。"
+      ],
+      "starter_notes": [
+        "按儿童和测量时点组织样本，模型划分须隔离同一儿童。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/UMD-CMU 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "UMD-CMU 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/UMD-CMU.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-cbc1f5095782ac74": {
+      "summary": "VanZaalen：成人言语急促的临床教学资料。",
+      "background": "官方将其关联 cluttering 的实践介绍；言语急促与口吃是不同研究对象，不应直接合并。",
+      "research_uses": [
+        "研究建议：练习识别节律、表达组织与不流畅的观察维度。"
+      ],
+      "starter_notes": [
+        "先读 cluttering 的操作定义，避免仅凭快语速生成诊断。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/VanZaalen 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "VanZaalen 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/VanZaalen.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech"
+      ]
+    },
+    "asset-a077159e1ff8558f": {
+      "summary": "Voices-AWC：成人言语急促的自由言语与体验资料。",
+      "background": "上游由 International Cluttering Association 协助形成方案与招募，除言语样本还涉及主观体验资料。",
+      "research_uses": [
+        "研究建议：将言语行为与参与者交流体验区分分析。"
+      ],
+      "starter_notes": [
+        "先核对协议及问卷用途；问卷存在不代表本地已有可用评分。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Voices-AWC 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Voices-AWC 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Voices-AWC.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech"
+      ]
+    },
+    "asset-eba7e9c420a77ad1": {
+      "summary": "Voices-AWS：成人口吃体验与言语的教学资料。",
+      "background": "上游以帮助学生理解成人口吃体验为目标。官方明确公共转写未提供适合口吃检测的充分事件标注。",
+      "research_uses": [
+        "研究建议：用于体验主题分析、人工编码训练或任务设计。"
+      ],
+      "starter_notes": [
+        "开发 ASR 或事件检测前必须确认另有合适的人工标注与使用条件。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Voices-AWS 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Voices-AWS 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Voices-AWS.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方明确当前公开教学转写不适合作为自动口吃检测的直接标注真值；不得将其宣称为已标注标准基准。"
+      ],
+      "topics": [
+        "clinical-speech"
+      ]
+    },
+    "asset-367d79bc46eeeebd": {
+      "summary": "Voices-CWS：儿童口吃访谈与朗读的教学资料。",
+      "background": "上游将访谈、朗读与体验材料用于教学；官方提醒公共转写并不是完善的口吃行为标注集。",
+      "research_uses": [
+        "研究建议：比较不同言语任务的观察方法，研究标注者一致性。"
+      ],
+      "starter_notes": [
+        "先区分访谈和朗读；做检测研究前核验事件标签，勿由目录直接构造病例标签。",
+        "阅读原项目说明与具体样本条件，再决定是否适合当前研究。"
+      ],
+      "modalities": [
+        "上游含媒体与转写；具体类型以官方项目说明为准"
+      ],
+      "languages": [
+        "英语"
+      ],
+      "provenance_note": "本条按原台账目录 /data/datasets/talkbank/audio/fluency/Voices-CWS 匹配官方说明。背景、模态和语言指上游项目，未读取本地文件，不证明媒体与转写齐全、发行版本、标签质量或使用授权。",
+      "sources": [
+        {
+          "title": "Voices-CWS 官方语料说明",
+          "url": "https://talkbank.org/fluency/access/Voices-CWS.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 的路径与名称。",
+        "官方证据：项目页与所列研究说明；用途和起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [
+        "官方明确当前公开教学转写不适合作为自动口吃检测的直接标注真值；不得将其宣称为已标注标准基准。"
+      ],
+      "topics": [
+        "clinical-speech",
+        "language-development"
+      ]
+    },
+    "asset-69ce5c83ac6d2dde": {
+      "summary": "HomeBank Public：家庭日常语言资料的公开子集合入口。",
+      "background": "官方 HomeBank 索引区分不同访问层级，并列出若干公开样本；目录名 Public 不意味着整套 HomeBank 长时录音或全部转写均在本地。",
+      "research_uses": [
+        "研究建议：在确认具体子库后探索自然语言输入与日常活动采样。"
+      ],
+      "starter_notes": [
+        "先辨认公开子库的独立名称、采样范围和随附说明。",
+        "区分短摘录与整日记录，不将某个公开样本外推为完整库。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "多语言（具体子库待核）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/homebank/Public 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "HomeBank 官方语料与访问索引",
+          "url": "https://talkbank.org/homebank/access/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-development",
+        "speech-interaction"
+      ]
+    },
+    "asset-3f257b35ab1d521f": {
+      "summary": "TalkBank open：研究、培训和展示材料的混合入口。",
+      "background": "官方媒体目录包含 APROCSA-training、E*3、XCult 与 screencasts 等不同性质内容；open 是组织路径，不能当成一个实验语料或统一许可证。",
+      "research_uses": [
+        "研究建议：按目的分开评估培训材料、学术讲座与可能的配套示例。"
+      ],
+      "starter_notes": [
+        "从子目录进入并读项目来源，不直接批量当作训练语料。",
+        "保留资料类型及原始引用，外部再分发条件另核。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "TalkBank 官方 open 媒体目录",
+          "url": "https://media.talkbank.org/open"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-ce0583a066d72660": {
+      "summary": "APROCSA-training：失语症连贯言语听感评定培训资料。",
+      "background": "APROCSA 为 Auditory-Perceptual Rating of Connected Speech in Aphasia。官方手册用于理解连贯言语特征、评定程序及评定信度；培训资料与正式 APROCSA 研究语料应分开识别。",
+      "research_uses": [
+        "研究建议：用于评分员培训、特征定义理解和一致性练习。"
+      ],
+      "starter_notes": [
+        "先阅读手册的特征定义和评分流程，再对照配套训练材料。",
+        "不得仅因目录名称相似就假设包含正式 APROCSA 语料的共识评分。"
+      ],
+      "modalities": [
+        "上游：手册与培训材料；本地文件覆盖未核"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open/APROCSA-training 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "APROCSA 官方培训手册",
+          "url": "https://aphasia.talkbank.org/APROCSA-training/APROCSA-Manual_11.19.24.pdf"
+        },
+        {
+          "title": "TalkBank 官方 open 目录",
+          "url": "https://media.talkbank.org/open"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ]
+    },
+    "asset-95ecb74ebd0aaaf1": {
+      "summary": "open/E*3：语言与认知涌现主题讲座媒体入口。",
+      "background": "官方 E*3 系列全称为 Emergentism, Ecosystem, and Expertise，讨论语言与认知结构如何形成；官方 open 媒体目录可对应到该系列录像。",
+      "research_uses": [
+        "研究建议：作为研究背景学习、理论讨论和文献线索。"
+      ],
+      "starter_notes": [
+        "先按演讲者与讲座主题选内容，引用论点时追溯原论文。",
+        "与 psyling/E*3 同名不证明本地文件相同；未经清单核对不合并。"
+      ],
+      "modalities": [
+        "上游：学术讲座视频"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open/E*3 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "E*3 官方讲座系列",
+          "url": "https://talkbank.org/psyling/E%2A3/"
+        },
+        {
+          "title": "E*3 官方媒体目录",
+          "url": "https://media.talkbank.org/open/E%2A3/"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods",
+        "language-learning"
+      ]
+    },
+    "asset-c41a5002d394a7c6": {
+      "summary": "XCult：按主题整理的材料集合，尚未确认统一研究项目。",
+      "background": "官方媒体目录可见语言、音乐、神话、信念等主题分组；这只能证明上游目录组织，不能证明它是带参与者标签的跨文化实验数据。",
+      "research_uses": [
+        "研究建议：先作为跨文化与语言研究的背景素材线索。"
+      ],
+      "starter_notes": [
+        "按文件核对材料标题、作者、来源和用途。",
+        "身份确认前不要据 XCult 名称构造跨文化分类标签。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open/XCult 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "XCult 官方目录",
+          "url": "https://media.talkbank.org/open/XCult/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-864c80ed1d6c8b2e": {
+      "summary": "open/general：未统一归类的通用材料目录。",
+      "background": "官方同名目录混合列出文档、幻灯片和视频文件；没有单一采样设计可据此概括。",
+      "research_uses": [
+        "研究建议：用于寻找背景材料与辅助文档，待逐项确认后再赋予用途。"
+      ],
+      "starter_notes": [
+        "先按文件类型和原始标题建立身份表。",
+        "不得把目录内不同文件拼为一个同质数据集。"
+      ],
+      "modalities": [
+        "上游：PDF、演示文稿、视频"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open/general 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "general 官方媒体目录",
+          "url": "https://media.talkbank.org/open/general/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-eb07126fd716a1a6": {
+      "summary": "screencasts：TalkBank 与 CLAN 操作教学资料。",
+      "background": "官方 CLAN 手册把屏幕教程作为学习入口；目录含安装、命令、回放和分析功能等演示。",
+      "research_uses": [
+        "研究建议：用于新人学习转写、媒体联动与基础分析流程。"
+      ],
+      "starter_notes": [
+        "先选安装和回放教程，再按实际问题学习命令。",
+        "教程界面可能随软件更新；正式分析应记录所用工具版本。"
+      ],
+      "modalities": [
+        "上游：教学视频及辅助文件"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/open/screencasts 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "CLAN 官方手册",
+          "url": "https://talkbank.org/0info/manuals/CLAN.html"
+        },
+        {
+          "title": "官方屏幕教程目录",
+          "url": "https://media.talkbank.org/open/screencasts/"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-03857880ea15beb5": {
+      "summary": "PsyLing：心理语言学研究与教学资料入口。",
+      "background": "官方 PsyLing 站点提供心理语言学、涌现论及跨文化心理学的材料，并整理相关演讲和论文；它不应一概视作受试者原始数据。",
+      "research_uses": [
+        "研究建议：用于新人理论导读和研究方法文献定位。"
+      ],
+      "starter_notes": [
+        "先区分演讲、论文和可能的演示材料。",
+        "做实证研究时继续追溯原始研究及正式数据来源。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/psyling 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "PsyLing 官方介绍",
+          "url": "https://talkbank.org/psyling/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-bd71c20f8324a01a": {
+      "summary": "psyling/E*3：E*3 语言与认知讲座系列相关目录。",
+      "background": "官方 E*3 是围绕涌现、环境与专长的学术报告系列。此本地历史路径与 open/E*3 是否同源同版，尚无文件级证据。",
+      "research_uses": [
+        "研究建议：用于理论问题梳理以及相关研究者与论文发现。"
+      ],
+      "starter_notes": [
+        "先匹配报告标题与日期，再追踪对应文献。",
+        "检查清单后才能确认是否与 open/E*3 重复，当前不按重复数据处理。"
+      ],
+      "modalities": [
+        "上游：讲座录像；本地媒体清单未核"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/psyling/E*3 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "E*3 官方介绍",
+          "url": "https://talkbank.org/psyling/E%2A3/"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods",
+        "language-learning"
+      ]
+    },
+    "asset-5d3df738427c2db4": {
+      "summary": "psyling/videos：PsyLing 历史视频目录。",
+      "background": "当前 PsyLing 站点可确认有演讲材料，但没有足够证据将此目录逐项对应到某个现行项目；不推定其内容都是心理语言实验录像。",
+      "research_uses": [
+        "研究建议：先作为学术视频线索整理，具体用途待标题和出处确认。"
+      ],
+      "starter_notes": [
+        "后续由有权限的维护人核对目录清单及随附说明。",
+        "逐项找到来源前不写入参与者、任务或标签字段。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/psyling/videos 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "PsyLing 官方入口",
+          "url": "https://talkbank.org/psyling/"
+        },
+        {
+          "title": "PsyLing 演讲索引",
+          "url": "https://talkbank.org/psyling/talks/"
+        }
+      ],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "methods"
+      ]
+    },
+    "asset-a694fdd9823b0dbe": {
+      "summary": "Sam1：丹麦语单人讲话资料。",
+      "background": "官方把该组描述为单人讲话，不能因位于会话库就将它当多方对话。",
+      "research_uses": [
+        "研究建议：研究单人长段话语的组织、韵律或叙事。"
+      ],
+      "starter_notes": [
+        "先确认具体活动以及听众是否有可分析回应。",
+        "核对该子语料的转写约定及媒体配对，再进行定量分析。"
+      ],
+      "modalities": [
+        "上游：视频及转写"
+      ],
+      "languages": [
+        "丹麦语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Sam1 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "Sam1 官方语料说明",
+          "url": "https://talkbank.org/samtale/access/Sam1.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-2cbb8d5974e2c8e2": {
+      "summary": "Sam2：丹麦语双人交谈资料。",
+      "background": "官方按双人互动组织此组；这种参与结构适合细读双方如何共同维持对话。",
+      "research_uses": [
+        "研究建议：分析问答、修复与轮替的相邻关系。"
+      ],
+      "starter_notes": [
+        "先建立双方说话人映射，保留完整序列而非孤立句子。",
+        "核对该子语料的转写约定及媒体配对，再进行定量分析。"
+      ],
+      "modalities": [
+        "上游：视频及转写"
+      ],
+      "languages": [
+        "丹麦语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Sam2 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "Sam2 官方语料说明",
+          "url": "https://talkbank.org/samtale/access/Sam2.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-cc922066ad998813": {
+      "summary": "Sam3：丹麦语三人交谈资料。",
+      "background": "该组与双人交谈的区别在于多了一位可能的受话人，具体角色仍要结合片段判断。",
+      "research_uses": [
+        "研究建议：研究话轮分配、受话人选择和第三方回应。"
+      ],
+      "starter_notes": [
+        "区分发话者与受话者；若无视频，谨慎判断目光指向。",
+        "核对该子语料的转写约定及媒体配对，再进行定量分析。"
+      ],
+      "modalities": [
+        "上游：视频及转写"
+      ],
+      "languages": [
+        "丹麦语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Sam3 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "Sam3 官方语料说明",
+          "url": "https://talkbank.org/samtale/access/Sam3.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-f0471f0df0604e6c": {
+      "summary": "Sam4：丹麦语四人交谈资料。",
+      "background": "官方按四人交谈归组，多方互动可能出现并行活动，不能只以轮流说话概括。",
+      "research_uses": [
+        "研究建议：研究参与框架、插入回应或多方话题管理。"
+      ],
+      "starter_notes": [
+        "先核对说话人身份和重叠情况，避免将同时讲话自动判为识别错误。",
+        "核对该子语料的转写约定及媒体配对，再进行定量分析。"
+      ],
+      "modalities": [
+        "上游：视频及转写"
+      ],
+      "languages": [
+        "丹麦语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Sam4 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "Sam4 官方语料说明",
+          "url": "https://talkbank.org/samtale/access/Sam4.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-81c0bbbffeb2f82a": {
+      "summary": "Telefon：丹麦语电话交谈资料。",
+      "background": "官方该组为电话通话，与面对面交谈在渠道和可用视觉信息上不同。",
+      "research_uses": [
+        "研究建议：分析电话开场、结束和声音线索组织。"
+      ],
+      "starter_notes": [
+        "先确认通话两端和转写范围，不把它与现场录音当同一声学条件。",
+        "核对该子语料的转写约定及媒体配对，再进行定量分析。"
+      ],
+      "modalities": [
+        "上游：音频及转写"
+      ],
+      "languages": [
+        "丹麦语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Telefon 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "Telefon 官方语料说明",
+          "url": "https://talkbank.org/samtale/access/Telefon.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction"
+      ]
+    },
+    "asset-93aef13938391d6e": {
+      "summary": "DsA：Danish-L2 丹麦语学习者日常交流资料。",
+      "background": "官方 DsA 页面对应 Danish-L2 项目，包含工作、家庭等生活情境中的学习者交流。",
+      "research_uses": [
+        "研究建议：研究第二语言如何在日常互动中被使用与协商。"
+      ],
+      "starter_notes": [
+        "先按工作、家庭或测试等具体情境分层。",
+        "核对学习者与交谈对象关系，避免将环境差异当语言进步。"
+      ],
+      "modalities": [
+        "上游：音频及转写"
+      ],
+      "languages": [
+        "丹麦语（第二语言）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/DsA 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SamtaleBank Danish-L2 官方说明",
+          "url": "https://talkbank.org/samtale/access/DsA.html"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning",
+        "speech-interaction"
+      ]
+    },
+    "asset-3f659ee5b62653c8": {
+      "summary": "SamtaleBank Video：尚未对应到单一项目的视频目录。",
+      "background": "本地台账归在丹麦语口语资料体系；当前官方分组没有足够证据说明该历史目录与 Sam 系列的对应关系。",
+      "research_uses": [
+        "研究建议：先做媒体与转写身份配对，再决定可支持的互动研究。"
+      ],
+      "starter_notes": [
+        "核对文件名、说明及与其他 Sam 目录的引用关系。",
+        "未做内容或校验和核验前，不认定为独立语料或重复副本。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "丹麦语（库级背景；具体文件待核）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/samtale/Video 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SamtaleBank 官方入口",
+          "url": "https://talkbank.org/samtale/index.html"
+        }
+      ],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "speech-interaction",
+        "methods"
+      ]
+    },
+    "asset-54cd6e5ae8b996e2": {
+      "summary": "SLABank 捷克语学习者资料分支。",
+      "background": "官方该类索引关联 Dresden 早期外语项目，以成对访谈、图片和协作任务观察学习表现。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：比较同一任务条件下的学习者表达与互动策略。"
+      ],
+      "starter_notes": [
+        "先核对是否为 Dresden 记录及任务段落，不把目标语言当母语。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "捷克语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Czech 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Czech 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Czech/Dresden.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-88d65fb2f94c9714": {
+      "summary": "SLABank 英语第二语言资料集合。",
+      "background": "官方英语分支包含不同学习背景与任务项目；学习英语的年龄、母语和熟练度并不统一。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：为流畅性、交际策略或学习轨迹问题寻找匹配项目。"
+      ],
+      "starter_notes": [
+        "先建立项目、母语、目标语、任务和时点表，再比较表现。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "英语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/English 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank English 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-1f3f20ccabc250c0": {
+      "summary": "SLABank 法语第二语言资料集合。",
+      "background": "官方项目既有 FLLOC 的课堂学习者任务，也有 LANGSNAP 的海外学习纵向资料；两类设计不能直接合并。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：区分任务效应与学习经历，研究法语发展。"
+      ],
+      "starter_notes": [
+        "先核对具体项目、采集波次和任务，不将年级等同于熟练度。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "法语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/French 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank French 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/French/FLLOC.html"
+        },
+        {
+          "title": "LANGSNAP French 官方说明",
+          "url": "https://talkbank.org/slabank/access/French/LANGSNAP.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-77b8d6ed8f211fa1": {
+      "summary": "SLABank 德语第二语言资料集合。",
+      "background": "官方索引包含 RyanDan 等课堂项目；RyanDan 的研究说明与学习者课堂使用母语有关，但项目页细节仍有限。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：探索学习者如何用已有语言资源协助课堂交流。"
+      ],
+      "starter_notes": [
+        "先定位具体语料和母语情况，勿根据 German 路径推断参与者背景。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "德语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/German 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank German 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/German/RyanDan.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-23d17a6a17cd43d9": {
+      "summary": "SLABank 匈牙利语第二语言资料分支。",
+      "background": "官方 Langman 项目记录在匈牙利生活的中文背景学习者访谈，关注交流策略及形态习得。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：研究修复、重复、语码转换及非课堂学习。"
+      ],
+      "starter_notes": [
+        "先确认是否为 Langman 文件，并阅读其特殊编码。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "匈牙利语（目标语）；部分项目含中文或英语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Hungarian 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Hungarian 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Hungarian/Langman.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-ae83d91a4e207d7c": {
+      "summary": "SLABank 冰岛语第二语言资料分支。",
+      "background": "官方 IceBase 项目关联真实生活环境中的第二语言交流及纵向研究。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：细读日常互动中的纠正、解释与学习机会。"
+      ],
+      "starter_notes": [
+        "先按参与者及时间排序，个案轨迹不能直接当总体学习规律。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "冰岛语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Icelandic 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Icelandic 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Icelandic/IceBase.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-601f84a882a3e0d0": {
+      "summary": "SLABank 意大利语第二语言资料分支。",
+      "background": "官方 PAROLE 项目使用口语任务和叙事研究熟练度，并特别处理时间性流畅信息。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：在任务匹配后研究停顿、信息表达与流畅性。"
+      ],
+      "starter_notes": [
+        "先核对 PAROLE 任务、时间标记与学习者或母语者角色。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "意大利语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Italian 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Italian 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Italian/PAROLE.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-a2540b54e455b933": {
+      "summary": "SLABank 普通话学习者口语资料集合。",
+      "background": "官方该类索引包括 COPA；其固定提问设计用于观察汉语能力发展。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：在相同问题条件下分析表达发展及语音表现。"
+      ],
+      "starter_notes": [
+        "先确认问题、测量时点及学习者背景，不预设所有人都以同一语言为母语。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "普通话（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Mandarin 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Mandarin 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Mandarin/COPA.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-06ed059c8bc9e4fc": {
+      "summary": "SLABank 多目标语或跨语言第二语言项目入口。",
+      "background": "官方 ESF 等项目按母语—目标语组合组织资料；ESF 的音频覆盖也随目标语不同而变化。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：比较在相近任务与情境下的学习者交流策略。"
+      ],
+      "starter_notes": [
+        "分别记录母语、目标语及实际媒体覆盖，不能把 Multiple 当一种语言。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "多语言；区分母语与目标语"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Multiple 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Multiple 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/Multiple/ESF/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-7eaf68d366a6a229": {
+      "summary": "SLABank 西班牙语第二语言资料集合。",
+      "background": "官方索引列有 SPLLOC、LANGSNAP 等不同项目，涉及不同学习者和任务。 本地是否完整包含上述上游项目尚未逐项核验。",
+      "research_uses": [
+        "研究建议：研究西班牙语口语发展，结合具体任务比较。"
+      ],
+      "starter_notes": [
+        "核对项目及测量波次；文字任务与口语录音应分别处理。",
+        "这是一层聚合目录，实验需引用实际使用的具体语料。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "西班牙语（目标语）"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Spanish 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank Spanish 相关官方资料",
+          "url": "https://talkbank.org/slabank/access/index.html"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning"
+      ]
+    },
+    "asset-c95a058344d98d65": {
+      "summary": "SLABank APN：项目身份尚待明确的历史目录。",
+      "background": "原台账将其归在第二语言资料下，但本轮未在当前官方索引确认 APN 的全称与具体采样任务。",
+      "research_uses": [
+        "研究建议：先核对项目身份；确认后再评估是否适用于学习者语言研究。"
+      ],
+      "starter_notes": [
+        "后续检查随附 README、引用与文件命名。",
+        "不从缩写补写研究对象、语言组合或实验任务。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/APN 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank 官方索引",
+          "url": "https://talkbank.org/slabank/access/index.html"
+        }
+      ],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning",
+        "methods"
+      ]
+    },
+    "asset-bfe3d889c83fef1f": {
+      "summary": "SLABank Classroom：课堂相关历史聚合目录。",
+      "background": "本地名称提示课堂组织，但当前官方索引不足以证明具体课程、语种或研究项目；只能提供 SLABank 的所属体系背景。",
+      "research_uses": [
+        "研究建议：在项目匹配后研究课堂互动与第二语言学习。"
+      ],
+      "starter_notes": [
+        "先确定具体子项目、教师与学习者角色。",
+        "不要直接等同于 ClassBank，两个路径的来源关系需文件级证据。"
+      ],
+      "modalities": [
+        "本地具体文件类型未核验；参照上游项目说明"
+      ],
+      "languages": [
+        "未逐项确认"
+      ],
+      "provenance_note": "本条依据原台账目录 /data/datasets/talkbank/audio/slabank/Classroom 及所列上游来源编写。上游介绍不证明本地子项、文件内容、标注、版本或授权；本轮未读取源服务器数据。",
+      "sources": [
+        {
+          "title": "SLABank 官方介绍",
+          "url": "https://talkbank.org/slabank/index.html"
+        }
+      ],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "本地证据：catalog 记录的目录身份与分类。",
+        "官方证据：项目介绍、分类页或媒体目录页；用途与起步步骤为本中心编辑建议。"
+      ],
+      "caveats": [],
+      "topics": [
+        "language-learning",
+        "speech-interaction"
+      ]
+    }
+  }
+}

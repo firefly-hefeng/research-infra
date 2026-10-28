@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily verified research catalog backup to OSS
+[Timer]
+OnCalendar=*-*-* 03:30:00
+RandomizedDelaySec=30min
+Persistent=true
+Unit=research-data-cold-backup.service
+[Install]
+WantedBy=timers.target

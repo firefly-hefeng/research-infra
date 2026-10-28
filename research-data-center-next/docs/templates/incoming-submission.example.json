@@ -1,0 +1,20 @@
+{
+  "schema_version": "2.0",
+  "type": "dataset",
+  "title": "示例资料：请改成真实名称",
+  "summary": "虚构示例。实际填写资料是什么、研究用途、主要格式与重要限制。",
+  "source": {
+    "description": "请说明实际来源、采集或产生方式；无法确认就说明未知。",
+    "reference": null
+  },
+  "rights": {
+    "team_use": "unknown",
+    "external_distribution": "unknown",
+    "basis": null,
+    "license_id": null
+  },
+  "contributor": {
+    "name": "请填写提交人或团队账号",
+    "contact": null
+  }
+}

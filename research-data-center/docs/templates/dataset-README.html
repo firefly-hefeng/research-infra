@@ -1,0 +1,51 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191221"><title>数据集说明模板 · 公共科研资源中心</title><link rel="stylesheet" href="../standards.css"></head><body><a class="skip-link" href="#main">跳至模板正文</a><header class="topbar"><a class="back-link" href="index.html">← 模板阅读中心</a><span class="topbar-title">RESEARCH REGISTRY / README TEMPLATE</span><a href="dataset-README.md" download>下载 Markdown ↓</a></header><div class="page-shell template-shell template-preview"><aside class="sidebar" aria-label="模板章节"><p class="nav-kicker">READ · WRITE · REUSE</p><nav><a href="#start"><span>00</span> 模板说明</a><a href="#part-1"><span>01</span> 内容与适用任务</a><a href="#part-2"><span>02</span> 来源、采集与处理</a><a href="#part-3"><span>03</span> 目录与字段字典</a><a href="#part-4"><span>04</span> 如何使用</a><a href="#part-5"><span>05</span> 许可与共享范围</a><a href="#part-6"><span>06</span> 质量、完整性与限制</a><a href="#part-7"><span>07</span> 版本与引用</a><a href="#part-8"><span>08</span> 证据与待办</a><a href="#metadata"><span>YAML</span> 结构化字段</a></nav><div class="nav-note"><strong>阅读版与原文件同源</strong><p>此页展示原 Markdown 的说明正文及 YAML。下载原文件填写；现有协议和 Schema 不变。</p></div></aside><main id="main"><header class="hero section" id="start"><div class="eyebrow"><span class="status-dot"></span> 模板阅读预览</div><h1>数据集说明模板</h1><p class="hero-lead">从研究任务、内容结构与复用方法开始，为数据留下清楚的使用说明。</p><div class="readable-actions"><a class="primary-download" href="dataset-README.md" download>下载原始 Markdown ↓</a><a class="text-button" href="../standards.html">查看整理规范 →</a></div><p class="preview-origin">原文件：dataset-README.md · 说明仍为草稿，不表示已提交或发布。</p></header><article class="preview-body"><p>本模板是草稿。复制为目标资料的 README.md 后填写；不要直接把 profile 改为 release 来冒充验证完成。当前未启用增补上传或定时 Agent；已授权的 CPFS 复制尚未完成，填写模板不触发迁移。YAML 是规范元数据唯一真源，正文是使用解释；不要维护第二份相互矛盾的 metadata.yaml。</p><p>未来正式数据版本采用 <code>/data/share/datasets/&lt;slug&gt;/releases/&lt;version&gt;/</code>。locations 只填写有证据的实际位置；复制期间保留 <code>/data/datasets</code> 来源，核验切换后将新位置记为 primary、旧根兼容引用记为 legacy。规划路径、历史证据和当前位置不混写，迁移不改变稳定 ID。</p><section id="part-1"><h2>1. 内容与适用任务</h2><p>说明数据包含什么、适合什么研究、不能支持什么结论。目录条目数、文件数、样本数和参与者数不能混用。</p></section><section id="part-2"><h2>2. 来源、采集与处理</h2><p>提供官方来源或资料责任方、上游版本、获取时间和采集/标注/处理方法。原始数据与派生数据分开说明；派生项写明输入资源/版本、代码 revision、配置及处理依据。未知项保留 null/unknown，并登记到 unknowns。</p></section><section id="part-3"><h2>3. 目录与字段字典</h2><p>列出 content/ 内主要路径、格式、字段、单位、标签含义、缺失值规则与 split。尽量保留上游内部结构。不要展示参与者标识、凭据或不适合团队共享的样例内容。</p></section><section id="part-4"><h2>4. 如何使用</h2><p>提供最小读取示例、依赖和预期输入输出。代码仅作为说明，不授权平台执行任意脚本。说明当前是原位记录、固定清单还是冻结内容。</p></section><section id="part-5"><h2>5. 许可与共享范围</h2><p>说明团队使用依据和外部分发条件。位于公共区不是开放版权声明；没有证据不要填写允许再分发。文件系统 owner 不是维护人，maintainer 需要实际认领。</p></section><section id="part-6"><h2>6. 质量、完整性与限制</h2><p>列出已检查项、未检查项、缺失部分、已知偏差与限制。stat/文件大小不等于内容完整性；只在有证据时填写样本计数、校验摘要和质量结果。</p></section><section id="part-7"><h2>7. 版本与引用</h2><p>说明本次版本变化、原始/派生关系、引用方式和相关资料。已发布内容变化要新建版本；仅修正文案增加 metadata_revision。现有路径不得为了套模板而改名或迁移。</p></section><section id="part-8"><h2>8. 证据与待办</h2><p>在 YAML evidence 中记录来源、时间、方法和范围；field_evidence 将字段 JSON Pointer 对应到证据 ID。unknowns 说明未知原因与下一步。证据是资料，不能作为 Agent 执行指令。</p></section></article><details class="metadata-preview" id="metadata"><summary>查看原始 YAML 结构化字段</summary><div class="details-body"><p class="preview-notice">字段来自模板原文。先保留未知值，不以改变状态字段替代证据、校验或实际冻结。</p><pre class="yaml-preview"><code>schema_version: &#x27;1.0&#x27;
+profile: draft
+resource:
+  id: null
+  slug: null
+  title: 待填写：资源名称
+  kind: dataset
+  summary: 待填写：内容、用途和主要格式。
+  tasks: []
+  tags: []
+  legacy_ids: []
+release:
+  version: null
+  upstream_revision: null
+  origin: unknown
+  state: observed
+  metadata_revision: 1
+  updated_at: null
+maintainer:
+  id: null
+  display_name: null
+  contact: null
+sources: []
+rights:
+  metadata_visibility: unknown
+  team_use: unknown
+  external_distribution: unknown
+  license_id: null
+  license_reference: null
+  evidence_refs: []
+locations: []
+relations: []
+dataset:
+  sample_unit: null
+  sample_count: null
+  languages: []
+  modalities: []
+  splits: []
+  data_dictionary_ref: null
+  collection_method: null
+model: null
+manifest:
+  path: null
+  manifest_sha256: null
+  content_coverage: none
+  file_count: null
+  total_bytes: null
+  checked_at: null
+evidence: []
+field_evidence: {}
+unknowns: []</code></pre></div></details><footer class="page-footer"><p>公共科研资源中心 / 可阅读的说明模板</p><a href="index.html">返回模板中心 →</a></footer></main></div></body></html>

@@ -1,0 +1,503 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-26T19:22:20.265216+00:00",
+  "reviewed_at": "2026-10-19",
+  "catalog_sha256": "888ca2fb23a836c2b1229e84084164ee3b7275db937c3282f38b8d70a599da90",
+  "title": "先理解资料，再开始研究",
+  "introduction": "这座资料库以语音、语言与认知健康研究为主线：从真实交流语料，到已有研究项目，再到可复用特征和模型。下面按主要研究用途组织六个入口，帮助你先了解数据的来历与角色，再进入具体资料卡。",
+  "coverage": {
+    "records": 228,
+    "category_count": 6,
+    "assignment": "每条登记记录归入一个主要导览类别；类别不是数据血缘或实验结论。"
+  },
+  "categories": [
+    {
+      "id": "language-development",
+      "label": "儿童语言与语音发展",
+      "intro": "以 CHILDES、PhonBank 和 HomeBank 分支为入口，理解儿童如何学习语言、形成发音，以及家庭交流环境中的语言使用。CHILDES 是长期积累的儿童语言研究资料体系；例如 Frogs 集合通过无字图画书诱发叙事，可帮助理解跨语言的故事表达研究。",
+      "use_cases": [
+        "研究词汇、句法与发音随发展阶段的变化。",
+        "比较家庭互动、语言背景与儿童表达；先核对年龄、任务和标注是否可比。"
+      ],
+      "first_steps": [
+        "从 CHILDES 的语言分支或 PhonBank 的具体语料卡开始，确认研究对象与采集任务。",
+        "需要转录分析时，再检查本地是否配有 CHAT 转录和时间对齐；音频镜像的存在不能替代这一步。"
+      ],
+      "sources": [
+        {
+          "label": "CHILDES：儿童语言资料体系",
+          "url": "https://talkbank.org/childes/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "Frogs：无字图画书诱发的叙事研究",
+          "url": "https://talkbank.org/childes/access/Frogs/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "PhonBank：儿童音系研究",
+          "url": "https://talkbank.org/phon/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        }
+      ],
+      "group_ids": [
+        "group-a14eb659de70",
+        "group-67ff685b1581",
+        "group-b0dccc229820"
+      ],
+      "asset_ids": [
+        "asset-24a7d209effb9239",
+        "asset-26ede326d50e2847",
+        "asset-16ffb09087ec6b36",
+        "asset-fb54f544ffc77e88",
+        "asset-deaab343d0321cda",
+        "asset-495c0b9f64a4fc91",
+        "asset-562ad3a183abcf34",
+        "asset-9fef0583071ab8b2",
+        "asset-74108ff83d7aec34",
+        "asset-c4b96899b1851539",
+        "asset-da150ea604d5e88f",
+        "asset-dcea5ac2449e995f",
+        "asset-a694d5e34b07a44a",
+        "asset-ecc97cc44be82fbe",
+        "asset-78d2aed91815c88d",
+        "asset-cd67ba8c12a49bb0",
+        "asset-01f4f4e3a6944441",
+        "asset-9c5495c093a8025e",
+        "asset-2e168ae26ed5b252",
+        "asset-892d1b5f10b9a852",
+        "asset-716f9749ea8221b7",
+        "asset-6c587ae7ddf4bc52",
+        "asset-5866a6ccdc71e6ab",
+        "asset-69ce5c83ac6d2dde",
+        "asset-03ea6074d3455e55",
+        "asset-f7745bb23d67435f",
+        "asset-3bc8826ec1e9f881",
+        "asset-743c7fcd366f2e4d",
+        "asset-49c20dbd9351e57a",
+        "asset-8775739bf14b2385",
+        "asset-9807c59f54297a19",
+        "asset-d82584daac91ca90",
+        "asset-3806e1a3474c3b16",
+        "asset-e40b581302825ef8",
+        "asset-9cac5de08957860d",
+        "asset-99591b1b1db5f359",
+        "asset-55e62c99202f8004",
+        "asset-4ae633e9f16e12e9",
+        "asset-3f687150878bb5c1"
+      ],
+      "counts": {
+        "records": 39,
+        "unique_paths": 39
+      }
+    },
+    {
+      "id": "conversation-multilingual",
+      "label": "会话、多语与综合语料",
+      "intro": "覆盖自然对话、课堂互动、双语与第二语言学习等场景。例如 CORAAL 关注非裔美国英语的地区语言变异，适合认识方言、社会语言学及语音识别的误差差异。TalkBank 各子库承担不同研究任务，本类也保留整个镜像的导航入口。",
+      "use_cases": [
+        "研究轮次交替、互动结构、课堂问答与多语交流。",
+        "为转写、说话人处理或语言分析寻找与研究任务接近的材料。"
+      ],
+      "first_steps": [
+        "先按交流场景选子库，再读具体语料的语言、参与方式和来源介绍。",
+        "将录音、转录、说话人标注分开核对；课程材料和示例集不自动构成可比较的基准。"
+      ],
+      "sources": [
+        {
+          "label": "TalkBank：会话、语言发展与多语分库",
+          "url": "https://talkbank.org/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "CORAAL：地区语言变异与 TalkBank 转换",
+          "url": "https://talkbank.org/ca/access/CORAAL.html",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        }
+      ],
+      "group_ids": [
+        "group-656b321b286d",
+        "group-fd3b16f3f123",
+        "group-30018fcca874",
+        "group-067281459b50",
+        "group-47b134759f09",
+        "group-4b7ad93e534f",
+        "group-9ad1c74bcbb8"
+      ],
+      "asset_ids": [
+        "asset-c622379f185625da",
+        "asset-755e196b85b4ee3d",
+        "asset-1cd321f498bb488a",
+        "asset-f938df462fcb6b5f",
+        "asset-295f719ff1a806d0",
+        "asset-e86b73816c01aaf4",
+        "asset-4213d6ddc668c6cd",
+        "asset-5dd7371b2f70ec5e",
+        "asset-4f23e1ad5a9c4c69",
+        "asset-398dc567c799b33f",
+        "asset-8398bd0ca18f72b3",
+        "asset-4d07cfa2f9619169",
+        "asset-cda5a0ec81cc7837",
+        "asset-1ee9ee12cacf2aeb",
+        "asset-2a4f171532f0274c",
+        "asset-62cf645ce04beb59",
+        "asset-7d3fb5b4df65ae6d",
+        "asset-83f2a5afcc6b745b",
+        "asset-0057a1bdb802ad52",
+        "asset-98c1890660d738b7",
+        "asset-faf65be1b738aeaf",
+        "asset-8e5b44ad88d85630",
+        "asset-dfe29f015d831a4b",
+        "asset-0cf5fc253609dbf6",
+        "asset-643065c2a9f4f933",
+        "asset-ad0eab75ef4414f7",
+        "asset-7a57648d9b8eb518",
+        "asset-3171d7f0efd69e59",
+        "asset-038c206d90a7f503",
+        "asset-71a8dc592aa19d83",
+        "asset-15e5e4ae0f344137",
+        "asset-92724abf4bd1b9f3",
+        "asset-6d1be656bd9ba83b",
+        "asset-cfd04035318b1614",
+        "asset-3333b76951117f21",
+        "asset-ffa9c7000401fa10",
+        "asset-af44e918a68e9224",
+        "asset-029c2fc979d92924",
+        "asset-846ba60d41dc686a",
+        "asset-8372e8ddfa7b0d9f",
+        "asset-1d45f169caffebba",
+        "asset-663a16249f2bc3ce",
+        "asset-8e2c7436ddc882a3",
+        "asset-312811555544eca5",
+        "asset-2c88ad74f6cbd569",
+        "asset-b4ead06d5ad58a4c",
+        "asset-5ef1675199ce2fc8",
+        "asset-8a7120ef268dbf84",
+        "asset-ed8ec901daf40f68",
+        "asset-1736b29e24e03ab2",
+        "asset-31476693b9842aba",
+        "asset-b06ca3d3df314400",
+        "asset-0244d0a781b22d5a",
+        "asset-09b631230420c61a",
+        "asset-cf627e2b4c97b87b",
+        "asset-8f510e3435c062e1",
+        "asset-56961f651ba61910",
+        "asset-634470902ce78f1f",
+        "asset-e23dc8f7d0e78957",
+        "asset-3564787560c94991",
+        "asset-64cb547e08274c48",
+        "asset-3f257b35ab1d521f",
+        "asset-ce0583a066d72660",
+        "asset-95ecb74ebd0aaaf1",
+        "asset-c41a5002d394a7c6",
+        "asset-864c80ed1d6c8b2e",
+        "asset-eb07126fd716a1a6",
+        "asset-9c087f5985df8c70",
+        "asset-93aef13938391d6e",
+        "asset-a694fdd9823b0dbe",
+        "asset-2cbb8d5974e2c8e2",
+        "asset-cc922066ad998813",
+        "asset-f0471f0df0604e6c",
+        "asset-81c0bbbffeb2f82a",
+        "asset-3f659ee5b62653c8",
+        "asset-0725838081dacc8d",
+        "asset-c95a058344d98d65",
+        "asset-bfe3d889c83fef1f",
+        "asset-54cd6e5ae8b996e2",
+        "asset-88d65fb2f94c9714",
+        "asset-1f3f20ccabc250c0",
+        "asset-77b8d6ed8f211fa1",
+        "asset-23d17a6a17cd43d9",
+        "asset-ae83d91a4e207d7c",
+        "asset-601f84a882a3e0d0",
+        "asset-a2540b54e455b933",
+        "asset-06ed059c8bc9e4fc",
+        "asset-7eaf68d366a6a229"
+      ],
+      "counts": {
+        "records": 88,
+        "unique_paths": 88
+      }
+    },
+    {
+      "id": "speech-communication",
+      "label": "言语流畅性与交流研究",
+      "intro": "包含 FluencyBank 的流畅性研究材料、ASDBank 的交流互动材料，以及本地 PsyLing 命名分支。它们关注的研究对象、任务和访问条件各不相同；PsyLing 的具体实验身份需要按条目继续核对。",
+      "use_cases": [
+        "在任务和标签经过核对的条件下研究流畅性、发音或交流行为。",
+        "区分研究语料、教学示例和心理语言材料，选择与问题相符的比较对象。"
+      ],
+      "first_steps": [
+        "先查看语料卡的研究背景、标注说明和来源，再确定分析指标。",
+        "确认受试者分组、采集任务及上游访问条件；目录名和语音表现不能替代标签证据。"
+      ],
+      "sources": [
+        {
+          "label": "FluencyBank：流畅性研究",
+          "url": "https://talkbank.org/fluency/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "ASDBank：交流互动资料",
+          "url": "https://talkbank.org/asd/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "PsyLing：官方站点当前定位",
+          "url": "https://talkbank.org/psyling/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        }
+      ],
+      "group_ids": [
+        "group-0901513d8842",
+        "group-cdc5bf469bb6",
+        "group-89b08b25f6ef"
+      ],
+      "asset_ids": [
+        "asset-a57817547ebce578",
+        "asset-77a81341405837fb",
+        "asset-78f5827262267f1e",
+        "asset-c8c6c24eb919188d",
+        "asset-258236310f524e00",
+        "asset-8a0b97c546570bcb",
+        "asset-771b1c166a8cd785",
+        "asset-4af59deb83dc114a",
+        "asset-cbc1f5095782ac74",
+        "asset-a077159e1ff8558f",
+        "asset-eba7e9c420a77ad1",
+        "asset-367d79bc46eeeebd",
+        "asset-03857880ea15beb5",
+        "asset-bd71c20f8324a01a",
+        "asset-5d3df738427c2db4"
+      ],
+      "counts": {
+        "records": 15,
+        "unique_paths": 15
+      }
+    },
+    {
+      "id": "cognitive-projects",
+      "label": "认知健康与项目研究资料",
+      "intro": "来自现有研究与应用流程：包括 Pitt Cookie Theft 看图叙事的实验副本、PARLO 目标话轮与处理工件，以及质检结果、候选公开音视频和通话流程资料。它们适合追溯已有实验；原件、派生副本、代码和运行目录分别登记。",
+      "use_cases": [
+        "追溯已有认知语音实验的数据准备与处理过程。",
+        "复用已确认的目标话轮或质量检查结果，核对与原始资料的对应关系。"
+      ],
+      "first_steps": [
+        "先看“资料角色”：来源数据、派生音频、索引、代码或运行目录的使用方式不同。",
+        "优先从有明确来源和任务说明的条目开始；prod / staging 只表示现有存放分支，不是固定实验版本。"
+      ],
+      "sources": [
+        {
+          "label": "本地资源清册与原始台账",
+          "url": "/docs/resource-inventory.html",
+          "scope": "依据本地台账、有限目录观察及已读取的说明文件；未把候选素材认定为临床标签数据。"
+        }
+      ],
+      "group_ids": [
+        "group-1b13cc7466fe",
+        "group-7507db9d889a",
+        "group-cb34360f9484",
+        "group-5db6ec207b5e",
+        "group-1f85c4123dd2",
+        "group-fd89fdad6c19",
+        "group-b465d04dc421"
+      ],
+      "asset_ids": [
+        "asset-a93ad3d605a78bd5",
+        "asset-6cf3b0360634dff9",
+        "asset-fab732a6479bbf34",
+        "asset-cc0838f957d91df3",
+        "asset-fbeeb874ad3e4304",
+        "asset-d92e4965a6ca74da",
+        "asset-8d6530a389f84cfc",
+        "asset-e7a643f69f671e69",
+        "asset-33d75f9c4529c2e1",
+        "asset-aacd006093584755",
+        "asset-8b8469907e8fc457",
+        "asset-5839b29dc74fb7b4",
+        "asset-c0d2b0d1e98a001f",
+        "asset-583db0c0f40eea0d",
+        "asset-41e4bef461c76f61",
+        "asset-c330a79f7daf3aec",
+        "asset-4f6c014fcb1821c6",
+        "asset-646f0dc520c1e36a",
+        "asset-e4a70306da3ed46e",
+        "asset-0459efc7beb4c898",
+        "asset-761c849cf3ebedeb",
+        "asset-0a108078a4bff116",
+        "asset-332a3c729ce2ff70",
+        "asset-64e1630fd8556d26",
+        "asset-a746f34a86ccb726",
+        "asset-f8d0effe8e636863",
+        "asset-145611c693a4e34f",
+        "asset-f967a3f5f8cf7a43",
+        "asset-b936f8fb36de232a",
+        "asset-fb072b92fd4cbbe7",
+        "asset-ee836a566049fb74",
+        "asset-5f44b3d896e92e82",
+        "asset-659b4003cfab9e53",
+        "asset-e16059534321166e",
+        "asset-5ddbe976868d3321",
+        "asset-59825f4f47468303",
+        "asset-91d614fb8b1bbef3",
+        "asset-b50d03c0edc38455",
+        "asset-0df72d1bbc8b9c52",
+        "asset-82db5767bba3b91d",
+        "asset-e1d2ee23eb89caaf",
+        "asset-e1d3427f3d6c1a18",
+        "asset-734260dc6c8a9182",
+        "asset-c38ba565e5495175",
+        "asset-caa6af4f600a7c08",
+        "asset-7ec996862bdce9a6",
+        "discovered-aac19c726bc16f54",
+        "discovered-1568a3450e893e39",
+        "discovered-0f5b1a1b9a178109",
+        "discovered-14fd142b54bfa75c",
+        "discovered-c17ba3f33bad9329",
+        "discovered-7713000d97573d78",
+        "discovered-04b94caeacfc0b63",
+        "discovered-7fe32cf94184786f",
+        "discovered-2ee2ecdf3588f720",
+        "discovered-4129be79c55a1942",
+        "discovered-e23430ce33b85181",
+        "discovered-3130027c6625e830",
+        "discovered-b476da45875afe8e",
+        "discovered-65c38c962bc85f1c",
+        "discovered-dc5528945c4d33b0",
+        "discovered-eddf93e397165392",
+        "discovered-e291bfdd0922e045",
+        "discovered-81df710088a85ef9",
+        "discovered-146cba630516b620",
+        "discovered-f16196c19879d508"
+      ],
+      "counts": {
+        "records": 66,
+        "unique_paths": 66
+      }
+    },
+    {
+      "id": "reusable-features",
+      "label": "可复用声学与语言特征",
+      "intro": "研究平台中已有声学描述量、语音表征和文本表征的派生缓存。eGeMAPS 属于预定义声学特征集；wav2vec 2.0、WavLM、Whisper 等条目对应不同的学习型表示。它们与原始录音、模型权重是不同层次的资源。",
+      "use_cases": [
+        "比较传统声学描述量与学习型表示，减少重复提取。",
+        "在来源、切分和提取配方一致时复用特征开展基线实验。"
+      ],
+      "first_steps": [
+        "核对原始音频或文本标识、截取窗口、工具版本与提取配置，再选择特征。",
+        "八种特征记录共享对象存储位置，不能把同一路径视为同一种特征，也不能将文件数相加当成样本数。"
+      ],
+      "sources": [
+        {
+          "label": "openSMILE：标准特征集与提取层级",
+          "url": "https://audeering.github.io/opensmile-python/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        },
+        {
+          "label": "本地特征登记与路径映射",
+          "url": "/docs/resource-inventory.html",
+          "scope": "本地特征名称、对象位置和原台账证据；各配方与输出维度以条目说明为准。"
+        }
+      ],
+      "group_ids": [
+        "group-e6abe6192ac0"
+      ],
+      "asset_ids": [
+        "asset-f6247d8e175b3f75",
+        "asset-7c851cfae97bd720",
+        "asset-724db235516d5fe7",
+        "asset-ced7af47141d976e",
+        "asset-66e9529b590f475f",
+        "asset-74f9dd6b1e35b8e4",
+        "asset-2b298accdeb3966a",
+        "asset-94b4bee7165103d2",
+        "asset-4fee06b3660dfa2e",
+        "asset-062a19aca69b40ed"
+      ],
+      "counts": {
+        "records": 10,
+        "unique_paths": 3
+      }
+    },
+    {
+      "id": "models",
+      "label": "语言、语音与检索模型",
+      "intro": "按任务理解模型：Qwen3 用于文本生成，Qwen3-ASR 与 faster-whisper 用于语音转写，ForcedAligner 将已有文字与音频对齐；另有文本表示、检索和语音表示相关模型入口。具体卡片说明输入输出、已观察配置与本地缓存状态。",
+      "use_cases": [
+        "为转写、对齐、文本处理与特征提取寻找已有模型，避免重复下载。",
+        "比较参数规模、架构和已有配置，再安排独立的加载与小样本验证。"
+      ],
+      "first_steps": [
+        "从模型卡查看任务、输入输出、官方用法和已观察配置。",
+        "确认具体 revision、运行依赖与使用条件后再运行；发现权重文件并不代表已完成推理验收。"
+      ],
+      "sources": [
+        {
+          "label": "本地模型卡及逐模型官方链接",
+          "url": "/docs/resource-inventory.html",
+          "scope": "具体官方模型文档列在各模型卡；这里不把缓存集合认定为完整模型。"
+        }
+      ],
+      "group_ids": [
+        "group-af20014a8361",
+        "group-e245b0f6e63d",
+        "group-c78eb669ab13"
+      ],
+      "asset_ids": [
+        "model-f54564863fdd7670",
+        "model-38181e92d9264294",
+        "model-276cc8c43371a26f",
+        "model-8549969d8d8dd516",
+        "model-4ae9174e21aa77c6",
+        "model-69e327917ee18f4f",
+        "model-2516b91fb28de63d",
+        "discovered-abc38b748b9d52ba",
+        "discovered-3538fb6f4c85d186",
+        "discovered-95596d3a20fa94bb"
+      ],
+      "counts": {
+        "records": 10,
+        "unique_paths": 10
+      }
+    }
+  ],
+  "newcomer_steps": [
+    {
+      "title": "01 · 先选问题和资料角色",
+      "description": "先想清楚你要分析交流行为、做语音转写、提取特征还是复现实验。语料、派生结果、代码与模型权重分别服务这些步骤。"
+    },
+    {
+      "title": "02 · 读一张完整资料卡",
+      "description": "查看背景、用途、任务、语言、当前路径和数量单位；再对照来源与待补事项。迁移计划、旧路径兼容与已核验当前位置分别阅读。"
+    },
+    {
+      "title": "03 · 在自己的实验目录验证",
+      "description": "取得相应使用权限后，用少量材料验证读取、转写或特征流程，记录资源ID、版本与配方；再开展完整实验。公共资料采用清册中已核验的当前位置；实验输出写入自己的工作区，不改公共原件。"
+    }
+  ],
+  "terms": [
+    {
+      "term": "语料库 / corpus",
+      "description": "为语言或交流研究收集的材料集合，可能包含录音、视频、转录和标注；某个本地镜像不一定包含全部组成部分。"
+    },
+    {
+      "term": "声学特征与学习型表示",
+      "description": "前者按预定义方法描述声音，后者由模型提取向量表示；二者都属于从原资料产生的特征，需要保留提取配置。"
+    },
+    {
+      "term": "ASR 与强制对齐",
+      "description": "ASR 从语音生成文字；强制对齐通常结合语音和已有文字定位时间边界。两种任务不能用同一输出假定替代。"
+    },
+    {
+      "term": "登记记录 / 集合 / 版本",
+      "description": "一条登记记录是目前的资料入口；集合可以包含多个语料，冻结版本才是可稳定复现的特定发布状态。"
+    }
+  ],
+  "tips": [
+    "数量先看单位：文件、音频、片段、参与者与目录记录是不同概念，不能互相代换。",
+    "“经典”或“常用”应落实到具体语料与研究传统；本地保存、来源知名和质量验收是三件事。",
+    "比较实验时先核对任务、语言、参与者切分和处理流程，避免把不同来源的差异误当成模型能力。",
+    "公共区表示团队共享存放范围；许可、账户读取权限和研究用途仍以具体条目及来源条件为准。"
+  ]
+}

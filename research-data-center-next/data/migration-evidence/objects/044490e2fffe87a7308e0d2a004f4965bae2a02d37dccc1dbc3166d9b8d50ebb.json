@@ -1,0 +1,4471 @@
+{
+  "schema_version": "1.0",
+  "migration_id": "cpfs-20261027",
+  "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+  "baseline_catalog_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871",
+  "source_manifest_sha256": "abf15d245255a9d8927ce6078dee9160c81dc7b88e1c0ae5bfdd0469990f4220",
+  "status": "passed",
+  "observed_at": "2026-10-27T08:27:50.242200+00:00",
+  "strategy": "Two empty rsync -aHnc checksum dry runs, source metadata revalidation and all registered destination entries checked as rmp after cutover",
+  "errors": [],
+  "roots": [
+    {
+      "logical_root": "models",
+      "source_root": "/data/models",
+      "published_target_root": "/data/share/models",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-27T01:52:11.084875+00:00",
+      "finished_at": "2026-10-27T01:55:31.107104+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0
+    },
+    {
+      "logical_root": "datasets",
+      "source_root": "/data/datasets",
+      "published_target_root": "/data/share/datasets",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-27T01:55:31.107586+00:00",
+      "finished_at": "2026-10-27T08:06:13.592619+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0
+    }
+  ],
+  "observations": [
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_audio_date_label_lexical_20260929_r360",
+      "realpath": "/data/share/datasets/easystore/clinical_audio_date_label_lexical_20260929_r360",
+      "observed_at": "2026-10-27T08:27:50.185733+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790626957647427900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_audio_date_lead_20260929_r357",
+      "realpath": "/data/share/datasets/easystore/clinical_audio_date_lead_20260929_r357",
+      "observed_at": "2026-10-27T08:27:50.186023+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790626435478313800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_audio_date_lead_catalog_20260929_r359",
+      "realpath": "/data/share/datasets/easystore/clinical_audio_date_lead_catalog_20260929_r359",
+      "observed_at": "2026-10-27T08:27:50.186284+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790626836169181600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_audio_date_lead_overlap_20260929_r358",
+      "realpath": "/data/share/datasets/easystore/clinical_audio_date_lead_overlap_20260929_r358",
+      "observed_at": "2026-10-27T08:27:50.186539+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790626662965809400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_audio_date_lead_semantics_20260929_r361",
+      "realpath": "/data/share/datasets/easystore/clinical_audio_date_lead_semantics_20260929_r361",
+      "observed_at": "2026-10-27T08:27:50.186780+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790627307793350000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_candidate_context_20260929_r356",
+      "realpath": "/data/share/datasets/easystore/clinical_candidate_context_20260929_r356",
+      "observed_at": "2026-10-27T08:27:50.187025+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790626282506473000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_other_roots_20260929_r362",
+      "realpath": "/data/share/datasets/easystore/clinical_other_roots_20260929_r362",
+      "observed_at": "2026-10-27T08:27:50.187259+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790627827868540200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_other_roots_db_20260929_r363",
+      "realpath": "/data/share/datasets/easystore/clinical_other_roots_db_20260929_r363",
+      "observed_at": "2026-10-27T08:27:50.187487+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790627993206678900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_sheet_full_20260929_r355",
+      "realpath": "/data/share/datasets/easystore/clinical_sheet_full_20260929_r355",
+      "observed_at": "2026-10-27T08:27:50.187714+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790625672657608900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/clinical_voice_agent_candidate_20260929_r364",
+      "realpath": "/data/share/datasets/easystore/clinical_voice_agent_candidate_20260929_r364",
+      "observed_at": "2026-10-27T08:27:50.187939+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790628297451765400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/cross_language_task_moe_v1_sources",
+      "realpath": "/data/share/datasets/easystore/cross_language_task_moe_v1_sources",
+      "observed_at": "2026-10-27T08:27:50.188179+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790597862025011900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/cross_language_task_moe_v1_sources/bedespeech_20260928_r320",
+      "realpath": "/data/share/datasets/easystore/cross_language_task_moe_v1_sources/bedespeech_20260928_r320",
+      "observed_at": "2026-10-27T08:27:50.188422+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790598460188759100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/parlo_campplus_cross_task_20260929_r353",
+      "realpath": "/data/share/datasets/easystore/parlo_campplus_cross_task_20260929_r353",
+      "observed_at": "2026-10-27T08:27:50.188650+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790624440338121000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/parlo_campplus_role_reference_20260929_r354",
+      "realpath": "/data/share/datasets/easystore/parlo_campplus_role_reference_20260929_r354",
+      "observed_at": "2026-10-27T08:27:50.188874+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790625449154448300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/parlo_target_turns_r337_code",
+      "realpath": "/data/share/datasets/easystore/parlo_target_turns_r337_code",
+      "observed_at": "2026-10-27T08:27:50.189100+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790610245144593400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/parlo_target_turns_r337_private",
+      "realpath": "/data/share/datasets/easystore/parlo_target_turns_r337_private",
+      "observed_at": "2026-10-27T08:27:50.189449+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790612947597062000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/parlo_target_turns_r337_receipts",
+      "realpath": "/data/share/datasets/easystore/parlo_target_turns_r337_receipts",
+      "observed_at": "2026-10-27T08:27:50.189672+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790613036526379400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/picture_audio_gateway_v1_20260918",
+      "realpath": "/data/share/datasets/easystore/picture_audio_gateway_v1_20260918",
+      "observed_at": "2026-10-27T08:27:50.189886+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789708141359121500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/picture_feature_bundle_v1_staging_20260919",
+      "realpath": "/data/share/datasets/easystore/picture_feature_bundle_v1_staging_20260919",
+      "observed_at": "2026-10-27T08:27:50.190099+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789790071017514100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/research_platform",
+      "realpath": "/data/share/datasets/easystore/research_platform",
+      "observed_at": "2026-10-27T08:27:50.190337+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790668843739674900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/research_platform/feature_library/common",
+      "realpath": "/data/share/datasets/easystore/research_platform/feature_library/common",
+      "observed_at": "2026-10-27T08:27:50.190666+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790573450679498700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/easystore/research_platform/feature_library/common/objects",
+      "realpath": "/data/share/datasets/easystore/research_platform/feature_library/common/objects",
+      "observed_at": "2026-10-27T08:27:50.190898+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790569458357237400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio",
+      "realpath": "/data/share/datasets/talkbank/audio",
+      "observed_at": "2026-10-27T08:27:50.191214+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790848561426859100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/asd",
+      "realpath": "/data/share/datasets/talkbank/audio/asd",
+      "observed_at": "2026-10-27T08:27:50.191440+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789319528938907000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/asd/English",
+      "realpath": "/data/share/datasets/talkbank/audio/asd/English",
+      "observed_at": "2026-10-27T08:27:50.191660+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789317618026847700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/asd/Greek",
+      "realpath": "/data/share/datasets/talkbank/audio/asd/Greek",
+      "observed_at": "2026-10-27T08:27:50.191877+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789319528949624200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/biling",
+      "realpath": "/data/share/datasets/talkbank/audio/biling",
+      "observed_at": "2026-10-27T08:27:50.192092+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790102319415802600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/biling/Bangor",
+      "realpath": "/data/share/datasets/talkbank/audio/biling/Bangor",
+      "observed_at": "2026-10-27T08:27:50.192317+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788952820355526100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/biling/BraPoRus",
+      "realpath": "/data/share/datasets/talkbank/audio/biling/BraPoRus",
+      "observed_at": "2026-10-27T08:27:50.192541+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790102366637013100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca",
+      "realpath": "/data/share/datasets/talkbank/audio/ca",
+      "observed_at": "2026-10-27T08:27:50.192754+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790122251312971800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CABNC",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CABNC",
+      "observed_at": "2026-10-27T08:27:50.192973+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789001037502971400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CLAPI",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CLAPI",
+      "observed_at": "2026-10-27T08:27:50.193196+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790120031464617300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CMU",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CMU",
+      "observed_at": "2026-10-27T08:27:50.193424+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790120131310223000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CORAAL",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CORAAL",
+      "observed_at": "2026-10-27T08:27:50.193641+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789040268888947400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CallFriend",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CallFriend",
+      "observed_at": "2026-10-27T08:27:50.193860+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789052164747504700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/CallHome",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/CallHome",
+      "observed_at": "2026-10-27T08:27:50.194077+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789062866210134300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Croatian",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Croatian",
+      "observed_at": "2026-10-27T08:27:50.194307+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789065732434705600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Examples",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Examples",
+      "observed_at": "2026-10-27T08:27:50.194527+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790121531206231900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/FreeLunch",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/FreeLunch",
+      "observed_at": "2026-10-27T08:27:50.194744+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790122045952911900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/GCSAusE",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/GCSAusE",
+      "observed_at": "2026-10-27T08:27:50.194961+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789065896550553300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Garfinkel",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Garfinkel",
+      "observed_at": "2026-10-27T08:27:50.195179+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789066235761228300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Goodwin",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Goodwin",
+      "observed_at": "2026-10-27T08:27:50.195414+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790121860329464000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Grimshaw",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Grimshaw",
+      "observed_at": "2026-10-27T08:27:50.195632+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790122157397974000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/GulfWar",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/GulfWar",
+      "observed_at": "2026-10-27T08:27:50.195852+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789066309943719900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/ISL",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/ISL",
+      "observed_at": "2026-10-27T08:27:50.196070+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789066791964269500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Istriot",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Istriot",
+      "observed_at": "2026-10-27T08:27:50.196293+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789066820260089000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/JOC",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/JOC",
+      "observed_at": "2026-10-27T08:27:50.196513+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790121975448430200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Jefferson",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Jefferson",
+      "observed_at": "2026-10-27T08:27:50.196728+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790121956191959200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/MICASE",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/MICASE",
+      "observed_at": "2026-10-27T08:27:50.196944+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789071010717942800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/MOVIN",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/MOVIN",
+      "observed_at": "2026-10-27T08:27:50.197170+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790121969963367400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Mambila",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Mambila",
+      "observed_at": "2026-10-27T08:27:50.197396+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789071272995734000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Mopan",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Mopan",
+      "observed_at": "2026-10-27T08:27:50.197612+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790122251246487400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Nahuatl",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Nahuatl",
+      "observed_at": "2026-10-27T08:27:50.197828+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789071309340537100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/SBCSAE",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/SBCSAE",
+      "observed_at": "2026-10-27T08:27:50.198053+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789073597071473900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/SCoSE",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/SCoSE",
+      "observed_at": "2026-10-27T08:27:50.198283+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789074470463117100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/SLX",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/SLX",
+      "observed_at": "2026-10-27T08:27:50.198506+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789075013746004400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/SPIRE",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/SPIRE",
+      "observed_at": "2026-10-27T08:27:50.198727+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790122357595264200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Sakura",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Sakura",
+      "observed_at": "2026-10-27T08:27:50.198946+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790125719923838400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/TaiwanHakka",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/TaiwanHakka",
+      "observed_at": "2026-10-27T08:27:50.199164+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789075137905961200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/TaiwanMandarin",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/TaiwanMandarin",
+      "observed_at": "2026-10-27T08:27:50.199396+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789075681210189900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Yiddish",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Yiddish",
+      "observed_at": "2026-10-27T08:27:50.199616+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789075731894066700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/ca/Yucatec",
+      "realpath": "/data/share/datasets/talkbank/audio/ca/Yucatec",
+      "observed_at": "2026-10-27T08:27:50.199834+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790124600167490600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes",
+      "realpath": "/data/share/datasets/talkbank/audio/childes",
+      "observed_at": "2026-10-27T08:27:50.200049+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790634795136507000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Biling",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Biling",
+      "observed_at": "2026-10-27T08:27:50.200271+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790180193203339700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Chinese",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Chinese",
+      "observed_at": "2026-10-27T08:27:50.200492+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789671497571899500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Clinical-Eng",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Clinical-Eng",
+      "observed_at": "2026-10-27T08:27:50.200710+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789591690693478700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Clinical-Other",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Clinical-Other",
+      "observed_at": "2026-10-27T08:27:50.200927+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789664777956021900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/DutchAfrikaans",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/DutchAfrikaans",
+      "observed_at": "2026-10-27T08:27:50.201144+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789758419468256100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/EastAsian",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/EastAsian",
+      "observed_at": "2026-10-27T08:27:50.201377+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790222740116616600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Eng-AAE",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Eng-AAE",
+      "observed_at": "2026-10-27T08:27:50.201594+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790229767816299200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Eng-NA",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Eng-NA",
+      "observed_at": "2026-10-27T08:27:50.201811+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790290328103357700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Eng-UK",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Eng-UK",
+      "observed_at": "2026-10-27T08:27:50.202027+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790305735922526600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Finno-Ugric",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Finno-Ugric",
+      "observed_at": "2026-10-27T08:27:50.202246+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789939552358678800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/French",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/French",
+      "observed_at": "2026-10-27T08:27:50.202470+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789943123951036800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Frogs",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Frogs",
+      "observed_at": "2026-10-27T08:27:50.202688+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789962638507533000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/German",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/German",
+      "observed_at": "2026-10-27T08:27:50.202902+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790308735620008900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Japanese",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Japanese",
+      "observed_at": "2026-10-27T08:27:50.203118+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789977853739281400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/MAIN",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/MAIN",
+      "observed_at": "2026-10-27T08:27:50.203346+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789980717001223100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Other",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Other",
+      "observed_at": "2026-10-27T08:27:50.203564+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790592191925656700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Romance",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Romance",
+      "observed_at": "2026-10-27T08:27:50.203777+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790593050959457900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Scandinavian",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Scandinavian",
+      "observed_at": "2026-10-27T08:27:50.203990+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790598292353670700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Slavic",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Slavic",
+      "observed_at": "2026-10-27T08:27:50.204205+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790006051923902700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/Spanish",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/Spanish",
+      "observed_at": "2026-10-27T08:27:50.204425+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790631366342269500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/childes/XLing",
+      "realpath": "/data/share/datasets/talkbank/audio/childes/XLing",
+      "observed_at": "2026-10-27T08:27:50.204642+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790642547970597100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class",
+      "realpath": "/data/share/datasets/talkbank/audio/class",
+      "observed_at": "2026-10-27T08:27:50.204854+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790670375772541700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/APT",
+      "realpath": "/data/share/datasets/talkbank/audio/class/APT",
+      "observed_at": "2026-10-27T08:27:50.205074+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790893899967491500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Bradford",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Bradford",
+      "observed_at": "2026-10-27T08:27:50.205294+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790118640502277700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/CarlaJim",
+      "realpath": "/data/share/datasets/talkbank/audio/class/CarlaJim",
+      "observed_at": "2026-10-27T08:27:50.205514+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790657688409761200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/CogInst",
+      "realpath": "/data/share/datasets/talkbank/audio/class/CogInst",
+      "observed_at": "2026-10-27T08:27:50.205729+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790657733389503800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Crowley",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Crowley",
+      "observed_at": "2026-10-27T08:27:50.205950+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790657870907404700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Curtis",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Curtis",
+      "observed_at": "2026-10-27T08:27:50.206165+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661045655746600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/DISPEL",
+      "realpath": "/data/share/datasets/talkbank/audio/class/DISPEL",
+      "observed_at": "2026-10-27T08:27:50.206388+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790006273518319100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Frederiksen",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Frederiksen",
+      "observed_at": "2026-10-27T08:27:50.206603+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661503628606100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Goldman",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Goldman",
+      "observed_at": "2026-10-27T08:27:50.206817+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661494583075900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Graesser",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Graesser",
+      "observed_at": "2026-10-27T08:27:50.207034+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661693666581000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Horowitz",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Horowitz",
+      "observed_at": "2026-10-27T08:27:50.207246+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661574210142100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/JLS",
+      "realpath": "/data/share/datasets/talkbank/audio/class/JLS",
+      "observed_at": "2026-10-27T08:27:50.207466+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790661664425023000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Looney",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Looney",
+      "observed_at": "2026-10-27T08:27:50.207678+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790662388307789000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/MacWhinney",
+      "realpath": "/data/share/datasets/talkbank/audio/class/MacWhinney",
+      "observed_at": "2026-10-27T08:27:50.207894+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790662850387749100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Moschkovich",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Moschkovich",
+      "observed_at": "2026-10-27T08:27:50.208112+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790662492607934700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/MultiEd",
+      "realpath": "/data/share/datasets/talkbank/audio/class/MultiEd",
+      "observed_at": "2026-10-27T08:27:50.208328+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790119137456485600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Person",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Person",
+      "observed_at": "2026-10-27T08:27:50.208545+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790893946055910800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Rahm",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Rahm",
+      "observed_at": "2026-10-27T08:27:50.208758+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790893667462058500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Roth",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Roth",
+      "observed_at": "2026-10-27T08:27:50.208971+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790893664568433700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Stevens",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Stevens",
+      "observed_at": "2026-10-27T08:27:50.209193+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790664145067249100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/TIMSS-Math",
+      "realpath": "/data/share/datasets/talkbank/audio/class/TIMSS-Math",
+      "observed_at": "2026-10-27T08:27:50.209414+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790667438397811400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/TIMSS-Science",
+      "realpath": "/data/share/datasets/talkbank/audio/class/TIMSS-Science",
+      "observed_at": "2026-10-27T08:27:50.209630+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790669979506671600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/class/Warren",
+      "realpath": "/data/share/datasets/talkbank/audio/class/Warren",
+      "observed_at": "2026-10-27T08:27:50.209843+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790670454971946300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency",
+      "observed_at": "2026-10-27T08:27:50.210054+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789422604205341800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Brejon",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Brejon",
+      "observed_at": "2026-10-27T08:27:50.210282+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789373370691319200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Examples",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Examples",
+      "observed_at": "2026-10-27T08:27:50.210499+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789373870364141600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Hakim",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Hakim",
+      "observed_at": "2026-10-27T08:27:50.210717+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789373516363796500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/UMD-CMU",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/UMD-CMU",
+      "observed_at": "2026-10-27T08:27:50.210931+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789373802933526200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/VanZaalen",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/VanZaalen",
+      "observed_at": "2026-10-27T08:27:50.211143+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789411176046053600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Voices-AWC",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Voices-AWC",
+      "observed_at": "2026-10-27T08:27:50.211376+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789411829549187400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Voices-AWS",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Voices-AWS",
+      "observed_at": "2026-10-27T08:27:50.211589+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789420390794630100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/fluency/Voices-CWS",
+      "realpath": "/data/share/datasets/talkbank/audio/fluency/Voices-CWS",
+      "observed_at": "2026-10-27T08:27:50.211804+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789424798094949500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/homebank",
+      "realpath": "/data/share/datasets/talkbank/audio/homebank",
+      "observed_at": "2026-10-27T08:27:50.212012+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790006297029312200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/homebank/Public",
+      "realpath": "/data/share/datasets/talkbank/audio/homebank/Public",
+      "observed_at": "2026-10-27T08:27:50.212226+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790015002501730500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open",
+      "realpath": "/data/share/datasets/talkbank/audio/open",
+      "observed_at": "2026-10-27T08:27:50.212444+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790677714933852700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open/APROCSA-training",
+      "realpath": "/data/share/datasets/talkbank/audio/open/APROCSA-training",
+      "observed_at": "2026-10-27T08:27:50.212661+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790675332091911100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open/E*3",
+      "realpath": "/data/share/datasets/talkbank/audio/open/E*3",
+      "observed_at": "2026-10-27T08:27:50.212879+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790673648523082000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open/XCult",
+      "realpath": "/data/share/datasets/talkbank/audio/open/XCult",
+      "observed_at": "2026-10-27T08:27:50.213093+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790677536688997500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open/general",
+      "realpath": "/data/share/datasets/talkbank/audio/open/general",
+      "observed_at": "2026-10-27T08:27:50.213310+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790678459614029300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/open/screencasts",
+      "realpath": "/data/share/datasets/talkbank/audio/open/screencasts",
+      "observed_at": "2026-10-27T08:27:50.213530+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790679284703682700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon",
+      "realpath": "/data/share/datasets/talkbank/audio/phon",
+      "observed_at": "2026-10-27T08:27:50.213745+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790679048478195900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/0extra",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/0extra",
+      "observed_at": "2026-10-27T08:27:50.213959+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790679303950325200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Biling",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Biling",
+      "observed_at": "2026-10-27T08:27:50.214175+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790679086130081900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Chinese",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Chinese",
+      "observed_at": "2026-10-27T08:27:50.214396+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790033950067248800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Clinical",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Clinical",
+      "observed_at": "2026-10-27T08:27:50.214611+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789352253976998900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Dutch",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Dutch",
+      "observed_at": "2026-10-27T08:27:50.214824+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790034627578645900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Eng-NA",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Eng-NA",
+      "observed_at": "2026-10-27T08:27:50.215040+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790036929522132100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/French",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/French",
+      "observed_at": "2026-10-27T08:27:50.215265+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790828721579946000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/German",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/German",
+      "observed_at": "2026-10-27T08:27:50.215482+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790038842351344700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Japanese",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Japanese",
+      "observed_at": "2026-10-27T08:27:50.215698+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790039140478586800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Other",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Other",
+      "observed_at": "2026-10-27T08:27:50.215911+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790043705663892000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Romance",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Romance",
+      "observed_at": "2026-10-27T08:27:50.216127+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790834407701265300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Scandinavian",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Scandinavian",
+      "observed_at": "2026-10-27T08:27:50.216352+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790076791396663300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Slavic",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Slavic",
+      "observed_at": "2026-10-27T08:27:50.216566+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790077036120315900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/phon/Spanish",
+      "realpath": "/data/share/datasets/talkbank/audio/phon/Spanish",
+      "observed_at": "2026-10-27T08:27:50.216781+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790846899742979100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/psyling",
+      "realpath": "/data/share/datasets/talkbank/audio/psyling",
+      "observed_at": "2026-10-27T08:27:50.216994+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790848854443867000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/psyling/E*3",
+      "realpath": "/data/share/datasets/talkbank/audio/psyling/E*3",
+      "observed_at": "2026-10-27T08:27:50.217207+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790849733532905400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/psyling/videos",
+      "realpath": "/data/share/datasets/talkbank/audio/psyling/videos",
+      "observed_at": "2026-10-27T08:27:50.217429+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790849892722339700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale",
+      "observed_at": "2026-10-27T08:27:50.217640+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790848999428757400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/DsA",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/DsA",
+      "observed_at": "2026-10-27T08:27:50.217855+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790077559663534900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Sam1",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Sam1",
+      "observed_at": "2026-10-27T08:27:50.218067+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790849046112623500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Sam2",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Sam2",
+      "observed_at": "2026-10-27T08:27:50.218287+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790849462686076600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Sam3",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Sam3",
+      "observed_at": "2026-10-27T08:27:50.218503+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850257561122300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Sam4",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Sam4",
+      "observed_at": "2026-10-27T08:27:50.218718+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850835585676100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Telefon",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Telefon",
+      "observed_at": "2026-10-27T08:27:50.218939+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790077578088437100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/samtale/Video",
+      "realpath": "/data/share/datasets/talkbank/audio/samtale/Video",
+      "observed_at": "2026-10-27T08:27:50.219153+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850227513232300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank",
+      "observed_at": "2026-10-27T08:27:50.219373+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850161613073300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/APN",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/APN",
+      "observed_at": "2026-10-27T08:27:50.219588+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790079758203408400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Classroom",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Classroom",
+      "observed_at": "2026-10-27T08:27:50.219803+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850161613189300,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Czech",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Czech",
+      "observed_at": "2026-10-27T08:27:50.220015+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790080553505047200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/English",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/English",
+      "observed_at": "2026-10-27T08:27:50.220231+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790850835833816800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/French",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/French",
+      "observed_at": "2026-10-27T08:27:50.220452+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790084280881899100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/German",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/German",
+      "observed_at": "2026-10-27T08:27:50.220666+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790084519474603900,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Hungarian",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Hungarian",
+      "observed_at": "2026-10-27T08:27:50.220877+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790084523375505000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Icelandic",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Icelandic",
+      "observed_at": "2026-10-27T08:27:50.221090+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790084535508408100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Italian",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Italian",
+      "observed_at": "2026-10-27T08:27:50.221309+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790084561889342600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Mandarin",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Mandarin",
+      "observed_at": "2026-10-27T08:27:50.221526+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790852411501879000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Multiple",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Multiple",
+      "observed_at": "2026-10-27T08:27:50.221741+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790099788046961600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/talkbank/audio/slabank/Spanish",
+      "realpath": "/data/share/datasets/talkbank/audio/slabank/Spanish",
+      "observed_at": "2026-10-27T08:27:50.221956+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1790853735544181800,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/ad_speech_full_feature_benchmark_20260622_v1",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/ad_speech_full_feature_benchmark_20260622_v1",
+      "observed_at": "2026-10-27T08:27:50.222374+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791179292357999200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/ad_speech_interpretable_8group_first_result_20260628_v2_progress",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/ad_speech_interpretable_8group_first_result_20260628_v2_progress",
+      "observed_at": "2026-10-27T08:27:50.222590+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791222468887318200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/ad_speech_interpretable_8group_mingfan_full_strict_schema_20260627_v1",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/ad_speech_interpretable_8group_mingfan_full_strict_schema_20260627_v1",
+      "observed_at": "2026-10-27T08:27:50.222803+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791179295549078400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/ad_speech_multilingual_benchmark_20260623_v6_pitt_cookie_interpretable_qwen",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/ad_speech_multilingual_benchmark_20260623_v6_pitt_cookie_interpretable_qwen",
+      "observed_at": "2026-10-27T08:27:50.223018+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791248499141549600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/costa-reproduction-20260906",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/costa-reproduction-20260906",
+      "observed_at": "2026-10-27T08:27:50.223230+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791196073136685700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/hc_mci_ad_temporal_v15_20260810",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/hc_mci_ad_temporal_v15_20260810",
+      "observed_at": "2026-10-27T08:27:50.223447+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789792928166299400,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/stateful-cognitive-gate1",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/stateful-cognitive-gate1",
+      "observed_at": "2026-10-27T08:27:50.223658+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791187799867173100,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/stateful-cognitive-real-r24-20260907",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/stateful-cognitive-real-r24-20260907",
+      "observed_at": "2026-10-27T08:27:50.223872+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789792928214601700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/experiments/voice-health-encoder-20260908",
+      "realpath": "/data/share/datasets/wuwangwo/experiments/voice-health-encoder-20260908",
+      "observed_at": "2026-10-27T08:27:50.224084+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789792793593632200,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/call-transcripts-dev",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/call-transcripts-dev",
+      "observed_at": "2026-10-27T08:27:50.224400+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1785356675948183694,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/chinese_dementia_audio_pilot",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/chinese_dementia_audio_pilot",
+      "observed_at": "2026-10-27T08:27:50.224615+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784112440871798557,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/family_guard_avatars",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/family_guard_avatars",
+      "observed_at": "2026-10-27T08:27:50.224828+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784498271540086208,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/family_guard_avatars-dev",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/family_guard_avatars-dev",
+      "observed_at": "2026-10-27T08:27:50.225040+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784602176084784001,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-brightdata-smoke",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-brightdata-smoke",
+      "observed_at": "2026-10-27T08:27:50.225264+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784305988197527008,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-brightdata-validation-20260716-142527",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-brightdata-validation-20260716-142527",
+      "observed_at": "2026-10-27T08:27:50.225484+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784305988199526983,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-dev",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/public_audio_crawler-dev",
+      "observed_at": "2026-10-27T08:27:50.225697+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1791690875675421743,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic-patient-codex-20260717",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic-patient-codex-20260717",
+      "observed_at": "2026-10-27T08:27:50.225908+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784240995082487680,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_audio",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_audio",
+      "observed_at": "2026-10-27T08:27:50.226116+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784190241583196152,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-smoke-20260716-cred",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-smoke-20260716-cred",
+      "observed_at": "2026-10-27T08:27:50.226336+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784192108331967133,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-07fab733",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-07fab733",
+      "observed_at": "2026-10-27T08:27:50.226552+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784239923713889244,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-54f4dfb4",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-54f4dfb4",
+      "observed_at": "2026-10-27T08:27:50.226770+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784242447286724316,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9",
+      "observed_at": "2026-10-27T08:27:50.226981+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784244079636167998,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-delta",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-delta",
+      "observed_at": "2026-10-27T08:27:50.227202+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784242447286724316,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-v2",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-v2",
+      "observed_at": "2026-10-27T08:27:50.227424+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784244236018549024,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-tools",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-tools",
+      "observed_at": "2026-10-27T08:27:50.227639+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784304398167798070,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-dev",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-dev",
+      "observed_at": "2026-10-27T08:27:50.227850+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789793155855008086,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-smoke-20260716-cred",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-smoke-20260716-cred",
+      "observed_at": "2026-10-27T08:27:50.228064+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240797651574,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-bilibili-20260717",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-bilibili-20260717",
+      "observed_at": "2026-10-27T08:27:50.228284+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240799279972,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-douyin-20260717",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-douyin-20260717",
+      "observed_at": "2026-10-27T08:27:50.228504+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240800014819,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-20260717",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-20260717",
+      "observed_at": "2026-10-27T08:27:50.228716+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240801614127,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-20260717-v2",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-20260717-v2",
+      "observed_at": "2026-10-27T08:27:50.228930+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240800707859,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-details-20260717",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-details-20260717",
+      "observed_at": "2026-10-27T08:27:50.229145+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240802050345,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-prefilter-20260718",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-prefilter-20260718",
+      "observed_at": "2026-10-27T08:27:50.229370+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240802564248,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-prefilter-v2-20260718",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-prefilter-v2-20260718",
+      "observed_at": "2026-10-27T08:27:50.229583+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788365240802980709,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/fmn/topic_precision_review_20260717_v2",
+      "realpath": "/data/share/datasets/wuwangwo/fmn/topic_precision_review_20260717_v2",
+      "observed_at": "2026-10-27T08:27:50.229792+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784247968245948554,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/call_transcripts",
+      "realpath": "/data/share/datasets/wuwangwo/prod/call_transcripts",
+      "observed_at": "2026-10-27T08:27:50.230206+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1789996147693218330,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/demo",
+      "realpath": "/data/share/datasets/wuwangwo/prod/demo",
+      "observed_at": "2026-10-27T08:27:50.230424+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784497545889973338,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/migrations",
+      "realpath": "/data/share/datasets/wuwangwo/prod/migrations",
+      "observed_at": "2026-10-27T08:27:50.230640+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1788478855672279588,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/public_media",
+      "realpath": "/data/share/datasets/wuwangwo/prod/public_media",
+      "observed_at": "2026-10-27T08:27:50.230849+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o2755",
+      "mtime_ns": 1781849412000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/scale_recordings",
+      "realpath": "/data/share/datasets/wuwangwo/prod/scale_recordings",
+      "observed_at": "2026-10-27T08:27:50.231060+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1783651569386334337,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/prod/storage",
+      "realpath": "/data/share/datasets/wuwangwo/prod/storage",
+      "observed_at": "2026-10-27T08:27:50.231271+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784497545000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/call_transcripts",
+      "realpath": "/data/share/datasets/wuwangwo/staging/call_transcripts",
+      "observed_at": "2026-10-27T08:27:50.231630+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1786203655575838398,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/demo",
+      "realpath": "/data/share/datasets/wuwangwo/staging/demo",
+      "observed_at": "2026-10-27T08:27:50.231840+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1783773001833673682,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/migrations",
+      "realpath": "/data/share/datasets/wuwangwo/staging/migrations",
+      "observed_at": "2026-10-27T08:27:50.232056+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1787747161262131876,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/public_media",
+      "realpath": "/data/share/datasets/wuwangwo/staging/public_media",
+      "observed_at": "2026-10-27T08:27:50.232268+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o2755",
+      "mtime_ns": 1781848646123878500,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/scale_recordings",
+      "realpath": "/data/share/datasets/wuwangwo/staging/scale_recordings",
+      "observed_at": "2026-10-27T08:27:50.232481+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1781662220187293669,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/datasets/wuwangwo/staging/storage",
+      "realpath": "/data/share/datasets/wuwangwo/staging/storage",
+      "observed_at": "2026-10-27T08:27:50.232692+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1787747161262131876,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/Qwen3-0.6B",
+      "realpath": "/data/share/models/Qwen3-0.6B",
+      "observed_at": "2026-10-27T08:27:50.232900+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1780387458985540700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/Qwen3-4B",
+      "realpath": "/data/share/models/Qwen3-4B",
+      "observed_at": "2026-10-27T08:27:50.233104+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1780394062704676600,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/Qwen3-8B",
+      "realpath": "/data/share/models/Qwen3-8B",
+      "observed_at": "2026-10-27T08:27:50.233311+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1780400326574126700,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/Qwen3-ASR-1.7B",
+      "realpath": "/data/share/models/Qwen3-ASR-1.7B",
+      "observed_at": "2026-10-27T08:27:50.233517+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1777218263000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/Qwen3-ForcedAligner-0.6B",
+      "realpath": "/data/share/models/Qwen3-ForcedAligner-0.6B",
+      "observed_at": "2026-10-27T08:27:50.233719+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1777131708000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/huggingface/hub/models--BAAI--bge-small-zh-v1.5",
+      "realpath": "/data/share/models/huggingface/hub/models--BAAI--bge-small-zh-v1.5",
+      "observed_at": "2026-10-27T08:27:50.234121+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1780803382000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/huggingface/hub/models--facebook--wav2vec2-large-xlsr-53",
+      "realpath": "/data/share/models/huggingface/hub/models--facebook--wav2vec2-large-xlsr-53",
+      "observed_at": "2026-10-27T08:27:50.234345+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1782750526000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/huggingface/hub/models--mobiuslabsgmbh--faster-whisper-large-v3-turbo/snapshots/0a363e9161cbc7ed1431c9597a8ceaf0c4f78fcf",
+      "realpath": "/data/share/models/huggingface/hub/models--mobiuslabsgmbh--faster-whisper-large-v3-turbo/snapshots/0a363e9161cbc7ed1431c9597a8ceaf0c4f78fcf",
+      "observed_at": "2026-10-27T08:27:50.234762+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1784242741000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/huggingface/hub/models--xlm-roberta-base/snapshots/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+      "realpath": "/data/share/models/huggingface/hub/models--xlm-roberta-base/snapshots/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+      "observed_at": "2026-10-27T08:27:50.235174+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1782823382000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    },
+    {
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "path": "/data/share/models/modelscope",
+      "realpath": "/data/share/models/modelscope",
+      "observed_at": "2026-10-27T08:27:50.235386+00:00",
+      "account": "rmp",
+      "exists": true,
+      "readable": true,
+      "kind": "directory",
+      "owner": "root",
+      "mode": "0o755",
+      "mtime_ns": 1777956613000000000,
+      "uid": 0,
+      "gid": 0,
+      "mount": {
+        "target": "/data/share",
+        "source": "10.0.0.202:/share",
+        "fstype": "nfs"
+      }
+    }
+  ],
+  "ordinary_account_checked_paths": 221,
+  "source_after_switch": {
+    "status": "passed",
+    "observed_at": "2026-10-27T08:25:12.878333+00:00",
+    "receipt_sha256": "6d108bc3c2933a0fdbe0df649ae9935d62d7ddfa976372b3b730f6cc7e505145",
+    "scope": "original_inode_metadata"
+  },
+  "usage_after_switch": {
+    "status": "passed",
+    "observed_at": "2026-10-27T08:25:25.495143+00:00",
+    "receipt_sha256": "1a73193c12bba9e21d924c2150f73929cde931c433c57f50e4cd4ea408723f26",
+    "scope": "local_host_inode_usage"
+  },
+  "destination_observation_sha256": "74fcca81cfdd5c47a1230a432a1a4b617e23c64813ad9d5a5e2ac511eb87fc66"
+}

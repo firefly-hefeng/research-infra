@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "migration_id": "cpfs-20261027",
+  "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+  "baseline_catalog_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871",
+  "source_manifest_sha256": "abf15d245255a9d8927ce6078dee9160c81dc7b88e1c0ae5bfdd0469990f4220",
+  "status": "passed",
+  "observed_at": "2026-10-27T08:25:26.786190+00:00",
+  "phase": "cleaned",
+  "mount": {
+    "target": "/data/share",
+    "source": "10.0.0.202:/share",
+    "fstype": "nfs"
+  },
+  "disk_snapshot": {
+    "mount": "/data/share",
+    "total_bytes": 11701621620736,
+    "available_bytes": 3738374766592,
+    "observed_at": "2026-10-27T08:27:50.242194+00:00"
+  },
+  "aliases": [
+    {
+      "path": "/data/datasets",
+      "target": "/data/share/datasets",
+      "kind": "symlink",
+      "verified": true,
+      "observed_at": "2026-10-27T08:27:50.239905+00:00",
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ"
+    },
+    {
+      "path": "/data/models",
+      "target": "/data/share/models",
+      "kind": "symlink",
+      "verified": true,
+      "observed_at": "2026-10-27T08:27:50.242022+00:00",
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ"
+    }
+  ],
+  "aliases_checked_at": "2026-10-27T08:27:50.242200+00:00",
+  "cutover_state_sha256": "59c81aa7be2396255bbbd0472a5a9c0aac469f8fa32dbd7f8b2bc59d9d656518"
+}

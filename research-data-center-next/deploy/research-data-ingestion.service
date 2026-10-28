@@ -1,0 +1,27 @@
+[Unit]
+Description=Research shared-data rules coordinator (bounded cycle)
+RequiresMountsFor=/data/share /var/lib/research-data-center
+After=network-online.target
+ConditionHost=iZuf6jc6bqdgxmhcci4k3wZ
+[Service]
+Type=oneshot
+User=rmp
+Group=rmp
+SupplementaryGroups=ml-readers
+WorkingDirectory=/var/lib/research-data-center/workspace
+ExecStart=/data/services/miniforge3/bin/python /opt/research-data-center/releases/20261027-incoming-rules-mountfix/tools/ingest_cycle.py --state-db /var/lib/research-data-center/state/ingestion.sqlite3
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/research-data-center/state /data/share/datasets/managed /data/share/models/managed
+ReadOnlyPaths=/data/share/incoming
+Nice=15
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+CPUQuota=25%
+MemoryMax=512M
+TimeoutStartSec=3600
+[Install]
+WantedBy=multi-user.target

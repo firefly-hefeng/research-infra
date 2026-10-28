@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*:)[^\\u0000-\\u001f]+$"
+    },
+    "kind": {
+      "enum": [
+        "file",
+        "directory",
+        "symlink"
+      ]
+    },
+    "size_bytes": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "link_target": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*:)[^\\u0000-\\u001f]+$"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ev-[a-z0-9-]+$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "path",
+    "kind",
+    "size_bytes",
+    "sha256",
+    "link_target",
+    "evidence_refs"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Data Center Manifest Entry 1.0",
+  "description": "One JSON object per line in manifest.jsonl. Path is relative to content/. SHA256 hashes file bytes, not stat attributes. Runtime must also resolve symlink confinement.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "file"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "size_bytes": {
+            "type": "integer"
+          },
+          "link_target": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "symlink"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "link_target": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "directory"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "size_bytes": {
+            "const": 0
+          },
+          "sha256": {
+            "type": "null"
+          },
+          "link_target": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#20172e"><title>论文管理</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></symbol>
+<symbol id="icon-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></symbol>
+<symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 10a8 8 0 0 0-14-5L3 8m0-5v5h5M4 14a8 8 0 0 0 14 5l3-3m0 5v-5h-5"/></symbol>
+<symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1v15"/></symbol>
+<symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 19V5h6l2 3h10v11z"/></symbol>
+<symbol id="icon-tag" viewBox="0 0 24 24"><path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+<symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="icon-list" viewBox="0 0 24 24"><path d="M8 5h13M8 12h13M8 19h13M3 5h1M3 12h1M3 19h1"/></symbol>
+</defs></svg>
+<main class="paper-module">
+  <a class="center-return" href="/">← 返回科研管理中心</a>
+  <section class="module-overview" aria-label="论文库概览">
+    <header class="module-header"><div class="module-intro"><div class="eyebrow"><span></span> RESEARCH PAPER LIBRARY</div><h1>论文管理<span class="title-dot">.</span></h1><p>收录论文，理解方法。让每一次阅读都有据可循。</p></div><div class="header-tools"><div class="actions"><button id="settings-button" class="secondary"><svg class="icon"><use href="#icon-settings"/></svg>整理设置</button><button id="refresh" class="secondary"><svg class="icon"><use href="#icon-refresh"/></svg>刷新</button><button class="primary" id="guide-button"><svg class="icon"><use href="#icon-plus"/></svg>添加论文</button></div><p><span></span> 固定目录管理 <i>/</i> 原文可追溯</p></div></header>
+    <div class="module-summary" aria-label="论文库统计"><div class="stat-item"><span>已收录资料 <svg class="icon"><use href="#icon-book"/></svg></span><strong id="stat-ready">0</strong><small>已核验卡片与待核题录 · 版本独立</small></div><div class="stat-item"><span>研究标签 <svg class="icon"><use href="#icon-tag"/></svg></span><strong id="stat-tags">0</strong><small>从方向与问题发现论文</small></div><div class="stat-item"><span>待整理 / 异常 <svg class="icon"><use href="#icon-folder"/></svg></span><strong id="stat-pending">0</strong><small>等待阅读、提取与归档</small></div><div class="agent-state"><span class="agent-eyebrow">CURATION CHANNEL</span><strong><i></i><span id="agent-label">Agent 未接入</span></strong><span id="agent-caption">自动调度未启用</span></div></div>
+  </section>
+  <details id="management" class="management-disclosure"><summary><span><svg class="icon"><use href="#icon-folder"/></svg>整理工作区 <b id="management-count">0 篇待处理</b></span><span class="disclosure-action">待整理区 · 任务记录 · 设置 <b>＋</b></span></summary><div class="management-content">
+  <div class="management-row">
+    <section id="inbox-view" class="management-panel" aria-labelledby="inbox-title"><div class="section-line"><h2 id="inbox-title">待整理区 <span id="inbox-count">0</span></h2><div class="actions"><button id="scan" class="secondary">扫描新文件</button><button id="run" class="primary">开始整理</button></div></div><p class="panel-hint">将 PDF 放入此目录，完成复制后扫描。</p><code id="inbox-path"></code><div id="inbox-list"></div></section>
+    <section id="activity-view" class="management-panel" aria-labelledby="activity-title"><div class="section-line"><h2 id="activity-title">整理记录</h2><a href="./api/skill" target="_blank" rel="noopener" class="text-button">整理 skill ↗</a></div><div id="schedule-info"></div><details id="job-history"><summary>查看任务记录 <span id="job-count">0</span></summary><div id="jobs"></div></details></section>
+  </div>
+  <details id="provider-settings" class="provider-settings">
+    <summary>整理设置 <span>Agent 与自定义 API</span></summary>
+    <form id="provider-form">
+      <div class="provider-heading"><label>整理方式<select id="provider-mode"><option value="auto">Agent 优先，失败后使用 API</option><option value="agent">仅使用 Agent</option><option value="api">仅使用自定义 API</option></select></label><p id="provider-description" class="panel-hint"></p></div>
+      <div class="provider-columns">
+        <fieldset><legend>Agent 通道</legend><p id="agent-config-status" class="panel-hint"></p><p class="panel-hint">由服务器配置 Agent 命令，使用配套 skill 整理论文。</p><label>等待 Agent 的最长时间（秒）<input id="agent-timeout" type="number" min="1" max="600" required></label></fieldset>
+        <fieldset><legend>自定义 API 通道</legend><p class="panel-hint">支持 OpenAI 兼容的 Chat Completions 接口。整理时，论文正文会发送到你填写的服务。</p><label>Base URL<input id="api-base-url" type="url" placeholder="https://api.example.com/v1" autocomplete="off"></label><label>模型名称<input id="api-model" type="text" placeholder="填写服务商提供的模型 ID" maxlength="200" autocomplete="off"></label><label>API Key<input id="api-key" type="password" autocomplete="new-password" placeholder="留空保留已有密钥"></label><div class="key-status"><span id="api-key-status"></span><label class="checkbox-label"><input id="clear-api-key" type="checkbox">清除已保存密钥</label></div><label>API 超时时间（秒）<input id="api-timeout" type="number" min="1" max="600" required></label><label class="checkbox-label"><input id="api-json-mode" type="checkbox">请求 JSON 模式</label><p class="panel-hint">若服务不支持 JSON 模式，可取消勾选；返回的卡片仍需通过校验。</p></fieldset>
+      </div>
+      <div class="settings-footer"><button id="save-provider" type="submit" class="primary">保存整理设置</button><span id="settings-status" role="status"></span></div><p class="panel-hint">保存后对下一批任务生效，由“开始整理”或已启用的调度触发。密钥仅保存在服务器，不会回显。</p>
+    </form>
+  </details>
+  </div></details>
+  <section id="library-view" aria-label="论文列表">
+    <div class="catalog-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="section-title">全部论文 <span>0</span></h2><p>按研究方向、作者与关键词，找到值得继续阅读的论文。</p></div><div class="catalog-caption">PAPERS <span>/</span> NOTES <span>/</span> IDEAS</div></div>
+    <div class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、内容或标签…" aria-label="搜索论文"><kbd>/</kbd></label></div><div class="filter-row"><label>研究方向<select id="category" aria-label="研究方向"><option value="">全部方向</option></select></label><label>发表年份<select id="year" aria-label="年份"><option value="">全部年份</option></select></label><label class="sort-filter">排序<select id="sort" aria-label="排序"><option value="newest">最近收录</option><option value="year">年份 · 从新到旧</option><option value="title">标题 · A–Z</option></select></label></div></div>
+    <div class="tag-row"><span class="muted">热门标签</span><div id="tag-cloud"></div><button id="clear-filters" class="text-button" hidden>清除筛选 ×</button></div>
+    <div class="library-view-bar"><div class="view-switch"><button id="grid-view" aria-label="卡片视图" class="selected" aria-pressed="true"><svg class="icon"><use href="#icon-grid"/></svg>论文卡片</button><button id="list-view" aria-label="列表视图" aria-pressed="false"><svg class="icon"><use href="#icon-list"/></svg>列表视图</button></div><label class="favorite-filter"><input id="favorites-only" type="checkbox">仅看收藏</label></div>
+    <div id="filter-summary" class="filter-summary" hidden></div><div class="cards" id="papers" aria-live="polite"></div>
+  </section>
+  <footer><span>论文与卡片保存在服务器固定目录中</span><a href="./api/export" download>导出目录 JSON ↓</a></footer>
+</main>
+<dialog id="detail" aria-labelledby="detail-title"><div class="reader-toolbar"><button id="close-detail" aria-label="关闭论文详情">← 返回论文库</button><span>论文详情 <i> / </i> 阅读与思考</span></div><div class="detail-content" id="detail-content"></div></dialog>
+<dialog id="guide"><div class="guide-content"><button class="close-modal" id="close-guide" aria-label="关闭使用说明">×</button><h2>添加与整理论文</h2><div class="guide-step"><b>01</b><div><h3>放入待整理区</h3><p>在服务器上将 PDF 复制到下方目录，完成复制后点击“扫描新文件”。</p><code id="guide-path"></code><button class="text-button" id="copy-path">复制路径</button></div></div><div class="guide-step"><b>02</b><div><h3>让 Agent 读懂论文</h3><p>按照配套 skill 提取作者、年份、内容、贡献与标签；每项关键信息都保留原文页码和依据。在“整理设置”中选择 Agent 或自定义 API，也可设置 Agent 失败后自动切换 API。</p><a href="./api/skill" target="_blank" rel="noopener">查看整理 skill ↗</a></div></div><div class="guide-step"><b>03</b><div><h3>搜索、阅读、建立联系</h3><p>按研究方向、标签和年份筛选；打开卡片查看贡献、核对原文，并记录自己的阅读笔记。</p></div></div><p class="guide-note">目录内文件按内容哈希去重。首次导入保留根目录原件；后续从待整理区归档。未核实的信息会单独提示。</p><a class="secondary export-link" href="./api/export" download>导出论文目录 JSON ↓</a></div></dialog>
+<dialog id="login"><form id="login-form"><h2>进入你的论文库</h2><label>访问密码<input id="password" type="password" autocomplete="current-password" required></label><p id="login-error" role="alert"></p><button class="primary" type="submit">进入论文库 →</button></form></dialog>
+<div id="toast" role="status" hidden></div>
+<script src="./app.js" defer></script>
+</body></html>

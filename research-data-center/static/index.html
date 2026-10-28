@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#161220">
+  <meta name="description" content="发现公共科研数据与模型，查看研究用途、当前存储位置、兼容路径和核验证据。">
+  <title>公共科研资源中心 · Research Registry</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23221a32'/%3E%3Cpath d='M10 13l10-5 10 5-10 5zM10 20l10 5 10-5M10 27l10 5 10-5' fill='none' stroke='%23d1a3ee' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 4 16 4 16 0V5M4 12v7c0 4 16 4 16 0v-7"/></symbol>
+    <symbol id="i-model" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10v10M3 7l9 5 9-5M7.5 4.5l9 5V15"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m7 6-6 6 6 6m10-12 6 6-6 6m-3-15-4 18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C8 2 4 3 2 4v15c3-1 6-1 10 2 4-3 7-3 10-2V4c-2-1-6-2-10 1v16"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-5 9-9 10-4-1-9-5-9-10V6l9-4Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M3 16v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7a9 9 0 1 0 1 9M20 2v6h-6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18M6 12h12m-8 7h4"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-7-7Zm0 0v7h7M7 14h10M7 18h6"/></symbol>
+    <symbol id="i-feature" viewBox="0 0 24 24"><path d="M4 18V9m5 9V4m5 14v-7m5 7V6M2 22h20"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M21 13 13 21a2 2 0 0 1-3 0L2 13V2h11l8 8a2 2 0 0 1 0 3Z"/><circle cx="7" cy="7" r="1"/></symbol>
+  </defs></svg>
+  <a href="#main" class="skip-link">跳至主要内容</a>
+  <aside class="sidebar" aria-label="主导航">
+    <a class="brand" href="#overview" aria-label="公共科研资源中心首页"><span class="brand-mark"><svg class="icon"><use href="#i-layers"/></svg></span><span>RESEARCH<span class="brand-sub">DATA REGISTRY</span></span></a>
+    <div class="sidebar-label">EXPLORE THE REGISTRY</div>
+    <nav class="navigation">
+      <a class="nav-link active" href="#overview" data-nav="overview"><svg class="icon"><use href="#i-grid"/></svg>资源概览</a>
+      <a class="nav-link" href="#resources" data-nav="resources"><svg class="icon"><use href="#i-layers"/></svg>资料导航<span id="nav-count" class="nav-count">—</span></a>
+      <a class="nav-link" href="#catalog" data-nav="catalog"><svg class="icon"><use href="#i-database"/></svg>目录台账</a>
+      <a class="nav-link" href="/docs/standards.html"><svg class="icon"><use href="#i-book"/></svg>规范与增补流程<svg class="icon nav-arrow"><use href="#i-arrow"/></svg></a>
+      <a class="nav-link" href="#agent" data-nav="agent"><svg class="icon"><use href="#i-code"/></svg>Agent 接入</a>
+      <a class="nav-link" href="/progress/"><svg class="icon"><use href="#i-feature"/></svg>科研进度<svg class="icon nav-arrow"><use href="#i-arrow"/></svg></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="local-status"><span class="status-dot"></span>公共资源 · 持久登记</div><p>连接科研资料<br>与下一次发现。</p><div class="sidebar-version">RESEARCH INFRASTRUCTURE<span>本地持久化 · 只读发现</span></div></div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">科研基础设施 <span>/</span> 公共资源管理</div><div class="topbar-right"><span class="phase-label">公共资源目录 · 第一期</span><button id="logout" class="logout-button" type="button" hidden>退出</button><button id="refresh" class="icon-button" aria-label="刷新资源目录" title="刷新资源目录"><svg class="icon"><use href="#i-refresh"/></svg></button></div></header>
+    <main id="main">
+      <section id="overview" class="overview section-anchor" aria-labelledby="page-title">
+        <div class="page-heading"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span>PUBLIC RESEARCH RESOURCES</div><h1 id="page-title"><span class="hero-title-line">公共科研</span><span class="hero-title-line">资源中心<span class="title-dot">.</span></span></h1><p class="lead">找到资料，理解用途。让已有数据成为下一次研究的起点。</p><div class="page-actions"><a class="button button-primary" href="#resources">探索资料<svg class="icon"><use href="#i-arrow"/></svg></a><span class="updated-label" id="updated-label">正在连接资源目录…</span></div></div><div class="hero-domains" aria-label="公共资源存放区域"><svg class="archive-art" viewBox="0 0 340 116" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="archive-dots" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="1.4" cy="1.4" r=".85" fill="#b692da"/></pattern><pattern id="archive-pixels" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse"><rect x="1" y="1" width="11" height="11" rx="1" fill="#8663a6"/></pattern></defs><g fill="none" stroke="#746085" stroke-width=".8"><path d="m96 71 92 39 124-53-92-39Z"/><path d="m96 54 92 39 124-53-92-39Z"/></g><path d="m96 37 92 39L312 23 220-16Z" fill="url(#archive-dots)" opacity=".65"/><path d="m96 37 92 39L312 23" fill="none" stroke="#c99ce8" stroke-width="1.2"/><path d="M188 76v34M312 23v34M96 37v34" fill="none" stroke="#a080ba"/><rect x="12" y="18" width="61" height="76" fill="url(#archive-pixels)" opacity=".24"/><rect x="28" y="49" width="11" height="11" rx="1" fill="#c397e2"/><rect x="43" y="64" width="11" height="11" rx="1" fill="#8961aa"/><path d="M12 106h50m257-7h10m-5-5v10" stroke="#9673b0" stroke-width="1"/></svg><div class="hero-domain"><span class="domain-index">01</span><div><span class="domain-label">DATASETS</span><code id="domain-datasets-path">/data/datasets</code><span class="domain-caption">原始数据 · 派生资料 · 业务数据</span></div><svg class="icon"><use href="#i-database"/></svg></div><div class="hero-domain"><span class="domain-index">02</span><div><span class="domain-label">MODELS</span><code id="domain-models-path">/data/models</code><span class="domain-caption">模型权重 · 相关集合</span></div><svg class="icon"><use href="#i-model"/></svg></div></div></div>
+        <div id="summary-error" class="error-banner" hidden></div>
+        <div class="stats-grid" aria-label="资源概况" aria-busy="true" id="stats-grid">
+          <article class="stat-card stat-primary"><div class="stat-top"><span>目录登记记录</span><svg class="icon"><use href="#i-layers"/></svg></div><div class="stat-number" id="stat-total">—</div><div class="stat-footer">保留每条资料的独立说明</div></article>
+          <article class="stat-card"><div class="stat-top"><span>资料导航分组</span><svg class="icon"><use href="#i-grid"/></svg></div><div class="stat-number" id="stat-groups">—</div><div class="stat-footer">按逻辑资料分支组织</div></article>
+          <article class="stat-card"><div class="stat-top"><span>已识别权重入口</span><svg class="icon"><use href="#i-model"/></svg></div><div class="stat-number" id="stat-weights">—</div><div class="stat-footer" id="stat-model-note">模型集合另列；未验证可运行性</div></article>
+          <article class="stat-card"><div class="stat-top"><span>不同存储路径</span><svg class="icon"><use href="#i-database"/></svg></div><div class="stat-number" id="stat-paths">—</div><div class="stat-footer">当前位置与兼容路径分别登记</div></article>
+        </div>
+      </section>
+      <section id="storage-status" class="storage-panel" aria-labelledby="storage-title">
+        <div class="storage-heading"><span class="storage-mark" aria-hidden="true"><svg class="icon"><use href="#i-server"/></svg></span><div><h2 id="storage-title">存储与迁移 <span>CPFS</span></h2><p id="storage-summary" role="status">正在读取存储清单；当前路径以资料记录为准。</p></div><a class="text-link" href="/docs/cpfs-team-guide.html">共享存储使用说明<svg class="icon"><use href="#i-arrow"/></svg></a></div>
+        <div id="physical-summary" class="physical-summary" aria-label="源目录物理清点" hidden></div>
+        <details id="storage-details"><summary><span>查看当前位置、兼容路径与核验记录</span><span aria-hidden="true">＋</span></summary><div id="storage-content" class="storage-content"><p>清单尚未载入。</p></div></details>
+      </section>
+      <details id="scope-details" class="scope-disclosure"><summary><span class="scope-summary-title"><svg class="icon"><use href="#i-shield"/></svg>公共区全部资料 · 持久登记 · 观察快照</span><span class="disclosure-action">范围与核验口径<span aria-hidden="true">＋</span></span></summary><div class="scope-expanded"><div class="scope-note"><div><strong>理解目录的记录边界</strong><p>数据公共库与模型公共库的原件、派生数据、业务数据和模型均在管理范围；实际存储位置与旧路径兼容状态见“存储与迁移”。“公共”指存储区域，具体访问权限和使用许可见各条目。目录记录数不等于独立数据集或样本数。</p><p>采集深度与覆盖边界见下方说明。“路径已核验”不代表内容质量、完整性或使用授权已验证。</p><p class="verification-line" id="verification-line">核验依据为已保存的观察快照，不是实时服务器状态。</p><p id="scope-summary" hidden></p></div><div class="access-observation"><span>rmp 可读取入口</span><strong id="stat-readable">—</strong><span id="stat-access-note">入口可读不代表全部文件可读</span></div></div><div id="scope-content" class="scope-content">正在读取范围说明…</div>
+        <div class="insights-grid">
+          <section class="insight-card"><div class="card-heading"><h2>目录记录构成</h2><span>按公共区类型</span></div><div id="kind-chart" class="chart-list"><div class="chart-loading">正在读取…</div></div></section>
+          <section class="insight-card"><div class="card-heading"><h2>存储分布</h2><span>按服务器</span></div><div id="server-chart" class="chart-list"><div class="chart-loading">正在读取…</div></div></section>
+          <section class="insight-card"><div class="card-heading"><h2>访问观察</h2><span>rmp 账号 · 非实时</span></div><div id="status-chart" class="chart-list"><div class="chart-loading">正在读取…</div></div></section>
+        </div>
+      </div></details>
+
+      <section id="research-guide" class="research-guide section-anchor" aria-labelledby="research-guide-title">
+        <div class="guide-heading"><div><div class="eyebrow">A STARTING POINT FOR RESEARCH</div><h2 id="research-guide-title">研究资源导览</h2><p id="research-guide-intro">从研究问题出发，了解现有资料与可复用的工具。</p></div><a class="text-link" href="/docs/templates/index.html">如何写好资料说明<svg class="icon"><use href="#i-arrow"/></svg></a></div>
+        <p id="research-guide-status" class="guide-status" role="status">正在读取研究方向…</p><div id="research-guide-categories" class="guide-categories" aria-label="研究方向"></div>
+        <details id="research-guide-start" class="guide-start" hidden><summary><span><svg class="icon"><use href="#i-book"/></svg>第一次使用：从找资料到开始研究</span><span class="guide-expand-label">入门路径与术语 ＋</span></summary><div class="guide-start-content"><ol id="research-guide-steps" class="guide-steps"></ol><div class="guide-reference"><div id="research-guide-terms"></div><div id="research-guide-tips"></div></div></div></details>
+      </section>
+
+      <section id="resources" class="resources-section section-anchor" aria-labelledby="resources-title">
+        <div class="section-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="resources-title">从用途找到资料</h2><p>阅读资料说明，定位原始目录，继续你的研究。</p></div><div class="export-actions"><a href="/docs/resource-inventory.html" class="button button-secondary"><svg class="icon"><use href="#i-book"/></svg>完整资源清册</a><a href="/api/resource-mapping.csv" class="text-link" download>映射 CSV<svg class="icon"><use href="#i-download"/></svg></a></div></div>
+        <div class="mapping-panel">
+          <div class="resource-toolbar"><label class="resource-search"><svg class="icon"><use href="#i-search"/></svg><span class="sr-only">搜索资料说明、路径、登记 ID 或待办</span><input type="search" id="resource-search" placeholder="搜索资料名称、用途或路径，例如 TalkBank、whisper" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><div class="resource-browse-controls"><details class="group-directory"><summary><svg class="icon"><use href="#i-layers"/></svg>按资料组浏览<span aria-hidden="true">＋</span></summary><div id="resource-groups" class="resource-groups" role="group" aria-label="按资料分组筛选"><span class="mapping-loading">正在读取资料分组…</span></div></details><button id="toggle-resource-map" class="map-toggle" type="button" aria-expanded="false" aria-controls="resource-map-panel"><svg class="icon"><use href="#i-grid"/></svg>查看资源分布<svg class="icon"><use href="#i-arrow"/></svg></button></div></div>
+          <div id="resource-map-panel" class="resource-map-panel" hidden><div class="map-heading"><div><span class="eyebrow">RESOURCE DISTRIBUTION</span><h3>公共资料的存放分组</h3></div><p id="resource-map-summary">按登记记录查看资料分布。</p></div><p class="map-pan-hint">左右滑动查看全部分组 · 点击节点筛选资料</p><div id="resource-map" class="resource-map" aria-label="公共资料分组交互图"></div><div class="map-bottom"><div id="resource-map-legend" class="resource-map-legend"></div><div id="resource-map-detail" class="resource-map-detail" aria-live="polite"></div></div></div>
+          <div class="resource-view-bar"><div class="view-switch" role="group" aria-label="资料展示方式"><button type="button" data-resource-view="cards" class="active" aria-pressed="true">资源卡</button><button type="button" data-resource-view="mapping" aria-pressed="false">路径映射</button><button type="button" data-resource-view="gaps" aria-pressed="false">待补说明<span id="gap-count" class="view-count">—</span></button></div><details class="view-evidence"><summary><svg class="icon"><use href="#i-info"/></svg>视图说明</summary><div class="resource-view-note" id="resource-view-note">资源卡保留目录记录的身份；集合、衍生资料与权重入口分别标识。</div></details></div>
+          <div class="mapping-tools"><span id="resource-results-label" role="status" aria-live="polite" tabindex="-1">正在读取资料说明…</span><button id="clear-resource-topic" type="button" class="topic-clear" hidden>清除研究方向 ×</button><label id="gap-filter-wrap" hidden><span>待补事项</span><select id="gap-filter"><option value="">全部待补事项</option></select></label><button id="reset-resource-filters" type="button" class="reset-button" hidden>清除筛选</button></div>
+          <div id="mapping-error" class="error-banner" hidden></div><div id="resource-content" class="resource-content" aria-busy="true"></div>
+          <div class="pagination" id="resource-pagination"><span id="resource-page-summary">—</span><div><button type="button" class="page-button" id="resource-prev" disabled>上一页</button><span id="resource-page-label">1 / 1</span><button type="button" class="page-button" id="resource-next" disabled>下一页</button></div></div>
+        </div>
+      </section>
+
+      <section id="catalog" class="catalog section-anchor" aria-labelledby="catalog-title">
+        <div class="section-heading"><div><div class="eyebrow">ORIGINAL DIRECTORY RECORDS</div><h2 id="catalog-title">原始目录台账 <span id="catalog-total" class="count-pill">—</span></h2><p>核对原始字段、路径与证据。容量统计范围不同，父子目录及同源记录不可直接求和。</p></div><div class="export-actions"><a href="/api/export.csv" class="button button-secondary" download><svg class="icon"><use href="#i-download"/></svg>导出台账</a><a href="/api/export.json" class="text-link" download>JSON<svg class="icon"><use href="#i-external"/></svg></a></div></div>
+        <div class="catalog-panel">
+          <form id="filters" role="search" aria-label="搜索和筛选资源">
+            <div class="search-row"><label class="search-box"><svg class="icon"><use href="#i-search"/></svg><span class="sr-only">搜索名称、描述、标签或路径</span><input id="search" type="search" name="q" placeholder="在原始台账中搜索名称、描述、标签或路径…" autocomplete="off"></label><button class="button button-primary search-submit" type="submit">搜索台账</button></div>
+            <div class="filter-row"><span class="filter-caption"><svg class="icon"><use href="#i-filter"/></svg>筛选</span><label><span class="sr-only">公共区类型</span><select id="filter-kind" name="kind"><option value="">全部类型</option><option value="dataset">数据区记录</option><option value="model">模型区记录</option></select></label><label><span class="sr-only">服务器</span><select id="filter-server" name="server"><option value="">全部服务器</option></select></label><label><span class="sr-only">核验状态</span><select id="filter-status" name="status"><option value="">全部状态</option><option value="verified">rmp 入口可读</option><option value="documented">文档已收录</option><option value="partial">部分核验</option><option value="missing">路径未找到</option><option value="restricted">rmp 访问受限</option></select></label><label class="category-field"><span class="sr-only">分类</span><input id="filter-category" name="category" list="category-options" placeholder="按分类筛选" autocomplete="off"><datalist id="category-options"></datalist></label><button id="reset-filters" type="button" class="reset-button" hidden>清除筛选</button></div>
+          </form>
+          <div class="results-meta"><span id="results-label" role="status" aria-live="polite">正在载入资源…</span><span class="table-hint">点击资源查看详情<svg class="icon"><use href="#i-arrow"/></svg></span></div>
+          <div id="catalog-state" class="catalog-state" hidden></div>
+          <div class="table-scroll" id="table-container"><table class="asset-table"><caption class="sr-only">科研资源列表</caption><thead><tr><th scope="col">资源名称 / 用途</th><th scope="col">类型</th><th scope="col">位置</th><th scope="col">规模</th><th scope="col">状态</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead><tbody id="asset-rows"></tbody></table></div>
+          <div class="pagination" id="pagination"><span id="page-summary">—</span><div><button id="previous-page" type="button" class="page-button" disabled>上一页</button><span id="page-label">1 / 1</span><button id="next-page" type="button" class="page-button" disabled>下一页</button></div></div>
+        </div>
+      </section>
+
+      <section id="agent" class="agent-section section-anchor" aria-labelledby="agent-title">
+        <div class="section-heading"><div><div class="eyebrow">BUILT FOR HUMANS & AGENTS</div><h2 id="agent-title">同一份目录，两种访问方式</h2><p>人通过界面浏览，Agent 通过结构化接口发现资源与使用限制。</p></div><span class="api-label"><span class="status-dot"></span>只读 API</span></div>
+        <div class="agent-grid"><div class="agent-info"><div class="agent-mark"><svg class="icon"><use href="#i-code"/></svg></div><h3>让每次调用都有据可循</h3><p>接口返回资源标识、存储位置、来源和核验状态。实际数据读取仍需服务器文件权限。</p><a href="/api/agent/manifest" class="text-link" target="_blank" rel="noopener">查看 Agent 清单<svg class="icon"><use href="#i-external"/></svg></a></div><div class="code-panel"><div class="code-heading"><span><span class="code-dot"></span>发现资源 · Shell</span><button id="copy-agent" class="code-copy" aria-label="复制 Agent 调用示例"><svg class="icon"><use href="#i-copy"/></svg>复制</button></div><pre><code id="agent-code"></code></pre><div class="endpoint-row"><span class="method">GET</span><a href="/api/assets?kind=dataset&page_size=30" target="_blank" rel="noopener">/api/assets?kind=dataset</a><span>搜索与筛选</span></div><div class="endpoint-row"><span class="method">GET</span><a href="/api/export.json" target="_blank" rel="noopener">/api/export.json</a><span>完整资源台账</span></div></div></div>
+      </section>
+      <section class="standards-section" aria-labelledby="standards-title"><div class="standards-heading"><span class="roadmap-icon"><svg class="icon"><use href="#i-book"/></svg></span><div><h2 id="standards-title">规范与团队增补</h2><p>增补流程已制定，接收尚未启用。</p></div><span class="planned-label">设计已就绪 · 未接收数据</span></div><p class="standards-copy">查看资源说明、版本和位置登记约定，使用模板准备说明。CLI / rsync 与网页将遵循同一提交机制；当前仅提供规范与模板。</p><div class="standards-links"><a href="/docs/standards.html" class="button button-primary">规范中心与增补流程<svg class="icon"><use href="#i-arrow"/></svg></a><a href="/docs/templates/dataset-README.html" class="button button-secondary">数据说明模板<svg class="icon"><use href="#i-download"/></svg></a><a href="/docs/templates/model-README.html" class="button button-secondary">模型说明模板<svg class="icon"><use href="#i-download"/></svg></a><a href="/docs/plan.html" class="text-link">完整建设计划<svg class="icon"><use href="#i-external"/></svg></a></div></section>
+      <footer class="footer"><span>公共科研资源中心 <span class="footer-separator">/</span> 位置可追溯 · 来源可追溯</span><span>未知信息保持空缺，核验结果保留边界。</span></footer>
+    </main>
+  </div>
+
+  <dialog id="asset-dialog" class="asset-dialog" aria-labelledby="drawer-title"><div class="drawer-shell"><div class="drawer-top"><span class="eyebrow">RESOURCE DETAILS</span><button id="close-drawer" class="icon-button" aria-label="关闭资源详情"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="drawer-content" class="drawer-content"></div></div></dialog>
+  <dialog id="auth-dialog" class="auth-dialog" aria-labelledby="auth-title"><form id="auth-form"><div class="auth-mark"><svg class="icon"><use href="#i-shield"/></svg></div><div class="eyebrow">RESEARCH RESOURCE ACCESS</div><h2 id="auth-title">访问公共科研资源中心</h2><p>输入此资源中心的访问令牌。令牌由管理员提供，与服务器 SSH 密码不同。</p><label for="auth-token">访问令牌</label><input id="auth-token" type="password" autocomplete="current-password" required placeholder="输入访问令牌"><div id="auth-error" class="auth-error" role="alert" hidden></div><button id="auth-submit" class="button button-primary" type="submit">进入资源目录<svg class="icon"><use href="#i-arrow"/></svg></button><small>令牌仅用于建立当前浏览器会话。</small></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><div class="noscript">此界面需要启用 JavaScript。也可直接访问 <a href="/api/export.json">JSON 台账</a> 或 <a href="/api/export.csv">CSV 台账</a>。</div></noscript>
+</body>
+</html>

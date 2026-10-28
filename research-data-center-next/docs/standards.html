@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="阿里云科研主力库的成员规范、README 数据与模型模板、严格字段定义和增补流程设计。">
+  <title>整理规范与模板 · 科研主力库</title>
+  <link rel="stylesheet" href="standards.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar"><a class="back-link" href="/">← 返回资料目录</a><span class="topbar-title">RESEARCH REGISTRY / 规范中心</span><a href="templates/index.html">模板阅读中心 →</a></header>
+  <div class="page-shell">
+    <aside class="sidebar" aria-label="规范目录">
+      <p class="nav-kicker">正式卡 1.0 / 增补 2.0</p>
+      <nav><a href="#start"><span>01</span> 适用范围与状态</a><a href="#member-rules"><span>02</span> 成员使用规范</a><a href="#layout"><span>03</span> 目录与命名</a><a href="#submission"><span>04</span> 从提交到正式卡片</a><a href="#identity"><span>05</span> 资源、版本与副本</a><a href="#fields"><span>06</span> 字段与严格约束</a><a href="#evidence"><span>07</span> 证据与未知信息</a><a href="#workflow"><span>08</span> 增补与 Agent 流程</a><a href="#transition"><span>09</span> 原位资料过渡</a><a href="#downloads"><span>10</span> 模板与 Schema 下载</a><a href="#checks"><span>11</span> 校验与验收</a><a href="#sources"><span>12</span> 采用依据与适配</a></nav>
+      <div class="nav-note"><strong>规范与接收协议 2.0</strong><p>正式卡由管理团队维护；使用者只交最小说明。启用后约五分钟规则检查，仅精确授权任务可发布；无模型服务。</p></div>
+    </aside>
+    <main id="main">
+      <section id="start" class="hero section">
+        <div class="eyebrow"><span class="status-dot"></span> CPFS 资料库 / 本地协调器 <span class="eyebrow-divider">/</span> 管理团队规范</div>
+        <h1>资料有位置，说明有依据，<br>每个版本都能被理解。</h1>
+        <p class="hero-lead">使用者只放资料和简短 README；管理团队维护 dataset/model 正式规范、完整卡片与发布授权。两类公共资料保留稳定登记身份，实际存储可按已批准的 CPFS 迁移调整。当前位置、旧路径兼容与核验结果见 <a href="/#storage-status">存储清单</a>，团队使用方法见 <a href="data-guide.html">公共数据与模型使用指南</a>。</p>
+        <div class="hero-tags"><span>公共区全部编目</span><span>README 元数据真源</span><span>原位卡片过渡</span><span>服务器侧接入优先</span><span>规则检查 · 精确目标授权</span></div>
+        <div class="portal-grid"><a class="portal-card" href="incoming-guide.html"><span>给资料使用者与贡献者</span><strong>放资料，写五项简短说明</strong><p>只交 payload 和 README；完整数据卡和模型卡由管理团队维护。</p></a><a class="portal-card" href="#fields"><span>给维护人和 Agent</span><strong>严格字段、证据与版本关系</strong><p>机器可校验，不把未知信息补成事实。</p></a><a class="portal-card" href="templates/index.html"><span>阅读预览 · 下载填写</span><strong>数据卡、模型卡与增补模板</strong><p>Markdown 模板、JSON Schema 与虚构示例。</p></a></div>
+        <div class="callout warning"><strong>本轮的实际边界</strong><p>当前为规范与接收协议 2.0：实现受限规则接收与 Agent 接口，生产是否启用以部署回执为准；默认校验和计划，管理团队精确授权后发布。不提供模型服务或 LLM 执行器；规则周期启用后约每五分钟检查，仅发布精确授权任务。现有目录记录是原位卡片，不是已冻结版本。存储迁移是另行执行与核验的工作；此规范页不表示迁移已完成，也不授权更改权限或干扰运行任务。</p></div>
+        <p class="small-note">只讨论阿里云本机主力库。公共区内所有内容均编目，未知许可、混合用途或权限不足不构成删除目录条目的理由；来源许可、当前可读性与外部分发权单独标注。实际目录与覆盖范围查看 <a href="/api/summary">当前摘要</a>。</p>
+      </section>
+
+      <section id="member-rules" class="section"><div class="section-head"><span class="section-number">02</span><div><p class="eyebrow">成员共同遵守，管理团队负责完善</p><h2>使用者交资料，管理团队维护规范</h2></div></div><ol class="rule-list"><li><strong>使用者只填最小说明。</strong><span>名称、来源、用途、内容、使用限制五项 README，配合本人 incoming 中的 payload；不要求填写完整 dataset/model 卡、目标版本或人工哈希。</span></li><li><strong>管理团队维护正式卡。</strong><span>稳定身份、研究背景、使用说明、证据、维护责任、版本和发布目标由管理团队整理并持续维护；不把提交者或 Unix owner 自动当成维护人。</span></li><li><strong>来源与许可据实写。</strong><span>unknown 可登记待补，不能猜测为开放许可。团队公共区不等于允许外部分发。</span></li><li><strong>只写本人的增补入口。</strong><span>incoming 根 root:ml-readers 2755；管理员预建本人:992 的 2750 bucket，文件0640/目录2750，rmp 同组只读。缺入口联系管理团队，不自行扩权、不接管他人 public 目录。</span></li><li><strong>版本和来源保留。</strong><span>正式内容不覆盖旧版本，重复登记不重复复制；原始提交不因失败、重试或未来撤回而自动删除。</span></li><li><strong>大任务和语义歧义另议。</strong><span>自动流程默认校验和计划；明确 policy 与目标授权才可发布。迁移、去重删除、合并、解压、转换和训练不在通用执行范围。</span></li></ol><p><a class="text-button" href="incoming-guide.html">阅读完整增补步骤 →</a> <a href="agent-protocol.md">Agent 协议 2.0 →</a></p><p class="small-note">联系人暂记 team，实际渠道待团队配置；其他两节点 UID/GID 尚未核验，不能据本机配置承诺三机投递身份一致。</p></section>
+
+      <section id="layout" class="section"><div class="section-head"><span class="section-number">03</span><div><p class="eyebrow">数据、活跃状态与冷存储分别管理</p><h2>一个入口，清楚的运行位置</h2></div></div><pre class="directory-tree"><code>/data/share/incoming/&lt;user&gt;/&lt;submission-id&gt;/
+├── payload/              本次提交内容
+└── README.md             使用者五项简短说明
+
+传输完成后交管理员检查；下列后台协议文件由管理流程准备：
+submission.json + manifest.jsonl + READY.json
+
+/data/share/{datasets,models}/managed/&lt;resource_id&gt;/&lt;version&gt;/
+└── payload/ + submission.json + manifest.jsonl + READY.json
+    当前接收发布区：team_card_pending，完整资料卡由团队完善
+
+/var/lib/research-data-center/    本地 SQLite、队列、锁、密钥
+/opt/research-data-center/        本地已验证发行缓存
+/data/share_cold/research-data-center/
+└── 持久发行包、规范、不可变清册、备份</code></pre><div class="two-column"><article class="panel"><h3>正式资料的长期布局</h3><p>管理团队完善后，新正式版本采用 <code>/data/share/{datasets,models}/&lt;slug&gt;/releases/&lt;version&gt;/{README.md,manifest.jsonl,content/}</code>。当前 worker 的 managed 接收收据不冒充该完整卡。</p><p>既有目录按原登记和迁移回执展示，不为套用结构自动搬文件；同一版本多副本记录为位置，不新增身份。</p></article><article class="panel"><h3>cold 不是活动文件系统</h3><p><code>/data/share_cold</code> 实测为 ossfs/FUSE，不能假定原子 rename 或可靠跨机 flock。写唯一对象后读回核验，再记录完成回执；不在 cold 运行 SQLite 或直接执行脚本。</p><p>仅一个 coordinator 在本机裁决任务；成员实验继续使用已有 public 工作区，不被系统接管。</p></article></div><div class="callout"><strong>计划位置不等于实际部署</strong><p>新接收工具和运行布局是否启用，以服务状态和部署验收为准。原两库迁移仍由独立事务维护，是否切换、旧根是否成为兼容软链只认生产回执。</p></div></section>
+
+      <section id="submission" class="section"><div class="section-head"><span class="section-number">04</span><div><p class="eyebrow">简化使用者负担，明确长期责任</p><h2>最小提交与完整正式卡分开</h2></div></div><div class="two-column"><article class="panel"><h3>使用者：一份 README</h3><p>填写名称、来源、用途、内容、使用限制，未知明确注明。传输结束后在末尾单独写“传输完成”，停止修改并交接管理员；不填资源 ID、正式版本、JSON 或哈希。</p><p><a href="templates/incoming-README.md" download>下载简短 README 模板 ↓</a><br><a href="templates/submission-README.html">阅读填写指引 →</a></p></article><article class="panel"><h3>管理团队：完整资料说明</h3><p>维护原始/派生关系、研究背景、读法、划分、来源与许可证据，确定资源和版本；完整数据卡/模型卡不转交贡献者必填。</p><p><a href="templates/dataset-README.html">管理团队数据卡 →</a><br><a href="templates/model-README.html">管理团队模型卡 →</a></p></article></div><div class="callout"><strong>公开目录与科学完整性不是一回事</strong><p>现有公共区全部编目，unknown 不删除条目。新接收 published 只说明指定内容按回执发布，curation_status=team_card_pending 明确完整说明仍由管理团队完善；不伪造评估结果、加载能力或开放许可。</p></div></section>
+
+      <section id="identity" class="section">
+        <div class="section-head"><span class="section-number">05</span><div><p class="eyebrow">内部规范：身份与内容关系</p><h2>资源、版本、位置各司其职</h2></div></div>
+        <div class="model-chain" aria-label="实体关系"><div><b>Resource</b><span>稳定身份与用途</span></div><span class="chain-arrow" aria-hidden="true">→</span><div><b>Release</b><span>某个确定内容状态</span></div><span class="chain-arrow" aria-hidden="true">→</span><div><b>Manifest</b><span>内容清单与校验范围</span></div><span class="chain-arrow" aria-hidden="true">→</span><div><b>Location</b><span>实际路径与副本</span></div></div>
+        <div class="table-wrap"><table><caption>容易混淆的情况如何记录</caption><thead><tr><th>情况</th><th>处理</th><th>不能自动推出</th></tr></thead><tbody>
+          <tr><th scope="row">数据标签或权重变化</th><td>同资源的新内容版本；保留旧版本和变更说明。</td><td>不能覆盖已发布目录，不能只更新 README。</td></tr>
+          <tr><th scope="row">仅修正文案</th><td>增加 metadata_revision，记录变更依据。</td><td>不需要制造“新数据版本”。</td></tr>
+          <tr><th scope="row">原始与派生</th><td>记录输入版本、处理代码与参数；独立用途和维护的派生资料可分配新 ID。</td><td>不能从目录名或同名文件推断派生关系。</td></tr>
+          <tr><th scope="row">同版本多副本</th><td>同一资源/版本添加 locations，标明 primary/replica/legacy。</td><td>不增加独立资源数，不直接重复累计容量。</td></tr>
+          <tr><th scope="row">缓存或目录集合</th><td>用 collection 解释容器，与被识别模型分别展示。</td><td>models 根目录下的每个文件夹不是一个可用模型。</td></tr>
+          <tr><th scope="row">参与者或样本子目录</th><td>保留在所属资源结构中，描述样本单位和计数范围。</td><td>不能把每个子目录当独立数据集或人数证据。</td></tr>
+        </tbody></table></div>
+        <div class="table-wrap"><table><caption>内容保证状态，与上传任务状态不同</caption><thead><tr><th>state</th><th>实际保证</th></tr></thead><tbody><tr><th scope="row">observed</th><td>某时刻的路径或资料观察，原内容可变；当前原位资料使用此层级。</td></tr><tr><th scope="row">manifest_pinned</th><td>清单与相应摘要固定，可检查漂移；不保证旧内容已经保存。</td></tr><tr><th scope="row">content_frozen</th><td>内容有实际不可覆盖约束、完整清单和恢复安排；不是设置字段即可达到。</td></tr></tbody></table></div>
+      </section>
+
+      <section id="fields" class="section">
+        <div class="section-head"><span class="section-number">06</span><div><p class="eyebrow">严格定义，允许诚实地保留未知</p><h2>README 机器元数据</h2></div></div>
+        <p>README 顶部 YAML 安全解析为 JSON 兼容对象，再按 <a href="templates/resource-card.schema.json">Resource Card Schema</a> 校验。规范元数据只有这一个真源；SQLite、JSON/CSV 导出与前端均为投影。当前快照/sidecar 仍是过渡数据，不能声称已完成真源切换。</p>
+        <div class="table-wrap"><table><caption>字段分组；全部子字段与条件见可下载字段规范和 Schema</caption><thead><tr><th>字段</th><th>必须表达的内容</th><th>关键约束</th></tr></thead><tbody>
+          <tr><th scope="row">schema_version / profile</th><td>结构版本 1.0；draft、legacy 或 release。</td><td>profile 不是上传状态；legacy 固定 observed。</td></tr>
+          <tr><th scope="row">resource</th><td>ID、slug、名称、类型、简介、任务、标签、旧 ID。</td><td>ID 稳定；类型包括 dataset/model 与必要的集合、特征、标签等。</td></tr>
+          <tr><th scope="row">release</th><td>本地版本、上游 revision、original/derived/mixed/unknown、保证状态和元数据修订。</td><td>源版本、内容版本、说明修订不混用。</td></tr>
+          <tr><th scope="row">maintainer / sources</th><td>实际认领的维护人、联系渠道；来源定位、上游版本与获取时间。</td><td>维护人不等于文件系统 owner；未知来源保留待办。</td></tr>
+          <tr><th scope="row">rights</th><td>元数据共享、团队使用、外部分发、许可证和证据。</td><td>团队公开 ≠ 外部分发许可；三项分别记录。</td></tr>
+          <tr><th scope="row">locations / relations</th><td>主机、路径、位置角色、访问观察；派生、微调、替代或训练关系。</td><td>关联以证据建立；副本是位置，不重复建立资源。</td></tr>
+          <tr><th scope="row">dataset / model</th><td>数据的样本单位、split、字典；或模型的基础版本、框架、精度、加载和评估引用。</td><td>对应类型对象必填；未知计数为 null，未评估不虚构结果。</td></tr>
+          <tr><th scope="row">manifest</th><td>清单路径、清单摘要、内容覆盖级别、文件数、字节数与时间。</td><td>完整性有明确范围；清单摘要不替代数据文件摘要。</td></tr>
+          <tr><th scope="row">evidence / field_evidence / unknowns</th><td>证据本身、字段到证据的映射、未知原因与下一步。</td><td>证据 ID 不悬空；冲突保留，不由 Agent 猜测裁决。</td></tr>
+        </tbody></table></div>
+        <div class="two-column"><article class="panel"><h3>通用类型规则</h3><p>日期采用带时区的 ISO 8601 字符串。未知标量写 <code>null</code>，未知枚举写 <code>unknown</code>；0 只代表有依据的零值。空列表是尚未记录，不自动证明不存在。</p><p>拒绝重复键、非有限数值、危险 YAML 标签和未定义字段。字段名与枚举由 Schema 明确，不靠模糊字符串约定。</p></article><article class="panel"><h3>Schema 之外仍要检查</h3><p>真实来源、权利、维护责任、跨字段关系、规范化路径、符号链接边界、完整文件清单及实际写保护，均需运行时检查。</p><p>正式 Schema 合法不等于获得发布权限，也不意味着内容可加载或已经冻结。</p></article></div>
+        <p><a class="text-button" href="templates/field-guide.md" download>下载完整字段与执行约束 ↓</a></p>
+      </section>
+
+      <section id="evidence" class="section">
+        <div class="section-head"><span class="section-number">07</span><div><p class="eyebrow">每项陈述知道自己从何而来</p><h2>证据类型与校验范围</h2></div></div>
+        <div class="table-wrap"><table><caption>不同依据支持不同层次的结论</caption><thead><tr><th>证据类型</th><th>可以支持</th><th>不能自动支持</th></tr></thead><tbody>
+          <tr><th scope="row">source_document</th><td>来源文档在某时刻的声明。</td><td>当前路径可读或内容未变化。</td></tr>
+          <tr><th scope="row">upstream_metadata</th><td>上游配置、数据卡或模型卡的描述。</td><td>本机实测性能和硬件需求。</td></tr>
+          <tr><th scope="row">filesystem_observation</th><td>观察到的路径、大小、文件类型和账户访问结果。</td><td>完整性、版权许可和维护责任。</td></tr>
+          <tr><th scope="row">maintainer_statement</th><td>责任人确认的归属、用途或许可依据。</td><td>不相关第三方权利已经得到授权。</td></tr>
+          <tr><th scope="row">computed_checksum</th><td>明确范围与时间的内容摘要。</td><td>范围之外的完整性或语义等价。</td></tr>
+          <tr><th scope="row">processing_record</th><td>输入版本、代码、参数与输出的处理关系。</td><td>没有记录的处理步骤或因果保证。</td></tr>
+        </tbody></table></div>
+        <div class="callout evidence"><strong>文件观察不替代科研判断</strong><p>stat 成功不等于内容完整；权重存在不等于加载成功；上游性能不是本机评估；目录个数不是参与者人数。冲突证据并列保留，unknowns 记录原因与下一步。Agent 的解释必须指向依据，不是另一份独立事实证据。</p></div>
+        <details><summary>manifest.jsonl 的精确定义</summary><div class="details-body"><p>每行一个 JSON 对象，path 相对 <code>content/</code>，按路径排序并保持唯一。普通文件记录字节数与 SHA-256；未校验为 null。空目录可单独记录。符号链接记录相对目标，运行时解析后的目标必须留在同一 content 边界。</p><p>link_target 可有合法的 <code>..</code>，但清单条目的 path 不可越界。full 表示声明范围全部列出且普通文件均有可验证摘要；manifest_sha256 只校验清单文件本身。示例清单是虚构空文件，不是服务器扫描结果。</p></div></details>
+      </section>
+
+      <section id="workflow" class="section"><div class="section-head"><span class="section-number">08</span><div><p class="eyebrow">规则执行 · 无模型服务 · 不依赖 LLM 决策</p><h2>管理员接手后，先校验再按授权发布</h2></div></div><p>成员 README 的“传输完成”是交接声明，不等于下面的 submitted。管理员先检查并准备合法协议文件；现有 worker 不自动把普通 README 转成队列任务。</p><ol class="state-flow"><li><b>submitted</b><span>完成标记已登记</span></li><li><b>validating</b><span>集合与内容摘要核验</span></li><li><b>needs_information</b><span>团队使用条件待补</span></li><li><b>review_required</b><span>目标、语义、预算待审</span></li><li><b>ready</b><span>明确内容与目标授权</span></li><li><b>publishing</b><span>无覆盖发布并对账</span></li><li><b>published</b><span>回执可查，团队完善卡片</span></li></ol><p>needs_information / review_required 是条件分支，failed 保留失败原因。默认只登记与校验；计划需指定管理目标。启用规则周期后，仅精确授权的 ready 任务可自动发布；approve 将 content_digest + kind + resource_id + version 精确绑定，publish 仍核对 policy 和目标不覆盖。超限不能靠一次 approve 绕过。</p><details><summary>READY 2.0、接手与幂等</summary><div class="details-body"><p>工具生成 schema_version、user、submission_id、submission_sha256、manifest_sha256、content_digest、submitted_at、entry_count、file_count、total_bytes。content_digest 绑定说明与清单的精确字节摘要；字段见 <a href="templates/incoming-ready.schema.json">Schema</a>，<a href="templates/incoming-ready.example.json">精确示例</a>与对应清单一同下载。</p><p>完成标记不是锁或发布批准，不能冻结仍打开的文件。提交者停止写入后，协调器仍重新核对集合和哈希；发布前后检测变化。相同编号与摘要返回同一任务，内容或说明变化需新编号；不覆盖原证据、不删除原提交。</p></div></details><div class="table-wrap"><table><thead><tr><th>当前受限能力</th><th>未实现或禁止的扩展</th></tr></thead><tbody><tr><td>明确 incoming 范围内准备/登记/校验/计划，本机单 coordinator，批准后向独占 managed 目标发布，部分完成状态按证据对账。</td><td>无用户撤回/删除或模型服务；规则周期启用状态以服务回执为准；不执行输入代码、不解压、不联网下载、不自动语义合并、不处理成员 public 目录。未来 LLM 只能建议。</td></tr></tbody></table></div><p>初版取消需求由管理团队按当前阶段处理，没有撤回 API；删除 READY 或 payload 不是取消。Agent 与前端只读接口为 <code>/api/ingestion/manifest</code>、<code>/api/ingestion/status</code>、<code>/api/ingestion/published</code>，管理操作只走授权 CLI。</p><p><a class="text-button" href="incoming-guide.html">使用者步骤 →</a> <a href="agent-protocol.md">完整 Agent / CLI 协议 →</a></p></section>
+
+      <section id="transition" class="section">
+        <div class="section-head"><span class="section-number">09</span><div><p class="eyebrow">已有工作继续可用</p><h2>现有原位卡片如何过渡</h2></div></div>
+        <ol class="roadmap"><li><div class="phase-label"><span>现在</span><span class="badge done">原位记录</span></div><div><h3>保留目录快照与 sidecar</h3><p>它们说明目前知道的路径、来源和访问状态。既有记录不是冻结版本；README 真源还没有逐项落地。历史登记保留，实际位置按独立存储清单更新；观察时间与卡片生成时间分别展示。</p></div></li><li><div class="phase-label"><span>逐项整理</span><span class="badge next">规范映射</span></div><div><h3>确认身份、来源与责任</h3><p>建立旧 asset ID 到稳定 resource ID 的映射，保留真实路径；未知维护人不从 owner 推断。先在项目侧形成卡片，不向原目录擅自写入文件。</p></div></li><li><div class="phase-label"><span>正式采用</span><span class="badge planned">单一真源</span></div><div><h3>按资源明确切换</h3><p>资源转入 README 模式后，规范字段从 README 读取；旧快照和 sidecar 仅作为历史证据，不再反向覆盖。数据库投影可重建，卡片随资料保存。</p></div></li></ol>
+        <div class="callout"><strong>内容迁移独立执行，状态以核验清单为准</strong><p>已批准的 CPFS 迁移需逐项记录目标、复制与校验结果、切换、旧路径兼容和回退安排。未切换条目继续使用原路径，历史访问观察不能代替新位置核验。旧元数据修订与存储切换都不自动改变内容版本，也不能自动提升 content_frozen。</p></div>
+      </section>
+
+      <section id="downloads" class="section">
+        <div class="section-head"><span class="section-number">10</span><div><p class="eyebrow">可填写、可阅读、可程序校验</p><h2>使用者最小模板 / 管理团队正式模板</h2></div></div>
+        <p>使用者提供简短 README，管理团队卡片使用 YAML，后台受理协议使用 JSON；未知信息如实保留。所有 example 都明确是虚构结构示例，不代表真实服务器资源或已经获准发布。</p>
+        <div class="download-toolbar"><a class="text-button" href="templates/index.html">打开模板阅读中心 →</a><a class="primary-download" href="templates/standards-kit.zip" download>下载完整模板包 ZIP ↓</a><a href="templates/field-guide.md" download>完整规范 Markdown ↓</a><a href="templates/README.md">文件使用说明</a></div>
+        <div class="table-wrap"><table><caption>逐项下载：成员选 README，管理员使用后台协议</caption><thead><tr><th>文件</th><th>用途</th></tr></thead><tbody><tr><th scope="row"><a href="templates/incoming-submission.example.json" download>incoming-submission.example.json</a></th><td>管理团队转录和受理使用的 JSON 示例，不要求成员填写。</td></tr><tr><th scope="row"><a href="templates/incoming-submission.schema.json" download>incoming-submission.schema.json</a></th><td>管理后台六组字段，协议 2.0。</td></tr><tr><th scope="row"><a href="templates/incoming-manifest-entry.schema.json" download>incoming-manifest-entry.schema.json</a></th><td>工具生成，普通文件与目录条目。</td></tr><tr><th scope="row"><a href="templates/incoming-manifest.example.jsonl" download>incoming-manifest.example.jsonl</a></th><td>虚构文件清单，path 相对 payload。</td></tr><tr><th scope="row"><a href="templates/incoming-ready.schema.json" download>incoming-ready.schema.json</a></th><td>工具生成的 READY 2.0 完整绑定。</td></tr><tr><th scope="row"><a href="templates/incoming-ready.example.json" download>incoming-ready.example.json</a></th><td>与本包 v2 说明及清单原始字节对应的虚构标记。</td></tr>
+          <tr><th scope="row"><a href="templates/submission-README.md" download>submission-README.md</a></th><td>成员最小 JSON 提交的简明指引，不是完整数据卡。</td></tr><tr><th scope="row"><a href="templates/dataset-README.md" download>dataset-README.md</a></th><td>管理团队专用数据集完整卡片。</td></tr><tr><th scope="row"><a href="templates/model-README.md" download>model-README.md</a></th><td>管理团队专用模型完整卡片。</td></tr>
+          <tr><th scope="row"><a href="templates/cpfs-run-README.md" download>cpfs-run-README.md</a></th><td>个人工作区的输入版本、划分、代码和结果记录。</td></tr><tr><th scope="row"><a href="templates/field-guide.md" download>field-guide.md</a></th><td>完整字段、证据、版本和执行约束。</td></tr><tr><th scope="row"><a href="templates/resource-card.schema.json" download>resource-card.schema.json</a></th><td>README 元数据 Schema，支持 draft / legacy / release。</td></tr><tr><th scope="row"><a href="templates/submission.schema.json" download>submission.schema.json</a></th><td>历史 1.0 设计 Schema，不用于当前接收。</td></tr><tr><th scope="row"><a href="templates/manifest-entry.schema.json" download>manifest-entry.schema.json</a></th><td>manifest.jsonl 每行的 Schema。</td></tr><tr><th scope="row"><a href="templates/ready.schema.json" download>ready.schema.json</a></th><td>历史 READY 1.0；新接收使用 incoming-ready.schema.json。</td></tr>
+          <tr><th scope="row"><a href="templates/dataset-card.example.json" download>dataset-card.example.json</a></th><td>虚构 legacy 数据卡，保留未知和旧根历史/复制来源路径。</td></tr><tr><th scope="row"><a href="templates/model-card.example.json" download>model-card.example.json</a></th><td>虚构 legacy 模型卡，旧路径不代表已完成切换。</td></tr><tr><th scope="row"><a href="templates/released-dataset.example.json" download>released-dataset.example.json</a></th><td>虚构 release 完整字段例子，采用未来 CPFS canonical；不是实际发布或冻结声明。</td></tr><tr><th scope="row"><a href="templates/submission.example.json" download>submission.example.json</a></th><td>历史 1.0 虚构对象，不用于新接收。</td></tr><tr><th scope="row"><a href="templates/manifest.example.jsonl" download>manifest.example.jsonl</a></th><td>虚构空文件的清单条目，演示合法 SHA-256 格式。</td></tr><tr><th scope="row"><a href="templates/ready.example.json" download>ready.example.json</a></th><td>历史 READY 1.0 示例，仅供历史结构参考。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="checks" class="section">
+        <div class="section-head"><span class="section-number">11</span><div><p class="eyebrow">文档有效，不等于能力已经运行</p><h2>校验与采用标准</h2></div></div>
+        <div class="acceptance-grid"><article class="panel"><h3>本轮文档检查</h3><ul class="check-list"><li>链接、锚点、下载文件和 ZIP 内容能够对应。</li><li>HTML 不包含脚本或内联样式，仅引用本地 CSS。</li><li>JSON Schema 符合 Draft 2020-12；README YAML、JSON/JSONL 示例可解析且符合 Schema。</li><li>示例声明虚构；来源链接来自官方一手资料，采用原则与本地规则明确对应。</li><li>原位过渡、未知许可、维护人身份和接入启用条件的界限一致。</li></ul></article><article class="panel"><h3>启用前与运行中继续验收</h3><ul class="check-list"><li>安全 YAML 解析、路径规范化与符号链接边界。</li><li>证据引用完整、来源/许可与维护责任真实有效。</li><li>READY.json 与清单绑定、接手回执、内容稳定性和幂等重试。</li><li>容量预算和超限阻断；不宣称已有用户撤回/自动清理。</li><li>清单完整性、版本不可覆盖、发布中断恢复。</li><li>资料查询投影可由正式 README 重建；运营队列/批准/日志需独立持久备份，不能仅靠 README 恢复。</li></ul></article></div>
+        <p>规范采用 <a href="https://json-schema.org/draft/2020-12" rel="noreferrer">JSON Schema Draft 2020-12</a>。启用格式校验时检查 date-time；Schema 无法单独证明文件系统边界、证据真实性和内容冻结，这些必须留在运行时验收中。</p>
+      </section>
+
+      <section id="sources" class="section final-section">
+        <div class="section-head"><span class="section-number">12</span><div><p class="eyebrow">公开原则的本机适配</p><h2>来源、采用点与具体规则</h2></div></div>
+        <p class="section-intro">以下依据用于说明为什么这样组织资料。它们不代表这些机构背书本系统，也不代表本地方案已经取得 FAIR 认证；本机 Schema 不是 Hugging Face 字段的逐项复制。</p>
+        <div class="table-wrap sources-table"><table><caption>官方一手来源与本地规范的对应关系</caption><thead><tr><th>来源</th><th>借鉴原则</th><th>本机落地规则</th></tr></thead><tbody>
+          <tr><th scope="row"><a href="https://libraries.mit.edu/data-management/store/organize/" rel="noreferrer">MIT · Organize your files</a></th><td>先约定目录与命名，用共享投递结构和 README 便于参与。</td><td>两内容根、版本目录、一个增补区；所有入口使用同一提交模板。</td></tr>
+          <tr><th scope="row"><a href="https://libraries.mit.edu/data-management/store/documentation/" rel="noreferrer">MIT · Documentation &amp; metadata</a></th><td>描述身份、来源、权利、组织和处理方法。</td><td>稳定 ID、实际维护人、sources、rights 与 relations，未知不推断。</td></tr>
+          <tr><th scope="row"><a href="https://research.google/pubs/data-cards-purposeful-and-transparent-dataset-documentation-for-responsible-ai/" rel="noreferrer">Google · Data Cards</a></th><td>解释数据形成、用途和演变，文档服务真实使用者。</td><td>数据模板包含采集、处理、字段、适用任务、质量与限制。</td></tr>
+          <tr><th scope="row"><a href="https://research.google/pubs/model-cards-for-model-reporting/" rel="noreferrer">Google · Model Cards</a></th><td>说明模型用途、限制和相关评估条件。</td><td>模型模板区分上游宣称、本机加载与实际评估，没有结果不虚构。</td></tr>
+          <tr><th scope="row"><a href="https://huggingface.co/docs/hub/main/datasets-cards" rel="noreferrer">HF · Dataset Cards</a><br><a href="https://huggingface.co/docs/hub/main/model-cards" rel="noreferrer">HF · Model Cards</a></th><td>README 结合结构化元数据与可读说明，支持检索与理解。</td><td>YAML + Markdown 统一卡片；README 为规范真源，数据库为查询投影。</td></tr>
+          <tr><th scope="row"><a href="https://www.gofair.foundation/fair-principles" rel="noreferrer">FAIR Guiding Principles</a></th><td>稳定标识、可检索元数据、明确来源与使用条件；访问可以有认证。</td><td>稳定资源/版本引用、可检索 API、证据和许可；团队公开不等于无条件公网开放。</td></tr>
+        </tbody></table></div>
+        <footer class="page-footer"><p>说明与登记身份持续保留；使用前查看当前位置、兼容路径与最近核验。</p><a href="#start">回到顶部 ↑</a></footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

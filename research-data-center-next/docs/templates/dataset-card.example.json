@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "profile": "legacy",
+  "resource": {
+    "id": "rdc-example-dataset",
+    "slug": "example-dataset",
+    "title": "演示数据集（虚构）",
+    "kind": "dataset",
+    "summary": "仅演示 legacy 元数据结构与旧根来源/历史路径，不代表真实资源或迁移完成。",
+    "tasks": [],
+    "tags": [],
+    "legacy_ids": []
+  },
+  "release": {
+    "version": null,
+    "upstream_revision": null,
+    "origin": "unknown",
+    "state": "observed",
+    "metadata_revision": 1,
+    "updated_at": "2026-10-19T00:00:00+08:00"
+  },
+  "maintainer": {
+    "id": null,
+    "display_name": null,
+    "contact": null
+  },
+  "sources": [
+    {
+      "kind": "legacy_inventory",
+      "reference": "example-only:no-real-source",
+      "revision": null,
+      "acquired_at": null,
+      "evidence_refs": [
+        "ev-example"
+      ]
+    }
+  ],
+  "rights": {
+    "metadata_visibility": "unknown",
+    "team_use": "unknown",
+    "external_distribution": "unknown",
+    "license_id": null,
+    "license_reference": null,
+    "evidence_refs": []
+  },
+  "locations": [
+    {
+      "host_id": "aliyun",
+      "path": "/data/datasets/example-only",
+      "role": "legacy",
+      "access": "unknown",
+      "checked_at": null,
+      "evidence_refs": []
+    }
+  ],
+  "relations": [],
+  "dataset": {
+    "sample_unit": null,
+    "sample_count": null,
+    "languages": [],
+    "modalities": [],
+    "splits": [],
+    "data_dictionary_ref": null,
+    "collection_method": null
+  },
+  "model": null,
+  "manifest": {
+    "path": null,
+    "manifest_sha256": null,
+    "content_coverage": "none",
+    "file_count": null,
+    "total_bytes": null,
+    "checked_at": null
+  },
+  "evidence": [
+    {
+      "id": "ev-example",
+      "kind": "source_document",
+      "reference": "example-only:no-real-source",
+      "observed_at": null,
+      "producer": "示例作者",
+      "method": "虚构结构示例，未观察真实服务器",
+      "scope": "仅展示 schema 字段"
+    }
+  ],
+  "field_evidence": {
+    "/sources": [
+      "ev-example"
+    ]
+  },
+  "unknowns": [
+    {
+      "field": "/maintainer",
+      "reason": "示例没有实际维护人",
+      "next_action": "正式使用前由团队认领"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Incoming READY.json 2.0",
+  "description": "Tool-generated completion marker bound to exact submission and manifest bytes; neither a lock nor a publication receipt.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "submission_id",
+    "user",
+    "submission_sha256",
+    "manifest_sha256",
+    "content_digest",
+    "submitted_at",
+    "file_count",
+    "total_bytes",
+    "entry_count"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "submission_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,95}$"
+    },
+    "user": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,95}$"
+    },
+    "submission_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of UTF-8(submission_sha256 + '\\n' + manifest_sha256), with no trailing newline."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "file_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "total_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "entry_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}
