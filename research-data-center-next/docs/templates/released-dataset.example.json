@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "profile": "release",
+  "resource": {
+    "id": "rdc-example-release",
+    "slug": "example-dataset",
+    "title": "正式字段结构演示（虚构，非真实发布）",
+    "kind": "dataset",
+    "summary": "仅演示未来 CPFS canonical 版本结构，不代表服务器已有资源、完成切换或真实冻结。",
+    "tasks": [],
+    "tags": [],
+    "legacy_ids": []
+  },
+  "release": {
+    "version": "v001",
+    "upstream_revision": null,
+    "origin": "original",
+    "state": "content_frozen",
+    "metadata_revision": 1,
+    "updated_at": "2026-10-19T00:00:00+08:00"
+  },
+  "maintainer": {
+    "id": "example-maintainer",
+    "display_name": "演示维护人",
+    "contact": "example-only:contact"
+  },
+  "sources": [
+    {
+      "kind": "local_contribution",
+      "reference": "example-only:synthetic-empty-file",
+      "revision": null,
+      "acquired_at": "2026-10-19T00:00:00+08:00",
+      "evidence_refs": [
+        "ev-example"
+      ]
+    }
+  ],
+  "rights": {
+    "metadata_visibility": "team",
+    "team_use": "allowed",
+    "external_distribution": "prohibited",
+    "license_id": null,
+    "license_reference": "example-only:synthetic-permission",
+    "evidence_refs": [
+      "ev-example"
+    ]
+  },
+  "locations": [
+    {
+      "host_id": "aliyun",
+      "path": "/data/share/datasets/example-dataset/releases/v001",
+      "role": "primary",
+      "access": "unknown",
+      "checked_at": null,
+      "evidence_refs": []
+    }
+  ],
+  "relations": [],
+  "dataset": {
+    "sample_unit": null,
+    "sample_count": null,
+    "languages": [],
+    "modalities": [],
+    "splits": [],
+    "data_dictionary_ref": null,
+    "collection_method": null
+  },
+  "model": null,
+  "manifest": {
+    "path": "manifest.jsonl",
+    "manifest_sha256": "6b098dfc1628d033b660da0b22b2d0002a34c90d03bd56fc3a490b60ddc5230c",
+    "content_coverage": "full",
+    "file_count": 1,
+    "total_bytes": 0,
+    "checked_at": "2026-10-19T00:00:00+08:00"
+  },
+  "evidence": [
+    {
+      "id": "ev-example",
+      "kind": "maintainer_statement",
+      "reference": "example-only:synthetic-permission",
+      "observed_at": null,
+      "producer": "示例作者",
+      "method": "纯虚构 schema 用例，不是服务器权限、校验或发布事实",
+      "scope": "仅展示 schema 字段"
+    }
+  ],
+  "field_evidence": {
+    "/sources": [
+      "ev-example"
+    ]
+  },
+  "unknowns": []
+}

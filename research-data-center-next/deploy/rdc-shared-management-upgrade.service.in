@@ -1,0 +1,18 @@
+[Unit]
+Description=Guarded management relocation after verified hot-data migration
+After=network-online.target
+RequiresMountsFor=/data/rmp/research-data-center /data/share /data/share_cold /var/lib/research-data-center-upgrade-20261027
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/lib/research-data-center-upgrade-20261027
+ExecStart=/data/services/miniforge3/bin/python -I /var/lib/research-data-center-upgrade-20261027/activate.py --execute --archive /var/lib/research-data-center-upgrade-20261027/release.tar.gz --sha256 @RELEASE_SHA256@
+Restart=no
+RemainAfterExit=yes
+KillMode=control-group
+UMask=0077
+Nice=15
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+CPUQuota=50%
+MemoryMax=768M

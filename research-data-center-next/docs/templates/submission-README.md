@@ -1,0 +1,9 @@
+# 资料增补说明模板
+
+普通成员直接下载 [incoming-README.md](incoming-README.md)，填写名称、来源、用途、内容、使用限制，和资料一起放入 `/data/share/incoming/<用户名>/<提交名>/`。资料放在 payload/，README 与它同级。
+
+全部传输完成且写入程序退出后，在 README 末尾单独添加“传输完成”，停止修改，并将路径交给管理员。成员不制作 JSON、哈希、manifest 或 READY；文本标记不会自动入队或发布。
+
+管理员维护正式数据集/模型卡，检查普通提交并在符合账户权限的受控位置准备后台协议。协议 2.0 的结构化示例和 Schema 保留供管理员与 Agent 使用，不是普通成员必填表。
+
+[详细步骤](../incoming-guide.html) · [管理员后台协议](../agent-protocol.md)

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "submission_id": null,
+  "title": "演示增补（虚构）",
+  "kind": "dataset",
+  "summary": "仅为字段示例，不代表上传请求。",
+  "contributor": {
+    "name": "演示贡献者",
+    "contact": "example-only:team-contact"
+  },
+  "source": {
+    "reference": null,
+    "description": "虚构示例；实际提交时说明真实来源。",
+    "upstream_revision": null
+  },
+  "rights": {
+    "team_use": "unknown",
+    "external_distribution": "unknown",
+    "license_id": null,
+    "basis": null
+  },
+  "delivery": {
+    "mode": "transfer",
+    "existing_path": null,
+    "estimated_bytes": null
+  },
+  "proposed_resource_id": null,
+  "proposed_version": null,
+  "relation_note": null,
+  "ready": false
+}

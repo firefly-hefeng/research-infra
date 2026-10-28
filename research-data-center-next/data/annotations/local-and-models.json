@@ -1,0 +1,2883 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-10-19",
+  "entries": {
+    "asset-a93ad3d605a78bd5": {
+      "summary": "clinical_audio_date_label_lexical_20260929_r360：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-a93ad3d605a78bd5",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-6cf3b0360634dff9": {
+      "summary": "clinical_audio_date_lead_20260929_r357：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-6cf3b0360634dff9",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-fab732a6479bbf34": {
+      "summary": "clinical_audio_date_lead_catalog_20260929_r359：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-fab732a6479bbf34",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-cc0838f957d91df3": {
+      "summary": "clinical_audio_date_lead_overlap_20260929_r358：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-cc0838f957d91df3",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-fbeeb874ad3e4304": {
+      "summary": "clinical_audio_date_lead_semantics_20260929_r361：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-fbeeb874ad3e4304",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-d92e4965a6ca74da": {
+      "summary": "clinical_candidate_context_20260929_r356：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 2，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-d92e4965a6ca74da",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-8d6530a389f84cfc": {
+      "summary": "clinical_other_roots_20260929_r362：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-8d6530a389f84cfc",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-e7a643f69f671e69": {
+      "summary": "clinical_other_roots_db_20260929_r363：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-e7a643f69f671e69",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-33d75f9c4529c2e1": {
+      "summary": "clinical_sheet_full_20260929_r355：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 2，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-33d75f9c4529c2e1",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-aacd006093584755": {
+      "summary": "clinical_voice_agent_candidate_20260929_r364：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 2，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "已有研究数据的核查、索引或派生整理，具体来源需回原清单",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-aacd006093584755",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-8b8469907e8fc457": {
+      "summary": "cross_language_task_moe_v1_sources：公开多语言认知语音源文件归档；含BedeSpeech孟加拉语来源ZIP。 本地台账主要数量为 1，计数单位是「压缩包文件（包内音频数量未据此推定）」。",
+      "background": "公开多语言认知语音源文件归档；含BedeSpeech孟加拉语来源ZIP。",
+      "research_uses": [
+        "作为孟加拉语认知相关语音来源的待核入口，先核对作者发布、标签来源和录制任务，再评估跨语言表示或模型迁移的研究可行性。"
+      ],
+      "starter_notes": [
+        "归档已在，不因解压WAV计数为0写没有数据；归档内样本数需读ZIP中央目录核对，不重复叠加压缩与解压。"
+      ],
+      "contents": [
+        "公开原始来源归档；压缩包",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本",
+        "本轮未找到能与本地BedeSpeech归档可靠对应的作者发布页；不将其他孟加拉语痴呆语料的参与者、任务或标签移植到本条。"
+      ],
+      "modalities": [],
+      "languages": [
+        "孟加拉语（原台账标识；尚未通过作者发布逐项确认）"
+      ],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-8b8469907e8fc457",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-5839b29dc74fb7b4": {
+      "summary": "BedeSpeech公开原始ZIP：作者发布的孟加拉语痴呆/健康语音来源；具体录制活动原说明未披露，不能补称Cookie Theft。 本地台账主要数量为 1，计数单位是「压缩包文件（包内音频数量未据此推定）」。",
+      "background": "作者发布的孟加拉语痴呆/健康语音来源；具体录制活动原说明未披露，不能补称Cookie Theft。",
+      "research_uses": [
+        "作为孟加拉语认知相关语音来源的待核入口，先核对作者发布、标签来源和录制任务，再评估跨语言表示或模型迁移的研究可行性。"
+      ],
+      "starter_notes": [
+        "只读ZIP中央目录核验740个WAV，未解压/重处理。352587576字节是归档大小，481763750字节是成员解压后逻辑大小，不能相加当两份语料；740文件不等于740人。"
+      ],
+      "contents": [
+        "原始公开音频归档包（未解压）；压缩包",
+        "本ZIP中央目录仅含740个WAV，未见独立标签文件；标签定义及外部配套需按官方资料匹配。"
+      ],
+      "caveats": [
+        "本ZIP中央目录仅含740个WAV，未见独立标签文件；标签定义及外部配套需按官方资料匹配。",
+        "本轮未找到能与本地BedeSpeech归档可靠对应的作者发布页；不将其他孟加拉语痴呆语料的参与者、任务或标签移植到本条。"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [
+        "孟加拉语（原台账标识；尚未通过作者发布逐项确认）"
+      ],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-5839b29dc74fb7b4",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-c0d2b0d1e98a001f": {
+      "summary": "以PARLO命名的跨任务核查/研究整理入口，台账记录5个可见文件；这是实验索引工件，不是独立新增语料。",
+      "background": "PARLO是九家德国记忆门诊采集的德语临床语音库，以命名、叙事、复述等任务研究认知相关语言表现。这里是本地派生或研究工件入口，不代表官方完整发布。",
+      "research_uses": [
+        "用来追溯跨任务比较所采用的原录音和研究清单；先确认受试者在不同任务间的对应关系，再讨论任务迁移。"
+      ],
+      "starter_notes": [
+        "从本目录研究清单定位父录音、任务名和数据划分；目录名中的campplus不能单独证明已经完成某种说话人实验。",
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [
+        "德语（上游PARLO家族背景；本地条目覆盖需按清单确认）"
+      ],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "科研背景来自PARLO官方语料页及作者论文；本地工件角色与数量来自原台账，尚未逐文件闭合其与上游发布的对应关系。",
+      "sources": [
+        {
+          "title": "DementiaBank：PARLO官方语料说明",
+          "url": "https://talkbank.org/dementia/access/German/PARLO.html",
+          "scope": "上游家族的任务与组织背景；本地派生范围、角色标注和数据划分仍以本条清单为准。"
+        },
+        {
+          "title": "Braun等（LREC 2026）：The PARLO Dementia Corpus",
+          "url": "https://aclanthology.org/2026.lrec-1.753/",
+          "scope": "作者对PARLO研究设计和实验用途的说明；不确认本地版本、许可或发布完整性。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-c0d2b0d1e98a001f",
+        "metadata.原始台账；原快照时间保持不变",
+        "2026-10-19核对PARLO官方家族说明；本地来源映射保留为待核，不将家族背景当作本地内容核验。"
+      ]
+    },
+    "asset-583db0c0f40eea0d": {
+      "summary": "以PARLO命名的角色参考核查入口，台账记录6个可见文件；用于追溯研究中的角色参考资料，不计作新增音频。",
+      "background": "PARLO是九家德国记忆门诊采集的德语临床语音库，以命名、叙事、复述等任务研究认知相关语言表现。这里是本地派生或研究工件入口，不代表官方完整发布。",
+      "research_uses": [
+        "作为说话人角色核验的研究入口，辅助区分受试者和访谈者；实际参考对象与角色可靠性需回到清单确认。"
+      ],
+      "starter_notes": [
+        "先查角色参考记录如何对应原录音和官方转写；不要将自动说话人分组直接视为已确认的受试者身份。",
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [
+        "德语（上游PARLO家族背景；本地条目覆盖需按清单确认）"
+      ],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "科研背景来自PARLO官方语料页及作者论文；本地工件角色与数量来自原台账，尚未逐文件闭合其与上游发布的对应关系。",
+      "sources": [
+        {
+          "title": "DementiaBank：PARLO官方语料说明",
+          "url": "https://talkbank.org/dementia/access/German/PARLO.html",
+          "scope": "上游家族的任务与组织背景；本地派生范围、角色标注和数据划分仍以本条清单为准。"
+        },
+        {
+          "title": "Braun等（LREC 2026）：The PARLO Dementia Corpus",
+          "url": "https://aclanthology.org/2026.lrec-1.753/",
+          "scope": "作者对PARLO研究设计和实验用途的说明；不确认本地版本、许可或发布完整性。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-583db0c0f40eea0d",
+        "metadata.原始台账；原快照时间保持不变",
+        "2026-10-19核对PARLO官方家族说明；本地来源映射保留为待核，不将家族背景当作本地内容核验。"
+      ]
+    },
+    "asset-41e4bef461c76f61": {
+      "summary": "PARLO目标话轮处理相关的代码/核查入口，台账记录7个可见文件；帮助复核派生过程，本条不是录音队列。",
+      "background": "PARLO是九家德国记忆门诊采集的德语临床语音库，以命名、叙事、复述等任务研究认知相关语言表现。这里是本地派生或研究工件入口，不代表官方完整发布。",
+      "research_uses": [
+        "复核目标话轮提取与拼接规则，并核对它们对停顿、轮次和说话人边界分析的影响。"
+      ],
+      "starter_notes": [
+        "先查看代码与处理说明中的输入清单、角色区间和输出映射；复现前确认版本与参数，不直接重跑整个语料。",
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [
+        "德语（上游PARLO家族背景；本地条目覆盖需按清单确认）"
+      ],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "科研背景来自PARLO官方语料页及作者论文；本地工件角色与数量来自原台账，尚未逐文件闭合其与上游发布的对应关系。",
+      "sources": [
+        {
+          "title": "DementiaBank：PARLO官方语料说明",
+          "url": "https://talkbank.org/dementia/access/German/PARLO.html",
+          "scope": "上游家族的任务与组织背景；本地派生范围、角色标注和数据划分仍以本条清单为准。"
+        },
+        {
+          "title": "Braun等（LREC 2026）：The PARLO Dementia Corpus",
+          "url": "https://aclanthology.org/2026.lrec-1.753/",
+          "scope": "作者对PARLO研究设计和实验用途的说明；不确认本地版本、许可或发布完整性。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-41e4bef461c76f61",
+        "metadata.原始台账；原快照时间保持不变",
+        "2026-10-19核对PARLO官方家族说明；本地来源映射保留为待核，不将家族背景当作本地内容核验。"
+      ]
+    },
+    "asset-c330a79f7daf3aec": {
+      "summary": "从既有PARLO原WAV按受试者角色候选区间拼接得到的1599份目标话轮WAV；本地是原录音的派生视图，适合研究角色过滤对语音表示的影响。",
+      "background": "PARLO是九家德国记忆门诊采集的德语临床语音库，以命名、叙事、复述等任务研究认知相关语言表现。这里是本地派生或研究工件入口，不代表官方完整发布。",
+      "research_uses": [
+        "在保留父录音和原始划分的条件下，比较受试者话轮与完整访谈的特征或模型表现；拼接音频不适合直接还原原始停顿时长。"
+      ],
+      "starter_notes": [
+        "先把1599份派生WAV映射回1633份父录音及原区间；对34份角色未闭合记录单独处理，避免把同一人的原件和派生件分入不同数据集划分。",
+        "1599份派生音频可按父录音与区间映射复用；不能与原始1633相加当新增样本。"
+      ],
+      "contents": [
+        "已有原件派生目标话轮；音频文件",
+        "角色区间/派生映射；34份角色未闭合，拼接后的停顿不代表原始时间轴。"
+      ],
+      "caveats": [
+        "角色区间/派生映射；34份角色未闭合，拼接后的停顿不代表原始时间轴。"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [
+        "德语（上游PARLO家族背景；本地条目覆盖需按清单确认）"
+      ],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "科研背景来自PARLO官方语料页及作者论文；本地工件角色与数量来自原台账，尚未逐文件闭合其与上游发布的对应关系。",
+      "sources": [
+        {
+          "title": "DementiaBank：PARLO官方语料说明",
+          "url": "https://talkbank.org/dementia/access/German/PARLO.html",
+          "scope": "上游家族的任务与组织背景；本地派生范围、角色标注和数据划分仍以本条清单为准。"
+        },
+        {
+          "title": "Braun等（LREC 2026）：The PARLO Dementia Corpus",
+          "url": "https://aclanthology.org/2026.lrec-1.753/",
+          "scope": "作者对PARLO研究设计和实验用途的说明；不确认本地版本、许可或发布完整性。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-c330a79f7daf3aec",
+        "metadata.原始台账；原快照时间保持不变",
+        "2026-10-19核对PARLO官方家族说明；本地来源映射保留为待核，不将家族背景当作本地内容核验。"
+      ]
+    },
+    "asset-4f6c014fcb1821c6": {
+      "summary": "PARLO目标话轮派生过程的回执/核查入口；它记录处理过程相关工件，不能作为另一批受试者或录音计算。",
+      "background": "PARLO是九家德国记忆门诊采集的德语临床语音库，以命名、叙事、复述等任务研究认知相关语言表现。这里是本地派生或研究工件入口，不代表官方完整发布。",
+      "research_uses": [
+        "核对派生过程的完成状态、输入输出映射与异常处理，帮助解释目标话轮集合的覆盖范围。"
+      ],
+      "starter_notes": [
+        "先定位回执中的父录音映射与成功/失败口径，再与派生WAV清单对照；回执存在不代表所有内容已通过人工审核。",
+        "文件/字节已实测；未逐一解码、去重、验证医学标签或许可。文件数不等于参与者人数。"
+      ],
+      "contents": [
+        "索引/研究整理根",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [
+        "德语（上游PARLO家族背景；本地条目覆盖需按清单确认）"
+      ],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "科研背景来自PARLO官方语料页及作者论文；本地工件角色与数量来自原台账，尚未逐文件闭合其与上游发布的对应关系。",
+      "sources": [
+        {
+          "title": "DementiaBank：PARLO官方语料说明",
+          "url": "https://talkbank.org/dementia/access/German/PARLO.html",
+          "scope": "上游家族的任务与组织背景；本地派生范围、角色标注和数据划分仍以本条清单为准。"
+        },
+        {
+          "title": "Braun等（LREC 2026）：The PARLO Dementia Corpus",
+          "url": "https://aclanthology.org/2026.lrec-1.753/",
+          "scope": "作者对PARLO研究设计和实验用途的说明；不确认本地版本、许可或发布完整性。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-4f6c014fcb1821c6",
+        "metadata.原始台账；原快照时间保持不变",
+        "2026-10-19核对PARLO官方家族说明；本地来源映射保留为待核，不将家族背景当作本地内容核验。"
+      ]
+    },
+    "asset-646f0dc520c1e36a": {
+      "summary": "picture_audio_gateway_v1_20260918：对已有看图语音做技术质检、说话活动与角色复核，非新采集。 本地台账主要数量为 59，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "对已有看图语音做技术质检、说话活动与角色复核，非新采集。",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "当前只有约0.052GiB工程/索引工件、未见该根原始WAV/NPZ；实际音频/特征需沿索引回原库。"
+      ],
+      "contents": [
+        "看图语音质量/说话人复核索引",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-646f0dc520c1e36a",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-e4a70306da3ed46e": {
+      "summary": "picture_feature_bundle_v1_staging_20260919：历史登记、ledger与复核队列staging；本次仍未见音频或特征矩阵。 本地台账主要数量为 5，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "历史登记、ledger与复核队列staging；本次仍未见音频或特征矩阵。",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "不可把这个staging名称当作已完成特征包；沿登记到既有对象库核实。"
+      ],
+      "contents": [
+        "特征打包登记/复核staging",
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "caveats": [
+        "历史核查与引用工件；不代表新增临床样本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-e4a70306da3ed46e",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-f6247d8e175b3f75": {
+      "summary": "research_platform：既有研究音频的缓存、转写、特征与任务清单，含多个语料来源及版本。 本地台账主要数量为 37876，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "该目录 README 将其定义为科研服务器统一资产入口：以导航、总账和版本快照组织原位资料，并区分模型组件与完整发布模型。它本身不是训练程序。",
+      "research_uses": [
+        "从资料导航和已有清单寻找原件、特征与实验工件。",
+        "核对已有登记的输入版本、配方和实验回执，避免重复加工。"
+      ],
+      "starter_notes": [
+        "先阅读该目录 README.md 与目录导航.md，按来源或清单定位原件；导航链接不是数据副本。",
+        "common中37576 WAV、64258 NPZ及转写/元数据；不能把文件数量当独立病例。当前统一SQLite索引不在预期路径。 43份清单的112116行是重复引用，原件内容标识去重83687；不能称83687份已在本机的完整音频。来源分类由路径字段匹配，未按官方队列闭合。"
+      ],
+      "contents": [
+        "共享数据/特征对象库；音频文件",
+        "自动转写2283、语言表达1754、时间线2936、言语行为1246个JSON；另有质量、运行回执和对象索引。10543个TXT全为失败诊断日志，不算标注。"
+      ],
+      "caveats": [
+        "自动转写2283、语言表达1754、时间线2936、言语行为1246个JSON；另有质量、运行回执和对象索引。10543个TXT全为失败诊断日志，不算标注。",
+        "README 描述的总账与快照机制是该目录的用途说明，不证明当前所有索引已建立或可用；原台账缺失索引的观察仍保留。"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-f6247d8e175b3f75",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/datasets/easystore/research_platform/README.md",
+          "sha256": "a85aec23692fb8bd11bec72adabd443a2a8b989f71331e944fe4c0adf2bb1b6f",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ]
+    },
+    "asset-7c851cfae97bd720": {
+      "summary": "feature_library/common：既有来源的导入/预处理视图；未核采集任务不从文件夹名推断。 本地台账主要数量为 37576，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "既有来源的导入/预处理视图；未核采集任务不从文件夹名推断。",
+      "research_uses": [
+        "依照本行来源与生成说明，核对音频、派生记录和标注之间的映射后设计复用实验。"
+      ],
+      "starter_notes": [
+        "已有NPY/NPZ数组，按manifest与数据划分复用；数组/矩阵文件数不是样本或人数。 43份清单的112116行是重复引用，原件内容标识去重83687；不能称83687份已在本机的完整音频。来源分类由路径字段匹配，未按官方队列闭合。"
+      ],
+      "contents": [
+        "数据/派生输入子根；音频文件；已识别特征文件",
+        "自动转写2283、语言表达1754、时间线2936、言语行为1246个JSON；另有质量、运行回执和对象索引。10543个TXT全为失败诊断日志，不算标注。"
+      ],
+      "caveats": [
+        "自动转写2283、语言表达1754、时间线2936、言语行为1246个JSON；另有质量、运行回执和对象索引。10543个TXT全为失败诊断日志，不算标注。"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-7c851cfae97bd720",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-724db235516d5fe7": {
+      "summary": "egemaps_voice_quality 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 25679，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "eGeMAPS 是 openSMILE 支持的声学描述集合，可提取低层描述量和统计汇总。当前登记的是既有 NPZ 缓存，实际版本与输出列需从本地配方确认。",
+      "research_uses": [
+        "复用可解释声学指标做统计分析或传统模型基线。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "openSMILE 特征集官方文档",
+          "url": "https://audeering.github.io/opensmile-python/",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-724db235516d5fe7",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "音频及已冻结的 openSMILE 特征集/层级配置。",
+        "output": "声学描述序列或统计汇总向量；缓存列与版本需核对。"
+      }
+    },
+    "asset-ced7af47141d976e": {
+      "summary": "emotion2vec_plus_large_20s 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 2296，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "emotion2vec+ 面向语音情感表示与识别，可输出语句级或帧级表示。20s 是本地缓存配方名称线索，不能单凭名称认定切分规则已验证。",
+      "research_uses": [
+        "把已有情感表征作为语音研究的候选特征。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "emotion2vec+ large 官方模型说明",
+          "url": "https://huggingface.co/emotion2vec/emotion2vec_plus_large",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-ced7af47141d976e",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "语音音频及本地切段/聚合配方。",
+        "output": "情感相关表示或分类输出；此条本地对象为已提取特征文件。"
+      }
+    },
+    "asset-66e9529b590f475f": {
+      "summary": "qwen3_embedding_06b_s4_text 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 1769，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "Qwen3-Embedding-0.6B 将文本编码为向量，用于检索、聚类或相似度任务。本条是文本特征缓存，不是模型权重入口。",
+      "research_uses": [
+        "复用转写或其他文本的语义向量，开展检索与聚类基线。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "Qwen3-Embedding 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-66e9529b590f475f",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "文本与任务提示；本地 s4 命名所指处理阶段需查配方。",
+        "output": "文本向量；实际维度和池化方式以对象元数据为准。"
+      }
+    },
+    "asset-74f9dd6b1e35b8e4": {
+      "summary": "time-frequency 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 25882，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "这条记录按 time-frequency 名称登记时频分析特征缓存。台账没有给出具体算法、窗长、步长或矩阵维度，不能将其直接称为某一种谱图。",
+      "research_uses": [
+        "在确认配方后复用现有时频表征做统计或分类实验。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-74f9dd6b1e35b8e4",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "原音频及本地时频分析配方。",
+        "output": "已缓存的时频相关数组，具体形状和单位需查对象元数据。"
+      }
+    },
+    "asset-2b298accdeb3966a": {
+      "summary": "wav2vec2_large_lv60 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 2247，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "Wav2Vec2-Large-LV60 是基于音频的自监督预训练模型。该预训练模型没有现成转写任务头；本条登记的是它对应的既有表示缓存。",
+      "research_uses": [
+        "比较自监督语音表征与可解释声学特征。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "Wav2Vec2-Large-LV60 官方模型说明",
+          "url": "https://huggingface.co/facebook/wav2vec2-large-lv60",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-2b298accdeb3966a",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "符合上游采样要求的语音及本地层选择/池化配方。",
+        "output": "语音隐藏表示；本地缓存是否逐帧或聚合需查配方。"
+      }
+    },
+    "asset-94b4bee7165103d2": {
+      "summary": "wavlm_large 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 2302，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "WavLM-Large 是自监督语音预训练模型，可为语音和说话人相关下游研究提供表征。当前记录是已有 WavLM 特征对象，不是已完成下游训练的任务模型。",
+      "research_uses": [
+        "开展语音表征、说话人相关信息或多特征融合的对照实验。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "WavLM-Large 官方模型说明",
+          "url": "https://huggingface.co/microsoft/wavlm-large",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-94b4bee7165103d2",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "语音与本地选层、切段和池化配置。",
+        "output": "WavLM 隐藏表示；本地数组结构以配方和对象元数据为准。"
+      }
+    },
+    "asset-4fee06b3660dfa2e": {
+      "summary": "whisper_large_v3_encoder 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 2313，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "Whisper large-v3 是语音转写与翻译模型。该条名称指向其编码器表示缓存；仅复用编码器特征不等于已经获得转写文本。",
+      "research_uses": [
+        "比较识别模型编码器表征与其他语音特征。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "Whisper large-v3 官方模型说明",
+          "url": "https://huggingface.co/openai/whisper-large-v3",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-4fee06b3660dfa2e",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "经对应处理器转换的语音及本地编码器提取配方。",
+        "output": "编码器隐藏表示；切段、层和池化选择应回查缓存元数据。"
+      }
+    },
+    "asset-062a19aca69b40ed": {
+      "summary": "xlm_roberta_asr 的既有派生特征缓存，用于复用已完成的特征提取。 本地台账主要数量为 1770，计数单位是「已识别特征文件（非独立录音或人数）」。",
+      "background": "XLM-RoBERTa 编码文本而非声波。该本地缓存名称带 asr，需核对输入转写的来源和质量，再把文本表示用于研究。",
+      "research_uses": [
+        "复用自动转写文本的多语言表示，比较声学与语言信息。"
+      ],
+      "starter_notes": [
+        "已有NPZ可复用，不必重新提取；先用原始音频hash、recipe/版本、样本映射和数据划分对齐。统一SQLite索引未在预期路径，需从既有manifest/对象元数据恢复索引。各工具共享物理根，目录大小不要重复相加。"
+      ],
+      "contents": [
+        "同一对象根下按工具聚合的派生特征；已识别特征文件",
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。"
+      ],
+      "caveats": [
+        "对应工具的现有NPZ特征与质量/配方元数据；自动产物不等于人工标签或临床金标准。",
+        "8 类特征条目共享同一物理对象根，按工具区分；不能合并身份或将目录容量重复相加。"
+      ],
+      "modalities": [
+        "特征数组"
+      ],
+      "languages": [],
+      "topics": [
+        "features",
+        "methods"
+      ],
+      "provenance_note": "工具背景来自所列发布文档，本地事实来自本条台账；工具名与官方方法的关联是说明线索，实际recipe、版本、维度尚需对照对象元数据。",
+      "sources": [
+        {
+          "title": "XLM-RoBERTa 发布仓库模型卡（Hugging Face 维护）",
+          "url": "https://huggingface.co/FacebookAI/xlm-roberta-base",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-062a19aca69b40ed",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "转写文本及 XLM-RoBERTa 的 tokenizer/选层/池化配方。",
+        "output": "文本上下文表示；实际缓存内容以元数据为准。"
+      }
+    },
+    "asset-0459efc7beb4c898": {
+      "summary": "ad_speech_full_feature_benchmark_20260622_v1：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 325，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；音频文件",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-0459efc7beb4c898",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-761c849cf3ebedeb": {
+      "summary": "ad_speech_interpretable_8group_first_result_20260628_v2_progress：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 2023，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；音频文件",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-761c849cf3ebedeb",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-0a108078a4bff116": {
+      "summary": "ad_speech_interpretable_8group_mingfan_full_strict_schema_20260627_v1：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 294，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；音频文件",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-0a108078a4bff116",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-332a3c729ce2ff70": {
+      "summary": "Pitt Cookie Theft看图叙事语音的历史归一化与解释性实验副本；可用于追溯声学、语言特征及模型实验，不是新采集的临床队列。",
+      "background": "Pitt语料源于匹兹堡大学的纵向认知研究，包含健康对照和不同认知诊断参与者。Cookie Theft要求描述同一图片，便于研究词汇、叙事组织与语音表现；Pitt另有流畅性、故事回忆等任务，不能一概等同于Cookie Theft。",
+      "research_uses": [
+        "在确认原始参与者、任务与数据划分后，比较看图叙事的语言和声学表示，复核已有解释性实验。",
+        "检查归一化或模型处理是否改变任务线索；区分Pitt原始发布、挑战赛子集和本地实验副本，避免重复样本进入评测。"
+      ],
+      "starter_notes": [
+        "先从本地实验清单找到Pitt原录音ID、访视与任务，确认是否采用挑战赛划分以及归一化方式，再复用结果。",
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；音频文件",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [
+        "英语（上游Pitt语料；本地副本范围仍需逐项匹配）"
+      ],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "Pitt家族背景据官方页；本地“归一化/解释性实验副本”由原台账明确描述。实际采用的Pitt访视、挑战赛版本与医学标签仍待清单匹配。",
+      "sources": [
+        {
+          "title": "DementiaBank：Pitt官方语料说明及Becker等研究引文",
+          "url": "https://talkbank.org/dementia/access/English/Pitt.html",
+          "scope": "上游Pitt的纵向研究和Cookie Theft任务背景；不作为本地派生副本、挑战赛划分或医学标签已核验的证据。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / asset-332a3c729ce2ff70",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-64e1630fd8556d26": {
+      "summary": "costa-reproduction-20260906：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 40，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-64e1630fd8556d26",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-a746f34a86ccb726": {
+      "summary": "hc_mci_ad_temporal_v15_20260810：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 1，计数单位是「压缩包文件（包内音频数量未据此推定）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；压缩包",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-a746f34a86ccb726",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-f8d0effe8e636863": {
+      "summary": "stateful-cognitive-gate1：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 8，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-f8d0effe8e636863",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-145611c693a4e34f": {
+      "summary": "stateful-cognitive-real-r24-20260907：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 3，计数单位是「压缩包文件（包内音频数量未据此推定）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；压缩包",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-145611c693a4e34f",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-f967a3f5f8cf7a43": {
+      "summary": "voice-health-encoder-20260908：由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料 本地台账主要数量为 2，计数单位是「压缩包文件（包内音频数量未据此推定）」。",
+      "background": "由已有语音进行预处理、特征或模型实验后的资料；不是新采集语料",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "本目录容量可能含模型/预测、压缩包和重复归一化音频；复用时沿原始ID、hash、划分和生成配方，不直接把整目录当新数据。"
+      ],
+      "contents": [
+        "历史研究派生/实验资料；压缩包",
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "caveats": [
+        "实验划分/结果/模型等，医学标签沿原始登记核对"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-f967a3f5f8cf7a43",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-b936f8fb36de232a": {
+      "summary": "chinese_dementia_audio_pilot：中文认知相关公开音频试点；具体采集任务与授权尚待核验 本地台账主要数量为 36，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "中文认知相关公开音频试点；具体采集任务与授权尚待核验",
+      "research_uses": [
+        "依照本行来源与生成说明，核对音频、派生记录和标注之间的映射后设计复用实验。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "候选/试点，不可据目录名判临床标签"
+      ],
+      "caveats": [
+        "候选/试点，不可据目录名判临床标签"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-b936f8fb36de232a",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-fb072b92fd4cbbe7": {
+      "summary": "public_audio_crawler-brightdata-smoke：公开平台采集小样本/烟测 本地台账主要数量为 1，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "公开平台采集小样本/烟测",
+      "research_uses": [
+        "依照本行来源与生成说明，核对音频、派生记录和标注之间的映射后设计复用实验。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "自动筛选/爬取工件；不等于正式数据集"
+      ],
+      "caveats": [
+        "自动筛选/爬取工件；不等于正式数据集"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-fb072b92fd4cbbe7",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-ee836a566049fb74": {
+      "summary": "topic_patient_audio：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 5，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料（仅元数据/小工件，不能据目录名称已拥有全库）",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-ee836a566049fb74",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-5f44b3d896e92e82": {
+      "summary": "topic_patient_crawler-code-staged-54f4dfb4：保存勿忘我语音筛查服务工程说明的 staged 分支；本地台账登记 135 音频文件/候选文件（非独立录音或人数）。",
+      "background": "该分支 README 说明了语音通话、转写、时间戳、交互分析与量表流程的工程背景，面向筛查线索、复核与研究分析。工程说明明确不等于临床诊断系统。",
+      "research_uses": [
+        "了解候选媒体发现与审阅工件的工程上下文。",
+        "追溯数据采集/派生过程涉及的模块与记录边界，而不是将代码分支当作独立患者语料。"
+      ],
+      "starter_notes": [
+        "先读本分支 README 的系统边界与资料目录，再对照本条台账确认实际媒体或工件；不执行README内的部署/运行命令。",
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "operations",
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-5f44b3d896e92e82",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-54f4dfb4/README.md",
+          "sha256": "d7ae2171fa835cb437222280356387ab6b6ca11413eaaf16e38829665e93895b",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ]
+    },
+    "asset-659b4003cfab9e53": {
+      "summary": "topic_patient_crawler-code-staged-e79c94a9：保存勿忘我语音筛查服务工程说明的 staged 分支；本地台账登记 1 音频文件/候选文件（非独立录音或人数）。",
+      "background": "该分支 README 说明了语音通话、转写、时间戳、交互分析与量表流程的工程背景，面向筛查线索、复核与研究分析。工程说明明确不等于临床诊断系统。",
+      "research_uses": [
+        "了解候选媒体发现与审阅工件的工程上下文。",
+        "追溯数据采集/派生过程涉及的模块与记录边界，而不是将代码分支当作独立患者语料。"
+      ],
+      "starter_notes": [
+        "先读本分支 README 的系统边界与资料目录，再对照本条台账确认实际媒体或工件；不执行README内的部署/运行命令。",
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "operations",
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-659b4003cfab9e53",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9/README.md",
+          "sha256": "d7ae2171fa835cb437222280356387ab6b6ca11413eaaf16e38829665e93895b",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ]
+    },
+    "asset-e16059534321166e": {
+      "summary": "topic_patient_crawler-code-staged-e79c94a9-delta：保存勿忘我语音筛查服务工程说明的 staged 分支；本地台账登记 135 音频文件/候选文件（非独立录音或人数）。",
+      "background": "该分支 README 说明了语音通话、转写、时间戳、交互分析与量表流程的工程背景，面向筛查线索、复核与研究分析。工程说明明确不等于临床诊断系统。",
+      "research_uses": [
+        "了解候选媒体发现与审阅工件的工程上下文。",
+        "追溯数据采集/派生过程涉及的模块与记录边界，而不是将代码分支当作独立患者语料。"
+      ],
+      "starter_notes": [
+        "先读本分支 README 的系统边界与资料目录，再对照本条台账确认实际媒体或工件；不执行README内的部署/运行命令。",
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "operations",
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-e16059534321166e",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-delta/README.md",
+          "sha256": "d7ae2171fa835cb437222280356387ab6b6ca11413eaaf16e38829665e93895b",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ]
+    },
+    "asset-5ddbe976868d3321": {
+      "summary": "topic_patient_crawler-code-staged-e79c94a9-v2：保存勿忘我语音筛查服务工程说明的 staged 分支；本地台账登记 135 音频文件/候选文件（非独立录音或人数）。",
+      "background": "该分支 README 说明了语音通话、转写、时间戳、交互分析与量表流程的工程背景，面向筛查线索、复核与研究分析。工程说明明确不等于临床诊断系统。",
+      "research_uses": [
+        "了解候选媒体发现与审阅工件的工程上下文。",
+        "追溯数据采集/派生过程涉及的模块与记录边界，而不是将代码分支当作独立患者语料。"
+      ],
+      "starter_notes": [
+        "先读本分支 README 的系统边界与资料目录，再对照本条台账确认实际媒体或工件；不执行README内的部署/运行命令。",
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "operations",
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-5ddbe976868d3321",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-e79c94a9-v2/README.md",
+          "sha256": "d7ae2171fa835cb437222280356387ab6b6ca11413eaaf16e38829665e93895b",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ]
+    },
+    "asset-59825f4f47468303": {
+      "summary": "topic_patient_media-staged-bilibili-20260717：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 14，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料（仅元数据/小工件，不能据目录名称已拥有全库）",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-59825f4f47468303",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-91d614fb8b1bbef3": {
+      "summary": "topic_patient_media-staged-douyin-20260717：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 14，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料（仅元数据/小工件，不能据目录名称已拥有全库）",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-91d614fb8b1bbef3",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-b50d03c0edc38455": {
+      "summary": "topic_patient_media-staged-xiaohongshu-20260717：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 7，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料（仅元数据/小工件，不能据目录名称已拥有全库）",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-b50d03c0edc38455",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-0df72d1bbc8b9c52": {
+      "summary": "topic_patient_media-staged-xiaohongshu-20260717-v2：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 40，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核主题检索的候选音视频与筛选精度，建立来源和审阅记录。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-0df72d1bbc8b9c52",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-82db5767bba3b91d": {
+      "summary": "topic_patient_media-staged-xiaohongshu-prefilter-20260718：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 11，计数单位是「全部可见文件（不等于数据样本）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核本条已有研究清单、处理记录或实验输入，追溯原始资料与生成过程。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。"
+      ],
+      "contents": [
+        "业务/候选研究资料（仅元数据/小工件，不能据目录名称已拥有全库）",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "methods",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-82db5767bba3b91d",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-e1d2ee23eb89caaf": {
+      "summary": "topic_patient_media-staged-xiaohongshu-prefilter-v2-20260718：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 4，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核主题检索的候选音视频与筛选精度，建立来源和审阅记录。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-e1d2ee23eb89caaf",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-e1d3427f3d6c1a18": {
+      "summary": "topic_precision_review_20260717_v2：按主题从公开平台检索/筛选的候选音视频与审阅工件 本地台账主要数量为 22，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "按主题从公开平台检索/筛选的候选音视频与审阅工件",
+      "research_uses": [
+        "复核主题检索的候选音视频与筛选精度，建立来源和审阅记录。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对原发布来源、许可与候选审阅依据；目录主题或标题不能建立确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "caveats": [
+        "主题筛选不等于临床确诊；多staged工作副本"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "clinical-speech",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-e1d3427f3d6c1a18",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-734260dc6c8a9182": {
+      "summary": "call_transcripts：应用中的用户与语音助手通话，包括完整录音与切片/转写工件 本地台账主要数量为 7656，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "本条来自 prod 环境的应用通话资料，包括原始录音及切片/自动转写等附属产物。不同环境与同一通话的不同工件要分别追溯。",
+      "research_uses": [
+        "在既有授权与去标识化边界内研究人机语音互动及转写误差。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先区分完整通话、切片与自动转写，沿同一原始通话标识对齐；prod 与 staging 记录不能直接相加为人数。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件；压缩包",
+        "自动转写与应用状态；无临床金标准保证"
+      ],
+      "caveats": [
+        "自动转写与应用状态；无临床金标准保证"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "speech-interaction",
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-734260dc6c8a9182",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-c38ba565e5495175": {
+      "summary": "scale_recordings：应用问答/量表流程中浏览器录音 本地台账主要数量为 10，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "应用问答/量表流程中浏览器录音",
+      "research_uses": [
+        "研究问答交互与录音质量；将回答与对应量表版本和流程记录对齐。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对任务流程、答题角色与录音对应关系；应用量表记录不是临床确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "应用记录，不代表医学确诊标签"
+      ],
+      "caveats": [
+        "应用记录，不代表医学确诊标签"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "speech-interaction",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-c38ba565e5495175",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-caa6af4f600a7c08": {
+      "summary": "call_transcripts：应用中的用户与语音助手通话，包括完整录音与切片/转写工件 本地台账主要数量为 16079，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "本条来自 staging 环境的应用通话资料，包括原始录音及切片/自动转写等附属产物。不同环境与同一通话的不同工件要分别追溯。",
+      "research_uses": [
+        "在既有授权与去标识化边界内研究人机语音互动及转写误差。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先区分完整通话、切片与自动转写，沿同一原始通话标识对齐；prod 与 staging 记录不能直接相加为人数。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "自动转写与应用状态；无临床金标准保证"
+      ],
+      "caveats": [
+        "自动转写与应用状态；无临床金标准保证"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "speech-interaction",
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-caa6af4f600a7c08",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "asset-7ec996862bdce9a6": {
+      "summary": "scale_recordings：应用问答/量表流程中浏览器录音 本地台账主要数量为 1，计数单位是「音频文件/候选文件（非独立录音或人数）」。",
+      "background": "应用问答/量表流程中浏览器录音",
+      "research_uses": [
+        "研究问答交互与录音质量；将回答与对应量表版本和流程记录对齐。"
+      ],
+      "starter_notes": [
+        "目录统计已实测；未全量解码/重处理。数量为文件，未验证唯一录音/受试者；.pt/.pkl/.parquet等不自动等同训练特征。",
+        "先核对任务流程、答题角色与录音对应关系；应用量表记录不是临床确诊标签。"
+      ],
+      "contents": [
+        "业务/候选研究资料；音频文件",
+        "应用记录，不代表医学确诊标签"
+      ],
+      "caveats": [
+        "应用记录，不代表医学确诊标签"
+      ],
+      "modalities": [
+        "音频（台账媒体候选口径）"
+      ],
+      "languages": [],
+      "topics": [
+        "speech-interaction",
+        "clinical-speech"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / asset-7ec996862bdce9a6",
+        "metadata.原始台账；原快照时间保持不变"
+      ]
+    },
+    "model-f54564863fdd7670": {
+      "summary": "Qwen3-8B：Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。",
+      "background": "Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。它是文本模型，不直接读取原始语音。",
+      "research_uses": [
+        "研究文本总结、结构化信息提取和问答基线。",
+        "在固定提示词和相同评测集下比较不同尺寸的结果与计算开销。"
+      ],
+      "starter_notes": [
+        "核对本地 tokenizer、聊天模板和 config；先用短文本样例验证，再固定提示与生成设置。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "文本"
+      ],
+      "languages": [
+        "多语言（以官方支持范围为准）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "Qwen3-8B 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-8B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-f54564863fdd7670",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/models/Qwen3-8B/README.md",
+          "sha256": "0f36caaff9c2516411a7738db384606263ba653c1e63e61d72f511606164d5a6",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ],
+      "inference_io": {
+        "input": "文本提示或按对应分词器聊天模板整理的消息。",
+        "output": "生成的文本；思考模式的中间输出与最终答复需要按模板区分。"
+      }
+    },
+    "model-38181e92d9264294": {
+      "summary": "Qwen3-4B：Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。",
+      "background": "Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。它是文本模型，不直接读取原始语音。",
+      "research_uses": [
+        "研究文本总结、结构化信息提取和问答基线。",
+        "在固定提示词和相同评测集下比较不同尺寸的结果与计算开销。"
+      ],
+      "starter_notes": [
+        "核对本地 tokenizer、聊天模板和 config；先用短文本样例验证，再固定提示与生成设置。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "文本"
+      ],
+      "languages": [
+        "多语言（以官方支持范围为准）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "Qwen3-4B 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-4B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-38181e92d9264294",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/models/Qwen3-4B/README.md",
+          "sha256": "71add1cd091c309b1cb1a6b943f2476eb2b004124b3bd1d32dcd0b24cc1abc47",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ],
+      "inference_io": {
+        "input": "文本提示或按对应分词器聊天模板整理的消息。",
+        "output": "生成的文本；思考模式的中间输出与最终答复需要按模板区分。"
+      }
+    },
+    "model-276cc8c43371a26f": {
+      "summary": "Qwen3-0.6B：Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。",
+      "background": "Qwen3 的稠密因果语言模型，通过文本或对话消息生成文本，支持思考与非思考模式。它是文本模型，不直接读取原始语音。",
+      "research_uses": [
+        "研究文本总结、结构化信息提取和问答基线。",
+        "在固定提示词和相同评测集下比较不同尺寸的结果与计算开销。"
+      ],
+      "starter_notes": [
+        "核对本地 tokenizer、聊天模板和 config；先用短文本样例验证，再固定提示与生成设置。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "文本"
+      ],
+      "languages": [
+        "多语言（以官方支持范围为准）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "Qwen3-0.6B 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-0.6B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-276cc8c43371a26f",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/models/Qwen3-0.6B/README.md",
+          "sha256": "1ab64a26fcb3b461423b89a433a8c858f1bf8d4086f979cbb3ff878d47cf20e9",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ],
+      "inference_io": {
+        "input": "文本提示或按对应分词器聊天模板整理的消息。",
+        "output": "生成的文本；思考模式的中间输出与最终答复需要按模板区分。"
+      }
+    },
+    "model-8549969d8d8dd516": {
+      "summary": "mobiuslabsgmbh/faster-whisper-large-v3-turbo：这是 Whisper large-v3-turbo 的 CTranslate2 格式转换仓库，可由 faster-whisper 加载用于语音转写。",
+      "background": "这是 Whisper large-v3-turbo 的 CTranslate2 格式转换仓库，可由 faster-whisper 加载用于语音转写。原仓库地址目前重定向至 Dropbox Dash；本地仍保留原下载组织名和 revision。",
+      "research_uses": [
+        "以分段文本和时间戳建立语音转写基线。",
+        "比较本地不同识别模型的速度与错误类型。"
+      ],
+      "starter_notes": [
+        "核对 CTranslate2 权重、tokenizer 和 preprocessor 文件；本地 revision 不是已验证的运行环境。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "音频",
+        "文本"
+      ],
+      "languages": [
+        "多语言（原模型范围）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "发布者的 CTranslate2 转换说明",
+          "url": "https://huggingface.co/dropbox-dash/faster-whisper-large-v3-turbo",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-8549969d8d8dd516",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "音频文件或波形，按 faster-whisper 接口设置语言与推理选项。",
+        "output": "带起止时间的文本片段及识别信息。"
+      }
+    },
+    "model-4ae9174e21aa77c6": {
+      "summary": "xlm-roberta-base：XLM-RoBERTa 是多语言文本编码模型，以掩码语言建模预训练。",
+      "background": "XLM-RoBERTa 是多语言文本编码模型，以掩码语言建模预训练。现有配置是 XLMRobertaForMaskedLM，可做掩码预测；迁移到分类或表示研究需明确任务头与训练方法。",
+      "research_uses": [
+        "研究多语言转写文本的表示或掩码预测。",
+        "作为文本分类等下游任务的编码器基线。"
+      ],
+      "starter_notes": [
+        "先确认使用隐藏状态还是 MaskedLM 输出；分类任务不能把原始掩码模型直接当成已训练分类器。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "文本"
+      ],
+      "languages": [
+        "多语言"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "XLM-RoBERTa 发布仓库模型卡（Hugging Face 维护）",
+          "url": "https://huggingface.co/FacebookAI/xlm-roberta-base",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-4ae9174e21aa77c6",
+        "metadata.原始台账；原快照时间保持不变"
+      ],
+      "inference_io": {
+        "input": "经配套 tokenizer 编码的文本；掩码预测输入包含指定 mask 标记。",
+        "output": "上下文表示或掩码位置的词元预测，取决于所加载的模型类。"
+      }
+    },
+    "model-69e327917ee18f4f": {
+      "summary": "Qwen3-ForcedAligner-0.6B：强制对齐模型接收音频和已有文字，估计文字单元在音频中的时间位置。",
+      "background": "强制对齐模型接收音频和已有文字，估计文字单元在音频中的时间位置。它的主要任务是对齐，不是自行生成可信转写。",
+      "research_uses": [
+        "为已核对转写添加时间区间，支持话轮、停顿或分段分析。",
+        "复核音频切段与文本跨度的对应关系。"
+      ],
+      "starter_notes": [
+        "先准备一段已核对的转写，检查对齐是否覆盖语音且无明显错位；不要用错误文本生成表面精确的时间戳。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "音频",
+        "文本"
+      ],
+      "languages": [
+        "中文（上游支持）",
+        "英语（上游支持）",
+        "粤语（上游支持）",
+        "法语（上游支持）",
+        "德语（上游支持）",
+        "意大利语（上游支持）",
+        "日语（上游支持）",
+        "韩语（上游支持）",
+        "葡萄牙语（上游支持）",
+        "俄语（上游支持）",
+        "西班牙语（上游支持）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "Qwen3-ForcedAligner 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-69e327917ee18f4f",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/models/Qwen3-ForcedAligner-0.6B/README.md",
+          "sha256": "5058416891bc47a2051557765997e8c42f8eb78a0e33c3e775bd17d4b0ba4d50",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ],
+      "inference_io": {
+        "input": "音频、与音频内容匹配的文本及语言信息。",
+        "output": "文本单元对应的起止时间位置。"
+      }
+    },
+    "model-2516b91fb28de63d": {
+      "summary": "Qwen3-ASR-1.7B：Qwen3-ASR 是语音识别模型系列；该型号面向多语言语音转写与语种识别。",
+      "background": "Qwen3-ASR 是语音识别模型系列；该型号面向多语言语音转写与语种识别。官方工具提供离线、流式及批处理接口。",
+      "research_uses": [
+        "生成待人工核对的语音转写。",
+        "比较不同语种、口音和录音条件下的识别误差。"
+      ],
+      "starter_notes": [
+        "先用有参考文本的短语音验证采样、语言设置和文本输出；自动转写需保留模型与参数记录。"
+      ],
+      "contents": [],
+      "caveats": [
+        "尚未执行加载、推理或下游质量评估；不能把模型输出当作人工标注或临床结论。"
+      ],
+      "modalities": [
+        "音频",
+        "文本"
+      ],
+      "languages": [
+        "多语言及部分汉语方言（官方范围）"
+      ],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "模型名称与本地配置/下载目录对应上游模型说明；官方能力描述不等于本地已加载验证，也不确认本地文件与最新上游版本完全一致。",
+      "sources": [
+        {
+          "title": "Qwen3-ASR 官方模型说明",
+          "url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "official_match",
+      "evidence_basis": [
+        "data/catalog.json / model-2516b91fb28de63d",
+        "metadata.原始台账；原快照时间保持不变",
+        {
+          "path": "/data/models/Qwen3-ASR-1.7B/README.md",
+          "sha256": "5058416891bc47a2051557765997e8c42f8eb78a0e33c3e775bd17d4b0ba4d50",
+          "observed_at": "2026-10-18T22:45:46.374949+00:00",
+          "scope": "有限README说明核对；未改变原目录权限/存在性快照"
+        }
+      ],
+      "inference_io": {
+        "input": "语音音频，可按官方接口提供语言提示。",
+        "output": "识别文本及语言信息；时间戳需结合相应对齐能力。"
+      }
+    },
+    "discovered-abc38b748b9d52ba": {
+      "summary": "modelscope：位于 /data/models/modelscope 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/models 下的「modelscope」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "models",
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-abc38b748b9d52ba",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-aac19c726bc16f54": {
+      "summary": "call-transcripts-dev：位于 /data/datasets/wuwangwo/fmn/call-transcripts-dev 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「call-transcripts-dev」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-aac19c726bc16f54",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-1568a3450e893e39": {
+      "summary": "family_guard_avatars：位于 /data/datasets/wuwangwo/fmn/family_guard_avatars 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「family_guard_avatars」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-1568a3450e893e39",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-0f5b1a1b9a178109": {
+      "summary": "family_guard_avatars-dev：位于 /data/datasets/wuwangwo/fmn/family_guard_avatars-dev 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「family_guard_avatars-dev」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-0f5b1a1b9a178109",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-14fd142b54bfa75c": {
+      "summary": "public_audio_crawler-brightdata-validation-20260716-142527：位于 /data/datasets/wuwangwo/fmn/public_audio_crawler-brightdata-validation-20260716-142527 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「public_audio_crawler-brightdata-validation-20260716-142527」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-14fd142b54bfa75c",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-c17ba3f33bad9329": {
+      "summary": "public_audio_crawler-dev：位于 /data/datasets/wuwangwo/fmn/public_audio_crawler-dev 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「public_audio_crawler-dev」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-c17ba3f33bad9329",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-7713000d97573d78": {
+      "summary": "topic-patient-codex-20260717：位于 /data/datasets/wuwangwo/fmn/topic-patient-codex-20260717 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic-patient-codex-20260717」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-7713000d97573d78",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-04b94caeacfc0b63": {
+      "summary": "topic_patient_crawler-code-smoke-20260716-cred：位于 /data/datasets/wuwangwo/fmn/topic_patient_crawler-code-smoke-20260716-cred 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_crawler-code-smoke-20260716-cred」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-04b94caeacfc0b63",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-7fe32cf94184786f": {
+      "summary": "topic_patient_crawler-code-staged-07fab733：位于 /data/datasets/wuwangwo/fmn/topic_patient_crawler-code-staged-07fab733 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_crawler-code-staged-07fab733」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-7fe32cf94184786f",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-2ee2ecdf3588f720": {
+      "summary": "topic_patient_crawler-tools：位于 /data/datasets/wuwangwo/fmn/topic_patient_crawler-tools 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_crawler-tools」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-2ee2ecdf3588f720",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-4129be79c55a1942": {
+      "summary": "topic_patient_media-dev：位于 /data/datasets/wuwangwo/fmn/topic_patient_media-dev 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_media-dev」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-4129be79c55a1942",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-e23430ce33b85181": {
+      "summary": "topic_patient_media-smoke-20260716-cred：位于 /data/datasets/wuwangwo/fmn/topic_patient_media-smoke-20260716-cred 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_media-smoke-20260716-cred」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-e23430ce33b85181",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-3130027c6625e830": {
+      "summary": "topic_patient_media-staged-xiaohongshu-details-20260717：位于 /data/datasets/wuwangwo/fmn/topic_patient_media-staged-xiaohongshu-details-20260717 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/fmn 下的「topic_patient_media-staged-xiaohongshu-details-20260717」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-3130027c6625e830",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-b476da45875afe8e": {
+      "summary": "demo：位于 /data/datasets/wuwangwo/prod/demo 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/prod 下的「demo」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-b476da45875afe8e",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-65c38c962bc85f1c": {
+      "summary": "migrations：位于 /data/datasets/wuwangwo/prod/migrations 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/prod 下的「migrations」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-65c38c962bc85f1c",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-dc5528945c4d33b0": {
+      "summary": "public_media：位于 /data/datasets/wuwangwo/prod/public_media 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/prod 下的「public_media」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-dc5528945c4d33b0",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-eddf93e397165392": {
+      "summary": "storage：位于 /data/datasets/wuwangwo/prod/storage 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/prod 下的「storage」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-eddf93e397165392",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-e291bfdd0922e045": {
+      "summary": "demo：位于 /data/datasets/wuwangwo/staging/demo 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/staging 下的「demo」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-e291bfdd0922e045",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-81df710088a85ef9": {
+      "summary": "migrations：位于 /data/datasets/wuwangwo/staging/migrations 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/staging 下的「migrations」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-81df710088a85ef9",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-146cba630516b620": {
+      "summary": "public_media：位于 /data/datasets/wuwangwo/staging/public_media 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/staging 下的「public_media」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-146cba630516b620",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-f16196c19879d508": {
+      "summary": "storage：位于 /data/datasets/wuwangwo/staging/storage 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "本条保存 /data/datasets/wuwangwo/staging 下的「storage」分支，避免公共区未细分内容在导航中遗漏。名称只作为线索，尚未确认实际文件组成。",
+      "research_uses": [
+        "作为定位该分支资料与补录 README/清单的入口。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "operations"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/catalog.json / discovered-f16196c19879d508",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ]
+    },
+    "discovered-3538fb6f4c85d186": {
+      "summary": "models--BAAI--bge-small-zh-v1.5：位于 /data/models/huggingface/hub/models--BAAI--bge-small-zh-v1.5 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "目录名对应 BAAI 的中文文本嵌入模型 bge-small-zh-v1.5，可作为中文检索与语义匹配方法的背景入口。当前只登记缓存分支，未确认权重是否完整。",
+      "research_uses": [
+        "在核实本地权重后，作为中文语义检索/相似度研究的候选模型。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [
+        {
+          "title": "BGE small 中文版官方模型说明",
+          "url": "https://huggingface.co/BAAI/bge-small-zh-v1.5",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / discovered-3538fb6f4c85d186",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ],
+      "inference_io": {
+        "input": "文本查询或文段。",
+        "output": "文本向量，用于相似度或检索；本条尚未验证本地加载。"
+      }
+    },
+    "discovered-95596d3a20fa94bb": {
+      "summary": "models--facebook--wav2vec2-large-xlsr-53：位于 /data/models/huggingface/hub/models--facebook--wav2vec2-large-xlsr-53 的公共区分支入口；本轮只确认目录定位，未逐文件展开。",
+      "background": "目录名对应跨语言自监督语音模型 Wav2Vec2-XLSR-53。上游基础模型面向语音表示，下游识别需要适配；本地当前只有集合入口证据。",
+      "research_uses": [
+        "在核实权重和任务适配后，研究跨语言语音表示。"
+      ],
+      "starter_notes": [
+        "先确认目录现有说明、内容种类和责任人，再决定作为数据、模型、工程工件或其他资料细分。"
+      ],
+      "contents": [],
+      "caveats": [],
+      "modalities": [],
+      "languages": [],
+      "topics": [
+        "models",
+        "methods"
+      ],
+      "provenance_note": "本地说明依据该行公共区台账；未读取样本或业务记录，未新核验内容质量。",
+      "sources": [
+        {
+          "title": "Wav2Vec2-XLSR-53 官方模型说明",
+          "url": "https://huggingface.co/facebook/wav2vec2-large-xlsr-53",
+          "scope": "官方模型或工具背景；本地文件、配方和可运行性仍以现场证据为准。"
+        }
+      ],
+      "confidence": "family_context",
+      "evidence_basis": [
+        "data/catalog.json / discovered-95596d3a20fa94bb",
+        "metadata.核验 与 metadata.目录深度；没有逐文件扫描"
+      ],
+      "inference_io": {
+        "input": "符合模型采样要求的语音。",
+        "output": "预训练语音表示；不是开箱即用的可信转写。"
+      }
+    }
+  }
+}

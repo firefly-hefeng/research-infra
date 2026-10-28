@@ -1,0 +1,12 @@
+{
+  "schema_version": "2.0",
+  "submission_id": "example-submission-001",
+  "user": "example-user",
+  "submission_sha256": "582f3f184ebf615f44b9ef8aefd11b1fba69e3e107dc0b988d16a5404d6af192",
+  "manifest_sha256": "753fefc453a64737124f2f508f6e1f0b33edaadfcbf1a55a160436c5fe005cde",
+  "content_digest": "80842452a95b75385ed47c6a50f283ea3d2b58a5cbb3f1c42f1fd9e91a781bd1",
+  "submitted_at": "2026-10-27T00:00:00+08:00",
+  "file_count": 1,
+  "total_bytes": 0,
+  "entry_count": 1
+}

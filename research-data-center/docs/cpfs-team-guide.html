@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="三台科研服务器共享资料的目录、下载协调、版本发布、实验、容量和恢复规范。区分现场事实与待实施能力。">
+<title>CPFS 共享科研资料与实验规范 · 科研数据管理中心</title>
+<link rel="stylesheet" href="standards.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="topbar"><a class="back-link" href="/">← 返回资料中心</a><span class="topbar-title">CPFS 共享科研资料与实验规范</span><a href="standards.html">资料总规范 →</a></header>
+<div class="page-shell">
+<aside class="sidebar"><p class="nav-kicker">团队使用手册 / CONTENTS</p><nav aria-label="本页目录"><a href="#status"><span>01</span>当前状态</a>
+<a href="#daily"><span>02</span>成员速查</a>
+<a href="#layout"><span>03</span>目录与身份</a>
+<a href="#downloads"><span>04</span>跨主机下载</a>
+<a href="#publication"><span>05</span>增补与发布</a>
+<a href="#permissions"><span>06</span>身份与权限</a>
+<a href="#io"><span>07</span>缓存与训练</a>
+<a href="#experiments"><span>08</span>实验与派生</a>
+<a href="#capacity"><span>09</span>容量与备份</a>
+<a href="#mount"><span>10</span>挂载保护</a>
+<a href="#migration"><span>11</span>迁移与切换</a>
+<a href="#acceptance"><span>12</span>验收与负责人</a>
+<a href="#sources"><span>13</span>依据与来源</a></nav><div class="nav-note"><strong>当前状态与设计分开</strong><p>迁移以操作回执为准。自动下载协调、增补和发布机制需验收后启用。</p><p><a href="cpfs-team-guide.md" download>下载完整 Markdown</a></p><p><a href="templates/cpfs-run-README.md" download>下载实验记录模板</a></p></div></aside>
+<main id="main">
+<section class="hero section" id="start" aria-labelledby="guide-title">
+<p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>三台服务器 · 一个共享资料体系 · 2026-10-27</p>
+<h1 id="guide-title">资料共享，实验有据。<br>从下载到复现的团队约定</h1>
+<p class="hero-lead">把数据集和模型放在共同可引用的位置，让每次下载、整理和实验都有明确的版本与责任。现有资料保持身份和内部结构，新资料经校验后进入正式库。</p>
+<div class="hero-tags"><span>目标 /data/share/datasets</span><span>目标 /data/share/models</span><span>复用 public/ 个人工作区</span><span>保留旧路径兼容入口</span></div>
+<div class="portal-grid"><a class="portal-card" href="#daily"><span class="eyebrow">成员使用</span><h3>八条日常规则</h3><p>查资料、下载、做实验，从这里开始。</p></a><a class="portal-card" href="#downloads"><span class="eyebrow">全组协作</span><h3>下载与正式发布</h3><p>避免多机重复下载和共享文件竞争。</p></a><a class="portal-card" href="#migration"><span class="eyebrow">本轮交付</span><h3>迁移与核验</h3><p>新旧位置、验证等级和切换证据。</p></a><a class="portal-card" href="#acceptance"><span class="eyebrow">后续实施</span><h3>负责人和验收</h3><p>哪些能力待启用，如何确认可用。</p></a></div>
+<div class="callout warning"><strong>已授权迁移；自动化机制仍待实施</strong><p>本文不是完成回执。当前共享盘采用 NFSv3，挂载参数含 nolock / local_lock=all，不能靠 flock 实现跨主机排他。既有 public/ 和 .snapshots/ 的管理边界保持不变。</p></div>
+<p class="small-note"><a href="cpfs-team-guide.md" download>下载完整规范</a> · <a href="templates/cpfs-run-README.md" download>实验记录模板</a> · <a href="standards.html">数据集与模型说明模板</a></p>
+</section>
+<section class="section" id="status" aria-labelledby="status-title"><div class="section-head"><span class="section-number">01</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="status-title">先了解当前状态</h2></div></div>
+<p>本轮目标是把本机 <code>/data/datasets</code>、<code>/data/models</code> 搬到 <code>/data/share/datasets</code>、<code>/data/share/models</code>，保留旧路径兼容软链，更新管理中心的位置与核验记录。已有资源先保持内部结构和身份；移动位置不等于建立了新的资源、完成了内容校验或冻结了发布版本。</p>
+<p>本文给出迁移后的团队规范及后续实施条件。<strong>文档本身不证明迁移完成，也不代表上传、配额、下载协调器、定时 Agent 或自动发布已经运行。</strong> 实际迁移结果以逐路径清点、校验和切换回执为准。此前总规范中的“本轮原位不搬迁”是上轮边界；本次授权更新了存储位置，资源身份、README、清单与 READY 协议继续沿用。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">项目</th><th scope="col">已观察或已确认的事实</th><th scope="col">对本轮的约束</th></tr></thead><tbody><tr><td>共享挂载</td><td>本机 <code>/data/share</code> 为 NFSv3，来源 <code>10.0.0.202:/share</code>；用户确认另两台也使用同一共享盘</td><td>另两台的实际挂载、身份映射和故障行为尚待逐机验收</td></tr><tr><td>关键挂载参数</td><td><code>hard,nolock,local_lock=all,sec=sys</code>，读写块大小 1 MiB，<code>noresvport</code></td><td>当前文件锁只在单机排他；不改变在线挂载参数</td></tr><tr><td>容量快照</td><td>共享盘约 11 T，已用约 3.3 T、可用约 7.4 T；本机 <code>/data</code> 约 9.8 T、已用约 9.7 T、可用约 80 G</td><td>这是现场快照；实际任务重新检查容量。本机不得先做整库暂存</td></tr><tr><td>已有共享内容</td><td>已有 <code>public/&lt;username&gt;</code> 工作区和 <code>.snapshots/</code></td><td>复用个人工作区；不接管他人文件、权限或已有快照目录</td></tr><tr><td>正式库目标</td><td><code>/data/share/datasets</code>、<code>/data/share/models</code>，检查时尚不存在</td><td>是否已建立、已完成迁移，查看本次操作回执</td></tr><tr><td>产品配置</td><td>CPFS 产品型号、fileset 与 dataflow 配置未核实</td><td>当前探针结果不能泛化到其他 fileset 或节点；完整发布流程仍须验收</td></tr><tr><td>本机能力探针</td><td>新建私有探针内，数字归属、mode、纳秒 mtime、软硬链接、非空目录 rename 通过；ACL 与 user xattr 返回不支持；本机 XFS 的目录/软链 EXCHANGE 通过</td><td>本次源清点未发现 xattr/ACL；迁移不依赖它们。NFS NOREPLACE 另测返回不支持；探针未证明断电持久化或另两台行为</td></tr><tr><td>管理中心</td><td>现有服务主要提供目录展示和只读 API；活跃 SQLite 在本机</td><td>写入协调、个人身份、配额和定时整理是后续能力</td></tr></tbody></table></div>
+<p>Linux 明确说明 <code>nolock</code> 和 <code>local_lock</code> 的排他范围；阿里云通用版 CPFS 的 NFS 协议服务也列出不支持 NLM 的限制。产品文档用于识别风险，不能替代本集群测试。<a href="https://man7.org/linux/man-pages/man5/nfs.5.html">Linux NFS 挂载语义</a> · <a href="https://www.alibabacloud.com/help/en/cpfs/cpfsonecs/product-overview/limits-1">CPFS 通用版限制</a></p>
+</section>
+<section class="section" id="daily" aria-labelledby="daily-title"><div class="section-head"><span class="section-number">02</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="daily-title">成员日常使用的八条规则</h2></div></div>
+<ol><li><strong>先查管理中心，再发起下载。</strong> 相同来源、固定版本和文件选择已有可用副本时直接引用；目录同名不证明相同内容。</li><li><strong>实验读取固定版本，输出写个人工作区。</strong> 不在正式资料目录解压、改标签、保存缓存或 checkpoint；现有未冻结资料同时记录路径、观测时间和已知清单摘要。</li><li><strong>下载与增补先暂存。</strong> 后续使用分配的 <code>incoming/&lt;submission-id&gt;</code>；入口未启用时由指定管理员安排，不自行建公共写入入口。</li><li><strong>说明与数据一起交付。</strong> README 写清是什么、来源、用途、负责人或未知状态、使用依据、主要结构；正式版本还须有完整清单和内容校验。</li><li><strong>不把 <code>main</code>、<code>latest</code> 或目录修改时间当实验版本。</strong> 优先固定上游提交、发布编号和本地清单摘要。</li><li><strong>一项下载只交给一个受协调的任务。</strong> 多卡训练不要每个进程自行联网下载；恢复任务也不同时写同一暂存目录。</li><li><strong>公共区表示团队整理范围。</strong> 它不自动赋予成员读取权限，也不表示开放版权或可外发；未知许可照样编目，但分发决定另行记录。</li><li><strong>挂载、容量或内容不满足要求时停止新写入。</strong> 不回退到本机同名空目录、不静默重下载、不改共享挂载参数来绕过故障。</li></ol>
+</section>
+<section class="section" id="layout" aria-labelledby="layout-title"><div class="section-head"><span class="section-number">03</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="layout-title">简单、稳定的目录与身份</h2></div></div>
+<p>目标布局如下。现有原始内部目录在迁移中保持不变；<code>releases/</code> 用于后续规范化发布，不能通过移动旧目录直接把它标成已冻结版本。</p>
+<pre class="directory-tree"><code>/data/share/
+├── datasets/                         # 共享数据集；现有目录先保持结构
+│   └── &lt;slug&gt;/releases/&lt;version&gt;/    # 后续正式版本
+│       ├── README.md                # 规范元数据 + 人类说明
+│       ├── manifest.jsonl           # 相对 content/ 的文件清单
+│       └── content/                 # 固定版本内容
+├── models/                           # 同样的正式版本结构；保留上游配套文件
+├── public/&lt;username&gt;/               # 已有个人工作区，不改变他人权限
+│   └── projects/&lt;project&gt;/runs/&lt;run-id&gt;/
+├── incoming/&lt;submission-id&gt;/         # 待启用：按提交隔离，非任意共同写入
+├── registry/                        # 待启用：目录导出、回执、备份副本
+├── locks/                           # 可选：任务状态投影，不充当分布式锁
+└── .snapshots/                      # 已有管理边界，不自行操作
+
+/data/datasets -&gt; /data/share/datasets  # 切换完成后才成立
+/data/models   -&gt; /data/share/models</code></pre>
+<p><code>public/</code> 名字不代表所有子目录都公开。跨成员合作先由相关目录负责人约定项目路径与组权限；不额外建立平行 <code>users/</code> 树，也不自动创建全组可写 <code>projects/</code> 根。上图中新增流程目录须等对应能力验收后启用。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">概念</th><th scope="col">记录什么</th><th scope="col">不应混为一谈</th></tr></thead><tbody><tr><td>逻辑资源</td><td>稳定资源 ID、类型、名称、研究用途、来源、维护责任</td><td>文件夹名称、文件系统 owner 都不是稳定资源身份</td></tr><tr><td>发布版本</td><td>资源 ID + 不变版本号、清单摘要、上游固定版本、划分和生成方式</td><td>迁移日期、<code>main</code>、一次目录扫描不是内容版本</td></tr><tr><td>存储位置</td><td>规范路径、旧路径别名、节点缓存、访问和核验状态</td><td>同源多副本不是多个独立数据集</td></tr><tr><td>派生关系</td><td>父资源版本、处理代码与参数、划分摘要、生成实验</td><td>特征、增强样本或微调权重不能丢掉父版本关系</td></tr></tbody></table></div>
+<p>正式发布的 <strong>README YAML 规范元数据是该版本的唯一事实源</strong>；管理中心、JSON 和 SQLite 是它的投影。任务状态、权限观测、容量观测与审计记录属于运行事实，另外保存。现有资源尚未建立合格 README 时，保留台账、原位卡片和 sidecar 过渡，不伪造来源、维护人、许可或版本。</p>
+<p>原资源 ID 和旧路径映射必须保留。迁移不能根据新路径重新分配 ID；同源复制通过位置关系表达，内容不同则继续核对，不能仅凭 basename 或大小自动合并。新版本不覆盖旧版本；更正说明增加 <code>metadata_revision</code>，修改数据、标签、划分或权重则生成新的内容版本。</p>
+</section>
+<section class="section" id="downloads" aria-labelledby="downloads-title"><div class="section-head"><span class="section-number">04</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="downloads-title">跨主机下载：一个协调入口</h2></div></div>
+<p><strong>当前挂载不能把 <code>flock</code>、Hugging Face 缓存锁或共享锁文件当作三台服务器的全局排他机制。</strong> 每台机器的本机锁可以成功，但另一台仍可能同时写。也不要让多个主机向一个文本日志追加状态。NFSv3 的共享可见性不等于并发写入安全。<a href="https://man7.org/linux/man-pages/man2/flock.2.html">Linux flock</a> · <a href="https://www.alibabacloud.com/help/en/cpfs/cpfsonecs/product-overview/limits-1">CPFS 协议限制</a></p>
+<p>建议先实施一个小型协调器：单进程服务负责任务去重与发布决定，状态数据库保留在一台服务器本地；三台服务器的 worker 通过受认证接口领取任务。SQLite 不放到 NFS 上供多机直接写。<a href="https://www.sqlite.org/useovernet.html">SQLite 关于网络文件系统的说明</a></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">步骤</th><th scope="col">必须满足的规则</th></tr></thead><tbody><tr><td>查重</td><td>把来源、仓库类型、仓库标识、解析后的固定 revision、文件选择与处理规则版本组成规范任务键；同一版本的不同子集明确区分</td></tr><tr><td>接单</td><td>同一请求 ID 与相同请求摘要返回同一任务；同 ID 改内容返回冲突。校验申请人的来源访问权，不能泄露或复用其无权访问的资料</td></tr><tr><td>分配</td><td>每个任务分配唯一 job、attempt、worker、暂存路径、预计容量和有效发布凭证；同一任务键最多一个获准执行的 attempt</td></tr><tr><td>下载</td><td>worker 只写本 attempt 的独立目录；不在共享 HF 可变缓存中竞争。不同任务可以在全局带宽、并发和容量预算内并行</td></tr><tr><td>完成</td><td>worker 关闭写入、生成清单、上报结果；只有发布者能写正式版本父目录，worker 不能直接“完成后 mv”</td></tr><tr><td>超时与重试</td><td>心跳超时不证明进程已死。先撤销旧 attempt 发布资格、隔离旧路径；新 attempt 使用新路径。发布时校验最新代次，拒绝过期结果</td></tr><tr><td>恢复</td><td>协调器重启先核对任务、暂存和发布回执；不按锁文件年龄抢锁，不自动双主。服务不可用时暂停新下载与发布，已有只读版本继续使用</td></tr></tbody></table></div>
+<p><code>locks/</code> 如保留，只用于给成员看任务负责人和状态；真正裁决来自协调器事务和发布者权限。仅靠 <code>mkdir</code> 或 <code>O_EXCL</code> 自制租约也不能解决失联、过期写入和误抢锁；没有跨主机故障测试就不投入使用。</p>
+<p>协调器实施前采用指定发布者串行处理登记队列，成员与其确认任务后再下载到分开的路径。此时属于人工协调，不能在前端显示为“已启用全组自动锁”。自动化启用后，规则内新版本可自动发布，不要求每次人工批准；冲突、共享依据缺失、大规模改写和回收进入异常队列。</p>
+</section>
+<section class="section" id="publication" aria-labelledby="publication-title"><div class="section-head"><span class="section-number">05</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="publication-title">增补、校验与正式发布</h2></div></div>
+<p>公共任务状态统一为：<code>draft → submitted → validating → needs_information / ready → publishing → published</code>，并保留 <code>failed / cancelled</code>。needs_information 是缺失或冲突分支，ready 表示校验后可发布；提交模板的 ready 布尔值只展示传输完成，含义不同。登记、接收文件可作为 submitted 之前的内部进度，不另建冲突状态。每次变化记录操作者、时间、输入摘要与原因；成员能看到已接手回执，不能只看到本地文件上传完成。</p>
+<p>使用已有 <a href="templates/dataset-README.md">数据集 README</a>、<a href="templates/model-README.md">模型 README</a>、<a href="templates/submission-README.md">增补 README</a> 和 <a href="templates/field-guide.md">字段约定</a>。模板已区分未来 CPFS 规范位置、复制期间来源与切换后的兼容别名；新接口仍需实现，模板不会自行开启上传。</p>
+<ol><li><strong>分配与传入。</strong> 分配 <code>incoming/&lt;submission-id&gt;</code> 后通过 CLI、SFTP 或 rsync 传入，默认不依赖浏览器搬大文件。提交最小信息包括名称、类型、一句话用途、提交者、来源说明、共享依据状态和预计容量；未知值明确留空。</li><li><strong>完成标记。</strong> 工具确认所有传输和写入结束后生成清单，再生成 <code>READY.json</code>。完成标记绑定清单原始字节的 SHA-256，不是对目录名称做摘要；写入临时文件后完成发布标记，不让接手者读到半份 JSON。</li><li><strong>接手与隔离。</strong> 校验标记后登记任务并返回回执。READY 不会冻结打开的文件，chmod 或 rename 也不能撤销既有文件描述符。发布者把成员可写暂存复制到自己独占、具有独立 inode 的发布暂存区，再依据清单校验复制品；不把成员可写文件的硬链接当作冻结副本。经控制的专用下载 worker 可采用等价的已验证独占写入交接机制。</li><li><strong>内容校验。</strong> 检查清单每个路径、类型、大小与 SHA-256；拒绝越界路径、跨出批准内容边界的软链、缺件或未申报文件。解包先做容量与路径检查。上游 checksum、来源 revision 与本地 checksum 分别记录；不因 SHA-256 一致就推断许可或研究标签正确。</li><li><strong>规范核对。</strong> 正式 README 补全稳定身份、版本、内容范围、语言/模态、研究用途、限制、来源、维护责任或明确待定状态、共享条件与衍生关系。存在未解决的分发依据问题时可以登记，但不自动放宽访问或外发。</li><li><strong>发布与索引。</strong> 在已验证支持的同一文件系统内，从发布者独占目录提交到未占用的版本目标；禁止覆盖已有版本。先生成可恢复的发布意图，再提交内容、记录结果、刷新管理中心。数据提交和 SQLite 事务不是一个原子事务，必须能够对账恢复。</li></ol>
+<pre class="directory-tree"><code>{
+  &quot;submission_id&quot;: &quot;sub-20261027-example&quot;,
+  &quot;manifest_sha256&quot;: &quot;0000000000000000000000000000000000000000000000000000000000000000&quot;,
+  &quot;submitted_at&quot;: &quot;2026-10-27T12:00:00+08:00&quot;
+}</code></pre>
+<p>上例摘要为占位示意，不能用于真实接手。工具应生成实际值，格式见 <a href="templates/ready.schema.json">READY schema</a>。相同 <code>(submission_id, manifest_sha256)</code> 重试返回原任务；同编号不同摘要为冲突，内容改变用新编号关联旧提交。正式 <code>(resource_id, version)</code> 具有唯一性，已存在目标先核对，绝不覆盖。</p>
+<p><strong>原子发布有前提。</strong> 本机 XFS 到 CPFS 的复制不是原子 rename；本机私有探针的非空目录重命名已通过，NFS NOREPLACE 另测返回不支持。当前迁移可采用单一发布者先原子 mkdir 建立 root 专属的空目录占位，再核对其 inode、权限、空状态和挂载边界后，以普通 rename 替换占位；目标已存在即停止，不清理或覆盖陌生内容。本机私有探针已通过“非空源替换自己的既有空占位”这一精确操作；异常对账与完整切换恢复仍须验收，不能把一次成功视为所有故障路径均已验证。CPFS 文档对关联 dataflow 的 fileset 有相关限制，不能把单一路径探针泛化为整个产品的保证。上线前测试并发读者只能看到完整版本、目标已存在时不会覆盖、flush 行为及中断恢复。测试不通过就暂停此发布模式，另行选定支持的发布位置或“完整对象 + 提交记录”方案，不能以往正式目录逐个复制冒充原子发布。<a href="https://www.alibabacloud.com/help/en/cpfs/cpfsonecs/product-overview/limits-1">CPFS 限制</a> · <a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename 语义</a> · <a href="https://man7.org/linux/man-pages/man2/fsync.2.html">fsync 语义</a></p>
+<p>NFS 操作报错后还须核对目标与任务状态：报错并不总表示服务端没有完成 rename。发布版本只读是团队权限和流程约束，不是硬件不可变存储；管理员修改仍需留痕，内容修订应创建新版本。</p>
+</section>
+<section class="section" id="permissions" aria-labelledby="permissions-title"><div class="section-head"><span class="section-number">06</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="permissions-title">身份、权限与共享边界</h2></div></div>
+<p>三台机器先比对成员和服务账户的 <strong>数字 UID/GID 与补充组</strong>，再启用跨主机写入。同名账号不保证数字身份相同；迁移保留数字归属，并把无法映射的 ID 列为待处理项，不盲目递归 chown。维护人是研究责任角色，文件 owner 是系统权限事实，两个字段分开。<a href="https://man7.org/linux/man-pages/man7/inode.7.html">Linux inode 权限与身份</a></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">位置/角色</th><th scope="col">建议权限边界</th></tr></thead><tbody><tr><td>现有迁入数据</td><td>先保持原权限与访问差异，登记 restricted；不因进入共享盘自动 chmod 放开</td></tr><tr><td>新正式版本</td><td>发布账户持有写权；获准团队组读取。提交者与训练账户不能改正式库；发布父目录也不授予成员写权</td></tr><tr><td>incoming</td><td>每个提交独立写入者；读取范围按共享条件设置，不设整个根目录 0777</td></tr><tr><td>public/个人目录</td><td>尊重已有所有者与权限；合作成员通过约定项目组进入，不全组递归授权</td></tr><tr><td>管理中心</td><td>元数据可见性和原始文件可读性分开；未来写接口需要个人身份、权限核对和审计，不能把 loopback 当身份系统</td></tr><tr><td>管理员</td><td>负责 UID/GID、发布账户和目录边界；变更仅覆盖已批准对象，保留操作记录</td></tr></tbody></table></div>
+<p><code>sec=sys</code> 依赖主机提交的系统身份，不能把它当作独立的强身份认证；受信任客户端管理员仍在安全边界内。本机 ACL 与 user xattr 探针均返回不支持，当前方案使用经过核实的基本 UID/GID 和 mode，不依赖默认 ACL。组继承、setgid 等仍须在实际使用节点验证，不照搬本地 ext4/XFS 的权限假设。所有公共区内容均纳入元数据整理；是否团队可读、是否可外发、来源许可分别记录。</p>
+</section>
+<section class="section" id="io" aria-labelledby="io-title"><div class="section-head"><span class="section-number">07</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="io-title">下载、缓存和训练 I/O</h2></div></div>
+<p>Hugging Face 下载固定提交 revision，并记录仓库类型、仓库 ID、实际文件选择和工具版本；使用过滤下载时必须说明这是子集。权重、分片索引、配置、tokenizer 和必要配套文件应属于同一提交。正式版本从本地明确路径加载，缺件就报错，不在训练进程中静默补下载。<a href="https://huggingface.co/docs/huggingface_hub/main/guides/download">Hugging Face 下载指南</a></p>
+<p>HF 缓存可能通过 <code>snapshots/</code> 中的软链引用 <code>blobs/</code>，迁移时只搬 snapshot 会破坏引用。已有缓存目录保持其内部关系并核验；后续发布决定保留完整布局还是复制为独立内容，记录选择，不把缓存本身等同于正式发布版本。<a href="https://huggingface.co/docs/huggingface_hub/main/guides/manage-cache">Hugging Face 缓存结构</a></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">场景</th><th scope="col">团队规则</th></tr></thead><tbody><tr><td>下载凭据</td><td>不把共享 HF_HOME 当全组账号；token 放成员私有目录或受控服务凭据中，不写入 README、任务日志或公共缓存</td></tr><tr><td>本地加速</td><td>在确认的本地 SSD 与预算内建按版本/清单命名的缓存；本机 <code>/data</code> 剩余约 80 G 的现场状态不适合整库落地，也未证明它就是 SSD</td></tr><tr><td>缓存命中</td><td>校验需要的文件完整后再使用；记录源版本，运行中固定缓存引用。缓存可重建，正式资料和唯一实验结果不可当缓存清理</td></tr><tr><td>多卡启动</td><td>一个受协调的准备阶段完成资料就绪，各 worker 检查同一版本与可读性；不让每个 rank 自行下载、解包或扫全库</td></tr><tr><td>小文件训练</td><td>用已有 manifest 和样本索引，避免每轮递归 find/glob；必要时生成新的派生分片并基准测试，保留样本映射与随机化规则，不覆盖原件</td></tr><tr><td>大文件/权重</td><td>保留上游分片与索引；并发度由实际吞吐、延迟和训练影响调节，不用无上限下载线程“提速”</td></tr><tr><td>日志和 checkpoint</td><td>每个 run、host、rank 独立日志；普通 checkpoint 由指定进程写，分布式分片各有唯一文件。写临时名，完整交付后标记可恢复</td></tr><tr><td>计算环境</td><td>代码用版本库，环境用可复现依赖或镜像；尽量避免在共享正式库堆 venv、包缓存和大量临时文件</td></tr></tbody></table></div>
+<p>HF 的 token 与缓存路径可分别配置，不能把凭据一起公开共享。<a href="https://huggingface.co/docs/huggingface_hub/main/package_reference/environment_variables">Hugging Face 环境变量</a> 本地缓存的回收依据任务引用和保留策略，不能仅凭 atime；软链、硬链接或克隆的共享可变数据也不能未经验证地充当独立冻结副本。</p>
+</section>
+<section class="section" id="experiments" aria-labelledby="experiments-title"><div class="section-head"><span class="section-number">08</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="experiments-title">实验可复现与派生数据</h2></div></div>
+<p>每个实验用唯一 run ID 写到约定的个人项目路径，例如 <code>public/&lt;username&gt;/projects/&lt;project&gt;/runs/&lt;run-id&gt;/</code>。复用 <a href="templates/cpfs-run-README.md">实验 README 模板</a>，至少记录输入资源和版本、清单摘要、实际读取位置、代码提交与未提交补丁、环境、启动命令、参数、随机种子、划分摘要和结果位置。未知值如实标注，不能把一次成功运行等同于完整可复现。</p>
+<pre class="directory-tree"><code>&lt;run-id&gt;/
+├── README.md
+├── config/
+├── metrics/
+├── logs/&lt;host&gt;/&lt;rank&gt;/
+├── checkpoints/
+└── artifacts/</code></pre>
+<p>划分应先确定研究问题和独立单位。对语音、医学或纵向数据，常见独立单位是说话人、患者、家庭或会话；先按合适单位拆 train/validation/test，再切片、增强或生成特征。同源镜像、不同压缩格式与重复片段不能跨集合充当独立样本。归一化、词表拟合和筛选阈值只在允许的训练部分拟合；验证集用于调参，测试集不反复参与选择。</p>
+<p>可共享的特征、清洗数据、划分和微调模型以派生资源发布：登记父资源固定版本、代码、参数、输入/输出清单、样本映射和生成 run。仅在确有复用价值时晋升正式库；每个临时中间文件不必成为一个新数据集。不可从目录名推断诊断、标签准确性或样本独立性。</p>
+</section>
+<section class="section" id="capacity" aria-labelledby="capacity-title"><div class="section-head"><span class="section-number">09</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="capacity-title">容量、清理和备份</h2></div></div>
+<p>容量准入计算必须包括：预计传输字节、解包膨胀、发布隔离副本、并发已预留容量与恢复余量。共享盘约 7.4 T 可用不等于任何范围都能搬入；迁移应分别统计逻辑大小、实际分配量、硬链接、稀疏文件和已有副本。清单全量校验与大规模复制安排在不影响训练的窗口，监测吞吐、延迟及元数据压力。</p>
+<p>建议初始水位为使用率 80% 提醒、90% 暂停新大任务、95% 进入容量处置；<strong>这是待确认的运行策略，不是已配置的配额</strong>。同时监测文件数量、目录增长和项目预留额；真实数据规模、恢复余量与产品限制优先于固定百分比。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">内容</th><th scope="col">回收与保留原则</th></tr></thead><tbody><tr><td>未完成 incoming</td><td>记录提交者、最后有效进展、原因、保留期限；确认无活跃 writer 后通知责任人，按期限隔离和回收</td></tr><tr><td>可重建本地缓存</td><td>无运行引用、可从固定正式版本重建时按容量预算回收；不只看修改时间或 atime</td></tr><tr><td>实验临时结果</td><td>每个项目指定 owner 与保留周期；关键模型、报告和论文所依赖结果先归档</td></tr><tr><td>正式版本</td><td>默认不自动删除；核对引用、替代版本和备份恢复后，登记下架/保留决定，避免悬空实验引用</td></tr><tr><td>迁移源副本</td><td>完成内容核验、切换验证、活动进程检查和约定回退保留后分批释放；不把“路径能打开”当删除依据</td></tr></tbody></table></div>
+<p>共享盘不是备份，<code>.snapshots/</code> 存在也不证明覆盖范围、保留周期或恢复可用。先确认现有快照管理方，再为唯一数据、派生结果、README/manifest、稳定 ID 注册表和服务状态确定独立备份。可重新下载的镜像也可能遇到上游撤回，至少保留固定 revision、清单与恢复步骤。</p>
+<p>活跃 SQLite 留在本机，使用数据库一致性备份方式；<code>registry/</code> 可以保存导出和备份副本，但同一共享盘内的副本不构成独立灾难恢复。阿里云提供 CPFS 备份方案，是否适配当前产品、是否已购买/启用均需确认。建议上线时完成一次异地或隔离目录恢复演练，之后按约定周期复测：检查内容摘要、权限、链接关系、注册表与最小加载，并由团队确定 RPO/RTO。<a href="https://help.aliyun.com/zh/cloud-backup/user-guide/back-up-a-cpfs-file-system">阿里云 CPFS 备份与验证</a></p>
+</section>
+<section class="section" id="mount" aria-labelledby="mount-title"><div class="section-head"><span class="section-number">10</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="mount-title">挂载失效时拒绝写入</h2></div></div>
+<p>每个下载、发布和实验启动器都应验证目标确为批准的共享挂载：匹配预期挂载点、来源、文件系统类型及登记的卷标识或只读哨兵。<code>/data/share</code> 目录存在不证明已挂载；<code>findmnt --target</code> 也可能返回覆盖该路径的父文件系统，因此必须核对实际输出，不能只检查命令成功。<a href="https://man7.org/linux/man-pages/man8/findmnt.8.html">findmnt 文档</a></p>
+<ol><li>新任务分配前、创建暂存前、正式发布前检查挂载身份、容量和目标边界；运行期间遇到 I/O 错误或挂载身份变化停止新阶段，并把异常写到本机任务状态。</li><li>挂载点下层的本机目录由管理员控制，使共享盘未挂载时普通服务账户无法向其写入；服务使用非 root 权限。不得通过自动 mkdir、回退到 <code>/data</code> 或接受空目录继续执行。</li><li>一次 shell 检查有时间窗口，不能宣称完全消除挂载切换竞争；实现要结合目录句柄、同文件系统边界检查、任务代次和持续监测，并通过故障注入验收。</li><li>当前 <code>hard</code> 挂载可能在故障时等待重试。客户端超时不证明旧写入者停止，不能因此同时启动另一个写同目录的任务；不要为“立刻返回”把在线挂载改成 soft，也不强制卸载仍在使用的共享盘。</li></ol>
+<p>此节是待实施的写入保护要求，不意味着现有 shell、训练脚本和只读门户已经有这些保护。<a href="https://man7.org/linux/man-pages/man5/nfs.5.html">Linux NFS 故障与挂载语义</a></p>
+</section>
+<section class="section" id="migration" aria-labelledby="migration-title"><div class="section-head"><span class="section-number">11</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="migration-title">迁移与管理中心切换</h2></div></div>
+<p>本次授权范围是本机两个共享资料根，目标是对应 CPFS 根；不处理 <code>public/</code> 中其他成员的目录、不修改 <code>.snapshots/</code>，也不把成员项目加入公共资料目录。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">阶段</th><th scope="col">交付证据与完成条件</th></tr></thead><tbody><tr><td>清点</td><td>逐项记录旧路径、新路径、稳定 ID、大小、文件数、链接/权限差异、活动写入情况；明确只查元数据还是已查内容</td></tr><tr><td>预检</td><td>目标容量与峰值足够；确认目标边界未被占用；测试代表性文件、软硬链接、稀疏文件和权限保留能力；现有作业影响可接受</td></tr><tr><td>复制</td><td>保持原有内部结构、时间与可保留的数字归属；能力不支持或权限不足的项目显式报告。文件仍变化时安排增量追平或静止窗口，不随机终止训练</td></tr><tr><td>校验</td><td>区分路径存在、清单一致和逐文件内容摘要一致；需要声明“内容验证完成”的范围必须实际全部核验。HF 链接、外链和特殊文件单独列出</td></tr><tr><td>切换</td><td>在约定窗口将旧入口改为指向新根的软链，验证旧路径与新路径读取一致；跨文件系统复制及多步入口调整不宣称整体原子</td></tr><tr><td>门户更新</td><td>新规范路径为主位置，旧路径为明确登记的兼容别名；稳定 ID、研究说明和来源继承，记录迁移回执与验证级别</td></tr><tr><td>回退与释放</td><td>先保留约定回退证据/副本；确认没有仍读写旧 inode 的活动作业，复查回退路线与新写入去向，再分批释放源空间</td></tr></tbody></table></div>
+<p>管理中心应显示“迁移目标/实际位置、旧路径别名、核验时间、范围与结论”，而不是用新路径暗示完整验证。允许列表扩展到两个新根与显式登记的旧根别名；解析软链后仍核对目标在批准根内，不能因此接受任意跨界链接。旧卡片保持 legacy/observed，直到真正完成版本发布流程。</p>
+<p>切换软链不会把已经打开的文件描述符迁移到新文件；源文件的回收要结合活动作业检查。若新位置已有变更，不能直接把旧副本当最新数据回退。<a href="https://man7.org/linux/man-pages/man2/open.2.html">Linux open 文件描述符语义</a></p>
+</section>
+<section class="section" id="acceptance" aria-labelledby="acceptance-title"><div class="section-head"><span class="section-number">12</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="acceptance-title">负责人、验收与实施次序</h2></div></div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">优先级</th><th scope="col">负责人角色</th><th scope="col">交付与验收</th></tr></thead><tbody><tr><td>P0 本次迁移</td><td>迁移执行者 + 存储管理员</td><td>本机两根清点、容量与影响检查、复制校验、兼容路径、迁移回执；不改他人工作区</td></tr><tr><td>P0 三机接入</td><td>各节点管理员</td><td>三机挂载来源、UID/GID、读取代表文件与拒写边界核对；未实测节点不标“已验收”</td></tr><tr><td>P0 可读资料</td><td>资源维护角色 + 管理中心维护者</td><td>新旧路径映射和原身份保留、说明完整度与核验级别可见；未知值不推断</td></tr><tr><td>P1 受控增补</td><td>工具维护者 + 发布者</td><td>incoming 隔离、READY 接手回执、校验、唯一目标、错误恢复；规则内新版本自动处理</td></tr><tr><td>P1 全组下载</td><td>工具维护者 + 各节点管理员</td><td>同键只执行一次、不同任务受预算并发、失联旧任务不可发布、恢复可对账</td></tr><tr><td>P1 存储运维</td><td>存储管理员 + 项目负责人</td><td>容量预留、水位、保留期限、备份覆盖与一次可验证恢复；产品级配额支持需另核实</td></tr><tr><td>P2 性能优化</td><td>使用者 + 工具维护者</td><td>用真实训练基准决定缓存与派生分片；记录优化前后吞吐、等待和容量代价</td></tr></tbody></table></div>
+<p>自动整理/发布启用前，至少通过以下测试：</p>
+<ul><li>两台不同主机同时提交同一固定来源，只分配一个有效任务；故障恢复后没有重复发布。</li><li>相同提交重复请求返回原回执；同编号改摘要、已有版本目标或越界链接被拒绝。</li><li>旧 worker 失联后恢复也不能发布；任何 worker 均不能写正式发布父目录。</li><li>发布中断可恢复对账；并发读取者看不到已宣布发布但缺文件的版本；NFS 报错后先核对实际状态。</li><li>挂载缺失或来源不符时，普通账户无法落入本机目录写入；容量不足不开始新大任务。</li><li>三机 UID/GID 与读权限一致；不同成员不能互改暂存和个人实验目录。</li><li>隔离目录恢复一次真实备份，文件摘要、链接、权限、稳定 ID 与最小加载均符合记录。</li></ul>
+<p>待明确事项：实际 CPFS 产品与 fileset/dataflow；另两台管理员接入与身份表；全组发布者和资源维护角色；既有快照/备份负责人；各项目容量和保留预算；来源许可未知资源的具体团队使用依据；自动协调器的实现与维护方式。<strong>这些待决事项限制后续功能启用，不撤销本次已经授权的迁移。</strong></p>
+</section>
+<section class="section" id="sources" aria-labelledby="sources-title"><div class="section-head"><span class="section-number">13</span><div><p class="eyebrow">共享科研资料 · 操作规范</p><h2 id="sources-title">依据与适配说明</h2></div></div>
+<p>以下是本规范使用的官方或上游资料。文档说明的是产品和接口行为；本文中的角色、目录、状态机、水位和验收项是根据本团队规模提出的设计，并非厂商已经替团队实现的功能。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的规范表格"><table><thead><tr><th scope="col">来源</th><th scope="col">本规范采用的原则</th></tr></thead><tbody><tr><td><a href="https://www.alibabacloud.com/help/en/cpfs/cpfsonecs/product-overview/limits-1">阿里云 CPFS 通用版限制</a></td><td>区分 NFS 与 POSIX 能力；不假设 NLM、并发 append 或 dataflow 目录 rename；产品配置待实测</td></tr><tr><td><a href="https://man7.org/linux/man-pages/man5/nfs.5.html">Linux nfs</a> 与 <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock</a></td><td>当前 nolock/local_lock 不能跨机互斥；故障期间不以改 soft 或抢锁绕过</td></tr><tr><td><a href="https://man7.org/linux/man-pages/man2/rename.2.html">Linux rename</a>、<a href="https://man7.org/linux/man-pages/man2/fsync.2.html">fsync</a>、<a href="https://man7.org/linux/man-pages/man2/open.2.html">open</a></td><td>跨挂载不原子；持久化和异常恢复要验证；打开的文件不会因改名自动冻结</td></tr><tr><td><a href="https://man7.org/linux/man-pages/man7/inode.7.html">Linux inode</a> 与 <a href="https://man7.org/linux/man-pages/man8/findmnt.8.html">findmnt</a></td><td>数字身份一致、权限边界和真实挂载核验</td></tr><tr><td><a href="https://www.sqlite.org/useovernet.html">SQLite 网络使用说明</a></td><td>活跃数据库留本地，通过服务协调；共享盘用于导出和一致性备份副本</td></tr><tr><td><a href="https://huggingface.co/docs/huggingface_hub/main/guides/download">Hugging Face 下载</a>、<a href="https://huggingface.co/docs/huggingface_hub/main/guides/manage-cache">缓存</a>、<a href="https://huggingface.co/docs/huggingface_hub/main/package_reference/environment_variables">环境变量</a></td><td>固定 revision、记录子集、保持 snapshot/blob 关系、分开凭据与缓存</td></tr><tr><td><a href="https://help.aliyun.com/zh/cloud-backup/user-guide/back-up-a-cpfs-file-system">阿里云 CPFS 备份</a></td><td>备份需实际配置与完成记录，并通过恢复测试验证</td></tr></tbody></table></div>
+<p>规范维护以实测和任务回执为准。后续启用一项能力，就同步更新该项状态、负责角色和验证时间，避免把设计建议长期显示为已上线功能。</p>
+</section>
+<footer class="page-footer"><p>科研数据管理中心 · 2026-10-27 · 规范中的建议只有通过验收并更新状态后才视为已启用。</p><p><a href="#start">返回页首 ↑</a> · <a href="/">返回资料中心</a></p></footer>
+</main></div>
+</body></html>

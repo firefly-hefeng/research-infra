@@ -1,0 +1,247 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "submission_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "dataset",
+        "model",
+        "collection",
+        "feature",
+        "annotation",
+        "artifact"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contributor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contact": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "contact"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "upstream_revision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "reference",
+        "description",
+        "upstream_revision"
+      ],
+      "additionalProperties": false
+    },
+    "rights": {
+      "type": "object",
+      "properties": {
+        "team_use": {
+          "enum": [
+            "allowed",
+            "restricted",
+            "unknown"
+          ]
+        },
+        "external_distribution": {
+          "enum": [
+            "allowed",
+            "conditional",
+            "prohibited",
+            "unknown"
+          ]
+        },
+        "license_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "team_use",
+        "external_distribution",
+        "license_id",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "register",
+            "transfer"
+          ]
+        },
+        "existing_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^/data/(?:share/)?(?:datasets|models)(?:/(?!\\.{1,2}(?:/|$))[^/\\\\\\u0000-\\u001f]+)*/?$(?![\\s\\S])",
+          "description": "Canonical targets are /data/share/datasets and /data/share/models. Old /data/datasets and /data/models paths remain valid as pre-cutover sources or explicitly verified legacy aliases. Schema acceptance never proves migration activation, readability, or publication; check receipts and resolved boundaries at runtime."
+        },
+        "estimated_bytes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mode",
+        "existing_path",
+        "estimated_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "proposed_resource_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-z][a-z0-9._:-]{2,127}$"
+    },
+    "proposed_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "relation_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "ready": {
+      "type": "boolean",
+      "description": "Tool-maintained completion display only; not the validated ready task state. Cannot replace READY.json, takeover receipt, or content stability checks."
+    }
+  },
+  "required": [
+    "schema_version",
+    "submission_id",
+    "title",
+    "kind",
+    "summary",
+    "contributor",
+    "source",
+    "rights",
+    "delivery",
+    "proposed_resource_id",
+    "proposed_version",
+    "relation_note",
+    "ready"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Data Center Submission 1.0",
+  "description": "Minimal proposed submission form, not a live upload API. Unknown values remain null/unknown.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "delivery": {
+            "properties": {
+              "mode": {
+                "const": "register"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "delivery": {
+            "properties": {
+              "existing_path": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery": {
+            "properties": {
+              "mode": {
+                "const": "transfer"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "delivery": {
+            "properties": {
+              "existing_path": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

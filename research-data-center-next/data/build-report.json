@@ -1,0 +1,24 @@
+{
+  "total": 228,
+  "public_roots": [
+    "/data/share/datasets",
+    "/data/share/models"
+  ],
+  "migration": {
+    "migration_id": "cpfs-20261027",
+    "state": "switched",
+    "activated": true,
+    "cutover_at": "2026-10-27T08:25:26.786190+00:00",
+    "verification_ref": "data/migration-evidence/objects/044490e2fffe87a7308e0d2a004f4965bae2a02d37dccc1dbc3166d9b8d50ebb.json",
+    "baseline_catalog_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871"
+  },
+  "by_kind": {
+    "dataset": 218,
+    "model": 10
+  },
+  "by_status": {
+    "verified": 228
+  },
+  "counting_note": "迁移保持原记录身份与数量；物理文件清点独立，不等于资源记录数。",
+  "physical_inventory_paths": 221
+}

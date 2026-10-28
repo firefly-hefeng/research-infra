@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+var/
+logs/
+.venv/
+*.tar.gz
+data/sources/zip-response.json
+data/sources/assets-20261018.csv
+data/sources/evidence-20261018.zip
+data/sources/evidence/
+data/sources/live-metadata.json
+data/audio-agent-assets.json
+data/discovery*.txt
+data/models-roots.txt
+data/models-discovery.txt
+

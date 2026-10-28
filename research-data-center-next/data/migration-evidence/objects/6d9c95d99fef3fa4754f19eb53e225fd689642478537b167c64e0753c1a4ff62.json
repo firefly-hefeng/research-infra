@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "migration_id": "cpfs-20261027",
+  "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+  "baseline_catalog_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871",
+  "source_manifest_sha256": "abf15d245255a9d8927ce6078dee9160c81dc7b88e1c0ae5bfdd0469990f4220",
+  "status": "passed",
+  "observed_at": "2026-10-27T08:24:23.659376+00:00",
+  "mount": {
+    "target": "/data/share",
+    "source": "10.0.0.202:/share",
+    "fstype": "nfs"
+  },
+  "source_before_switch": {
+    "status": "passed",
+    "observed_at": "2026-10-27T08:24:10.986026+00:00",
+    "receipt_sha256": "6150182233629a9700a78008679f6ee6df88a36913b948b83aa1d1fda62cc71c",
+    "scope": "original_inode_metadata"
+  },
+  "usage_before_switch": {
+    "status": "passed",
+    "observed_at": "2026-10-27T08:24:23.659376+00:00",
+    "receipt_sha256": "9c376db964c5274a207729e369c08e869d767cb6dcc997b24be653c2573329c6",
+    "scope": "local_host_inode_usage"
+  },
+  "source_semantics": {
+    "complete": true,
+    "unsupported_xattrs": 0,
+    "receipt_sha256": "e467996421ce80a1a104810c44901dc5d7a5ebea7b5d9f2c91f0e7c319be0b37"
+  },
+  "link_relocation_audit": {
+    "status": "passed",
+    "observed_at": "2026-10-26T19:34:59.631603+00:00",
+    "receipt_sha256": "f8058cf01479b0a0c5a5696f8f9ce427179ae35e19fa4a940581828e933a832c",
+    "counts": {
+      "symlinks": 174722,
+      "relative_links": 58,
+      "absolute_internal_alias_dependencies": 74,
+      "absolute_external_node_dependencies": 174590,
+      "preexisting_cycles": 0,
+      "preexisting_depth_limits": 0
+    },
+    "scope": "no_new_relocation_hazards_not_all_links_usable"
+  }
+}

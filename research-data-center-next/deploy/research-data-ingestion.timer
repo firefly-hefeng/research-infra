@@ -1,0 +1,9 @@
+[Unit]
+Description=Check public incoming every five minutes on the designated host
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=research-data-ingestion.service
+[Install]
+WantedBy=timers.target

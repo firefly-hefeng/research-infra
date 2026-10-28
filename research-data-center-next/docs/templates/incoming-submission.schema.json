@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Data Center Incoming Submission 2.0",
+  "description": "Minimal member contribution description. Management owns formal resource cards and target/version authorization. Unknown rights are accepted for intake, not automatic publication.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "type",
+    "title",
+    "summary",
+    "source",
+    "rights",
+    "contributor"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "type": {
+      "enum": [
+        "dataset",
+        "model",
+        "feature",
+        "annotation",
+        "artifact",
+        "collection"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "maxLength": 300,
+      "allOf": [
+        {
+          "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+        }
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "maxLength": 8000,
+      "allOf": [
+        {
+          "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 8000,
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 8000,
+          "pattern": "\\S",
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "team_use",
+        "external_distribution"
+      ],
+      "properties": {
+        "team_use": {
+          "enum": [
+            "allowed",
+            "restricted",
+            "unknown"
+          ]
+        },
+        "external_distribution": {
+          "enum": [
+            "allowed",
+            "conditional",
+            "prohibited",
+            "unknown"
+          ]
+        },
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 8000,
+          "pattern": "\\S",
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        },
+        "license_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 8000,
+          "pattern": "\\S",
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        }
+      }
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 8000,
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        },
+        "contact": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 8000,
+          "pattern": "\\S",
+          "allOf": [
+            {
+              "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f]*$"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

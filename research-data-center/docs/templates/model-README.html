@@ -1,0 +1,52 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191221"><title>模型说明模板 · 公共科研资源中心</title><link rel="stylesheet" href="../standards.css"></head><body><a class="skip-link" href="#main">跳至模板正文</a><header class="topbar"><a class="back-link" href="index.html">← 模板阅读中心</a><span class="topbar-title">RESEARCH REGISTRY / README TEMPLATE</span><a href="model-README.md" download>下载 Markdown ↓</a></header><div class="page-shell template-shell template-preview"><aside class="sidebar" aria-label="模板章节"><p class="nav-kicker">READ · WRITE · REUSE</p><nav><a href="#start"><span>00</span> 模板说明</a><a href="#part-1"><span>01</span> 模型概述与用途</a><a href="#part-2"><span>02</span> 来源与基础模型</a><a href="#part-3"><span>03</span> 文件与依赖</a><a href="#part-4"><span>04</span> 如何加载与使用</a><a href="#part-5"><span>05</span> 评估与已知限制</a><a href="#part-6"><span>06</span> 许可、团队使用与外部分发</a><a href="#part-7"><span>07</span> 版本、派生关系与引用</a><a href="#part-8"><span>08</span> 证据与待办</a><a href="#metadata"><span>YAML</span> 结构化字段</a></nav><div class="nav-note"><strong>阅读版与原文件同源</strong><p>此页展示原 Markdown 的说明正文及 YAML。下载原文件填写；现有协议和 Schema 不变。</p></div></aside><main id="main"><header class="hero section" id="start"><div class="eyebrow"><span class="status-dot"></span> 模板阅读预览</div><h1>模型说明模板</h1><p class="hero-lead">说明模型做什么、需要哪些文件、如何加载，以及哪些结论已有证据。</p><div class="readable-actions"><a class="primary-download" href="model-README.md" download>下载原始 Markdown ↓</a><a class="text-button" href="../standards.html">查看整理规范 →</a></div><p class="preview-origin">原文件：model-README.md · 说明仍为草稿，不表示已提交或发布。</p></header><article class="preview-body"><p>本模板是草稿。复制为目标资料的 README.md 后填写；当前未启用增补上传或定时 Agent；已授权的 CPFS 复制尚未完成，填写模板不触发路径切换或模型任务。YAML 是规范元数据唯一真源，正文描述使用方式和限制。</p><p>未来正式模型版本采用 <code>/data/share/models/&lt;slug&gt;/releases/&lt;version&gt;/</code>。locations 只填写有证据的实际位置；复制期间保留 <code>/data/models</code> 来源，核验切换后将新位置记为 primary、旧根兼容引用记为 legacy。保留稳定 ID、上游 revision 与历史观察，不因换盘声明新模型或已冻结版本。</p><section id="part-1"><h2>1. 模型概述与用途</h2><p>说明模型任务、输入、输出、适用范围及不适用场景。仅发现权重或缓存目录不能证明模型可加载或性能达到预期。</p></section><section id="part-2"><h2>2. 来源与基础模型</h2><p>填写官方仓库/资料责任方、上游 revision、基础模型及获取方式。微调模型记录基础版本、训练数据版本、处理代码与配置。未在团队目录登记的上游模型用可定位 target_ref 表示，不虚构内部 ID。</p></section><section id="part-3"><h2>3. 文件与依赖</h2><p>说明权重、config、tokenizer、词表及其他必要文件，框架、精度和依赖。保存上游内部结构和必要链接关系；不要单独搬迁缓存 snapshot 破坏对 blobs 的引用。</p></section><section id="part-4"><h2>4. 如何加载与使用</h2><p>给出最小加载示例和预期输入输出，但不执行未知代码或反序列化未知模型。写清设备/内存需求的来源；未测量就标记未知，不猜测 GPU 需求。</p></section><section id="part-5"><h2>5. 评估与已知限制</h2><p>提供实际评估任务、数据版本、指标、条件与来源。没有评估就写“未评估”；上游宣称与本机实测分开。不能把目录存在或权重文件数量当成模型质量证明。</p></section><section id="part-6"><h2>6. 许可、团队使用与外部分发</h2><p>模型、基础模型和训练数据的条件分别说明。团队公共区不等于允许公开下载；未知许可保持 unknown。维护人须认领，不能由文件系统 owner 自动推断。</p></section><section id="part-7"><h2>7. 版本、派生关系与引用</h2><p>区分上游 revision、本地版本和元数据修订。已发布权重变化新建版本；同一版本多处存储用 locations 表示，不重复创建资源。仅修改说明增加 metadata_revision。</p></section><section id="part-8"><h2>8. 证据与待办</h2><p>逐项记录 evidence、field_evidence 与 unknowns，注明文件观察、上游说明、维护人确认或计算结果。现有原位卡片保持 observed，不冒充 content_frozen。</p></section></article><details class="metadata-preview" id="metadata"><summary>查看原始 YAML 结构化字段</summary><div class="details-body"><p class="preview-notice">字段来自模板原文。先保留未知值，不以改变状态字段替代证据、校验或实际冻结。</p><pre class="yaml-preview"><code>schema_version: &#x27;1.0&#x27;
+profile: draft
+resource:
+  id: null
+  slug: null
+  title: 待填写：资源名称
+  kind: model
+  summary: 待填写：内容、用途和主要格式。
+  tasks: []
+  tags: []
+  legacy_ids: []
+release:
+  version: null
+  upstream_revision: null
+  origin: unknown
+  state: observed
+  metadata_revision: 1
+  updated_at: null
+maintainer:
+  id: null
+  display_name: null
+  contact: null
+sources: []
+rights:
+  metadata_visibility: unknown
+  team_use: unknown
+  external_distribution: unknown
+  license_id: null
+  license_reference: null
+  evidence_refs: []
+locations: []
+relations: []
+dataset: null
+model:
+  base_model: null
+  framework: null
+  architectures: []
+  precision: null
+  input_description: null
+  output_description: null
+  loading_reference: null
+  evaluation_reference: null
+manifest:
+  path: null
+  manifest_sha256: null
+  content_coverage: none
+  file_count: null
+  total_bytes: null
+  checked_at: null
+evidence: []
+field_evidence: {}
+unknowns: []</code></pre></div></details><footer class="page-footer"><p>公共科研资源中心 / 可阅读的说明模板</p><a href="index.html">返回模板中心 →</a></footer></main></div></body></html>

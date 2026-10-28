@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Data Center READY.json 1.0",
+  "description": "Proposed tool-generated completion marker; binds exact manifest bytes, not a lock or proof of immutable content.",
+  "type": "object",
+  "properties": {
+    "submission_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "description": "Must equal the allocated submission ID and dedicated staging directory ID."
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of exact manifest.jsonl bytes; must be verified at runtime."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Tool-generated timestamp with timezone; retries retain the first submitted marker."
+    }
+  },
+  "required": [
+    "submission_id",
+    "manifest_sha256",
+    "submitted_at"
+  ],
+  "additionalProperties": false
+}

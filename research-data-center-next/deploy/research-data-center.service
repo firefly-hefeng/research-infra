@@ -1,0 +1,29 @@
+[Unit]
+Description=Research Data Center (read-only metadata catalog)
+After=network.target
+RequiresMountsFor=/data/rmp/research-data-center
+
+[Service]
+Type=simple
+User=rmp
+Group=rmp
+WorkingDirectory=/data/rmp/research-data-center
+# Access token temporarily disabled at user request, 2026-10-19.
+# To restore, append: --token-file /data/rmp/research-data-center/var/access-token
+ExecStart=/data/services/miniforge3/bin/python /data/rmp/research-data-center/server.py --db /data/rmp/research-data-center/var/catalog.sqlite3 --host 127.0.0.1 --port 8765
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/data/rmp/research-data-center/var
+Nice=10
+IOSchedulingClass=idle
+MemoryMax=256M
+CPUQuota=25%
+
+[Install]
+WantedBy=multi-user.target
+

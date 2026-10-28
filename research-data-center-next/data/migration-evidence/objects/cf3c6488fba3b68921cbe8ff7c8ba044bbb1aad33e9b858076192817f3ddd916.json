@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "migration_id": "cpfs-20261027",
+  "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+  "baseline_catalog_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871",
+  "source_manifest_sha256": "abf15d245255a9d8927ce6078dee9160c81dc7b88e1c0ae5bfdd0469990f4220",
+  "status": "passed",
+  "observed_at": "2026-10-27T01:52:03.974559+00:00",
+  "strategy": "rsync archive + hardlinks + numeric ownership; staged directory identities preserved on publication",
+  "roots": [
+    {
+      "logical_root": "models",
+      "source_root": "/data/models",
+      "published_target_root": "/data/share/models",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-26T19:03:00.542378+00:00",
+      "finished_at": "2026-10-26T19:06:20.570653+00:00",
+      "log_sha256": "28c91477fe30af12259ddb84f8770cc7d6bd1d95c59a0c5faa88dacac1e3dc59",
+      "log_bytes": 604
+    },
+    {
+      "logical_root": "datasets",
+      "source_root": "/data/datasets",
+      "published_target_root": "/data/share/datasets",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-26T19:06:20.571144+00:00",
+      "finished_at": "2026-10-27T01:52:03.974559+00:00",
+      "log_sha256": "228cb09659b7e7d4627b21cbe7cf3ae5b968f24e6a3c92dfc0103592f65975e3",
+      "log_bytes": 692
+    }
+  ],
+  "transfer_state_sha256": "6e19d254cb4c5548e11dc6408520ecb043b3dbe8fce41dfd4ecfa6635680754b"
+}
