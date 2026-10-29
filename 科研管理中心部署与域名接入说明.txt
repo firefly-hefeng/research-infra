@@ -1,19 +1,19 @@
 科研管理中心部署与域名接入说明
-更新日期：2026年10月28日
+更新日期：2026年10月29日
 
 一、部署概况
 
 平台前端、后端与公网入口集中部署在服务器 101.132.97.146。
-公网地址：http://101.132.97.146/
-登录方式：ssh rmp@101.132.97.146
+公网地址：https://rmp.wuwangwo.top/（统一入口要求登录）
+SSH 登录方式：ssh rmp@101.132.97.146
 服务通过 systemd 管理，服务配置变更需 sudo 权限。
 另外两台服务器作为资源监控对象，不承担网站入口。
 
 二、各模块位置
 
-1. 中心首页、服务器监控、数据管理
+1. 中心首页、研究进展、服务器监控、数据管理
    前端：/var/lib/research-data-center/workspace/static/
-   后端版本：/opt/research-data-center/releases/20261028-platform-v2/
+   后端版本：/opt/research-data-center/releases/20261029-gpu-monitor-v6/
    监听：127.0.0.1:8765
    服务：research-data-center.service
 
@@ -35,7 +35,7 @@
 
 统一入口配置：/data/rmp/unified-platform/nginx.conf
 入口服务：research-platform-nginx.service
-当前公网监听 80、18080，尚未配置 443。
+当前公网已启用 rmp.wuwangwo.top 域名、HTTPS 和统一登录；直接使用 IP Host 访问会返回 403。
 
 1. 将域名 A 记录指向 101.132.97.146。
 2. 配置 HTTPS 证书、续期及 443 监听，确认云安全组放行；验收后将 HTTP 跳转到 HTTPS。
@@ -45,7 +45,7 @@
 
 四、验收与数据保留
 
-验收首页、/progress/、/papers/，以及监控、数据列表、姓名登记和日报提交。不能只确认首页能打开。
+验收首页、/#research、/api/platform/research、13 个合作机构 Logo、三个源码包下载、/progress/、/papers/，以及监控、数据列表、姓名登记和日报提交。不能只确认首页能打开。研究成果为人工审核快照，不提供公网推理。
 更新程序时保留生产配置、数据库及已有资料。主要数据位置为：
 公共资源：/data/share/datasets/ 和 /data/share/models/
 进度记录：/data/rmp/research-progress/data/

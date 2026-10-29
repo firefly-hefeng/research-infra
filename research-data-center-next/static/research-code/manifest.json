@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-28T22:11:29.921099+00:00",
+  "contains_weights_or_data": false,
+  "bundles": {
+    "depalign": {
+      "archive": "depalign-code.zip",
+      "sha256": "b6f287d81c4848270d2cb2cd697a5d67db43e929e6df8d48d6ae515241596e84",
+      "bytes": 21894,
+      "files": [
+        {
+          "path": "depalign/README.md",
+          "sha256": "0169386ecf5f7170d0199cdb23b9c749c6fc6554f02ced3c38516fbbe44b1f20",
+          "bytes": 889
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/depalign-full-path-intervention-20260922/v1/build_alpha_response_tradeoff.py",
+          "path": "depalign/intervention/build_alpha_response_tradeoff.py",
+          "sha256": "0c2b285161a0ed32fa3b0c95c428f1e705a93628b3cfe9905f6a68f99ac6d829",
+          "bytes": 3140
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/depalign-full-path-intervention-20260922/v1/evaluate_full_path_intervention.py",
+          "path": "depalign/intervention/evaluate_full_path_intervention.py",
+          "sha256": "e766f6259a86c7712939f500ebb0b76ab99a05218bac2a784b40832031a2df3b",
+          "bytes": 13016
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/depalign-full-path-intervention-20260922/v1/prepare_audio_intervention.py",
+          "path": "depalign/intervention/prepare_audio_intervention.py",
+          "sha256": "8acfd1cf3ba1ab14f9a9c6e09499ce14e1b0693f70bda78443db75218e168d88",
+          "bytes": 8329
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/project-data/edf-runs/R22-compact-msia-selection/model_source.py",
+          "path": "depalign/model_source.py",
+          "sha256": "8f9429a1138d3af104d0faee037ea6233ecae83c9149ee5b83e84f4a2a2c633e",
+          "bytes": 5838
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/depalign-route-audit-20260922/v1/run_route_audit.py",
+          "path": "depalign/route_audit/run_route_audit.py",
+          "sha256": "1d266200f6187e768f9624a4c2455449d799699d310700d21b6155a98400fbc9",
+          "bytes": 18689
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/project-data/edf-runs/R22-compact-msia-selection/training_source.py",
+          "path": "depalign/training_source.py",
+          "sha256": "75b033ff8a7695cb391c1477df61299313c41933f27554b7799fd1c5d28610cf",
+          "bytes": 12595
+        }
+      ]
+    },
+    "mmpsy-v3": {
+      "archive": "mmpsy-v3-code.zip",
+      "sha256": "bba490367e037b7129067748bd96fa2b0db17cf61c209c3c00f071dc3eacbd37",
+      "bytes": 136897,
+      "files": [
+        {
+          "path": "mmpsy-v3/README.md",
+          "sha256": "43a60175877619663fd8fd4f18521e67e02a67919b80d4b8bc685779c6d4f84a",
+          "bytes": 1189
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/reasoner-sft/adapter/README.md",
+          "path": "mmpsy-v3/adapter-README.md",
+          "sha256": "eca08512ebe69899157c88dd86241b5d0172da8ebc6b339fc941e72158df34bb",
+          "bytes": 5204
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/__init__.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/__init__.py",
+          "sha256": "1a62b2e76f8c9dcdef08808bc4fc86a9f7b7cde56249d0bc888c7c38cf203313",
+          "bytes": 49
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/app.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/app.py",
+          "sha256": "bf1d63bbbb10d354e653ae7ef5d064b9c2227221b1a3f8cb8fda1e10b777667b",
+          "bytes": 14182
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/audio.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/audio.py",
+          "sha256": "12f13478e4ad2bca280507f7ce1f89adb0327de3368e9116b6b48639e60597a4",
+          "bytes": 4617
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/audio_features.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/audio_features.py",
+          "sha256": "aabb40962c3a246f7f9f5d79c90183e516485b0b64f9e36aec0f1d592eb9d2d4",
+          "bytes": 4613
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/compact_evidence.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/compact_evidence.py",
+          "sha256": "2610dc87c63fe0c851d9d2809e7ad496a5312192e7dad42b8855802808ec3ce8",
+          "bytes": 6182
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/config.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/config.py",
+          "sha256": "c4cd4c01977790a6ffc6962632e1f71d33ef7c10eac0c60178176177ae2e6009",
+          "bytes": 596
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/cot_batch.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/cot_batch.py",
+          "sha256": "5fcc9b0e707f1ae35e4b495f120e87df4d54d20ed438ed7da587ddf9a1cf0981",
+          "bytes": 2512
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/dataset.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/dataset.py",
+          "sha256": "ad5330c00c03b527f949019c8ae4dad728baf5e8b4ff1fcfceb2a6625cec3423",
+          "bytes": 3909
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/evidence.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/evidence.py",
+          "sha256": "9e2e52e06c19984e9b4bf051653025c2d52ff30c08e9cf0389da0a5ccea10781",
+          "bytes": 11769
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/evidence_entailment.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/evidence_entailment.py",
+          "sha256": "0f54ea916064e20671b528dfb703364eb81316ecb0f7bfa99e6a24eb32691741",
+          "bytes": 5430
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/evidence_proposals.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/evidence_proposals.py",
+          "sha256": "6fa66d17d6ad3154875b1c60d7d9a1f13afd2e847fd000198cb7dbaff94f03d1",
+          "bytes": 5593
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/evidence_report_text.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/evidence_report_text.py",
+          "sha256": "675d6fcffcfbfe8a3ddfe7871d06fc731d0ecd21245507d9b8d2a0f2db3513a7",
+          "bytes": 658
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/finite_evidence_policy.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/finite_evidence_policy.py",
+          "sha256": "394349ca7e4ca979b6113d6ab7c03284dfeacab5cfaf05fb1834837a504c123e",
+          "bytes": 3849
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/gpu_reservation.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/gpu_reservation.py",
+          "sha256": "5e41072e21cd07a45e6bf1632ece229cfd1057ef2cd488cbd8c8d3007c5a3e14",
+          "bytes": 1639
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/gpu_worker.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/gpu_worker.py",
+          "sha256": "41a4397492e70e94da35323a3af10969b0067597ea801c5e9244b993d1f823e5",
+          "bytes": 14259
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/mmpsy_audio.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/mmpsy_audio.py",
+          "sha256": "9221b5ba17c802956d53d112f8227d650723b9694979afa8692f9c3ddd99d907",
+          "bytes": 3037
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/mmpsy_runtime.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/mmpsy_runtime.py",
+          "sha256": "30cafca2108203a04485719f9f9425456f1520b26b6ff32ecc1f32e0758aadb3",
+          "bytes": 9011
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/mmpsy_scorer.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/mmpsy_scorer.py",
+          "sha256": "34235946769b96f9044bd9ba1a19767b6c502eb030bdc261e3b3b3fef78574da",
+          "bytes": 2361
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/multimodal.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/multimodal.py",
+          "sha256": "c51db0e99f0dc83447b07f7ad6845b4356435028bb92c1eff16fa2381d3fd90e",
+          "bytes": 4129
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/omni_evidence_policy.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/omni_evidence_policy.py",
+          "sha256": "dca85660d4c6d985e261bdafc6b020816e8910db1a0ae6fc34f9922e6d2e84cf",
+          "bytes": 4495
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/predict.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/predict.py",
+          "sha256": "64863f02a7494fdcb2d1de0c2438bbd7cb332e48745c817602240f47c4c9baa0",
+          "bytes": 4765
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/prompts.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/prompts.py",
+          "sha256": "435c731828072d173b721c16ad984b678cd9e17f0d23130a828bd99ee8fc985e",
+          "bytes": 3061
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/raw_audio.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/raw_audio.py",
+          "sha256": "190622ce5acabb7ed4e004532fe7d2abdc89683efd4074e2af5952784ec8966d",
+          "bytes": 2869
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/reasoning.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/reasoning.py",
+          "sha256": "9bda4789c5d3036417c96e9fadeee4d7bba038c58ac936497131bbefba827fbf",
+          "bytes": 13271
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/research_status.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/research_status.py",
+          "sha256": "cf68e5d765a4a3b769dccb6b29796128ac6e5d80605aae22a9d1019dbe364f25",
+          "bytes": 1344
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/scales.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/scales.py",
+          "sha256": "455b5f8e9cd48ce11d5102d3257b7e696d4087286959338dcfa5911d4b5a503f",
+          "bytes": 2658
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/schemas.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/schemas.py",
+          "sha256": "2582361c8ab384e298258f0d3c0a6d3c003faf4d432a24a98a1bd5c23e2d0f30",
+          "bytes": 1870
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/scoring.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/scoring.py",
+          "sha256": "48838820cb7e876a8384e078f961ca3b5c3bc3fe8532f693ae3ac4268be1cf06",
+          "bytes": 9480
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/service.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/service.py",
+          "sha256": "f43a7a00f841a1fb06c6be24979d8eb150c9728559b5d6b9c8521e848992ba24",
+          "bytes": 8416
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/sft.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/sft.py",
+          "sha256": "cda8f9087e9b99b56d6f36f3ccc7c9c151bfd650977449bec84ef532128e1e92",
+          "bytes": 3231
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/source_prototypes.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/source_prototypes.py",
+          "sha256": "10f462ed76829240578427884009d2840fad6f40331a554a5b94f801a215707e",
+          "bytes": 962
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/speech_encoder.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/speech_encoder.py",
+          "sha256": "567d02c4ed8e40df985c10c6001bfe1744a42e9c10ddc2ef58d17cfafc2378f9",
+          "bytes": 4272
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/storage.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/storage.py",
+          "sha256": "c885a8a4391ecd8e36030da1c9b997db91c9281cefe960df01b9e966e0dfa9b4",
+          "bytes": 1845
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/training.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/training.py",
+          "sha256": "8f6c6a54bf601758e27a72bb8f74709baaa0897b606fe665519507fa6629e0df",
+          "bytes": 9819
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/unified_model.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/unified_model.py",
+          "sha256": "0121dc13991271fccd2597fcdbdbf91d0d46762074244e3cb6d73284048f5ebf",
+          "bytes": 18618
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/unified_runtime.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/unified_runtime.py",
+          "sha256": "2c9973e928eccc58f7d5cd5dfb1da0d4ade7bcb0318572b0cd062032a03a751f",
+          "bytes": 10999
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/depression_lab/unified_service.py",
+          "path": "mmpsy-v3/frozen_source/depression_lab/unified_service.py",
+          "sha256": "d1c7543f59ebd506508b30cd1f0990a9249e5ee01976e1821590b231d37a4cf7",
+          "bytes": 4132
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/annotate_mmpsy_compact.py",
+          "path": "mmpsy-v3/frozen_source/scripts/annotate_mmpsy_compact.py",
+          "sha256": "ebd97905eaa6f77fe581e5451296458b63672b37e6236726d1d95a7ad22d81bb",
+          "bytes": 4636
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/annotate_mmpsy_entailment.py",
+          "path": "mmpsy-v3/frozen_source/scripts/annotate_mmpsy_entailment.py",
+          "sha256": "a45c0d6bd887ffedeb373f62554434c32baa99b02a521d5ed4dbb44157d8e9f0",
+          "bytes": 6555
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/annotate_mmpsy_student.py",
+          "path": "mmpsy-v3/frozen_source/scripts/annotate_mmpsy_student.py",
+          "sha256": "9f6dfb4b0cec8c3591b32a146db52567748ab53580502817e6f61cb970989759",
+          "bytes": 4623
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/cache_mmpsy_holdout.py",
+          "path": "mmpsy-v3/frozen_source/scripts/cache_mmpsy_holdout.py",
+          "sha256": "6f5315ccfb2f61c9cdc8d0daa3b52e4d93c0b7a54d88dfc7b82cb0c7aadc5db0",
+          "bytes": 6848
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/cache_mmpsy_v2.py",
+          "path": "mmpsy-v3/frozen_source/scripts/cache_mmpsy_v2.py",
+          "sha256": "917e30ddf5c99534003d4279a11c5072ab240e7b2e761dee35ec1f6c81dfc0f2",
+          "bytes": 4060
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/check_mmpsy_audio_frontend.py",
+          "path": "mmpsy-v3/frozen_source/scripts/check_mmpsy_audio_frontend.py",
+          "sha256": "68ae0aa67fd96d2c21b97330eca9fc5ec8d47f46af66aed103f67ed01ff61152",
+          "bytes": 1455
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/evaluate_mmpsy_v2.py",
+          "path": "mmpsy-v3/frozen_source/scripts/evaluate_mmpsy_v2.py",
+          "sha256": "e71fee0432c13fd8a15d3d1d84ff9c628f1a438393b481df9c7960059078e26d",
+          "bytes": 11333
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/freeze_mmpsy_v2.py",
+          "path": "mmpsy-v3/frozen_source/scripts/freeze_mmpsy_v2.py",
+          "sha256": "97877bcfc7d5da8c7a4a97b7c42b63b3919630f74c8678de369444ed2780bbf4",
+          "bytes": 5043
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/grpo_mmpsy_selection.py",
+          "path": "mmpsy-v3/frozen_source/scripts/grpo_mmpsy_selection.py",
+          "sha256": "9e4f4b97f20e787353b89c64b741888513f169d22fbbd90be7a3d5d907ceed8f",
+          "bytes": 9690
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/prepare_mmpsy_v2.py",
+          "path": "mmpsy-v3/frozen_source/scripts/prepare_mmpsy_v2.py",
+          "sha256": "1cbcf3b5570279684323df7704afe6f38101ea88b474c150a3de32703553d281",
+          "bytes": 3613
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_audio_residual.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_audio_residual.py",
+          "sha256": "9978fb311def9c739f2bf0e5d88dcfafa8d32f60e125fbf0241955b77d17b104",
+          "bytes": 4962
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_baselines.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_baselines.py",
+          "sha256": "57e0c63c00553abe6892d61232808257259d4fc384ca63e537d4ab41a8cb9fe0",
+          "bytes": 7068
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_dense_control.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_dense_control.py",
+          "sha256": "fddf5e3a81d80d9b2a70fa0bff40245b8d33a44cc0da9526a91ae8a94f4465f0",
+          "bytes": 3040
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_evidence_heads.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_evidence_heads.py",
+          "sha256": "5d4b7796fd3f5e54f4d8925511a261a33f5de376e5ac8dd8459d9dc7ac781b6d",
+          "bytes": 8847
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_joint_selector.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_joint_selector.py",
+          "sha256": "bb060e771d5717e5885b8bcd6e12350636745311b42877ba78d769a9d3f713f9",
+          "bytes": 7216
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_laplace.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_laplace.py",
+          "sha256": "df6f1273afb88e034a1fcdb80710f6114c6b84461acafa6eaf824787a6f5aa56",
+          "bytes": 5549
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_prototypes.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_prototypes.py",
+          "sha256": "9bdc98bb749f2a1a5b48ea4d8fcd200efa3a5de35cd68d67b1eb5a7426f9b260",
+          "bytes": 4266
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_reasoner.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_reasoner.py",
+          "sha256": "22c9fbe50da1ee5742f3f15e09b8495e94ea54f1e408e55c6b712726d1be2fb7",
+          "bytes": 12501
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/frozen_source/scripts/train_mmpsy_v2_controls.py",
+          "path": "mmpsy-v3/frozen_source/scripts/train_mmpsy_v2_controls.py",
+          "sha256": "8817d6c9b6d9d1d7438dd4f5c5ef2db27e91ee14dda7b85e053901195c1b0a82",
+          "bytes": 5458
+        }
+      ]
+    },
+    "voice-fused-head-v2": {
+      "archive": "voice-fused-head-v2-code.zip",
+      "sha256": "a5b8752ff24b0d61e6c66c6739359c923b40db2ef796210fa32d15c654726f14",
+      "bytes": 3359,
+      "files": [
+        {
+          "path": "voice-fused-head-v2/README.md",
+          "sha256": "6b664bb0227af856f15f5f7a87e955dc2937a1be867f8dd5593934ef06e85b73",
+          "bytes": 894
+        },
+        {
+          "source": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/voice-specialist-cse-large-fused-head-v2/source_snapshot.py",
+          "path": "voice-fused-head-v2/source_snapshot.py",
+          "sha256": "7440de6331386ae770f131b9417928a3a00d867a824a90a6aeec3b5ac4709246",
+          "bytes": 7061
+        }
+      ]
+    }
+  }
+}

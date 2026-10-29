@@ -11,6 +11,14 @@
 
 四份指南均提供 `.md`、`.html` 和 `.txt` 版本；纯文本可直接粘贴到飞书。
 
+## 研究进展与模型成果
+
+首页 `#research` 以学术汇报结构展示研究问题、方法路线、核心效果、学术贡献、合作角色、落地效果、局限与下一步。DepAlign 是当前抑郁预测主线首选；MMPsy v3 与声音表达融合头仅按各自开发集范围展示，Daily Text Risk 仍是后续候选，通用疾病声音 Encoder 仍属研究方案/开发中。不同任务和量表的指标不得直接横向比较，PPT 中标注模拟的数据不得写入研究档案。
+
+研究档案维护在 `data/research-portfolio.json`，只读接口为 `/api/platform/research`。更新时须同时核对指标证据、验证范围、服务器路径和代码包 SHA-256；接口在代码包缺失或摘要不符时拒绝返回成果数据。产品内测、合作计划、媒体传播和模型指标属于不同证据层级；合作机构按学术指导、伦理通过、紧密联系、实验室共建材料等真实角色展示，不推定共同开发或临床验证。
+
+`static/research-assets/` 保存合作机构的原始 Logo 及来源/哈希清单，不重绘、不改色；白色透明 Logo 使用深色背景。`static/research-code/` 仅保存人工筛选的源码与说明压缩包，不包含模型权重、数据、预测结果或凭据。接口展示不等于公网推理服务，也不表示相关代码已整理成独立 SDK；日报与周报仍由 `/progress/` 独立应用处理。
+
 ## 使用者的增补流程
 
 在 `/data/share/incoming/<用户名>/<提交名>/` 放入 `payload/` 和 `README.md`。README 只需名称、来源、用途、内容、使用限制；未知明确注明。全部传输完成后，在文末单独写“传输完成”，停止修改，并将路径交给管理员。
@@ -26,7 +34,7 @@
 - 管理系统工作副本：`/var/lib/research-data-center/workspace`；本机 SQLite、队列和锁位于受控本地目录。
 - 持久发行与备份：`/data/share_cold/research-data-center`；运行代码使用 `/opt/research-data-center` 下已验证的本地发行。
 
-三机设备规格见已采集的服务器快照。2026-10-28 在 47、101 检测到共享挂载，139 本次未检测到；成员 UID/GID 和资料权限仍需逐机确认，不能用同名账号推定同样权限。容量、服务和队列状态以接口及最新部署记录为准，文档不是实时监控。
+三机设备规格见已采集的服务器快照。2026-10-28 在 47、101 检测到共享挂载，139 本次未检测到；成员 UID/GID 和资料权限仍需逐机确认，不能用同名账号推定同样权限。容量、服务和队列状态以接口及最新部署记录为准，文档不是实时监控。GPU 卡片另展示每卡 Unix 用户、脱敏任务名、PID、进程名和显存；固定探针不返回完整命令行、工作路径、环境变量或训练日志，也不会自动停止或重置任务。
 
 ## 管理团队资料
 
@@ -36,7 +44,7 @@
 
 ## 只读接口与开发
 
-资源接口包括 `/api/summary`、`/api/assets`、`/api/resource-mapping`、`/api/research-guide`。Agent 先读 `/api/agent/manifest`；后台增补状态见 `/api/ingestion/manifest`、`/api/ingestion/status` 和 `/api/ingestion/published`。公共资料 API 不提供原始文件下载、任意 shell 或无身份发布操作；周报提交由独立的 `/progress/` 应用处理。
+资源接口包括 `/api/summary`、`/api/assets`、`/api/resource-mapping`、`/api/research-guide`，研究成果接口为 `/api/platform/research`。Agent 先读 `/api/agent/manifest`；后台增补状态见 `/api/ingestion/manifest`、`/api/ingestion/status` 和 `/api/ingestion/published`。公共资料 API 不提供原始数据/权重下载、任意 shell 或无身份发布操作；仅提供上述审核代码包。周报提交由独立的 `/progress/` 应用处理。
 
 ```sh
 python -m unittest discover -s tests -v

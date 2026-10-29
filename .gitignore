@@ -23,6 +23,8 @@ data/*.db
 *.sqlite3
 *.tar.gz
 *.zip
+# Curated, source-only research code packages are release assets, not runtime archives.
+!research-data-center-next/static/research-code/*.zip
 
 # Secrets & environment
 .env

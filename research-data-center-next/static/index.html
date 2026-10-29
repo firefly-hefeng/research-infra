@@ -40,7 +40,7 @@
     <div class="sidebar-label">YOUR RESEARCH WORKSPACE</div>
     <nav class="navigation platform-navigation" aria-label="四个平台">
       <a class="nav-link" href="#servers" data-platform-link="servers"><svg class="icon"><use href="#i-server"/></svg>服务器资源<span class="nav-index">01</span></a>
-      <a class="nav-link" href="/progress/"><svg class="icon"><use href="#i-feature"/></svg>科研进度<svg class="icon nav-arrow"><use href="#i-arrow"/></svg></a>
+      <a class="nav-link" href="#research" data-platform-link="research"><svg class="icon"><use href="#i-feature"/></svg>研究进展<span class="nav-index">02</span></a>
       <a class="nav-link" href="/papers/"><svg class="icon"><use href="#i-book"/></svg>文献管理<span class="nav-index">03</span></a>
       <a class="nav-link" href="#data-platform" data-platform-link="data-platform"><svg class="icon"><use href="#i-database"/></svg>数据管理<span id="nav-count" class="nav-count">—</span></a>
     </nav>
@@ -63,7 +63,7 @@
       </section>
       <nav id="platform-launchers" class="platform-launchers" aria-label="选择研究平台">
         <a href="#servers" data-platform-link="servers"><span class="platform-number">01 / COMPUTE</span><strong>服务器资源<svg class="icon"><use href="#i-arrow"/></svg></strong><span>查看三台机器的 GPU、内存与磁盘</span><small id="compute-launcher-status">读取观察快照</small></a>
-        <a href="/progress/"><span class="platform-number">02 / PROGRESS</span><strong>科研进度<svg class="icon"><use href="#i-arrow"/></svg></strong><span>进入现有项目与研究进度工作区</span><small>打开科研进度平台</small></a>
+        <a href="#research" data-platform-link="research"><span class="platform-number">02 / RESEARCH</span><strong>研究进展<svg class="icon"><use href="#i-arrow"/></svg></strong><span>查看关键课题、已有成果与基础模型接口</span><small id="research-launcher-status">人工审核研究快照</small></a>
         <a href="/papers/"><span class="platform-number">03 / LITERATURE</span><strong>文献管理<svg class="icon"><use href="#i-arrow"/></svg></strong><span>进入团队文献库，分类浏览与阅读论文</span><small>打开专业文献平台</small></a>
         <a href="#data-platform" data-platform-link="data-platform"><span class="platform-number">04 / DATA</span><strong>数据管理<svg class="icon"><use href="#i-arrow"/></svg></strong><span>按研究方向选资料，阅读用途与来源</span><small>公共数据集 · 模型 · 派生资料</small></a>
       </nav>
@@ -75,6 +75,25 @@
         <div id="servers-grid" class="servers-grid" aria-live="polite"><p class="platform-empty">服务器观察尚未载入。</p></div>
         <p class="platform-footnote">数值来自带时间的观察快照。不可达或过期时仍可能保留旧值；资源空闲不代表已为你预留。</p>
         <div class="platform-related"><a href="/docs/compute-guide.html">如何登录与选择机器<svg class="icon"><use href="#i-arrow"/></svg></a><a href="/progress/">记录本次研究进度<svg class="icon"><use href="#i-arrow"/></svg></a><a href="/docs/progress-guide.html">科研进度使用说明<svg class="icon"><use href="#i-book"/></svg></a></div>
+      </section>
+      <section id="research" class="platform-view section-anchor research-academic" aria-labelledby="research-title" hidden>
+        <div class="academic-cover">
+          <div class="academic-cover-copy"><div class="eyebrow">SOUNEX LAB · RESEARCH DOSSIER 2026</div><h2 id="research-title">语音智能与认知健康研究档案</h2><p id="research-summary">研究问题、核心证据、合作网络与转化边界。</p><div class="academic-brand"><strong id="research-brand-name">SOUNEX LAB · 守忆科技</strong><span id="research-brand-product">勿忘我 / 心度 Mind°</span><p id="research-brand-statement"></p></div><div id="research-brand-websites" class="academic-websites"></div></div>
+          <div class="academic-cover-index" aria-label="研究档案结构"><span>ACADEMIC</span><strong>05</strong><p>项关键课题</p><ol><li>研究问题</li><li>方法与证据</li><li>合作与转化</li><li>局限与下一步</li></ol><a class="button button-primary" href="/progress/">记录日报 / 周报<svg class="icon"><use href="#i-arrow"/></svg></a></div>
+        </div>
+        <div class="platform-observation research-observation"><p id="research-reviewed" role="status">正在读取人工审核研究快照…</p><a class="text-link" href="/api/platform/research" target="_blank" rel="noopener">研究数据 API<svg class="icon"><use href="#i-external"/></svg></a></div>
+        <nav class="academic-jumplist" aria-label="研究档案章节"><button type="button" data-research-target="research-models">01 课题档案</button><button type="button" data-research-target="research-tracks-title">02 后续路线</button><button type="button" data-research-target="research-impact">03 合作与转化</button><button type="button" data-research-target="research-partners">04 合作机构</button><button type="button" data-research-target="research-sources">05 证据来源</button></nav>
+        <div id="research-error" class="error-banner" hidden></div>
+        <section class="research-section" aria-labelledby="research-models-title"><div class="research-section-heading"><div><span class="eyebrow">01 · RESEARCH PROJECTS</span><h3 id="research-models-title">优先课题与已有成果</h3></div><span>研究问题 → 方法 → 核心效果 → 合作落地</span></div><div id="research-models" class="research-models" aria-live="polite"><p class="platform-empty">研究成果尚未载入。</p></div></section>
+        <div class="research-analysis-grid">
+          <section class="research-panel" aria-labelledby="research-comparison-title"><div class="card-heading"><h3 id="research-comparison-title">同协议结果对比</h3><span id="research-comparison-metric">—</span></div><p id="research-comparison-scope" class="research-panel-note"></p><div id="research-comparison" class="research-bars"></div></section>
+          <section class="research-panel" aria-labelledby="research-notes-title"><div class="card-heading"><h3 id="research-notes-title">研究口径</h3><span>人工审核</span></div><ul id="research-notes" class="research-notes"></ul></section>
+        </div>
+        <section class="research-section research-tracks-section" aria-labelledby="research-tracks-title"><div class="research-section-heading"><div><span class="eyebrow">02 · NEXT RESEARCH</span><h3 id="research-tracks-title">后续课题与研发路线</h3></div><span>候选与方案不计入已验证成果</span></div><div id="research-tracks" class="research-tracks"></div></section>
+        <section id="research-impact" class="research-section research-impact-section" aria-labelledby="research-impact-title"><div class="research-section-heading"><div><span class="eyebrow">03 · TRANSLATION</span><h3 id="research-impact-title">产品内测与合作转化</h3></div><span>产品、合作与传播证据，不替代模型验证</span></div><div id="research-impact-grid" class="research-impact-grid"></div></section>
+        <section id="research-partners" class="research-section" aria-labelledby="research-partners-title"><div class="research-section-heading"><div><span class="eyebrow">04 · COLLABORATION NETWORK</span><h3 id="research-partners-title">合作机构与学术生态</h3></div><span>保留机构角色、材料来源与合作边界</span></div><div class="research-partner-legend"><span data-category="ethics">研究伦理已通过</span><span data-category="clinical">紧密联系</span><span data-category="hongkong">香港网络</span><span data-category="academic">高校科研</span></div><div id="research-partner-groups" class="research-partner-groups"></div></section>
+        <section id="research-sources" class="research-section research-sources" aria-labelledby="research-sources-title"><div class="research-section-heading"><div><span class="eyebrow">05 · EVIDENCE & PROVENANCE</span><h3 id="research-sources-title">证据来源与复现入口</h3></div><span>研究快照不是实时训练监控</span></div><div id="research-source-list" class="research-source-list"></div><div class="research-root"><span>模型共同根目录</span><code id="research-common-root">—</code><button class="icon-button" type="button" data-copy-research-root aria-label="复制模型共同根目录"><svg class="icon"><use href="#i-copy"/></svg></button></div></section>
+        <div class="platform-related"><a href="/progress/">进入日报与周报工作区<svg class="icon"><use href="#i-arrow"/></svg></a><a href="/docs/progress-guide.html">科研进度使用说明<svg class="icon"><use href="#i-book"/></svg></a><a href="/papers/">查阅相关文献<svg class="icon"><use href="#i-arrow"/></svg></a></div>
       </section>
       <section id="literature" class="platform-view section-anchor" aria-labelledby="literature-title" hidden>
         <div class="section-heading platform-heading"><div><div class="eyebrow">LITERATURE / 03</div><h2 id="literature-title">资源参考索引</h2><p>把已有资料里的参考文献、官方说明和来源页面连在一起。</p></div><a class="button button-secondary" href="/docs/literature-guide.html">文献管理使用说明<svg class="icon"><use href="#i-arrow"/></svg></a></div>

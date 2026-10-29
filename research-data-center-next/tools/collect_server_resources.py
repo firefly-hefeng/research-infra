@@ -2,7 +2,8 @@
 
 Default transport is strict-known-host OpenSSH key authentication. Optional
 passwords are read from hidden prompts or JSON stdin, using local Paramiko only.
-No remote files, process command lines, training jobs or dataset contents touched.
+Only bounded GPU process metadata is collected. Full command lines, working
+paths, environment variables, training logs and dataset contents are never returned.
 """
 import argparse
 import concurrent.futures
@@ -25,11 +26,49 @@ from platform_data import SERVERS, metrics, public_server, stamp
 REMOTE_PROBE = r'''
 import csv, datetime, json, os, subprocess, time
 from io import StringIO
+try:import pwd
+except ImportError:pwd=None
 errors=[]
 def fail(component, code): errors.append({'component':component,'code':code})
 def cpu_ticks():
     with open('/proc/stat') as f: ticks=[int(x) for x in f.readline().split()[1:]]
     return sum(ticks[:8]), ticks[3]+ticks[4]
+def numeric(value,scale=1):
+    try:return round(float(value.strip())*scale,2)
+    except ValueError:return None
+def basename(value):
+    if not isinstance(value,str) or '\x00' in value:return None
+    value=value.replace('\\','/').rstrip('/')
+    result=value.rsplit('/',1)[-1].strip()
+    return result[:120] if result and not any(ord(c)<32 for c in result) else None
+def gpu_job_label(pid,process):
+    argv=[]
+    try:
+        with open(f'/proc/{pid}/cmdline','rb') as stream: raw=stream.read(16385)
+        if len(raw)<=16384:argv=[part.decode('utf-8','replace') for part in raw.split(b'\x00') if part]
+    except (OSError,PermissionError):pass
+    for flag in ('--name','--output-dir'):
+        if flag in argv:
+            index=argv.index(flag)
+            if index+1<len(argv):
+                candidate=basename(argv[index+1])
+                if candidate and all(c.isalnum() or c in '_.-' for c in candidate):return candidate
+    scripts=[basename(arg) for arg in argv if arg.endswith('.py')]
+    scripts=[name for name in scripts if name]
+    return scripts[0] if scripts else basename(process)
+def gpu_processes():
+    result=[]
+    output=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,process_name,used_memory','--format=csv,noheader,nounits'],universal_newlines=True,stderr=subprocess.DEVNULL,timeout=5)
+    for row in list(csv.reader(StringIO(output)))[:64]:
+        if len(row)!=4:continue
+        try:
+            uuid=row[0].strip();pid=int(row[1]);process=basename(row[2]);memory=numeric(row[3],1048576)
+            uid=os.stat(f'/proc/{pid}',follow_symlinks=False).st_uid
+            try:user=pwd.getpwuid(uid).pw_name if pwd else str(uid)
+            except KeyError:user=str(uid)
+        except (OSError,ValueError,PermissionError):continue
+        result.append({'uuid':uuid,'pid':pid,'user':user,'job':gpu_job_label(pid,process),'process':process,'used_memory_bytes':memory})
+    return result
 cpu={'logical_cores':os.cpu_count(),'model':None,'load_1m':os.getloadavg()[0],'usage_percent':None}
 try:
     with open('/proc/cpuinfo') as f:
@@ -47,14 +86,15 @@ try:
 except Exception: fail('memory','unavailable')
 gpus=None
 try:
-    output=subprocess.check_output(['nvidia-smi','--query-gpu=index,name,memory.total,memory.used,utilization.gpu,temperature.gpu','--format=csv,noheader,nounits'],universal_newlines=True,stderr=subprocess.DEVNULL,timeout=5)
+    output=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,name,memory.total,memory.used,utilization.gpu,temperature.gpu','--format=csv,noheader,nounits'],universal_newlines=True,stderr=subprocess.DEVNULL,timeout=5)
+    process_rows=gpu_processes()
+    process_map={}
+    for process in process_rows:process_map.setdefault(process.pop('uuid'),[]).append(process)
     gpus=[]
-    def numeric(value,scale=1):
-        try:return round(float(value.strip())*scale,2)
-        except ValueError:return None
     for row in csv.reader(StringIO(output)):
-        if len(row)!=6:raise ValueError()
-        gpus.append({'index':int(row[0]),'name':row[1].strip(),'memory_total_bytes':numeric(row[2],1048576),'memory_used_bytes':numeric(row[3],1048576),'utilization_percent':numeric(row[4]),'temperature_c':numeric(row[5])})
+        if len(row)!=7:raise ValueError()
+        uuid=row[1].strip()
+        gpus.append({'index':int(row[0]),'uuid':uuid,'name':row[2].strip(),'memory_total_bytes':numeric(row[3],1048576),'memory_used_bytes':numeric(row[4],1048576),'utilization_percent':numeric(row[5]),'temperature_c':numeric(row[6]),'processes':process_map.get(uuid,[])})
 except Exception: fail('gpu','unavailable')
 disks=[]
 try:
@@ -170,7 +210,7 @@ def collect(previous, passwords, options, selected=None, collector=bounded_colle
             outcomes[server['id']] = raw
     return {'schema_version': '1.0', 'generated_at': dt.datetime.now(dt.timezone.utc).isoformat(),
             'collection': {'method': 'central_readonly_ssh_system_metrics', 'timeout_seconds': options['timeout'],
-                           'process_details_collected': False, 'gpu_work_started': False},
+                           'gpu_process_metadata_collected': True, 'command_lines_collected': False, 'gpu_work_started': False},
             'servers': [public_server(outcomes.get(server['id'], previous.get(server['id'])), server) for server in SERVERS]}
 
 

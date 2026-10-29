@@ -19,10 +19,10 @@ assert all(a['kind'] in ('dataset','model') and public_path(a['path']) for a in 
 for name in ('data/catalog.json','data/build-report.json','data/collection-config.json','data/resource-mapping.json','data/resource-mapping.csv',
              'data/sources/public-assets-20261018.csv','data/sources/live-public-metadata.json'):
     assert '/data/users/' not in (root/name).read_text(encoding='utf-8'), 'Private source path in '+name
-files = [root/p for p in ['catalog.py','server.py','progress_proxy.py','ingestion.py','platform_data.py','README.md','.gitignore',
+files = [root/p for p in ['catalog.py','server.py','progress_proxy.py','ingestion.py','platform_data.py','research_portfolio.py','README.md','.gitignore',
     'tools/build_catalog.py','tools/build_inventory.py','tools/research_annotations.py','tools/build_research_guide.py','tools/collect_metadata.py','tools/path_migration.py','tools/agent_client.py','tools/package_release.py','tools/install_release.py','tools/check_docs.py','tools/verify_deployment.py',
     'data/catalog.json','data/build-report.json','data/collection-config.json',
-    'data/resource-registry.json','data/resource-mapping.json','data/resource-mapping.csv','data/research-guide.json',
+    'data/resource-registry.json','data/resource-mapping.json','data/resource-mapping.csv','data/research-guide.json','data/research-portfolio.json',
     'data/sources/public-assets-20261018.csv','data/sources/live-public-metadata.json']]
 for name in ('incoming_client.py','ingest_worker.py','ingest_cycle.py','cold_archive.py','activate_shared_management.py',
              'collect_server_resources.py','server_resource_probe.py','install_monitor_access.py','setup_server_monitor.py'):

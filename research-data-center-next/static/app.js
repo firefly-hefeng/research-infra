@@ -34,6 +34,7 @@
     resourceView: "cards", resourceGroup: "", resourceQuery: "", resourceGap: "", resourceTopic: "",
     guide: null, ingestion: null, ingestionController: null,
     platform: "home", servers: null, serversController: null,
+    research: null, researchController: null,
     platformReady: false, serversPollTimer: null,
     literature: null, literatureController: null, literaturePage: 1,
     literatureQuery: { q: "", category: "", domain: "" },
@@ -97,13 +98,13 @@
 
   function selectPlatform(value) {
     const dataAnchors = ["data", "data-platform", "research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"];
-    const current = ["servers", "literature"].includes(value) ? value : dataAnchors.includes(value) ? "data-platform" : "home";
+    const current = ["servers", "research", "literature"].includes(value) ? value : dataAnchors.includes(value) ? "data-platform" : "home";
     state.platform = current;
-    for (const id of ["servers", "literature", "data-platform"]) $(id).hidden = id !== current;
+    for (const id of ["servers", "research", "literature", "data-platform"]) $(id).hidden = id !== current;
     for (const id of ["overview", "platform-launchers", "home-guide"]) $(id).hidden = current !== "home";
     $("platform-back").hidden = current === "home";
     $("data-navigation").hidden = current !== "data-platform";
-    $("workspace-label").textContent = { home: "首页", servers: "服务器资源", literature: "资源参考", "data-platform": "数据管理" }[current];
+    $("workspace-label").textContent = { home: "首页", servers: "服务器资源", research: "研究进展", literature: "资源参考", "data-platform": "数据管理" }[current];
     document.querySelectorAll("[data-platform-link]").forEach((link) => {
       const active = link.dataset.platformLink === current;
       link.classList.toggle("active", active);
@@ -123,6 +124,14 @@
     }, 60000);
   }
 
+  function gpuProcessPanel(gpu) {
+    const processes = Array.isArray(gpu.processes) ? gpu.processes.slice(0, 64) : null;
+    const zeroMemory = metricValue(gpu.memory_used_bytes) === 0;
+    const highUtilization = (metricValue(gpu.utilization_percent) ?? 0) >= 90;
+    const anomaly = zeroMemory && highUtilization && processes?.length === 0;
+    return `<details class="gpu-processes"><summary>用户与任务 <span>${processes === null ? "旧快照" : `${processes.length} 个`}</span></summary><div>${anomaly ? '<p class="gpu-anomaly">0 MiB 显存但利用率高，且无已登记计算进程；仅提示异常，不自动重置。</p>' : ""}${processes === null ? '<p class="gpu-process-empty">此快照未包含 GPU 进程信息。</p>' : processes.length ? processes.map((process) => `<div class="gpu-process-row"><div><strong>${escape(process.user)}</strong><span>${escape(process.job || process.process)}</span></div><small>${escape(process.process)} · PID ${escape(process.pid)} · 显存 ${escape(sizeText(process.used_memory_bytes))}</small></div>`).join("") : '<p class="gpu-process-empty">无已登记计算进程。</p>'}</div></details>`;
+  }
+
   function renderServers(data) {
     state.servers = data;
     const servers = Array.isArray(data?.servers) ? data.servers.slice(0, 12) : [];
@@ -137,7 +146,7 @@
       const disks = Array.isArray(server.disks) ? server.disks.slice(0, 20) : [];
       const cpu = server.cpu || {}, memory = server.memory || {};
       const observed = old ? (time ? `以下保留上次观测值：${dateText(time, true)}。不代表当前负载。` : "本次未取得可信指标，也没有此前成功观察。") : `指标观察：${dateText(time, true)}`;
-      return `<article class="server-card"><div class="server-card-heading"><span class="platform-number">COMPUTE / ${escape(server.id || "")}</span><span class="server-status" data-status="${old ? "stale" : status}">${escape(status === "unreachable" ? "当前不可达" : server.stale ? "快照已过期" : validStatuses[status])}</span></div><h3>${escape(server.name || "未命名机器")}</h3><code class="server-address">${escape(server.address || "地址未记录")}</code><p class="server-observed${old ? " is-old" : ""}">${escape(observed)}</p><div class="server-metrics"><div><span>CPU 使用</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent, "CPU 使用") }<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent, "内存使用")}<small>可用 ${escape(sizeText(memory.available_bytes))} / ${escape(sizeText(memory.total_bytes))}</small></div></div><div class="server-gpus"><h4>GPU <span>${gpus === null ? "未取得观察" : `${number(gpus.length)} 张已观察`}</span></h4>${gpus?.length ? `<p class="gpu-model">${escape([...new Set(gpus.map((gpu) => gpu.name).filter(Boolean))].join(" / ") || "型号未记录")}</p><div class="gpu-grid">${gpus.map((gpu) => `<div class="gpu-item"><div><span>GPU ${escape(gpu.index ?? "—")}</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent, `GPU ${gpu.index ?? ""} 使用`)}<small>显存 ${escape(sizeText(gpu.memory_used_bytes))}<br>共 ${escape(sizeText(gpu.memory_total_bytes))}</small></div>`).join("")}</div>` : `<p class="server-no-metric">${gpus === null ? "尚无 GPU 指标；不据此判断机器空闲。" : "本次采集未报告 GPU 设备。"}</p>`}</div><details class="server-detail"><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map((disk) => `<div class="server-disk"><div><code>${escape(disk.mount || "挂载点未记录")}</code><strong>${disk.capacity_note === "object_storage_capacity_not_applicable" ? "对象存储" : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === "object_storage_capacity_not_applicable" ? `<small>容量口径不适用 · ${escape(disk.filesystem || "对象存储挂载")}</small>` : `${metricBar(disk.used_percent, `${disk.mount || "磁盘"} 使用`)}<small>可用 ${escape(sizeText(disk.available_bytes))} / ${escape(sizeText(disk.total_bytes))}${disk.filesystem ? ` · ${escape(disk.filesystem)}` : ""}</small>`}</div>`).join("") : '<p>未取得磁盘观察。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || "未记录")}</dd></div><div><dt>最近尝试</dt><dd>${escape(dateText(server.attempted_at, true))}</dd></div><div><dt>最近成功</dt><dd>${escape(dateText(time, true))}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${escape(dateText(server.remote_observed_at, true))}（仅供对照）</dd></div>` : ""}${server.error_code ? `<div><dt>观察结果</dt><dd>${escape(server.error_code)}</dd></div>` : ""}</dl></div></details></article>`;
+      return `<article class="server-card"><div class="server-card-heading"><span class="platform-number">COMPUTE / ${escape(server.id || "")}</span><span class="server-status" data-status="${old ? "stale" : status}">${escape(status === "unreachable" ? "当前不可达" : server.stale ? "快照已过期" : validStatuses[status])}</span></div><h3>${escape(server.name || "未命名机器")}</h3><code class="server-address">${escape(server.address || "地址未记录")}</code><p class="server-observed${old ? " is-old" : ""}">${escape(observed)}</p><div class="server-metrics"><div><span>CPU 使用</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent, "CPU 使用") }<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent, "内存使用")}<small>可用 ${escape(sizeText(memory.available_bytes))} / ${escape(sizeText(memory.total_bytes))}</small></div></div><div class="server-gpus"><h4>GPU <span>${gpus === null ? "未取得观察" : `${number(gpus.length)} 张已观察`}</span></h4>${gpus?.length ? `<p class="gpu-model">${escape([...new Set(gpus.map((gpu) => gpu.name).filter(Boolean))].join(" / ") || "型号未记录")}</p><div class="gpu-grid">${gpus.map((gpu) => `<div class="gpu-item"><div><span>GPU ${escape(gpu.index ?? "—")}</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent, `GPU ${gpu.index ?? ""} 使用`)}<small>显存 ${escape(sizeText(gpu.memory_used_bytes))}<br>共 ${escape(sizeText(gpu.memory_total_bytes))}</small>${gpuProcessPanel(gpu)}</div>`).join("")}</div>` : `<p class="server-no-metric">${gpus === null ? "尚无 GPU 指标；不据此判断机器空闲。" : "本次采集未报告 GPU 设备。"}</p>`}</div><details class="server-detail"><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map((disk) => `<div class="server-disk"><div><code>${escape(disk.mount || "挂载点未记录")}</code><strong>${disk.capacity_note === "object_storage_capacity_not_applicable" ? "对象存储" : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === "object_storage_capacity_not_applicable" ? `<small>容量口径不适用 · ${escape(disk.filesystem || "对象存储挂载")}</small>` : `${metricBar(disk.used_percent, `${disk.mount || "磁盘"} 使用`)}<small>可用 ${escape(sizeText(disk.available_bytes))} / ${escape(sizeText(disk.total_bytes))}${disk.filesystem ? ` · ${escape(disk.filesystem)}` : ""}</small>`}</div>`).join("") : '<p>未取得磁盘观察。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || "未记录")}</dd></div><div><dt>最近尝试</dt><dd>${escape(dateText(server.attempted_at, true))}</dd></div><div><dt>最近成功</dt><dd>${escape(dateText(time, true))}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${escape(dateText(server.remote_observed_at, true))}（仅供对照）</dd></div>` : ""}${server.error_code ? `<div><dt>观察结果</dt><dd>${escape(server.error_code)}</dd></div>` : ""}</dl></div></details></article>`;
     }).join("") : '<p class="platform-empty">尚无服务器观察记录。请先阅读使用说明，采集启用后将在这里展示。</p>';
   }
 
@@ -161,6 +170,99 @@
     } finally {
       signal?.removeEventListener("abort", cancel);
       if (state.serversController === controller) $("servers-refresh").disabled = false;
+    }
+  }
+
+  function academicReport(report) {
+    const value = report || {};
+    const effects = Array.isArray(value.core_effects) ? value.core_effects : [];
+    const roles = Array.isArray(value.partner_roles) ? value.partner_roles : [];
+    const outcomes = Array.isArray(value.outcomes) ? value.outcomes : [];
+    return `<div class="academic-question"><span>RESEARCH QUESTION / 研究问题</span><p>${escape(value.question)}</p></div>
+      <div class="academic-method-grid"><section><h5><span>01</span>方法路线</h5><ol class="academic-numbered-list">${textList(value.methods).map((item) => `<li>${escape(item)}</li>`).join("")}</ol></section><section><h5><span>02</span>核心效果</h5><div class="academic-effects">${effects.length ? effects.map((item) => `<div><strong>${escape(item.label)}</strong><p>${escape(item.detail)}</p><small>${escape(item.evidence)}</small></div>`).join("") : '<p class="academic-empty">尚无已核实核心效果；当前只展示研究设计。</p>'}</div></section></div>
+      <section class="academic-contributions"><h5><span>03</span>学术贡献</h5><ul>${textList(value.contributions).map((item) => `<li>${escape(item)}</li>`).join("")}</ul></section>
+      <div class="academic-translation-grid"><section><h5><span>04</span>合作角色</h5>${roles.map((item) => `<div class="academic-role"><strong>${escape(item.organization)}</strong><span>${escape(item.role)}</span><p>${escape(item.detail)}</p></div>`).join("")}</section><section><h5><span>05</span>落地效果</h5>${outcomes.map((item) => `<div class="academic-outcome"><span>${escape(item.status)}</span><strong>${escape(item.label)}</strong><p>${escape(item.detail)}</p></div>`).join("")}</section></div>
+      <div class="academic-boundaries"><p><strong>研究边界</strong>${escape(value.limitations)}</p><p><strong>下一步</strong>${escape(value.next_step)}</p></div>`;
+  }
+
+  function researchModelCard(model, index) {
+    const metrics = Array.isArray(model.metrics) ? model.metrics : [];
+    const paths = Array.isArray(model.artifact_paths) ? model.artifact_paths : [];
+    const components = textList(model.components);
+    const io = model.interface || {};
+    const code = model.code || {};
+    const download = code.url ? safeURL(code.url) : null;
+    return `<article class="research-model-card${model.recommended ? " is-primary" : ""}">
+      <div class="research-model-heading"><div><span class="platform-number">PROJECT ${String(index + 1).padStart(2, "0")} · ${escape(model.task)}</span><h4>${escape(model.name)}</h4></div><span class="research-status" data-status="${escape(model.status)}">${escape(model.status_label)}</span></div>
+      <p class="research-model-summary">${escape(model.summary)}</p>
+      <div class="research-metrics">${metrics.map((metric) => `<div><span>${escape(metric.label)}</span><strong>${escape(metric.display)}</strong><small>${escape(metric.scope)}</small></div>`).join("")}</div>
+      ${academicReport(model.report)}
+      <p class="research-validation">${icon("shield")}<span>${escape(model.validation)}</span></p>
+      <details class="research-details"><summary>模型位置与组成 <span aria-hidden="true">＋</span></summary><div class="research-detail-content"><div class="research-paths">${paths.map((item) => `<div><span>${escape(item.label)}</span><code>${escape(item.path)}</code><button class="icon-button" type="button" data-copy-research-path="${escape(item.path)}" aria-label="复制${escape(item.label)}路径">${icon("copy")}</button></div>`).join("")}</div><div class="resource-task-labels">${components.map((item) => `<span>${escape(item)}</span>`).join("")}</div></div></details>
+      <details class="research-details research-interface"><summary>基础模型接口 <span>${escape(io.availability || "接口说明")}</span></summary><div class="research-detail-content"><dl><div><dt>输入</dt><dd>${escape(io.input)}</dd></div><div><dt>输出</dt><dd>${escape(io.output)}</dd></div><div><dt>入口</dt><dd><code>${escape(io.entrypoint)}</code></dd></div></dl><p>${escape(io.notes)}</p>${download ? `<a class="button button-secondary" href="${escape(download)}" download>${icon("download")}${escape(code.label || "下载代码")}</a><small class="research-code-hash">ZIP ${escape(sizeText(code.bytes))} · SHA-256 ${escape(String(code.sha256 || "").slice(0, 12))}…</small>` : ""}</div></details>
+    </article>`;
+  }
+
+  function researchTrackCard(track) {
+    const stateLabels = { done: "已有进展", blocked: "当前阻塞", planned: "方案规划" };
+    return `<article class="research-track" data-status="${escape(track.status)}"><div class="research-track-heading"><div><span class="research-status" data-status="${escape(track.status)}">${escape(track.status_label)}</span><h4>${escape(track.name)}</h4></div><button class="icon-button" type="button" data-copy-research-path="${escape(track.path)}" aria-label="复制${escape(track.name)}开发路径">${icon("copy")}</button></div><p class="research-track-intro">${escape(track.summary)}</p><code class="research-track-path">${escape(track.path)}</code>${academicReport(track.report)}<ol class="research-milestones">${(track.milestones || []).map((item) => `<li data-state="${escape(item.state)}"><span>${escape(stateLabels[item.state] || item.state)}</span><div><strong>${escape(item.label)}</strong><p>${escape(item.detail)}</p></div></li>`).join("")}</ol></article>`;
+  }
+
+  function renderResearch(data) {
+    state.research = data;
+    const models = Array.isArray(data?.models) ? data.models : [];
+    const tracks = Array.isArray(data?.research_tracks) ? data.research_tracks : [];
+    const comparison = data?.comparison || {};
+    const rows = Array.isArray(comparison.rows) ? comparison.rows : [];
+    const maximum = Math.max(...rows.map((row) => metricValue(row.value) ?? 0), 1);
+    const brand = data?.brand || {};
+    $("research-title").textContent = data?.title || "语音智能与认知健康研究档案";
+    $("research-summary").textContent = data?.summary || "关键研究与模型成果。";
+    $("research-brand-name").textContent = brand.name || "SOUNEX LAB · 守忆科技";
+    $("research-brand-product").textContent = brand.product || "勿忘我 / 心度 Mind°";
+    $("research-brand-statement").textContent = brand.statement || "";
+    $("research-brand-websites").innerHTML = (brand.websites || []).map((site) => { const url = safeURL(site.url); return url ? `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(site.label)}${icon("external")}</a>` : ""; }).join("");
+    document.querySelector(".academic-cover-index>strong").textContent = String(models.length + tracks.length).padStart(2, "0");
+    $("research-reviewed").textContent = `人工审核快照：${dateText(data?.reviewed_at)} · ${models.length + tracks.length} 项关键课题 · 不包含实时训练状态或公网推理`;
+    $("research-launcher-status").textContent = `${models.length + tracks.length} 项课题 · 学术汇报版`;
+    $("research-models").innerHTML = models.length ? models.map(researchModelCard).join("") : '<p class="platform-empty">尚未登记优先模型。</p>';
+    $("research-comparison-title").textContent = comparison.title || "同协议结果对比";
+    $("research-comparison-metric").textContent = `${comparison.metric || "MAE"} · ${comparison.direction || "越低越好"}`;
+    $("research-comparison-scope").textContent = comparison.scope || "仅在相同任务与协议下比较。";
+    $("research-comparison").innerHTML = rows.map((row) => `<div class="research-bar-row${row.primary ? " is-primary" : ""}"><div><span>${escape(row.label)}</span><strong>${escape(row.display)}</strong></div><div class="research-bar-track" role="img" aria-label="${escape(row.label)} MAE ${escape(row.display)}"><span style="width:${Math.max(2, (row.value / maximum) * 100).toFixed(2)}%"></span></div></div>`).join("");
+    $("research-notes").innerHTML = textList(data?.notes).map((note) => `<li>${escape(note)}</li>`).join("");
+    $("research-common-root").textContent = data?.common_root || "未记录";
+    $("research-tracks").innerHTML = tracks.map(researchTrackCard).join("");
+    $("research-impact-grid").innerHTML = (data?.impact || []).map((item) => `<article><span>${escape(item.kind)}</span><strong>${escape(item.value)}</strong><h4>${escape(item.label)}</h4><p>${escape(item.scope)}</p></article>`).join("");
+    const groups = [["ethics", "研究伦理已通过", "项目方医学资源材料；不等于模型临床验证"], ["clinical", "紧密联系与医学支持", "合作与联系网络，不推定共同开发"], ["hongkong", "香港合作与联系节点", "保留机构全名和服务边界"], ["academic", "高校科研与人才生态", "联合实验室按原材料口径，不扩写合作层级"]];
+    $("research-partner-groups").innerHTML = groups.map(([category, title, note]) => {
+      const partners = (data?.partners || []).filter((partner) => partner.category === category);
+      return `<section class="research-partner-group" data-category="${category}"><div class="research-partner-group-heading"><h4>${title}</h4><span>${partners.length} 个节点</span><p>${note}</p></div><div class="research-partner-cards">${partners.map((partner) => { const url = safeURL(partner.official_url); const dark = ["zhongda", "ustc"].includes(partner.id); return `<article class="research-partner-card${dark ? " is-dark" : ""}"><div class="research-logo"><img src="${escape(safeURL(partner.logo) || "")}" alt="${escape(partner.name)}标识" loading="eager"></div><div><h5>${escape(partner.name)}</h5><span>${escape(partner.relationship)}</span><p>${escape(partner.note)}</p>${url ? `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">机构官网${icon("external")}</a>` : ""}</div></article>`; }).join("")}</div></section>`;
+    }).join("");
+    $("research-source-list").innerHTML = (data?.sources || []).map((source) => { const url = source.url ? safeURL(source.url) : null; return `<article><span>EVIDENCE</span><h4>${escape(source.label)}</h4><p>${escape(source.detail)}</p>${url ? `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">访问公开来源${icon("external")}</a>` : ""}</article>`; }).join("");
+    $("research-error").hidden = true;
+  }
+
+  async function loadResearch(signal) {
+    state.researchController?.abort();
+    const controller = new AbortController();
+    state.researchController = controller;
+    const cancel = () => controller.abort();
+    if (signal?.aborted) controller.abort();
+    signal?.addEventListener("abort", cancel, { once: true });
+    try {
+      const data = await api("/api/platform/research", { signal: controller.signal });
+      if (!controller.signal.aborted && (!state.authEnabled || state.authenticated)) renderResearch(data);
+    } catch (error) {
+      if (error.name === "AbortError" || error.code === "unauthenticated" || controller.signal.aborted) return;
+      state.research = null;
+      $("research-reviewed").textContent = "研究快照暂不可读取，请稍后刷新。";
+      $("research-launcher-status").textContent = "研究快照暂不可用";
+      $("research-models").innerHTML = '<p class="platform-empty">暂未取得人工审核的研究成果。</p>';
+      $("research-error").textContent = `研究进展读取失败：${error.message}`;
+      $("research-error").hidden = false;
+    } finally {
+      signal?.removeEventListener("abort", cancel);
     }
   }
 
@@ -547,6 +649,7 @@
     state.serversPollTimer = null;
     state.ingestionController?.abort();
     state.serversController?.abort();
+    state.researchController?.abort();
     state.literatureController?.abort();
     state.authEnabled = true;
     state.authenticated = false;
@@ -1062,6 +1165,7 @@
       loadResearchGuide(controller.signal),
       loadIngestion(controller.signal),
       loadServers(controller.signal),
+      loadResearch(controller.signal),
       loadLiterature(controller.signal),
     ]);
     if (!controller.signal.aborted) {
@@ -1199,6 +1303,14 @@
     document.addEventListener("visibilitychange", () => scheduleServerRefresh(true));
     syncPlatform();
     $("servers-refresh").addEventListener("click", () => loadServers());
+    $("research").addEventListener("click", (event) => {
+      const path = event.target.closest("[data-copy-research-path]");
+      if (path) copyText(path.dataset.copyResearchPath, path);
+      const root = event.target.closest("[data-copy-research-root]");
+      if (root) copyText(state.research?.common_root || "", root);
+      const target = event.target.closest("[data-research-target]");
+      if (target && $(target.dataset.researchTarget)) $(target.dataset.researchTarget).scrollIntoView({ block: "start", behavior: motionPreference.matches ? "instant" : "smooth" });
+    });
     const searchLiterature = () => {
       state.literatureQuery = { q: $("literature-search").value.trim(), category: $("literature-category").value, domain: $("literature-domain").value };
       state.literaturePage = 1;
