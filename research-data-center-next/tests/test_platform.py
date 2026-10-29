@@ -1,4 +1,5 @@
 import datetime as dt
+import hashlib
 import http.client
 import json
 from pathlib import Path
@@ -9,6 +10,7 @@ from unittest import mock
 
 from catalog import import_catalog
 from platform_data import SERVERS, literature, metrics, servers_snapshot
+from research_portfolio import research_portfolio
 from server import create_server
 from tools.collect_server_resources import collect, save_snapshot
 
@@ -37,9 +39,49 @@ class PlatformTests(unittest.TestCase):
                 {'title': '拒绝凭据', 'url': 'https://u:p@example.org/secret'},
                 {'title': '拒绝口令参数', 'url': 'https://example.org/?access_token=private'}]},
             'unknown': {'sources': [{'title': '未知资源不凭空加入', 'url': 'https://unknown.org/'}]}}})
+        source = Path(__file__).resolve().parents[1] / 'data/research-portfolio.json'
+        portfolio = json.loads(source.read_text(encoding='utf-8'))
+        portfolio['models'] = portfolio['models'][:1]
+        portfolio['research_tracks'] = portfolio['research_tracks'][:1]
+        portfolio['partners'] = portfolio['partners'][:1]
+        assets_source = source.parent.parent / 'static/research-assets'
+        logo_target = self.root / 'static/research-assets/taikang-xianlin.png'
+        logo_target.parent.mkdir(parents=True)
+        logo_target.write_bytes((assets_source / 'taikang-xianlin.png').read_bytes())
+        asset_manifest = json.loads((assets_source / 'manifest.json').read_text(encoding='utf-8'))
+        asset_manifest['assets'] = asset_manifest['assets'][:1]
+        self.write('static/research-assets/manifest.json', asset_manifest)
+        archive = self.root / 'static/research-code/depalign-code.zip'
+        archive.parent.mkdir(parents=True)
+        archive.write_bytes(b'curated code fixture')
+        portfolio['models'][0]['code'].update(sha256=hashlib.sha256(archive.read_bytes()).hexdigest(), bytes=archive.stat().st_size)
+        portfolio['private_extension'] = 'must not be returned'
+        self.write('data/research-portfolio.json', portfolio)
 
     def write(self, name, value):
         (self.root / name).write_text(json.dumps(value, ensure_ascii=False), encoding='utf-8')
+
+    def test_research_portfolio_is_scoped_and_verifies_code_archives(self):
+        result = research_portfolio(self.root)
+        self.assertEqual(result['models'][0]['id'], 'depalign-final')
+        self.assertIn('可解释', result['models'][0]['report']['question'])
+        self.assertEqual(result['partners'][0]['name'], '泰康仙林鼓楼医院')
+        self.assertFalse(result['capabilities']['live_inference'])
+        self.assertNotIn('private_extension', result)
+        document = json.loads((self.root / 'data/research-portfolio.json').read_text(encoding='utf-8'))
+        document['models'][0]['code']['url'] = '/research-code/../private-code.zip'
+        self.write('data/research-portfolio.json', document)
+        with self.assertRaises(ValueError):
+            research_portfolio(self.root)
+        document['models'][0]['code']['url'] = '/research-code/depalign-code.zip'
+        document['partners'][0]['official_url'] = 'javascript:alert(1)'
+        self.write('data/research-portfolio.json', document)
+        with self.assertRaises(ValueError):
+            research_portfolio(self.root)
+        logo = self.root / 'static/research-assets/taikang-xianlin.png'
+        logo.write_bytes(b'tampered')
+        with self.assertRaises(ValueError):
+            research_portfolio(self.root)
 
     def test_literature_deduplicates_real_urls_with_exact_resource_categories_and_uses(self):
         result = literature(self.root)
@@ -62,12 +104,17 @@ class PlatformTests(unittest.TestCase):
                    {'mount': '/data/users/person', 'filesystem': 'xfs', 'total_bytes': 100},
                    {'mount': '/data/share_cold', 'filesystem': 'fuse.ossfs', 'total_bytes': 2**64,
                     'available_bytes': 2**64, 'used_percent': 0}],
-               'gpus': [{'index': 0, 'name': 'GPU', 'utilization_percent': 101, 'processes': ['private'],
+               'gpus': [{'index': 0, 'uuid': 'GPU-safe-uuid', 'name': 'GPU', 'utilization_percent': 101,
+                         'processes': ['private', {'pid': 123, 'user': 'alice', 'job': 'safe-job', 'process': 'python',
+                                                   'used_memory_bytes': 1024, 'cmdline': 'private', 'cwd': 'private'}],
                          'memory_total_bytes': 10**1000}]}
         result = metrics(raw)
         encoded = json.dumps(result)
         self.assertNotIn('private', encoded)
         self.assertNotIn('password', encoded)
+        self.assertEqual(result['gpus'][0]['uuid'], 'GPU-safe-uuid')
+        self.assertEqual(result['gpus'][0]['processes'], [{'pid': 123, 'user': 'alice', 'job': 'safe-job',
+                                                          'process': 'python', 'used_memory_bytes': 1024}])
         self.assertIsNone(result['disks'][0]['total_bytes'])
         self.assertEqual(result['disks'][0]['capacity_note'], 'object_storage_capacity_not_applicable')
         self.assertIsNone(result['gpus'][0]['utilization_percent'])
@@ -111,16 +158,18 @@ class PlatformTests(unittest.TestCase):
             return response.status, data
         try:
             with mock.patch('subprocess.run', side_effect=AssertionError('HTTP must never connect SSH')):
-                for path in ('/api/platform/servers', '/api/platform/literature'):
+                for path in ('/api/platform/servers', '/api/platform/literature', '/api/platform/research'):
                     self.assertEqual(request(path, False)[0], 401)
                     self.assertEqual(request(path)[0], 200)
                     self.assertEqual(request(path, method='POST')[0], 405)
-                for path in ('/api/platform/servers?host=unknown', '/api/platform/literature?q=a&q=b',
-                             '/api/platform/literature?page=0', '/api/platform/literature?page_size=101',
-                             '/api/platform/literature?file=/etc/passwd'):
+                for path in ('/api/platform/servers?host=unknown', '/api/platform/research?file=/etc/passwd',
+                             '/api/platform/literature?q=a&q=b', '/api/platform/literature?page=0',
+                             '/api/platform/literature?page_size=101', '/api/platform/literature?file=/etc/passwd'):
                     self.assertEqual(request(path)[0], 400)
                 self.write('data/server-resources.json', {'schema_version': 'bad'})
                 self.assertEqual(request('/api/platform/servers')[0], 503)
+                self.write('data/research-portfolio.json', {'schema_version': 'bad'})
+                self.assertEqual(request('/api/platform/research')[0], 503)
         finally:
             server.shutdown();server.server_close();thread.join(timeout=3)
 
