@@ -242,3 +242,87 @@ body:has(#detail[open]) { overflow: hidden; }
 .warning{border:1px solid #e4d4bb;border-left:3px solid #ba945c;background:#faf7f0;padding:13px 16px;border-radius:3px;font-size:12px;line-height:1.85;color:#7e623c;margin:15px 0;overflow-wrap:anywhere}
 
 .center-return{display:inline-block;margin-bottom:18px;font-size:13px;color:#79528e}.bibliography-access{display:inline-flex;align-items:center;padding:10px 14px;border:1px solid #d8c5e3;background:#f6eefb;border-radius:5px;color:#78528c;font-size:13px}.bibliography-provenance{list-style:none;padding:0;margin:12px 0 22px;display:grid;gap:14px}.bibliography-provenance li{padding:15px;background:#f7f1fa;border-left:2px solid #b693c9;overflow-wrap:anywhere}.bibliography-provenance strong,.bibliography-provenance span,.bibliography-provenance code{display:block}.bibliography-provenance span{font-size:13px;margin-top:4px;color:#785b87}.bibliography-provenance code{font-size:11px;margin-top:8px;color:#826a90;overflow-wrap:anywhere}
+
+/* Discovery is the public reading entrance; collection tools stay below it. */
+.module-overview { border-radius: 4px; }
+.management-disclosure { margin-top: 36px; border-top: 1px solid var(--line); border-radius: 4px; }
+#discovery-view { margin-top: 30px; min-width: 0; }
+.discovery-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 0 0 30px; border-bottom: 1px solid var(--line); }
+.discovery-toolbar > div { min-width: 0; }
+.discovery-toolbar > div > p { margin-top: 7px; color: #685474; font-size: 14px; line-height: 1.8; }
+.discovery-search { display: flex; align-items: center; gap: 8px; width: min(100%, 490px); padding: 5px; background: var(--paper); border: 1px solid #d9cce3; border-radius: 4px; box-shadow: var(--shadow); }
+.discovery-search .search { min-height: 42px; padding: 0 10px; gap: 11px; border: 0; border-radius: 2px; }
+.discovery-search .search > .icon { width: 19px; height: 19px; }
+.discovery-search .search input { padding: 10px 0; font-size: 12px; }
+.discovery-search > button { flex: none; min-height: 40px; padding: 10px 18px; }
+.recommendations { margin-top: 30px; }
+.discovery-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.discovery-heading > div:first-child { min-width: 0; }
+.discovery-heading h2 { margin-top: 5px; color: #502763; font-size: 26px; font-weight: 700; line-height: 1.4; letter-spacing: -.7px; }
+.discovery-heading h2 > span { margin-left: 9px; padding: 2px 7px; border: 1px solid #e5d9ed; border-radius: 3px; color: #825e96; background: #eee5f4; font-size: 11px; font-weight: 500; line-height: 1.6; letter-spacing: 0; vertical-align: middle; }
+.discovery-heading p { margin-top: 7px; color: #766380; font-size: 12px; line-height: 1.8; }
+.discovery-actions { display: flex; align-items: center; gap: 9px; flex: none; }
+a.button { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+a.button:hover { text-decoration: none; }
+.discovery-actions a > span { margin-left: 6px; }
+.recommendation-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.recommended-card { position: relative; border-top-color: #8753a0; }
+.recommendation-reason { align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 15px; color: #7e5790; font-size: 10px; font-weight: 500; line-height: 1.6; letter-spacing: .4px; }
+.recommendation-reason::before { content: ""; display: inline-block; flex: none; width: 5px; height: 5px; border-radius: 50%; background: #a97dbf; }
+.category-section { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+.category-caption { color: #92789f; font-size: 11px; line-height: 1.8; white-space: nowrap; }
+.category-caption > span { margin-left: 9px; }
+.category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.category-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; min-height: 218px; padding: 23px 23px 18px; overflow: hidden; border: 1px solid #e0d5e7; border-radius: 4px; color: var(--ink); background: var(--paper); box-shadow: 0 2px 6px #4a205204; transition: border-color .18s, box-shadow .18s, background .18s; }
+.category-card:hover { border-color: #b38ac6; color: var(--ink); background: #fdfbfe; box-shadow: 0 7px 20px #4220530b; text-decoration: none; }
+.category-icon { display: grid; place-items: center; width: 39px; height: 39px; border: 1px solid #e5d6ee; border-radius: 4px; color: #85529d; background: #f5eff9; }
+.category-icon .icon { width: 21px; height: 21px; }
+.category-card-count { position: absolute; top: 28px; right: 23px; color: #8b7199; font-size: 11px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.category-card h3 { margin-top: 19px; color: #50345e; font-size: 19px; font-weight: 620; line-height: 1.5; letter-spacing: -.2px; overflow-wrap: anywhere; }
+.category-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; margin-bottom: 20px; min-width: 0; }
+.category-tags > span { display: inline-flex; padding: 3px 7px; border-radius: 3px; color: #897095; background: #f5f0f8; font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+.category-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: auto; padding-top: 13px; border-top: 1px solid #eee7f3; color: #805c90; font-size: 11px; line-height: 1.6; }
+.category-card-footer > span:last-child { color: #ad87c0; font-size: 17px; }
+.catalog-breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 23px; color: #9b84a8; font-size: 11px; line-height: 1.8; }
+.catalog-breadcrumb > a { color: #79528e; }
+#category-breadcrumb { color: #6f537d; overflow-wrap: anywhere; }
+
+@media (max-width: 1120px) {
+  .discovery-toolbar { gap: 20px; }
+  .discovery-search { width: min(100%, 420px); }
+  .recommendation-grid, .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .category-card { padding-right: 20px; padding-left: 20px; }
+  .category-card-count { right: 20px; }
+}
+@media (max-width: 760px) {
+  #discovery-view { margin-top: 25px; }
+  .discovery-toolbar { align-items: stretch; flex-direction: column; gap: 18px; padding-bottom: 24px; }
+  .discovery-toolbar > div > p { font-size: 13px; }
+  .discovery-search { width: 100%; }
+  .discovery-search .search input { font-size: 16px; }
+  .discovery-search .search input::placeholder { font-size: 12px; }
+  .discovery-search > button { padding-right: 15px; padding-left: 15px; }
+  .recommendations { margin-top: 25px; }
+  .discovery-heading { align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+  .discovery-heading h2 { font-size: 24px; }
+  .discovery-heading p { font-size: 11px; }
+  .discovery-heading .eyebrow { font-size: 9px; }
+  .discovery-actions { width: 100%; justify-content: space-between; }
+  .discovery-actions .secondary { min-height: 34px; font-size: 11px; }
+  .category-section { margin-top: 31px; padding-top: 25px; }
+  .category-caption { display: none; }
+  .category-grid { gap: 14px; }
+  .category-card { min-height: 210px; padding: 18px 17px 15px; }
+  .category-card-count { top: 26px; right: 17px; font-size: 10px; }
+  .category-card h3 { margin-top: 15px; font-size: 17px; }
+  .category-tags { margin-bottom: 16px; }
+  .category-tags > span { font-size: 9px; }
+  .management-disclosure { margin-top: 29px; }
+  .catalog-breadcrumb { margin-bottom: 19px; }
+}
+@media (max-width: 560px) {
+  .recommendation-grid, .category-grid { grid-template-columns: minmax(0, 1fr); }
+  .category-card { min-height: 205px; padding: 20px; }
+  .category-card-count { top: 30px; right: 20px; }
+  .category-card h3 { font-size: 18px; }
+}

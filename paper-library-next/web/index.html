@@ -18,6 +18,28 @@
     <header class="module-header"><div class="module-intro"><div class="eyebrow"><span></span> RESEARCH PAPER LIBRARY</div><h1>论文管理<span class="title-dot">.</span></h1><p>收录论文，理解方法。让每一次阅读都有据可循。</p></div><div class="header-tools"><div class="actions"><button id="settings-button" class="secondary"><svg class="icon"><use href="#icon-settings"/></svg>整理设置</button><button id="refresh" class="secondary"><svg class="icon"><use href="#icon-refresh"/></svg>刷新</button><button class="primary" id="guide-button"><svg class="icon"><use href="#icon-plus"/></svg>添加论文</button></div><p><span></span> 固定目录管理 <i>/</i> 原文可追溯</p></div></header>
     <div class="module-summary" aria-label="论文库统计"><div class="stat-item"><span>已收录资料 <svg class="icon"><use href="#icon-book"/></svg></span><strong id="stat-ready">0</strong><small>已核验卡片与待核题录 · 版本独立</small></div><div class="stat-item"><span>研究标签 <svg class="icon"><use href="#icon-tag"/></svg></span><strong id="stat-tags">0</strong><small>从方向与问题发现论文</small></div><div class="stat-item"><span>待整理 / 异常 <svg class="icon"><use href="#icon-folder"/></svg></span><strong id="stat-pending">0</strong><small>等待阅读、提取与归档</small></div><div class="agent-state"><span class="agent-eyebrow">CURATION CHANNEL</span><strong><i></i><span id="agent-label">Agent 未接入</span></strong><span id="agent-caption">自动调度未启用</span></div></div>
   </section>
+  <section id="discovery-view" aria-label="发现论文">
+    <div class="discovery-toolbar">
+      <div><div class="eyebrow">DISCOVER YOUR NEXT IDEA</div><p>从一篇好论文，走进一个研究方向。</p></div>
+      <form id="discovery-search-form" class="discovery-search" role="search"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="discovery-search" type="search" placeholder="搜索论文、作者或关键词…" aria-label="搜索全部论文"></label><button type="submit" class="primary">搜索</button></form>
+    </div>
+    <section class="recommendations" aria-labelledby="recommendation-title">
+      <div class="discovery-heading"><div><div class="eyebrow">START READING</div><h2 id="recommendation-title">推荐阅读 <span id="recommendation-count">0</span></h2><p id="recommendation-note">从已收录论文中随机选取，换一批发现更多研究。</p></div><div class="discovery-actions"><button id="shuffle-recommendations" class="secondary" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>换一批</button><a href="#catalog" class="button secondary">浏览全部论文 <span aria-hidden="true">↗</span></a></div></div>
+      <div id="recommended-papers" class="cards recommendation-grid" aria-live="polite"><div class="empty"><h3>正在加载推荐论文</h3><p>论文信息加载完成后将在这里展示。</p></div></div>
+    </section>
+    <section id="categories" class="category-section" aria-labelledby="categories-title">
+      <div class="discovery-heading"><div><div class="eyebrow">EXPLORE BY TOPIC</div><h2 id="categories-title">研究分类 <span id="category-count">0</span></h2><p>沿着已有分类，找到同一方向的研究与方法。</p></div><span class="category-caption">选择分类，进入论文卡片 <span aria-hidden="true">↓</span></span></div>
+      <div id="category-grid" class="category-grid" aria-live="polite"><div class="empty"><h3>正在加载研究分类</h3><p>分类来自论文库中已有的论文信息。</p></div></div>
+    </section>
+  </section>
+  <section id="library-view" aria-label="论文列表" hidden>
+    <nav class="catalog-breadcrumb" aria-label="当前位置"><a href="#discover">← 返回研究分类</a><span aria-hidden="true">/</span><span id="category-breadcrumb">全部论文</span></nav>
+    <div class="catalog-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="section-title">全部论文 <span>0</span></h2><p id="catalog-description">按研究方向、作者与关键词，找到值得继续阅读的论文。</p></div><div class="catalog-caption">PAPERS <span>/</span> NOTES <span>/</span> IDEAS</div></div>
+    <div class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、内容或标签…" aria-label="搜索论文"><kbd>/</kbd></label></div><div class="filter-row"><label>研究方向<select id="category" aria-label="研究方向"><option value="">全部方向</option></select></label><label>发表年份<select id="year" aria-label="年份"><option value="">全部年份</option></select></label><label class="sort-filter">排序<select id="sort" aria-label="排序"><option value="newest">最近收录</option><option value="year">年份 · 从新到旧</option><option value="title">标题 · A–Z</option></select></label></div></div>
+    <div class="tag-row"><span class="muted">热门标签</span><div id="tag-cloud"></div><button id="clear-filters" class="text-button" hidden>清除筛选 ×</button></div>
+    <div class="library-view-bar"><div class="view-switch"><button id="grid-view" aria-label="卡片视图" class="selected" aria-pressed="true"><svg class="icon"><use href="#icon-grid"/></svg>论文卡片</button><button id="list-view" aria-label="列表视图" aria-pressed="false"><svg class="icon"><use href="#icon-list"/></svg>列表视图</button></div><label class="favorite-filter"><input id="favorites-only" type="checkbox">仅看收藏</label></div>
+    <div id="filter-summary" class="filter-summary" hidden></div><div class="cards" id="papers" aria-live="polite"></div>
+  </section>
   <details id="management" class="management-disclosure"><summary><span><svg class="icon"><use href="#icon-folder"/></svg>整理工作区 <b id="management-count">0 篇待处理</b></span><span class="disclosure-action">待整理区 · 任务记录 · 设置 <b>＋</b></span></summary><div class="management-content">
   <div class="management-row">
     <section id="inbox-view" class="management-panel" aria-labelledby="inbox-title"><div class="section-line"><h2 id="inbox-title">待整理区 <span id="inbox-count">0</span></h2><div class="actions"><button id="scan" class="secondary">扫描新文件</button><button id="run" class="primary">开始整理</button></div></div><p class="panel-hint">将 PDF 放入此目录，完成复制后扫描。</p><code id="inbox-path"></code><div id="inbox-list"></div></section>
@@ -35,13 +57,6 @@
     </form>
   </details>
   </div></details>
-  <section id="library-view" aria-label="论文列表">
-    <div class="catalog-heading"><div><div class="eyebrow">EXPLORE THE COLLECTION</div><h2 id="section-title">全部论文 <span>0</span></h2><p>按研究方向、作者与关键词，找到值得继续阅读的论文。</p></div><div class="catalog-caption">PAPERS <span>/</span> NOTES <span>/</span> IDEAS</div></div>
-    <div class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、内容或标签…" aria-label="搜索论文"><kbd>/</kbd></label></div><div class="filter-row"><label>研究方向<select id="category" aria-label="研究方向"><option value="">全部方向</option></select></label><label>发表年份<select id="year" aria-label="年份"><option value="">全部年份</option></select></label><label class="sort-filter">排序<select id="sort" aria-label="排序"><option value="newest">最近收录</option><option value="year">年份 · 从新到旧</option><option value="title">标题 · A–Z</option></select></label></div></div>
-    <div class="tag-row"><span class="muted">热门标签</span><div id="tag-cloud"></div><button id="clear-filters" class="text-button" hidden>清除筛选 ×</button></div>
-    <div class="library-view-bar"><div class="view-switch"><button id="grid-view" aria-label="卡片视图" class="selected" aria-pressed="true"><svg class="icon"><use href="#icon-grid"/></svg>论文卡片</button><button id="list-view" aria-label="列表视图" aria-pressed="false"><svg class="icon"><use href="#icon-list"/></svg>列表视图</button></div><label class="favorite-filter"><input id="favorites-only" type="checkbox">仅看收藏</label></div>
-    <div id="filter-summary" class="filter-summary" hidden></div><div class="cards" id="papers" aria-live="polite"></div>
-  </section>
   <footer><span>论文与卡片保存在服务器固定目录中</span><a href="./api/export" download>导出目录 JSON ↓</a></footer>
 </main>
 <dialog id="detail" aria-labelledby="detail-title"><div class="reader-toolbar"><button id="close-detail" aria-label="关闭论文详情">← 返回论文库</button><span>论文详情 <i> / </i> 阅读与思考</span></div><div class="detail-content" id="detail-content"></div></dialog>
