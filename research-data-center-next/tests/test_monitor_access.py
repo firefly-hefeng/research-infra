@@ -5,12 +5,18 @@ from pathlib import Path
 import struct
 import sys
 import tempfile
+import types
 import unittest
 from unittest import mock
 
 from tools import install_monitor_access as install
 from tools import setup_server_monitor as setup
 from tools.collect_server_resources import REMOTE_PROBE
+
+probe_namespace = {}
+probe_source = (Path(__file__).resolve().parents[1] / 'tools/server_resource_probe.py').read_text(encoding='utf-8')
+exec(probe_source.split("cpu={'logical_cores'", 1)[0], probe_namespace)
+probe = types.SimpleNamespace(**probe_namespace)
 
 
 def key(byte):
@@ -44,9 +50,19 @@ class MonitorAccessTests(unittest.TestCase):
     def test_fixed_probe_bytes_match_collector_and_ignore_original_command(self):
         self.assertEqual(install.REMOTE_PROBE, REMOTE_PROBE)
         self.assertNotIn('SSH_ORIGINAL_COMMAND', REMOTE_PROBE)
-        self.assertNotIn('query-compute-apps', REMOTE_PROBE)
+        self.assertIn('query-compute-apps', REMOTE_PROBE)
         self.assertNotIn('/data/users', REMOTE_PROBE)
         compile(REMOTE_PROBE, '<fixed-system-probe>', 'exec')
+
+    def test_gpu_job_label_returns_only_whitelisted_basename(self):
+        argv = b'/private/python\x00train.py\x00--name\x00safe-job\x00--output-dir\x00/data/users/private/path\x00TOKEN=private'
+        with mock.patch('builtins.open', mock.mock_open(read_data=argv)):
+            self.assertEqual(probe.gpu_job_label(123, '/private/python'), 'safe-job')
+        argv = b'/private/python\x00train_v2.py\x00--output-dir\x00/data/users/private/safe-output\x00'
+        with mock.patch('builtins.open', mock.mock_open(read_data=argv)):
+            self.assertEqual(probe.gpu_job_label(123, '/private/python'), 'safe-output')
+        with mock.patch('builtins.open', mock.mock_open(read_data=b'/private/train_v2.py\x00')):
+            self.assertEqual(probe.gpu_job_label(123, '/private/python'), 'train_v2.py')
 
     def test_timer_and_service_only_touch_monitor_snapshot_and_private_key(self):
         units = setup.units()

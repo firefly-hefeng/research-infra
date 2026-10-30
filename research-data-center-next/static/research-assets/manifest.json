@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "note": "原始机构标识，仅按项目材料中的关系展示；Logo 不构成合作或临床验证的新证明。",
+  "assets": [
+    {
+      "name": "泰康仙林鼓楼医院",
+      "file": "taikang-xianlin.png",
+      "official_url": "https://www.tkxlglyy.com/xlglyy/131499/131498/index.html",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\第六页升级_20261023\\素材\\医院\\泰康仙林鼓楼医院_官网横标.png",
+      "size": [
+        400,
+        52
+      ],
+      "format": "PNG",
+      "bytes": 10965,
+      "sha256": "3b61de90de6f7cf2780804786b4ea01d1122a746ea943d968deee829b1025a27"
+    },
+    {
+      "name": "江苏省省级机关医院",
+      "file": "jiangsu-provincial-officials.png",
+      "official_url": "https://www.jspoh.com/about/about.aspx",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\第六页升级_20261023\\素材\\医院\\江苏省省级机关医院_官网Logo.png",
+      "size": [
+        332,
+        117
+      ],
+      "format": "PNG",
+      "bytes": 26905,
+      "sha256": "89dc4a125f6e1661073861248c6230b681088ea07420b07f3907c3a3909929b6"
+    },
+    {
+      "name": "中国科大附一院（安徽省立医院）",
+      "file": "ustc-first-hospital.png",
+      "official_url": "https://www.ahslyy.com.cn/col5/index",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\第六页升级_20261023\\素材\\医院\\中国科学技术大学附属第一医院_安徽省立医院_官网Logo.png",
+      "size": [
+        287,
+        65
+      ],
+      "format": "PNG",
+      "bytes": 16018,
+      "sha256": "d932accb3526bbd93321c90cc08668658c62af96c57f42844d980ee8a3ddca73"
+    },
+    {
+      "name": "江苏省人民医院",
+      "file": "jiangsu-people.png",
+      "official_url": "https://yqgx.jsph.org.cn/client",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\第六页升级_20261023\\素材\\医院\\江苏省人民医院_官方科研平台Logo.png",
+      "size": [
+        600,
+        115
+      ],
+      "format": "PNG",
+      "bytes": 69352,
+      "sha256": "4bce53c2bb0bd53832ddbb4d13a55fdc195d26388f974e649123497e579486ef"
+    },
+    {
+      "name": "东南大学附属中大医院",
+      "file": "seu-zhongda.png",
+      "official_url": "https://www.njzdyy.com/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\第六页升级_20261023\\素材\\医院\\东南大学附属中大医院_官网Logo.png",
+      "size": [
+        397,
+        84
+      ],
+      "format": "PNG",
+      "bytes": 16486,
+      "sha256": "9558fffa4d14a1aba48e168732a1fda413653a0b73ae1a5d3718828a2d80bc24"
+    },
+    {
+      "name": "哈尔滨医科大学附属第一医院",
+      "file": "hmu-first.png",
+      "official_url": "https://www.54dr.org.cn/about.html?introId=1",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\哈医大一院_官网头部标识.png",
+      "size": [
+        526,
+        526
+      ],
+      "format": "PNG",
+      "bytes": 112590,
+      "sha256": "627744ac8671e47bac02dc8dc632ed81143e3e56bac298ddd032fae830d6f610"
+    },
+    {
+      "name": "东华三院",
+      "file": "tung-wah.png",
+      "official_url": "https://www.tungwah.org.hk/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\主ppt\\持续优化_20261024\\制作文件\\assets\\hk-tung-wah.png",
+      "size": [
+        210,
+        225
+      ],
+      "format": "PNG",
+      "bytes": 41927,
+      "sha256": "a2a6a5f5c5c1ab278cd4bd25a75bc70794d166a4246acc9b9e3692010cec861d"
+    },
+    {
+      "name": "博爱医院王东源夫人长者地区中心",
+      "file": "pok-oi.png",
+      "official_url": "https://www.pokoi.org.hk/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\主ppt\\持续优化_20261024\\制作文件\\assets\\hk-pok-oi.png",
+      "size": [
+        435,
+        110
+      ],
+      "format": "PNG",
+      "bytes": 37639,
+      "sha256": "2c915a718829d3d56a547fd3be982550efabd901d96e3169cc1f28f7a776c6be"
+    },
+    {
+      "name": "南京大学",
+      "file": "nanjing-university.png",
+      "official_url": "https://www.nju.edu.cn/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\南京大学_原PPTLogo.png",
+      "size": [
+        960,
+        1204
+      ],
+      "format": "PNG",
+      "bytes": 67062,
+      "sha256": "dbd1f6095723d9c37ac4f39a2931b2c432c4c511fbb8a97690160e229d2e75b7"
+    },
+    {
+      "name": "浙江大学",
+      "file": "zhejiang-university.png",
+      "official_url": "https://www.zju.edu.cn/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\浙江大学_原PPTLogo.png",
+      "size": [
+        960,
+        960
+      ],
+      "format": "PNG",
+      "bytes": 51589,
+      "sha256": "65b92a4498b23ab4b792c8cddac5ee1e737a6ab6594bbbc6fe4b6b13630f0d43"
+    },
+    {
+      "name": "东南大学",
+      "file": "southeast-university.png",
+      "official_url": "https://www.seu.edu.cn/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\东南大学_原PPTLogo.png",
+      "size": [
+        960,
+        960
+      ],
+      "format": "PNG",
+      "bytes": 229897,
+      "sha256": "9498aa89ef5da994c748f0916f3a747f76a905eefb9648d2d0303a41bccdc1f2"
+    },
+    {
+      "name": "中国科学技术大学",
+      "file": "ustc.png",
+      "official_url": "https://www.ustc.edu.cn/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\官网原始Logo\\中国科学技术大学_守忆官网原始.png",
+      "size": [
+        526,
+        60
+      ],
+      "format": "PNG",
+      "bytes": 17921,
+      "sha256": "95489c7ad0fbd759abd1d1e5fe7e53dfe3aa0dfb5f5b1716cbd6c15a8f671370"
+    },
+    {
+      "name": "香港中文大学（深圳）",
+      "file": "cuhk-shenzhen.png",
+      "official_url": "https://www.cuhk.edu.cn/",
+      "source_file": "C:\\Users\\22150\\小蜂相关资料\\抑郁症陪伴软件\\商业材料\\末三页升级_20261023\\素材\\机构\\官网原始Logo\\香港中文大学（深圳）_守忆官网原始.png",
+      "size": [
+        1010,
+        714
+      ],
+      "format": "PNG",
+      "bytes": 154557,
+      "sha256": "48f0d9d1b5d93521ff7861fa2b7538641424c91f914e7330d93167073b088723"
+    }
+  ]
+}

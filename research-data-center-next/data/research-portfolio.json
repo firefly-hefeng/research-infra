@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-10-29",
+  "title": "语音智能与认知健康研究档案",
+  "summary": "围绕抑郁程度预测、中文文本严重度评分、声音情绪辅助与跨疾病声音表征，按学术汇报口径呈现研究问题、方法、核心证据、合作网络和转化边界。",
+  "brand": {
+    "name": "SOUNEX LAB · 守忆科技",
+    "product": "勿忘我 / 心度 Mind°",
+    "statement": "让 AI 听懂声音背后的人。以语音理解、认知健康研究和真实服务场景连接基础模型与产品转化。",
+    "websites": [
+      {"label": "勿忘我官网", "url": "https://www.wuwangwo.top/"},
+      {"label": "团队科研论文", "url": "https://sounex.ai/papers"}
+    ]
+  },
+  "common_root": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime",
+  "notes": [
+    "DepAlign 最终版是当前抑郁预测主线首选。",
+    "模型指标、产品内测、合作计划和媒体传播属于不同证据层级，不互相替代。",
+    "MMPsy、DepAlign 与 Daily Text Risk 的目标量和验证范围不同，不直接比较 MAE。",
+    "代码包只含代码与说明，不含模型权重、数据、预测结果或凭据；本页面不提供公网推理服务。"
+  ],
+  "impact": [
+    {"value": "32 人", "label": "产品内测参与规模", "scope": "心度主 PPT · 内部产品材料", "kind": "产品内测"},
+    {"value": "46 分钟", "label": "日平均对话时长", "scope": "心度主 PPT · 内部产品材料", "kind": "产品内测"},
+    {"value": "53% / 17 人", "label": "内测付费率 / 人数", "scope": "心度主 PPT · 内部产品材料", "kind": "产品内测"},
+    {"value": "10+ / 5+", "label": "医学机构 / 社区合作计划", "scope": "合作计划，不代表采购完成或模型临床验证", "kind": "合作转化"},
+    {"value": "1,000 万+", "label": "累计媒体曝光", "scope": "守忆科技母公司媒体材料 · 传播口径", "kind": "外部传播"}
+  ],
+  "comparison": {
+    "title": "DepAlign 同一 DAIC 回顾性测试协议",
+    "metric": "MAE · PHQ-8 原始分",
+    "direction": "越低越好",
+    "scope": "47 名参与者；仅比较同一任务、同一协议下的模型。",
+    "rows": [
+      {"label": "DepAlign 最终版", "value": 3.693516488282353, "display": "3.694", "primary": true},
+      {"label": "Fixed IC-EDF", "value": 3.81209197144212, "display": "3.812", "primary": false},
+      {"label": "EDF-Linear", "value": 3.901, "display": "3.901", "primary": false}
+    ]
+  },
+  "models": [
+    {
+      "id": "depalign-final",
+      "name": "DepAlign 最终版",
+      "task": "访谈文本＋语音预测抑郁程度",
+      "status": "validated",
+      "status_label": "当前主线首选",
+      "recommended": true,
+      "summary": "以文本为锚点融合语音证据，输出 PHQ-8 原始分；最终版保留给论文和抑郁预测主线。",
+      "report": {
+        "question": "如何在访谈文本与语音证据之间建立可解释、可复现的抑郁严重程度融合预测？",
+        "methods": [
+          "以症状查询文本特征为锚点，联合语音、情绪与结构化证据，避免单一模态直接决定结果。",
+          "通过八槽层级 Shapley 分解量化各证据槽贡献，固定融合权重 0.5。",
+          "官方开发集完成模型选择，47 名测试参与者仅做回顾性评估，并审计重建误差与划分重叠。"
+        ],
+        "core_effects": [
+          {"label": "主结果", "detail": "MAE 3.694、RMSE 4.552，PHQ-8 原始分。", "evidence": "test-v3/METRICS.json"},
+          {"label": "相对改善", "detail": "MAE 较 EDF-Linear 降低约 5.3%，较 Fixed IC-EDF 降低约 3.1%。", "evidence": "同一 DAIC 回顾性测试协议"},
+          {"label": "相关与排序", "detail": "Pearson 0.709、Spearman 0.733，覆盖 47 名测试参与者。", "evidence": "test-v3/METRICS.json"}
+        ],
+        "contributions": [
+          "在同一协议下优于两个明确基线，而非跨任务比较分数。",
+          "将预测结果拆解为八槽证据贡献，保留可解释的模型分析路径。",
+          "冻结选择规则、特征协议和工件哈希，使结果能够复核。"
+        ],
+        "partner_roles": [
+          {"organization": "守忆科技 · 勿忘我 / 心度", "role": "研发与转化场景", "detail": "模型研究与语音健康前端筛查探索。"},
+          {"organization": "南京邮电大学 · 刘青山", "role": "学术指导", "detail": "多模态情感计算方向；不表示共同署名或共同开发。"},
+          {"organization": "东南大学 · 李健", "role": "学术指导", "detail": "抑郁声学模式与多特征融合方向；不表示参与该测试集验证。"}
+        ],
+        "outcomes": [
+          {"label": "论文与科研主线", "detail": "最终版作为当前抑郁预测主模型保留，支撑论文实验和后续干预研究。", "status": "当前采用"},
+          {"label": "前端筛查研究", "detail": "为访谈文本＋语音辅助评估提供模型基础，尚未形成临床诊断产品。", "status": "研究转化"}
+        ],
+        "limitations": "结果来自 DAIC 英文访谈的回顾性协议，不能直接外推到中文自由聊天、临床诊断或前瞻部署效果。",
+        "next_step": "整理独立推理接口，开展中文场景外部验证，并将干预分析与论文实验统一归档。"
+      },
+      "metrics": [
+        {"label": "MAE", "display": "3.694", "scope": "DAIC 测试集 · PHQ-8 原始分"},
+        {"label": "RMSE", "display": "4.552", "scope": "DAIC 测试集 · PHQ-8 原始分"},
+        {"label": "Pearson", "display": "0.709", "scope": "47 名参与者 · 回顾性协议"}
+      ],
+      "validation": "DAIC 官方测试集，回顾性协议；模型选择使用开发集，测试审计通过。",
+      "artifact_paths": [
+        {"label": "最终模型", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/evolving-ic-edf-20260921/test-v3/MODEL.joblib"},
+        {"label": "指标证据", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/edf-v1/evolving-ic-edf-20260921/test-v3/METRICS.json"}
+      ],
+      "components": ["文本症状查询特征", "语音与情绪证据", "八槽层级 Shapley 贡献", "固定融合权重 0.5"],
+      "interface": {
+        "availability": "相关代码快照",
+        "input": "访谈文本与语音的固定特征证据，需遵循 PROTOCOL.json 的特征协议。",
+        "output": "PHQ-8 原始分（0–24）及八槽贡献。",
+        "entrypoint": "最终独立推理入口待整理；当前代码包提供相关模型、训练和干预评估源码。",
+        "notes": "代码保留原研究环境路径和依赖，不是一键部署 SDK。"
+      },
+      "code": {"label": "下载相关研究代码", "url": "/research-code/depalign-code.zip", "sha256": "b6f287d81c4848270d2cb2cd697a5d67db43e929e6df8d48d6ae515241596e84", "bytes": 21894}
+    },
+    {
+      "id": "mmpsy-v3-ensemble",
+      "name": "MMPsy v3 集成",
+      "task": "中文文本严重度评分",
+      "status": "development",
+      "status_label": "开发集候选",
+      "recommended": false,
+      "summary": "两个概率评分成员按 0.55 / 0.45 集成，以来源证据和解释 LoRA 生成可追溯报告；语音不直接改变严重度分数。",
+      "report": {
+        "question": "如何让中文对话严重度评分同时具备来源可追溯性、概率输出和不确定性拒答能力？",
+        "methods": [
+          "使用 multilingual-e5-base 编码来源证据，两个评分成员按 0.55 / 0.45 做概率集成。",
+          "将分数约束在来源证据之上，以解释 LoRA 生成与证据绑定的简短说明。",
+          "使用分布熵质量门控，低置信样本拒答，而不是强制输出分数。"
+        ],
+        "core_effects": [
+          {"label": "开发集主结果", "detail": "MAE 7.806/100、RMSE 10.459/100、Spearman ρ 0.619。", "evidence": "ensemble/results.json"},
+          {"label": "质量门控", "detail": "目标覆盖率约 90%，实际覆盖 89.39%；118 条评分、14 条拒答。", "evidence": "ensemble/manifest.json"},
+          {"label": "已评分样本", "detail": "门控后已评分样本 MAE 7.439/100；拒答样本 MAE 10.897/100。", "evidence": "开发集，不是独立测试结果"}
+        ],
+        "contributions": [
+          "把严重度分布、来源证据、模型解释和质量门控放进同一输出契约。",
+          "明确 100 × PHQ-9 / 27 的目标量，避免与 SDS 或 PHQ-8 模型直接比 MAE。",
+          "将解释适配器和评分器分别校验，降低解释与分数脱节的风险。"
+        ],
+        "partner_roles": [
+          {"organization": "心度 Mind°", "role": "产品化验证场景", "detail": "连接中文对话、来源证据报告与后续服务流程。"},
+          {"organization": "医学合作与联系网络", "role": "专业支持场景", "detail": "用于理解复评和转介流程，不表示这些机构参与模型训练或临床验证。"}
+        ],
+        "outcomes": [
+          {"label": "模型组合原型", "detail": "已进入 audio-depression-expression-bundle 的文本严重度评分组件。", "status": "原型集成"},
+          {"label": "可追溯报告", "detail": "可输出分数、严重度分布、来源证据与解释，支持人工复核研究。", "status": "接口已有"}
+        ],
+        "limitations": "目前只有 MMPsy train/dev 开发集结果，测试未完成；未验证自由聊天覆盖率、临床有效性或生产稳定性。",
+        "next_step": "完成独立测试与自由聊天验证，校准覆盖率后再评估产品化使用范围。"
+      },
+      "metrics": [
+        {"label": "MAE", "display": "7.806 / 100", "scope": "开发集 · 100 × PHQ-9 / 27"},
+        {"label": "RMSE", "display": "10.459 / 100", "scope": "开发集"},
+        {"label": "Spearman ρ", "display": "0.619", "scope": "开发集"}
+      ],
+      "validation": "仅完成 MMPsy train/dev 开发集评估；测试未完成，未进行临床或自由聊天验证。",
+      "artifact_paths": [
+        {"label": "集成模型", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v3/rich-source-semantic-gated-ensemble"},
+        {"label": "成员 A · 权重 0.55", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v3/rich-source-semantic-audio"},
+        {"label": "成员 B · 权重 0.45", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v3/rich-source-semantic-gated-audio-moments-open"},
+        {"label": "解释 LoRA", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/mmpsy-v2/reasoner-sft/adapter"}
+      ],
+      "components": ["multilingual-e5-base 语义编码", "双成员概率集成", "来源证据约束", "解释 LoRA", "质量门控与拒答"],
+      "interface": {
+        "availability": "已确认运行时代码入口",
+        "input": "row 包含原始 audio_paths、对应 audio_sha256、turns 和一致的 transcript。",
+        "output": "score_0_100、严重度分布、来源证据、解释及模型版本信息。",
+        "entrypoint": "depression_lab.mmpsy_runtime.MMPsyRuntime(artifact).predict(row, explain=True)",
+        "notes": "需另行配置模型权重、编码器、Qwen 依赖和实际服务器路径；不是公网 HTTP 推理端点。"
+      },
+      "code": {"label": "下载运行时代码快照", "url": "/research-code/mmpsy-v3-code.zip", "sha256": "bba490367e037b7129067748bd96fa2b0db17cf61c209c3c00f071dc3eacbd37", "bytes": 136897}
+    },
+    {
+      "id": "voice-fused-head-v2",
+      "name": "中文声音表达融合头 v2",
+      "task": "中文声音情绪识别",
+      "status": "development",
+      "status_label": "声音辅助模块",
+      "recommended": false,
+      "summary": "融合 emotion2vec embedding 与原生概率，通过分层 Logistic Regression 识别六类声音情绪，不预测抑郁严重度。",
+      "report": {
+        "question": "如何利用冻结声音编码器的语义表征与原生情绪概率，提升中文声音情绪识别的稳定性和可解释性？",
+        "methods": [
+          "拼接 1024 维 emotion2vec embedding 与 9 维原生概率，仅用训练集拟合标准化。",
+          "以 valence、negative、positive 三个 Logistic Regression 分支组成分层分类器。",
+          "按说话人隔离 train/dev，测试集保持封存，并评估不同置信阈值的覆盖率。"
+        ],
+        "core_effects": [
+          {"label": "开发集主结果", "detail": "准确率 78.48%、Macro-F1 0.7595、Balanced Accuracy 76.10%。", "evidence": "result.json · 776 条开发集"},
+          {"label": "高置信子集", "detail": "阈值 0.55 时准确率 81.28%、Macro-F1 0.7839，覆盖率 92.91%。", "evidence": "开发集门控分析"},
+          {"label": "六类输出", "detail": "neutral、happy、sad、angry、fear、surprise 的概率与最大概率类别。", "evidence": "分层概率组合"}
+        ],
+        "contributions": [
+          "将通用声音表征与编码器原生概率作为独立证据块融合。",
+          "同时报告覆盖率与准确率，避免只展示高置信子集的优势。",
+          "明确声音情绪是辅助信息，不参与或替代抑郁严重度判断。"
+        ],
+        "partner_roles": [
+          {"organization": "声音理解模型组合", "role": "辅助模块", "detail": "为语音健康报告提供情绪表达维度，不改变文本严重度评分。"},
+          {"organization": "CSEMOTIONS", "role": "开发数据来源", "detail": "用于训练和开发评估，不表示数据集方是合作单位或参与验证。"}
+        ],
+        "outcomes": [
+          {"label": "语音情绪接口", "detail": "已进入模型组合的 voice_emotion_probabilities 输出设计。", "status": "原型集成"},
+          {"label": "辅助表达分析", "detail": "可辅助观察六类声音情绪与置信度，不作为抑郁诊断或疗效指标。", "status": "研究辅助"}
+        ],
+        "limitations": "只有 CSEMOTIONS 开发集结果，测试未完成且尚未批准生产使用；情绪标签不等同临床状态。",
+        "next_step": "整理独立推理入口，完成封存测试和真实对话域偏移评估。"
+      },
+      "metrics": [
+        {"label": "准确率", "display": "78.48%", "scope": "CSEMOTIONS 开发集 · 776 条"},
+        {"label": "Macro-F1", "display": "0.7595", "scope": "开发集 · 六类情绪"},
+        {"label": "Balanced Acc.", "display": "76.10%", "scope": "开发集"}
+      ],
+      "validation": "仅完成开发集评估；测试未完成，尚未批准生产使用。",
+      "artifact_paths": [
+        {"label": "融合头目录", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/voice-specialist-cse-large-fused-head-v2"},
+        {"label": "训练源码", "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/voice-specialist-cse-large-fused-head-v2/source_snapshot.py"}
+      ],
+      "components": ["1024 维 emotion2vec embedding", "9 维原生概率", "valence / negative / positive 三分支", "六类情绪概率"],
+      "interface": {
+        "availability": "训练源码快照",
+        "input": "train/dev manifests 及 NPZ 中的 embeddings、probabilities、ids 和情绪标签。",
+        "output": "neutral、happy、sad、angry、fear、surprise 的概率及最大概率类别。",
+        "entrypoint": "完整独立推理入口待整理；当前提供 source_snapshot.py 训练源码。",
+        "notes": "需原项目依赖和 emotion2vec 特征；声音情绪结果不等同抑郁程度。"
+      },
+      "code": {"label": "下载训练源码", "url": "/research-code/voice-fused-head-v2-code.zip", "sha256": "a5b8752ff24b0d61e6c66c6739359c923b40db2ef796210fa32d15c654726f14", "bytes": 3359}
+    }
+  ],
+  "research_tracks": [
+    {
+      "id": "daily-text-risk",
+      "name": "Daily Text Risk",
+      "status": "candidate",
+      "status_label": "后续候选",
+      "summary": "日常文本风险方向在开发集观察到收益，但测试流程因分数/解释重建错误未通过。",
+      "report": {
+        "question": "能否将日常文本中的语义、证据和融合特征用于纵向抑郁风险评估？",
+        "methods": ["比较中位数、TF-IDF、语义、文本、证据与融合路线。", "以 100 × PHQ-8 / 24 为目标量，保持与 DepAlign 不同的评分口径。", "在测试重建通过前冻结结论，不以开发集结果替代验证。"],
+        "core_effects": [
+          {"label": "开发集观察", "detail": "融合路线 MAE 18.788/100，较中位基线 21.936/100 降低约 14.4%。", "evidence": "algorithm snapshot · full dev"},
+          {"label": "当前阻塞", "detail": "Score/explanation reconstruction failed，尚无完整测试报告。", "evidence": "run_status = failed"}
+        ],
+        "contributions": ["形成日常文本多路线对照与融合实验框架。", "明确将测试重建一致性作为进入主线的必要条件。"],
+        "partner_roles": [{"organization": "守忆科技 · 日常文本研究", "role": "后续课题", "detail": "仅作为候选研究路线，不对外宣称为已验证最佳模型。"}],
+        "outcomes": [{"label": "候选模型储备", "detail": "保留开发集实验与失败证据，供后续重建和独立测试使用。", "status": "尚未落地"}],
+        "limitations": "开发集收益不能替代测试；目标量与 DepAlign 不同，也不能与 MMPsy 直接比较。",
+        "next_step": "修复分数与解释重建，完成独立测试后再决定是否进入主线。"
+      },
+      "path": "/data/users/luyonghua/projects/depression-local-assets-20261028/runtime/daily-text-risk-v1-20261009-v2",
+      "next_step": "修复测试重建流程并完成独立测试后，再评估是否进入主线。",
+      "milestones": [
+        {"label": "开发集实验", "state": "done", "detail": "融合方案显示开发集收益。"},
+        {"label": "测试流程", "state": "blocked", "detail": "Score/explanation reconstruction failed，尚无完整测试报告。"}
+      ]
+    },
+    {
+      "id": "universal-voice-encoder",
+      "name": "通用疾病声音 Encoder",
+      "status": "research_plan",
+      "status_label": "研究方案 · 开发中",
+      "summary": "研究功能分解、抗捷径预训练与跨疾病迁移，目标是形成可迁移的 512 维疾病声音表征，而非已有验证模型。",
+      "report": {
+        "question": "如何将声音中的疾病相关功能状态与设备、环境、语言和说话人捷径分离，形成可跨疾病迁移的通用表征？",
+        "methods": ["结合 Whisper 多层表征与 M2D patch token，构建功能查询、时序 slot 和 512 维全局表征。", "通过功能重构、跨录音一致性、相对距离和 nuisance 对抗约束开展预训练。", "按 AD/MCI、PD、ALS、咽喉疾病、呼吸与心血管声音等任务设计 L0–L3 下游探针。"],
+        "core_effects": [],
+        "contributions": ["以功能分解而非疾病标签记忆为预训练目标。", "将设备、背景、来源和说话人捷径显式纳入训练约束。", "统一 checkpoint、manifest、mask、探针与跨疾病迁移评估方案。"],
+        "partner_roles": [{"organization": "守忆科技 · 邓霁轩", "role": "科研算法与开发路径", "detail": "项目目录位于 dengjixuan 下；当前账号无权读取其完整代码，接口尚未核实。"}],
+        "outcomes": [{"label": "预期研究交付", "detail": "计划形成 Z512 表征、功能 token、checkpoint、下游探针和复现清单，当前均不应视为已完成成果。", "status": "方案规划"}],
+        "limitations": "当前只有研究方案与开发路径，尚无已核实 checkpoint、核心指标或落地效果。",
+        "next_step": "按 P0–P4 完成数据协议、功能表征、抗捷径训练、下游探针和交付审计。"
+      },
+      "path": "/data/users/dengjixuan/projects/fmn_paraling_voice_first_20261028f",
+      "next_step": "按 P0–P4 完成数据协议、功能表征、抗捷径训练、下游探针和交付审计；当前目录访问受限，接口尚未核实。",
+      "milestones": [
+        {"label": "P0 · 数据与协议", "state": "planned", "detail": "统一 manifest、mask、split 与功能查询协议。"},
+        {"label": "P1 · 功能表征", "state": "planned", "detail": "建立 Whisper/M2D 多源功能分解与基础查询。"},
+        {"label": "P2 · 跨域对齐", "state": "planned", "detail": "加入跨录音一致性、领域泛化和迁移目标。"},
+        {"label": "P3 · 抗捷径", "state": "planned", "detail": "针对设备、背景、来源和说话人捷径进行约束。"},
+        {"label": "P4 · 探针与交付", "state": "planned", "detail": "执行 L0–L3 下游评估，冻结 checkpoint 与接口。"}
+      ]
+    }
+  ],
+  "partners": [
+    {"id": "taikang", "name": "泰康仙林鼓楼医院", "category": "ethics", "relationship": "合作已开展 · 研究伦理已通过", "logo": "/research-assets/taikang-xianlin.png", "official_url": "https://www.tkxlglyy.com/xlglyy/131499/131498/index.html", "note": "项目方合作材料；不等于 DepAlign 或 MMPsy 已完成临床验证。"},
+    {"id": "jspoh", "name": "江苏省省级机关医院", "category": "ethics", "relationship": "研究伦理已通过", "logo": "/research-assets/jiangsu-provincial-officials.png", "official_url": "https://www.jspoh.com/about/about.aspx", "note": "按项目方医学资源材料列示。"},
+    {"id": "ustc-first", "name": "中国科大附一院（安徽省立医院）", "category": "ethics", "relationship": "研究伦理已通过", "logo": "/research-assets/ustc-first-hospital.png", "official_url": "https://www.ahslyy.com.cn/col5/index", "note": "中国科大附一院与安徽省立为同一机构，仅列一次。"},
+    {"id": "jsph", "name": "江苏省人民医院", "category": "clinical", "relationship": "紧密联系", "logo": "/research-assets/jiangsu-people.png", "official_url": "https://yqgx.jsph.org.cn/client", "note": "医学联系网络，非模型联合验证声明。"},
+    {"id": "zhongda", "name": "东南大学附属中大医院", "category": "clinical", "relationship": "紧密联系 · 医学指导", "logo": "/research-assets/seu-zhongda.png", "official_url": "https://www.njzdyy.com/", "note": "徐治提供心身医学与专业流程指导。"},
+    {"id": "hmu1", "name": "哈尔滨医科大学附属第一医院", "category": "clinical", "relationship": "合作已开展 · 紧密联系", "logo": "/research-assets/hmu-first.png", "official_url": "https://www.54dr.org.cn/about.html?introId=1", "note": "按项目方合作材料列示。"},
+    {"id": "tung-wah", "name": "东华三院", "category": "hongkong", "relationship": "香港合作与联系节点", "logo": "/research-assets/tung-wah.png", "official_url": "https://www.tungwah.org.hk/", "note": "香港合作网络，不扩写为精神科联合研究。"},
+    {"id": "pok-oi", "name": "博爱医院王东源夫人长者地区中心", "category": "hongkong", "relationship": "香港合作与联系节点", "logo": "/research-assets/pok-oi.png", "official_url": "https://www.pokoi.org.hk/", "note": "长者地区中心，保持机构全名与服务边界。"},
+    {"id": "nju", "name": "南京大学", "category": "academic", "relationship": "联合实验室共建材料 · 人才生态", "logo": "/research-assets/nanjing-university.png", "official_url": "https://www.nju.edu.cn/", "note": "原路演材料披露；未核实正式实验室名称与协议，不扩写为全校级合作。"},
+    {"id": "zju", "name": "浙江大学", "category": "academic", "relationship": "联合实验室共建材料", "logo": "/research-assets/zhejiang-university.png", "official_url": "https://www.zju.edu.cn/", "note": "原路演材料披露；建设阶段以正式协议为准。"},
+    {"id": "seu", "name": "东南大学", "category": "academic", "relationship": "研究与医学指导", "logo": "/research-assets/southeast-university.png", "official_url": "https://www.seu.edu.cn/", "note": "李健团队研究指导，徐治提供医学流程指导。"},
+    {"id": "ustc", "name": "中国科学技术大学", "category": "academic", "relationship": "科研与人才生态 · 学术指导", "logo": "/research-assets/ustc.png", "official_url": "https://www.ustc.edu.cn/", "note": "语音科学、心理语言学与青年科研人才连接。"},
+    {"id": "cuhksz", "name": "香港中文大学（深圳）", "category": "academic", "relationship": "AI 学院合作备忘录与联合实验室材料", "logo": "/research-assets/cuhk-shenzhen.png", "official_url": "https://www.cuhk.edu.cn/", "note": "按母公司人才生态材料列示。"}
+  ],
+  "sources": [
+    {"label": "模型工件与评测协议", "detail": "DepAlign METRICS/PROTOCOL/AUDIT，MMPsy manifest/results，声音融合头 result/feature-spec。"},
+    {"label": "心度主 PPT · 2026-10-24", "detail": "合作医院、内测、合作计划和产品转化材料；内测与合作计划不是模型临床验证。"},
+    {"label": "守忆科技母公司 BP · 2026-10-10", "detail": "团队、学术指导、人才生态与媒体传播材料。"},
+    {"label": "勿忘我官网", "detail": "守忆科技旗下语音认知健康品牌与产品体系。", "url": "https://www.wuwangwo.top/"}
+  ]
+}
