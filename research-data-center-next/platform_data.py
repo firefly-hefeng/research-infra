@@ -59,11 +59,21 @@ def metrics(raw):
         for gpu in raw['gpus'][:64]:
             if not isinstance(gpu, dict) or number(gpu.get('index'), 1024, True) is None:
                 continue
-            result['gpus'].append({'index': int(gpu['index']), 'name': plain(gpu.get('name')),
+            processes = []
+            for process in gpu.get('processes', []) if isinstance(gpu.get('processes'), list) else []:
+                if not isinstance(process, dict):
+                    continue
+                pid = number(process.get('pid'), 2**31, True)
+                user, job, name = plain(process.get('user'), 64), plain(process.get('job'), 120), plain(process.get('process'), 120)
+                if pid is None or user is None or name is None or '/' in name or '\\' in name:
+                    continue
+                processes.append({'pid': pid, 'user': user, 'job': job, 'process': name,
+                                  'used_memory_bytes': number(process.get('used_memory_bytes'), integer=True)})
+            result['gpus'].append({'index': int(gpu['index']), 'uuid': plain(gpu.get('uuid')), 'name': plain(gpu.get('name')),
                 'memory_total_bytes': number(gpu.get('memory_total_bytes'), integer=True),
                 'memory_used_bytes': number(gpu.get('memory_used_bytes'), integer=True),
                 'utilization_percent': number(gpu.get('utilization_percent'), 100),
-                'temperature_c': number(gpu.get('temperature_c'), 150)})
+                'temperature_c': number(gpu.get('temperature_c'), 150), 'processes': processes[:64]})
     for row in raw.get('disks', []) if isinstance(raw.get('disks'), list) else []:
         if not isinstance(row, dict) or row.get('mount') not in MOUNTS:
             continue
@@ -123,7 +133,7 @@ def servers_snapshot(root, at=None):
             'stale_after_seconds': STALE_SECONDS,
             'servers': [public_server(rows.get(server['id']), server, at) for server in SERVERS],
             'notes': ['只读中央快照；刷新页面不会连接服务器。',
-                      'GPU 利用率是采样瞬时值，不代表空闲、预约或独占；不采集进程与命令行。',
+                      'GPU 利用率是采样瞬时值，不代表空闲、预约或独占；仅采集每卡用户、脱敏任务名、PID 与显存，不返回完整命令行或路径。',
                       '失联时保留上次成功观察并显示时间；挂载容量可能由多机共享，不能跨机器相加。']}
 
 
