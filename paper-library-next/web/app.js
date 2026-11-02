@@ -126,7 +126,7 @@ function renderDiscovery() {
   const papers = ready(), recommendations = recommendedPapers();
   const topics = countBy(papers, p => [p.card.category]);
   $('recommendation-count').textContent = recommendations.length;
-  $('recommendation-note').textContent = '从已收录的论文中随机选取，换一批发现不同的研究。';
+  $('recommendation-note').textContent = '随机遇见好论文，也许正好带来新的启发。';
   $('shuffle-recommendations').disabled = papers.length <= RECOMMENDATION_LIMIT;
   $('shuffle-recommendations').title = papers.length <= RECOMMENDATION_LIMIT ? '已展示全部可推荐论文' : '随机发现另一批论文';
   $('recommended-papers').innerHTML = recommendations.map(p => paperCard(p, true)).join('') ||
@@ -134,8 +134,9 @@ function renderDiscovery() {
   $('category-count').textContent = topics.length;
   $('category-grid').innerHTML = topics.map(([name, count]) => {
     const members = papers.filter(p => p.card.category === name);
+    const visual = topicVisual(name);
     const tags = countBy(members, p => p.card.tags).slice(0, 3);
-    return `<a class="category-card" href="${esc(catalogHash({category: name}))}" aria-label="${esc(name)}，${count} 篇论文"><div class="category-card-top"><span class="category-icon"><svg class="icon"><use href="#icon-folder"/></svg></span><span class="category-card-count">${count} 篇</span></div><h3>${esc(name)}</h3><div class="category-tags">${tags.map(([t]) => `<span>${esc(t)}</span>`).join('') || '<span>标签待补充</span>'}</div><div class="category-card-footer"><span>浏览此分类</span><span aria-hidden="true">↗</span></div></a>`;
+    return `<a class="category-card ${visual.tone}" href="${esc(catalogHash({category: name}))}" aria-label="${esc(name)}，${count} 篇论文"><span class="category-icon" aria-hidden="true"><svg class="icon"><use href="#${visual.icon}"/></svg></span><div class="category-copy"><h3>${esc(name)} <span class="category-card-count">${count} 篇</span></h3><div class="category-tags">${tags.map(([t]) => `<span>${esc(t)}</span>`).join('') || '<span>标签待补充</span>'}</div></div><span class="category-arrow" aria-hidden="true">↗</span></a>`;
   }).join('') || '<div class="empty"><h3>分类将随论文一起出现</h3><p>这里按论文现有分类自动汇总，不需要另行建立目录。</p></div>';
 }
 function render(routeFilters = null) {
@@ -189,9 +190,16 @@ function renderPapers() {
   $('filter-summary').textContent = `当前筛选：${summary.join(' / ')} · ${papers.length} 篇论文`;
   $('papers').innerHTML = papers.map(p => paperCard(p)).join('') || `<div class="empty"><div class="empty-symbol">⌕</div><h3>${ready().length ? '没有找到匹配的论文' : '你的研究书架，等待第一篇论文'}</h3><p>${ready().length ? '试试其他关键词，或清除方向、标签与年份筛选。' : '点击“添加论文”，将 PDF 放入待整理区并完成整理。'}</p></div>`;
 }
+// A stable visual cue for a topic; category names and links remain authoritative.
+function topicVisual(name) {
+  const known = {'语言模型': ['lilac', 'language'], '数据选择': ['blue', 'layers'],
+    '表征学习': ['teal', 'network'], '泛化理论': ['amber', 'chart'], '核方法': ['rose', 'grid']};
+  const [tone, icon] = Object.hasOwn(known, name) ? known[name] : ['lilac', 'folder'];
+  return {tone: 'tone-' + tone, icon: 'icon-' + icon};
+}
 function paperCard(p, recommended = false) {
-    const c = p.card;
-    return `<article class="paper-card ${recommended ? 'recommended-card' : ''}">${recommended ? '<div class="recommendation-reason">随机推荐</div>' : ''}<div class="card-top"><span class="category-label">${esc(c.category)}</span><span class="card-year">${c.year || '年份待核对'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}">${p.favorite ? '★' : '☆'}</button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者待核对')}</div><p class="summary">${esc(c.reading?.takeaway || c.summary)}</p><div class="card-tags">${c.tags.slice(0, 3).map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}${c.tags.length > 3 ? `<span class="chip">+${c.tags.length - 3}</span>` : ''}</div><div class="card-publication"><span class="journal" title="${esc(c.venue || '出版信息待核对')}">${esc(c.venue || '出版信息待核对')}</span><span>${p.bibliography_only ? '导入题录' : hasReading(c) ? '详细解读' : '基础卡片'}</span></div><div class="card-bottom"><span class="${p.bibliography_only || p.status === 'review' || !p.available ? 'status-review' : 'status-ready'}">${!p.available ? '◌ 原件缺失' : p.bibliography_only ? '◌ 题录已导入 · 待原文核验' : p.status === 'review' ? '◌ 信息待核对' : '◦ 已整理'}</span><button data-open="${p.id}">阅读论文详情 <span>↗</span></button></div></article>`;
+    const c = p.card, visual = topicVisual(c.category);
+    return `<article class="paper-card ${visual.tone} ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${esc(c.category)}</span><span class="card-year">${c.year || '年份待核对'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者待核对')}</div><p class="summary">${esc(c.reading?.takeaway || c.summary)}</p><div class="card-tags">${c.tags.slice(0, 3).map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}${c.tags.length > 3 ? `<span class="chip">+${c.tags.length - 3}</span>` : ''}</div><div class="card-publication"><span class="journal" title="${esc(c.venue || '出版信息待核对')}">${esc(c.venue || '出版信息待核对')}</span><span>${p.bibliography_only ? '导入题录' : hasReading(c) ? '详细解读' : '基础卡片'}</span></div><div class="card-bottom"><span class="${p.bibliography_only || p.status === 'review' || !p.available ? 'status-review' : 'status-ready'}">${!p.available ? '◌ 原件缺失' : p.bibliography_only ? '◌ 题录已导入 · 待原文核验' : p.status === 'review' ? '◌ 信息待核对' : '◦ 已整理'}</span><button data-open="${p.id}">阅读论文详情 <span>↗</span></button></div></article>`;
 
 }
 function renderInbox() {
