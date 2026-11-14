@@ -55,9 +55,11 @@ def create_app(config_path=None):
 
     @app.get('/assets/<name>')
     def assets(name):
-        if name not in {'app.js', 'style.css'}:
+        content_types = {'app.js': 'text/javascript', 'style.css': 'text/css'}
+        if name not in content_types:
             abort(404)
-        return send_from_directory(PROJECT / 'web', name)
+        # OS MIME mappings can label .js as plain text, which nosniff blocks.
+        return send_from_directory(PROJECT / 'web', name, mimetype=content_types[name])
 
     @app.get('/healthz')
     def health():

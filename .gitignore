@@ -21,6 +21,7 @@ var/
 logs/
 data/*.db
 *.sqlite3
+.local-dev/
 *.tar.gz
 *.zip
 # Curated, source-only research code packages are release assets, not runtime archives.
