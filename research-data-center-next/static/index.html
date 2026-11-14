@@ -8,6 +8,8 @@
   <title>科研管理中心 · Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23221a32'/%3E%3Cpath d='M10 13l10-5 10 5-10 5zM10 20l10 5 10-5M10 27l10 5 10-5' fill='none' stroke='%23d1a3ee' stroke-width='2.4'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/ui-refinements.css">
+  <script src="/gpu-trends.js" defer></script>
   <script src="/app.js" defer></script>
 </head>
 <body>
@@ -165,7 +167,7 @@
             <div class="search-row"><label class="search-box"><svg class="icon"><use href="#i-search"/></svg><span class="sr-only">搜索名称、描述、标签或路径</span><input id="search" type="search" name="q" placeholder="在原始台账中搜索名称、描述、标签或路径…" autocomplete="off"></label><button class="button button-primary search-submit" type="submit">搜索台账</button></div>
             <div class="filter-row"><span class="filter-caption"><svg class="icon"><use href="#i-filter"/></svg>筛选</span><label><span class="sr-only">公共区类型</span><select id="filter-kind" name="kind"><option value="">全部类型</option><option value="dataset">数据区记录</option><option value="model">模型区记录</option></select></label><label><span class="sr-only">服务器</span><select id="filter-server" name="server"><option value="">全部服务器</option></select></label><label><span class="sr-only">核验状态</span><select id="filter-status" name="status"><option value="">全部状态</option><option value="verified">rmp 入口可读</option><option value="documented">文档已收录</option><option value="partial">部分核验</option><option value="missing">路径未找到</option><option value="restricted">rmp 访问受限</option></select></label><label class="category-field"><span class="sr-only">分类</span><input id="filter-category" name="category" list="category-options" placeholder="按分类筛选" autocomplete="off"><datalist id="category-options"></datalist></label><button id="reset-filters" type="button" class="reset-button" hidden>清除筛选</button></div>
           </form>
-          <div class="results-meta"><span id="results-label" role="status" aria-live="polite">正在载入资源…</span><span class="table-hint">点击资源查看详情<svg class="icon"><use href="#i-arrow"/></svg></span></div>
+          <div class="results-meta"><span id="results-label" role="status" aria-live="polite">正在载入资源…</span><div class="catalog-display-tools"><button id="catalog-density" type="button" class="density-toggle" aria-pressed="false">紧凑显示</button><span class="table-hint">点击资源查看详情<svg class="icon"><use href="#i-arrow"/></svg></span></div></div>
           <div id="catalog-state" class="catalog-state" hidden></div>
           <div class="table-scroll" id="table-container"><table class="asset-table"><caption class="sr-only">科研资源列表</caption><thead><tr><th scope="col">资源名称 / 用途</th><th scope="col">类型</th><th scope="col">位置</th><th scope="col">规模</th><th scope="col">状态</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead><tbody id="asset-rows"></tbody></table></div>
           <div class="pagination" id="pagination"><span id="page-summary">—</span><div><button id="previous-page" type="button" class="page-button" disabled>上一页</button><span id="page-label">1 / 1</span><button id="next-page" type="button" class="page-button" disabled>下一页</button></div></div>

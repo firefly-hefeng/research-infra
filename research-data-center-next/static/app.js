@@ -33,7 +33,7 @@
     mapping: null, mappingIndex: new Map(), mappingController: null,
     resourceView: "cards", resourceGroup: "", resourceQuery: "", resourceGap: "", resourceTopic: "",
     guide: null, ingestion: null, ingestionController: null,
-    platform: "home", servers: null, serversController: null,
+    platform: "home", servers: null, serversController: null, selectedServer: null,
     research: null, researchController: null,
     platformReady: false, serversPollTimer: null,
     literature: null, literatureController: null, literaturePage: 1,
@@ -95,11 +95,14 @@
   const metricValue = (value) => typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : null;
   const percentText = (value) => metricValue(value) !== null && value <= 100 ? `${value.toLocaleString("zh-CN", { maximumFractionDigits: 1 })}%` : "—";
   const metricBar = (value, label) => metricValue(value) !== null && value <= 100 ? `<progress class="metric-bar" max="100" value="${value}" aria-label="${escape(label)} ${percentText(value)}"></progress>` : '<span class="metric-bar metric-unknown" aria-hidden="true"></span>';
+  const gpuHistory = window.HubMetrics.createHistory();
+  const gpuMemory = value => metricValue(value) === null ? "未取得" : `${(value / 1073741824).toLocaleString("zh-CN", {maximumFractionDigits: 2})} GiB`;
 
   function selectPlatform(value) {
     const dataAnchors = ["classified-resources", "data", "data-platform", "research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"];
     const current = ["servers", "research", "literature"].includes(value) ? value : dataAnchors.includes(value) ? "data-platform" : "home";
     state.platform = current;
+    document.body.dataset.platform = current;
     for (const id of ["servers", "research", "literature", "data-platform"]) $(id).hidden = id !== current;
     for (const id of ["overview", "platform-launchers", "home-guide"]) $(id).hidden = current !== "home";
     $("platform-back").hidden = current === "home";
@@ -129,25 +132,53 @@
     const zeroMemory = metricValue(gpu.memory_used_bytes) === 0;
     const highUtilization = (metricValue(gpu.utilization_percent) ?? 0) >= 90;
     const anomaly = zeroMemory && highUtilization && processes?.length === 0;
-    return `<details class="gpu-processes"><summary>用户与任务 <span>${processes === null ? "旧快照" : `${processes.length} 个`}</span></summary><div>${anomaly ? '<p class="gpu-anomaly">0 MiB 显存但利用率高，且无已登记计算进程；仅提示异常，不自动重置。</p>' : ""}${processes === null ? '<p class="gpu-process-empty">此快照未包含 GPU 进程信息。</p>' : processes.length ? processes.map((process) => `<div class="gpu-process-row"><div><strong>${escape(process.user)}</strong><span>${escape(process.job || process.process)}</span></div><small>${escape(process.process)} · PID ${escape(process.pid)} · 显存 ${escape(sizeText(process.used_memory_bytes))}</small></div>`).join("") : '<p class="gpu-process-empty">无已登记计算进程。</p>'}</div></details>`;
+    return `<details class="gpu-processes" data-detail="gpu-${escape(gpu.index)}"><summary>使用者与任务 <span>${processes === null ? '旧快照' : `${processes.length} 条记录`}</span></summary><div>${anomaly ? '<p class="gpu-anomaly">0 MiB 显存但利用率高，且无已登记计算进程；仅提示异常，不自动重置。</p>' : ''}${processes === null ? '<p class="gpu-process-empty">此快照未包含 GPU 进程信息，不据此判断 GPU 空闲。</p>' : processes.length ? processes.map(process => `<div class="gpu-process-row"><div><strong>${escape(process.user)}</strong><span>${escape(process.job || process.process)}</span></div><small>${escape(process.process)} · PID ${escape(process.pid)} · 显存 ${escape(gpuMemory(process.used_memory_bytes))}</small></div>`).join('') : '<p class="gpu-process-empty">无已登记计算进程，不据此判断 GPU 空闲。</p>'}</div></details>`;
+  }
+
+  function gpuTrendPanel(server, gpus) {
+    if (!gpus.length) return '';
+    const gpu = gpus.find(item => String(item.index) === String(state.selectedGpu)) || gpus[0];
+    state.selectedGpu = gpu.index;
+    const points = gpuHistory.points(server, gpu);
+    const paused = server.stale || server.status === 'unreachable';
+    const fieldLabels = {utilization: 'GPU 利用率', memory: '显存占比'};
+    const timeLabel = time => new Date(time).toLocaleTimeString('zh-CN', {timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    let chart = `<div class="gpu-trend-empty">${paused ? '当前快照已过期，趋势采样暂停。' : points.length ? '已取得一个观测点，等待下一次新的观测。' : '等待新的有效观测。'}<small>只记录本次访问期间收到的新数据。</small></div>`;
+    if (points.length >= 2) {
+      const first = points[0].time, last = points.at(-1).time;
+      const x = point => 8 + (point.time - first) / (last - first) * 584;
+      const y = (point, field) => 112 - point[field] * 1.04;
+      const lines = Object.keys(fieldLabels).map(field => window.HubMetrics.segments(points, field).map(group => `<g class="trend-${field}">${group.length > 1 ? `<polyline fill="none" points="${group.map(p => `${x(p).toFixed(2)},${y(p,field).toFixed(2)}`).join(' ')}"/>` : ''}${group.map(p=>`<circle cx="${x(p).toFixed(2)}" cy="${y(p,field).toFixed(2)}" r="3"><title>${timeLabel(p.time)} · ${fieldLabels[field]} ${percentText(p[field])}</title></circle>`).join('')}</g>`).join('')).join('');
+      chart = `<div class="gpu-plot"><div class="gpu-plot-scale" aria-hidden="true"><span>100%</span><span>50%</span><span>0%</span></div><div class="gpu-plot-main"><svg viewBox="0 0 600 120" preserveAspectRatio="none" role="img" aria-label="GPU ${escape(gpu.index)} 本次访问期间的利用率与显存占比趋势"><g class="gpu-plot-grid"><line x1="0" y1="8" x2="600" y2="8"/><line x1="0" y1="60" x2="600" y2="60"/><line x1="0" y1="112" x2="600" y2="112"/></g>${lines}</svg><div class="gpu-plot-times"><span>${timeLabel(first)}</span><span>${timeLabel(last)} · 北京时间</span></div></div></div>`;
+    }
+    const latest = points.at(-1);
+    return `<section class="gpu-trend-panel" aria-labelledby="gpu-trend-title"><div class="gpu-trend-heading"><div><h4 id="gpu-trend-title">GPU 趋势 <span>本次访问期间${paused ? ' · 已暂停' : ''}</span></h4><p>利用率与显存占比使用同一百分比刻度；缺失观测留空。</p></div><label>查看 <select id="gpu-trend-select" aria-label="选择趋势图的 GPU">${gpus.map(item=>`<option value="${escape(item.index)}"${item.index === gpu.index ? ' selected' : ''}>GPU ${escape(item.index)}</option>`).join('')}</select></label></div><div class="gpu-trend-legend"><span class="legend-utilization">GPU 利用率${latest ? ' · '+percentText(latest.utilization) : ''}</span><span class="legend-memory">显存占比${latest ? ' · '+percentText(latest.memory) : ''}</span></div>${chart}<p class="gpu-trend-note">${points.length} 个新观测点 · 页面关闭后清空 · 不包含此前的历史数据</p></section>`;
   }
 
   function renderServers(data) {
+    const opened = new Set([...$('servers-grid').querySelectorAll('details[open][data-detail]')].map(el=>el.dataset.detail));
     state.servers = data;
-    const servers = Array.isArray(data?.servers) ? data.servers.slice(0, 12) : [];
-    const validStatuses = { online: "观测在线", partial: "部分指标可读", unreachable: "当前不可达", not_configured: "未配置采集" };
-    $("servers-observed").textContent = data?.mode === "not_configured" ? "服务器采集尚未配置，暂无可用的观察数据。" : `${data?.generated_at ? `快照生成 ${dateText(data.generated_at, true)}` : "尚无采集时间"}${data?.served_at ? ` · 读取 ${dateText(data.served_at, true)}` : ""} · 此页可见时每分钟更新已保存快照`;
-    $("compute-launcher-status").textContent = data?.mode === "not_configured" ? "采集尚未配置" : `${number(servers.length)} 台机器 · 观察快照`;
-    $("servers-grid").innerHTML = servers.length ? servers.map((server) => {
-      const status = Object.hasOwn(validStatuses, server.status) ? server.status : "not_configured";
-      const old = server.stale === true || status === "unreachable";
-      const time = server.last_success_at || server.observed_at;
-      const gpus = Array.isArray(server.gpus) ? server.gpus.slice(0, 32) : null;
-      const disks = Array.isArray(server.disks) ? server.disks.slice(0, 20) : [];
-      const cpu = server.cpu || {}, memory = server.memory || {};
-      const observed = old ? (time ? `以下保留上次观测值：${dateText(time, true)}。不代表当前负载。` : "本次未取得可信指标，也没有此前成功观察。") : `指标观察：${dateText(time, true)}`;
-      return `<article class="server-card"><div class="server-card-heading"><span class="platform-number">COMPUTE / ${escape(server.id || "")}</span><span class="server-status" data-status="${old ? "stale" : status}">${escape(status === "unreachable" ? "当前不可达" : server.stale ? "快照已过期" : validStatuses[status])}</span></div><h3>${escape(server.name || "未命名机器")}</h3><code class="server-address">${escape(server.address || "地址未记录")}</code><p class="server-observed${old ? " is-old" : ""}">${escape(observed)}</p><div class="server-metrics"><div><span>CPU 使用</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent, "CPU 使用") }<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent, "内存使用")}<small>可用 ${escape(sizeText(memory.available_bytes))} / ${escape(sizeText(memory.total_bytes))}</small></div></div><div class="server-gpus"><h4>GPU <span>${gpus === null ? "未取得观察" : `${number(gpus.length)} 张已观察`}</span></h4>${gpus?.length ? `<p class="gpu-model">${escape([...new Set(gpus.map((gpu) => gpu.name).filter(Boolean))].join(" / ") || "型号未记录")}</p><div class="gpu-grid">${gpus.map((gpu) => `<div class="gpu-item"><div><span>GPU ${escape(gpu.index ?? "—")}</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent, `GPU ${gpu.index ?? ""} 使用`)}<small>显存 ${escape(sizeText(gpu.memory_used_bytes))}<br>共 ${escape(sizeText(gpu.memory_total_bytes))}</small>${gpuProcessPanel(gpu)}</div>`).join("")}</div>` : `<p class="server-no-metric">${gpus === null ? "尚无 GPU 指标；不据此判断机器空闲。" : "本次采集未报告 GPU 设备。"}</p>`}</div><details class="server-detail"><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map((disk) => `<div class="server-disk"><div><code>${escape(disk.mount || "挂载点未记录")}</code><strong>${disk.capacity_note === "object_storage_capacity_not_applicable" ? "对象存储" : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === "object_storage_capacity_not_applicable" ? `<small>容量口径不适用 · ${escape(disk.filesystem || "对象存储挂载")}</small>` : `${metricBar(disk.used_percent, `${disk.mount || "磁盘"} 使用`)}<small>可用 ${escape(sizeText(disk.available_bytes))} / ${escape(sizeText(disk.total_bytes))}${disk.filesystem ? ` · ${escape(disk.filesystem)}` : ""}</small>`}</div>`).join("") : '<p>未取得磁盘观察。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || "未记录")}</dd></div><div><dt>最近尝试</dt><dd>${escape(dateText(server.attempted_at, true))}</dd></div><div><dt>最近成功</dt><dd>${escape(dateText(time, true))}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${escape(dateText(server.remote_observed_at, true))}（仅供对照）</dd></div>` : ""}${server.error_code ? `<div><dt>观察结果</dt><dd>${escape(server.error_code)}</dd></div>` : ""}</dl></div></details></article>`;
-    }).join("") : '<p class="platform-empty">尚无服务器观察记录。请先阅读使用说明，采集启用后将在这里展示。</p>';
+    gpuHistory.record(data);
+    const servers = Array.isArray(data?.servers) ? data.servers.slice(0,12) : [];
+    const labels = {online:'观测在线',partial:'部分指标可读',unreachable:'当前不可达',not_configured:'未配置采集'};
+    const statusLabel = server => server.status === 'unreachable' ? labels.unreachable : server.stale ? '快照已过期' : labels[server.status] || labels.not_configured;
+    $('servers-observed').textContent = data?.mode === 'not_configured' ? '服务器采集尚未配置，暂无可用观测。' : `${data?.generated_at ? '快照生成 '+dateText(data.generated_at,true) : '尚无采集时间'} · 此页可见时每分钟读取一次`;
+    $('compute-launcher-status').textContent = data?.mode === 'not_configured' ? '采集尚未配置' : `${servers.length} 台机器 · 观察快照`;
+    const server = servers.find(item=>item.id === state.selectedServer) || servers[0];
+    if (!server) { $('servers-grid').innerHTML='<p class="platform-empty">暂无服务器观察记录。</p>'; return; }
+    state.selectedServer = server.id;
+    const old = server.stale === true || server.status === 'unreachable';
+    const time = server.last_success_at || server.observed_at;
+    const gpus = Array.isArray(server.gpus) ? server.gpus.slice(0,32) : [];
+    const disks = Array.isArray(server.disks) ? server.disks.slice(0,20) : [];
+    const cpu = server.cpu || {}, memory = server.memory || {};
+    const picker = `<div class="server-switcher" role="group" aria-label="选择服务器">${servers.map(item=>`<button type="button" class="server-choice${item.id === server.id ? ' active' : ''}" data-select-server="${escape(item.id)}" aria-pressed="${item.id === server.id}"><span class="server-choice-top"><span>COMPUTE / ${escape(item.id)}</span><span class="server-status" data-status="${item.stale ? 'stale' : escape(item.status)}">${escape(statusLabel(item))}</span></span><strong>${escape(item.name)}</strong><span class="server-choice-meta">${Array.isArray(item.gpus) ? item.gpus.length+' 张 GPU' : 'GPU 待观察'} · CPU ${percentText(item.cpu?.usage_percent)}</span></button>`).join('')}</div>`;
+    const cards = gpus.map(gpu => {
+      const used = gpuMemory(gpu.memory_used_bytes), total = gpuMemory(gpu.memory_total_bytes), ratio = window.HubMetrics.memoryPercent(gpu);
+      return `<article class="gpu-item"><div class="gpu-item-title"><h4>GPU ${escape(gpu.index)}</h4><span>${metricValue(gpu.temperature_c) === null ? '温度未取得' : escape(gpu.temperature_c)+' °C'}</span></div><p class="gpu-name">${escape(gpu.name || '型号未记录')}</p><div class="gpu-metric"><div><span>GPU 利用率</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent,'GPU '+gpu.index+' 利用率')}</div><div class="gpu-metric gpu-memory"><div><span>显存占比</span><strong>${percentText(ratio)}</strong></div>${metricBar(ratio,'GPU '+gpu.index+' 显存占比')}<small>已用 ${used} / 总计 ${total}</small></div>${gpuProcessPanel(gpu)}</article>`;
+    }).join('');
+    $('servers-grid').innerHTML = `${picker}<article class="server-card server-detail-card" aria-label="${escape(server.name)}详细观测"><header class="server-detail-heading"><div><span class="platform-number">SERVER / ${escape(server.id)}</span><h3>${escape(server.name)}</h3><code class="server-address">${escape(server.address || '地址未记录')}</code></div><span class="server-status" data-status="${old ? 'stale' : escape(server.status)}">${escape(statusLabel(server))}</span></header><p class="server-observed${old ? ' is-old' : ''}">${old ? '保留上次观测，不代表当前负载：' : '最近观测：'}${dateText(time,true)}</p><div class="server-observation-grid"><div class="server-metrics"><div><span>CPU 使用率</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent,'CPU 使用率')}<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用率</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent,'内存使用率')}<small>可用 ${sizeText(memory.available_bytes)} / 总计 ${sizeText(memory.total_bytes)}</small></div></div>${gpuTrendPanel(server,gpus)}</div><div class="server-gpus"><div class="gpu-section-heading"><h4>GPU 资源 <span>${gpus.length} 张已观察</span></h4><span>利用率与显存分别显示</span></div><div class="gpu-grid">${cards || '<p class="server-no-metric">本次未取得 GPU 指标。</p>'}</div></div><details class="server-detail" data-detail="disks"><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map(disk=>`<div class="server-disk"><div><code>${escape(disk.mount || '挂载点未记录')}</code><strong>${disk.capacity_note === 'object_storage_capacity_not_applicable' ? '对象存储' : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === 'object_storage_capacity_not_applicable' ? '<small>容量口径不适用 · '+escape(disk.filesystem || '对象存储挂载')+'</small>' : metricBar(disk.used_percent,'磁盘使用率')+'<small>可用 '+sizeText(disk.available_bytes)+' / 总计 '+sizeText(disk.total_bytes)+(disk.filesystem ? ' · '+escape(disk.filesystem) : '')+'</small>'}</div>`).join('') : '<p>未取得磁盘观测。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || '未记录')}</dd></div><div><dt>最近尝试</dt><dd>${dateText(server.attempted_at,true)}</dd></div><div><dt>最近成功</dt><dd>${dateText(time,true)}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${dateText(server.remote_observed_at,true)}（仅供对照）</dd></div>` : ""}${server.error_code ? '<div><dt>观察结果</dt><dd>'+escape(server.error_code)+'</dd></div>' : ''}</dl></div></details></article>`;
+    $('servers-grid').querySelectorAll('details[data-detail]').forEach(el=>{el.open=opened.has(el.dataset.detail);});
   }
 
   async function loadServers(signal) {
@@ -651,6 +682,7 @@
     state.serversController?.abort();
     state.researchController?.abort();
     state.literatureController?.abort();
+    gpuHistory.clear();
     state.authEnabled = true;
     state.authenticated = false;
     state.assetController?.abort();
@@ -1356,7 +1388,26 @@
     window.addEventListener("hashchange", syncPlatform);
     document.addEventListener("visibilitychange", () => scheduleServerRefresh(true));
     syncPlatform();
+    $('catalog-density').addEventListener('click', event => {
+      const compact = event.currentTarget.getAttribute('aria-pressed') !== 'true';
+      event.currentTarget.setAttribute('aria-pressed', String(compact));
+      $('catalog').querySelector('.catalog-panel').classList.toggle('is-compact', compact);
+    });
     $("servers-refresh").addEventListener("click", () => loadServers());
+    $('servers-grid').addEventListener('click', event => {
+      const button = event.target.closest('[data-select-server]');
+      if (!button) return;
+      state.selectedServer = button.dataset.selectServer;
+      state.selectedGpu = null;
+      renderServers(state.servers);
+      [...$('servers-grid').querySelectorAll('[data-select-server]')].find(item => item.dataset.selectServer === state.selectedServer)?.focus({preventScroll:true});
+    });
+    $('servers-grid').addEventListener('change', event => {
+      if (event.target.id !== 'gpu-trend-select') return;
+      state.selectedGpu = event.target.value;
+      renderServers(state.servers);
+      $('gpu-trend-select')?.focus({preventScroll:true});
+    });
     $("research").addEventListener("click", (event) => {
       const path = event.target.closest("[data-copy-research-path]");
       if (path) copyText(path.dataset.copyResearchPath, path);
