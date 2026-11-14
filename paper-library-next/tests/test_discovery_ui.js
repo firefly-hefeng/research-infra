@@ -32,7 +32,7 @@ const stateFor = papers => ({papers, jobs: [], agent: {configured: false, enable
 const idsIn = html => [...new Set([...html.matchAll(/data-open="([a-f0-9]{64})"/g)].map(match => match[1]))];
 const flush = () => new Promise(resolve => setImmediate(resolve));
 
-async function setup(pathname, papers, hash = '') {
+async function setup(pathname, papers, hash = '', options = {}) {
   let serverState = stateFor(clone(papers));
   const nodes = new Map(), documentHandlers = new Map(), windowHandlers = new Map();
   const requests = [], timers = new Map(), visits = [];
@@ -48,6 +48,7 @@ async function setup(pathname, papers, hash = '') {
         get textContent() { return text; }, set textContent(value) { text = String(value); },
         insertAdjacentHTML(position, value) { html += value; },
         setAttribute(name, value) { this[name] = String(value); },
+        removeAttribute(name) { delete this[name]; },
         classList: {add(name) { classes.add(name); }, remove(name) { classes.delete(name); },
           toggle(name, value) { if (value) classes.add(name); else classes.delete(name); }},
         addEventListener(name, handler) { events.set(name, handler); },
@@ -61,7 +62,7 @@ async function setup(pathname, papers, hash = '') {
   };
   document.getElementById = node;
   document.querySelector = selector => selector === '.agent-state' ? node('agent-state') :
-    selector === 'dialog[open]' ? ['detail', 'guide', 'login'].map(node).find(item => item.open) || null : null;
+    selector === 'dialog[open]' ? ['detail', 'guide', 'login', 'provider-settings'].map(node).find(item => item.open) || null : null;
   document.querySelectorAll = () => [];
   document.addEventListener = (name, handler) => documentHandlers.set(name, handler);
   document.body = node('body');
@@ -72,8 +73,9 @@ async function setup(pathname, papers, hash = '') {
   const math = Object.create(Math);
   math.random = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
   const fetch = async (url, options = {}) => {
-    requests.push({url, method: options.method || 'GET'});
+    requests.push({url, method: options.method || 'GET', body: options.body ? JSON.parse(options.body) : null});
     const apiPath = url.replace(/^\/papers(?=\/api\/)/, '');
+    if (apiPath === '/api/settings' && settingsRequest) return settingsRequest(options);
     if (apiPath === '/api/state' && !options.method) {
       return {ok: true, status: 200, json: async () => clone(serverState)};
     }
@@ -85,6 +87,7 @@ async function setup(pathname, papers, hash = '') {
     }
     throw new Error(`Unexpected API request: ${options.method || 'GET'} ${url}`);
   };
+  const settingsRequest = options.settingsRequest;
   const context = {document, window, URL, URLSearchParams, console, fetch, Math: math,
     navigator: {clipboard: {writeText: async () => {}}},
     setTimeout(callback) { timers.set(++timer, callback); return timer; },
@@ -109,6 +112,9 @@ async function setup(pathname, papers, hash = '') {
       node('discovery-search-form').onsubmit({preventDefault() {}}); await flush(); },
     async inputSearch(value) { node('search').value = value; await node('search').dispatch('input');
       for (const [id, callback] of [...timers]) { timers.delete(id); callback(); } await flush(); },
+    async submitSettings() { await node('provider-form').onsubmit({preventDefault() {}}); await flush(); },
+    async keydown(key) { let prevented = false; await documentHandlers.get('keydown')({key, preventDefault() { prevented = true; }}); return prevented; },
+    async escapeSettings() { let prevented = false; await node('provider-settings').dispatch('cancel', {preventDefault() { prevented = true; }}); if (!prevented) node('provider-settings').close(); await flush(); },
     setPapers(value) { serverState = stateFor(clone(value)); }};
 }
 
@@ -195,10 +201,173 @@ async function initialLinksAndSmallCollections(pathname) {
   }
 }
 
+async function largeCollectionAndWorkspace(pathname) {
+  const collection = Array.from({length: 336}, (_, index) => bibliography(index + 1, `研究方向 ${index % 26}`));
+  collection[0].favorite = true;
+  const app = await setup(pathname, collection, '#catalog');
+  const {node} = app;
+  equal(node('nav-all-count').textContent, '336', 'Navigation includes all imported bibliography');
+  equal(node('nav-favorite-count').textContent, '1', 'Navigation counts favorites');
+  check(node('stat-categories').innerHTML.startsWith('26<'), 'Statistics count 26 categories');
+  equal((node('catalog-categories').innerHTML.match(/<a /g) || []).length, 27, 'Sidebar includes every category and the all-category entry');
+  equal(node('nav-catalog')['aria-current'], 'page', 'Catalog navigation is active');
+  equal(idsIn(node('papers').innerHTML).length, 12, 'Catalog is limited to 12 cards per page');
+  check(node('papers-prev').disabled && !node('papers-next').disabled, 'First-page navigation is bounded');
+  const seen = [...idsIn(node('papers').innerHTML)];
+  for (let page = 2; page <= 28; page++) {
+    await app.click('papers-next');
+    seen.push(...idsIn(node('papers').innerHTML));
+  }
+  equal(new Set(seen).size, 336, 'Paging visits every record exactly once');
+  equal(seen.length, 336, 'Paging never duplicates records');
+  check(app.location.hash.includes('page=28'), 'Current page is linkable');
+  equal(node('page-label').textContent, '第 28 / 28 页', 'Last-page label is accurate');
+  equal(node('page-summary').textContent, '显示 325–336 条，共 336 条文献', 'Range is accurate at collection end');
+  check(node('papers-next').disabled, 'Next page is disabled at the end');
+  await app.route('#catalog?page=999');
+  check(app.location.hash.includes('page=28'), 'Oversized deep-link page is clamped in the URL');
+  await app.inputSearch('Research 336');
+  equal(idsIn(node('papers').innerHTML), [identifier(336)], 'Search resets pagination before filtering');
+  check(!app.location.hash.includes('page='), 'First page is canonical without a page parameter');
+  await app.route('#catalog?' + new URLSearchParams({category: '研究方向 0', page: '2'}));
+  equal(idsIn(node('papers').innerHTML).length, 1, 'Category pagination has a partial final page');
+  check(node('catalog-categories').innerHTML.includes('aria-current="page"><span>研究方向 0'), 'Sidebar highlights the selected category');
+  node('year').value = '2024';
+  await node('year').onchange();
+  equal(idsIn(node('papers').innerHTML).length, 12, 'Changing a filter resets the category page');
+  await app.route('#catalog?page=28');
+  app.setPapers(collection.slice(0, 13));
+  await app.refresh();
+  equal(node('page-label').textContent, '第 2 / 2 页', 'Refresh clamps a page after collection shrinkage');
+  equal(idsIn(node('papers').innerHTML), [identifier(13)], 'Clamping preserves the remaining last-page result');
+  await app.route('#favorites');
+  equal(idsIn(node('papers').innerHTML), [identifier(1)], 'Legacy favorites route still works');
+  equal(node('nav-favorites')['aria-current'], 'page', 'Favorites navigation is active');
+  check(!node('nav-catalog')['aria-current'], 'Only one navigation item is active');
+  await app.route('#workspace');
+  check(!node('management').hidden && node('discovery-view').hidden && node('library-view').hidden, 'Workspace is an independent route');
+  equal(node('nav-workspace')['aria-current'], 'page', 'Workspace navigation is active');
+  check(!(await app.keydown('/')), 'Workspace does not focus a hidden search field');
+  await app.route('#discover');
+  check(node('management').hidden && !node('discovery-view').hidden, 'Leaving workspace restores discovery');
+  check(app.requests.every(call => call.method === 'GET'), 'Scale, paging, routes and filters do not start jobs');
+}
+
+const settingsFixture = () => ({mode: 'auto', api_base_url: 'https://model.example/v1', api_model: 'example-model',
+  api_key_set: true, api_timeout: 120, agent_timeout: 300, api_json_mode: true, agent_configured: false, configured: true});
+const response = (data, status = 200) => ({ok: status < 400, status, json: async () => clone(data)});
+const deferred = () => { let resolve; const promise = new Promise(done => { resolve = done; }); return {promise, resolve}; };
+
+async function providerDialog(pathname) {
+  let fail = true, configuration = settingsFixture();
+  const app = await setup(pathname, [paper(1)], '', {settingsRequest: async options => {
+    if (fail) return response({error: 'Fixture unavailable'}, 503);
+    if (options.method === 'PATCH') {
+      const payload = JSON.parse(options.body);
+      configuration = {...configuration, ...payload, api_key_set: payload.clear_api_key ? false : !!payload.api_key || configuration.api_key_set};
+      delete configuration.api_key;
+    }
+    return response(configuration);
+  }});
+  const {node} = app;
+  check(!app.requests.some(call => call.url.endsWith('/settings')), 'Settings are fetched only when opened');
+  await app.click('settings-button');
+  check(node('provider-settings').open, 'Header settings button opens a native dialog');
+  check(node('provider-fields').disabled && node('save-provider').disabled && !node('retry-settings').hidden, 'Load failure prevents saving and exposes retry');
+  await app.submitSettings();
+  check(!app.requests.some(call => call.method === 'PATCH'), 'A failed load cannot overwrite server settings');
+  fail = false;
+  await app.click('retry-settings');
+  check(!node('provider-fields').disabled && !node('save-provider').disabled && node('retry-settings').hidden, 'Retry restores the editable form');
+  equal(node('api-key').value, '', 'Saved API key is never returned to its input');
+  node('api-model').value = 'unsaved-model';
+  node('api-key').value = 'draft-secret';
+  await app.refresh();
+  equal(node('api-model').value, 'unsaved-model', 'Background refresh preserves configuration drafts');
+  equal(node('api-key').value, 'draft-secret', 'Background refresh preserves the current key draft');
+  check(!(await app.keydown('/')), 'Search shortcut is inactive while settings are open');
+  await app.click('close-settings');
+  check(!node('provider-settings').open, 'Close button closes settings');
+  equal(node('api-key').value, '', 'Closing clears the key draft');
+  await app.click('workspace-settings');
+  equal(node('api-model').value, 'example-model', 'Reopening reloads saved settings');
+  node('provider-mode').value = 'api';
+  node('api-model').value = 'new-model';
+  node('api-base-url').value = '';
+  await app.submitSettings();
+  check(!app.requests.some(call => call.method === 'PATCH'), 'Incomplete API configuration is rejected before saving');
+  node('api-base-url').value = configuration.api_base_url;
+  fail = true;
+  node('api-key').value = 'retry-draft';
+  await app.submitSettings();
+  check(!node('save-provider').disabled && !node('provider-fields').disabled, 'Save errors leave the form available for retry');
+  equal(node('api-key').value, 'retry-draft', 'Save errors retain the draft for retry');
+  fail = false;
+  node('api-key').value = '';
+  await app.submitSettings();
+  const save = app.requests.filter(call => call.method === 'PATCH').at(-1);
+  check(save && save.url.endsWith('/api/settings'), 'Settings use only the settings PATCH endpoint');
+  equal(save.body.api_key, '', 'Blank key requests retention of the saved key');
+  equal(save.body.clear_api_key, false, 'Key retention is the default');
+  check(node('settings-status').textContent.includes('已保存'), 'Successful save is confirmed');
+  node('clear-api-key').checked = true;
+  await app.submitSettings();
+  check(app.requests.filter(call => call.method === 'PATCH').at(-1).body.clear_api_key, 'Explicit key removal is passed through');
+  check(!configuration.api_key_set, 'Explicit key removal updates displayed state');
+  node('api-key').value = 'another-draft';
+  await app.escapeSettings();
+  check(!node('provider-settings').open && !node('api-key').value, 'Native Escape close clears the key');
+  check(app.requests.every(call => call.method === 'GET' || (call.method === 'PATCH' && call.url.endsWith('/settings'))), 'Settings do not scan, run or generate a reading');
+}
+
+async function providerRaces(pathname) {
+  const first = deferred(), second = deferred();
+  let loads = 0;
+  const app = await setup(pathname, [paper(1)], '', {settingsRequest: () => (++loads === 1 ? first.promise : second.promise)});
+  const firstOpen = app.click('settings-button');
+  await flush();
+  await app.click('close-settings');
+  const secondOpen = app.click('settings-button');
+  await flush();
+  second.resolve(response({...settingsFixture(), api_model: 'current-model'}));
+  await secondOpen;
+  app.node('api-model').value = 'current-draft';
+  first.resolve(response({...settingsFixture(), api_model: 'obsolete-model'}));
+  await firstOpen;
+  equal(app.node('api-model').value, 'current-draft', 'Late response from a previous opening cannot replace the current draft');
+  check(!app.node('provider-fields').disabled, 'Stale response cannot disable the current form');
+
+  const saving = deferred();
+  let configuration = settingsFixture();
+  const savingApp = await setup(pathname, [paper(1)], '', {settingsRequest: async options => {
+    if (options.method === 'PATCH') {
+      await saving.promise;
+      configuration.api_model = JSON.parse(options.body).api_model;
+    }
+    return response(configuration);
+  }});
+  await savingApp.click('settings-button');
+  savingApp.node('api-model').value = 'saved-after-reopen';
+  const submit = savingApp.submitSettings();
+  await flush();
+  await savingApp.click('close-settings');
+  const reopen = savingApp.click('settings-button');
+  await flush();
+  equal(savingApp.requests.filter(call => call.url.endsWith('/settings') && call.method === 'GET').length, 1, 'Reopening waits for the in-flight save before fetching');
+  check(savingApp.node('provider-fields').disabled, 'Reopened settings remain disabled while the prior save finishes');
+  saving.resolve();
+  await Promise.all([submit, reopen]);
+  equal(savingApp.node('api-model').value, 'saved-after-reopen', 'Reopened settings show the result of the completed save');
+  check(!savingApp.node('save-provider').disabled && !savingApp.node('provider-fields').disabled, 'An older save cannot disable the reopened form');
+}
+
 (async () => {
   for (const pathname of ['/', '/papers/']) {
     await fullCollection(pathname);
     await initialLinksAndSmallCollections(pathname);
+    await largeCollectionAndWorkspace(pathname);
+    await providerDialog(pathname);
+    await providerRaces(pathname);
   }
   console.log(`Discovery UI: ${checks} assertions passed.`);
 })().catch(error => { console.error(error); process.exitCode = 1; });
