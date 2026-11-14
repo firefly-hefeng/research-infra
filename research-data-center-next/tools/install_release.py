@@ -15,7 +15,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_ROOTS = {'static', 'docs', 'tests', 'deploy', 'tools', 'data'}
-ALLOWED_FILES = {'catalog.py', 'server.py', 'progress_proxy.py', 'ingestion.py', 'README.md', '.gitignore', 'release-manifest.json'}
+ALLOWED_FILES = {'resource_directory.py','catalog.py', 'server.py', 'progress_proxy.py', 'ingestion.py', 'README.md', '.gitignore', 'release-manifest.json'}
 
 
 def validate_name(name):

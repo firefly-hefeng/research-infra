@@ -21,6 +21,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path, PurePosixPath
 from urllib.parse import parse_qs, unquote, urlsplit
 
+from resource_directory import query_directory, load_directory, resource_readme
 from progress_proxy import proxy_progress
 from platform_data import literature, servers_snapshot
 from research_portfolio import research_portfolio
@@ -175,6 +176,7 @@ def agent_manifest() -> dict:
             "resource_mapping": "/api/resource-mapping", "resource_mapping_csv": "/api/resource-mapping.csv",
             "registered_entry": "/api/resource-mapping/{registry_id}", "standards": "/docs/standards.html",
             "research_guide": "/api/research-guide",
+            "classified_resources": "/api/classified-resources",
             "ingestion_manifest": "/api/ingestion/manifest", "ingestion_status": "/api/ingestion/status",
             "ingestion_published": "/api/ingestion/published",
             "platform_servers": "/api/platform/servers", "platform_literature": "/api/platform/literature",
@@ -387,6 +389,21 @@ class CatalogHandler(BaseHTTPRequestHandler):
             self._error(503, "catalog_unavailable", "Catalog unavailable. Import a metadata snapshot and check service configuration.")
 
     def _api(self, path: str, query: str):
+        if path == "/api/classified-resources":
+            return self._json(query_directory(self.server.root, query))
+        if path.startswith("/api/classified-resources/"):
+            if query:
+                raise ValueError("No detail query parameters")
+            identity = path.removeprefix("/api/classified-resources/")
+            markdown = identity.endswith("/README.md")
+            if markdown:
+                identity = identity.removesuffix("/README.md")
+            item = next((i for i in load_directory(self.server.root)["items"] if i["id"] == identity), None)
+            if item is None:
+                return self._error(404, "not_found", "Resource not found")
+            if markdown:
+                return self._send(200, resource_readme(item).encode("utf-8"), "text/plain; charset=utf-8")
+            return self._json(item)
         if path == "/api/platform/research":
             if query:
                 return self._error(400, "invalid_query", "Research portfolio does not accept query parameters.")

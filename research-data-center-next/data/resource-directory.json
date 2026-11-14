@@ -1,0 +1,2995 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-11-14",
+  "scope": "internal_catalog",
+  "source_sha256": "ee79165383c026eb52556a2a78234e7504ba39e0c4befd21cccc4fc6cd8daa63",
+  "items": [
+    {
+      "id": "resource-7d2abb18a216",
+      "name": "MiDasheng autonomous 继续训练与空间音频评测",
+      "kind": "model",
+      "category": "通用语音与语言",
+      "subcategory": "空间音频与问答",
+      "status": "restricted",
+      "source_status": "文件已核实",
+      "note": "已有模型位置仍为unconfirmed且rmp不可读，未修改权限。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "MiDasheng autonomous 继续训练与空间音频评测。stage1 0.598、stage2 0.4535、a_gs2 0.304；dev 参与选模，不作为独立盲测或疾病结论。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 2
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "用于空间音频与问答研究的模型训练、评测相关资源。具体模型版本与使用方法仍需补充。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-ae1a01d8171e",
+      "name": "MDVR-KCL",
+      "kind": "dataset",
+      "category": "帕金森与运动障碍",
+      "subcategory": "帕金森语言与发声",
+      "status": "storage_pending",
+      "source_status": "已取得并验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "73条录音（不是人数）。压缩包606144431字节。展开1365139343字节。尚未建立正式训练、开发和测试划分。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 3
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-03",
+        "domain-03-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕帕金森病相关的说话和发声变化整理的资料，可作为语音与运动障碍研究的选材入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-0cb0f32a1451",
+      "name": "E-DAIC",
+      "kind": "dataset",
+      "category": "情绪与精神健康",
+      "subcategory": "抑郁访谈与量表",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方清单278/278个文件，共113,482,893,083字节，其中276个gzip/TAR归档。源站字节数、gzip CRC/TAR遍历、全部文件独立SHA256及最终尺寸/0600权限复核通过；目录0700。278是文件数，不是参与者人数。当前验收未取得官方逐文件MD5/SHA清单，不能声称官方摘要比对通过。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 4
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-05",
+        "domain-05-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕访谈表达与抑郁量表整理的研究资料，帮助研究者探索语言、声音与情绪状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-69bfb19e9e76",
+      "name": "IEMOCAP整理包",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "unlocated",
+      "source_status": "群附件已确认",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "真实飞书窗口确认群附件名IEMOCAP.zip，显示573.7MB；显示大小不等于精确字节。远超说明TXT是他整理的标签/文本；完整5组双人录音、10演员覆盖仍没有验包证据。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 5
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-256a979fed6e",
+      "name": "DementiaBank既有抓取 / ADReSS-M版本核对",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知实验与整理资料",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "铭凡可读媒体库6906个非空媒体已清点并检查短文件头；含不同子库、格式及版本，不能当人数。旧多语benchmark目录本轮实盘只有小文件/索引，没有音频。学校3个既定ADReSS-M候选根未定位到正式完整包；所需英语训练237、希腊示例8、测试46条录音尚未验收到，不能用ADReSSo替代。\n\n【2026-10-30更新此前尚未验收到的状态】本次已取得并核验WAV整理包：291条WAV＝英语训练237条（健康115、AD122）＋希腊语开发8条（健康4、AD4）＋希腊语测试46条。ZIP 551,286,707字节、解压764,147,190字节；包内无CSV、README及MMSE标签。配套T7官方测试CSV已另在学校取得并46ID全匹配。它是WAV整理版，尚未证明与官方MP3文件字节同版；不与旧DementiaBank/Pitt等库存相加。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 6
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究中使用的实验与整理资料，可用于查找已有研究材料和核对数据版本。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-d626a853733b",
+      "name": "Cambridge COVID-19 Sounds",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "咳嗽、呼吸与感染",
+      "status": "unlocated",
+      "source_status": "暂停不用",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "未取得。若不用该库。SpeechDx的T19–T23共5任务不记已覆盖。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 7
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕咳嗽、呼吸声音与感染相关问题的研究资料，可用于寻找呼吸健康声音分析的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-640fd9d5fc7a",
+      "name": "WLS",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "看图叙事与认知筛查",
+      "status": "external",
+      "source_status": "原始文件已清点",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "标准化清单记载1368条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库WLS部分有1368个非空媒体，短文件头标记均通过。原始媒体与标准化WAV不作两批人数或相加。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 8
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕看图说话和认知筛查整理的资料，可用于研究叙事表达与认知状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-7c27bb5f579b",
+      "name": "Pitt",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "看图叙事与认知筛查",
+      "status": "external",
+      "source_status": "原始文件已清点",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "标准化清单记载553条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库Pitt部分2381个媒体，另Pitt-orig部分1289个，均非空，包含不同格式或版本；不相加成独立人员。Pitt部分2个、Pitt-orig部分2个文件短头未确认，未据此判损坏。本机另有8份转写文件，不替代原音验收。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 9
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕看图说话和认知筛查整理的资料，可用于研究叙事表达与认知状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-8fef46910cb0",
+      "name": "讯飞",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对514条录音：全部文件存在、非空，每条音频文件头均可解析。录音数不是人数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 10
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-93196854f836",
+      "name": "AD Beijing",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对482条录音：全部文件存在、非空，每条音频文件头均可解析。旧表468人本次未重新按人核对；与北京原始/校正目录不能相加。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 11
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-733bbd46f166",
+      "name": "燕达",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对65条录音：全部文件存在、非空，每条音频文件头均可解析。人数本次未另核；原目录含派生切段，不能拿大目录WAV总数代替这65条。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 12
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-24a09c523f24",
+      "name": "Dem@Care pilot",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "目录无读取权限",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "标准化清单记载62条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。本轮没有验收到这62条标准化录音。另在可读原始媒体根的有限库名查找未定位Dem@Care，不能推断服务器没有。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 13
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-d0e60a44c5e2",
+      "name": "江苏省机关医院：33条标准化录音/索引",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对33条录音：全部文件存在、非空，每条音频文件头均可解析。这是33条标准化录音；本机2116条原始录音另列，尚未核齐两者的对应，不能相加。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 14
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-cbdc39f84263",
+      "name": "USTC 学生",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对19条录音：全部文件存在、非空，每条音频文件头均可解析。标准化副本19条齐全；较早原路径有18条可访问引用，不据此删掉第19条。学生录音不等同老年对照。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 15
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-d0ed6836eb96",
+      "name": "南京卫生中心",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮按标准化总清单逐条核对5条录音：全部文件存在、非空，每条音频文件头均可解析。这是9月旧整理子集，不等同后续南京43人固定评估；原大目录含派生文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 16
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-16ab814d7b5e",
+      "name": "Kempler",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "原始文件已清点",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "标准化清单记载2条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库Kempler部分21个非空媒体，短头检查通过；21个不同格式/版本文件不等于本条2条标准化子集或2个人。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 17
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-4b2cdcec2ac4",
+      "name": "袁老师方向：北京人工校正目录",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮完整盘点2897条WAV、2897份TSV校正表；全部WAV非空，零字节录音0。抽查256条非空WAV的文件头均可解析；未全量解码，也未检查校正表内容。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 18
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-562f4b4b0bb8",
+      "name": "袁老师方向：北京原始目录",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "发现空文件",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本轮完整盘点24485个WAV、532个JSON；24380个WAV非空、105个WAV为零字节。抽查256个非空WAV的文件头全部可解析；未全量解码。旧24023个WAV、522个JSON仅作历史快照。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 19
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-91f28ff5536c",
+      "name": "Novoic Storyteller处理特征表",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知特征与纵向表",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "13719433字节无扩展名ZIP，2个成员全部完整性检查通过。全表15878行、72列，8798个参与者编号；539是门诊子集，对应1672行；4640个编号有复测。全行、同人同时间点、同人同日期重复均0。无原音、独立诊断、MMSE或MoCA列。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 20
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-03"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知研究中整理的特征表和随访资料，帮助研究者查找可用于分析变化趋势的指标。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-39ce064142cc",
+      "name": "江苏省机关医院：原始ZIP",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "文件已核实",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "46个真实ZIP，2354个成员全部完整性检查通过。真实PCM WAV录音2116条，均为16kHz、单声道、16bit文件头；46份非附带信息的.json后缀文件（未解析内容）。2300个.wav后缀中184个实际是macOS附带信息文件，包内此类信息文件合计192个；上层另43个.zip后缀也是此类信息文件，不是真压缩包。未全量解码。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 21
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-a63d4a6aa078",
+      "name": "自采老人语音 / 铭凡入口",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "external",
+      "source_status": "未定位服务器文件",
+      "note": "登记位置不在本次两台服务器可接入范围。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "上述两个通用存储目录分别11个、7个文件，识别音频0；不能因此推断整个服务器没有自采语料，也不能把其他中文样本自动认成自采老人数据。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 22
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-156d89acd052",
+      "name": "TalkBank全库整理范围与其他索引",
+      "kind": "dataset",
+      "category": "跨疾病与共享资源",
+      "subcategory": "多语料入口与索引",
+      "status": "existing",
+      "source_status": "原始文件已清点",
+      "note": "已有TalkBank共享目录；保留原结构与授权范围，不重复登记为新增文件。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "公司原始根60784个非空音频文件：33260 WAV、27220 MP3、304 AIF。逐文件短头检查中4个WAV类型未确认、121个MP3短头未确认，未直接判损坏；304个AIF仅确认非空短头。两层重叠根不重复相加。铭凡旧录音索引6941行、扩展索引2284行，不等于新增文件或人数；另一个人员整理索引当前账号无读取权限。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 23
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-08",
+        "domain-08-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "多个语言研究资料库的目录与索引，帮助研究者找到所需子库；这里不是一个独立数据集。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-a8875ccc3e9c",
+      "name": "RAVDESS Speech",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方Speech包208,468,073字节；官方MD5 bc696df654c87fed845eb13823edef8a、ZIP CRC（1464个成员含目录）及独立SHA256全部通过；最终尺寸与0600权限复核通过。健康演员情绪语音，用作情绪对照，不属于疾病病例录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 24
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-cfe961cf040f",
+      "name": "Coswara",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "咳嗽、呼吸与感染",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "当前共享文件夹中有 43 个按采集日期打包的压缩文件。参与者信息、健康状态等配套表格和许可说明文件尚未放入这个文件夹，正式使用前需要补齐。",
+      "shared_directory": "/data/share/datasets/Coswara",
+      "linked_file_count": 43,
+      "files": [
+        {
+          "name": "20200413.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200413.tar.gz",
+          "bytes": 365629440
+        },
+        {
+          "name": "20200415.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200415.tar.gz",
+          "bytes": 826972160
+        },
+        {
+          "name": "20200416.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200416.tar.gz",
+          "bytes": 997263360
+        },
+        {
+          "name": "20200417.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200417.tar.gz",
+          "bytes": 949350400
+        },
+        {
+          "name": "20200418.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200418.tar.gz",
+          "bytes": 218695680
+        },
+        {
+          "name": "20200419.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200419.tar.gz",
+          "bytes": 157286400
+        },
+        {
+          "name": "20200424.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200424.tar.gz",
+          "bytes": 145059840
+        },
+        {
+          "name": "20200430.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200430.tar.gz",
+          "bytes": 114483200
+        },
+        {
+          "name": "20200502.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200502.tar.gz",
+          "bytes": 884193280
+        },
+        {
+          "name": "20200504.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200504.tar.gz",
+          "bytes": 452915200
+        },
+        {
+          "name": "20200505.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200505.tar.gz",
+          "bytes": 66672640
+        },
+        {
+          "name": "20200525.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200525.tar.gz",
+          "bytes": 280801280
+        },
+        {
+          "name": "20200604.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200604.tar.gz",
+          "bytes": 106455040
+        },
+        {
+          "name": "20200707.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200707.tar.gz",
+          "bytes": 225392640
+        },
+        {
+          "name": "20200720.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200720.tar.gz",
+          "bytes": 126320640
+        },
+        {
+          "name": "20200803.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200803.tar.gz",
+          "bytes": 129730560
+        },
+        {
+          "name": "20200814.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200814.tar.gz",
+          "bytes": 456171520
+        },
+        {
+          "name": "20200820.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200820.tar.gz",
+          "bytes": 213852160
+        },
+        {
+          "name": "20200824.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200824.tar.gz",
+          "bytes": 85168890
+        },
+        {
+          "name": "20200901.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200901.tar.gz",
+          "bytes": 116387245
+        },
+        {
+          "name": "20200911.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200911.tar.gz",
+          "bytes": 48266771
+        },
+        {
+          "name": "20200919.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200919.tar.gz",
+          "bytes": 111407587
+        },
+        {
+          "name": "20200930.tar.gz",
+          "path": "/data/share/datasets/Coswara/20200930.tar.gz",
+          "bytes": 95904280
+        },
+        {
+          "name": "20201012.tar.gz",
+          "path": "/data/share/datasets/Coswara/20201012.tar.gz",
+          "bytes": 89538147
+        },
+        {
+          "name": "20201031.tar.gz",
+          "path": "/data/share/datasets/Coswara/20201031.tar.gz",
+          "bytes": 153162688
+        },
+        {
+          "name": "20201130.tar.gz",
+          "path": "/data/share/datasets/Coswara/20201130.tar.gz",
+          "bytes": 83070710
+        },
+        {
+          "name": "20201221.tar.gz",
+          "path": "/data/share/datasets/Coswara/20201221.tar.gz",
+          "bytes": 134950584
+        },
+        {
+          "name": "20210206.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210206.tar.gz",
+          "bytes": 77041002
+        },
+        {
+          "name": "20210406.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210406.tar.gz",
+          "bytes": 332410880
+        },
+        {
+          "name": "20210419.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210419.tar.gz",
+          "bytes": 174120960
+        },
+        {
+          "name": "20210426.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210426.tar.gz",
+          "bytes": 209797120
+        },
+        {
+          "name": "20210507.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210507.tar.gz",
+          "bytes": 269731840
+        },
+        {
+          "name": "20210523.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210523.tar.gz",
+          "bytes": 148596788
+        },
+        {
+          "name": "20210603.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210603.tar.gz",
+          "bytes": 241679143
+        },
+        {
+          "name": "20210618.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210618.tar.gz",
+          "bytes": 324338540
+        },
+        {
+          "name": "20210630.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210630.tar.gz",
+          "bytes": 211900701
+        },
+        {
+          "name": "20210714.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210714.tar.gz",
+          "bytes": 183361866
+        },
+        {
+          "name": "20210816.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210816.tar.gz",
+          "bytes": 326209897
+        },
+        {
+          "name": "20210830.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210830.tar.gz",
+          "bytes": 180986931
+        },
+        {
+          "name": "20210914.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210914.tar.gz",
+          "bytes": 131229988
+        },
+        {
+          "name": "20210930.tar.gz",
+          "path": "/data/share/datasets/Coswara/20210930.tar.gz",
+          "bytes": 405131305
+        },
+        {
+          "name": "20220116.tar.gz",
+          "path": "/data/share/datasets/Coswara/20220116.tar.gz",
+          "bytes": 694727121
+        },
+        {
+          "name": "20220224.tar.gz",
+          "path": "/data/share/datasets/Coswara/20220224.tar.gz",
+          "bytes": 1435617595
+        }
+      ],
+      "scale_claimed": "固定官方commit 4942c97e31de7180a93d17f2e7530a9c543cfd50。153个原始分片（不是153个完整归档）合12,981,984,019字节，已拼接为43个日期归档；另4个元数据/说明文件。157个Git对象校验、43包gzip CRC/TAR遍历及独立SHA-256全部通过，最终文件尺寸与0600权限复核通过。尚未音频解码。本榜后续仅使用两路counting及对应表。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 25
+      },
+      "license": "CC BY 4.0",
+      "license_url": "https://github.com/iiscleap/Coswara-Data",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "收集咳嗽、呼吸、持续发声和数数录音的数据集，用于研究能否从声音中识别新冠感染相关的变化。适合开展呼吸声音分析和声音分类实验。",
+      "summary_basis": "上游官方项目说明：https://github.com/iiscleap/Coswara-Data"
+    },
+    {
+      "id": "resource-da49f9c212c4",
+      "name": "AphasiaBank",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "失语与卒中言语",
+      "status": "unlocated",
+      "source_status": "待申请",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本榜T9。精确子库、录音和预制说明表范围待核。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 26
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-03"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕失语或卒中后的语言表达整理的研究资料，可作为言语变化及康复相关研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-4d06528fda49",
+      "name": "UASpeech",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "构音障碍与可访问语音",
+      "status": "restricted",
+      "source_status": "部分已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方8包中2包完成：original_C 2,135,146,808字节；normalized_C 3,391,287,853字节。两包gzip CRC/TAR遍历及本地/远端独立SHA-256一致，已清理对应Mac完整副本；尚未音频解码。其余6包未验收。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 27
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕说话不清、发音困难等问题的语音研究资料，可用于寻找言语障碍分析和语音辅助技术的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-4c4c7343ddab",
+      "name": "KSoF完整版",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "口吃与言语流畅性",
+      "status": "unlocated",
+      "source_status": "暂缓申请",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "口吃5597段完整版；已取官方EULA，正式长期任职人员签字待落实。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。\n历史团队记录：本榜T17–T18。需5597段完整版。不用4601段挑战子集替代。包字节未知。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 28
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕口吃和说话流畅程度的研究资料，可作为分析停顿、重复等言语现象的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-3c58f7f8a7f9",
+      "name": "AVFAD",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "葡萄牙语病理嗓音。提供方2026-10-28 19:27北京时间回信称已共享5个OneDrive目录，含数据库数据及分析脚本；具体目录清单、文件数与字节待邀请访问核验，尚未下载或验收。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 29
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-27121e82212b",
+      "name": "TORGO",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "构音障碍与可访问语音",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本次计划的官方F/FC/M/MC四包全部4/4验收，共9,577,194,346字节、83,055归档成员；源站HEAD精确尺寸、独立SHA256（Python与sha256sum一致）、bzip2 CRC/TAR完整遍历及安全路径、最终0700/0600通过。最终文件重新哈希与下载阶段完整归档校验收据一致；无官方MD5/SHA清单，不声称供方摘要比对。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 30
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕说话不清、发音困难等问题的语音研究资料，可用于寻找言语障碍分析和语音辅助技术的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-3bc8aeefb2e2",
+      "name": "DAIC-WOZ（普通版）",
+      "kind": "dataset",
+      "category": "情绪与精神健康",
+      "subcategory": "抑郁访谈与量表",
+      "status": "restricted",
+      "source_status": "部分已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "DAIC-WOZ已验收195/196文件、91,327,761,652字节；唯一440_P.zip保留619,905,024字节part，尚未整库完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 31
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-05",
+        "domain-05-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕访谈表达与抑郁量表整理的研究资料，帮助研究者探索语言、声音与情绪状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-6c37fdf86f77",
+      "name": "IEMOCAP官方发布包",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "两个官方版本均已整包验收：含视频完整包17,695,884,032字节、168,188归档成员，MD5 521be1e5eec425ae21fdc27c763ca813；无视频包12,323,710,434字节、84,007归档成员，MD5 6f2e6ecb72dd45a9af6b801ee999cb5a。两包均通过官方MD5、gzip CRC/TAR完整遍历、安全路径、独立SHA256及精确尺寸/目录0700文件0600。两个版本存在重叠，不累计为独立参与者或独立语音样本。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 32
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-a2730ad9a0d5",
+      "name": "CMDC",
+      "kind": "dataset",
+      "category": "情绪与精神健康",
+      "subcategory": "抑郁访谈与量表",
+      "status": "unlocated",
+      "source_status": "已获领取口令",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方页面列出part1.zip–part8.zip共8包；当前尚未云端下载。页面显示大小未作为精确字节或完成量。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 33
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-05",
+        "domain-05-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕访谈表达与抑郁量表整理的研究资料，帮助研究者探索语言、声音与情绪状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-290678ae3ac2",
+      "name": "PROCESS",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "看图叙事与认知筛查",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本申请尚未获得下载批准和已验收文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 34
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕看图说话和认知筛查整理的资料，可用于研究叙事表达与认知状态之间的关系。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-6ad2358c7fbc",
+      "name": "PROCESS-2",
+      "kind": "dataset",
+      "category": "认知与老年健康",
+      "subcategory": "认知队列与录音",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本申请尚未获得下载批准和已验收文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 35
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-07",
+        "domain-07-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "认知健康研究相关的录音或队列资料，可作为研究语言表达与认知变化的材料入口。具体内容以资料说明为准。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-14e50a0aa329",
+      "name": "MSP-Podcast",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 36
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-ecf259a552e6",
+      "name": "MSP-Conversation",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 37
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-6104ee728517",
+      "name": "MSP-IMPROV",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 38
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-afc39ca15244",
+      "name": "Bridge2AI-Voice Adult Cohort Audio（Synapse）",
+      "kind": "dataset",
+      "category": "跨疾病与共享资源",
+      "subcategory": "多病种语音与其他疾病",
+      "status": "unlocated",
+      "source_status": "访问受限",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "最新：此次科大申请因机构所在地被提供方明确拒绝；未获批、未取得受控音频。\n历史记录：成人受控原始录音，地区资格待官方确认；直连GEO_RESTRICTION仍有效。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。\n历史团队记录：已确认项目名称与ID；未取得音频清单、批准或文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 39
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-08",
+        "domain-08-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "探索声音、语言与健康状况关系的研究资料。具体研究对象和任务需查看该资源的资料说明。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-b23ee324e020",
+      "name": "BIIC-NNIME",
+      "kind": "dataset",
+      "category": "通用语音与语言",
+      "subcategory": "情绪表达与多模态互动",
+      "status": "unlocated",
+      "source_status": "待补材料",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "已有PI待签材料；未获批准或取得数据。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 40
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-09",
+        "domain-09-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "面向情绪表达和交流互动的研究资料，适合寻找情绪识别、对话分析等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-6a1ac7e2d7db",
+      "name": "APSAA",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "睡眠呼吸与多导信号",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方Zenodo14096541 v2.0全部1/1 ZIP、3,927,427,834字节验收；官方MD5、独立SHA256、全部290成员CRC/安全路径及最终0700/0600和精确尺寸通过。实存32 WAV、257 CSV、1 TXT；供方说明为32位受试者整夜音频与同步多导生理信号/人工事件标注。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 41
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-03"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕睡眠期间呼吸与多种生理信号的研究资料，可作为睡眠呼吸问题分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-33cc82a7abfb",
+      "name": "COUGHVID",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "咳嗽、呼吸与感染",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方Zenodo4048312 v1.0完整ZIP 1/1包、951,442,487字节已验收；官方MD5 5c30a8b00c8bb7783a2c15a48cb8ea9e、独立SHA256、ZIP CRC/安全路径及最终0700/0600和精确尺寸通过。实存40,145成员：20,072段音频（19,213 WEBM、859 OGG）、20,072 JSON及1 CSV；数量为文件数，不等于独立参与者数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 42
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕咳嗽、呼吸声音与感染相关问题的研究资料，可用于寻找呼吸健康声音分析的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-6a899c993b8b",
+      "name": "Children-Heart-Sound",
+      "kind": "dataset",
+      "category": "心血管健康",
+      "subcategory": "心音与杂音",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "云端整库1/1个官方文件验收完成，共24,913,934字节，62个归档成员；62个成员官方SHA256、ZIP CRC及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。62个成员中60个WAV，另2个说明/元数据文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 43
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-04",
+        "domain-04-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕心脏跳动声音和心脏杂音的研究资料，可用于寻找心音分析、杂音识别等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-7e9a1922d66d",
+      "name": "CirCor-DigiScope",
+      "kind": "dataset",
+      "category": "心血管健康",
+      "subcategory": "心音与杂音",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "本次接入已有v1.0.3归档；本轮仅核对路径与尺寸，未重新做内容验收。",
+      "shared_directory": "/data/share/datasets/CirCor-DigiScope",
+      "linked_file_count": 1,
+      "files": [
+        {
+          "name": "circor-heart-sound-1.0.3.zip",
+          "path": "/data/share/datasets/CirCor-DigiScope/circor-heart-sound-1.0.3.zip",
+          "bytes": 471283852
+        }
+      ],
+      "scale_claimed": "官方PhysioNet v1.0.3公开训练集ZIP 1/1文件、471,283,852字节已验收；10,435个归档成员，10,434个文件官方SHA256、固定官方清单与包内清单一致性、独立整包SHA256、ZIP CRC和安全路径通过，最终目录0700/文件0600及精确尺寸通过。实存3,163 WAV心音录音、对应HEA和分段TSV各3,163个，942名受试者说明文件及元数据相互对应。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 44
+      },
+      "license": "ODC-By 1.0",
+      "license_url": "https://physionet.org/content/circor-heart-sound/1.0.3/",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-04",
+        "domain-04-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕心脏跳动声音和心脏杂音的研究资料，可用于寻找心音分析、杂音识别等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-f09a6f5e77ce",
+      "name": "HFrEF-ECG-PCG",
+      "kind": "dataset",
+      "category": "心血管健康",
+      "subcategory": "心电与心音联合采集",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "只接入5折主数据归档，未接入社区场景测试集。",
+      "shared_directory": "/data/share/datasets/HFrEF-ECG-PCG",
+      "linked_file_count": 1,
+      "files": [
+        {
+          "name": "HFrEF_5_folds.zip",
+          "path": "/data/share/datasets/HFrEF-ECG-PCG/HFrEF_5_folds.zip",
+          "bytes": 291455483
+        }
+      ],
+      "scale_claimed": "官方Zenodo 16934966全部2个ZIP（五折主数据与社区场景测试集）、362,791,315字节已验收；两个官方MD5、独立SHA256、ZIP CRC/安全路径、精确尺寸及最终0700/0600均通过。共4,974归档成员，含2,480个ECG WAV、2,480个PCG WAV及6个CSV，全部2,480对文件配对齐全。ECG为电信号，PCG为心音；不能将4,960个WAV全部计为心音或人声。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 45
+      },
+      "license": "CC BY 4.0",
+      "license_url": "https://zenodo.org/records/16934966",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-04",
+        "domain-04-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "结合心电信号和心脏声音的研究资料，可用于探索两种信号如何共同反映心脏活动。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-436eff265db2",
+      "name": "Indian-Stroke-Speech",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "失语与卒中言语",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "只接入ZIP，尚未接入配套ReadMe.txt。",
+      "shared_directory": "/data/share/datasets/Indian-Stroke-Speech",
+      "linked_file_count": 1,
+      "files": [
+        {
+          "name": "CorrectedPhae1_June_2025.zip",
+          "path": "/data/share/datasets/Indian-Stroke-Speech/CorrectedPhae1_June_2025.zip",
+          "bytes": 172664187
+        }
+      ],
+      "scale_claimed": "官方Zenodo 15675907全部2个文件（完整ZIP与ReadMe.txt）、172,666,396字节已验收；两个文件官方MD5、独立SHA256、ZIP CRC和安全路径、精确尺寸及最终目录0700/文件0600均通过。ZIP内3,806个成员，包括2,519个WAV、1个XLSX和2个LAB，其余为目录；文件数不代表参与者人数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 46
+      },
+      "license": "CC BY 4.0",
+      "license_url": "https://zenodo.org/records/15675907",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-03"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕失语或卒中后的语言表达整理的研究资料，可作为言语变化及康复相关研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-b2ffd651e250",
+      "name": "PhysioNet-CinC-2016",
+      "kind": "dataset",
+      "category": "心血管健康",
+      "subcategory": "心音与杂音",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "只接入training.zip，尚未接入validation.zip与annotations.zip。",
+      "shared_directory": "/data/share/datasets/PhysioNet-CinC-2016",
+      "linked_file_count": 1,
+      "files": [
+        {
+          "name": "training.zip",
+          "path": "/data/share/datasets/PhysioNet-CinC-2016/training.zip",
+          "bytes": 190112103
+        }
+      ],
+      "scale_claimed": "本次选定官方training.zip、validation.zip、annotations.zip共3/3包、219,034,340字节全部验收；源站Content-Length精确尺寸、独立SHA256、ZIP CRC/安全路径及最终0700/0600通过。实存训练3,240 WAV、验证301 WAV、标注12,612 MAT；验证301个WAV的SHA256全部与训练文件相同，不重复计样本或作为独立测试集。范围不含私有挑战测试集及参赛代码提交。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 47
+      },
+      "license": "ODC-By 1.0",
+      "license_url": "https://physionet.org/content/challenge-2016/1.0.0/",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-04",
+        "domain-04-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕心脏跳动声音和心脏杂音的研究资料，可用于寻找心音分析、杂音识别等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-653e01f9a5f7",
+      "name": "Saarbruecken-Voice",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "接入65个归档；表格记载73个，尚缺8个共享文件入口。",
+      "shared_directory": "/data/share/datasets/Saarbruecken-Voice",
+      "linked_file_count": 65,
+      "files": [
+        {
+          "name": "Amyotrophe Lateralsklerose.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Amyotrophe Lateralsklerose.zip",
+          "bytes": 14184694
+        },
+        {
+          "name": "Aryluxation.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Aryluxation.zip",
+          "bytes": 54166512
+        },
+        {
+          "name": "Balbuties.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Balbuties.zip",
+          "bytes": 161092812
+        },
+        {
+          "name": "Bulbärparalyse.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Bulbärparalyse.zip",
+          "bytes": 25480779
+        },
+        {
+          "name": "Carcinoma in situ.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Carcinoma in situ.zip",
+          "bytes": 7811041
+        },
+        {
+          "name": "Chondrom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Chondrom.zip",
+          "bytes": 6501414
+        },
+        {
+          "name": "Chordektomie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Chordektomie.zip",
+          "bytes": 486826197
+        },
+        {
+          "name": "Cyste.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Cyste.zip",
+          "bytes": 37076331
+        },
+        {
+          "name": "Diplophonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Diplophonie.zip",
+          "bytes": 42185995
+        },
+        {
+          "name": "Dish-Syndrom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dish-Syndrom.zip",
+          "bytes": 9228560
+        },
+        {
+          "name": "Dysarthrophonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dysarthrophonie.zip",
+          "bytes": 143813534
+        },
+        {
+          "name": "Dysodie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dysodie.zip",
+          "bytes": 517591827
+        },
+        {
+          "name": "Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dysphonie.zip",
+          "bytes": 861922001
+        },
+        {
+          "name": "Dysplastische Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dysplastische Dysphonie.zip",
+          "bytes": 10605905
+        },
+        {
+          "name": "Dysplastischer Kehlkopf.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Dysplastischer Kehlkopf.zip",
+          "bytes": 10826394
+        },
+        {
+          "name": "Epiglottiskarzinom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Epiglottiskarzinom.zip",
+          "bytes": 9641112
+        },
+        {
+          "name": "Fibrom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Fibrom.zip",
+          "bytes": 18377332
+        },
+        {
+          "name": "Frontolaterale Teilresektion.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Frontolaterale Teilresektion.zip",
+          "bytes": 334466436
+        },
+        {
+          "name": "Funktionelle Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Funktionelle Dysphonie.zip",
+          "bytes": 938925325
+        },
+        {
+          "name": "GERD.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/GERD.zip",
+          "bytes": 32647358
+        },
+        {
+          "name": "Gesangsstimme.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Gesangsstimme.zip",
+          "bytes": 174608284
+        },
+        {
+          "name": "Granulom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Granulom.zip",
+          "bytes": 16901765
+        },
+        {
+          "name": "Hyperfunktionelle Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Hyperfunktionelle Dysphonie.zip",
+          "bytes": 1928321725
+        },
+        {
+          "name": "Hypofunktionelle Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Hypofunktionelle Dysphonie.zip",
+          "bytes": 136332652
+        },
+        {
+          "name": "Hypopharynxtumor.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Hypopharynxtumor.zip",
+          "bytes": 56907705
+        },
+        {
+          "name": "Hypotone Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Hypotone Dysphonie.zip",
+          "bytes": 45938573
+        },
+        {
+          "name": "Internusschwäche.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Internusschwäche.zip",
+          "bytes": 10522276
+        },
+        {
+          "name": "Intubationsgranulom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Intubationsgranulom.zip",
+          "bytes": 33237346
+        },
+        {
+          "name": "Intubationsschaden.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Intubationsschaden.zip",
+          "bytes": 22740511
+        },
+        {
+          "name": "Juvenile Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Juvenile Dysphonie.zip",
+          "bytes": 8628460
+        },
+        {
+          "name": "Kehlkopftumor.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Kehlkopftumor.zip",
+          "bytes": 36227423
+        },
+        {
+          "name": "Kontaktpachydermie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Kontaktpachydermie.zip",
+          "bytes": 618664484
+        },
+        {
+          "name": "Laryngitis.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Laryngitis.zip",
+          "bytes": 1193637707
+        },
+        {
+          "name": "Laryngozele.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Laryngozele.zip",
+          "bytes": 27604154
+        },
+        {
+          "name": "Leukoplakie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Leukoplakie.zip",
+          "bytes": 359098957
+        },
+        {
+          "name": "Mediale Halscyste.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Mediale Halscyste.zip",
+          "bytes": 7593358
+        },
+        {
+          "name": "Mesopharynxtumor.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Mesopharynxtumor.zip",
+          "bytes": 13401968
+        },
+        {
+          "name": "Mutatio.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Mutatio.zip",
+          "bytes": 19888157
+        },
+        {
+          "name": "Mutationsfistelstimme.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Mutationsfistelstimme.zip",
+          "bytes": 91894053
+        },
+        {
+          "name": "N. laryngeus superior Läsion.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/N. laryngeus superior Läsion.zip",
+          "bytes": 24188776
+        },
+        {
+          "name": "N. laryngeus superior Neuralgie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/N. laryngeus superior Neuralgie.zip",
+          "bytes": 23424218
+        },
+        {
+          "name": "Non-fluency-Syndrom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Non-fluency-Syndrom.zip",
+          "bytes": 22775118
+        },
+        {
+          "name": "Orofaciale Dyspraxie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Orofaciale Dyspraxie.zip",
+          "bytes": 9695206
+        },
+        {
+          "name": "Papillom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Papillom.zip",
+          "bytes": 8459669
+        },
+        {
+          "name": "Phonasthenie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Phonasthenie.zip",
+          "bytes": 90324372
+        },
+        {
+          "name": "Phonationsknötchen.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Phonationsknötchen.zip",
+          "bytes": 165637772
+        },
+        {
+          "name": "Poltersyndrom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Poltersyndrom.zip",
+          "bytes": 22665539
+        },
+        {
+          "name": "Psychogene Aphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Psychogene Aphonie.zip",
+          "bytes": 10014343
+        },
+        {
+          "name": "Psychogene Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Psychogene Dysphonie.zip",
+          "bytes": 780742039
+        },
+        {
+          "name": "Psychogene Mikrophonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Psychogene Mikrophonie.zip",
+          "bytes": 8638974
+        },
+        {
+          "name": "Reinke Ödem.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Reinke Ödem.zip",
+          "bytes": 576076357
+        },
+        {
+          "name": "Rekurrensparese.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Rekurrensparese.zip",
+          "bytes": 1900446365
+        },
+        {
+          "name": "Rhinophonie aperta.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Rhinophonie aperta.zip",
+          "bytes": 142225684
+        },
+        {
+          "name": "Rhinophonie mixta.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Rhinophonie mixta.zip",
+          "bytes": 11785456
+        },
+        {
+          "name": "Sängerstimme.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Sängerstimme.zip",
+          "bytes": 23563674
+        },
+        {
+          "name": "Sigmatismus.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Sigmatismus.zip",
+          "bytes": 36745262
+        },
+        {
+          "name": "Spasmodische Dysphonie.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Spasmodische Dysphonie.zip",
+          "bytes": 492672059
+        },
+        {
+          "name": "Stimmlippenkarzinom.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Stimmlippenkarzinom.zip",
+          "bytes": 199011156
+        },
+        {
+          "name": "Stimmlippenpolyp.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Stimmlippenpolyp.zip",
+          "bytes": 385385712
+        },
+        {
+          "name": "Taschenfaltenstimme.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Taschenfaltenstimme.zip",
+          "bytes": 94922042
+        },
+        {
+          "name": "Valleculacyste.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Valleculacyste.zip",
+          "bytes": 7407564
+        },
+        {
+          "name": "Velopharyngoplastik.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Velopharyngoplastik.zip",
+          "bytes": 19990356
+        },
+        {
+          "name": "Vox senilis.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Vox senilis.zip",
+          "bytes": 331841464
+        },
+        {
+          "name": "Zentral-laryngale Bewegungsstörung.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/Zentral-laryngale Bewegungsstörung.zip",
+          "bytes": 133163619
+        },
+        {
+          "name": "data.zip",
+          "path": "/data/share/datasets/Saarbruecken-Voice/data.zip",
+          "bytes": 17881176281
+        }
+      ],
+      "scale_claimed": "官方Zenodo16874898全部73/73 ZIP、38,059,544,640字节验收；官方MD5、独立SHA256、全部归档成员CRC/安全路径及最终0700/0600和精确尺寸通过。实存60,791 NSP语音文件、60,791 EGG电声门图、72 CSV、1,389 TXT；按成员SHA256分别仅27,913种NSP内容、27,913种EGG内容，跨归档重复不累计为独立样本或人数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 48
+      },
+      "license": "CC BY 4.0",
+      "license_url": "https://zenodo.org/records/16874898",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-ef2689c2814f",
+      "name": "Spanish-Phonological",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "云端整库1/1个官方文件验收完成，共41,937,271字节，701个归档成员；701个成员官方SHA256、ZIP CRC及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。701个WAV含增强录音，不能当作701个独立受试者或原始样本。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 49
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-8591d6130352",
+      "name": "UGAkan-ImpairedSpeech",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "构音障碍与可访问语音",
+      "status": "shared",
+      "source_status": "已验收",
+      "note": "接入已有v4归档；本轮未重新解压或核验样本内容。",
+      "shared_directory": "/data/share/datasets/UGAkan-ImpairedSpeech",
+      "linked_file_count": 1,
+      "files": [
+        {
+          "name": "UGAkan-ImpairedSpeech-v4.zip",
+          "path": "/data/share/datasets/UGAkan-ImpairedSpeech/UGAkan-ImpairedSpeech-v4.zip",
+          "bytes": 720976054
+        }
+      ],
+      "scale_claimed": "官方Mendeley v4完整ZIP（1/1文件，720,976,054字节）已验收；5个内部官方文件的SHA256、外层ZIP CRC、4个嵌套TAR逐成员完整遍历、内部images.zip CRC、安全路径及独立SHA256均通过，最终目录0700/文件0600和精确尺寸通过。内部共14,312个MP3、4个CSV和1,027个JPG；文件数不代表参与者人数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 50
+      },
+      "license": "CC BY 4.0",
+      "license_url": "https://data.mendeley.com/datasets/vc84vdw8tb/4",
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕说话不清、发音困难等问题的语音研究资料，可用于寻找言语障碍分析和语音辅助技术的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-99032f33638b",
+      "name": "VOICED",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方PhysioNet v1.0.0完整ZIP 1/1文件、115,492,496字节已验收；834个归档成员，833个文件官方SHA256、包内摘要清单一致性、独立整包SHA256、ZIP CRC及安全路径通过，最终目录0700/文件0600和精确尺寸通过。208组WFDB记录，各含DAT、HEA、信号文本和info文件，另有RECORDS及SHA256SUMS.txt。官方说明为150条病理嗓音、58条健康嗓音，约5秒持续元音/a/，8000Hz；这些记录不是208个WAV文件。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 51
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-abdc2f8f166f",
+      "name": "Bridge2AI-Voice Pediatric Audio",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "unlocated",
+      "source_status": "访问受限",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "最新：此次科大申请因机构所在地被提供方明确拒绝；未获批、未取得受控音频。\n历史记录：儿科原始录音。PhysioNet开放发布为衍生特征；原音频需机构sign-off。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 52
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-54e75ed5f405",
+      "name": "EWA-DB",
+      "kind": "dataset",
+      "category": "跨疾病与共享资源",
+      "subcategory": "多病种语音与其他疾病",
+      "status": "unlocated",
+      "source_status": "暂缓申请",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "AD、MCI、PD原始语音；请求当前EULA与学生资格。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 53
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-08",
+        "domain-08-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "探索声音、语言与健康状况关系的研究资料。具体研究对象和任务需查看该资源的资料说明。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-e8a1dc7d23ba",
+      "name": "SONIVA原始录音",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "失语与卒中言语",
+      "status": "unlocated",
+      "source_status": "暂缓申请",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "卒中失语录音。公开Helix包为转录和元数据；原始录音需伦理许可与机构协议。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 54
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-03"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕失语或卒中后的语言表达整理的研究资料，可作为言语变化及康复相关研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-d872d9314fad",
+      "name": "HUPA",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "440名受试者，239健康、201嗓音障碍；请求当前完整使用协议。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 55
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-99212b746d0a",
+      "name": "HeyJay",
+      "kind": "dataset",
+      "category": "帕金森与运动障碍",
+      "subcategory": "多类运动障碍言语",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "PD、ALS、共济失调等异常言语；官方作者邮件路径请求DUA。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 56
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-03",
+        "domain-03-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕运动障碍相关言语变化的研究资料，可用于寻找不同说话困难的分析材料。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-21751dbc4083",
+      "name": "CKD Speech Corpus",
+      "kind": "dataset",
+      "category": "跨疾病与共享资源",
+      "subcategory": "多病种语音与其他疾病",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "慢性肾病原始语音及允许的eGFR严重度标签；外部学术共享资格待确认。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 57
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-08",
+        "domain-08-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "探索声音、语言与健康状况关系的研究资料。具体研究对象和任务需查看该资源的资料说明。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-f0f78807923c",
+      "name": "Virufy",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "咳嗽、呼吸与感染",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "云端整库1/1个官方文件验收完成，共3,044,943字节，141个归档成员；0个成员官方SHA256、141个成员官方Git blob校验、归档CRC/遍历及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。137个MP3包含原始和分段文件，分段数不能计为人数。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 58
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕咳嗽、呼吸声音与感染相关问题的研究资料，可用于寻找呼吸健康声音分析的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-53de01f9ced7",
+      "name": "BMD-HS",
+      "kind": "dataset",
+      "category": "心血管健康",
+      "subcategory": "心音与杂音",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "云端整库1/1个官方文件验收完成，共126,924,002字节，877个归档成员；0个成员官方SHA256、877个成员官方Git blob校验、归档CRC/遍历及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。包含872个WAV，患者数量以官方临床标签表为准。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 59
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-04",
+        "domain-04-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕心脏跳动声音和心脏杂音的研究资料，可用于寻找心音分析、杂音识别等任务的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-a2ccd207d0d6",
+      "name": "SpiroPhonia",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "呼吸疾病相关语音",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "呼吸疾病/COPD自发语音；论文201人（102疾病自述、99对照），并非统一临床确诊队列。已询问原始录音、来源使用许可及诊断核验。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 60
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕呼吸疾病相关语音变化的研究资料，可作为探索声音与呼吸健康关系的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-d74a37f18388",
+      "name": "DEPAC",
+      "kind": "dataset",
+      "category": "情绪与精神健康",
+      "subcategory": "抑郁与焦虑语音",
+      "status": "unlocated",
+      "source_status": "已申请待回复",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "抑郁及焦虑；原论文专有数据。已向作者咨询外部学术共享可能性与当前申请流程。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 61
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-05",
+        "domain-05-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕抑郁、焦虑相关语音表现的研究资料，可作为声音与情绪健康研究的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-5e4a50679822",
+      "name": "Speech Accessibility Project / SAPC2",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "构音障碍与可访问语音",
+      "status": "unlocated",
+      "source_status": "访问受限",
+      "note": "没有已核验可接入的本地文件入口；保留原登记状态。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "最新：SAP明确拒绝此次数据请求，未获批、未取得录音；下述官方规模不计为已取得量。\n历史记录：官方当前分发说明约1500小时、999人，含ALS、脑瘫、唐氏综合征、帕金森和卒中。2026-10-16已有资格咨询，本轮又发附未签名研究提案的重复询问，已合并同一申请，不再重发。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 62
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕说话不清、发音困难等问题的语音研究资料，可用于寻找言语障碍分析和语音辅助技术的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-b22a56779587",
+      "name": "Czech-Laryngectomy",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方LINDAT全部4个文件（3个speaker ZIP与README.docx）、775,105,424字节已验收；4个官方MD5、逐文件独立SHA256、精确尺寸及最终0700/0600均通过，外层ZIP和6个嵌套ZIP及DOCX容器共10组CRC/安全路径检查通过。含3,980个WAV及对应音高标记，来自3位喉切除患者的术前声音保存语料；不描述为术后失声录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 63
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-a329c27f27aa",
+      "name": "UltraSuite-UXSSD",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "固定患者语音WAV、提示、说明和标签子集32,123/32,123文件，共1,653,481,603字节，包含3,729个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；158个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 64
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-7fff7dedc4d6",
+      "name": "UltraSuite-UPX",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "固定患者语音WAV、提示、说明和标签子集46,602/46,602文件，共2,964,968,260字节，包含5,948个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；240个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 65
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-f65f9d7d4c62",
+      "name": "UltraSuite-Cleft",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "固定患者语音WAV、提示、说明和标签子集3,179/3,179文件，共650,257,191字节，包含1,441个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；67个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 66
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-5228cf53ac9a",
+      "name": "UltraSuite-UX2020",
+      "kind": "dataset",
+      "category": "儿童语言与发育",
+      "subcategory": "儿童构音与言语障碍",
+      "status": "restricted",
+      "source_status": "已验收",
+      "note": "个人授权或非商业／再分发范围尚未确认，保留原位。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "固定患者语音WAV、提示、说明和标签子集5,361/5,361文件，共694,034,638字节，包含2,150个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；44个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 67
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-01",
+        "domain-01-01"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕儿童发音和言语困难的研究资料，可作为儿童语言发展与言语障碍分析的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-0f233a93dbc7",
+      "name": "HF-Lung-V1",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "肺音与听诊",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方固定版本2a77d37230b1673d332645e6c6afeea29900bcf9全部16文件、1,174,794,763字节通过官方Git blob及独立SHA256，其中15文件同时通过官方原始文件SHA256；2组完整分卷7z通过CRC整体验证和安全路径检查；最终尺寸与0600权限复核通过。train.7z.005接口SHA256对应转换后的API内容，已保留证据；原始分卷按官方Git对象及精确尺寸验收。呼吸相及异常音标签由单标注员给出，供方明确非临床金标准。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 68
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-04"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕肺部听诊声音的研究资料，可作为分析呼吸音和异常肺音的数据入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-3a199d995828",
+      "name": "Oral-Cancer",
+      "kind": "dataset",
+      "category": "言语与嗓音障碍",
+      "subcategory": "嗓音障碍与术后发声",
+      "status": "storage_pending",
+      "source_status": "已验收",
+      "note": "尚未确认两机共同可读的共享文件目标；不更改原权限、不复制数据。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方新版Zenodo6308119完整ZIP 1/1文件、5,784,059,015字节验收完成；16,108个归档成员，官方MD5、Python与sha256sum双实现SHA256、ZIP CRC及安全路径通过，最终目录0700/文件0600和精确尺寸通过。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 69
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-06",
+        "domain-06-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕嗓音异常或术后发声变化整理的资料，可作为嗓音分析与发声功能研究的材料入口。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    },
+    {
+      "id": "resource-fd5983157a7a",
+      "name": "UK-COVID",
+      "kind": "dataset",
+      "category": "呼吸与肺部健康",
+      "subcategory": "咳嗽、呼吸与感染",
+      "status": "incomplete",
+      "source_status": "部分已验收",
+      "note": "来源记载为部分验收，不作为完整可用数据集接入。",
+      "shared_directory": null,
+      "linked_file_count": 0,
+      "files": [],
+      "scale_claimed": "官方公开版30文件、53,674,075,969字节；6/30已验收（5元数据＋covid_data.z01），共2,189,839,278字节；covid_data.z02.part保留1,244,659,712字节。本轮有效续传565,182,464字节，音频整组未完成。",
+      "version": null,
+      "source": {
+        "sheet": "已复核_20261026",
+        "row": 70
+      },
+      "license": null,
+      "license_url": null,
+      "public_metadata": false,
+      "classification_ids": [
+        "domain-02",
+        "domain-02-02"
+      ],
+      "tags": {
+        "diseases": [],
+        "model_architectures": [],
+        "biological_models": [],
+        "modalities": [],
+        "tasks": []
+      },
+      "summary": "围绕咳嗽、呼吸声音与感染相关问题的研究资料，可用于寻找呼吸健康声音分析的数据。",
+      "summary_basis": "根据原始登记名称与研究分类整理；不代表已核验实际文件内容。"
+    }
+  ]
+}

@@ -55,3 +55,9 @@ python server.py --db var/catalog.sqlite3 --host 127.0.0.1 --port 8765
 目录重建仅处理已保存的公共元数据，不读取科研 payload。更新需保留 `data/resource-registry.json`、迁移回执、原始来源快照和研究说明证据。使用 SQLite backup API 生成一致备份，禁止把活跃 SQLite 或锁放在 NFS/OSS 上。部署与服务变更由维护人员执行，不要求普通成员操作运维命令。
 
 不要把密码、访问令牌或私有诊断放进源码、文档或公开导出。
+
+## 数据集与模型分类目录（2026-11-14）
+
+新增69条表格登记的分类浏览，按资源归组展示已核验的共享文件入口。维护及接口说明见 [分类目录说明](docs/resource-directory.md)。此改动尚未部署服务器。
+
+共享目录新增规范与扫描工具见 [分类、资料卡与更新规范](docs/storage-catalog-workflow.md)。

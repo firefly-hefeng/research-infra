@@ -126,6 +126,20 @@
         </div>
       </div></details>
 
+      <section id="classified-resources" class="resources-section section-anchor" aria-labelledby="classified-title">
+        <div class="section-heading"><div><div class="eyebrow">DATASETS &amp; MODELS</div><h2 id="classified-title">按分类找数据集与模型</h2><p>按研究大类和细分类浏览。每个数据集展示一个入口，分包放在资料详情中。</p></div><a class="text-link" href="/api/classified-resources">Agent 分类接口</a></div>
+        <div class="classified-filters">
+          <label>搜索分类目录<input id="classified-search" type="search" placeholder="数据集名称、疾病或研究方向"></label>
+          <label>资源类型<select id="classified-kind"><option value="">全部</option></select></label>
+          <label>研究大类<select id="classified-category"><option value="">全部</option></select></label>
+          <label>细分类<select id="classified-subcategory"><option value="">全部</option></select></label>
+          <label>接入状态<select id="classified-status"><option value="">全部</option></select></label>
+        </div>
+        <div class="mapping-tools"><span id="classified-count" role="status">正在读取分类目录…</span><button id="classified-reset" class="reset-button" type="button">清除分类筛选</button></div>
+        <div id="classified-content" class="classified-grid"></div>
+        <div class="pagination"><button id="classified-prev" type="button" disabled>上一页分类</button><span id="classified-page">—</span><button id="classified-next" type="button" disabled>下一页分类</button></div>
+      </section>
+
       <section id="research-guide" class="research-guide section-anchor" aria-labelledby="research-guide-title">
         <div class="guide-heading"><div><div class="eyebrow">A STARTING POINT FOR RESEARCH</div><h2 id="research-guide-title">研究资源导览</h2><p id="research-guide-intro">从研究问题出发，了解现有资料与可复用的工具。</p></div><a class="text-link" href="/docs/data-guide.html">数据管理入门<svg class="icon"><use href="#i-arrow"/></svg></a></div>
         <p id="research-guide-status" class="guide-status" role="status">正在读取研究方向…</p><div id="research-guide-categories" class="guide-categories" aria-label="研究方向"></div>

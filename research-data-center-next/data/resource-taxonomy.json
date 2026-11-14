@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "kinds": [
+    {
+      "id": "dataset",
+      "label": "数据集",
+      "root": "/data/share/datasets"
+    },
+    {
+      "id": "model",
+      "label": "模型参数",
+      "root": "/data/share/models"
+    }
+  ],
+  "categories": [
+    {
+      "id": "domain-01",
+      "label": "儿童语言与发育",
+      "children": [
+        {
+          "id": "domain-01-01",
+          "label": "儿童构音与言语障碍"
+        }
+      ]
+    },
+    {
+      "id": "domain-02",
+      "label": "呼吸与肺部健康",
+      "children": [
+        {
+          "id": "domain-02-01",
+          "label": "呼吸疾病相关语音"
+        },
+        {
+          "id": "domain-02-02",
+          "label": "咳嗽、呼吸与感染"
+        },
+        {
+          "id": "domain-02-03",
+          "label": "睡眠呼吸与多导信号"
+        },
+        {
+          "id": "domain-02-04",
+          "label": "肺音与听诊"
+        }
+      ]
+    },
+    {
+      "id": "domain-03",
+      "label": "帕金森与运动障碍",
+      "children": [
+        {
+          "id": "domain-03-01",
+          "label": "多类运动障碍言语"
+        },
+        {
+          "id": "domain-03-02",
+          "label": "帕金森语言与发声"
+        }
+      ]
+    },
+    {
+      "id": "domain-04",
+      "label": "心血管健康",
+      "children": [
+        {
+          "id": "domain-04-01",
+          "label": "心电与心音联合采集"
+        },
+        {
+          "id": "domain-04-02",
+          "label": "心音与杂音"
+        }
+      ]
+    },
+    {
+      "id": "domain-05",
+      "label": "情绪与精神健康",
+      "children": [
+        {
+          "id": "domain-05-01",
+          "label": "抑郁与焦虑语音"
+        },
+        {
+          "id": "domain-05-02",
+          "label": "抑郁访谈与量表"
+        }
+      ]
+    },
+    {
+      "id": "domain-06",
+      "label": "言语与嗓音障碍",
+      "children": [
+        {
+          "id": "domain-06-01",
+          "label": "口吃与言语流畅性"
+        },
+        {
+          "id": "domain-06-02",
+          "label": "嗓音障碍与术后发声"
+        },
+        {
+          "id": "domain-06-03",
+          "label": "失语与卒中言语"
+        },
+        {
+          "id": "domain-06-04",
+          "label": "构音障碍与可访问语音"
+        }
+      ]
+    },
+    {
+      "id": "domain-07",
+      "label": "认知与老年健康",
+      "children": [
+        {
+          "id": "domain-07-01",
+          "label": "看图叙事与认知筛查"
+        },
+        {
+          "id": "domain-07-02",
+          "label": "认知实验与整理资料"
+        },
+        {
+          "id": "domain-07-03",
+          "label": "认知特征与纵向表"
+        },
+        {
+          "id": "domain-07-04",
+          "label": "认知队列与录音"
+        }
+      ]
+    },
+    {
+      "id": "domain-08",
+      "label": "跨疾病与共享资源",
+      "children": [
+        {
+          "id": "domain-08-01",
+          "label": "多病种语音与其他疾病"
+        },
+        {
+          "id": "domain-08-02",
+          "label": "多语料入口与索引"
+        }
+      ]
+    },
+    {
+      "id": "domain-09",
+      "label": "通用语音与语言",
+      "children": [
+        {
+          "id": "domain-09-01",
+          "label": "情绪表达与多模态互动"
+        },
+        {
+          "id": "domain-09-02",
+          "label": "空间音频与问答"
+        }
+      ]
+    }
+  ],
+  "facets": [
+    "diseases",
+    "model_architectures",
+    "biological_models",
+    "modalities",
+    "tasks"
+  ],
+  "notes": "类型与研究领域为独立维度；领域最多两级。疾病、生物模型、算法模型使用标签，不复制存储目录。ID 一经发布不重排。"
+}

@@ -97,7 +97,7 @@
   const metricBar = (value, label) => metricValue(value) !== null && value <= 100 ? `<progress class="metric-bar" max="100" value="${value}" aria-label="${escape(label)} ${percentText(value)}"></progress>` : '<span class="metric-bar metric-unknown" aria-hidden="true"></span>';
 
   function selectPlatform(value) {
-    const dataAnchors = ["data", "data-platform", "research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"];
+    const dataAnchors = ["classified-resources", "data", "data-platform", "research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"];
     const current = ["servers", "research", "literature"].includes(value) ? value : dataAnchors.includes(value) ? "data-platform" : "home";
     state.platform = current;
     for (const id of ["servers", "research", "literature", "data-platform"]) $(id).hidden = id !== current;
@@ -686,6 +686,11 @@
     state.summary = null;
     state.items = [];
     state.total = 0;
+    classifiedController?.abort();
+    classifiedData = null;
+    $("classified-content").replaceChildren();
+    $("classified-count").textContent = "登录后查看分类目录。";
+    for (const key of Object.keys(classificationFields)) $("classified-"+key).innerHTML = '<option value="">全部</option>';
     state.mapping = null;
     state.guide = null;
     state.ingestion = null;
@@ -955,7 +960,7 @@
     const relationships = item.relationships || [];
     const source = (item.evidence || []).map((evidence) => evidence.label).filter(Boolean)[0] || "来源证据待补充";
     const location = storageInfo(item);
-    return `<article class="resource-card"><div class="resource-card-top"><span class="record-subtype ${kindClass(item.kind)}">${escape(subtypeText(item.subtype))}</span><span class="resource-version">${escape(versionText(item))}</span></div><h3><button type="button" data-asset="${escape(item.asset_id)}">${escape(item.display_name || "未命名资料")}</button></h3><p class="resource-purpose">${escape(researchSummary(item))}</p>${researchUses.length ? `<div class="resource-use-cases"><span>适合研究</span><ul>${researchUses.map((use) => `<li>${escape(use)}</li>`).join("")}</ul></div>` : ""}${taskLabels.length ? `<div class="resource-task-labels">${taskLabels.map((label) => `<span>${escape(label)}</span>`).join("")}</div>` : ""}<dl class="resource-facts"><div><dt>内容</dt><dd>${escape(doc.record_role || subtypeText(item.subtype))}</dd></div><div><dt>台账</dt><dd>${escape(mappingQuantity(item))}</dd></div><div><dt>证据</dt><dd title="${escape(source)}">${escape(source)}</dd></div></dl>${physicalCompact(item)}<div class="resource-path" title="${escape(location.current)}">${icon("server")}<code>${escape(location.current || "位置待补充")}</code></div>${location.storage ? `<div class="resource-storage-line">${migrationBadge(location)}${location.aliases.length ? `<span>${number(location.aliases.length)} 个兼容路径核验</span>` : ""}</div>` : ""}<div class="resource-card-meta"><span class="status-badge ${item.checks?.access === "readable" ? "verified" : item.checks?.access === "restricted" ? "restricted" : "documented"}">${escape(mappingAccessText(item))}</span><button type="button" class="gap-link" data-asset="${escape(item.asset_id)}" data-detail-section="detail-gaps">${gaps.length ? `${number(gaps.length)} 项待补说明` : "查看说明完整性"}</button></div>${relationships.length ? `<p class="relationship-count">${number(relationships.length)} 项映射关系候选 · 尚未确认合并或血缘</p>` : ""}<div class="resource-card-actions"><button type="button" class="text-link" data-asset="${escape(item.asset_id)}">查看资料说明${icon("arrow")}</button>${mappingLink(item.card_url, "独立资料卡")}</div></article>`;
+    return `<article class="resource-card"><div class="resource-card-top"><span class="record-subtype ${kindClass(item.kind)}">${escape(subtypeText(item.subtype))}</span><span class="resource-version">${escape(versionText(item))}</span></div><h3><button type="button" data-asset="${escape(item.asset_id)}">${escape(item.display_name || "未命名资料")}</button></h3><p class="resource-purpose">${escape(researchSummary(item))}</p>${researchUses.length ? `<div class="resource-use-cases"><span>适合研究</span><ul>${researchUses.map((use) => `<li>${escape(use)}</li>`).join("")}</ul></div>` : ""}${taskLabels.length ? `<div class="resource-task-labels">${taskLabels.map((label) => `<span>${escape(label)}</span>`).join("")}</div>` : ""}<details class="resource-technical"><summary>文件位置与管理信息</summary><dl class="resource-facts"><div><dt>内容</dt><dd>${escape(doc.record_role || subtypeText(item.subtype))}</dd></div><div><dt>已记录数量</dt><dd>${escape(mappingQuantity(item))}</dd></div><div><dt>信息来源</dt><dd title="${escape(source)}">${escape(source)}</dd></div></dl>${physicalCompact(item)}<div class="resource-path" title="${escape(location.current)}">${icon("server")}<code>${escape(location.current || "位置待补充")}</code></div>${location.storage ? `<div class="resource-storage-line">${migrationBadge(location)}${location.aliases.length ? `<span>${number(location.aliases.length)} 个兼容路径核验</span>` : ""}</div>` : ""}</details><div class="resource-card-meta"><span class="status-badge ${item.checks?.access === "readable" ? "verified" : item.checks?.access === "restricted" ? "restricted" : "documented"}">${escape(mappingAccessText(item))}</span><button type="button" class="gap-link" data-asset="${escape(item.asset_id)}" data-detail-section="detail-gaps">${gaps.length ? `${number(gaps.length)} 项待补说明` : "查看说明完整性"}</button></div>${relationships.length ? `<p class="relationship-count">${number(relationships.length)} 项映射关系候选 · 尚未确认合并或血缘</p>` : ""}<div class="resource-card-actions"><button type="button" class="text-link" data-asset="${escape(item.asset_id)}">查看资料说明${icon("arrow")}</button>${mappingLink(item.card_url, "独立资料卡")}</div></article>`;
   }
 
   function renderResourceCards(items) {
@@ -1022,6 +1027,48 @@
     updateMapSelection();
     reveal($("resource-content").querySelectorAll(".resource-card, .gap-record"));
     updateResourceURL();
+  }
+
+  let classifiedData = null, classifiedPage = 1, classifiedController = null;
+  const classificationStatus = {shared:"已接入文件",existing:"已有目录",restricted:"授权或权限待确认",storage_pending:"共享存储待确认",unlocated:"尚无落盘入口",external:"其他机器",incomplete:"下载未完成"};
+  const classificationFields = {kind:"资源类型",category:"研究大类",subcategory:"细分类",status:"接入状态"};
+  function renderClassified() {
+    if (!classifiedData) return;
+    let items = classifiedData.items;
+    for (const key of Object.keys(classificationFields)) {
+      const value = $("classified-" + key).value;
+      if (value) items = items.filter((item) => item[key] === value);
+    }
+    const query = $("classified-search").value.trim().toLocaleLowerCase();
+    if (query) items = items.filter((item) => [item.name,item.category,item.subcategory,item.note].join(" ").toLocaleLowerCase().includes(query));
+    items = [...items].sort((a,b) => Number(b.status === "shared") - Number(a.status === "shared") || a.source.row - b.source.row);
+    const pages = Math.max(1,Math.ceil(items.length/6));
+    classifiedPage = Math.min(classifiedPage,pages);
+    $("classified-count").textContent = `${items.length} 条登记记录 · ${items.filter(i=>i.status === "shared").length} 个本次接入的资源文件夹 · 观察日期 ${classifiedData.updated_at}`;
+    $("classified-content").innerHTML = items.slice((classifiedPage-1)*6,classifiedPage*6).map((item) => `<article class="resource-card classified-card"><div class="resource-card-top"><span>${item.kind === "model" ? "模型" : "数据集"}</span><span>${escape(classificationStatus[item.status])}</span></div><h3>${escape(item.name)}</h3><div class="resource-task-labels"><span>${escape(item.category)}</span><span>${escape(item.subcategory)}</span></div><p class="resource-purpose">${escape(item.summary || "简介待补充")}</p>${item.shared_directory ? `<div class="resource-path"><code>${escape(item.shared_directory)}</code></div><p>${item.linked_file_count} 个文件入口 · 不等于样本数</p>` : `<p class="mapping-muted">共享位置待确认</p>`}<details><summary>使用前须知与文件详情</summary><p>当前文件情况：${escape(item.note)}</p><p>来源进度：${escape(item.source_status || "未知")}</p><p>规模（表格记载）：${escape(item.scale_claimed || "未知")}</p><p>版本：${escape(item.version || "待核验")}</p><p>已登记文件大小：${number(item.files.reduce((sum,file)=>sum+(file.bytes || 0),0))} 字节（不代表完整数据规模）</p><p>补充标签：${escape(Object.values(item.tags || {}).flat().join("、") || "待补充")}</p>${item.license ? `<p>许可：${escape(item.license)}</p>` : ""}<ul>${item.files.map((file)=>`<li><code>${escape(file.path)}</code></li>`).join("")}</ul><p>来源：表格第 ${item.source.row} 行；分类沿用来源记载。</p></details><a class="text-link" href="/api/classified-resources/${encodeURIComponent(item.id)}/README.md" target="_blank" rel="noopener">Agent README</a></article>`).join("") || '<p class="catalog-state">没有符合条件的资源。</p>';
+    $("classified-page").textContent = `${classifiedPage} / ${pages}`;
+    $("classified-prev").disabled = classifiedPage === 1;
+    $("classified-next").disabled = classifiedPage === pages;
+  }
+  async function loadClassified() {
+    classifiedController?.abort();
+    const controller = new AbortController(); classifiedController = controller;
+    try {
+      const data = await api("/api/classified-resources", {signal:controller.signal});
+      if (controller.signal.aborted) return;
+      classifiedData = data;
+      for (const [key,label] of Object.entries(classificationFields)) {
+        const selected = $("classified-"+key).value;
+        $("classified-"+key).innerHTML = `<option value="">全部${label}</option>` + data.facets[key].map(value=>`<option value="${escape(value)}">${escape(key === "status" ? classificationStatus[value] : key === "kind" ? value === "dataset" ? "数据集" : "模型" : value)}</option>`).join("");
+        $("classified-"+key).value = data.facets[key].includes(selected) ? selected : "";
+      }
+      renderClassified();
+    } catch(error) {
+      if (error.name === "AbortError") return;
+      classifiedData = null;
+      $("classified-content").replaceChildren();
+      $("classified-count").textContent = "分类目录暂不可读取，请登录或点击顶部刷新重试。";
+    }
   }
 
   async function loadMapping() {
@@ -1162,6 +1209,7 @@
       }),
       loadAssets(),
       loadMapping(),
+      loadClassified(),
       loadResearchGuide(controller.signal),
       loadIngestion(controller.signal),
       loadServers(controller.signal),
@@ -1296,6 +1344,12 @@
   }
 
   function bindEvents() {
+    for (const key of Object.keys(classificationFields)) $("classified-"+key).addEventListener("change",()=>{classifiedPage=1;renderClassified();});
+    $("classified-search").addEventListener("input",()=>{classifiedPage=1;renderClassified();});
+    $("classified-prev").addEventListener("click",()=>{classifiedPage--;renderClassified();});
+    $("classified-next").addEventListener("click",()=>{classifiedPage++;renderClassified();});
+    $("classified-reset").addEventListener("click",()=>{for(const key of Object.keys(classificationFields)) $("classified-"+key).value="";$("classified-search").value="";classifiedPage=1;renderClassified();});
+
     document.querySelectorAll("[data-platform-link]").forEach((link) => link.addEventListener("click", () => selectPlatform(link.dataset.platformLink)));
     document.querySelectorAll('a[href="#overview"]').forEach((link) => link.addEventListener("click", () => selectPlatform("home")));
     const syncPlatform = () => selectPlatform(location.hash.slice(1));

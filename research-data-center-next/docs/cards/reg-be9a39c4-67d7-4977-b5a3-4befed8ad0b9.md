@@ -2,7 +2,7 @@
 
 公共区资源说明卡；一条来源记录一个登记 ID，不等于已确认的逻辑资源或发布版本。
 
-topic_patient_crawler-code-smoke-20260716-cred：位于 /data/datasets/wuwangwo/fmn/topic_patient_crawler-code-smoke-20260716-cred 的公共区分支入口；本轮只确认目录定位，未逐文件展开。
+这是共享资料中的一个文件夹。目前还缺少内容介绍，需要补充里面有什么、适合做什么，才能判断是否适用于你的研究。
 
 当前位置：/data/share/datasets/wuwangwo/fmn/topic_patient_crawler-code-smoke-20260716-cred
 
@@ -115,7 +115,7 @@ topic_patient_crawler-code-smoke-20260716-cred：位于 /data/datasets/wuwangwo/
 - metadata.核验 与 metadata.目录深度；没有逐文件扫描
 - data/catalog.json / discovered-04b94caeacfc0b63
 
-说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;58e56de6f2372c639ae86101c84e6cab584e5eca419888910c44360a945e57a1&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 86<br>  }<br>\]
+说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;93c0e0fcfefbb843c696bafb5c2193b4e82ee9aef3b68e85daa7772fb0d1a5f8&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 86<br>  }<br>\]
 
 ## 关系候选
 

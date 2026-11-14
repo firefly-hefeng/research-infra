@@ -2,7 +2,7 @@
 
 公共区资源说明卡；一条来源记录一个登记 ID，不等于已确认的逻辑资源或发布版本。
 
-clinical_audio_date_label_lexical_20260929_r360：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。
+保存已有研究的资料清单和整理记录，方便查找原始数据、了解处理过程、复核实验使用了哪些材料。这里不是一批新采集的录音。
 
 当前位置：/data/share/datasets/easystore/clinical_audio_date_label_lexical_20260929_r360
 
@@ -150,7 +150,7 @@ clinical_audio_date_label_lexical_20260929_r360：已有研究数据的核查、
 - metadata.原始台账；原快照时间保持不变
 - data/catalog.json / asset-a93ad3d605a78bd5
 
-说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;58e56de6f2372c639ae86101c84e6cab584e5eca419888910c44360a945e57a1&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 86<br>  }<br>\]
+说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;93c0e0fcfefbb843c696bafb5c2193b4e82ee9aef3b68e85daa7772fb0d1a5f8&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 86<br>  }<br>\]
 
 ## 关系候选
 
