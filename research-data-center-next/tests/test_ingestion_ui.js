@@ -23,6 +23,7 @@ const context = {
   fetch: async () => { throw new Error("unexpected network call"); },
 };
 vm.createContext(context);
+vm.runInContext(fs.readFileSync(path.join(__dirname, "../static/gpu-trends.js"), "utf8"), context);
 const source = fs.readFileSync(path.join(__dirname, "../static/app.js"), "utf8");
 assert.ok(source.includes("  initialize();"));
 vm.runInContext(source.replace("  initialize();", "  globalThis.subject = { renderIngestion, renderPublished, loadIngestion, clearCatalog, showAuth, updateAgentCode, state };"), context);

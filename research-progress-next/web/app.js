@@ -106,17 +106,98 @@ async function loadTeam() {
   if(data.items.length) await showTeam(data.items[0].week);
   else {$('team-reader').textContent='暂无团队总结。成员提交后，由维护人员或定时任务运行汇总 Skill。';}
 }
-async function loadKnowledge() {
-  const data=await api('/api/knowledge'); $('knowledge-grid').replaceChildren();
-  data.items.forEach(row => $('knowledge-grid').append(button(row.title,async()=>{
-    const epoch=++knowledgeEpoch; const doc=await api('/api/knowledge/'+encodeURIComponent(row.name));
-    if(epoch!==knowledgeEpoch)return; markdown($('knowledge-reader'),doc.content); $('knowledge-reader').hidden=false;
-  },'knowledge-card')));
-  if(!data.items.length) $('knowledge-grid').textContent='暂无知识文档，请由维护人员添加。';
+let knowledgeItems = [], selectedKnowledge = null, knowledgeListEpoch = 0;
+function renderKnowledge() {
+  const query = $('knowledge-search').value.trim().toLocaleLowerCase();
+  const terms = query.split(/\s+/).filter(Boolean);
+  const items = knowledgeItems.filter(row => terms.every(term => `${row.title} ${row.excerpt || ''}`.toLocaleLowerCase().includes(term)));
+  const grid = $('knowledge-grid'); grid.replaceChildren();
+  $('knowledge-count').textContent = query ? `${items.length} / ${knowledgeItems.length} 篇文档` : `${items.length} 篇文档`;
+  for (const row of items) {
+    const card = button('', () => openKnowledge(row), 'knowledge-card');
+    card.dataset.documentName = row.name;
+    card.setAttribute('aria-pressed', String(row.name === selectedKnowledge));
+    const mark = document.createElement('span'); mark.className = 'knowledge-card-icon'; mark.setAttribute('aria-hidden','true');
+    mark.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5zM14 3v6h5M9 13h6M9 17h4"/></svg>';
+    const title = document.createElement('strong'); title.textContent = row.title;
+    const excerpt = document.createElement('p'); excerpt.textContent = row.excerpt || '打开文档，阅读完整内容。';
+    const action = document.createElement('span'); action.className = 'knowledge-card-action'; action.textContent = '阅读文档 ↗';
+    card.append(mark, title, excerpt, action); grid.append(card);
+  }
+  if (!items.length) {
+    const empty = document.createElement('div'); empty.className = 'knowledge-empty';
+    const title = document.createElement('strong'); title.textContent = knowledgeItems.length ? '没有匹配的文档' : '知识库还没有文档';
+    const hint = document.createElement('p'); hint.textContent = knowledgeItems.length ? '试试其他关键词，或清空搜索。' : '维护人员添加文档后，会在这里显示。';
+    empty.append(title, hint); grid.append(empty);
+  }
 }
+function closeKnowledge() {
+  knowledgeEpoch++; selectedKnowledge = null;
+  $('knowledge-workspace').classList.remove('is-reading');
+  $('knowledge-document').hidden = $('knowledge-outline').hidden = $('knowledge-back').hidden = true;
+  $('knowledge-reader').removeAttribute('aria-busy');
+  renderKnowledge();
+}
+async function openKnowledge(row) {
+  const epoch = ++knowledgeEpoch; selectedKnowledge = row.name;
+  $('knowledge-workspace').classList.add('is-reading');
+  $('knowledge-document').hidden = $('knowledge-back').hidden = false;
+  $('knowledge-outline').hidden = true; $('knowledge-toc').replaceChildren();
+  $('knowledge-document-title').textContent = row.title;
+  const reader = $('knowledge-reader'); reader.textContent = '正在打开文档…'; reader.setAttribute('aria-busy','true');
+  renderKnowledge();
+  try {
+    const doc = await api('/api/knowledge/' + encodeURIComponent(row.name));
+    if (epoch !== knowledgeEpoch) return;
+    markdown(reader, doc.content.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n'));
+    const headings = [...reader.querySelectorAll('h1,h2,h3')];
+    headings.forEach((heading, index) => {
+      heading.id = 'knowledge-heading-' + index; heading.tabIndex = -1;
+      const link = button(heading.textContent, () => {
+        heading.scrollIntoView({block:'start'}); heading.focus({preventScroll:true});
+        $('knowledge-toc').querySelectorAll('button').forEach(item => item.classList.toggle('active', item === link));
+      }, 'knowledge-toc-link');
+      link.dataset.level = heading.tagName.slice(1); $('knowledge-toc').append(link);
+    });
+    $('knowledge-outline').hidden = !headings.length;
+    reader.focus({preventScroll:true});
+    if (window.matchMedia('(max-width: 700px)').matches) $('knowledge-document').scrollIntoView({block:'start'});
+  } catch (error) {
+    if (epoch !== knowledgeEpoch) return;
+    reader.textContent = '文档暂时无法打开：' + error.message;
+    reader.append(button('重试', () => openKnowledge(row), 'knowledge-retry secondary'));
+  } finally {
+    if (epoch === knowledgeEpoch) reader.removeAttribute('aria-busy');
+  }
+}
+async function loadKnowledge() {
+  const epoch = ++knowledgeListEpoch;
+  $('knowledge-count').textContent = '正在加载文档…';
+  try {
+    const data = await api('/api/knowledge');
+    if (epoch !== knowledgeListEpoch) return;
+    knowledgeItems = data.items;
+    if (selectedKnowledge && !knowledgeItems.some(row => row.name === selectedKnowledge)) closeKnowledge();
+    else renderKnowledge();
+  } catch (error) {
+    if (epoch !== knowledgeListEpoch) return;
+    $('knowledge-count').textContent = '文档列表加载失败';
+    $('knowledge-grid').replaceChildren(button('重新加载文档', loadKnowledge, 'knowledge-retry secondary'));
+    throw error;
+  }
+}
+$('knowledge-search').addEventListener('input', renderKnowledge);
+$('knowledge-back').onclick = () => {
+  const name = selectedKnowledge; closeKnowledge();
+  const card = [...$('knowledge-grid').querySelectorAll('.knowledge-card')].find(item => item.dataset.documentName === name);
+  (card || $('knowledge-search')).focus();
+};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=async()=>{
   document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+b.dataset.view);
   document.querySelectorAll('[data-view]').forEach(n=>n.classList.toggle('active',n===b));
+  document.querySelector('.registration-panel').hidden = ['team','knowledge'].includes(b.dataset.view);
+  history.replaceState(null, '', '#' + b.dataset.view);
+  if (b.dataset.view !== 'knowledge') { knowledgeListEpoch++; closeKnowledge(); }
   try {if(b.dataset.view==='team')await loadTeam(); if(b.dataset.view==='knowledge')await loadKnowledge();}
   catch(e){toast(e.message);}
 });

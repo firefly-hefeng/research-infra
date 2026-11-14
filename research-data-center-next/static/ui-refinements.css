@@ -1,0 +1,181 @@
+/* Layout-only refinements. All brand colors come from the existing palette. */
+body[data-platform="data-platform"] #main,
+body[data-platform="servers"] #main { max-width:1680px; }
+#data-platform .platform-heading, #servers .platform-heading { margin-bottom:22px; }
+#data-platform .platform-heading h2, #servers .platform-heading h2 { font-size:30px; letter-spacing:-.7px; }
+#data-platform .platform-heading p, #servers .platform-heading p { font-size:14px; }
+#data-platform .data-shortcuts { position:sticky; top:0; z-index:8; background:var(--paper); padding:13px 0; margin-bottom:22px; border-bottom:1px solid var(--line); gap:9px; flex-wrap:wrap; }
+#data-platform .data-shortcuts a { padding:8px 15px; background:var(--surface); border:1px solid var(--line); border-radius:7px; font-size:13px; }
+#data-platform .data-shortcuts a:hover, #data-platform .data-shortcuts a[aria-current] { background:var(--soft); color:var(--teal); border-color:var(--aqua); }
+#data-platform .section-anchor { scroll-margin-top:88px; }
+#data-platform .data-stats { gap:14px; margin-bottom:20px; }
+#data-platform .stat-card { padding:18px 20px; border-radius:9px; }
+#data-platform .stat-number { font-size:30px; margin:6px 0; line-height:1.3; }
+#data-platform .stat-footer { font-size:12px; }
+#data-platform .storage-panel { border-radius:9px; margin-bottom:12px; }
+#data-platform .scope-disclosure { margin-bottom:28px; border-radius:9px; }
+#data-platform .research-guide, #data-platform .resources-section, #data-platform .catalog { margin-top:30px; }
+#data-platform .guide-heading h2, #data-platform .section-heading h2 { font-size:23px; letter-spacing:-.4px; }
+#data-platform .section-heading.platform-heading h2 { font-size:30px; }
+#data-platform .guide-heading p, #data-platform .section-heading p { font-size:13px; line-height:1.8; }
+#data-platform .guide-categories { gap:14px; }
+#data-platform .guide-category { padding:18px 20px; border-radius:9px; }
+#data-platform .guide-category h3 { margin-top:8px; }
+#data-platform .guide-category h3 button { font-size:17px; }
+#data-platform .guide-category>p { font-size:13px; line-height:1.8; }
+#data-platform .mapping-panel, #data-platform .catalog-panel { border-radius:10px; overflow:clip; box-shadow:var(--shadow); }
+#data-platform .resource-toolbar { padding:18px 20px; gap:14px; }
+#data-platform .resource-search input { font-size:14px; }
+#data-platform .resource-search { border-radius:7px; }
+#data-platform .resource-view-bar { padding-left:20px; padding-right:20px; }
+#data-platform .view-switch button { font-size:13px; padding-top:14px; padding-bottom:14px; }
+#data-platform .mapping-tools { padding:14px 20px; font-size:13px; }
+#data-platform .resource-content { padding:0 20px 20px; }
+#data-platform .resource-card-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr)); gap:16px; }
+#data-platform .resource-card { padding:20px 20px 0; border-radius:9px; }
+#data-platform .classified-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+#data-platform .classified-card { padding-bottom:20px; }
+#data-platform .classified-card details { margin:12px 0; }
+@media(max-width:1200px) { #data-platform .classified-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { #data-platform .classified-grid { grid-template-columns:minmax(0,1fr); } }
+#data-platform .resource-card h3 button { font-size:17px; line-height:1.55; }
+#data-platform .resource-card-actions { margin-left:-20px; margin-right:-20px; padding:13px 20px; }
+#data-platform .resource-card p { line-height:1.85; }
+#data-platform .resource-card .path-line { overflow-wrap:anywhere; }
+#data-platform #filters { padding:20px; background:var(--surface); }
+#data-platform .search-row { gap:10px; }
+#data-platform .search-box { border-radius:7px; }
+#data-platform #search { font-size:14px; }
+#data-platform .filter-row { gap:10px; margin-top:14px; }
+#data-platform .filter-row select, #data-platform .filter-row input { min-height:38px; font-size:13px; border-radius:6px; }
+#data-platform .results-meta { padding:13px 20px; font-size:13px; border-top:1px solid var(--line); gap:12px; flex-wrap:wrap; }
+#data-platform .catalog-display-tools { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+#data-platform .density-toggle { border:1px solid var(--line); padding:5px 10px; border-radius:6px; font-size:12px; background:var(--surface); }
+#data-platform .density-toggle[aria-pressed="true"] { color:var(--teal); background:var(--soft); border-color:var(--aqua); }
+#data-platform .asset-table { font-size:13px; }
+#data-platform .asset-table thead th { padding:13px 16px; font-size:12px; }
+#data-platform .asset-table tbody td { padding:19px 16px; vertical-align:top; line-height:1.7; }
+#data-platform .asset-table tbody tr:hover { background:var(--soft); }
+#data-platform .asset-table tbody tr:focus-within { background:var(--soft); }
+#data-platform .catalog-panel.is-compact .asset-table tbody td { padding-top:10px; padding-bottom:10px; }
+#data-platform .asset-table .asset-name { font-size:14px; line-height:1.6; }
+#data-platform .asset-table code { font-size:11px; }
+#data-platform .pagination { padding:16px 20px; font-size:12px; }
+#data-platform .contribution-box, #data-platform .ingestion-admin { border-radius:9px; }
+body[data-platform="data-platform"] .drawer .detail-section { margin-top:22px; }
+body[data-platform="data-platform"] .drawer h3 { font-size:16px; }
+
+/* One selected machine, with a compact overview of every machine. */
+#servers .servers-grid { display:block; }
+#servers .server-switcher { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:20px; }
+#servers .server-choice { display:flex; flex-direction:column; gap:10px; text-align:left; min-width:0; padding:18px 20px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+#servers .server-choice:hover { border-color:var(--aqua); }
+#servers .server-choice.active { border-color:var(--teal); box-shadow:inset 0 3px var(--teal); background:var(--soft); }
+#servers .server-choice-top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:7px; font-size:10px; color:var(--muted); letter-spacing:.5px; }
+#servers .server-choice strong { font-size:17px; overflow-wrap:anywhere; }
+#servers .server-choice-meta { font-size:12px; color:var(--muted); }
+#servers .server-detail-card { display:block; padding:26px; border-radius:12px; border-top-width:1px; }
+#servers .server-detail-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+#servers .server-detail-heading h3 { margin:6px 0; font-size:25px; }
+#servers .server-address { margin:0; font-size:12px; }
+#servers .server-observed { margin:18px 0; font-size:13px; }
+#servers .server-observed.is-old { border:1px solid var(--line); background:var(--soft); border-radius:7px; padding:10px 13px; color:var(--muted); }
+#servers .server-metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-column:auto; grid-row:auto; gap:24px; margin-bottom:28px; padding:0; border:0; }
+#servers .server-metrics>div { background:var(--paper); padding:16px 18px; border-radius:8px; }
+#servers .server-metrics strong { font-size:25px; }
+#servers .server-metrics small { font-size:12px; }
+#servers .server-gpus { grid-area:auto; border:0; padding:0; }
+#servers .gpu-section-heading { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:15px; }
+#servers .gpu-section-heading h4 { font-size:16px; margin:0; }
+#servers .gpu-section-heading>span { font-size:12px; color:var(--muted); }
+#servers .gpu-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:0; }
+#servers .gpu-item { min-width:0; padding:16px; background:var(--surface); border:1px solid var(--line); border-radius:9px; }
+#servers .gpu-item .gpu-item-title { display:flex; justify-content:space-between; gap:8px; align-items:center; }
+#servers .gpu-item-title h4 { font:600 15px/1.5 Consolas,monospace; color:var(--ink); margin:0; }
+#servers .gpu-item-title span { font-size:11px; color:var(--muted); }
+#servers .gpu-name { margin:6px 0 18px; color:var(--muted); font-size:11px; overflow-wrap:anywhere; }
+#servers .gpu-metric { display:block; margin:14px 0 0; }
+#servers .gpu-metric>div { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+#servers .gpu-metric span { font-size:12px; color:var(--muted); }
+#servers .gpu-metric strong { font-size:19px; color:var(--ink); font-variant-numeric:tabular-nums; }
+#servers .gpu-metric small { display:block; font-size:11px; color:var(--muted); margin-top:7px; line-height:1.7; }
+#servers .metric-bar { margin:8px 0 0; height:5px; width:100%; }
+#servers .gpu-memory .metric-bar { accent-color:#a17cb6; }
+#servers .gpu-memory .metric-bar::-webkit-progress-value { background:#a17cb6; }
+#servers .gpu-memory .metric-bar::-moz-progress-bar { background:#a17cb6; }
+#servers .gpu-processes { margin-top:17px; border-top:1px solid var(--line); padding-top:10px; }
+#servers .gpu-processes summary { font-size:12px; }
+#servers .gpu-process-row { overflow-wrap:anywhere; }
+#servers .gpu-trend-panel { border:1px solid var(--line); border-radius:9px; margin-top:24px; padding:20px; }
+#servers .gpu-trend-heading { display:flex; justify-content:space-between; align-items:center; gap:14px; }
+#servers .gpu-trend-heading h4 { font-size:15px; margin:0 0 5px; }
+#servers .gpu-trend-heading h4 span { font-size:11px; font-weight:400; margin-left:8px; color:var(--muted); }
+#servers .gpu-trend-heading p { font-size:12px; color:var(--muted); }
+#servers .gpu-trend-heading label { display:flex; gap:8px; align-items:center; white-space:nowrap; font-size:12px; }
+#servers .gpu-trend-heading select { padding:7px 10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); }
+#servers .gpu-trend-legend { display:flex; flex-wrap:wrap; gap:20px; font-size:12px; color:var(--muted); margin-top:18px; }
+#servers .gpu-trend-legend>span:before { content:""; display:inline-block; vertical-align:middle; width:15px; margin-right:7px; border-top:2px solid var(--teal); }
+#servers .gpu-trend-legend .legend-memory:before { border-color:#a17cb6; border-top-style:dashed; }
+#servers .gpu-trend-empty { text-align:center; padding:25px 12px; margin-top:15px; background:var(--paper); border-radius:7px; color:var(--muted); font-size:13px; }
+#servers .gpu-trend-empty small { display:block; margin-top:7px; font-size:12px; }
+#servers .gpu-plot { display:grid; grid-template-columns:40px minmax(0,1fr); gap:8px; margin-top:20px; }
+#servers .gpu-plot-scale { display:flex; flex-direction:column; justify-content:space-between; padding:6px 0 29px; font-size:11px; color:var(--muted); }
+#servers .gpu-plot-main svg { width:100%; height:150px; display:block; overflow:visible; }
+#servers .gpu-plot-grid line { stroke:var(--line); stroke-width:1px; vector-effect:non-scaling-stroke; }
+#servers .gpu-plot polyline { stroke-width:2; vector-effect:non-scaling-stroke; stroke-linejoin:round; }
+#servers .trend-utilization { stroke:var(--teal); fill:var(--teal); }
+#servers .trend-memory { stroke:#a17cb6; fill:#a17cb6; }
+#servers .trend-memory polyline { stroke-dasharray:5 4; }
+#servers .gpu-plot-times { display:flex; justify-content:space-between; gap:8px; font-size:11px; color:var(--muted); margin-top:8px; }
+#servers .gpu-trend-note { margin-top:12px; font-size:11px; color:var(--muted); }
+#servers .server-detail { margin:24px -26px -26px; border-radius:0 0 12px 12px; }
+#servers .server-detail>summary { padding:18px 26px; font-size:13px; }
+#servers .server-detail>div { padding:0 26px 24px; }
+@media(max-width:1200px) { #servers .gpu-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } #servers .server-choice { padding:16px; } }
+@media(max-width:760px) {
+  #data-platform .data-shortcuts { top:97px; flex-wrap:nowrap; overflow-x:auto; padding:9px 0; scrollbar-width:none; }
+  #data-platform .data-shortcuts a { flex:none; white-space:nowrap; }
+  #servers .server-switcher { grid-template-columns:1fr; gap:10px; }
+  #servers .server-choice { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 10px; }
+  #servers .server-choice-top { grid-column:1/-1; }
+  #servers .server-choice strong { font-size:15px; }
+  #servers .server-detail-card { padding:18px; }
+  #servers .server-detail { margin:20px -18px -18px; }
+  #servers .server-metrics { gap:12px; }
+  #servers .server-metrics>div { padding:12px; }
+  #servers .gpu-grid { gap:10px; }
+  #servers .gpu-item { padding:13px; }
+  #servers .gpu-trend-heading { flex-wrap:wrap; }
+  #servers .gpu-trend-panel { padding:15px; }
+  #data-platform .resource-toolbar, #data-platform #filters { padding:15px; }
+  #data-platform .resource-content { padding:0 12px 14px; }
+  #data-platform .data-stats { gap:10px; }
+  #data-platform .stat-card { padding:14px; }
+}
+@media(max-width:480px) {
+  #servers .gpu-grid, #servers .server-metrics { grid-template-columns:1fr; }
+  #servers .gpu-section-heading>span { display:none; }
+  #servers .gpu-trend-heading h4 span { display:block; margin:4px 0; }
+  #data-platform .table-hint { display:none; }
+  #data-platform .data-shortcuts a { padding:7px 10px; font-size:12px; }
+}
+@media(prefers-reduced-motion:reduce) { #servers *, #data-platform * { scroll-behavior:auto; } }
+
+/* Keep current metrics and the trend visible together before the per-GPU cards. */
+#servers .server-choice { padding:14px 18px; gap:6px; }
+#servers .server-detail-heading h3 { font-size:23px; margin:3px 0; }
+#servers .server-observed { margin:12px 0 18px; }
+#servers .server-observed.is-old { padding:8px 12px; }
+#servers .server-observation-grid { display:grid; grid-template-columns:minmax(220px,1fr) minmax(0,2fr); gap:20px; margin:0 0 24px; }
+#servers .server-observation-grid .server-metrics { grid-template-columns:minmax(0,1fr); gap:12px; margin:0; }
+#servers .server-observation-grid .server-metrics>div { padding:13px 16px; }
+#servers .server-observation-grid .server-metrics strong { font-size:23px; }
+#servers .server-observation-grid .gpu-trend-panel { margin:0; padding:17px 19px; }
+#servers .server-observation-grid .gpu-trend-empty { padding:23px 10px; }
+#servers .server-observation-grid .gpu-plot-main svg { height:132px; }
+#servers .server-observation-grid:not(:has(.gpu-trend-panel)) { grid-template-columns:minmax(0,1fr); }
+@media(max-width:1000px) {
+  #servers .server-observation-grid { grid-template-columns:minmax(0,1fr); }
+  #servers .server-observation-grid .server-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:480px) { #servers .server-observation-grid .server-metrics { grid-template-columns:minmax(0,1fr); } }
