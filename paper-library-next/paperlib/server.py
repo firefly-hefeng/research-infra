@@ -1,6 +1,5 @@
 import hmac
 import json
-import mimetypes
 import os
 from pathlib import Path
 import re
@@ -162,7 +161,9 @@ def serve(library, host='127.0.0.1', port=4186):
                 self.send_file(WEB.parent / 'skills/paper-curator/SKILL.md', 'text/plain; charset=utf-8')
             elif method == 'GET' and path in ('/', '/app.js', '/style.css'):
                 file = WEB / ('index.html' if path == '/' else path[1:])
-                self.send_file(file, mimetypes.guess_type(str(file))[0] or 'text/plain')
+                # Use stable types: Windows may associate .js with text/plain.
+                content_types = {'/': 'text/html', '/app.js': 'text/javascript', '/style.css': 'text/css'}
+                self.send_file(file, content_types[path] + '; charset=utf-8')
             else:
                 self.json({'error': '接口不存在'}, 404)
 
