@@ -2,6 +2,11 @@ const $ = (id) => document.getElementById(id);
 const API_BASE = window.location.pathname.startsWith('/papers/') ? '/papers' : '';
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state = {papers: [], jobs: [], agent: {}}, category = '', tag = '', selected = null;
+let pageView = 'discover', recommendationIds = [], routeInitialized = false;
+const RECOMMENDATION_LIMIT = 3;
+const PAGE_SIZE = 12;
+let currentPage = 1, pageCount = 1;
+let providerRequest = 0, providerLoaded = false, providerBusy = false, providerSavePromise = null;
 let toastTimer, searchTimer, readingPoll, readingPolling = false, readingRequest = null, renderedCardVersion = null;
 const noteDrafts = new Map();
 const readingSections = [
@@ -48,35 +53,142 @@ async function api(path, options = {}) {
 async function refresh(silent = false) {
   try {
     state = bibliographyState(await api('/api/state'));
-    render();
+    if (routeInitialized) render(); else applyRoute();
     if ($('detail').open && selected && cardVersion(state.papers.find(p => p.id === selected)) !== renderedCardVersion) openPaper(selected, true);
     if (!silent) toast('论文库已刷新');
   } catch (error) { if (!$('login').open) toast(error.message); }
 }
 const ready = () => state.papers.filter(p => p.card);
 const pending = () => state.papers.filter(p => !p.card);
-const countBy = (items, fn) => { const result = {}; items.forEach(p => fn(p).forEach(x => result[x] = (result[x] || 0) + 1)); return Object.entries(result).sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0])); };
-function render() {
+const countBy = (items, fn) => {
+  const counts = new Map();
+  items.forEach(p => new Set(fn(p)).forEach(x => counts.set(x, (counts.get(x) || 0) + 1)));
+  return [...counts].sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+};
+function readRoute(hash = window.location.hash || '') {
+  const [path, query = ''] = hash.replace(/^#/, '').split('?');
+  if (path === 'workspace') return {view: 'workspace'};
+  if (!['catalog', 'library-view', 'favorites'].includes(path)) return {view: 'discover'};
+  const params = new URLSearchParams(query);
+  const page = Number(params.get('page'));
+  return {view: 'catalog', filters: {
+    category: params.get('category') || '', tag: params.get('tag') || '', query: params.get('q') || '',
+    year: params.get('year') || '', favorites: path === 'favorites' || params.get('favorites') === '1',
+    sort: ['year', 'title'].includes(params.get('sort')) ? params.get('sort') : 'newest',
+    page: Number.isSafeInteger(page) && page > 0 ? page : 1
+  }};
+}
+function catalogHash(filters = {}) {
+  const params = new URLSearchParams();
+  for (const [name, value] of Object.entries({category: filters.category, tag: filters.tag, q: filters.query,
+    year: filters.year, favorites: filters.favorites ? '1' : '', sort: filters.sort === 'newest' ? '' : filters.sort,
+    page: Number.isSafeInteger(filters.page) && filters.page > 1 ? filters.page : ''})) {
+    if (value) params.set(name, value);
+  }
+  return '#catalog' + (params.size ? '?' + params.toString() : '');
+}
+function currentFilters() {
+  return {category, tag, query: $('search').value, year: $('year').value,
+    favorites: $('favorites-only').checked, sort: $('sort').value || 'newest', page: currentPage};
+}
+function navigateCatalog(filters = {}, replace = false, scroll = true) {
+  const hash = catalogHash(filters);
+  if (window.location.hash !== hash) window.history[replace ? 'replaceState' : 'pushState'](null, '', hash);
+  applyRoute(scroll);
+}
+function applyRoute(scroll = false) {
+  clearTimeout(searchTimer);
+  const route = readRoute();
+  routeInitialized = true;
+  pageView = route.view;
+  if ($('detail').open) { rememberNote(); $('detail').close(); }
+  category = route.filters?.category || '';
+  tag = route.filters?.tag || '';
+  currentPage = route.filters?.page || 1;
+  render(route.filters || {query: '', year: '', favorites: false, sort: 'newest'});
+  if (scroll) {
+    const target = $(pageView === 'discover' ? 'discovery-view' : pageView === 'workspace' ? 'management' : 'section-title');
+    target.setAttribute('tabindex', '-1');
+    target.focus({preventScroll: true});
+    $(pageView === 'discover' ? 'discovery-view' : pageView === 'workspace' ? 'management' : 'library-view').scrollIntoView({block: 'start', behavior: 'instant'});
+  }
+}
+function recommendedPapers(reshuffle = false) {
+  const papers = ready(), byId = new Map(papers.map(p => [p.id, p]));
+  const previous = recommendationIds;
+  let ids = reshuffle ? [] : previous.filter(id => byId.has(id));
+  const pool = papers.filter(p => !ids.includes(p.id));
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  ids = [...ids, ...pool.map(p => p.id)].slice(0, RECOMMENDATION_LIMIT);
+  // A requested new batch should include something new when the library allows it.
+  if (reshuffle && papers.length > RECOMMENDATION_LIMIT && ids.every(id => previous.includes(id))) {
+    ids[ids.length - 1] = pool.find(p => !previous.includes(p.id)).id;
+  }
+  recommendationIds = ids;
+  return ids.map(id => byId.get(id));
+}
+function renderDiscovery() {
+  const papers = ready(), recommendations = recommendedPapers();
+  const topics = countBy(papers, p => [p.card.category]);
+  $('recommendation-count').textContent = recommendations.length;
+  $('recommendation-note').textContent = '从已收录文献中随机选取，点击“换一批”探索更多论文。';
+  $('shuffle-recommendations').disabled = papers.length <= RECOMMENDATION_LIMIT;
+  $('shuffle-recommendations').title = papers.length <= RECOMMENDATION_LIMIT ? '已展示全部可推荐论文' : '随机发现另一批论文';
+  $('recommended-papers').innerHTML = recommendations.map(p => paperCard(p, true)).join('') ||
+    '<div class="empty"><div class="empty-symbol">◇</div><h3>等待第一篇推荐论文</h3><p>论文收录后会在这里随机展示。点击“添加论文”开始建立你的文献库。</p></div>';
+  $('category-count').textContent = topics.length;
+  $('category-grid').innerHTML = topics.map(([name, count]) => {
+    const members = papers.filter(p => p.card.category === name);
+    const visual = topicVisual(name);
+    const tags = countBy(members, p => p.card.tags).slice(0, 3);
+    return `<a class="category-card ${visual.tone}" href="${esc(catalogHash({category: name}))}" aria-label="${esc(name)}，${count} 篇论文"><span class="category-icon" aria-hidden="true"><svg class="icon"><use href="#${visual.icon}"/></svg></span><div class="category-copy"><h3>${esc(name)} <span class="category-card-count">${count} 篇</span></h3><div class="category-tags">${tags.map(([t]) => `<span>${esc(t)}</span>`).join('') || '<span>标签待补充</span>'}</div></div><span class="category-arrow" aria-hidden="true">↗</span></a>`;
+  }).join('') || '<div class="empty"><h3>分类将随论文一起出现</h3><p>这里按论文现有分类自动汇总，不需要另行建立目录。</p></div>';
+}
+function render(routeFilters = null) {
   const papers = ready(), tags = countBy(papers, p => p.card.tags), topics = countBy(papers, p => [p.card.category]);
   $('stat-ready').innerHTML = `${papers.length}<small>条</small>`;
+  $('stat-categories').innerHTML = `${topics.length}<small>个</small>`;
   $('stat-tags').innerHTML = `${tags.length}<small>个</small>`;
   $('stat-pending').innerHTML = `${pending().length}<small>篇</small>`;
   $('inbox-count').textContent = pending().length;
   $('management-count').textContent = `${pending().length} 篇待处理`;
+  $('nav-all-count').textContent = papers.length;
+  $('nav-favorite-count').textContent = papers.filter(p => p.favorite).length;
+  $('nav-pending-count').textContent = pending().length;
   document.querySelector('.agent-state').classList.toggle('is-running', state.running);
   $('agent-label').textContent = state.running ? '正在整理' : !state.agent.configured ? '整理通道未配置' : state.agent.mode === 'api' ? '自定义 API' : state.agent.mode === 'agent' ? 'Agent' : state.agent.api_configured ? 'Agent 优先 · API 备用' : 'Agent · API 未配置';
   $('agent-caption').textContent = state.agent.enabled ? `每日 ${state.agent.time} · ${state.agent.timezone}` : '自动调度未启用';
   $('category').innerHTML = '<option value="">全部方向</option>' + topics.map(([name, n]) => `<option value="${esc(name)}">${esc(name)} · ${n}</option>`).join('');
+  if (category && !topics.some(([name]) => name === category)) $('category').insertAdjacentHTML('beforeend', `<option value="${esc(category)}">${esc(category)} · 0</option>`);
   $('category').value = category;
-  const year = $('year').value;
+  const year = routeFilters?.year ?? $('year').value;
   const years = [...new Set(papers.map(p => p.card.year).filter(Boolean))].sort((a,b) => b-a);
   $('year').innerHTML = '<option value="">全部年份</option>' + years.map(y => `<option value="${y}">${y} 年</option>`).join('') + (papers.some(p => !p.card.year) ? '<option value="unknown">年份待核对</option>' : '');
+  if (year && !years.some(y => String(y) === year) && !(year === 'unknown' && papers.some(p => !p.card.year))) $('year').insertAdjacentHTML('beforeend', `<option value="${esc(year)}">${esc(year === 'unknown' ? '年份待核对' : year + ' 年')} · 0</option>`);
   $('year').value = year;
+  if (routeFilters) {
+    $('search').value = routeFilters.query;
+    $('favorites-only').checked = routeFilters.favorites;
+    $('sort').value = routeFilters.sort;
+  }
+  $('discovery-view').hidden = pageView !== 'discover';
+  $('library-view').hidden = pageView !== 'catalog';
+  $('management').hidden = pageView !== 'workspace';
+  const activeNav = pageView === 'workspace' ? 'workspace' : pageView === 'discover' ? 'discover' : $('favorites-only').checked ? 'favorites' : 'catalog';
+  ['discover', 'catalog', 'favorites', 'workspace'].forEach(name => {
+    if (name === activeNav) $('nav-' + name).setAttribute('aria-current', 'page');
+    else $('nav-' + name).removeAttribute('aria-current');
+  });
+  $('catalog-categories').innerHTML = [['', papers.length], ...topics].map(([name, count]) =>
+    `<a href="${esc(catalogHash({...currentFilters(), category: name, page: 1}))}"${category === name ? ' aria-current="page"' : ''}><span>${esc(name || '全部分类')}</span><span>${count}</span></a>`).join('');
   $('tag-cloud').innerHTML = tags.slice(0, 10).map(([name]) => `<button class="chip ${tag === name ? 'active' : ''}" data-tag="${esc(name)}">${esc(name)}</button>`).join('');
   $('inbox-path').textContent = $('guide-path').textContent = state.inbox;
   $('run').disabled = !state.agent.configured || state.running;
   $('run').textContent = state.running ? '正在整理…' : state.agent.configured ? '开始整理' : '请先配置整理方式';
-  renderPapers(); renderInbox(); renderJobs();
+  renderDiscovery(); renderPapers(); renderInbox(); renderJobs();
 }
 function renderPapers() {
   const query = $('search').value.trim().toLowerCase();
@@ -90,14 +202,37 @@ function renderPapers() {
   if ($('sort').value === 'year') papers.sort((a,b) => (b.card.year || 0) - (a.card.year || 0));
   if ($('sort').value === 'title') papers.sort((a,b) => a.card.title.localeCompare(b.card.title));
   $('section-title').innerHTML = `${$('favorites-only').checked ? '我的收藏' : category ? esc(category) : '全部论文'} <span>${papers.length}</span>`;
-  $('clear-filters').hidden = !category && !tag && !year && !query && !$('favorites-only').checked;
+  $('category-breadcrumb').textContent = category || '全部论文';
+  $('catalog-description').textContent = category ? '浏览这个分类的论文，也可以继续按关键词、年份与标签筛选。' : '按研究方向、作者与关键词，找到值得继续阅读的论文。';
+  $('clear-filters').hidden = !tag && !year && !query && !$('favorites-only').checked;
   const summary = [$('favorites-only').checked && '仅看收藏', category, tag, year && (year === 'unknown' ? '年份待核对' : year + ' 年')].filter(Boolean);
   $('filter-summary').hidden = !summary.length;
   $('filter-summary').textContent = `当前筛选：${summary.join(' / ')} · ${papers.length} 篇论文`;
-  $('papers').innerHTML = papers.map(p => {
-    const c = p.card;
-    return `<article class="paper-card"><div class="card-top"><span class="category-label">${esc(c.category)}</span><span class="card-year">${c.year || '年份待核对'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}">${p.favorite ? '★' : '☆'}</button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者待核对')}</div><p class="summary">${esc(c.reading?.takeaway || c.summary)}</p><div class="card-tags">${c.tags.slice(0, 3).map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}${c.tags.length > 3 ? `<span class="chip">+${c.tags.length - 3}</span>` : ''}</div><div class="card-publication"><span class="journal" title="${esc(c.venue || '出版信息待核对')}">${esc(c.venue || '出版信息待核对')}</span><span>${p.bibliography_only ? '导入题录' : hasReading(c) ? '详细解读' : '基础卡片'}</span></div><div class="card-bottom"><span class="${p.bibliography_only || p.status === 'review' || !p.available ? 'status-review' : 'status-ready'}">${!p.available ? '◌ 原件缺失' : p.bibliography_only ? '◌ 题录已导入 · 待原文核验' : p.status === 'review' ? '◌ 信息待核对' : '◦ 已整理'}</span><button data-open="${p.id}">阅读论文详情 <span>↗</span></button></div></article>`;
-  }).join('') || `<div class="empty"><div class="empty-symbol">⌕</div><h3>${ready().length ? '没有找到匹配的论文' : '你的研究书架，等待第一篇论文'}</h3><p>${ready().length ? '试试其他关键词，或清除方向、标签与年份筛选。' : '点击“添加论文”，将 PDF 放入待整理区并完成整理。'}</p></div>`;
+  pageCount = Math.max(1, Math.ceil(papers.length / PAGE_SIZE));
+  const page = Math.min(Math.max(1, currentPage), pageCount);
+  if (page !== currentPage) {
+    currentPage = page;
+    if (pageView === 'catalog') window.history.replaceState(null, '', catalogHash(currentFilters()));
+  }
+  const offset = (currentPage - 1) * PAGE_SIZE;
+  $('papers-prev').disabled = currentPage <= 1;
+  $('papers-next').disabled = currentPage >= pageCount;
+  $('page-label').textContent = `第 ${currentPage} / ${pageCount} 页`;
+  $('page-summary').textContent = papers.length ? `显示 ${offset + 1}–${Math.min(offset + PAGE_SIZE, papers.length)} 条，共 ${papers.length} 条文献` : '共 0 条文献';
+  $('papers-pagination').hidden = !papers.length;
+  $('papers').innerHTML = papers.slice(offset, offset + PAGE_SIZE).map(p => paperCard(p)).join('') || `<div class="empty"><div class="empty-symbol">⌕</div><h3>${ready().length ? '没有找到匹配的论文' : '你的研究书架，等待第一篇论文'}</h3><p>${ready().length ? '试试其他关键词，或清除方向、标签与年份筛选。' : '点击“添加论文”，将 PDF 放入待整理区并完成整理。'}</p></div>`;
+}
+// A stable visual cue for a topic; category names and links remain authoritative.
+function topicVisual(name) {
+  const known = {'语言模型': ['lilac', 'language'], '数据选择': ['blue', 'layers'],
+    '表征学习': ['teal', 'network'], '泛化理论': ['amber', 'chart'], '核方法': ['rose', 'grid']};
+  const [tone, icon] = Object.hasOwn(known, name) ? known[name] : ['lilac', 'folder'];
+  return {tone: 'tone-' + tone, icon: 'icon-' + icon};
+}
+function paperCard(p, recommended = false) {
+    const c = p.card, visual = topicVisual(c.category);
+    return `<article class="paper-card ${visual.tone} ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${esc(c.category)}</span><span class="card-year">${c.year || '年份待核对'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者待核对')}</div><p class="summary">${esc(c.reading?.takeaway || c.summary)}</p><div class="card-tags">${c.tags.slice(0, 3).map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}${c.tags.length > 3 ? `<span class="chip">+${c.tags.length - 3}</span>` : ''}</div><div class="card-publication"><span class="journal" title="${esc(c.venue || '出版信息待核对')}">${esc(c.venue || '出版信息待核对')}</span><span>${p.bibliography_only ? '导入题录' : hasReading(c) ? '详细解读' : '基础卡片'}</span></div><div class="card-bottom"><span class="${p.bibliography_only || p.status === 'review' || !p.available ? 'status-review' : 'status-ready'}">${!p.available ? '◌ 原件缺失' : p.bibliography_only ? '◌ 题录已导入 · 待原文核验' : p.status === 'review' ? '◌ 信息待核对' : '◦ 已整理'}</span><button data-open="${p.id}">阅读论文详情 <span>↗</span></button></div></article>`;
+
 }
 function renderInbox() {
   $('inbox-list').innerHTML = pending().map(p => `<div class="queue-item"><div><h3>${esc(p.filename)}</h3><p>${esc(p.error || '等待阅读、归类并生成论文卡片')}</p><p>${esc(p.source)}</p></div><span class="status-review">${p.status === 'error' ? '处理失败 · 可重试' : '等待整理'}</span></div>`).join('') || '<p class="queue-clear">✓ 暂无待整理论文</p>';
@@ -181,8 +316,8 @@ function startReadingPoll() {
 document.addEventListener('click', async event => {
   const b = event.target.closest('button'); if (!b) return;
   try {
-    if (b.dataset.tag) { tag = tag === b.dataset.tag ? '' : b.dataset.tag; render(); }
-    if (b.dataset.detailTag) { tag = b.dataset.detailTag; category = ''; $('detail').close(); render(); }
+    if (b.dataset.tag) navigateCatalog({... (pageView === 'catalog' ? currentFilters() : {}), tag: tag === b.dataset.tag ? '' : b.dataset.tag, page: 1});
+    if (b.dataset.detailTag) navigateCatalog({tag: b.dataset.detailTag});
     if (b.dataset.open) openPaper(b.dataset.open);
     if (b.dataset.section || b.dataset.evidence) {
       if (b.dataset.evidence) $('evidence-details').open = true;
@@ -223,10 +358,15 @@ document.addEventListener('click', async event => {
 });
 $('detail').addEventListener('close', () => { rememberNote(); });
 $('detail').addEventListener('input', e => { if (e.target.id === 'notes') { noteDrafts.set(selected, e.target.value); $('notes-status').textContent = '有未保存的修改'; } });
-$('search').addEventListener('input', () => {clearTimeout(searchTimer); searchTimer = setTimeout(renderPapers, 120);});
-$('year').onchange = $('sort').onchange = $('favorites-only').onchange = renderPapers;
-$('category').onchange = () => { category = $('category').value; renderPapers(); };
-$('clear-filters').onclick = () => {category = ''; tag = ''; $('year').value = ''; $('search').value = ''; $('favorites-only').checked = false; render();};
+$('search').addEventListener('input', () => {clearTimeout(searchTimer); searchTimer = setTimeout(() => navigateCatalog({...currentFilters(), page: 1}, true, false), 120);});
+$('year').onchange = $('sort').onchange = $('favorites-only').onchange = () => navigateCatalog({...currentFilters(), page: 1}, false, false);
+$('category').onchange = () => navigateCatalog({...currentFilters(), category: $('category').value, page: 1}, false, false);
+$('clear-filters').onclick = () => navigateCatalog({category}, false, false);
+$('discovery-search-form').onsubmit = event => { event.preventDefault(); navigateCatalog({query: $('discovery-search').value.trim()}); };
+$('shuffle-recommendations').onclick = () => { recommendedPapers(true); renderDiscovery(); };
+$('papers-prev').onclick = () => { if (currentPage > 1) navigateCatalog({...currentFilters(), page: currentPage - 1}); };
+$('papers-next').onclick = () => { if (currentPage < pageCount) navigateCatalog({...currentFilters(), page: currentPage + 1}); };
+window.addEventListener('hashchange', () => applyRoute(true));
 $('grid-view').onclick = () => {$('papers').classList.remove('list'); $('grid-view').classList.add('selected'); $('list-view').classList.remove('selected'); $('grid-view').setAttribute('aria-pressed', 'true'); $('list-view').setAttribute('aria-pressed', 'false');};
 $('list-view').onclick = () => {$('papers').classList.add('list'); $('list-view').classList.add('selected'); $('grid-view').classList.remove('selected'); $('grid-view').setAttribute('aria-pressed', 'false'); $('list-view').setAttribute('aria-pressed', 'true');};
 $('guide-button').onclick = () => $('guide').showModal();
@@ -237,7 +377,7 @@ $('scan').onclick = async () => { $('scan').disabled = true; try {const r = awai
 $('run').onclick = async () => {try {await api('/api/run', {method:'POST',body:'{}'}); toast('整理任务已启动'); await refresh(true);} catch(e){toast(e.message);}};
 $('login-form').onsubmit = async e => {e.preventDefault(); try {await api('/api/login', {method:'POST',body:JSON.stringify({password:$('password').value})}); $('password').value=''; $('login').close(); await refresh(true);} catch(error){$('login-error').textContent=error.message;}};
 $('login').addEventListener('cancel', e => e.preventDefault());
-document.addEventListener('keydown', e => {if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName) && !$('detail').open && !$('guide').open && !$('login').open && !($('management').open && $('provider-settings').open)) {e.preventDefault(); $('search').focus();}});
+document.addEventListener('keydown', e => {if (e.key === '/' && pageView !== 'workspace' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable && !$('detail').open && !$('guide').open && !$('login').open && !$('provider-settings').open) {e.preventDefault(); $(pageView === 'discover' ? 'discovery-search' : 'search').focus();}});
 setInterval(() => {if (!$('login').open && !$('detail').open && !document.hidden) refresh(true);}, 30000);
 refresh(true);
 
@@ -246,30 +386,68 @@ function describeProvider() {
   $('provider-description').textContent = mode === 'auto' ? '先尝试 Agent；未接入、超时、调用失败或卡片校验失败时，自动改用已配置的 API。每篇论文只归档一次。' : mode === 'agent' ? '只调用服务器上的 Agent，失败后保留论文等待重试。' : '直接调用自定义 API，使用同一份 skill 生成并校验卡片。';
 }
 async function loadProviderSettings() {
+  const request = ++providerRequest;
+  providerLoaded = false;
+  providerBusy = true;
+  $('provider-fields').disabled = true;
+  $('save-provider').disabled = true;
+  $('retry-settings').hidden = true;
+  $('settings-status').textContent = '正在加载整理设置…';
   try {
+    // A reopened dialog must wait for an earlier save before reading its result.
+    if (providerSavePromise) await providerSavePromise.catch(() => {});
+    if (request !== providerRequest || !$('provider-settings').open) return;
     const c = await api('/api/settings');
-    $('provider-mode').value = c.mode;
-    $('api-base-url').value = c.api_base_url;
-    $('api-model').value = c.api_model;
-    $('api-key').value = '';
-    $('clear-api-key').checked = false;
-    $('api-key-status').textContent = c.api_key_set ? '已保存密钥 · 留空可保留' : '尚未设置密钥（无鉴权的本地服务可留空）';
-    $('api-timeout').value = c.api_timeout;
-    $('agent-timeout').value = c.agent_timeout;
-    $('api-json-mode').checked = c.api_json_mode;
-    $('agent-config-status').textContent = c.agent_error || (c.agent_configured ? 'Agent 命令已配置，实际可用性以任务结果为准。' : 'Agent 未配置；自动模式下可直接使用已配置的 API。');
+    if (request !== providerRequest || !$('provider-settings').open) return;
+    fillProviderSettings(c);
+    providerLoaded = true;
     $('settings-status').textContent = '';
-    describeProvider();
-  } catch (error) { $('settings-status').textContent = error.message; }
+  } catch (error) {
+    if (request !== providerRequest || !$('provider-settings').open) return;
+    $('settings-status').textContent = `设置加载失败：${error.message}`;
+    $('retry-settings').hidden = false;
+  } finally {
+    if (request === providerRequest && $('provider-settings').open) {
+      providerBusy = false;
+      $('provider-fields').disabled = !providerLoaded;
+      $('save-provider').disabled = !providerLoaded;
+    }
+  }
 }
-$('provider-settings').addEventListener('toggle', () => {
-  if ($('provider-settings').open) loadProviderSettings();
-  else $('api-key').value = '';
+function fillProviderSettings(c) {
+  $('provider-mode').value = c.mode;
+  $('api-base-url').value = c.api_base_url;
+  $('api-model').value = c.api_model;
+  $('api-key').value = '';
+  $('clear-api-key').checked = false;
+  $('api-key-status').textContent = c.api_key_set ? '已保存密钥 · 留空可保留' : '尚未设置密钥（无鉴权的本地服务可留空）';
+  $('api-timeout').value = c.api_timeout;
+  $('agent-timeout').value = c.agent_timeout;
+  $('api-json-mode').checked = c.api_json_mode;
+  $('agent-config-status').textContent = c.agent_error || (c.agent_configured ? 'Agent 命令已配置，实际可用性以任务结果为准。' : 'Agent 未配置；自动模式下可直接使用已配置的 API。');
+  describeProvider();
+}
+function openProviderSettings() {
+  if ($('provider-settings').open) return;
+  $('provider-settings').showModal();
+  return loadProviderSettings();
+}
+$('provider-settings').addEventListener('close', () => {
+  ++providerRequest;
+  providerLoaded = false;
+  providerBusy = false;
+  $('api-key').value = '';
+  $('clear-api-key').checked = false;
+  $('provider-fields').disabled = true;
+  $('save-provider').disabled = true;
 });
-$('settings-button').onclick = () => { $('management').open = true; $('provider-settings').open = true; $('provider-settings').scrollIntoView({behavior: 'smooth', block: 'start'}); };
+$('settings-button').onclick = $('workspace-settings').onclick = openProviderSettings;
+$('close-settings').onclick = () => $('provider-settings').close();
+$('retry-settings').onclick = () => { if ($('provider-settings').open && !providerBusy) return loadProviderSettings(); };
 $('provider-mode').onchange = describeProvider;
 $('provider-form').onsubmit = async event => {
   event.preventDefault();
+  if (!providerLoaded || providerBusy || !$('provider-settings').open) return;
   const payload = {
     mode: $('provider-mode').value, api_base_url: $('api-base-url').value.trim(),
     api_model: $('api-model').value.trim(), api_key: $('api-key').value,
@@ -279,12 +457,28 @@ $('provider-form').onsubmit = async event => {
   if (payload.mode === 'api' && (!payload.api_base_url || !payload.api_model)) {
     $('settings-status').textContent = '请填写 API Base URL 和模型名称'; return;
   }
+  const request = ++providerRequest;
+  providerBusy = true;
+  $('provider-fields').disabled = true;
   $('save-provider').disabled = true;
+  $('settings-status').textContent = '正在保存整理设置…';
+  const saving = api('/api/settings', {method: 'PATCH', body: JSON.stringify(payload)});
+  providerSavePromise = saving;
   try {
-    const c = await api('/api/settings', {method: 'PATCH', body: JSON.stringify(payload)});
-    await loadProviderSettings();
-    $('settings-status').textContent = c.configured ? '已保存，对下一批整理生效' : '已保存，请继续配置可用的整理通道';
+    const c = await saving;
+    if (request === providerRequest && $('provider-settings').open) {
+      fillProviderSettings(c);
+      $('settings-status').textContent = c.configured ? '已保存，对下一批整理生效' : '已保存，请继续配置可用的整理通道';
+    }
     await refresh(true);
-  } catch (error) { $('settings-status').textContent = error.message; }
-  finally { $('save-provider').disabled = false; }
+  } catch (error) {
+    if (request === providerRequest && $('provider-settings').open) $('settings-status').textContent = error.message;
+  } finally {
+    if (providerSavePromise === saving) providerSavePromise = null;
+    if (request === providerRequest && $('provider-settings').open) {
+      providerBusy = false;
+      $('provider-fields').disabled = false;
+      $('save-provider').disabled = false;
+    }
+  }
 };
