@@ -130,6 +130,44 @@ function recommendedPapers(reshuffle = false) {
   recommendationIds = ids;
   return ids.map(id => byId.get(id));
 }
+// Category introductions describe the scope of the collection, not verified findings.
+const CATEGORY_DESCRIPTIONS = Object.freeze({
+  '关联研究_不计音频核心': '收录访谈转写、语言标记及相关疾病研究，提供语义与方法参考；不计入纯音频抑郁识别的核心证据。',
+  '临床验证与纵向追踪': '关注临床队列、重复测量与治疗过程，考察语音标记在不同人群中的适用性，以及随症状变化的表现。',
+  '音文与视听融合': '联合语音、文本、面部与视频线索，研究跨模态对齐和信息融合，用于抑郁识别与严重度估计。',
+  '采集协议与基础工具': '汇集录音采集规范、基础语音模型、训练工具与统计方法，为实验设计、数据处理和结果核对提供参考。',
+  '跨域泛化与可信评估': '关注跨语料、跨语言与跨人群迁移，检查说话人泄漏、录音混杂、模型选择偏差及预测可靠性。',
+  '数据集Bench与算法竞赛': '收录抑郁语音及多模态数据集、公开挑战赛和参赛方法，便于查找任务定义、标签、基线与评测协议。',
+  '深度学习与预训练音频': '关注深度网络、自监督语音表征与长序列建模，研究如何提取音频线索，并汇总为个体层面的判断。',
+  '声学特征与病理机制': '围绕韵律、声谱、声门与构音协调等特征，探索语音变化与抑郁症状、精神运动及发声机制的联系。',
+  '言语机制': '关注反刍思维、情绪表达、叙事身份与语言互动，探索表达方式、治疗关系和心理变化之间的联系。',
+  '对话交互': '汇集心理健康聊天机器人、情感支持智能体及用户体验研究，关注共情互动、治疗关系与使用效果评估。',
+  '传统特征与机器学习': '以手工声学特征、统计表征和传统分类回归方法为主，比较特征选择、归一化与模型设计的作用。',
+  '音乐疗法': '收录即兴演奏、音乐聆听、团体节奏等干预研究与证据汇总，关注干预形式、适用人群和心理健康结局。',
+  '综述与证据综合': '汇总语音抑郁评估与精神健康语音分析的综述和元分析，梳理方法、数据条件、证据质量及临床应用边界。',
+  '安全监管': '关注心理健康 AI 的风险识别、不当回应与污名问题，并收录数字疗法监管资料，帮助核对使用边界。',
+  '心理LLM': '收录面向心理理解、共情支持与咨询对话的大语言模型，关注训练数据、专业知识、推理能力与模型评测。',
+  '治疗对话策略': '研究动机访谈、情感支持与个性化咨询中的策略规划，关注倾听、反映、回应生成及共情与安全的平衡。',
+  '歌唱干预': '关注社区合唱与团体歌唱在老年人、产后人群等场景的应用，收录试验方案、效果评估和实施成本研究。',
+  '机制': '现有资料侧重音乐干预的心理生理机制，围绕奖赏加工、快感缺失、疼痛体验与神经调节展开研究。',
+  '基准与数据集': '收录心理咨询与情感支持对话的数据集、专家评测和对抗基准，用于核对语言模型的对话质量与安全表现。',
+  '朗读言语': '关注共享朗读、团体阅读与书目疗法，探索文学参与、情绪表达和健康体验，并比较干预研究的评估方式。',
+  '数字疗法': '现有资料聚焦通过自动化对话实施心理干预的研究，关注认知行为治疗等内容及随机对照试验中的效果评估。',
+  '危机干预': '收录文本危机咨询、自杀风险识别与干预聊天机器人研究，关注风险发现、响应流程和用户体验评估。',
+  '中文研究': '收录阅读疗法及养老院团体音乐干预的研究，帮助了解大学生与老年人群的干预设计和评估场景。',
+  '综述': '现有资料聚焦心理健康与心理治疗中的大语言模型，梳理咨询场景、智能体架构、评测框架和研究方向。',
+  '通用方法支撑': '收录自适应实验设计与贝叶斯推断等通用方法，为研究设计提供背景参考，不作为抑郁语音识别的直接证据。',
+  '医疗器械与监管': '收录抑郁症状辅助治疗软件的注册技术审评资料，便于查阅产品用途、申报信息与技术审评要求。',
+  '语言模型': '关注语言模型的结构、预训练、指令微调与评测，梳理模型如何理解和生成文本，以及不同训练方法的适用条件。',
+  '数据选择': '研究训练与微调数据的筛选、采样和混合策略，比较数据质量、多样性、模型效果与计算成本之间的关系。',
+  '表征学习': '关注模型如何学习有用的特征表示，涵盖自监督学习、表示质量评估与迁移能力，帮助理解特征与下游任务的联系。',
+  '泛化理论': '从理论角度研究训练表现如何延伸到新数据，关注模型、数据分布与任务结构对泛化误差和学习行为的影响。',
+  '核方法': '收录核学习、核岭回归与随机近似方法，关注相似性建模、统计保证及大规模计算中的效率与精度取舍。',
+});
+function categoryDescription(name) {
+  return Object.hasOwn(CATEGORY_DESCRIPTIONS, name) ? CATEGORY_DESCRIPTIONS[name] :
+    `收录与“${name}”相关的研究文献，可结合论文摘要、原文与阅读笔记，了解具体方法和适用范围。`;
+}
 function renderDiscovery() {
   const papers = ready(), recommendations = recommendedPapers();
   const topics = countBy(papers, p => [p.card.category]);
@@ -140,11 +178,11 @@ function renderDiscovery() {
   $('recommended-papers').innerHTML = recommendations.map(p => paperCard(p, true)).join('') ||
     '<div class="empty"><div class="empty-symbol">◇</div><h3>等待第一篇推荐论文</h3><p>论文收录后会在这里随机展示。点击“添加论文”开始建立你的文献库。</p></div>';
   $('category-count').textContent = topics.length;
-  $('category-grid').innerHTML = topics.map(([name, count]) => {
+  $('category-grid').innerHTML = topics.map(([name, count], index) => {
     const members = papers.filter(p => p.card.category === name);
     const visual = topicVisual(name);
-    const tags = countBy(members, p => p.card.tags).slice(0, 3);
-    return `<a class="category-card ${visual.tone}" href="${esc(catalogHash({category: name}))}" aria-label="${esc(name)}，${count} 篇论文"><span class="category-icon" aria-hidden="true"><svg class="icon"><use href="#${visual.icon}"/></svg></span><div class="category-copy"><h3>${esc(name)} <span class="category-card-count">${count} 篇</span></h3><div class="category-tags">${tags.map(([t]) => `<span>${esc(t)}</span>`).join('') || '<span>标签待补充</span>'}</div></div><span class="category-arrow" aria-hidden="true">↗</span></a>`;
+    const tags = countBy(members, p => p.card.tags).filter(([tag]) => tag !== name).slice(0, 3);
+    return `<a class="category-card ${visual.tone}" href="${esc(catalogHash({category: name}))}" aria-label="${esc(name)}，${count} 篇论文" aria-describedby="category-description-${index}"><span class="category-icon" aria-hidden="true"><svg class="icon"><use href="#${visual.icon}"/></svg></span><div class="category-copy"><h3>${esc(name)} <span class="category-card-count">${count} 篇</span></h3><p id="category-description-${index}" class="category-description">${esc(categoryDescription(name))}</p>${tags.length ? `<div class="category-tags">${tags.map(([t]) => `<span>${esc(t)}</span>`).join('')}</div>` : ''}</div><span class="category-arrow" aria-hidden="true">↗</span></a>`;
   }).join('') || '<div class="empty"><h3>分类将随论文一起出现</h3><p>这里按论文现有分类自动汇总，不需要另行建立目录。</p></div>';
 }
 function render(routeFilters = null) {
@@ -203,7 +241,7 @@ function renderPapers() {
   if ($('sort').value === 'title') papers.sort((a,b) => a.card.title.localeCompare(b.card.title));
   $('section-title').innerHTML = `${$('favorites-only').checked ? '我的收藏' : category ? esc(category) : '全部论文'} <span>${papers.length}</span>`;
   $('category-breadcrumb').textContent = category || '全部论文';
-  $('catalog-description').textContent = category ? '浏览这个分类的论文，也可以继续按关键词、年份与标签筛选。' : '按研究方向、作者与关键词，找到值得继续阅读的论文。';
+  $('catalog-description').textContent = category ? categoryDescription(category) : '按研究方向、作者与关键词，找到值得继续阅读的论文。';
   $('clear-filters').hidden = !tag && !year && !query && !$('favorites-only').checked;
   const summary = [$('favorites-only').checked && '仅看收藏', category, tag, year && (year === 'unknown' ? '年份待核对' : year + ' 年')].filter(Boolean);
   $('filter-summary').hidden = !summary.length;
