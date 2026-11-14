@@ -555,7 +555,7 @@ STYLES = '''*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#1728
 def write_csv(mapping, path):
     temporary = path.with_suffix(path.suffix + '.tmp')
     with temporary.open('w', encoding='utf-8-sig', newline='') as handle:
-        writer = csv.DictWriter(handle, fieldnames=CSV_FIELDS)
+        writer = csv.DictWriter(handle, fieldnames=CSV_FIELDS, lineterminator="\n")
         writer.writeheader()
         for item in mapping['items']:
             quantity, checks = item['documentation']['quantity'], item['checks']

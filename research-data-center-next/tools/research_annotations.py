@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 
 LIST_FIELDS = ('research_uses', 'starter_notes', 'contents', 'caveats', 'modalities', 'languages', 'topics')
@@ -110,6 +111,38 @@ def local_research(asset, item):
             'evidence_basis': ['data/catalog.json / ' + asset['id']], 'provenance': []}
 
 
+
+def readable_summary(item, research):
+    """Keep catalog accounting in details, explain content in the introduction."""
+    text = research['summary'].split(' 本地台账主要数量为')[0]
+    prefix = item['display_name'] + '：'
+    if text.startswith(prefix):
+        text = text[len(prefix):]
+    if '已有研究数据的核查、索引或派生整理' in text:
+        return '保存已有研究的资料清单和整理记录，方便查找原始数据、了解处理过程、复核实验使用了哪些材料。这里不是一批新采集的录音。'
+    if item['subtype'] == 'directory_collection' and ('分支' in text or '入口' in text):
+        return '这是共享资料中的一个文件夹。目前还缺少内容介绍，需要补充里面有什么、适合做什么，才能判断是否适用于你的研究。'
+    name = item['display_name'].lower()
+    if item['subtype'] == 'feature':
+        descriptions = {
+            'egemaps': '从语音中提取的声音特征，可用于分析音高、音质等发声特点。这里保存已有的提取结果，便于复用。',
+            'emotion2vec': '把语音转换成便于计算的特征，用于情绪相关研究。这里保存已提取的结果，使用前需核对它们对应哪些录音。',
+            'qwen3': '把文本转换成数值向量的结果，可用于查找相似文本、聚类或检索。这些是特征文件，不是模型本身。',
+            'time-frequency': '描述声音随时间和频率变化的特征文件，可作为声音分析的输入。具体提取方法仍需查看处理说明。',
+            'wav2vec': '从语音中提取的数值特征，可作为后续语音分析模型的输入，省去重复提取的步骤。',
+            'wavlm': '已提取的语音特征，可供语音内容、说话人等相关研究复用。使用前需要核对录音与特征的对应关系。',
+            'whisper': '用 Whisper 编码器提取的语音特征，可作为后续分析的输入。这些特征不等同于语音转写文本。',
+            'xlm_roberta': '从转写文本中提取的语言特征，可用于文本分析。分析前需要确认原始转写的来源和准确性。',
+        }
+        for key, value in descriptions.items():
+            if key in name:
+                return value
+    text = re.sub(r'，台账记录\d+个可见文件[；，]?', '，', text)
+    text = text.replace('历史登记、ledger与复核队列staging；本次仍未见音频或特征矩阵', '保存历史登记和待复核材料，目前没有确认其中包含录音或可直接用于分析的特征文件')
+    text = text.replace('对已有看图语音做技术质检、说话活动与角色复核，非新采集', '用于检查已有看图说话录音的质量，并核对谁在说话、说了哪些内容；不包含新采集的录音')
+    text = text.replace('既有来源的导入/预处理视图；未核采集任务不从文件夹名推断', '保存已有资料导入和预处理后的内容，便于后续研究复用；具体包含哪些录音和任务还需补充说明')
+    return text
+
 def integrate_research(asset, item, annotation=None):
     research = local_research(asset, item)
     annotation = annotation or {}
@@ -134,6 +167,7 @@ def integrate_research(asset, item, annotation=None):
     # these explanations. Keep that evidence date separate from current checks.
     historical = (item.get('storage') or {}).get('historical') or {}
     research['local_observed_at'] = historical.get('observed_at') or item['checks']['observed_at']
+    research["summary"] = readable_summary(item, research)
     return research
 
 
