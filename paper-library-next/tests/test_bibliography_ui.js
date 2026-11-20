@@ -41,6 +41,7 @@ async function run(pathname) {
   const html=node('detail-content').innerHTML;
   check(html.includes('索引简介'));
   check(!html.includes('原文摘要'));
+  check(html.includes('<h3>主题标签</h3>') && !html.includes('作者关键词'));
   check(html.includes('标题、作者与索引简介来自以下已有文献索引。'));
   check(html.includes('Curated index'));
   check(html.includes('下载 PDF'));

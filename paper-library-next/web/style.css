@@ -712,20 +712,24 @@ dialog { border-radius: var(--radius); }
 .review-note { font-size:13px; line-height:1.7; color:var(--muted); margin-top:14px; }
 .bibliography-provenance { padding-left:20px; font-size:14px; }
 .bibliography-provenance li { padding:5px 0; border:0; background:none; }
-.insight-keywords { display:flex; flex-wrap:wrap; gap:8px; }
-.insight-keywords .chip { padding:6px 10px; font-size:14px; }
+.card-tag-label { align-self:center; margin-right:3px; font-size:12px; color:var(--muted); }
+.reader-article .author-keywords { display:flex; flex-wrap:wrap; gap:6px 0; margin:0; padding:0; list-style:none; }
+.reader-article .author-keywords li { margin:0; padding:0; font-size:15px; line-height:1.65; overflow-wrap:anywhere; }
+.author-keywords li:not(:last-child)::after { content:"·"; margin:0 8px; color:var(--muted); }
+.insight-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.insight-tags .chip { padding:6px 10px; font-size:14px; }
 .insight-caption { margin:9px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
 .insight-coverage { margin:-3px 0 16px; }
 .insight-summary-part + .insight-summary-part { margin-top:24px; }
 .insight-summary-part h4 { margin:0 0 8px; font-size:15px; font-weight:650; color:var(--ink); }
-.insight-summary-part .reading-paragraph { margin-top:8px; }
+.reader-article .insight-summary-part .reading-paragraph { margin-top:8px; font-size:15px; line-height:1.8; }
 .insight-evidence { margin-top:10px; color:var(--muted); font-size:13px; }
 .insight-evidence summary,.index-summary summary { cursor:pointer; color:var(--accent-dark); line-height:1.7; }
 .insight-evidence blockquote { margin:12px 0 0; padding:10px 14px; border-left:2px solid var(--line); background:var(--surface-subtle); font-size:14px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
 .insight-evidence cite { display:block; margin-top:6px; font-style:normal; font-size:13px; }
 .abstract-metadata { display:flex; align-items:center; flex-wrap:wrap; gap:8px 18px; margin:0 0 15px; font-size:13px; line-height:1.7; color:var(--muted); }
 .original-abstract,.original-abstract .reading-paragraph { display:block; overflow:visible; max-height:none; -webkit-line-clamp:unset; }
-.original-abstract .reading-paragraph { margin:0 0 16px; overflow-wrap:anywhere; }
+.original-abstract .reading-paragraph { margin:0 0 16px; overflow-wrap:anywhere; white-space:normal; }
 .original-abstract .reading-paragraph:last-child { margin-bottom:0; }
 .insight-missing { color:var(--muted); }
 .index-summary { font-size:14px; }

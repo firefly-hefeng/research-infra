@@ -79,6 +79,39 @@ class InsightTests(unittest.TestCase):
         self.assertEqual(record['bibliography']['category'], '原有分类')
         self.assertEqual(record['notes'], '团队笔记应保留')
 
+    def test_author_terms_require_a_label_and_match_source_order(self):
+        label = 'Index Terms: Bayesian design; Gaussian processes.'
+        self.pdf.write_bytes(pdf_bytes(label))
+        ident = digest(self.pdf)
+        self.library.scan(settle_seconds=0)
+        terms = {'terms': ['Bayesian design', 'Gaussian processes'],
+                 'evidence': [{'page': 1, 'quote': label}]}
+        value = self.insight()
+        value.update(source_digest=ident, abstract={'status': 'missing', 'reason': '没有摘要'},
+                     summary={}, evidence=[], coverage='selected_pages', author_keywords=terms)
+        saved = self.library.commit_insight(ident, value)['insight']
+        self.assertEqual(public_insight(saved)['author_keywords'], terms)
+        del value['author_keywords']
+        self.assertFalse(self.library.commit_insight(ident, value)['changed'])
+        for bad in (dict(terms, terms=['Gaussian processes', 'Bayesian design']),
+                    dict(terms, terms=['生成标签']), dict(terms, terms=['bayesian design']),
+                    dict(terms, evidence=[{'page': 1, 'quote': 'Bayesian design; Gaussian processes.'}])):
+            with self.assertRaises(ValueError):
+                self.library.commit_insight(ident, dict(value, author_keywords=bad))
+        clean = self.library.commit_insight(ident, dict(value, author_keywords=None))['insight']
+        self.assertNotIn('author_keywords', public_insight(clean))
+
+    def test_keyword_hyphen_restoration_requires_printed_source(self):
+        from paperlib.insights import validate_author_keywords
+        self.pdf.write_bytes(pdf_bytes('Keywords: PHQ-9, AUC'))
+        quote = 'Keywords: PHQ9, AUC'
+        ref = {'quote': quote, 'page': 1, 'layout_hyphens': [{'joined': 'PHQ9', 'printed': 'PHQ-9'}]}
+        data = {'terms': ['PHQ-9', 'AUC'], 'evidence': [ref]}
+        self.assertEqual(validate_author_keywords(data, [quote], self.pdf), data)
+        ref['layout_hyphens'][0]['printed'] = 'P-HQ9'
+        with self.assertRaises(ValueError):
+            validate_author_keywords(data, [quote], self.pdf)
+
     def test_repeat_is_idempotent_and_invalid_replacement_preserves_previous(self):
         first = self.library.commit_insight(self.ident, self.insight())
         second = self.library.commit_insight(self.ident, self.insight())

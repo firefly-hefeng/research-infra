@@ -7,6 +7,8 @@ import shutil
 import subprocess
 import tempfile
 import uuid
+import unicodedata
+from xml.etree import ElementTree
 
 from .library import ID, digest, normalize, now
 
@@ -111,10 +113,97 @@ def text_value(value, label, maximum, required=False):
     return value
 
 
+def keyword_text(text):
+    # Ignore typesetting whitespace and discretionary hyphens, retaining case and accents.
+    return re.sub(r'\s+', '', unicodedata.normalize('NFKC', text).replace('\u00ad', ''))
+
+
+def keyword_layout_blocks(pdf, page):
+    # Poppler preserves printed hyphens and separates columns in its bounding-box output.
+    try:
+        result = subprocess.run(['pdftotext', '-f', str(page), '-l', str(page),
+                                 '-bbox-layout', str(pdf), '-'], check=True, capture_output=True,
+                                timeout=30)
+        root = ElementTree.fromstring(result.stdout)
+    except (OSError, subprocess.SubprocessError, ElementTree.ParseError) as exc:
+        raise ValueError('无法校验作者关键词的原页拼写') from exc
+    return [keyword_text(''.join(block.itertext())) for block in root.findall('.//{*}block')]
+
+
+def validate_author_keywords(value, pages, pdf=None):
+    if value is None:
+        return None
+    object_fields(value, ('terms', 'evidence'), 'author_keywords')
+    terms, evidence = value.get('terms'), value.get('evidence')
+    if not isinstance(terms, list) or not 1 <= len(terms) <= 100:
+        raise ValueError('作者关键词必须是原文列出的非空词表')
+    terms = [text_value(term, 'author_keywords.terms', 320, required=True) for term in terms]
+    if not isinstance(evidence, list) or not 1 <= len(evidence) <= 60:
+        raise ValueError('作者关键词须提供关键词栏的原文依据')
+    refs, displayed_quotes, layouts = [], [], {}
+    for entry in evidence:
+        object_fields(entry, ('page', 'quote', 'glyph_corrections', 'layout_hyphens'), 'author_keywords.evidence')
+        page = entry.get('page')
+        quote = text_value(entry.get('quote'), 'author_keywords.evidence.quote', 6000, required=True)
+        if type(page) is not int or not 1 <= page <= len(pages):
+            raise ValueError('作者关键词依据页码无效')
+        if keyword_text(quote) not in keyword_text(pages[page - 1]):
+            raise ValueError('作者关键词引文无法在指定页匹配')
+        ref = {'page': page, 'quote': quote}
+        displayed = quote
+        corrections = entry.get('glyph_corrections', [])
+        if not isinstance(corrections, list) or len(corrections) > 8:
+            raise ValueError('无效的 PDF 字形校对记录')
+        for correction in corrections:
+            object_fields(correction, ('raw', 'text'), 'glyph_corrections')
+            raw, replacement = correction.get('raw'), correction.get('text')
+            if not (isinstance(raw, str) and len(raw) == 1 and raw in displayed and
+                    unicodedata.category(raw) == 'Cc' and not raw.isspace() and
+                    isinstance(replacement, str) and len(replacement) == 1 and
+                    unicodedata.category(replacement)[0] in ('L', 'N', 'S')):
+                raise ValueError('字形校对仅允许替换提取错误的单个控制字符')
+            displayed = displayed.replace(raw, replacement)
+        if corrections:
+            ref['glyph_corrections'] = corrections
+        hyphens = entry.get('layout_hyphens', [])
+        if not isinstance(hyphens, list) or len(hyphens) > 32:
+            raise ValueError('无效的关键词连字符校对记录')
+        for correction in hyphens:
+            object_fields(correction, ('joined', 'printed'), 'layout_hyphens')
+            joined = text_value(correction.get('joined'), 'joined', 320, True)
+            printed = text_value(correction.get('printed'), 'printed', 320, True)
+            if (joined not in displayed or not any(
+                    printed[:i] + printed[i + 1:] == joined
+                    for i, char in enumerate(printed) if char in '-‐‑')):
+                raise ValueError('关键词拼写校对仅允许恢复单个印刷连字符')
+            if page not in layouts:
+                layouts[page] = keyword_layout_blocks(pdf, page)
+            if not any(keyword_text(printed) in block for block in layouts[page]):
+                raise ValueError('关键词连字符无法在原页排版中核实: ' + printed)
+            displayed = displayed.replace(joined, printed)
+        if hyphens:
+            ref['layout_hyphens'] = hyphens
+        refs.append(ref)
+        displayed_quotes.append(displayed)
+    block = keyword_text(' '.join(displayed_quotes))
+    heading = re.search(r'keywords?(?:andphrases)?|keyphrases|indexterms|indexingterms|'
+                        r'关键词|关键字|關鍵詞|關鍵字', block, re.I)
+    if not heading:
+        raise ValueError('原文依据中未找到作者关键词栏目标题')
+    after = heading.end()
+    for term in terms:
+        literal = keyword_text(term)
+        pos = block.find(literal, after)
+        if pos < 0:
+            raise ValueError('作者关键词无法按原文顺序匹配: ' + term)
+        after = pos + len(literal)
+    return {'terms': terms, 'evidence': refs}
+
+
 def validate_insight(library, paper_id, value):
     """Verify literal source spans; this does not establish semantic correctness/completeness."""
     object_fields(value, ('schema_version', 'paper_id', 'source_digest', 'abstract',
-                         'keywords', 'keywords_source', 'summary', 'evidence',
+                         'keywords', 'keywords_source', 'author_keywords', 'summary', 'evidence',
                          'coverage', 'generated_by', 'updated_at', 'source_method'), 'insight')
     if type(value.get('schema_version')) is not int or value['schema_version'] != 1:
         raise ValueError('insight.schema_version 必须为 1')
@@ -141,7 +230,7 @@ def validate_insight(library, paper_id, value):
     if not isinstance(evidence, list) or len(evidence) > 50:
         raise ValueError('evidence 必须是最多 50 项的列表')
     # A missing abstract with no claimed interpretation needs no fabricated source text.
-    content = source_text(library, paper_id) if status == 'available' or any(clean_summary.values()) or evidence else ''
+    content = source_text(library, paper_id) if status == 'available' or any(clean_summary.values()) or evidence or value.get('author_keywords') else ''
     pages = content.split('\f')
     if pages and not pages[-1].strip():
         pages.pop()
@@ -234,10 +323,13 @@ def validate_insight(library, paper_id, value):
     required = {'summary.' + field for field, text in clean_summary.items() if text}
     if required - {item['field'] for item in clean_evidence}:
         raise ValueError('导读缺少字段证据: ' + ', '.join(sorted(required - {item['field'] for item in clean_evidence})))
-    return {'schema_version': 1, 'source_digest': paper_id, 'abstract': clean_abstract,
+    result = {'schema_version': 1, 'source_digest': paper_id, 'abstract': clean_abstract,
             'keywords': clean_keywords, 'keywords_source': 'curated', 'summary': clean_summary,
             'evidence': clean_evidence, 'coverage': coverage, 'generated_by': generated_by,
             'source_method': source_method(library, paper_id)}
+    if 'author_keywords' in value:
+        result['author_keywords'] = validate_author_keywords(value['author_keywords'], pages, source)
+    return result
 
 
 def public_insight(value):
@@ -250,6 +342,17 @@ def public_insight(value):
                          ('summary', SUMMARY_FIELDS)):
         part = value.get(key) or {}
         result[key] = {name: part[name] for name in allowed if name in part}
+    authors = value.get('author_keywords')
+    if authors and authors.get('terms'):
+        refs = []
+        for entry in authors.get('evidence', []):
+            quote = entry['quote']
+            for correction in entry.get('glyph_corrections', []):
+                quote = quote.replace(correction['raw'], correction['text'])
+            for correction in entry.get('layout_hyphens', []):
+                quote = quote.replace(correction['joined'], correction['printed'])
+            refs.append({'page': entry['page'], 'quote': quote})
+        result['author_keywords'] = {'terms': authors['terms'], 'evidence': refs}
     result['evidence'] = [{key: item[key] for key in ('field', 'page', 'quote') if key in item}
                           for item in value.get('evidence', []) if isinstance(item, dict)]
     return result

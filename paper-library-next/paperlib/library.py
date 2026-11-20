@@ -487,6 +487,8 @@ class Library:
             existing = db.execute('SELECT content FROM paper_insights WHERE paper_id=?', (paper_id,)).fetchone()
             if existing:
                 previous = json.loads(existing['content'])
+                if 'author_keywords' not in clean and 'author_keywords' in previous:
+                    clean['author_keywords'] = previous['author_keywords']
                 if {key: value for key, value in previous.items() if key != 'updated_at'} == clean:
                     return {'id': paper_id, 'changed': False, 'insight': previous}
             clean['updated_at'] = now()
