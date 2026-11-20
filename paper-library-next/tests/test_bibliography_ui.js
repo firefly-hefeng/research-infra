@@ -6,7 +6,7 @@ let checks = 0;
 const check = value => { assert.ok(value); checks++; };
 const source = fs.readFileSync('web/app.js', 'utf8').split("document.addEventListener('click'")[0];
 const raw = {id:'a'.repeat(64), filename:'source.pdf', status:'bibliography', card:null,
-  available:true, fulltext_available:false, notes:'', favorite:false,
+  available:true, fulltext_available:true, notes:'', favorite:false,
   bibliography:{title:'<script>Existing title</script>', authors:['Alice'], year:2024,
     venue:'Indexed venue', summary:'Previously recorded purpose', category:'Clinical speech',
     tags:['Speech'], review_state:'bibliography_only', fulltext_policy:'restricted',
@@ -35,16 +35,18 @@ async function run(pathname) {
   subject.renderPapers();
   check(node('papers').innerHTML.includes('&lt;script&gt;'));
   check(!node('papers').innerHTML.includes('<script>'));
-  check(node('papers').innerHTML.includes('题录已导入 · 待原文核验'));
+  check(node('papers').innerHTML.includes('阅读原文'));
+  check(!node('papers').innerHTML.includes('待原文核验'));
   subject.openPaper(raw.id);
   const html=node('detail-content').innerHTML;
-  check(html.includes('已有资料说明'));
+  check(html.includes('摘要'));
+  check(html.includes('尚未逐篇核对原文'));
   check(html.includes('Curated index'));
-  check(!html.includes('下载原件'));
-  check(!html.includes('href="/api/papers/'));
+  check(html.includes('下载 PDF'));
+  check(html.includes('/api/papers/'));
   check(node('generate-reading').hidden===true);
-  check(node('reading-status').textContent.includes('未加入自动精读队列'));
-  await subject.api('/api/state');
-  check(calls[0]===(pathname.startsWith('/papers/')?'/papers/api/state':'/api/state'));
+  check(node('reading-status').textContent === '');
+  await subject.api('/api/catalog');
+  check(calls[0]===(pathname.startsWith('/papers/')?'/papers/api/catalog':'/api/catalog'));
 }
 (async()=>{await run('/papers/');await run('/');console.log(`Bibliography UI: ${checks} assertions passed.`)})().catch(error=>{console.error(error);process.exitCode=1});

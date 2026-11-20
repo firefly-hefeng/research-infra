@@ -14,6 +14,48 @@ from .providers import public_settings, save_settings
 WEB = Path(__file__).resolve().parent.parent / 'web'
 
 
+def catalog_paper(paper):
+    """Publish reading metadata, without workspace paths, notes or processing errors."""
+    result = {key: paper[key] for key in (
+        'id', 'filename', 'status', 'created', 'updated', 'available', 'fulltext_available'
+    ) if key in paper}
+    result.update(notes='', favorite=False, card=None, bibliography=None)
+    card = paper.get('card')
+    if card:
+        result['card'] = {key: card[key] for key in (
+            'schema_version', 'title', 'summary', 'venue', 'doi', 'year_note', 'year',
+            'category', 'authors', 'tags', 'contributions', 'limitations',
+            'needs_review', 'review_reason', 'updated_at'
+        ) if key in card}
+        reading = card.get('reading') or {}
+        result['card']['reading'] = {key: reading[key] for key in (
+            'takeaway', 'background', 'problem', 'method', 'experiments', 'results',
+            'discussion', 'reproduction'
+        ) if key in reading}
+        if reading.get('result_table'):
+            result['card']['reading']['result_table'] = {
+                key: reading['result_table'][key] for key in ('caption', 'columns', 'rows')
+                if key in reading['result_table']}
+        if reading.get('resources'):
+            result['card']['reading']['resources'] = [
+                {key: resource[key] for key in ('label', 'url', 'kind') if key in resource}
+                for resource in reading['resources'] if isinstance(resource, dict)]
+        result['card']['evidence'] = [
+            {key: evidence[key] for key in ('field', 'page', 'quote') if key in evidence}
+            for evidence in card.get('evidence', []) if isinstance(evidence, dict)]
+    bibliography = paper.get('bibliography')
+    if bibliography:
+        result['bibliography'] = {key: bibliography[key] for key in (
+            'title', 'summary', 'venue', 'doi', 'year', 'category', 'authors', 'tags',
+            'review_state', 'source_record_ids', 'imported_at'
+        ) if key in bibliography}
+        result['bibliography']['provenance'] = [
+            {key: source[key] for key in ('label', 'sha256', 'record_id') if key in source}
+            for source in bibliography.get('provenance', []) if isinstance(source, dict)
+        ]
+    return result
+
+
 def serve(library, host='127.0.0.1', port=4186):
     password = os.environ.get('PAPER_PASSWORD', '')
     if host not in ('127.0.0.1', 'localhost', '::1') and len(password) < 12:
@@ -111,11 +153,12 @@ def serve(library, host='127.0.0.1', port=4186):
                 secure = '; Secure' if public_origin.startswith('https:') else ''
                 self.json({'ok': True}, extra={'Set-Cookie': f'paper_session={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400{secure}'})
                 return
-            if path.startswith('/api/') and not self.authenticated():
-                self.json({'error': '请输入论文库访问密码', 'login_required': True}, 401)
+            public_read = method == 'GET' and (path == '/api/catalog' or
+                re.fullmatch(r'/api/papers/[a-f0-9]{64}/pdf', path))
+            if path.startswith('/api/') and not public_read and not self.authenticated():
+                self.json({'error': '请登录后使用论文管理功能', 'login_required': True}, 401)
                 return
-            if path == '/api/state' and method == 'GET':
-                c = configuration(library)
+            if path in ('/api/catalog', '/api/state') and method == 'GET':
                 papers = library.papers()
                 for item in papers:
                     try:
@@ -123,13 +166,18 @@ def serve(library, host='127.0.0.1', port=4186):
                         item['available'] = True
                     except (ValueError, FileNotFoundError):
                         item['available'] = False
-                    item['fulltext_available'] = item['available'] and not (
-                        item.get('bibliography', {}).get('fulltext_policy') == 'restricted'
-                        if item.get('bibliography') else False)
-                self.json({'root': str(library.root), 'inbox': str(library.root / 'inbox'),
-                           'papers': papers, 'jobs': library.jobs(),
-                           'agent': public_settings(c),
-                           'running': scheduler.active.locked(), 'scheduler_error': scheduler.last_error})
+                    # Import provenance is retained, but reading is open for every stored PDF.
+                    item['fulltext_available'] = item['available']
+                if path == '/api/catalog':
+                    self.json({'papers': [catalog_paper(item) for item in papers],
+                               'jobs': [], 'agent': {'configured': False, 'enabled': False},
+                               'running': False, 'access': {'can_manage': False}})
+                else:
+                    self.json({'root': str(library.root), 'inbox': str(library.root / 'inbox'),
+                               'papers': papers, 'jobs': library.jobs(),
+                               'agent': public_settings(configuration(library)),
+                               'running': scheduler.active.locked(), 'scheduler_error': scheduler.last_error,
+                               'access': {'can_manage': True}})
             elif path == '/api/settings' and method == 'GET':
                 self.json(public_settings(configuration(library)))
             elif path == '/api/settings' and method == 'PATCH':
@@ -150,19 +198,21 @@ def serve(library, host='127.0.0.1', port=4186):
             elif re.fullmatch(r'/api/papers/[a-f0-9]{64}', path) and method == 'PATCH':
                 self.json(library.edit(path.split('/')[-1], self.body()))
             elif re.fullmatch(r'/api/papers/[a-f0-9]{64}/pdf', path) and method == 'GET':
-                paper = library.record(path.split('/')[-2])
-                if (paper.get('bibliography') or {}).get('fulltext_policy') == 'restricted':
-                    self.json({'error': '此批导入仅开放题录；原文需按团队授权访问。'}, 403)
+                try:
+                    pdf = library.pdf_path(path.split('/')[-2])
+                except (KeyError, ValueError, FileNotFoundError):
+                    self.json({'error': '未找到这篇论文的 PDF 原文'}, 404)
                     return
-                self.send_file(library.pdf_path(path.split('/')[-2]), 'application/pdf', ranges=True)
+                self.send_file(pdf, 'application/pdf', ranges=True)
             elif path == '/api/export' and method == 'GET':
                 self.json({'schema_version': 1, 'papers': library.papers()}, extra={'Content-Disposition': 'attachment; filename="paper-library.json"'})
             elif path == '/api/skill' and method == 'GET':
                 self.send_file(WEB.parent / 'skills/paper-curator/SKILL.md', 'text/plain; charset=utf-8')
-            elif method == 'GET' and path in ('/', '/app.js', '/style.css'):
-                file = WEB / ('index.html' if path == '/' else path[1:])
+            elif method == 'GET' and path in ('/', '/manage', '/app.js', '/style.css'):
+                file = WEB / ('index.html' if path in ('/', '/manage') else path[1:])
                 # Use stable types: Windows may associate .js with text/plain.
-                content_types = {'/': 'text/html', '/app.js': 'text/javascript', '/style.css': 'text/css'}
+                content_types = {'/': 'text/html', '/manage': 'text/html',
+                                 '/app.js': 'text/javascript', '/style.css': 'text/css'}
                 self.send_file(file, content_types[path] + '; charset=utf-8')
             else:
                 self.json({'error': '接口不存在'}, 404)

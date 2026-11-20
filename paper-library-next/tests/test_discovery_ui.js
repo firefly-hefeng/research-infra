@@ -24,7 +24,7 @@ function bibliography(number, category) {
     {label: 'Existing index', sha256: 'b'.repeat(64), record_id: 'indexed-1'}]};
   result.card = null;
   result.status = 'bibliography';
-  result.fulltext_available = false;
+  result.fulltext_available = true;
   return result;
 }
 const stateFor = papers => ({papers, jobs: [], agent: {configured: false, enabled: false},
@@ -35,7 +35,7 @@ const flush = () => new Promise(resolve => setImmediate(resolve));
 async function setup(pathname, papers, hash = '', options = {}) {
   let serverState = stateFor(clone(papers));
   const nodes = new Map(), documentHandlers = new Map(), windowHandlers = new Map();
-  const requests = [], timers = new Map(), visits = [];
+  const requests = [], timers = new Map(), visits = [], created = [];
   let timer = 0, seed = 391;
   const document = {hidden: false, activeElement: {tagName: 'BODY'}};
   const node = id => {
@@ -43,7 +43,7 @@ async function setup(pathname, papers, hash = '', options = {}) {
       const events = new Map(), classes = new Set();
       let html = '', text = '';
       const element = {id, value: id === 'sort' ? 'newest' : '', checked: false, hidden: false,
-        open: false, disabled: false, scrollTop: 0, dataset: {}, tagName: 'DIV',
+        open: false, disabled: false, scrollTop: 0, dataset: {}, tagName: 'DIV', children: [],
         get innerHTML() { return html; }, set innerHTML(value) { html = String(value); },
         get textContent() { return text; }, set textContent(value) { text = String(value); },
         insertAdjacentHTML(position, value) { html += value; },
@@ -55,19 +55,24 @@ async function setup(pathname, papers, hash = '', options = {}) {
         async dispatch(name, event = {}) { if (events.has(name)) await events.get(name)(event); },
         showModal() { this.open = true; },
         close() { this.open = false; if (events.has('close')) events.get('close')(); },
-        focus() { document.activeElement = this; }, scrollIntoView() {}, appendChild() {}};
+        focus() { document.activeElement = this; }, scrollIntoView() {}, appendChild(child) {child.parentNode=this;this.children.push(child)},
+        append(...children) { children.forEach(child=>this.appendChild(child)); },
+        prepend(child) {child.parentNode=this;this.children.unshift(child)},
+        querySelector(tag) { const visit=n=>n.tagName===tag.toUpperCase()?n:n.children.map(visit).find(Boolean);return this.children.map(visit).find(Boolean); }};
       nodes.set(id, element);
     }
     return nodes.get(id);
   };
   document.getElementById = node;
+  document.createElement = tag => { const element=node('generated-'+created.length); element.tagName=tag.toUpperCase();created.push(element);return element; };
   document.querySelector = selector => selector === '.agent-state' ? node('agent-state') :
     selector === 'dialog[open]' ? ['detail', 'guide', 'login', 'provider-settings'].map(node).find(item => item.open) || null : null;
   document.querySelectorAll = () => [];
   document.addEventListener = (name, handler) => documentHandlers.set(name, handler);
   document.body = node('body');
   const location = {pathname, hash};
-  const window = {location, addEventListener: (name, handler) => windowHandlers.set(name, handler),
+  const storage = options.storage || new Map();
+  const window = {location, localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)}, addEventListener: (name, handler) => windowHandlers.set(name, handler),
     history: {pushState(data, title, url) { visits.push(url); location.hash = url; },
       replaceState(data, title, url) { location.hash = url; }}};
   const math = Object.create(Math);
@@ -76,7 +81,8 @@ async function setup(pathname, papers, hash = '', options = {}) {
     requests.push({url, method: options.method || 'GET', body: options.body ? JSON.parse(options.body) : null});
     const apiPath = url.replace(/^\/papers(?=\/api\/)/, '');
     if (apiPath === '/api/settings' && settingsRequest) return settingsRequest(options);
-    if (apiPath === '/api/state' && !options.method) {
+    if (['/api/state', '/api/catalog'].includes(apiPath) && !options.method) {
+      if (stateResponse) { const response=stateResponse(apiPath); if(response) return response; }
       return {ok: true, status: 200, json: async () => clone(serverState)};
     }
     const match = apiPath.match(/^\/api\/papers\/([a-f0-9]{64})$/);
@@ -87,7 +93,7 @@ async function setup(pathname, papers, hash = '', options = {}) {
     }
     throw new Error(`Unexpected API request: ${options.method || 'GET'} ${url}`);
   };
-  const settingsRequest = options.settingsRequest;
+  const settingsRequest = options.settingsRequest, stateResponse = options.stateResponse;
   const context = {document, window, URL, URLSearchParams, console, fetch, Math: math,
     navigator: {clipboard: {writeText: async () => {}}},
     setTimeout(callback) { timers.set(++timer, callback); return timer; },
@@ -106,7 +112,7 @@ async function setup(pathname, papers, hash = '', options = {}) {
     await windowHandlers.get('hashchange')();
     await flush();
   }
-  return {node, requests, visits, location, click, route,
+  return {node, requests, visits, location, click, route, storage, created,
     async refresh() { await node('refresh').onclick(); await flush(); },
     async submitSearch(value) { node('discovery-search').value = value;
       node('discovery-search-form').onsubmit({preventDefault() {}}); await flush(); },
@@ -153,7 +159,7 @@ async function fullCollection(pathname) {
   check(node('discovery-view').hidden && !node('library-view').hidden, 'Category link opens the card list');
   equal(node('category').value, unusual, 'Encoded arbitrary category round-trips');
   equal(idsIn(node('papers').innerHTML), [identifier(3)], 'Category contains exactly its papers');
-  check(node('papers').innerHTML.includes('题录已导入 · 待原文核验'), 'Bibliography label survives category view');
+  check(node('papers').innerHTML.includes('阅读原文') && !node('papers').innerHTML.includes('待原文核验'), 'Bibliography has a direct PDF action without repeated workflow labels');
   await app.inputSearch('no matching title');
   check(node('papers').innerHTML.includes('没有找到匹配的论文'), 'Search filters within the category');
   await app.click('clear-filters');
@@ -179,7 +185,7 @@ async function fullCollection(pathname) {
   check(!node('discovery-view').hidden && node('library-view').hidden, 'Returning via hash restores discovery');
   await app.route('#catalog?category=missing');
   check(node('papers').innerHTML.includes('没有找到匹配的论文'), 'Missing category yields a clear empty state');
-  check(app.requests.every(call => call.url.startsWith(pathname === '/papers/' ? '/papers/api/' : '/api/')), 'API base remains correct for both deployments');
+  check(app.requests.every(call => call.url.startsWith(pathname.startsWith('/papers/') ? '/papers/api/' : '/api/')), 'API base remains correct for both deployments');
   check(app.requests.every(call => call.method === 'GET' || call.method === 'PATCH'), 'Browsing and randomizing never launches curation');
 }
 
@@ -361,13 +367,81 @@ async function providerRaces(pathname) {
   check(!savingApp.node('save-provider').disabled && !savingApp.node('provider-fields').disabled, 'An older save cannot disable the reopened form');
 }
 
+async function sessionRecoveryFlow() {
+  let expired = false;
+  const app = await setup('/papers/manage', [paper(1)], '#catalog', {
+    stateResponse: () => expired ? response({error:{code:'feishu_login_required'}},401) : null
+  });
+  await app.click('open-fixture', {open:identifier(1)});
+  app.node('notes').value = 'Unsaved research note';
+  await app.node('detail').dispatch('input', {target:{id:'notes',value:app.node('notes').value}});
+  expired = true;
+  await app.refresh();
+  const recovery = app.created.find(node=>node['aria-label']==='恢复飞书登录');
+  check(recovery && !recovery.hidden, 'Expired Feishu session exposes the preserved recovery banner');
+  check(!app.node('login').open, 'Feishu expiration does not open the separate password dialog');
+  const login = recovery.querySelector('a');
+  check(login.target === '_blank' && login.href.includes('return_to=%2Fpapers%2Fmanage%23catalog'), 'Recovery returns to the management route in a separate tab');
+  equal(app.node('notes').value, 'Unsaved research note', 'Session expiration preserves the open note draft');
+  expired = false;
+  app.setPapers([{...paper(1),card:{...paper(1).card,updated_at:'2026-11-20'}}]);
+  await recovery.querySelector('button').dispatch('click');
+  check(recovery.hidden, 'Successful recovery clears the banner');
+  check(app.node('detail-content').innerHTML.includes('Unsaved research note'), 'Re-render after recovery retains the note draft');
+  check(app.requests.every(call=>call.method==='GET'), 'Session recovery does not submit drafts or start curation');
+  const brokenPublic = await setup('/papers/', [paper(1)], '', {
+    stateResponse: () => response({error:'temporarily unavailable'},401)
+  });
+  check(!brokenPublic.node('login').open && !brokenPublic.created.length, 'A catalog error never asks anonymous readers to authenticate');
+}
+
+async function publicReading(pathname) {
+  const collection = [bibliography(1, 'Speech'), paper(2, 'Other')];
+  const app = await setup(pathname, collection, '#catalog');
+  const {node} = app;
+  check(app.requests.every(call => call.url.endsWith('/api/catalog')), 'Public browsing only requests the public catalog');
+  check(node('guide-button').hidden && node('settings-button').hidden && node('nav-workspace').hidden, 'Public shell hides management controls');
+  check(!node('management-link').hidden && node('management-link').href.endsWith('/manage#workspace'), 'One management entry remains available');
+  await app.route('#workspace');
+  check(node('management').hidden && !node('discovery-view').hidden, 'A public workspace hash never exposes management');
+  await app.click('settings-button');
+  check(!node('provider-settings').open && !app.requests.some(call => call.url.endsWith('/settings')), 'Public settings events cannot load private configuration');
+  await app.click('reading-fixture', {open:identifier(1)});
+  const detail = node('detail-content').innerHTML;
+  check(detail.includes('阅读 PDF 原文') && detail.includes('下载 PDF'), 'Imported bibliography can read and download existing originals');
+  check(!detail.includes('团队权限') && !detail.includes('PAPER READING'), 'No obsolete permission or decorative reading labels');
+  check(detail.includes('摘要沿用导入索引，尚未逐篇核对原文。'), 'Source verification boundary appears once in the detail');
+  check(!detail.includes('id="notes"') && node('generate-reading').hidden, 'Public reader has no shared note editor or model action');
+  check(!node('login').open, 'Opening literature never requests a library password');
+  await app.click('favorite-fixture', {favorite:identifier(1)});
+  await app.refresh();
+  await app.route('#favorites');
+  equal(idsIn(node('papers').innerHTML), [identifier(1)], 'Public favorites survive catalog refresh');
+  check(!node('favorites-note').hidden, 'Favorites explain the browser-local storage');
+  const revisited = await setup(pathname, collection, '#favorites', {storage:app.storage});
+  equal(idsIn(revisited.node('papers').innerHTML), [identifier(1)], 'Browser favorites survive a new page session');
+  await app.click('scan');
+  await app.click('run');
+  await app.click('generate-reading');
+  check(app.requests.every(call => call.method === 'GET' && call.url.endsWith('/api/catalog')), 'Public actions never send private writes, state reads, or agent jobs');
+  const missing = {...paper(3), available:false, fulltext_available:false};
+  missing.card.doi = '10.1234/example';
+  app.setPapers([missing]);
+  await app.refresh();
+  await app.route('#catalog');
+  check(node('papers').innerHTML.includes('https://doi.org/10.1234%2Fexample'), 'Missing local original falls back to its recorded DOI');
+  check(!node('papers').innerHTML.includes(`/papers/${missing.id}/pdf`), 'A missing original does not offer a broken local PDF');
+}
+
 (async () => {
-  for (const pathname of ['/', '/papers/']) {
+  for (const pathname of ['/manage', '/papers/manage']) {
     await fullCollection(pathname);
     await initialLinksAndSmallCollections(pathname);
     await largeCollectionAndWorkspace(pathname);
     await providerDialog(pathname);
     await providerRaces(pathname);
   }
+  for (const pathname of ['/', '/papers/']) await publicReading(pathname);
+  await sessionRecoveryFlow();
   console.log(`Discovery UI: ${checks} assertions passed.`);
 })().catch(error => { console.error(error); process.exitCode = 1; });
