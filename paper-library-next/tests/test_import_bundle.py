@@ -8,7 +8,7 @@ import sys
 import tempfile
 import time
 import unittest
-from urllib.error import HTTPError, URLError
+from urllib.error import URLError
 from urllib.request import urlopen
 from paperlib.import_bundle import import_bundle, validate_bundle
 from paperlib.library import Library, digest
@@ -138,13 +138,13 @@ class BundleTests(unittest.TestCase):
         self.assertTrue(json.loads(output)['valid'])
         self.assertFalse(target.exists())
 
-    def test_imported_fulltext_denied_even_without_password(self):
+    def test_imported_fulltext_is_public_without_rewriting_provenance(self):
         root = self.base / 'papers'
         import_bundle(Library(root), self.bundle)
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0))
             port = sock.getsockname()[1]
-        env = {**os.environ, 'PAPER_PASSWORD': '', 'PAPER_SCHEDULE_ENABLED': '0',
+        env = {**os.environ, 'PAPER_PASSWORD': 'management-password', 'PAPER_SCHEDULE_ENABLED': '0',
                'PAPER_AGENT_COMMAND': '', 'PAPER_PUBLIC_ORIGIN': ''}
         process = subprocess.Popen([sys.executable, 'manage.py', '--root', str(root), 'serve',
             '--port', str(port)], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -152,7 +152,7 @@ class BundleTests(unittest.TestCase):
             base = 'http://127.0.0.1:' + str(port)
             for _ in range(60):
                 try:
-                    with urlopen(base + '/api/state') as response:
+                    with urlopen(base + '/api/catalog') as response:
                         data = json.load(response)
                     break
                 except URLError:
@@ -162,11 +162,14 @@ class BundleTests(unittest.TestCase):
             paper = data['papers'][0]
             self.assertIsNone(paper['card'])
             self.assertEqual(paper['bibliography']['review_state'], 'bibliography_only')
-            self.assertFalse(paper['fulltext_available'])
-            with self.assertRaises(HTTPError) as failure:
-                urlopen(base + '/api/papers/' + self.ident + '/pdf')
-            self.assertEqual(failure.exception.code, 403)
-            failure.exception.close()
+            self.assertTrue(paper['fulltext_available'])
+            with urlopen(base + '/api/papers/' + self.ident + '/pdf') as response:
+                self.assertEqual(response.status, 200)
+                self.assertEqual(response.read(), pdf_bytes())
+            # Historical import metadata remains an accurate record of the import.
+            stored = Library(root).record(self.ident)
+            self.assertEqual(stored['bibliography']['fulltext_policy'], 'restricted')
+            self.assertIsNone(stored['card'])
         finally:
             process.terminate()
             process.wait(timeout=10)

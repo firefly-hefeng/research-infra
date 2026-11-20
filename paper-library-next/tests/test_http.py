@@ -11,6 +11,7 @@ import unittest
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from paperlib.library import Library, digest
+from paperlib.server import catalog_paper
 from test_library import pdf_bytes
 
 
@@ -62,9 +63,93 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('/app.js')[0],200)
         self.assertIn("default-src 'self'",h['Content-Security-Policy'])
 
-    def test_auth_required_for_pdfs_and_metadata(self):
+    def test_public_catalog_and_pdf_do_not_require_login(self):
         self.assertEqual(self.request('/api/state',auth=False)[0],401)
-        self.assertEqual(self.request('/api/papers/'+self.id+'/pdf',auth=False)[0],401)
+        code, body, _ = self.request('/api/catalog', auth=False)
+        self.assertEqual(code, 200)
+        data = json.loads(body)
+        self.assertEqual(data['papers'][0]['id'], self.id)
+        self.assertTrue(data['papers'][0]['fulltext_available'])
+        self.assertFalse(data['access']['can_manage'])
+        self.assertTrue(json.loads(self.request('/api/state')[1])['access']['can_manage'])
+        code, body, _ = self.request('/api/papers/'+self.id+'/pdf', auth=False)
+        self.assertEqual(code, 200)
+        self.assertEqual(body, pdf_bytes())
+        code, body, _ = self.request('/api/papers/'+self.id+'/pdf',
+                                     headers={'Range': 'bytes=0-4'}, auth=False)
+        self.assertEqual((code, body), (206, b'%PDF-'))
+        self.assertEqual(self.request('/manage', auth=False)[0], 200)
+
+    def test_public_catalog_does_not_expose_workspace_data(self):
+        before = self.library.record(self.id)
+        self.library.edit(self.id, {'notes': 'private note marker', 'favorite': True})
+        try:
+            code, body, _ = self.request('/api/catalog', auth=False)
+            self.assertEqual(code, 200)
+            data = json.loads(body)
+            paper = data['papers'][0]
+            for key in ('root', 'inbox', 'scheduler_error'):
+                self.assertNotIn(key, data)
+            for key in ('source', 'pdf', 'error'):
+                self.assertNotIn(key, paper)
+            self.assertEqual(data['jobs'], [])
+            self.assertEqual(data['agent'], {'configured': False, 'enabled': False})
+            self.assertEqual(paper['notes'], '')
+            self.assertFalse(paper['favorite'])
+            self.assertNotIn(b'private note marker', body)
+            self.assertNotIn(str(self.root).encode(), body)
+        finally:
+            self.library.edit(self.id, {'notes': before['notes'], 'favorite': before['favorite']})
+
+    def test_public_read_does_not_authorize_management(self):
+        for path, method, body in (
+                ('/api/state', 'GET', None), ('/api/settings', 'GET', None),
+                ('/api/export', 'GET', None), ('/api/skill', 'GET', None),
+                ('/api/scan', 'POST', {}), ('/api/run', 'POST', {}),
+                ('/api/papers/' + self.id + '/reading', 'POST', {}),
+                ('/api/papers/' + self.id, 'PATCH', {'notes': 'not permitted'}),
+                ('/api/catalog', 'PATCH', {}),
+                ('/api/papers/' + self.id + '/pdf', 'POST', {})):
+            with self.subTest(path=path, method=method):
+                self.assertEqual(self.request(path, method, body, auth=False)[0], 401)
+
+    def test_missing_and_unsafe_pdf_return_not_found(self):
+        self.assertEqual(self.request('/api/papers/' + '0' * 64 + '/pdf', auth=False)[0], 404)
+        file = self.library.pdf_path(self.id)
+        original = file.read_bytes()
+        file.unlink()
+        try:
+            code, body, _ = self.request('/api/papers/' + self.id + '/pdf', auth=False)
+            self.assertEqual(code, 404)
+            self.assertNotIn(str(self.root).encode(), body)
+            catalog = json.loads(self.request('/api/catalog', auth=False)[1])
+            self.assertFalse(catalog['papers'][0]['fulltext_available'])
+            file.symlink_to('/etc/passwd')
+            self.assertEqual(self.request('/api/papers/' + self.id + '/pdf', auth=False)[0], 404)
+        finally:
+            if file.is_symlink():
+                file.unlink()
+            file.write_bytes(original)
+
+    def test_public_metadata_uses_nested_whitelists(self):
+        value = {'id': self.id, 'source': '/private/source.pdf', 'pdf': '/private/archive.pdf',
+                 'error': '/private/failed', 'notes': 'private note', 'favorite': True,
+                 'card': {'title': 'A paper', 'private_path': '/private/card',
+                          'reading': {'method': 'A method', 'source_path': '/private/text',
+                                      'resources': [{'label': 'Code', 'url': 'https://example.org',
+                                                     'kind': 'code', 'secret': 'private resource'}],
+                                      'result_table': {'columns': ['A', 'B'], 'rows': [['1', '2']],
+                                                       'path': '/private/table'}},
+                          'evidence': [{'field': 'summary', 'page': 1, 'quote': 'Quoted text',
+                                        'file': '/private/evidence'}]},
+                 'bibliography': {'title': 'Imported paper', 'source_path': '/private/index',
+                                  'provenance': [{'label': 'Index', 'record_id': 'A01',
+                                                  'sha256': 'a' * 64, 'path': '/private/provenance'}]}}
+        public = catalog_paper(value)
+        self.assertNotIn('private', json.dumps(public))
+        self.assertEqual(public['card']['reading']['method'], 'A method')
+        self.assertEqual(public['card']['evidence'][0]['page'], 1)
+        self.assertEqual(public['bibliography']['provenance'][0]['record_id'], 'A01')
 
     def test_csrf_and_host_checks(self):
         self.assertEqual(self.request('/api/scan','POST',{}, {'Origin':'https://untrusted.example'})[0],403)
