@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
 from .worker import Scheduler, configuration
 from .providers import public_settings, save_settings
+from .insights import public_insight
 
 WEB = Path(__file__).resolve().parent.parent / 'web'
 
@@ -20,6 +21,7 @@ def catalog_paper(paper):
         'id', 'filename', 'status', 'created', 'updated', 'available', 'fulltext_available'
     ) if key in paper}
     result.update(notes='', favorite=False, card=None, bibliography=None)
+    result['insight'] = public_insight(paper.get('insight'))
     card = paper.get('card')
     if card:
         result['card'] = {key: card[key] for key in (
