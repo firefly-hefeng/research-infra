@@ -38,10 +38,10 @@
       <a id="nav-favorites" href="#favorites"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg>我的收藏 <span id="nav-favorite-count">0</span></a>
       <a id="nav-workspace" hidden href="#workspace"><svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg>整理工作区 <span id="nav-pending-count">0</span></a>
     </nav>
-    <div class="module-summary" aria-label="论文库统计"><span>已收录 <strong id="stat-ready">0</strong></span><span>研究分类 <strong id="stat-categories">0</strong></span><span>研究标签 <strong id="stat-tags">0</strong></span><span id="pending-stat" hidden>待整理 <strong id="stat-pending">0</strong></span></div>
+    <div class="module-summary" aria-label="论文库统计"><span>已收录 <strong id="stat-ready">0</strong></span><span>研究分类 <strong id="stat-categories">0</strong></span><span>主题标签 <strong id="stat-tags">0</strong></span><span id="pending-stat" hidden>待整理 <strong id="stat-pending">0</strong></span></div>
   <section id="discovery-view" aria-label="发现论文">
     <div class="discovery-toolbar">
-      <form id="discovery-search-form" class="discovery-search" role="search"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="discovery-search" type="search" placeholder="搜索标题、作者、研究关键词…" aria-label="搜索全部论文"></label><button type="submit" class="primary">搜索</button></form>
+      <form id="discovery-search-form" class="discovery-search" role="search"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="discovery-search" type="search" placeholder="搜索标题、作者、关键词或主题标签…" aria-label="搜索全部论文"></label><button type="submit" class="primary">搜索</button></form>
     </div>
     <section class="recommendations" aria-labelledby="recommendation-title">
       <div class="discovery-heading"><div><h2 id="recommendation-title">推荐阅读 <span id="recommendation-count">0</span></h2><p id="recommendation-note">随机选取 3 篇</p></div><div class="discovery-actions"><button id="shuffle-recommendations" class="secondary" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>换一批</button></div></div>
@@ -61,11 +61,11 @@
           <div class="category-tree-section"><h2>研究分类</h2><div id="catalog-categories"></div></div>
           <div class="filter-row"><label class="category-select">研究方向<select id="category" aria-label="研究方向"><option value="">全部方向</option></select></label><label>发表年份<select id="year" aria-label="年份"><option value="">全部年份</option></select></label></div>
           <label class="favorite-filter"><input id="favorites-only" type="checkbox">仅看收藏</label>
-          <div class="tag-row"><span class="muted">热门标签</span><div id="tag-cloud"></div></div>
+          <div class="tag-row"><span class="muted">热门主题标签</span><div id="tag-cloud"></div></div>
         </aside>
         <div class="catalog-main library-results">
-          <div class="catalog-heading"><h2 id="section-title">全部论文 <span>0</span></h2><p id="catalog-description">按研究方向、作者与关键词筛选论文。</p></div>
-          <div id="catalog-search" class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、内容或标签…" aria-label="搜索论文"><kbd>/</kbd></label></div></div>
+          <div class="catalog-heading"><h2 id="section-title">全部论文 <span>0</span></h2><p id="catalog-description">可搜索作者关键词，或按主题标签筛选。</p></div>
+          <div id="catalog-search" class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、关键词或主题标签…" aria-label="搜索论文"><kbd>/</kbd></label></div></div>
           <div class="library-view-bar"><div class="view-switch"><button id="grid-view" aria-label="卡片视图" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg>卡片</button><button id="list-view" aria-label="列表视图" class="selected" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-list"/></svg>列表</button></div><label class="sort-filter"><span>排序</span><select id="sort" aria-label="排序"><option value="newest">最近收录</option><option value="year">年份 · 从新到旧</option><option value="title">标题 · A–Z</option></select></label></div>
           <div id="filter-summary" class="filter-summary" role="status" hidden></div><p id="favorites-note" class="panel-hint" hidden>收藏保存在当前浏览器。</p><div class="cards list" id="papers" aria-live="polite"></div>
 

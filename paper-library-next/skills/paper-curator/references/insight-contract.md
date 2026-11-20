@@ -14,6 +14,7 @@
     "language": "en",
     "pages": [1]
   },
+  "author_keywords": null,
   "keywords": ["主题词一", "主题词二", "主题词三"],
   "keywords_source": "curated",
   "summary": {
@@ -37,7 +38,8 @@
 - `source_digest`：可以省略，由保存程序绑定为目标论文 ID。若提供它或 `paper_id`，必须与命令的 ID 及批量文件名一致。程序还会核对当前 PDF 字节的 SHA-256。
 - `abstract.status`：`available` 或 `missing`。`available` 时需提供 `text`、`language` 和 `pages`；`language` 为 `en`、`zh` 或 `other`。`pages` 为从 1 开始的物理 PDF 页码，1–6 项、连续递增且不重复；摘要文本最多 24,000 字符。跨页摘要按原顺序合并，不增删摘要内容。若提取顺序中夹有页眉、页脚、通讯信息，可提供可选 `abstract.segments: [{"page":1,"text":"该页完整摘要段落"},{"page":2,"text":"后续摘要段落"}]`；每段必须在该页连续匹配且顺序不变，`text` 必须严格等于各段按顺序拼接的文本（仅允许空白差异），`pages` 必须与片段覆盖页一致。只剔除版面噪声，不能借此删减真正摘要。
 - 没有可可靠提取的摘要时使用 `{"status":"missing","reason":"具体缺失原因"}`；原因最多 1,000 字符，不再填其他摘要字段。不能把引言、已有短简介或模型生成的总结称作原文摘要。
-- `keywords`：3–8 个不重复的主题词，每个最多 80 字符；摘要缺失且没有可靠内容可归纳时允许空列表。`keywords_source` 仅支持 `curated`，省略时也是该值，表示整理者归纳。
+- `author_keywords` 可为 null 或 `{"terms":["Original term"],"evidence":[{"page":1,"quote":"Keywords: Original term"}]}`。保留作者原列词的顺序、拼写和大小写，跨栏可提交按阅读顺序排列的原文片段。无明确关键词栏时填 null。若 PDF 文本层把数学字形提取成不可打印的控制字符，须对照 PDF 图像确认后，在该引文附上 `glyph_corrections: [{"raw":"\u0002","text":"ℓ"}]` 这类逐字符校对记录；保留原始引文用于校验。如果阅读文本漏掉词内印刷连字符，可在该引文加 `layout_hyphens: [{"joined":"PHQ9","printed":"PHQ-9"}]`，系统会再对照该 PDF 页的排版文本。
+- `keywords`：3–8 个不重复的主题标签，每个最多 80 字符；摘要缺失且没有可靠内容可归纳时允许空列表。`keywords_source` 仅支持 `curated`，省略时也是该值，表示整理者归纳。
 - `summary`：仅包含上例五个字段，每项最多 6,000 字符，均使用中文，保留必要的英文模型名和缩写。有摘要时 `overview` 必填，其他字段可为空或省略。摘要缺失时允许全部留空，也可以依据已读正文写有证据的总结。
 - `evidence`：最多 50 项。`field` 只能是上述 `summary.<字段>`；每个非空总结字段至少一条。`page` 为该引文所在的物理页，`quote` 为连续逐字原文，8–6,000 字符。跨页论断可附多条分别定位的证据。空总结字段不附证据。不得仅因为某页有关键词就用它支持不相干的结论。
 - `coverage`：`abstract` 表示只依据摘要，所有证据必须位于摘要内；`selected_pages` 表示读了正文中的部分页；`full_text` 仅在实际读完全文时使用。摘要缺失时不能同时声称基于摘要生成了非空总结。

@@ -369,7 +369,8 @@ async function providerRaces(pathname) {
 
 function insightFixture() {
   return {schema_version:1, source_digest:identifier(1),
-    abstract:{status:'available',language:'en',pages:[1,2],text:'Full original abstract begins.\n\n'+ 'Complete source sentence. '.repeat(90) + 'Final abstract sentence <not markup>.'},
+    abstract:{status:'available',language:'en',pages:[1,2],text:'Full original\nabstract begins with cross-\nlingual examples.\n\n'+ 'Complete source sentence. '.repeat(90) + 'Final abstract sentence <not markup>.'},
+    author_keywords:{terms:['Self-disclosure','Clinical <Speech>'],evidence:[{page:2,quote:'Index Terms: Self-disclosure, Clinical <Speech>.'}]},
     keywords:['抑郁语音','对比学习','跨语言'],keywords_source:'curated',
     summary:{overview:'通过跨语言对齐提取可迁移的抑郁语音表示。',problem:'不同语言的数据分布存在差异。',method:'结合预训练语音特征与监督式对比学习。',findings:'报告跨语言实验及泄漏控制对照。',limitations:''},
     evidence:[{field:'summary.method',page:2,quote:'We use <contrastive> alignment.'}],
@@ -385,9 +386,14 @@ async function insightReading(pathname) {
   check(node('papers').innerHTML.includes('data-tag="跨语言"'), 'Curated keywords appear on catalog cards');
   await app.click('open-fixture',{open:identifier(1)});
   let html=node('detail-content').innerHTML;
-  const keywordIndex=html.indexOf('id="reader-keywords"'), summaryIndex=html.indexOf('id="reader-chinese-summary"'), abstractIndex=html.indexOf('id="reader-abstract"');
-  check(keywordIndex>=0 && keywordIndex<summaryIndex && summaryIndex<abstractIndex, 'Reader starts with keywords, Chinese guide, then original abstract');
-  check(html.includes('根据论文内容归纳的主题词'), 'Keywords are explicitly curated topics, not claimed as author keywords');
+  const sections = [...html.matchAll(/<section class="detail-section" id="reader-([^"]+)"/g)].map(match => match[1]);
+  equal(sections.slice(0, 4), ['author-keywords', 'topic-tags', 'abstract', 'chinese-summary'], 'Author terms and topic tags are distinct, and the original abstract precedes the guide');
+  const toc = [...html.matchAll(/data-section="reader-([^"]+)"/g)].map(match => match[1]);
+  equal(toc, sections, 'Reading navigation follows section order');
+  check(html.includes('<h3>作者关键词</h3>') && html.includes('<li>Clinical &lt;Speech&gt;</li>'), 'Author keywords keep source language and HTML escaping');
+  check(html.includes('Index Terms: Self-disclosure, Clinical &lt;Speech&gt;.'), 'Author keywords retain traceable PDF evidence');
+  check(html.includes('<h3>主题标签</h3>') && html.includes('data-detail-tag="抑郁语音"'), 'Curated topics are labeled as theme tags');
+  check(html.includes('Full original abstract begins with cross-lingual examples.</p><p class="reading-paragraph">Complete source sentence.'), 'PDF line wraps reflow without splitting compounds or discarding paragraphs');
   check(html.includes('基于原文摘要整理'), 'Coverage does not imply full-paper reading');
   for (const label of ['研究问题','研究方法','主要结果']) check(html.includes(`<h4>${label}</h4>`), `${label} is presented as a readable subsection`);
   check(!html.includes('<h4>局限与适用范围</h4>'), 'Empty summary fields do not create empty headings');
@@ -404,14 +410,22 @@ async function insightReading(pathname) {
   await app.route('#catalog');
   await app.inputSearch('对比学习');
   equal(idsIn(node('papers').innerHTML),[identifier(1)],'New Chinese content is searchable');
+  await app.inputSearch('Self-disclosure');
+  equal(idsIn(node('papers').innerHTML),[identifier(1)],'Author keywords participate in catalog search');
   await app.inputSearch('Final abstract sentence');
   equal(idsIn(node('papers').innerHTML),[identifier(1)],'Original abstract text is searchable');
-  const missing={...enriched,insight:{...insightFixture(),abstract:{status:'missing',reason:'原文件未提供独立摘要。'},summary:{overview:'',problem:'',method:'',findings:'',limitations:''},coverage:'selected_pages'}};
+  const missing={...enriched,insight:{...insightFixture(),author_keywords:null,abstract:{status:'missing',reason:'原文件未提供独立摘要。'},summary:{overview:'',problem:'',method:'',findings:'',limitations:''},coverage:'selected_pages'}};
   app.setPapers([missing]); await app.refresh();
   await app.click('open-fixture',{open:identifier(1)});
   html=node('detail-content').innerHTML;
   check(html.includes('原文件未提供独立摘要。') && !html.includes('Full original abstract'), 'Missing abstract displays its reason without fabricating content');
   check(!html.includes('id="reader-chinese-summary"'), 'No empty Chinese guide is emitted');
+  check(!html.includes('作者关键词') && !html.includes('reader-author-keywords'), 'Missing author keywords leave no section or navigation entry');
+  const chinese = {...enriched, insight:{...insightFixture(), abstract:{status:'available',language:'zh',pages:[1],text:'语音检\n测用于评\n\n估结果。\n还需验证。\n\n第二段。'}}};
+  app.setPapers([chinese]); await app.refresh();
+  await app.click('open-fixture',{open:identifier(1)});
+  html = node('detail-content').innerHTML;
+  check(html.includes('语音检测用于评估结果。还需验证。</p><p class="reading-paragraph">第二段。'), 'Chinese midword breaks join without spaces and real paragraph boundaries remain');
   equal(enriched,original,'Rendering does not rewrite source bibliography or insight');
   check(app.requests.every(call=>call.method==='GET'),'Reading, keyword filtering and searching never call a model');
 }
