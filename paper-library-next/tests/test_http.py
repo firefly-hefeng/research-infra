@@ -151,6 +151,26 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(public['card']['evidence'][0]['page'], 1)
         self.assertEqual(public['bibliography']['provenance'][0]['record_id'], 'A01')
 
+    def test_public_catalog_includes_saved_insight(self):
+        from paperlib.insights import source_text
+        source = source_text(self.library, self.id).strip()
+        value = {'schema_version': 1, 'abstract': {'status': 'available', 'text': source,
+                  'language': 'en', 'pages': [1]}, 'keywords': ['数据选择', '模型质量', '实验'],
+                 'summary': {'overview': '这项研究通过数据选择改善模型质量并开展实验。'},
+                 'evidence': [{'field': 'summary.overview', 'page': 1, 'quote': source}],
+                 'coverage': 'abstract', 'generated_by': 'codex'}
+        try:
+            self.library.commit_insight(self.id, value)
+            code, body, _ = self.request('/api/catalog', auth=False)
+            self.assertEqual(code, 200)
+            insight = json.loads(body)['papers'][0]['insight']
+            self.assertEqual(insight['abstract']['text'], source)
+            self.assertEqual(insight['summary']['overview'], value['summary']['overview'])
+            self.assertEqual(insight['source_digest'], self.id)
+        finally:
+            with self.library.db() as db:
+                db.execute('DELETE FROM paper_insights WHERE paper_id=?', (self.id,))
+
     def test_csrf_and_host_checks(self):
         self.assertEqual(self.request('/api/scan','POST',{}, {'Origin':'https://untrusted.example'})[0],403)
         self.assertEqual(self.request('/api/scan','POST',{}, {'X-Paper-Library':''})[0],403)

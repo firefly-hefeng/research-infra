@@ -140,6 +140,8 @@ async function refresh(silent = false) {
 }
 const ready = () => state.papers.filter(p => p.card);
 const pending = () => state.papers.filter(p => !p.card);
+const paperKeywords = p => (p.insight?.keywords?.length ? p.insight.keywords : p.card?.tags || []).filter(word => word !== p.card?.category);
+const paperTags = p => [...new Set([...(p.card?.tags || []), ...(p.insight?.keywords || [])])];
 const countBy = (items, fn) => {
   const counts = new Map();
   items.forEach(p => new Set(fn(p)).forEach(x => counts.set(x, (counts.get(x) || 0) + 1)));
@@ -269,7 +271,7 @@ function render(routeFilters = null) {
   $('public-library-link').hidden = !canManage();
   $('public-library-link').href = `${API_BASE}/`;
   $('favorites-note').hidden = canManage() || !(pageView === 'catalog' && (routeFilters?.favorites ?? $('favorites-only').checked));
-  const papers = ready(), tags = countBy(papers, p => p.card.tags), topics = countBy(papers, p => [p.card.category]);
+  const papers = ready(), tags = countBy(papers, paperTags), topics = countBy(papers, p => [p.card.category]);
   $('stat-ready').innerHTML = `${papers.length}<small>条</small>`;
   $('stat-categories').innerHTML = `${topics.length}<small>个</small>`;
   $('stat-tags').innerHTML = `${tags.length}<small>个</small>`;
@@ -314,10 +316,10 @@ function render(routeFilters = null) {
 function renderPapers() {
   const query = $('search').value.trim().toLowerCase();
   const year = $('year').value;
-  let papers = ready().filter(p => (!$('favorites-only').checked || p.favorite) && (!category || p.card.category === category) && (!tag || p.card.tags.includes(tag)) && (!year || (year === 'unknown' ? !p.card.year : String(p.card.year) === year)));
+  let papers = ready().filter(p => (!$('favorites-only').checked || p.favorite) && (!category || p.card.category === category) && (!tag || paperTags(p).includes(tag)) && (!year || (year === 'unknown' ? !p.card.year : String(p.card.year) === year)));
   const terms = query.split(/\s+/).filter(Boolean);
   papers = papers.filter(p => {
-    const haystack = [p.card.title, ...p.card.authors, p.card.summary, ...p.card.contributions, ...p.card.tags, p.card.venue, ...readingSections.map(([key]) => p.card.reading?.[key] || ''), p.notes].join(' ').toLowerCase();
+    const haystack = [p.card.title, ...p.card.authors, p.card.summary, ...p.card.contributions, ...paperTags(p), p.card.venue, ...readingSections.map(([key]) => p.card.reading?.[key] || ''), p.insight?.abstract?.text, ...Object.values(p.insight?.summary || {}), p.notes].join(' ').toLowerCase();
     return terms.every(q => haystack.includes(q));
   });
   if ($('sort').value === 'year') papers.sort((a,b) => (b.card.year || 0) - (a.card.year || 0));
@@ -357,8 +359,8 @@ function paperSource(p) {
 }
 function paperCard(p, recommended = false) {
   const c = p.card, source = paperSource(p);
-  const tags = c.tags.filter(t => t !== c.category).slice(0, 3);
-  return `<article class="paper-card ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${recommended || !category ? esc(c.category) : ''}</span><span class="card-year">${c.year || '年份未注明'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者未注明')}</div><p class="summary">${esc(c.reading?.takeaway || c.summary)}</p>${tags.length ? `<div class="card-tags">${tags.map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div>` : ''}<div class="card-bottom"><span class="journal" title="${esc(c.venue)}">${esc(c.venue || '')}</span><div class="card-links"><button data-open="${p.id}">详情</button>${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读原文' : '论文来源'}</a>` : '<span class="source-unavailable">暂无原文</span>'}</div></div></article>`;
+  const tags = paperKeywords(p).slice(0, 3);
+  return `<article class="paper-card ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${recommended || !category ? esc(c.category) : ''}</span><span class="card-year">${c.year || '年份未注明'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者未注明')}</div><p class="summary">${esc(p.insight?.summary?.overview || c.reading?.takeaway || c.summary)}</p>${tags.length ? `<div class="card-tags">${tags.map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div>` : ''}<div class="card-bottom"><span class="journal" title="${esc(c.venue)}">${esc(c.venue || '')}</span><div class="card-links"><button data-open="${p.id}">详情</button>${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读原文' : '论文来源'}</a>` : '<span class="source-unavailable">暂无原文</span>'}</div></div></article>`;
 }
 
 function renderInbox() {
@@ -371,7 +373,7 @@ function renderJobs() {
   const statuses = {completed: '已完成', partial: '部分完成', failed: '失败', running: '运行中', interrupted: '被中断'};
   $('jobs').innerHTML = state.jobs.map(j => `<article class="job"><h3>${j.result.task === 'reading' ? '详细解读' : '整理任务'} #${j.id} · ${statuses[j.status] || esc(j.status)}</h3><p>已整理 ${j.result.completed || 0} 篇 · 失败 ${j.result.failed || 0} 篇</p>${j.result.providers ? `<p>Agent ${j.result.providers.agent} 篇 · API ${j.result.providers.api} 篇 · 自动切换 ${j.result.fallbacks || 0} 次 · 输出修正 ${j.result.repairs || 0} 次</p>` : ''}${(j.result.items || []).filter(x => x.attempts.some(a => a.error)).map(x => `<p>${esc(x.filename)}：${x.attempts.map(a => `${a.provider === 'api' ? 'API' : 'Agent'}${a.number === 2 ? '（修正）' : ''} ${a.error ? esc(a.error) : '卡片校验通过'}`).join(' → ')}</p>`).join('')}<p>${(j.result.errors || []).map(e => esc((e.filename || '') + ' ' + e.message)).join('<br>')}</p>${j.result.log_file ? `<p>日志文件：${esc(j.result.log_file)}</p>` : ''}${j.result.log_warning ? `<p>${esc(j.result.log_warning)}</p>` : ''}<small>${date(j.started)} → ${date(j.finished)} · 北京时间</small></article>`).join('') || '<p class="panel-hint">暂无自动整理记录。</p>';
 }
-const cardVersion = p => p?.card ? `${p.id}:${p.card.updated_at || p.updated}` : null;
+const cardVersion = p => p?.card ? `${p.id}:${p.card.updated_at || p.updated}:${p.insight?.updated_at || ""}` : null;
 function openPaper(id, keepPosition = false) {
   const p = state.papers.find(p => p.id === id);
   if (!p?.card) return;
@@ -379,7 +381,7 @@ function openPaper(id, keepPosition = false) {
   const scroll = keepPosition && selected === id ? $('detail').scrollTop : 0;
   selected = id;
   renderedCardVersion = cardVersion(p);
-  const c = p.card, r = c.reading || {}, pdf = `${API_BASE}/api/papers/${id}/pdf`, source = paperSource(p), sections = [];
+  const c = p.card, r = c.reading || {}, insight = p.insight, pdf = `${API_BASE}/api/papers/${id}/pdf`, source = paperSource(p), sections = [];
   const fieldNames = {title: '标题', authors: '作者', year: '年份', venue: '会议 / 期刊', summary: '核心摘要', contributions: '主要贡献', limitations: '适用范围与局限', doi: 'DOI', 'reading.takeaway': '研究速览', 'reading.result_table': '实验对照', 'reading.resources': '研究资源', ...Object.fromEntries(readingSections.map(([key, title]) => ['reading.' + key, title]))};
   const paragraphs = value => String(value).split(/\n\s*\n/).filter(x => x.trim()).map(x => `<p class="reading-paragraph">${esc(x)}</p>`).join('');
   const citations = field => {
@@ -390,7 +392,33 @@ function openPaper(id, keepPosition = false) {
     sections.push([key, title]);
     return `<section class="detail-section" id="reader-${key}" tabindex="-1"><div class="reading-section-heading"><h3>${esc(title)}</h3></div>${body}${field ? citations(field) : ''}</section>`;
   };
-  let article = section('summary', '摘要', '', paragraphs(c.summary), 'summary');
+  const pageLink = page => source?.local
+    ? `<a href="${pdf}#page=${page}" target="_blank" rel="noopener">PDF 第 ${page} 页</a>`
+    : `<span>原文第 ${page} 页</span>`;
+  const insightCitations = field => {
+    const refs = (insight?.evidence || []).filter(e => e.field === field && Number.isSafeInteger(e.page) && e.page > 0);
+    return refs.length ? `<details class="insight-evidence"><summary>原文依据 · ${[...new Set(refs.map(e => e.page))].map(page => `第 ${page} 页`).join('、')}</summary>${refs.map(e => `<blockquote>${esc(e.quote)}<cite>${pageLink(e.page)}</cite></blockquote>`).join('')}</details>` : '';
+  };
+  let article = '';
+  const keywords = paperKeywords(p);
+  if (keywords.length) article += section('keywords', '关键词', '', `<div class="insight-keywords">${keywords.map(word => `<button class="chip" data-detail-tag="${esc(word)}">${esc(word)}</button>`).join('')}</div><p class="insight-caption">${insight?.keywords?.length ? '根据论文内容归纳的主题词' : '现有文献标签'}</p>`);
+  if (insight?.summary) {
+    const labels = {overview: '概述', problem: '研究问题', method: '研究方法', findings: '主要结果', limitations: '局限与适用范围'};
+    const body = Object.entries(labels).filter(([key]) => insight.summary[key]?.trim()).map(([key, label]) => `<div class="insight-summary-part" id="insight-${key}">${key === 'overview' ? '' : `<h4>${label}</h4>`}${paragraphs(insight.summary[key])}${insightCitations('summary.' + key)}</div>`).join('');
+    const coverage = {abstract: '基于原文摘要整理', selected_pages: '基于部分原文整理', full_text: '基于论文全文整理'}[insight.coverage] || '根据现有论文内容整理';
+    if (body) article += section('chinese-summary', '中文导读', '', `<p class="insight-caption insight-coverage">${coverage}${insight.source_method === 'ocr' ? ' · 扫描件文字识别' : ''}</p>${body}`);
+  }
+  if (insight?.abstract) {
+    const a = insight.abstract;
+    const pages = [...new Set((a.pages || []).filter(page => Number.isSafeInteger(page) && page > 0))];
+    const language = {en: '英文', zh: '中文', other: '原文'}[a.language] || '原文';
+    const body = a.status === 'available' && a.text?.trim()
+      ? `<div class="abstract-metadata"><span>${language}摘要${insight.source_method === 'ocr' ? ' · 扫描件文字识别' : ''}</span>${pages.map(pageLink).join('')}</div><div class="original-abstract"${['en', 'zh'].includes(a.language) ? ` lang="${a.language}"` : ''}>${paragraphs(a.text)}</div>`
+      : `<p class="reading-paragraph insight-missing">${esc(a.reason || '尚未提取到原文摘要。')}</p>`;
+    article += section('abstract', '原文摘要', '', body);
+  }
+  if (!insight) article += section('summary', '索引简介', '', paragraphs(c.summary), 'summary');
+  else if (c.summary) article += section('index-summary', '索引简介', '', `<details class="index-summary"><summary>查看原有索引简介</summary>${paragraphs(c.summary)}</details>`);
   if (c.contributions.length) article += section('contributions', '主要贡献', '这篇论文带来了什么', `<ol class="contribution-list">${c.contributions.map(x => `<li>${esc(x)}</li>`).join('')}</ol>`, 'contributions');
   readingSections.forEach(([key, title, subtitle]) => {
     if (r[key]) article += section(key, title, subtitle, paragraphs(r[key]), 'reading.' + key);
@@ -403,11 +431,11 @@ function openPaper(id, keepPosition = false) {
   if (r.resources?.length) article += section('resources', '开源与研究资源', '论文提供的链接；可达性、许可证与复现结果尚未核验', `<div class="resource-list">${r.resources.map(x => { const url = externalURL(x.url); return url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><span class="resource-kind">${{code: '代码', data: '数据', project: '项目', other: '资源'}[x.kind] || '资源'}</span><span>${esc(x.label)}<small>${esc(new URL(url).hostname)}</small></span><span aria-hidden="true">↗</span></a>` : `<p>${esc(x.label)} · 链接不可用</p>`; }).join('')}</div>`, 'reading.resources');
   if (c.year_note) article += section('version', '版本说明', '', paragraphs(c.year_note));
   if (!p.bibliography_only) article += section('evidence', '原文依据', '点击页码回到 PDF 核对；引文存在不代表解读必然正确', `<details id="evidence-details"><summary>${c.evidence.length} 条可追溯引用 <span>展开原文摘录</span></summary>${c.evidence.map((e, i) => `<div class="evidence" id="evidence-${i + 1}" tabindex="-1"><div><span class="evidence-index">[${i + 1}]</span> ${esc(fieldNames[e.field] || e.field)}<a href="${pdf}#page=${e.page}" target="_blank" rel="noopener">PDF 第 ${e.page} 页</a></div><blockquote>${esc(e.quote)}</blockquote></div>`).join('')}</details>`);
-  if (p.bibliography_only) article += section('bibliography', '题录来源', '', `<p class="reading-paragraph">摘要沿用导入索引，尚未逐篇核对原文。</p><ul class="bibliography-provenance">${(p.bibliography.provenance || []).map(source => `<li><strong>${esc(source.label)}</strong>${source.record_id ? `<span>记录 ${esc(source.record_id)}</span>` : ''}</li>`).join('')}</ul>`);
+  if (p.bibliography_only) article += section('bibliography', '题录来源', '', `<p class="reading-paragraph">标题、作者与索引简介来自以下已有文献索引。</p><ul class="bibliography-provenance">${(p.bibliography.provenance || []).map(source => `<li><strong>${esc(source.label)}</strong>${source.record_id ? `<span>记录 ${esc(source.record_id)}</span>` : ''}</li>`).join('')}</ul>`);
   if (canManage()) article += section('notes', '阅读笔记', '', `<textarea id="notes" aria-label="阅读笔记" placeholder="记录阅读笔记" maxlength="20000">${esc(noteDrafts.has(id) ? noteDrafts.get(id) : p.notes)}</textarea><div class="note-footer"><button class="secondary" id="save-notes">保存笔记</button><span id="notes-status" role="status">${noteDrafts.has(id) && noteDrafts.get(id) !== p.notes ? '有未保存的修改' : ''}</span></div>`);
-  $('detail-content').innerHTML = `<header class="reader-header"><div class="eyebrow">${esc(c.category)}</div><h2 id="detail-title">${esc(c.title)}</h2><p class="detail-authors">${esc(c.authors.join(' · ') || '作者未注明')}</p><div class="reader-byline"><span>${esc(c.venue || '出版信息未注明')}</span><span>${c.year || '年份未注明'}</span></div><div class="detail-meta">${c.tags.filter(t => t !== c.category).map(t => `<button class="chip" data-detail-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div><div class="detail-actions">${source ? `<a class="primary" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读 PDF 原文' : '查看论文来源'}</a>${source.local ? `<a class="secondary" href="${pdf}" download="${esc(p.filename)}">下载 PDF</a>` : ''}` : '<span class="source-unavailable">暂未收录原文文件或来源链接</span>'}<button class="secondary" data-favorite="${id}">${p.favorite ? '已收藏' : '收藏'}</button></div>${c.needs_review && !p.bibliography_only ? `<p class="review-note">待核对：${esc(c.review_reason)}</p>` : ''}</header>
-    <div class="reader-columns"><main class="reader-article">${r.takeaway ? `<div class="reading-takeaway"><p>${esc(r.takeaway)}</p>${citations('reading.takeaway')}</div>` : ''}<div class="reading-update" ${!canManage() || p.bibliography_only ? 'hidden' : ''}><p id="reading-status" role="status"></p><button class="secondary" id="generate-reading" ${!canManage() || p.bibliography_only ? 'hidden' : ''} ${state.running || !state.agent.configured || !p.available ? 'disabled' : ''}>${hasReading(c) ? '更新详细解读' : '生成详细解读'}</button></div>${article}</main>
-    <aside class="reader-aside"><div class="reader-aside-inner"><nav class="reader-toc" aria-label="本篇阅读目录"><p>目录</p>${sections.map(([key, title]) => `<button data-section="reader-${key}">${esc(title)}</button>`).join('')}</nav><div class="reader-facts"><h3>文献信息</h3><dl><dt>发表年份</dt><dd>${c.year || '未注明'}</dd>${c.doi ? `<dt>DOI</dt><dd><a href="https://doi.org/${esc(encodeURIComponent(c.doi))}" target="_blank" rel="noopener noreferrer">${esc(c.doi)}</a></dd>` : ''}<dt>更新时间</dt><dd>${date(c.updated_at || p.updated)}</dd></dl><details><summary>文件信息</summary><p>${esc(p.filename)}</p>${canManage() && p.pdf ? `<p>位置：${esc(p.pdf)}</p>` : ''}<p>SHA-256：${id}</p></details></div></div></aside></div>`;
+  $('detail-content').innerHTML = `<header class="reader-header"><div class="eyebrow">${esc(c.category)}</div><h2 id="detail-title">${esc(c.title)}</h2><p class="detail-authors">${esc(c.authors.join(' · ') || '作者未注明')}</p><div class="reader-byline"><span>${esc(c.venue || '出版信息未注明')}</span><span>${c.year || '年份未注明'}</span></div><div class="detail-actions">${source ? `<a class="primary" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读 PDF 原文' : '查看论文来源'}</a>${source.local ? `<a class="secondary" href="${pdf}" download="${esc(p.filename)}">下载 PDF</a>` : ''}` : '<span class="source-unavailable">暂未收录原文文件或来源链接</span>'}<button class="secondary" data-favorite="${id}">${p.favorite ? '已收藏' : '收藏'}</button></div>${c.needs_review && !p.bibliography_only ? `<p class="review-note">待核对：${esc(c.review_reason)}</p>` : ''}</header>
+    <div class="reader-columns"><main class="reader-article">${!insight && r.takeaway ? `<div class="reading-takeaway"><p>${esc(r.takeaway)}</p>${citations('reading.takeaway')}</div>` : ''}<div class="reading-update" ${!canManage() || p.bibliography_only ? 'hidden' : ''}><p id="reading-status" role="status"></p><button class="secondary" id="generate-reading" ${!canManage() || p.bibliography_only ? 'hidden' : ''} ${state.running || !state.agent.configured || !p.available ? 'disabled' : ''}>${hasReading(c) ? '更新详细解读' : '生成详细解读'}</button></div>${article}</main>
+    <aside class="reader-aside"><div class="reader-aside-inner"><nav class="reader-toc" aria-label="本篇阅读目录"><p>目录</p>${sections.map(([key, title]) => `<button data-section="reader-${key}">${esc(title)}</button>`).join('')}</nav><div class="reader-facts"><h3>文献信息</h3><dl><dt>发表年份</dt><dd>${c.year || '未注明'}</dd>${c.doi ? `<dt>DOI</dt><dd><a href="https://doi.org/${esc(encodeURIComponent(c.doi))}" target="_blank" rel="noopener noreferrer">${esc(c.doi)}</a></dd>` : ''}<dt>更新时间</dt><dd>${date(insight?.updated_at || c.updated_at || p.updated)}</dd></dl><details><summary>文件信息</summary><p>${esc(p.filename)}</p>${canManage() && p.pdf ? `<p>位置：${esc(p.pdf)}</p>` : ''}<p>SHA-256：${id}</p></details></div></div></aside></div>`;
   if (!$('detail').open) $('detail').showModal();
   $('detail').scrollTop = scroll;
   updateReadingStatus();

@@ -150,6 +150,8 @@ class Library:
             CREATE TABLE IF NOT EXISTS bibliographic_imports(
                 paper_id TEXT PRIMARY KEY, collection_id TEXT NOT NULL,
                 metadata TEXT NOT NULL, manifest_sha256 TEXT NOT NULL, imported_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS paper_insights(
+                paper_id TEXT PRIMARY KEY, content TEXT NOT NULL, updated TEXT NOT NULL);
             ''')
 
     def safe(self, relative):
@@ -191,12 +193,14 @@ class Library:
         with self.db() as db:
             row = db.execute('SELECT * FROM papers WHERE id=?', (paper_id,)).fetchone()
             bibliography = db.execute('SELECT metadata,collection_id,manifest_sha256,imported_at FROM bibliographic_imports WHERE paper_id=?', (paper_id,)).fetchone()
+            insight = db.execute('SELECT content FROM paper_insights WHERE paper_id=?', (paper_id,)).fetchone()
         if not row:
             raise KeyError('论文不存在')
         result = dict(row)
         result['card'] = json.loads(result['card']) if result['card'] else None
         result['favorite'] = bool(result['favorite'])
         result['bibliography'] = None
+        result['insight'] = json.loads(insight['content']) if insight else None
         if bibliography:
             result['bibliography'] = json.loads(bibliography['metadata'])
             result['bibliography'].update(collection_id=bibliography['collection_id'],
@@ -472,6 +476,24 @@ class Library:
             if source != dest and source.is_file() and digest(source) == paper_id:
                 source.unlink()
         return self.record(paper_id)
+
+    def commit_insight(self, paper_id, insight):
+        from .insights import validate_insight
+        # Validate source text before holding the short database writer lock.
+        clean = validate_insight(self, paper_id, insight)
+        with self.lock(), self.db() as db:
+            if digest(self.pdf_path(paper_id)) != paper_id:
+                raise ValueError('PDF 内容已变化，不能保存导读')
+            existing = db.execute('SELECT content FROM paper_insights WHERE paper_id=?', (paper_id,)).fetchone()
+            if existing:
+                previous = json.loads(existing['content'])
+                if {key: value for key, value in previous.items() if key != 'updated_at'} == clean:
+                    return {'id': paper_id, 'changed': False, 'insight': previous}
+            clean['updated_at'] = now()
+            db.execute('INSERT INTO paper_insights(paper_id,content,updated) VALUES(?,?,?) '
+                       'ON CONFLICT(paper_id) DO UPDATE SET content=excluded.content,updated=excluded.updated',
+                       (paper_id, json.dumps(clean, ensure_ascii=False), clean['updated_at']))
+        return {'id': paper_id, 'changed': True, 'insight': clean}
 
     def edit(self, paper_id, payload):
         with self.lock(), self.db() as db:

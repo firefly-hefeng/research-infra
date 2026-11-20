@@ -39,8 +39,9 @@ async function run(pathname) {
   check(!node('papers').innerHTML.includes('待原文核验'));
   subject.openPaper(raw.id);
   const html=node('detail-content').innerHTML;
-  check(html.includes('摘要'));
-  check(html.includes('尚未逐篇核对原文'));
+  check(html.includes('索引简介'));
+  check(!html.includes('原文摘要'));
+  check(html.includes('标题、作者与索引简介来自以下已有文献索引。'));
   check(html.includes('Curated index'));
   check(html.includes('下载 PDF'));
   check(html.includes('/api/papers/'));

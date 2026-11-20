@@ -367,6 +367,66 @@ async function providerRaces(pathname) {
   check(!savingApp.node('save-provider').disabled && !savingApp.node('provider-fields').disabled, 'An older save cannot disable the reopened form');
 }
 
+function insightFixture() {
+  return {schema_version:1, source_digest:identifier(1),
+    abstract:{status:'available',language:'en',pages:[1,2],text:'Full original abstract begins.\n\n'+ 'Complete source sentence. '.repeat(90) + 'Final abstract sentence <not markup>.'},
+    keywords:['抑郁语音','对比学习','跨语言'],keywords_source:'curated',
+    summary:{overview:'通过跨语言对齐提取可迁移的抑郁语音表示。',problem:'不同语言的数据分布存在差异。',method:'结合预训练语音特征与监督式对比学习。',findings:'报告跨语言实验及泄漏控制对照。',limitations:''},
+    evidence:[{field:'summary.method',page:2,quote:'We use <contrastive> alignment.'}],
+    coverage:'abstract',generated_by:'codex',updated_at:'2026-11-21T00:00:00Z'};
+}
+async function insightReading(pathname) {
+  const enriched = {...bibliography(1,'跨域研究'),insight:insightFixture()};
+  const original = clone(enriched);
+  const app = await setup(pathname, [enriched,paper(2,'其他')], '#catalog');
+  const {node} = app;
+  check(node('papers').innerHTML.includes(enriched.insight.summary.overview), 'Cards prefer the Chinese overview');
+  check(!node('papers').innerHTML.includes('Full original abstract begins'), 'The complete original abstract does not fill catalog cards');
+  check(node('papers').innerHTML.includes('data-tag="跨语言"'), 'Curated keywords appear on catalog cards');
+  await app.click('open-fixture',{open:identifier(1)});
+  let html=node('detail-content').innerHTML;
+  const keywordIndex=html.indexOf('id="reader-keywords"'), summaryIndex=html.indexOf('id="reader-chinese-summary"'), abstractIndex=html.indexOf('id="reader-abstract"');
+  check(keywordIndex>=0 && keywordIndex<summaryIndex && summaryIndex<abstractIndex, 'Reader starts with keywords, Chinese guide, then original abstract');
+  check(html.includes('根据论文内容归纳的主题词'), 'Keywords are explicitly curated topics, not claimed as author keywords');
+  check(html.includes('基于原文摘要整理'), 'Coverage does not imply full-paper reading');
+  for (const label of ['研究问题','研究方法','主要结果']) check(html.includes(`<h4>${label}</h4>`), `${label} is presented as a readable subsection`);
+  check(!html.includes('<h4>局限与适用范围</h4>'), 'Empty summary fields do not create empty headings');
+  check(html.includes('Final abstract sentence &lt;not markup&gt;.'), 'Complete abstract tail is retained and escaped');
+  check(html.includes('lang="en"') && html.includes('英文摘要'), 'The original abstract retains its language');
+  check(html.includes('/pdf#page=1') && html.includes('/pdf#page=2'), 'Abstract and evidence page references lead to the original PDF');
+  check(html.includes('We use &lt;contrastive&gt; alignment.'), 'Source evidence is escaped and available to inspect');
+  check(html.includes('data-section="reader-abstract"') && html.includes('data-section="reader-chinese-summary"'), 'Reading navigation reaches the new sections');
+  check(html.includes('查看原有索引简介'), 'Legacy index prose remains distinct from the original abstract');
+  check(!html.includes('<h3>摘要</h3>'), 'A single index sentence is not labeled as a full abstract');
+  check(node('generate-reading').hidden, 'Viewing enriched imported records does not enable automatic curation');
+  await app.click('keyword-fixture',{detailTag:'跨语言'});
+  equal(idsIn(node('papers').innerHTML),[identifier(1)],'Clicking a curated keyword finds its paper');
+  await app.route('#catalog');
+  await app.inputSearch('对比学习');
+  equal(idsIn(node('papers').innerHTML),[identifier(1)],'New Chinese content is searchable');
+  await app.inputSearch('Final abstract sentence');
+  equal(idsIn(node('papers').innerHTML),[identifier(1)],'Original abstract text is searchable');
+  const missing={...enriched,insight:{...insightFixture(),abstract:{status:'missing',reason:'原文件未提供独立摘要。'},summary:{overview:'',problem:'',method:'',findings:'',limitations:''},coverage:'selected_pages'}};
+  app.setPapers([missing]); await app.refresh();
+  await app.click('open-fixture',{open:identifier(1)});
+  html=node('detail-content').innerHTML;
+  check(html.includes('原文件未提供独立摘要。') && !html.includes('Full original abstract'), 'Missing abstract displays its reason without fabricating content');
+  check(!html.includes('id="reader-chinese-summary"'), 'No empty Chinese guide is emitted');
+  equal(enriched,original,'Rendering does not rewrite source bibliography or insight');
+  check(app.requests.every(call=>call.method==='GET'),'Reading, keyword filtering and searching never call a model');
+}
+async function insightRefreshPreservesNotes() {
+  const enriched={...paper(1),insight:insightFixture()};
+  const app=await setup('/papers/manage',[enriched]);
+  await app.click('open-fixture',{open:identifier(1)});
+  app.node('notes').value='An unsaved note';
+  await app.node('detail').dispatch('input',{target:{id:'notes',value:'An unsaved note'}});
+  app.setPapers([{...enriched,insight:{...enriched.insight,summary:{...enriched.insight.summary,overview:'更新后的中文导读。'},updated_at:'2026-11-21T01:00:00Z'}}]);
+  await app.refresh();
+  check(app.node('detail-content').innerHTML.includes('更新后的中文导读。'),'An insight timestamp change refreshes the already-open detail');
+  check(app.node('detail-content').innerHTML.includes('An unsaved note'),'Insight refresh preserves unsaved management notes');
+}
+
 async function sessionRecoveryFlow() {
   let expired = false;
   const app = await setup('/papers/manage', [paper(1)], '#catalog', {
@@ -410,7 +470,7 @@ async function publicReading(pathname) {
   const detail = node('detail-content').innerHTML;
   check(detail.includes('阅读 PDF 原文') && detail.includes('下载 PDF'), 'Imported bibliography can read and download existing originals');
   check(!detail.includes('团队权限') && !detail.includes('PAPER READING'), 'No obsolete permission or decorative reading labels');
-  check(detail.includes('摘要沿用导入索引，尚未逐篇核对原文。'), 'Source verification boundary appears once in the detail');
+  check(detail.includes('标题、作者与索引简介来自以下已有文献索引。'), 'Index metadata provenance remains in the detail');
   check(!detail.includes('id="notes"') && node('generate-reading').hidden, 'Public reader has no shared note editor or model action');
   check(!node('login').open, 'Opening literature never requests a library password');
   await app.click('favorite-fixture', {favorite:identifier(1)});
@@ -443,5 +503,7 @@ async function publicReading(pathname) {
   }
   for (const pathname of ['/', '/papers/']) await publicReading(pathname);
   await sessionRecoveryFlow();
+  for (const pathname of ['/', '/papers/']) await insightReading(pathname);
+  await insightRefreshPreservesNotes();
   console.log(`Discovery UI: ${checks} assertions passed.`);
 })().catch(error => { console.error(error); process.exitCode = 1; });
