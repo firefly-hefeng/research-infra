@@ -1,0 +1,32 @@
+{
+  "team_name": "科研团队演示",
+  "demo": true,
+  "timezone": "Asia/Shanghai",
+  "paths": {
+    "members": "var/demo/members",
+    "team": "var/demo/team",
+    "knowledge": "var/demo/knowledge",
+    "state": "var/demo/state"
+  },
+  "members": [
+    {"id": "lin", "name": "林同学"},
+    {"id": "chen", "name": "陈同学"},
+    {"id": "zhou", "name": "周同学"}
+  ],
+  "security": {
+    "allowed_origins": [
+      "http://127.0.0.1:8765",
+      "http://localhost:8765",
+      "http://127.0.0.1:8766",
+      "http://localhost:8766"
+    ],
+    "https": false
+  },
+  "summary": {
+    "mode": "extractive",
+    "max_report_bytes": 65536,
+    "max_total_bytes": 524288,
+    "max_upload_bytes": 20971520,
+    "timeout_seconds": 30
+  }
+}

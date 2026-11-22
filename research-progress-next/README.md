@@ -1,5 +1,6 @@
-# 科研周记：姓名登记 + 日报与周报 + Agent 周报汇总
+# 团队进展与科研周记
 
+线上成员使用飞书登录，从科研工作台进入日报、周报和团队进展。阅览范围和提交格式以生产页面为准。[平台使用与维护说明](../docs/platform-guide.md) · [打开团队进展](https://rmp.wuwangwo.top/progress/#team)
 
 ## 团队方向与方法
 
@@ -7,10 +8,10 @@
 
 部署沿用已有成员身份验证。已有共享授权的部署通过 `security.team_reports_shared` 提供成员阅读入口。方向说明从团队根目录的 `directions/` 读取，方法索引从 `direction-methods.json` 读取，阶段复盘来自已发布的 `lab-review.json`。开启 `progress_digest.enabled` 后，进度接口会检查现有汇总版本与原报告是否匹配。首次部署可先阅读未发布提示，再由团队在自身存储中补充材料。示例格式见[合成接口测试](tests/test_direction_methods.py)。
 
-## 当前工作方式
+## 登记与提交流程
 
 1. 首次在网页填写姓名后加入；已有登记直接选择，同名者需附加组别等区分信息。原配置中的成员继续保留。
-2. 成员打开网页，无需登录，选择报告所属成员及日期或周次，在线填写或上传模板 Markdown。
+2. 成员进入进度页，选择报告所属成员及日期或周次，再按页面支持的格式填写或上传。使用本仓库的独立模块时，可在线填写或上传模板 Markdown。
 3. 报告上传同时检查名单与目录是否存在；上传不会代为登记。姓名登记走独立接口，随机生成目录 ID，不接受用户指定路径。
 4. 报告按统一格式存入 `members/<id>/reports/YYYY-Www.md`。
 5. Agent / Skill 每周收集标准周报，发布团队概要及逐人进展。团队报告与知识库只读。
@@ -21,23 +22,23 @@
 
 新增接口：`POST /api/members`（JSON 只含 `name`）；`GET /api/daily-template?member_id=...&date=YYYY-MM-DD`；`POST /api/daily/uploads`（JSON 的 `member_id`、`date`、`fields`，或 multipart 的 `member_id`、`date`、一个 `file`）。所有写请求沿用 `X-Requested-With: ResearchWeekly` 和原来源限制。日报同日相同内容幂等返回 200，首次 201，不同内容 409。原周报接口不变。
 
-**无登录意味着不能验证实际上传者身份。** 任何能访问服务的人都可以选取已开放的成员目录提交，也可以阅读团队总结和知识库。选择成员不是登录，目录检查不是身份认证。原始个人报告没有 HTTP 读取、编辑、删除接口；旧版账号数据库、草稿和笔记保留在磁盘，但不再通过网页开放。正式环境适用于团队内网或已有网络访问边界。
+生产环境由统一 HTTPS 入口验证飞书成员身份。独立模块的成员下拉框用于选择报告所属成员，报告目录检查用于验证该成员可提交。共享总结和文档由外层访问边界控制。个人原件的读取以当前部署启用的成员权限和入口为准。
 
 每人每周一份：首次提交返回 201；完全相同内容重复上传返回 200；不同内容返回 409，不能匿名覆盖。更正由维护人员备份旧文件后直接修改，再重跑该周汇总。没有网页草稿功能，提交前请保留本地文件。
 
 ## 本地运行
 
-需要 Python 3.11+。首次运行：
+独立运行需要 Linux 或 WSL，以及 Python 3.11+。Windows 支持[本地联调启动器](../dev/README.md)。以下命令从仓库根目录开始，默认写演示资料到 `var/demo`。
 
 ```bash
-cd research-progress
+cd research-progress-next
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock.txt
 .venv/bin/python -m research_weekly.cli demo
 .venv/bin/python -m research_weekly.cli serve
 ```
 
-已有数据时直接运行 `serve`，不必重跑 `demo`。访问 http://127.0.0.1:8765，无需账号密码。
+演示数据初始化后，后续直接运行 `serve`，用浏览器访问 `http://127.0.0.1:8765`。和门户同时独立启动时，为进度服务选用 `--port 8766`。
 `demo` 是显式初始化示例目录、虚构周报和规则摘录的命令，不覆盖原始周报，但可能重新生成演示汇总。真实智能总结需配置 Agent 或模型 API。
 
 ## 登记成员与目录
@@ -180,27 +181,16 @@ Skill：`skills/research-weekly-summary/SKILL.md`，环境变量 `RESEARCH_PROJE
 
 ## Linux 部署与定时
 
-1. 将项目放到 `/opt/research-progress`，排除 Mac 的 `.venv`、演示 `data`；用 Python 3.11+ 重建环境，安装 `requirements.lock.txt`。
-2. 创建专用系统用户 `research-weekly`，拥有 `/srv/research-progress`，目录权限 0700。成员无需服务器账户。
-3. 复制 `config.linux.example.json` 到 `/etc/research-weekly/config.json`。填写成员、数据路径、实际域名 `security.allowed_origins` 与模型配置；保持 `demo=false`、`security.https=true`。旧 `secure_cookies` 字段兼容读取，但不再使用 Cookie。
-4. 复制 `deploy/environment.example` 到 `/etc/research-weekly/environment`，配置 `RESEARCH_CONFIG` 和模型环境变量，权限 0600。使用 DeepSeek 时填 `DEEPSEEK_API_KEY`，不是只在个人终端 export。
-5. 在项目目录以服务用户运行 `init`，显式建立成员文件夹，无需设置密码。
-6. 将 `deploy/` 三个 systemd 文件安装到 `/etc/systemd/system/`；若目录变化，同步调整 `WorkingDirectory`、`ExecStart`、`EnvironmentFile`、`ReadWritePaths`。
-7. Nginx 提供 HTTPS，代理到 `127.0.0.1:8765`，参考 `deploy/nginx.example.conf`。不要将 data 映射为静态目录。无登录时访问范围由部署网络决定。
+1. 在 Linux 部署路径内用 Python 3.11+ 创建环境，安装 `requirements.lock.txt`。由专用服务账户维护可读写的数据根。
+2. 参考[演示配置](config.demo.json)创建独立的生产配置。设为 `demo=false`，设置 `security.https=true`，按反向代理实际传入的来源配置 `security.allowed_origins`。正式成员、数据根和模型配置由部署方维护，模型凭据从服务环境变量读取。
+3. 以服务账户运行 `init`，为配置中的成员初始化目录。将服务绑定回环地址，通过已有的 HTTPS 成员入口转发 `/progress/`。论文和门户可以使用独立端口。报告及工作目录由应用按权限提供入口。
 
 ```bash
-sudo systemctl daemon-reload
-sudo systemctl enable --now research-weekly-web.service
-# 配好模型后手动验收一次，再启用定时：
-sudo systemctl start research-weekly-summary.service
-sudo journalctl -u research-weekly-summary.service -n 50
-sudo systemctl enable --now research-weekly-summary.timer
-systemctl list-timers research-weekly-summary.timer
+.venv/bin/python -m research_weekly.cli --config /etc/research-weekly/config.json init
+.venv/bin/python -m research_weekly.cli --config /etc/research-weekly/config.json serve --host 127.0.0.1 --port 8766
 ```
 
-默认每周一 09:00 Asia/Shanghai 汇总上一周。修改 `research-weekly-summary.timer` 的 `OnCalendar` 后 daemon-reload 并 restart timer。`Persistent=true` 补一次触发，不逐周补齐所有历史。本次没有安装或启用 Linux 定时任务。
-
-CLI Agent 应使用绝对路径；systemd 的凭据和 HOME 属于服务用户，不继承个人终端会话。单机本地磁盘运行，依赖 `fcntl`，未验证多机共享盘。旧 `.state/auth.sqlite3` 不再使用但不会自动删除；备份应覆盖所有数据根目录。暂未提供发布审批、告警或历史清理界面。
+使用现有服务管理器运行 Web 进程，并按团队需要调度已验收的 `summarize --week previous` 命令。服务账号使用自身的配置、模型凭据和绝对命令路径。备份覆盖个人、团队、知识和状态四个数据根。
 
 ## 验证
 
@@ -212,6 +202,4 @@ node --check web/app.js
 
 测试覆盖无登录公开读取、原始报告不开放、目录不存在拒收、未知成员、模板及编码校验、JSON/文件上传一致、同内容幂等、禁止覆盖、路径与符号链接、来源版本、输入变化、Agent 命令与失败保留旧总结。模型归纳的科研事实仍须核对原文。
 
-## 已部署为资源中心模块
-
-2026-10-19 已在 `rmp@101.132.97.146` 的 `/data/rmp/research-progress` 部署，挂到原资源中心 `/progress/`。沿用 SSH 隧道和紫色样式，Web 服务已启用，真实成员名单初始为空，模型及汇总定时器尚未配置。详见 [服务器部署记录](docs/server-deployment.md)。
+生产入口和历史配置见[平台使用与维护说明](../docs/platform-guide.md)和[部署归档](../docs/科研平台部署说明_20261029.md)。

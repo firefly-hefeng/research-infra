@@ -2,6 +2,8 @@
 
 面向组内的公共资料目录、服务器资源入口、科研进度和研究来源导航。普通成员从四份指南开始；完整数据集/模型说明、协议清单和发布版本由管理团队维护。
 
+生产工作台通过飞书确认成员身份。本仓库的本地环境使用目录快照和演示数据。[平台使用与维护说明](../docs/platform-guide.md) · [本地联调](../dev/README.md)
+
 ## 四个日常入口
 
 - [算力使用](docs/compute-guide.html)：查看服务器信息、选择资源、共享计算约定。
@@ -50,6 +52,7 @@
 ```sh
 python -m unittest discover -s tests -v
 python tools/check_docs.py
+python catalog.py import --input data/catalog.json --db var/catalog.sqlite3
 python server.py --db var/catalog.sqlite3 --host 127.0.0.1 --port 8765
 ```
 
@@ -57,8 +60,8 @@ python server.py --db var/catalog.sqlite3 --host 127.0.0.1 --port 8765
 
 不要把密码、访问令牌或私有诊断放进源码、文档或公开导出。
 
-## 数据集与模型分类目录（2026-11-14）
+## 数据集、模型和飞书台账
 
-新增69条表格登记的分类浏览，按资源归组展示已核验的共享文件入口。维护及接口说明见 [分类目录说明](docs/resource-directory.md)。此改动尚未部署服务器。
+在生产工作台按一级研究标签、研究大类和细分类浏览数据与模型。仓库内的目录快照供本地开发；最新存放位置、领取条件与核验时间以飞书原记录为准。[分类目录说明](docs/resource-directory.md)
 
 共享目录新增规范与扫描工具见 [分类、资料卡与更新规范](docs/storage-catalog-workflow.md)。
