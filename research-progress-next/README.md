@@ -1,5 +1,12 @@
 # 科研周记：姓名登记 + 日报与周报 + Agent 周报汇总
 
+
+## 团队方向与方法
+
+打开 `/progress/direction-methods`，可从研究问题进入方法、对照、结果和来源。成员也可用[只读 MCP](../research-data-center-next/docs/progress-mcp.md)分别查询团队、成员、方向与方法。
+
+部署沿用已有成员身份验证。已有共享授权的部署通过 `security.team_reports_shared` 提供成员阅读入口。方向说明从团队根目录的 `directions/` 读取，方法索引从 `direction-methods.json` 读取，阶段复盘来自已发布的 `lab-review.json`。开启 `progress_digest.enabled` 后，进度接口会检查现有汇总版本与原报告是否匹配。首次部署可先阅读未发布提示，再由团队在自身存储中补充材料。示例格式见[合成接口测试](tests/test_direction_methods.py)。
+
 ## 当前工作方式
 
 1. 首次在网页填写姓名后加入；已有登记直接选择，同名者需附加组别等区分信息。原配置中的成员继续保留。

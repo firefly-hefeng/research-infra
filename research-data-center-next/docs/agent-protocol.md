@@ -1,5 +1,7 @@
 # Incoming / 管理员与 Agent 后台协议 2.0
 
+团队、成员、方向和方法可用[只读 MCP](progress-mcp.md)查询，沿用成员飞书身份。
+
 范围：协议 2.0 的后台受理与发布流程，由管理团队及其受控 Agent 使用。普通成员按 [增补指南](incoming-guide.html) 提交 payload 和 README，不要求成员制作下文的 JSON、manifest 或 READY。后台是否启用以 /api/ingestion/status 的 mode 和部署回执为准；active 仅代表最近规则周期有心跳，不证明模型服务或所有任务成功。
 
 ## 普通 README 提交的接手边界

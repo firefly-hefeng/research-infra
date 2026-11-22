@@ -7,6 +7,8 @@ from .core import (PROJECT, ID, atomic_write, child, date_range, digest, init_di
                    report_markdown, validate_week, week_id)
 from .reports import parse_report, template, validate_fields
 from . import daily_reports
+from .direction_methods import blueprint as method_views
+from .shared_progress import blueprint as progress_views
 from .members import NameExists, registered_members, register
 
 
@@ -15,6 +17,8 @@ def create_app(config_path=None):
     # Starting the web service must not provision missing member directories.
     init_dirs(cfg)
     app = Flask(__name__, static_folder=None)
+    app.register_blueprint(method_views)
+    app.register_blueprint(progress_views)
     app.config.update(MAX_CONTENT_LENGTH=100_000, RESEARCH=cfg)
 
     @app.before_request
@@ -55,7 +59,8 @@ def create_app(config_path=None):
 
     @app.get('/assets/<name>')
     def assets(name):
-        content_types = {'app.js': 'text/javascript', 'style.css': 'text/css'}
+        content_types = {'app.js': 'text/javascript', 'style.css': 'text/css',
+                         'direction-methods.css': 'text/css', 'lab-review.css': 'text/css'}
         if name not in content_types:
             abort(404)
         # OS MIME mappings can label .js as plain text, which nosniff blocks.

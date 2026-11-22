@@ -1,9 +1,21 @@
 """Strict daily reports, stored separately from weekly summary inputs."""
 import datetime as dt
 import re
+from .core import child
 from .reports import PLACEHOLDER, validate_fields
 
 FIELDS = {'done': '今日完成', 'results': '结果与证据', 'blockers': '问题与阻塞', 'next': '明日计划'}
+
+
+def team_sharing_enabled(cfg):
+    security = cfg['security']
+    return bool(cfg.get('demo') or security.get('team_reports_shared', security.get('team_daily_shared')) is True)
+
+
+def daily_paths(cfg, member, day):
+    root = child(cfg['roots']['members'], member['id'], 'daily')
+    day = validate_date(day)
+    return child(root, day + '.md'), child(root, day)
 
 
 def validate_date(value):
