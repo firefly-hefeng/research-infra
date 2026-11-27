@@ -33,7 +33,8 @@
     mapping: null, mappingIndex: new Map(), mappingController: null,
     resourceView: "cards", resourceGroup: "", resourceQuery: "", resourceGap: "", resourceTopic: "",
     guide: null, ingestion: null, ingestionController: null,
-    platform: "home", servers: null, serversController: null, selectedServer: null,
+    platform: "home", servers: null, serversController: null,
+    computeReportController: null,
     research: null, researchController: null,
     platformReady: false, serversPollTimer: null,
     literature: null, literatureController: null, literaturePage: 1,
@@ -42,6 +43,8 @@
     mapRenderedFor: null, mapPreview: "", animations: new Set(),
   };
   const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let workspaceView;
+  let sessionRecovery;
   const escape = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
   const icon = (name, className = "") => `<svg class="icon ${escape(className)}" aria-hidden="true"><use href="#i-${escape(name)}"/></svg>`;
   const number = (value) => value === null || value === undefined || value === "" ? "—" : Number(value).toLocaleString("zh-CN");
@@ -95,25 +98,46 @@
   const metricValue = (value) => typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : null;
   const percentText = (value) => metricValue(value) !== null && value <= 100 ? `${value.toLocaleString("zh-CN", { maximumFractionDigits: 1 })}%` : "—";
   const metricBar = (value, label) => metricValue(value) !== null && value <= 100 ? `<progress class="metric-bar" max="100" value="${value}" aria-label="${escape(label)} ${percentText(value)}"></progress>` : '<span class="metric-bar metric-unknown" aria-hidden="true"></span>';
-  const gpuHistory = window.HubMetrics.createHistory();
-  const gpuMemory = value => metricValue(value) === null ? "未取得" : `${(value / 1073741824).toLocaleString("zh-CN", {maximumFractionDigits: 2})} GiB`;
 
-  function selectPlatform(value) {
-    const dataAnchors = ["classified-resources", "data", "data-platform", "research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"];
-    const current = ["servers", "research", "literature"].includes(value) ? value : dataAnchors.includes(value) ? "data-platform" : "home";
+  const legacyDataAnchors = new Set(["research-guide", "resources", "catalog", "ingestion", "ingestion-queue", "ingestion-admin", "agent", "storage-status"]);
+
+  function selectPlatform(value, load = true) {
+    const dataViews = ["data", "data-platform", "library-models", "feishu-ledger"];
+    const view = value.startsWith("documents/") ? "documents" : value;
+    const legacyData = legacyDataAnchors.has(value);
+    const current = ["servers", "research", "literature", "documents"].includes(view) ? view : (dataViews.includes(view) || legacyData) ? "data-platform" : "home";
     state.platform = current;
-    document.body.dataset.platform = current;
-    for (const id of ["servers", "research", "literature", "data-platform"]) $(id).hidden = id !== current;
-    for (const id of ["overview", "platform-launchers", "home-guide"]) $(id).hidden = current !== "home";
+    for (const id of ["servers", "research", "literature", "data-platform", "documents"]) $(id).hidden = id !== current;
+    for (const id of ["overview", "home-progress", "platform-launchers", "home-guide"]) $(id).hidden = current !== "home";
+    $("resource-library").hidden = legacyData;
+    $("legacy-data-workspace").hidden = !legacyData;
     $("platform-back").hidden = current === "home";
     $("data-navigation").hidden = current !== "data-platform";
-    $("workspace-label").textContent = { home: "首页", servers: "服务器资源", research: "研究进展", literature: "资源参考", "data-platform": "数据管理" }[current];
+    $("workspace-label").textContent = { home: "工作台", servers: "服务器资源", research: "研究成果", literature: "资源参考", "data-platform": "数据管理", documents: "原点文档" }[current];
     document.querySelectorAll("[data-platform-link]").forEach((link) => {
       const active = link.dataset.platformLink === current;
       link.classList.toggle("active", active);
       if (active) link.setAttribute("aria-current", "page"); else link.removeAttribute("aria-current");
     });
-    scheduleServerRefresh(true);
+    if (state.platformReady && load) {
+      scheduleServerRefresh();
+      return loadPlatform(current, value, legacyData);
+    }
+  }
+
+  async function loadPlatform(current, value, legacyData, force = false, signal) {
+    const work = [workspaceView?.show(current, value, legacyData, force)];
+    if ((current === "home" || legacyData) && (force || !state.summary)) work.push(fetchSummary(signal));
+    if ((current === "home" || current === "servers") && (force || !state.servers) && !$("servers-refresh").disabled) work.push(loadServers(signal));
+    if ((current === "home" || current === "research") && (force || !state.research) && !state.researchController) work.push(loadResearch(signal));
+    if (current === "literature" && (force || !state.literature)) work.push(loadLiterature(signal));
+    if (legacyData) {
+      if (force || !state.mapping) work.push(loadMapping());
+      if (force || !state.guide) work.push(loadResearchGuide(signal));
+      if (force || !state.ingestion) work.push(loadIngestion(signal));
+      if (force || !state.items.length) work.push(loadAssets());
+    }
+    await Promise.allSettled(work);
   }
 
   function scheduleServerRefresh(immediate = false) {
@@ -127,58 +151,44 @@
     }, 60000);
   }
 
-  function gpuProcessPanel(gpu) {
+  function gpuProcessPanel(gpu, panelAttributes = "") {
     const processes = Array.isArray(gpu.processes) ? gpu.processes.slice(0, 64) : null;
     const zeroMemory = metricValue(gpu.memory_used_bytes) === 0;
     const highUtilization = (metricValue(gpu.utilization_percent) ?? 0) >= 90;
     const anomaly = zeroMemory && highUtilization && processes?.length === 0;
-    return `<details class="gpu-processes" data-detail="gpu-${escape(gpu.index)}"><summary>使用者与任务 <span>${processes === null ? '旧快照' : `${processes.length} 条记录`}</span></summary><div>${anomaly ? '<p class="gpu-anomaly">0 MiB 显存但利用率高，且无已登记计算进程；仅提示异常，不自动重置。</p>' : ''}${processes === null ? '<p class="gpu-process-empty">此快照未包含 GPU 进程信息，不据此判断 GPU 空闲。</p>' : processes.length ? processes.map(process => `<div class="gpu-process-row"><div><strong>${escape(process.user)}</strong><span>${escape(process.job || process.process)}</span></div><small>${escape(process.process)} · PID ${escape(process.pid)} · 显存 ${escape(gpuMemory(process.used_memory_bytes))}</small></div>`).join('') : '<p class="gpu-process-empty">无已登记计算进程，不据此判断 GPU 空闲。</p>'}</div></details>`;
-  }
-
-  function gpuTrendPanel(server, gpus) {
-    if (!gpus.length) return '';
-    const gpu = gpus.find(item => String(item.index) === String(state.selectedGpu)) || gpus[0];
-    state.selectedGpu = gpu.index;
-    const points = gpuHistory.points(server, gpu);
-    const paused = server.stale || server.status === 'unreachable';
-    const fieldLabels = {utilization: 'GPU 利用率', memory: '显存占比'};
-    const timeLabel = time => new Date(time).toLocaleTimeString('zh-CN', {timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-    let chart = `<div class="gpu-trend-empty">${paused ? '当前快照已过期，趋势采样暂停。' : points.length ? '已取得一个观测点，等待下一次新的观测。' : '等待新的有效观测。'}<small>只记录本次访问期间收到的新数据。</small></div>`;
-    if (points.length >= 2) {
-      const first = points[0].time, last = points.at(-1).time;
-      const x = point => 8 + (point.time - first) / (last - first) * 584;
-      const y = (point, field) => 112 - point[field] * 1.04;
-      const lines = Object.keys(fieldLabels).map(field => window.HubMetrics.segments(points, field).map(group => `<g class="trend-${field}">${group.length > 1 ? `<polyline fill="none" points="${group.map(p => `${x(p).toFixed(2)},${y(p,field).toFixed(2)}`).join(' ')}"/>` : ''}${group.map(p=>`<circle cx="${x(p).toFixed(2)}" cy="${y(p,field).toFixed(2)}" r="3"><title>${timeLabel(p.time)} · ${fieldLabels[field]} ${percentText(p[field])}</title></circle>`).join('')}</g>`).join('')).join('');
-      chart = `<div class="gpu-plot"><div class="gpu-plot-scale" aria-hidden="true"><span>100%</span><span>50%</span><span>0%</span></div><div class="gpu-plot-main"><svg viewBox="0 0 600 120" preserveAspectRatio="none" role="img" aria-label="GPU ${escape(gpu.index)} 本次访问期间的利用率与显存占比趋势"><g class="gpu-plot-grid"><line x1="0" y1="8" x2="600" y2="8"/><line x1="0" y1="60" x2="600" y2="60"/><line x1="0" y1="112" x2="600" y2="112"/></g>${lines}</svg><div class="gpu-plot-times"><span>${timeLabel(first)}</span><span>${timeLabel(last)} · 北京时间</span></div></div></div>`;
-    }
-    const latest = points.at(-1);
-    return `<section class="gpu-trend-panel" aria-labelledby="gpu-trend-title"><div class="gpu-trend-heading"><div><h4 id="gpu-trend-title">GPU 趋势 <span>本次访问期间${paused ? ' · 已暂停' : ''}</span></h4><p>利用率与显存占比使用同一百分比刻度；缺失观测留空。</p></div><label>查看 <select id="gpu-trend-select" aria-label="选择趋势图的 GPU">${gpus.map(item=>`<option value="${escape(item.index)}"${item.index === gpu.index ? ' selected' : ''}>GPU ${escape(item.index)}</option>`).join('')}</select></label></div><div class="gpu-trend-legend"><span class="legend-utilization">GPU 利用率${latest ? ' · '+percentText(latest.utilization) : ''}</span><span class="legend-memory">显存占比${latest ? ' · '+percentText(latest.memory) : ''}</span></div>${chart}<p class="gpu-trend-note">${points.length} 个新观测点 · 页面关闭后清空 · 不包含此前的历史数据</p></section>`;
+    return `<details class="gpu-processes"${panelAttributes}><summary>用户与任务 <span>${processes === null ? "旧快照" : `${processes.length} 个`}</span></summary><div>${anomaly ? '<p class="gpu-anomaly">0 MiB 显存但利用率高，且无已登记计算进程；仅提示异常，不自动重置。</p>' : ""}${processes === null ? '<p class="gpu-process-empty">此快照未包含 GPU 进程信息。</p>' : processes.length ? processes.map((process) => `<div class="gpu-process-row"><div><strong>${escape(process.user)}</strong><span>${escape(process.job || process.process)}</span></div><small>${escape(process.process)} · PID ${escape(process.pid)} · 显存 ${escape(sizeText(process.used_memory_bytes))}</small></div>`).join("") : '<p class="gpu-process-empty">无已登记计算进程。</p>'}</div></details>`;
   }
 
   function renderServers(data) {
-    const opened = new Set([...$('servers-grid').querySelectorAll('details[open][data-detail]')].map(el=>el.dataset.detail));
     state.servers = data;
-    gpuHistory.record(data);
-    const servers = Array.isArray(data?.servers) ? data.servers.slice(0,12) : [];
-    const labels = {online:'观测在线',partial:'部分指标可读',unreachable:'当前不可达',not_configured:'未配置采集'};
-    const statusLabel = server => server.status === 'unreachable' ? labels.unreachable : server.stale ? '快照已过期' : labels[server.status] || labels.not_configured;
-    $('servers-observed').textContent = data?.mode === 'not_configured' ? '服务器采集尚未配置，暂无可用观测。' : `${data?.generated_at ? '快照生成 '+dateText(data.generated_at,true) : '尚无采集时间'} · 此页可见时每分钟读取一次`;
-    $('compute-launcher-status').textContent = data?.mode === 'not_configured' ? '采集尚未配置' : `${servers.length} 台机器 · 观察快照`;
-    const server = servers.find(item=>item.id === state.selectedServer) || servers[0];
-    if (!server) { $('servers-grid').innerHTML='<p class="platform-empty">暂无服务器观察记录。</p>'; return; }
-    state.selectedServer = server.id;
-    const old = server.stale === true || server.status === 'unreachable';
-    const time = server.last_success_at || server.observed_at;
-    const gpus = Array.isArray(server.gpus) ? server.gpus.slice(0,32) : [];
-    const disks = Array.isArray(server.disks) ? server.disks.slice(0,20) : [];
-    const cpu = server.cpu || {}, memory = server.memory || {};
-    const picker = `<div class="server-switcher" role="group" aria-label="选择服务器">${servers.map(item=>`<button type="button" class="server-choice${item.id === server.id ? ' active' : ''}" data-select-server="${escape(item.id)}" aria-pressed="${item.id === server.id}"><span class="server-choice-top"><span>COMPUTE / ${escape(item.id)}</span><span class="server-status" data-status="${item.stale ? 'stale' : escape(item.status)}">${escape(statusLabel(item))}</span></span><strong>${escape(item.name)}</strong><span class="server-choice-meta">${Array.isArray(item.gpus) ? item.gpus.length+' 张 GPU' : 'GPU 待观察'} · CPU ${percentText(item.cpu?.usage_percent)}</span></button>`).join('')}</div>`;
-    const cards = gpus.map(gpu => {
-      const used = gpuMemory(gpu.memory_used_bytes), total = gpuMemory(gpu.memory_total_bytes), ratio = window.HubMetrics.memoryPercent(gpu);
-      return `<article class="gpu-item"><div class="gpu-item-title"><h4>GPU ${escape(gpu.index)}</h4><span>${metricValue(gpu.temperature_c) === null ? '温度未取得' : escape(gpu.temperature_c)+' °C'}</span></div><p class="gpu-name">${escape(gpu.name || '型号未记录')}</p><div class="gpu-metric"><div><span>GPU 利用率</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent,'GPU '+gpu.index+' 利用率')}</div><div class="gpu-metric gpu-memory"><div><span>显存占比</span><strong>${percentText(ratio)}</strong></div>${metricBar(ratio,'GPU '+gpu.index+' 显存占比')}<small>已用 ${used} / 总计 ${total}</small></div>${gpuProcessPanel(gpu)}</article>`;
-    }).join('');
-    $('servers-grid').innerHTML = `${picker}<article class="server-card server-detail-card" aria-label="${escape(server.name)}详细观测"><header class="server-detail-heading"><div><span class="platform-number">SERVER / ${escape(server.id)}</span><h3>${escape(server.name)}</h3><code class="server-address">${escape(server.address || '地址未记录')}</code></div><span class="server-status" data-status="${old ? 'stale' : escape(server.status)}">${escape(statusLabel(server))}</span></header><p class="server-observed${old ? ' is-old' : ''}">${old ? '保留上次观测，不代表当前负载：' : '最近观测：'}${dateText(time,true)}</p><div class="server-observation-grid"><div class="server-metrics"><div><span>CPU 使用率</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent,'CPU 使用率')}<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用率</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent,'内存使用率')}<small>可用 ${sizeText(memory.available_bytes)} / 总计 ${sizeText(memory.total_bytes)}</small></div></div>${gpuTrendPanel(server,gpus)}</div><div class="server-gpus"><div class="gpu-section-heading"><h4>GPU 资源 <span>${gpus.length} 张已观察</span></h4><span>利用率与显存分别显示</span></div><div class="gpu-grid">${cards || '<p class="server-no-metric">本次未取得 GPU 指标。</p>'}</div></div><details class="server-detail" data-detail="disks"><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map(disk=>`<div class="server-disk"><div><code>${escape(disk.mount || '挂载点未记录')}</code><strong>${disk.capacity_note === 'object_storage_capacity_not_applicable' ? '对象存储' : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === 'object_storage_capacity_not_applicable' ? '<small>容量口径不适用 · '+escape(disk.filesystem || '对象存储挂载')+'</small>' : metricBar(disk.used_percent,'磁盘使用率')+'<small>可用 '+sizeText(disk.available_bytes)+' / 总计 '+sizeText(disk.total_bytes)+(disk.filesystem ? ' · '+escape(disk.filesystem) : '')+'</small>'}</div>`).join('') : '<p>未取得磁盘观测。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || '未记录')}</dd></div><div><dt>最近尝试</dt><dd>${dateText(server.attempted_at,true)}</dd></div><div><dt>最近成功</dt><dd>${dateText(time,true)}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${dateText(server.remote_observed_at,true)}（仅供对照）</dd></div>` : ""}${server.error_code ? '<div><dt>观察结果</dt><dd>'+escape(server.error_code)+'</dd></div>' : ''}</dl></div></details></article>`;
-    $('servers-grid').querySelectorAll('details[data-detail]').forEach(el=>{el.open=opened.has(el.dataset.detail);});
+    const panelSelector = "#servers-grid details[data-server-panel]";
+    const previousPanels = Array.from(document.querySelectorAll(panelSelector));
+    const openPanels = new Set(previousPanels.filter((panel) => panel.open).map((panel) => panel.dataset.serverPanel));
+    const focusedPanel = previousPanels.find((panel) => panel.firstElementChild === document.activeElement)?.dataset.serverPanel;
+    const panelAttributes = (key) => ` data-server-panel="${escape(key)}"${openPanels.has(key) ? " open" : ""}`;
+    const servers = Array.isArray(data?.servers) ? data.servers.slice(0, 12) : [];
+    const validStatuses = { online: "观测在线", partial: "部分指标可读", unreachable: "当前不可达", not_configured: "未配置采集" };
+    $("servers-observed").textContent = data?.mode === "not_configured" ? "服务器采集尚未配置，暂无可用的观察数据。" : `${data?.generated_at ? `快照生成 ${dateText(data.generated_at, true)}` : "尚无采集时间"}${data?.served_at ? ` · 读取 ${dateText(data.served_at, true)}` : ""} · 此页可见时每分钟更新已保存快照`;
+    $("compute-launcher-status").textContent = data?.mode === "not_configured" ? "采集尚未配置" : `${number(servers.length)} 台机器 · 观察快照`;
+    $("servers-grid").innerHTML = servers.length ? servers.map((server) => {
+      const diskKey = JSON.stringify([server.id, "disk"]);
+      const gpuKey = (gpu) => {
+        const uuid = gpu.uuid?.trim();
+        return JSON.stringify([server.id, uuid ? "gpu-uuid" : "gpu-index", uuid || gpu.index]);
+      };
+      const status = Object.hasOwn(validStatuses, server.status) ? server.status : "not_configured";
+      const old = server.stale === true || status === "unreachable";
+      const time = server.last_success_at || server.observed_at;
+      const gpus = Array.isArray(server.gpus) ? server.gpus.slice(0, 32) : null;
+      const disks = Array.isArray(server.disks) ? server.disks.slice(0, 20) : [];
+      const cpu = server.cpu || {}, memory = server.memory || {};
+      const observed = old ? (time ? `以下保留上次观测值：${dateText(time, true)}。不代表当前负载。` : "本次未取得可信指标，也没有此前成功观察。") : `指标观察：${dateText(time, true)}`;
+      return `<article class="server-card"><div class="server-card-heading"><span class="platform-number">COMPUTE / ${escape(server.id || "")}</span><span class="server-status" data-status="${old ? "stale" : status}">${escape(status === "unreachable" ? "当前不可达" : server.stale ? "快照已过期" : validStatuses[status])}</span></div><h3>${escape(server.name || "未命名机器")}</h3><code class="server-address">${escape(server.address || "地址未记录")}</code><p class="server-observed${old ? " is-old" : ""}">${escape(observed)}</p><div class="server-metrics"><div><span>CPU 使用</span><strong>${percentText(cpu.usage_percent)}</strong>${metricBar(cpu.usage_percent, "CPU 使用") }<small>${number(metricValue(cpu.logical_cores))} 逻辑核 · 1 分钟负载 ${number(metricValue(cpu.load_1m))}</small></div><div><span>内存使用</span><strong>${percentText(memory.used_percent)}</strong>${metricBar(memory.used_percent, "内存使用")}<small>可用 ${escape(sizeText(memory.available_bytes))} / ${escape(sizeText(memory.total_bytes))}</small></div></div><div class="server-gpus"><h4>GPU <span>${gpus === null ? "未取得观察" : `${number(gpus.length)} 张已观察`}</span></h4>${gpus?.length ? `<p class="gpu-model">${escape([...new Set(gpus.map((gpu) => gpu.name).filter(Boolean))].join(" / ") || "型号未记录")}</p><div class="gpu-grid">${gpus.map((gpu) => `<div class="gpu-item"><div><span>GPU ${escape(gpu.index ?? "—")}</span><strong>${percentText(gpu.utilization_percent)}</strong></div>${metricBar(gpu.utilization_percent, `GPU ${gpu.index ?? ""} 使用`)}<small>显存 ${escape(sizeText(gpu.memory_used_bytes))}<br>共 ${escape(sizeText(gpu.memory_total_bytes))}</small>${gpuProcessPanel(gpu, panelAttributes(gpuKey(gpu)))}</div>`).join("")}</div>` : `<p class="server-no-metric">${gpus === null ? "尚无 GPU 指标；不据此判断机器空闲。" : "本次采集未报告 GPU 设备。"}</p>`}</div><details class="server-detail"${panelAttributes(diskKey)}><summary>磁盘与观察详情 <span aria-hidden="true">＋</span></summary><div>${disks.length ? disks.map((disk) => `<div class="server-disk"><div><code>${escape(disk.mount || "挂载点未记录")}</code><strong>${disk.capacity_note === "object_storage_capacity_not_applicable" ? "对象存储" : percentText(disk.used_percent)}</strong></div>${disk.capacity_note === "object_storage_capacity_not_applicable" ? `<small>容量口径不适用 · ${escape(disk.filesystem || "对象存储挂载")}</small>` : `${metricBar(disk.used_percent, `${disk.mount || "磁盘"} 使用`)}<small>可用 ${escape(sizeText(disk.available_bytes))} / ${escape(sizeText(disk.total_bytes))}${disk.filesystem ? ` · ${escape(disk.filesystem)}` : ""}</small>`}</div>`).join("") : '<p>未取得磁盘观察。</p>'}<dl><div><dt>CPU 型号</dt><dd>${escape(cpu.model || "未记录")}</dd></div><div><dt>最近尝试</dt><dd>${escape(dateText(server.attempted_at, true))}</dd></div><div><dt>最近成功</dt><dd>${escape(dateText(time, true))}</dd></div>${server.remote_observed_at ? `<div><dt>远端时钟</dt><dd>${escape(dateText(server.remote_observed_at, true))}（仅供对照）</dd></div>` : ""}${server.error_code ? `<div><dt>观察结果</dt><dd>${escape(server.error_code)}</dd></div>` : ""}</dl></div></details></article>`;
+    }).join("") : '<p class="platform-empty">尚无服务器观察记录。请先阅读使用说明，采集启用后将在这里展示。</p>';
+    if (focusedPanel && !$("servers").hidden) {
+      const panel = Array.from(document.querySelectorAll(panelSelector)).find((item) => item.dataset.serverPanel === focusedPanel);
+      panel?.firstElementChild.focus({ preventScroll: true });
+    }
   }
 
   async function loadServers(signal) {
@@ -201,6 +211,100 @@
     } finally {
       signal?.removeEventListener("abort", cancel);
       if (state.serversController === controller) $("servers-refresh").disabled = false;
+    }
+  }
+
+  function computeTable(title, headers, rows) {
+    if (!rows.length) return "";
+    return `<div class="compute-report-table"><table><caption>${escape(title)}</caption><thead><tr>${headers.map((label) => `<th scope="col">${escape(label)}</th>`).join("")}</tr></thead><tbody>${rows.map(([label, ...values]) => `<tr><th scope="row">${escape(label)}</th>${values.map((value) => `<td>${escape(value)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+
+  function renderComputeReport(report) {
+    const start = report.tracked_from.slice(0, 16).replace("T", " ");
+    const generated = report.generated_at.slice(0, 16).replace("T", " ");
+    const description = `${report.complete ? "已归档" : "本期预览"} · ${report.start} 至 ${report.end} · 纳入统计起点 ${start} · 生成于 ${generated}（北京时间）。`;
+    const status = $("compute-report-status");
+    if (!report.servers.some((server) => server.observed_slots > 0)) {
+      $("compute-report-data").replaceChildren();
+      status.textContent = `${description} 该周期暂无服务器采样记录。`;
+      return;
+    }
+    const names = new Map(report.servers.map((server) => [server.id, server.name]));
+    const coverage = (observed, expected) => expected ? `${observed} / ${expected}（${percentText(100 * observed / expected)}）` : "—";
+    const summary = computeTable("服务器汇总", ["服务器", "采样覆盖", "不可达采样", "GPU 平均利用率", "GPU 活跃采样占比", "CPU 平均 / 峰值", "内存平均 / 峰值"], report.servers.map((server) => [
+      server.name, coverage(server.observed_slots, report.expected_slots), server.observed_slots ? (server.status.unreachable ?? 0) : "—",
+      percentText(server.gpu.mean), percentText(server.gpu_active_percent),
+      `${percentText(server.cpu.mean)} / ${percentText(server.cpu.peak)}`,
+      `${percentText(server.memory.mean)} / ${percentText(server.memory.peak)}`,
+    ]));
+    const daily = computeTable("每日使用趋势", ["日期", "服务器", "采样覆盖", "GPU 平均利用率", "GPU 活跃采样占比", "CPU 平均", "内存平均"], report.days.flatMap((day) => day.servers.map((server) => [
+      day.date, names.get(server.id) || server.id, coverage(server.observed_slots, day.expected_slots),
+      percentText(server.gpu.mean), percentText(server.gpu_active_percent), percentText(server.cpu.mean), percentText(server.memory.mean),
+    ])));
+    const cards = computeTable("GPU 分卡", ["服务器", "卡号", "利用率有效采样", "平均 / 峰值", "活跃采样占比", "显存平均 / 峰值"], report.servers.flatMap((server) => server.cards.map((card) => [
+      server.name, `GPU ${card.index}`, card.gpu.samples, `${percentText(card.gpu.mean)} / ${percentText(card.gpu.peak)}`,
+      percentText(card.gpu_active_percent), `${sizeText(card.vram_bytes.mean)} / ${sizeText(card.vram_bytes.peak)}`,
+    ])));
+    const disks = computeTable("磁盘挂载点", ["服务器", "挂载点", "最新使用率", "峰值使用率"], report.servers.flatMap((server) => server.disks.map((disk) => [
+      server.name, disk.mount, percentText(disk.latest), percentText(disk.peak),
+    ])));
+    $("compute-report-data").innerHTML = `${summary}${daily}${cards}${disks}`;
+    status.textContent = `${description} 每 ${report.interval_minutes} 分钟取样，GPU 活跃指有效采样中利用率达到 ${report.gpu_active_threshold_percent}% 的比例。采样覆盖包含不可达记录，均值和峰值只使用有效指标。共享挂载分别显示。`;
+  }
+
+  async function loadComputeReports(refreshIndex = false) {
+    state.computeReportController?.abort();
+    const controller = new AbortController();
+    state.computeReportController = controller;
+    const select = $("compute-report-period");
+    const download = $("compute-report-download");
+    const status = $("compute-report-status");
+    const retry = $("compute-report-retry");
+    const endpoint = "/api/platform/compute-reports";
+    retry.hidden = true;
+    retry.onclick = null;
+    download.hidden = true;
+    $("compute-report-data").replaceChildren();
+    status.textContent = "正在读取资源利用报告…";
+    let needsIndex = refreshIndex;
+    try {
+      if (refreshIndex) {
+        const { reports } = await api(endpoint, { signal: controller.signal });
+        if (controller.signal.aborted) return;
+        const previous = select.value;
+        select.replaceChildren();
+        for (const [kind, label] of [["week", "周报"], ["month", "月报"]]) {
+          const group = document.createElement("optgroup");
+          group.label = label;
+          for (const report of reports.filter((entry) => entry.kind === kind)) {
+            group.append(new Option(`${label} ${report.start} 至 ${report.end}${report.complete ? "" : "（本期）"}`, `${kind}:${report.start}`));
+          }
+          if (group.children.length) select.append(group);
+        }
+        if (Array.from(select.options).some((option) => option.value === previous)) select.value = previous;
+        $("compute-report-tools").hidden = !select.options.length;
+        needsIndex = false;
+      }
+      if (!select.value) {
+        status.textContent = "历史采集尚未生成报告。";
+        return;
+      }
+      const [kind, start] = select.value.split(":");
+      const path = `${endpoint}?${new URLSearchParams({ kind, start })}`;
+      const report = await api(path, { signal: controller.signal });
+      if (controller.signal.aborted) return;
+      renderComputeReport(report);
+      download.href = path;
+      download.download = `compute-${kind}-${start}.json`;
+      download.hidden = false;
+    } catch (error) {
+      if (controller.signal.aborted || error.code === "unauthenticated") return;
+      status.textContent = "暂时无法读取资源利用报告。";
+      retry.onclick = () => {
+        if (document.activeElement === retry) $("compute-reports").querySelector("summary").focus({ preventScroll: true });
+        loadComputeReports(needsIndex || error.code === "report_not_found");
+      };
+      retry.hidden = false;
     }
   }
 
@@ -239,6 +343,23 @@
     return `<article class="research-track" data-status="${escape(track.status)}"><div class="research-track-heading"><div><span class="research-status" data-status="${escape(track.status)}">${escape(track.status_label)}</span><h4>${escape(track.name)}</h4></div><button class="icon-button" type="button" data-copy-research-path="${escape(track.path)}" aria-label="复制${escape(track.name)}开发路径">${icon("copy")}</button></div><p class="research-track-intro">${escape(track.summary)}</p><code class="research-track-path">${escape(track.path)}</code>${academicReport(track.report)}<ol class="research-milestones">${(track.milestones || []).map((item) => `<li data-state="${escape(item.state)}"><span>${escape(stateLabels[item.state] || item.state)}</span><div><strong>${escape(item.label)}</strong><p>${escape(item.detail)}</p></div></li>`).join("")}</ol></article>`;
   }
 
+  function renderDiseasePortfolio(models, tracks) {
+    const groups = [
+      { id: "mood", label: "抑郁与情绪健康", tasks: { "depression-severity": "访谈与语音严重度", "text-severity": "中文文本严重度", "daily-text-risk": "日常文本风险" } },
+      { id: "emotion", label: "情绪与副语言表达", tasks: { "voice-emotion": "声音情绪识别" } },
+      { id: "cross-disease", label: "跨疾病与通用表征", tasks: { "universal-encoder": "通用疾病声音 Encoder" } },
+    ];
+    const items = [...models, ...tracks].sort((a, b) => (a.sort_order || 999) - (b.sort_order || 999));
+    return groups.map((group, groupIndex) => {
+      const tasks = Object.entries(group.tasks).map(([taskId, label]) => {
+        const matches = items.filter((item) => item.disease_category === group.id && item.task_category === taskId);
+        if (!matches.length) return "";
+        return `<section class="disease-task"><h4><span>${String(groupIndex + 1).padStart(2, "0")}.${Object.keys(group.tasks).indexOf(taskId) + 1}</span>${label}<small>${matches.length} 项</small></h4><div class="disease-task-content">${matches.map((item) => item.status === "candidate" || item.status === "research_plan" ? researchTrackCard(item) : researchModelCard(item, item.sort_order || 0)).join("")}</div></section>`;
+      }).join("");
+      return `<details class="disease-group" open><summary><span>${String(groupIndex + 1).padStart(2, "0")}</span><strong>${group.label}</strong><small>展开课题</small></summary><div class="disease-task-list">${tasks}</div></details>`;
+    }).join("");
+  }
+
   function renderResearch(data) {
     state.research = data;
     const models = Array.isArray(data?.models) ? data.models : [];
@@ -256,14 +377,13 @@
     document.querySelector(".academic-cover-index>strong").textContent = String(models.length + tracks.length).padStart(2, "0");
     $("research-reviewed").textContent = `人工审核快照：${dateText(data?.reviewed_at)} · ${models.length + tracks.length} 项关键课题 · 不包含实时训练状态或公网推理`;
     $("research-launcher-status").textContent = `${models.length + tracks.length} 项课题 · 学术汇报版`;
-    $("research-models").innerHTML = models.length ? models.map(researchModelCard).join("") : '<p class="platform-empty">尚未登记优先模型。</p>';
+    $("research-models").innerHTML = models.length + tracks.length ? renderDiseasePortfolio(models, tracks) : '<p class="platform-empty">尚未登记研究课题。</p>';
     $("research-comparison-title").textContent = comparison.title || "同协议结果对比";
     $("research-comparison-metric").textContent = `${comparison.metric || "MAE"} · ${comparison.direction || "越低越好"}`;
     $("research-comparison-scope").textContent = comparison.scope || "仅在相同任务与协议下比较。";
     $("research-comparison").innerHTML = rows.map((row) => `<div class="research-bar-row${row.primary ? " is-primary" : ""}"><div><span>${escape(row.label)}</span><strong>${escape(row.display)}</strong></div><div class="research-bar-track" role="img" aria-label="${escape(row.label)} MAE ${escape(row.display)}"><span style="width:${Math.max(2, (row.value / maximum) * 100).toFixed(2)}%"></span></div></div>`).join("");
     $("research-notes").innerHTML = textList(data?.notes).map((note) => `<li>${escape(note)}</li>`).join("");
     $("research-common-root").textContent = data?.common_root || "未记录";
-    $("research-tracks").innerHTML = tracks.map(researchTrackCard).join("");
     $("research-impact-grid").innerHTML = (data?.impact || []).map((item) => `<article><span>${escape(item.kind)}</span><strong>${escape(item.value)}</strong><h4>${escape(item.label)}</h4><p>${escape(item.scope)}</p></article>`).join("");
     const groups = [["ethics", "研究伦理已通过", "项目方医学资源材料；不等于模型临床验证"], ["clinical", "紧密联系与医学支持", "合作与联系网络，不推定共同开发"], ["hongkong", "香港合作与联系节点", "保留机构全名和服务边界"], ["academic", "高校科研与人才生态", "联合实验室按原材料口径，不扩写合作层级"]];
     $("research-partner-groups").innerHTML = groups.map(([category, title, note]) => {
@@ -294,6 +414,7 @@
       $("research-error").hidden = false;
     } finally {
       signal?.removeEventListener("abort", cancel);
+      if (state.researchController === controller) state.researchController = null;
     }
   }
 
@@ -655,11 +776,78 @@
     reveal(container.querySelectorAll("svg"));
   }
 
+  function showSessionRecovery() {
+    if (!sessionRecovery) {
+      sessionRecovery = document.createElement("section");
+      sessionRecovery.className = "session-recovery";
+      sessionRecovery.setAttribute("aria-label", "恢复飞书登录");
+      const message = document.createElement("p");
+      message.setAttribute("role", "status");
+      message.textContent = "登录已过期。请在新标签完成飞书登录，再返回此页恢复。";
+      const actions = document.createElement("div");
+      actions.className = "session-recovery-actions";
+      const login = document.createElement("a");
+      login.className = "button button-secondary";
+      login.textContent = "重新登录飞书（新标签）";
+      login.target = "_blank";
+      login.rel = "noopener noreferrer";
+      const recover = document.createElement("button");
+      recover.type = "button";
+      recover.className = "button button-secondary";
+      recover.textContent = "已登录，恢复页面";
+      recover.addEventListener("click", async () => {
+        recover.disabled = true;
+        message.textContent = "正在确认登录状态…";
+        try {
+          const session = await api("/api/session");
+          if (session.auth_enabled && !session.authenticated) {
+            message.textContent = "登录尚未恢复。请完成新标签中的飞书登录后重试。";
+            return;
+          }
+          state.authEnabled = !!session.auth_enabled;
+          state.authenticated = !!session.authenticated;
+          state.platformReady = true;
+          $("logout").hidden = !state.authEnabled || !state.authenticated;
+          updateAgentCode();
+          sessionRecovery.hidden = true;
+          await refresh();
+          scheduleServerRefresh();
+        } catch (error) {
+          message.textContent = error.feishuLoginRequired
+            ? "登录尚未恢复。请完成新标签中的飞书登录后重试。"
+            : "暂时无法恢复登录，请稍后重试。";
+        } finally { recover.disabled = false; }
+      });
+      actions.append(login, recover);
+      sessionRecovery.append(message, actions);
+      document.addEventListener("close", () => {
+        if (!sessionRecovery.hidden) placeSessionRecovery();
+      }, true);
+    }
+    const returnTo = location.pathname + location.search + location.hash;
+    sessionRecovery.querySelector("a").href = "/auth/login?" + new URLSearchParams({ return_to: returnTo });
+    sessionRecovery.hidden = false;
+    placeSessionRecovery();
+  }
+
+  function placeSessionRecovery() {
+    const container = document.querySelector("dialog[open]") || $("main");
+    if (sessionRecovery.parentNode !== container) container.prepend(sessionRecovery);
+  }
+
   async function api(path, options = {}) {
     const response = await fetch(path, { credentials: "same-origin", ...options, headers: { Accept: "application/json", ...(options.headers || {}) } });
     let data;
     try { data = await response.json(); } catch { data = null; }
     if (response.status === 401) {
+      const reason = data?.error?.code || data?.code || data?.error;
+      if (reason === "feishu_login_required") {
+        showSessionRecovery();
+        const error = new Error("登录已过期，请重新登录飞书。");
+        error.code = "unauthenticated";
+        error.feishuLoginRequired = true;
+        throw error;
+      }
       if (path !== "/api/session") showAuth();
       const error = new Error(data?.error?.message || "访问会话已过期，请重新输入访问令牌。");
       error.code = "unauthenticated";
@@ -676,13 +864,14 @@
 
   function showAuth() {
     state.platformReady = false;
+    workspaceView?.clear();
     clearTimeout(state.serversPollTimer);
     state.serversPollTimer = null;
     state.ingestionController?.abort();
     state.serversController?.abort();
+    state.computeReportController?.abort();
     state.researchController?.abort();
     state.literatureController?.abort();
-    gpuHistory.clear();
     state.authEnabled = true;
     state.authenticated = false;
     state.assetController?.abort();
@@ -706,6 +895,12 @@
     state.servers = null;
     state.literature = null;
     $("servers-grid").replaceChildren();
+    $("compute-reports").open = false;
+    $("compute-report-period").replaceChildren();
+    $("compute-report-tools").hidden = true;
+    $("compute-report-data").replaceChildren();
+    $("compute-report-status").textContent = "";
+    $("compute-report-retry").hidden = true;
     $("servers-observed").textContent = "登录后查看服务器观察。";
     $("compute-launcher-status").textContent = "等待访问授权";
     $("literature-results").replaceChildren();
@@ -718,11 +913,6 @@
     state.summary = null;
     state.items = [];
     state.total = 0;
-    classifiedController?.abort();
-    classifiedData = null;
-    $("classified-content").replaceChildren();
-    $("classified-count").textContent = "登录后查看分类目录。";
-    for (const key of Object.keys(classificationFields)) $("classified-"+key).innerHTML = '<option value="">全部</option>';
     state.mapping = null;
     state.guide = null;
     state.ingestion = null;
@@ -791,15 +981,28 @@
   }
 
   function updateAgentCode() {
-    const ingestionHeader = state.authEnabled ? ' -H "Authorization: Bearer $DATA_CENTER_TOKEN"' : "";
     $("ingestion-agent-code").textContent = [
-      state.authEnabled ? "# 先设置管理员提供的 DATA_CENTER_TOKEN；只读调用" : "# 开发模式未启用访问令牌；只读调用",
-      `curl -sS${ingestionHeader} "${window.location.origin}/api/ingestion/manifest"`,
-      `curl -sS${ingestionHeader} "${window.location.origin}/api/ingestion/status"`,
+      "// 在已登录的平台页面或浏览器 Agent 中执行；只读",
+      'const paths = ["/api/ingestion/manifest", "/api/ingestion/status"];',
+      "const records = await Promise.all(paths.map(async (path) => {",
+      '  const response = await fetch(path, { credentials: "same-origin", redirect: "error" });',
+      '  if (!response.ok) throw new Error("请检查登录状态与访问权限");',
+      "  return response.json();",
+      "}));",
     ].join("\n");
-    const authHeader = state.authEnabled ? ' -H "Authorization: Bearer $DATA_CENTER_TOKEN"' : "";
-    const comments = state.authEnabled ? "# 由管理员提供令牌，先设置 DATA_CENTER_TOKEN\n# 读取接口清单与资源约束\n" : "# 读取接口清单与资源约束\n";
-    $("agent-code").textContent = `${comments}curl -sS${authHeader} \\\n  "${location.origin}/api/agent/manifest"`;
+    $("agent-code").textContent = browserAgentExample("/api/agent/manifest");
+  }
+
+  function browserAgentExample(path) {
+    return [
+      "// 在已登录的平台页面或浏览器 Agent 中执行",
+      state.authEnabled ? "// 此部署另启用目录验证；目录令牌不能替代飞书登录" : "// 共用现有飞书登录，无需单独的 Agent 令牌",
+      `const response = await fetch(${JSON.stringify(path)}, {`,
+      '  credentials: "same-origin", redirect: "error"',
+      "});",
+      'if (!response.ok) throw new Error("请检查登录状态与访问权限");',
+      "const context = await response.json();",
+    ].join("\n");
   }
 
   async function copyText(value, button) {
@@ -933,6 +1136,18 @@
     return items.length ? `<${tag} class="research-list${ordered ? " research-ordered" : ""}">${items.map((text) => `<li>${escape(text)}</li>`).join("")}</${tag}>` : "";
   }
 
+  function guideRoleBadges(category) {
+    const ids = new Set(category.asset_ids || []);
+    const counts = {};
+    for (const item of state.mapping?.items || []) {
+      if (!ids.has(item.asset_id)) continue;
+      const role = item.subtype || item.kind || "artifact";
+      counts[role] = (counts[role] || 0) + 1;
+    }
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return entries.length ? `<div class="guide-role-dimension"><span>资源角色</span><div class="resource-task-labels">${entries.map(([role, count]) => `<span>${escape(subtypeText(role))} · ${number(count)}</span>`).join("")}</div></div>` : "";
+  }
+
   function renderResearchGuide() {
     const guide = state.guide;
     if (!guide) return;
@@ -940,7 +1155,7 @@
     $("research-guide-intro").textContent = guide.introduction || "从研究问题出发，了解现有资料与可复用的工具。";
     $("research-guide-status").hidden = !!guide.categories.length;
     $("research-guide-status").textContent = guide.categories.length ? "" : "研究类别说明尚待补充，资料目录仍可直接浏览。";
-    $("research-guide-categories").innerHTML = guide.categories.map((category, index) => `<article class="guide-category${state.resourceTopic === category.id ? " active" : ""}" data-guide-category="${escape(category.id)}"><div class="guide-category-top"><span>${String(index + 1).padStart(2, "0")} / RESEARCH</span><span>${number(category.counts?.records)} 条目录记录</span></div><h3><button type="button" data-topic="${escape(category.id)}" aria-pressed="${state.resourceTopic === category.id}">${escape(category.label)}</button></h3><p>${escape(category.intro || "")}</p><details><summary>用途与第一步 <span aria-hidden="true">＋</span></summary><div class="guide-category-detail">${textList(category.use_cases).length ? `<h4>可以研究什么</h4>${researchList(category.use_cases)}` : ""}${textList(category.first_steps).length ? `<h4>先从这里开始</h4>${researchList(category.first_steps, true)}` : ""}${researchSourceList(category.sources)}<p class="guide-count-note">${number(category.counts?.unique_paths)} 个不同存储路径。分类用于发现资料，不等同独立数据集数。</p></div></details><button type="button" class="text-link guide-browse" data-topic="${escape(category.id)}" aria-pressed="${state.resourceTopic === category.id}">浏览相关资料${icon("arrow")}</button></article>`).join("");
+    $("research-guide-categories").innerHTML = guide.categories.map((category, index) => `<article class="guide-category${state.resourceTopic === category.id ? " active" : ""}" data-guide-category="${escape(category.id)}"><div class="guide-category-top"><span>${String(index + 1).padStart(2, "0")} / RESEARCH</span><span>${number(category.counts?.records)} 条目录记录</span></div><h3><button type="button" data-topic="${escape(category.id)}" aria-pressed="${state.resourceTopic === category.id}">${escape(category.label)}</button></h3><p>${escape(category.intro || "")}</p><details><summary>用途与第一步 <span aria-hidden="true">＋</span></summary><div class="guide-category-detail">${textList(category.use_cases).length ? `<h4>可以研究什么</h4>${researchList(category.use_cases)}` : ""}${textList(category.first_steps).length ? `<h4>先从这里开始</h4>${researchList(category.first_steps, true)}` : ""}${guideRoleBadges(category)}${researchSourceList(category.sources)}<p class="guide-count-note">${number(category.counts?.unique_paths)} 个不同存储路径。分类用于发现资料，不等同独立数据集数。</p></div></details><button type="button" class="text-link guide-browse" data-topic="${escape(category.id)}" aria-pressed="${state.resourceTopic === category.id}">浏览相关资料${icon("arrow")}</button></article>`).join("");
     const steps = Array.isArray(guide.newcomer_steps) ? guide.newcomer_steps : [];
     $("research-guide-steps").innerHTML = steps.map((step) => `<li><strong>${escape(typeof step === "string" ? step : step.title || "")}</strong>${typeof step === "object" && step.description ? `<p>${escape(step.description)}</p>` : ""}</li>`).join("");
     const terms = Array.isArray(guide.terms) ? guide.terms : [];
@@ -992,7 +1207,7 @@
     const relationships = item.relationships || [];
     const source = (item.evidence || []).map((evidence) => evidence.label).filter(Boolean)[0] || "来源证据待补充";
     const location = storageInfo(item);
-    return `<article class="resource-card"><div class="resource-card-top"><span class="record-subtype ${kindClass(item.kind)}">${escape(subtypeText(item.subtype))}</span><span class="resource-version">${escape(versionText(item))}</span></div><h3><button type="button" data-asset="${escape(item.asset_id)}">${escape(item.display_name || "未命名资料")}</button></h3><p class="resource-purpose">${escape(researchSummary(item))}</p>${researchUses.length ? `<div class="resource-use-cases"><span>适合研究</span><ul>${researchUses.map((use) => `<li>${escape(use)}</li>`).join("")}</ul></div>` : ""}${taskLabels.length ? `<div class="resource-task-labels">${taskLabels.map((label) => `<span>${escape(label)}</span>`).join("")}</div>` : ""}<details class="resource-technical"><summary>文件位置与管理信息</summary><dl class="resource-facts"><div><dt>内容</dt><dd>${escape(doc.record_role || subtypeText(item.subtype))}</dd></div><div><dt>已记录数量</dt><dd>${escape(mappingQuantity(item))}</dd></div><div><dt>信息来源</dt><dd title="${escape(source)}">${escape(source)}</dd></div></dl>${physicalCompact(item)}<div class="resource-path" title="${escape(location.current)}">${icon("server")}<code>${escape(location.current || "位置待补充")}</code></div>${location.storage ? `<div class="resource-storage-line">${migrationBadge(location)}${location.aliases.length ? `<span>${number(location.aliases.length)} 个兼容路径核验</span>` : ""}</div>` : ""}</details><div class="resource-card-meta"><span class="status-badge ${item.checks?.access === "readable" ? "verified" : item.checks?.access === "restricted" ? "restricted" : "documented"}">${escape(mappingAccessText(item))}</span><button type="button" class="gap-link" data-asset="${escape(item.asset_id)}" data-detail-section="detail-gaps">${gaps.length ? `${number(gaps.length)} 项待补说明` : "查看说明完整性"}</button></div>${relationships.length ? `<p class="relationship-count">${number(relationships.length)} 项映射关系候选 · 尚未确认合并或血缘</p>` : ""}<div class="resource-card-actions"><button type="button" class="text-link" data-asset="${escape(item.asset_id)}">查看资料说明${icon("arrow")}</button>${mappingLink(item.card_url, "独立资料卡")}</div></article>`;
+    return `<article class="resource-card"><div class="resource-card-top"><span class="record-subtype ${kindClass(item.kind)}">${escape(subtypeText(item.subtype))}</span><span class="resource-version">${escape(versionText(item))}</span></div><h3><button type="button" data-asset="${escape(item.asset_id)}">${escape(item.display_name || "未命名资料")}</button></h3><p class="resource-purpose">${escape(researchSummary(item))}</p>${researchUses.length ? `<div class="resource-use-cases"><span>适合研究</span><ul>${researchUses.map((use) => `<li>${escape(use)}</li>`).join("")}</ul></div>` : ""}${taskLabels.length ? `<div class="resource-task-labels">${taskLabels.map((label) => `<span>${escape(label)}</span>`).join("")}</div>` : ""}<dl class="resource-facts"><div><dt>内容</dt><dd>${escape(doc.record_role || subtypeText(item.subtype))}</dd></div><div><dt>台账</dt><dd>${escape(mappingQuantity(item))}</dd></div><div><dt>证据</dt><dd title="${escape(source)}">${escape(source)}</dd></div></dl>${physicalCompact(item)}<div class="resource-path" title="${escape(location.current)}">${icon("server")}<code>${escape(location.current || "位置待补充")}</code></div>${location.storage ? `<div class="resource-storage-line">${migrationBadge(location)}${location.aliases.length ? `<span>${number(location.aliases.length)} 个兼容路径核验</span>` : ""}</div>` : ""}<div class="resource-card-meta"><span class="status-badge ${item.checks?.access === "readable" ? "verified" : item.checks?.access === "restricted" ? "restricted" : "documented"}">${escape(mappingAccessText(item))}</span><button type="button" class="gap-link" data-asset="${escape(item.asset_id)}" data-detail-section="detail-gaps">${gaps.length ? `${number(gaps.length)} 项待补说明` : "查看说明完整性"}</button></div>${relationships.length ? `<p class="relationship-count">${number(relationships.length)} 项映射关系候选 · 尚未确认合并或血缘</p>` : ""}<div class="resource-card-actions"><button type="button" class="text-link" data-asset="${escape(item.asset_id)}">查看资料说明${icon("arrow")}</button>${mappingLink(item.card_url, "独立资料卡")}</div></article>`;
   }
 
   function renderResourceCards(items) {
@@ -1061,48 +1276,6 @@
     updateResourceURL();
   }
 
-  let classifiedData = null, classifiedPage = 1, classifiedController = null;
-  const classificationStatus = {shared:"已接入文件",existing:"已有目录",restricted:"授权或权限待确认",storage_pending:"共享存储待确认",unlocated:"尚无落盘入口",external:"其他机器",incomplete:"下载未完成"};
-  const classificationFields = {kind:"资源类型",category:"研究大类",subcategory:"细分类",status:"接入状态"};
-  function renderClassified() {
-    if (!classifiedData) return;
-    let items = classifiedData.items;
-    for (const key of Object.keys(classificationFields)) {
-      const value = $("classified-" + key).value;
-      if (value) items = items.filter((item) => item[key] === value);
-    }
-    const query = $("classified-search").value.trim().toLocaleLowerCase();
-    if (query) items = items.filter((item) => [item.name,item.category,item.subcategory,item.note].join(" ").toLocaleLowerCase().includes(query));
-    items = [...items].sort((a,b) => Number(b.status === "shared") - Number(a.status === "shared") || a.source.row - b.source.row);
-    const pages = Math.max(1,Math.ceil(items.length/6));
-    classifiedPage = Math.min(classifiedPage,pages);
-    $("classified-count").textContent = `${items.length} 条登记记录 · ${items.filter(i=>i.status === "shared").length} 个本次接入的资源文件夹 · 观察日期 ${classifiedData.updated_at}`;
-    $("classified-content").innerHTML = items.slice((classifiedPage-1)*6,classifiedPage*6).map((item) => `<article class="resource-card classified-card"><div class="resource-card-top"><span>${item.kind === "model" ? "模型" : "数据集"}</span><span>${escape(classificationStatus[item.status])}</span></div><h3>${escape(item.name)}</h3><div class="resource-task-labels"><span>${escape(item.category)}</span><span>${escape(item.subcategory)}</span></div><p class="resource-purpose">${escape(item.summary || "简介待补充")}</p>${item.shared_directory ? `<div class="resource-path"><code>${escape(item.shared_directory)}</code></div><p>${item.linked_file_count} 个文件入口 · 不等于样本数</p>` : `<p class="mapping-muted">共享位置待确认</p>`}<details><summary>使用前须知与文件详情</summary><p>当前文件情况：${escape(item.note)}</p><p>来源进度：${escape(item.source_status || "未知")}</p><p>规模（表格记载）：${escape(item.scale_claimed || "未知")}</p><p>版本：${escape(item.version || "待核验")}</p><p>已登记文件大小：${number(item.files.reduce((sum,file)=>sum+(file.bytes || 0),0))} 字节（不代表完整数据规模）</p><p>补充标签：${escape(Object.values(item.tags || {}).flat().join("、") || "待补充")}</p>${item.license ? `<p>许可：${escape(item.license)}</p>` : ""}<ul>${item.files.map((file)=>`<li><code>${escape(file.path)}</code></li>`).join("")}</ul><p>来源：表格第 ${item.source.row} 行；分类沿用来源记载。</p></details><a class="text-link" href="/api/classified-resources/${encodeURIComponent(item.id)}/README.md" target="_blank" rel="noopener">Agent README</a></article>`).join("") || '<p class="catalog-state">没有符合条件的资源。</p>';
-    $("classified-page").textContent = `${classifiedPage} / ${pages}`;
-    $("classified-prev").disabled = classifiedPage === 1;
-    $("classified-next").disabled = classifiedPage === pages;
-  }
-  async function loadClassified() {
-    classifiedController?.abort();
-    const controller = new AbortController(); classifiedController = controller;
-    try {
-      const data = await api("/api/classified-resources", {signal:controller.signal});
-      if (controller.signal.aborted) return;
-      classifiedData = data;
-      for (const [key,label] of Object.entries(classificationFields)) {
-        const selected = $("classified-"+key).value;
-        $("classified-"+key).innerHTML = `<option value="">全部${label}</option>` + data.facets[key].map(value=>`<option value="${escape(value)}">${escape(key === "status" ? classificationStatus[value] : key === "kind" ? value === "dataset" ? "数据集" : "模型" : value)}</option>`).join("");
-        $("classified-"+key).value = data.facets[key].includes(selected) ? selected : "";
-      }
-      renderClassified();
-    } catch(error) {
-      if (error.name === "AbortError") return;
-      classifiedData = null;
-      $("classified-content").replaceChildren();
-      $("classified-count").textContent = "分类目录暂不可读取，请登录或点击顶部刷新重试。";
-    }
-  }
-
   async function loadMapping() {
     state.mappingController?.abort();
     const controller = new AbortController();
@@ -1117,6 +1290,7 @@
       state.mapping = data;
       state.mappingIndex = new Map(data.items.map((item) => [item.asset_id, item]));
       if (state.resourceGroup && !data.groups.some((group) => group.id === state.resourceGroup)) state.resourceGroup = "";
+      renderResearchGuide();
       renderMappingGroups();
       renderResources();
       renderOverviewCounts();
@@ -1212,7 +1386,7 @@
     const params = new URLSearchParams({ page: String(state.page), page_size: String(state.pageSize) });
     for (const [key, value] of Object.entries(state.query)) if (value) params.set(key, value);
     updateURL();
-    renderSkeleton();
+    if (!state.items.length) renderSkeleton();
     try {
       const data = await api(`/api/assets?${params.toString()}`, { signal: controller.signal });
       if (controller.signal.aborted) return;
@@ -1230,27 +1404,24 @@
     state.refreshController = controller;
     $("refresh").classList.add("is-refreshing");
     $("refresh").disabled = true;
-    $("stats-grid").setAttribute("aria-busy", "true");
-    await Promise.allSettled([
-      api("/api/summary", { signal: controller.signal }).then((data) => { if (!controller.signal.aborted) renderSummary(data); }).catch((error) => {
-        if (error.name === "AbortError" || error.code === "unauthenticated") return;
-        $("summary-error").innerHTML = `概览读取失败：${escape(error.message)} <button type="button" data-action="retry-all">重新加载</button>`;
-        $("summary-error").hidden = false;
-        $("stats-grid").setAttribute("aria-busy", "false");
-        $("updated-label").textContent = state.summary ? "更新失败 · 显示上次读取结果" : "暂时无法连接目录";
-      }),
-      loadAssets(),
-      loadMapping(),
-      loadClassified(),
-      loadResearchGuide(controller.signal),
-      loadIngestion(controller.signal),
-      loadServers(controller.signal),
-      loadResearch(controller.signal),
-      loadLiterature(controller.signal),
-    ]);
+    await loadPlatform(state.platform, location.hash.slice(1), !$("legacy-data-workspace").hidden, true, controller.signal);
     if (!controller.signal.aborted) {
       $("refresh").classList.remove("is-refreshing");
       $("refresh").disabled = false;
+    }
+  }
+
+  async function fetchSummary(signal) {
+    $("stats-grid").setAttribute("aria-busy", "true");
+    try {
+      const data = await api("/api/summary", { signal });
+      if (!signal?.aborted) renderSummary(data);
+    } catch (error) {
+      if (error.name === "AbortError" || error.code === "unauthenticated") return;
+      $("summary-error").innerHTML = `概览读取失败：${escape(error.message)} <button type="button" data-action="retry-all">重新加载</button>`;
+      $("summary-error").hidden = false;
+      $("stats-grid").setAttribute("aria-busy", "false");
+      $("updated-label").textContent = state.summary ? "更新失败 · 显示上次读取结果" : "暂时无法连接目录";
     }
   }
 
@@ -1315,9 +1486,7 @@
     const formats = Array.isArray(asset.formats) ? asset.formats.join("、") : stringValue(asset.formats);
     const metadata = asset.metadata && typeof asset.metadata === "object" ? asset.metadata : {};
     const subtype = metadata.subtype ?? metadata["资源子类型"] ?? metadata["数据类型"] ?? metadata["原始数据类型"];
-    const detailURL = `${window.location.origin}/api/assets/${encodeURIComponent(asset.id)}`;
-    const authHeader = state.authEnabled ? ' -H "Authorization: Bearer $DATA_CENTER_TOKEN"' : "";
-    const curl = `curl -sS${authHeader} \\\n  "${detailURL}"`;
+    const agentExample = browserAgentExample(`/api/assets/${encodeURIComponent(asset.id)}`);
     const detail = (label, value, mono = false) => `<div><dt>${escape(label)}</dt><dd${mono ? ' class="mono"' : ""}>${escape(stringValue(value))}</dd></div>`;
     $("drawer-content").innerHTML = `
       <div class="drawer-heading"><span class="asset-icon ${kindClass(asset.kind)}">${icon(kind.icon)}</span><div><h2 id="drawer-title">${escape(asset.name || "未命名资源")}</h2><p class="drawer-id">${escape(asset.id)}</p></div></div>
@@ -1330,7 +1499,7 @@
       <section class="drawer-section"><h3>${icon("shield")}观察状态与访问边界</h3><div class="status-explanation">${escape(statusExplanations[asset.status] || "该资源的核验边界以来源记录为准。")}</div><dl class="detail-grid">${detail("路径存在性", mapping?.checks?.exists === true ? "观察时存在" : mapping?.checks?.exists === false ? "观察时未找到" : "待核实")}${detail("rmp 入口访问", mapping ? mappingAccessText(mapping) : statuses[asset.status])}${detail("观察时间（非实时）", dateText(mapping?.checks?.observed_at || asset.verified_at, true))}${detail("访问说明", asset.access)}</dl>${asset.notes ? `<p class="drawer-note">${escape(asset.notes)}</p>` : ""}</section>
       <section class="drawer-section"><h3>${icon("book")}原始台账引用</h3><div class="source-box">${sourceURL ? `<a href="${escape(sourceURL)}" class="text-link" target="_blank" rel="noopener noreferrer">打开登记证据文档 ${icon("external")}</a>` : "未记录外部台账链接"}${asset.source_ref ? `<div class="source-ref">${escape(asset.source_ref)}</div>` : ""}</div><p class="drawer-note">此处引用不自动构成上游来源或授权证明。</p></section>
       <section class="drawer-section"><h3>${icon("file")}完整元数据 <span class="count-pill">${number(Object.keys(metadata).length)}</span></h3>${Object.keys(metadata).length ? '<dl class="metadata-list" id="asset-metadata"></dl>' : '<p class="drawer-note">尚无额外元数据。</p>'}</section>
-      <section class="drawer-section"><h3>${icon("code")}Agent 调用</h3><pre class="drawer-code" id="asset-curl">${escape(curl)}</pre><div class="drawer-actions"><button type="button" id="copy-asset-curl" class="button button-secondary">${icon("copy")}复制调用示例</button><a href="/api/assets/${encodeURIComponent(asset.id)}" target="_blank" rel="noopener" class="text-link">查看 JSON ${icon("external")}</a></div><p class="drawer-note">接口返回资源元数据。${state.authEnabled ? "调用前请将管理员提供的访问令牌设置为 DATA_CENTER_TOKEN 环境变量。" : ""}</p></section>`;
+      <section class="drawer-section"><h3>${icon("code")}Agent 调用</h3><pre class="drawer-code" id="asset-curl">${escape(agentExample)}</pre><div class="drawer-actions"><button type="button" id="copy-asset-curl" class="button button-secondary">${icon("copy")}复制调用示例</button><a href="/api/assets/${encodeURIComponent(asset.id)}" target="_blank" rel="noopener" class="text-link">查看 JSON ${icon("external")}</a></div><p class="drawer-note">接口返回资源元数据。此示例使用当前浏览器的登录会话；服务器本机调用与访问范围见 <a href="/docs/agent-guide.md" target="_blank" rel="noopener">Agent 使用手册</a>。</p></section>`;
     if ($("asset-metadata")) {
       for (const [key, value] of Object.entries(metadata)) {
         const row = document.createElement("div");
@@ -1375,39 +1544,64 @@
     }
   }
 
-  function bindEvents() {
-    for (const key of Object.keys(classificationFields)) $("classified-"+key).addEventListener("change",()=>{classifiedPage=1;renderClassified();});
-    $("classified-search").addEventListener("input",()=>{classifiedPage=1;renderClassified();});
-    $("classified-prev").addEventListener("click",()=>{classifiedPage--;renderClassified();});
-    $("classified-next").addEventListener("click",()=>{classifiedPage++;renderClassified();});
-    $("classified-reset").addEventListener("click",()=>{for(const key of Object.keys(classificationFields)) $("classified-"+key).value="";$("classified-search").value="";classifiedPage=1;renderClassified();});
+  async function alignLegacyData(anchor, loaded) {
+    if (!legacyDataAnchors.has(anchor)) return loaded;
+    if (anchor === "ingestion-queue") $("ingestion-admin").open = true;
+    const target = $(anchor);
+    target.scrollIntoView({ block: "start", behavior: "instant" });
+    if (!loaded) return;
 
-    document.querySelectorAll("[data-platform-link]").forEach((link) => link.addEventListener("click", () => selectPlatform(link.dataset.platformLink)));
-    document.querySelectorAll('a[href="#overview"]').forEach((link) => link.addEventListener("click", () => selectPlatform("home")));
-    const syncPlatform = () => selectPlatform(location.hash.slice(1));
+    // The legacy sections can grow above the target while loading. Respect new user input.
+    const input = new AbortController();
+    for (const event of ["wheel", "touchmove", "pointerdown", "keydown"]) {
+      window.addEventListener(event, () => input.abort(), { passive: true, signal: input.signal });
+    }
+    await loaded;
+    if (!input.signal.aborted && location.hash === `#${anchor}`) {
+      const top = target.getBoundingClientRect().top;
+      if (top < 0 || top >= window.innerHeight) target.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+    input.abort();
+  }
+
+  function bindEvents() {
+    document.querySelector(".skip-link").addEventListener("click", (event) => {
+      if (event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      event.preventDefault();
+      const main = $("main");
+      main.focus({ preventScroll: true });
+      main.scrollIntoView({ block: "start", behavior: "instant" });
+    });
+    let focusReference = false;
+    $("data-reference-link").addEventListener("click", (event) => {
+      if (!event.defaultPrevented && event.button === 0 && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+        focusReference = true;
+      }
+    });
+    const syncPlatform = () => {
+      const anchor = location.hash.slice(1);
+      if ($("asset-dialog").open) {
+        state.detailController?.abort();
+        $("asset-dialog").close();
+      }
+      if ($("library-dialog").open) $("library-dialog").close();
+      alignLegacyData(anchor, selectPlatform(anchor));
+      if (focusReference && anchor === "literature") {
+        const title = $("literature-title");
+        title.focus({ preventScroll: true });
+        title.scrollIntoView({ block: "start", behavior: "instant" });
+      }
+      focusReference = false;
+    };
     window.addEventListener("hashchange", syncPlatform);
     document.addEventListener("visibilitychange", () => scheduleServerRefresh(true));
     syncPlatform();
-    $('catalog-density').addEventListener('click', event => {
-      const compact = event.currentTarget.getAttribute('aria-pressed') !== 'true';
-      event.currentTarget.setAttribute('aria-pressed', String(compact));
-      $('catalog').querySelector('.catalog-panel').classList.toggle('is-compact', compact);
-    });
     $("servers-refresh").addEventListener("click", () => loadServers());
-    $('servers-grid').addEventListener('click', event => {
-      const button = event.target.closest('[data-select-server]');
-      if (!button) return;
-      state.selectedServer = button.dataset.selectServer;
-      state.selectedGpu = null;
-      renderServers(state.servers);
-      [...$('servers-grid').querySelectorAll('[data-select-server]')].find(item => item.dataset.selectServer === state.selectedServer)?.focus({preventScroll:true});
+    $("compute-reports").addEventListener("toggle", () => {
+      if ($("compute-reports").open) loadComputeReports(true);
+      else state.computeReportController?.abort();
     });
-    $('servers-grid').addEventListener('change', event => {
-      if (event.target.id !== 'gpu-trend-select') return;
-      state.selectedGpu = event.target.value;
-      renderServers(state.servers);
-      $('gpu-trend-select')?.focus({preventScroll:true});
-    });
+    $("compute-report-period").addEventListener("change", () => loadComputeReports());
     $("research").addEventListener("click", (event) => {
       const path = event.target.closest("[data-copy-research-path]");
       if (path) copyText(path.dataset.copyResearchPath, path);
@@ -1544,7 +1738,13 @@
     $("asset-dialog").addEventListener("close", () => { state.detailController?.abort(); document.body.classList.remove("drawer-open"); state.drawerTrigger?.focus({ preventScroll: true }); });
     document.addEventListener("keydown", (event) => {
       const inputActive = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
-      if (event.key === "/" && !inputActive && !$("asset-dialog").open && !$("auth-dialog").open) { event.preventDefault(); selectPlatform("data-platform"); $("resource-search").focus(); $("resources").scrollIntoView({ block: "start" }); }
+      const dialogOpen = document.querySelector("dialog[open]");
+      if (event.key === "/" && !event.altKey && !event.ctrlKey && !event.metaKey && !inputActive && !dialogOpen) {
+        event.preventDefault();
+        if (location.hash !== "#data-platform") location.hash = "data-platform";
+        selectPlatform("data-platform");
+        $("library-query").focus();
+      }
     });
     document.querySelectorAll("[data-nav]").forEach((link) => link.addEventListener("click", () => { document.querySelectorAll("[data-nav]").forEach((item) => item.classList.toggle("active", item === link)); }));
     if ("IntersectionObserver" in window) {
@@ -1594,7 +1794,10 @@
       } catch (error) { toast(`退出失败：${error.message}`); }
       finally { $("logout").disabled = false; }
     });
-    window.addEventListener("popstate", () => { readURL(); loadAssets(); renderResources(); });
+    window.addEventListener("popstate", () => {
+      readURL();
+      if (!$("legacy-data-workspace").hidden && state.platform === "data-platform") { loadAssets(); renderResources(); }
+    });
   }
 
   function readURL() {
@@ -1622,6 +1825,7 @@
   }
 
   async function initialize() {
+    workspaceView = window.createResearchWorkspace({ api, openAsset, toast });
     readURL();
     bindEvents();
     updateAgentCode();
@@ -1633,12 +1837,13 @@
       updateAgentCode();
       if (state.authEnabled && !state.authenticated) { showAuth(); return; }
     } catch (error) {
+      if (error.feishuLoginRequired) return;
       if (error.code === "unauthenticated") { showAuth(); return; }
       // Older development servers may not expose the session probe yet.
       // The resource endpoints remain the authority for access decisions.
     }
     state.platformReady = true;
-    await refresh();
+    await alignLegacyData(location.hash.slice(1), refresh());
     scheduleServerRefresh();
   }
 

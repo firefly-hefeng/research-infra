@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "generated_at": "2026-11-15T15:46:38+08:00",
+  "engine": "DeepSeek V4 Pro · Max",
+  "strategy_version": "research-brief-v2",
+  "fingerprint": "860be4bdef1384a4ff47d074fadcd0158b1db9fae02d575e1947cb2912e6b08f",
+  "period": {
+    "from": "2026-10-19",
+    "to": "2026-11-15",
+    "days": 28
+  },
+  "research_brief": {
+    "overview": [
+      {
+        "text": "陆梓健检验中文A类停顿和英文B类回应间隔注入冻结音频/文本编码器后的分类增益；靳驰骋分析voxmem声学记忆的卡点。两者共同核心问题是音频模型是否保留并让下游利用停顿与副语言信息。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "完成中文A类停顿四路注入初筛：使用Mandarin/Chou的215条看图描述录音、84个身份组"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "1. voxmem的卡点和准确率分析\n2. 音频模型在副语言信息追踪能力上的进一步验证。"
+          }
+        ]
+      },
+      {
+        "text": "何锋仅报告科研平台整体规划、auto-research调研与管理规则制定，暂无与五个既有研究方向直接相关的实验进展；因此五个方向近期四栏保持为空。",
+        "source_ids": [
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "科研平台整体规划，升级数据分类、进度协调规则"
+          }
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "text": "陆梓健A类停顿四路注入未显示稳定增益：8项比较经校正后均不显著，文字显式+1.70pp但低于错配2.14pp且差值区间跨0；波形减半初筛+6.50pp，10新种子复验95%区间-0.17至+9.51pp仍跨0。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "文字显式较基线上涨1.70个百分点，但比错配低2.14个百分点，差值区间跨0，尚不能把上涨归因于个人停顿信息。"
+          }
+        ]
+      },
+      {
+        "text": "陆梓健B类英文Pitt间隔验证增益有限：加入间隔后AUC+0.20pp（95%区间-2.57至+3.13），问答重建减半+5.33pp（-0.71至+12.75），区间均跨0。靳驰骋定性报告voxmem副语言与背景音时序捕捉差，未给量化指标。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "问答重建三臂AUC依次为71.08%、76.42%、72.67%；减半+5.33个百分点，身份组95%区间-0.71至+12.75。"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "模型在voxmem的副语言和背景音时序变化捕捉这个任务上很差，增加一些模块看是否能有提高？"
+          }
+        ]
+      }
+    ],
+    "constraints": [
+      {
+        "text": "中文Chou缺少提问者时间轴，B类回应间隔只能用英文Pitt验证，不能直接推断中文等待；Pitt样本中AD/HC/MCI分组不均衡，且所有关键差值的身份组95%区间均跨0。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "中文Chou缺少提问者时间轴，因此B类改用英文Pitt验证，不能据此直接推断中文提问后的等待。"
+          }
+        ]
+      },
+      {
+        "text": "Whisper主要为语音识别服务，转写对停顿、语速、重音差异可能不敏感，现有时间窗汇总对语音占比和总时长敏感，未充分保留停顿与前后内容、语调节奏的关系；voxmem中背景音识别问题来源也未定位。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "现用Whisper主要服务于语音识别，同一句话停顿、语速或重音不同转写仍可能相同"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "音频模型对于背景音的识别是否准确？判断是voxmem音频的问题还是模型本身的问题"
+          }
+        ]
+      }
+    ],
+    "priorities": [
+      {
+        "text": "已报告计划：先通过冻结encoder加小探测头比较不同层、时序池化和停顿处理，验证表征可读性，再决定是否修改训练。理由是当前注入未见稳定利用，需先区分信息无效与编码/接入未利用。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "拟在现有中文配对样本上尝试冻结encoder与小探测头，比较不同层、时序池化及停顿处理；先验证表征可读性"
+          }
+        ]
+      },
+      {
+        "text": "已报告计划：靳驰骋将用CLAP替代背景音识别、提取AudioLM编码器特征接线性层定位音频端/推理端问题，并阅读拒答与记忆方案文献。理由是先定位副语言/背景音时序捕捉差的来源，避免盲目加模块。",
+        "source_ids": [
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "背景音层面：尝试CLAP模型替代现有大模型做背景音识别; 提出提取AudioLM编码器特征接线性层做分类"
+          }
+        ]
+      }
+    ]
+  },
+  "team": {
+    "done": [
+      {
+        "text": "何锋完成科研平台整体规划、数据分类与进度协调规则升级，并调研auto-research相关智能体。",
+        "source_ids": [
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "科研平台整体规划，升级数据分类、进度协调规则"
+          }
+        ]
+      },
+      {
+        "text": "陆梓健完成中文A类停顿四路注入、A类波形对照和英文B类回应间隔验证；靳驰骋完成voxmem卡点与音频副语言追踪分析。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "完成中文A类停顿四路注入初筛：使用Mandarin/Chou的215条看图描述录音、84个身份组"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "1. voxmem的卡点和准确率分析\n2. 音频模型在副语言信息追踪能力上的进一步验证。"
+          }
+        ]
+      }
+    ],
+    "results": [
+      {
+        "text": "陆梓健的所有停顿增益均未有稳定统计支持：A类四路注入校正后不显著、文字显式低于错配且差值区间跨0；波形减半复验95%区间跨0；B类间隔和重建减半区间均跨0。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "文字显式较基线上涨1.70个百分点，但比错配低2.14个百分点，差值区间跨0，尚不能把上涨归因于个人停顿信息。"
+          }
+        ]
+      },
+      {
+        "text": "靳驰骋完成voxmem实验分析并记录在飞书文档，但周报仅定性指出副语言和背景音时序捕捉差，未提供样本、指标或统计区间。",
+        "source_ids": [
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "实验分析：\n\n<https://wcn5kauqqbj1.feishu.cn/docx/EfVcdVuq6o1tWlxcD5RcsL1vnod>"
+          }
+        ]
+      }
+    ],
+    "blockers": [
+      {
+        "text": "陆梓健中文A类停顿缺少精确话语内时标，中文缺提问者时间轴，B类只能英文推断；Whisper可能不保留副语言差异，现有编码与池化未充分利用停顿信息。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "现用Whisper主要服务于语音识别，同一句话停顿、语速或重音不同转写仍可能相同"
+          }
+        ]
+      },
+      {
+        "text": "靳驰骋不确定背景音识别问题出在voxmem音频还是模型本身，且模型在voxmem副语言和背景音时序捕捉任务上表现很差；何锋尚未明确全流程agent体系和infra的卡点。",
+        "source_ids": [
+          "weekly:m_d42f95eadda34850b869:2026-W44",
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "音频模型对于背景音的识别是否准确？判断是voxmem音频的问题还是模型本身的问题"
+          },
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "一个好的全流程agent体系真正需要什么，什么是通用agent之外的卡点"
+          }
+        ]
+      }
+    ],
+    "next": [
+      {
+        "text": "陆梓健计划精读TextPro-SLM和VoxParadox，并在现有中文配对样本上冻结encoder加小探测头比较层、池化和停顿处理；靳驰骋计划CLAP/AudioLM/ecapa/emotion2vec及拒答与记忆方案优化，并赴珠海参会。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "精读TextPro-SLM，重点看WhisperPro如何用ASR与声学重建约束保留副语言信息"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "背景音层面：尝试CLAP模型替代现有大模型做背景音识别"
+          }
+        ]
+      },
+      {
+        "text": "何锋计划整理infra之外的整体设计，并与舒颜、于翔、曹玫一起优化科研管理平台版图。",
+        "source_ids": [
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "1.整理得出infra之外的整体设计\n2.和舒颜、于翔、曹玫一起优化和明确具体科研管理平台版图"
+          }
+        ]
+      }
+    ]
+  },
+  "members": [
+    {
+      "id": "m_233d0a339e114f5bbb9e",
+      "name": "刘思哲",
+      "report_count": 0,
+      "last_report_at": null,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    },
+    {
+      "id": "m_d42f95eadda34850b869",
+      "name": "靳驰骋",
+      "report_count": 1,
+      "last_report_at": "2026-11-01",
+      "done": [
+        {
+          "text": "完成voxmem卡点和准确率分析，并对音频模型在副语言信息追踪能力上进行进一步验证。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "1. voxmem的卡点和准确率分析\n2. 音频模型在副语言信息追踪能力上的进一步验证。"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "text": "实验分析记录在飞书文档，周报未给出样本、指标或统计区间。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "实验分析：\n\n<https://wcn5kauqqbj1.feishu.cn/docx/EfVcdVuq6o1tWlxcD5RcsL1vnod>"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "text": "不确定音频模型对背景音的识别是否准确，需判断问题在voxmem音频还是模型本身。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "音频模型对于背景音的识别是否准确？判断是voxmem音频的问题还是模型本身的问题"
+            }
+          ]
+        },
+        {
+          "text": "模型在voxmem副语言和背景音时序变化捕捉任务上表现很差，考虑增加模块提高。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "模型在voxmem的副语言和背景音时序变化捕捉这个任务上很差，增加一些模块看是否能有提高？"
+            }
+          ]
+        }
+      ],
+      "next": [
+        {
+          "text": "尝试CLAP替代现有大模型做背景音识别，提取AudioLM编码器特征接线性层分类，定位音频端/推理端问题。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "背景音层面：尝试CLAP模型替代现有大模型做背景音识别; 提出提取AudioLM编码器特征接线性层做分类"
+            }
+          ]
+        },
+        {
+          "text": "说话人任务接入ecapa，副语言任务接入emotion2vec；查uncertainty和abstention拒答；阅读VoxPolymem/Beyond text following/voxmem一作论文；赴珠海参会。",
+          "source_ids": [
+            "weekly:m_d42f95eadda34850b869:2026-W44"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+              "quote": "说话人任务接入声纹模型（ecapa）、副语言任务接入emotion2vec提取特征加入记忆验证准确率;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m_65a349fc3c98481589f1",
+      "name": "何锋",
+      "report_count": 1,
+      "last_report_at": "2026-11-14",
+      "done": [
+        {
+          "text": "完成科研平台整体规划，升级数据分类和进度协调规则，并调研auto-research与相关智能体工作。",
+          "source_ids": [
+            "daily:m_65a349fc3c98481589f1:2026-11-14"
+          ],
+          "evidence": [
+            {
+              "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+              "quote": "科研平台整体规划，升级数据分类、进度协调规则"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "text": "制定科研平台规则，并整理auto-research-hub资料。",
+          "source_ids": [
+            "daily:m_65a349fc3c98481589f1:2026-11-14"
+          ],
+          "evidence": [
+            {
+              "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+              "quote": "1.制定科研平台规则\n2.整理auto-research-hub"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "text": "尚未明确全流程agent体系真正需要什么，以及通用agent之外的卡点和agent时代的好infra。",
+          "source_ids": [
+            "daily:m_65a349fc3c98481589f1:2026-11-14"
+          ],
+          "evidence": [
+            {
+              "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+              "quote": "一个好的全流程agent体系真正需要什么，什么是通用agent之外的卡点"
+            }
+          ]
+        }
+      ],
+      "next": [
+        {
+          "text": "整理infra之外的整体设计，并与舒颜、于翔、曹玫一起优化科研管理平台版图。",
+          "source_ids": [
+            "daily:m_65a349fc3c98481589f1:2026-11-14"
+          ],
+          "evidence": [
+            {
+              "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+              "quote": "1.整理得出infra之外的整体设计\n2.和舒颜、于翔、曹玫一起优化和明确具体科研管理平台版图"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m_760d85f8a05f40b1a7bc",
+      "name": "陆梓健",
+      "report_count": 1,
+      "last_report_at": "2026-11-08",
+      "done": [
+        {
+          "text": "完成三类停顿梳理，强调医学价值需结合停顿位置、上下文和停后恢复；完成中文A类停顿四路注入初筛（Mandarin/Chou 215条，84身份组）。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "完成中文A类停顿四路注入初筛：使用Mandarin/Chou的215条看图描述录音、84个身份组"
+            }
+          ]
+        },
+        {
+          "text": "完成A类停顿波形对照（187条中文录音、81身份组、30秒子集）并完成B类英文Pitt回应间隔验证（162条、131身份组）。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "完成B类回应间隔补充验证：中文Chou缺少提问者时间轴，改用英文Pitt 162条录音、131个身份组"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "text": "A类四路注入AUC均无稳定提升：文字显式+1.70pp但低于错配2.14pp，8项比较校正后不显著；波形减半初筛+6.50pp，新种子复验95%区间-0.17至+9.51pp。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "固定方案换10个新种子复验，保留66.19%、减半70.51%，平均+4.32个百分点，9/10次上涨；按身份组抽样95%区间为-0.17至+9.51个百分点，仍跨0。"
+            }
+          ]
+        },
+        {
+          "text": "B类间隔音频AUC+0.20pp（95%区间-2.57至+3.13）；问答重建减半+5.33pp（-0.71至+12.75），区间均跨0。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "问答重建三臂AUC依次为71.08%、76.42%、72.67%；减半+5.33个百分点，身份组95%区间-0.71至+12.75。"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "text": "四路注入与基线、错配对照比较均不显著，文字显式上涨不能归因于个人停顿信息；无法判断停顿信息无效还是当前编码与接入方式未利用。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "四路注入与基线、错配对照的8项比较经多重比较校正后均未达到统计显著；文字显式上涨但比错配低2.14个百分点且差值区间跨0"
+            }
+          ]
+        },
+        {
+          "text": "中文Chou缺少提问者时间轴，B类只能用英文Pitt验证；Whisper可能不保留停顿/语速差异，现有池化敏感于语音占比和总时长。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "中文Chou缺少提问者时间轴，因此B类改用英文Pitt验证，不能据此直接推断中文提问后的等待。"
+            }
+          ]
+        }
+      ],
+      "next": [
+        {
+          "text": "精读TextPro-SLM和VoxParadox，整理WhisperPro的ASR与声学重建约束以及逐层探测方法。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "精读TextPro-SLM，重点看WhisperPro如何用ASR与声学重建约束保留副语言信息"
+            }
+          ]
+        },
+        {
+          "text": "在现有中文配对样本上冻结encoder用小探测头比较不同层、时序池化及停顿处理，先验证表征可读性。",
+          "source_ids": [
+            "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+          ],
+          "evidence": [
+            {
+              "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+              "quote": "拟在现有中文配对样本上尝试冻结encoder与小探测头，比较不同层、时序池化及停顿处理；先验证表征可读性"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "directions": [
+    {
+      "id": "daily-text-risk",
+      "title": "Daily Text Risk 日常文本风险",
+      "baseline": {
+        "question": "日常短文本中是否有可以稳定识别的风险线索？",
+        "progress": "开发阶段观察到收益。测试环节的分数和解释重建尚未通过，仍处于后续候选阶段。",
+        "next": "修复重建过程，在独立测试集复核结果，再决定是否并入主线。",
+        "updated_at": "2026-10-29",
+        "url": "#directions?item=daily-text-risk"
+      },
+      "report_count": 0,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    },
+    {
+      "id": "depalign-final",
+      "title": "DepAlign 抑郁程度预测",
+      "baseline": {
+        "question": "访谈文本和语音能否互相补充，用来估计 PHQ-8 分数？",
+        "progress": "团队成果档案将 DepAlign 最终版列为当前研究主线。模型以访谈文本为主要依据，用语音与情绪特征补充。DAIC 英文访谈的回顾性测试覆盖 47 名参与者，MAE 为 3.694 分，RMSE 为 4.552 分。",
+        "next": "整理独立推理入口，开展中文场景外部验证，并归档论文实验与干预分析记录。",
+        "updated_at": "2026-10-29",
+        "url": "#directions?item=depalign-final"
+      },
+      "report_count": 0,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    },
+    {
+      "id": "mmpsy-v3-ensemble",
+      "title": "MMPsy 中文文本评分",
+      "baseline": {
+        "question": "怎样在中文对话中给出可追溯的严重度评分，并对证据不足的输入保留拒答？",
+        "progress": "v3 结合两个概率评分模型，并用原文证据生成解释。当前 MAE 为 7.806／100，来自 MMPsy 开发集，量纲为 100 × PHQ-9／27。",
+        "next": "完成独立测试和自由聊天场景验证，核对拒答阈值下的覆盖率。",
+        "updated_at": "2026-10-29",
+        "url": "#directions?item=mmpsy-v3-ensemble"
+      },
+      "report_count": 0,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    },
+    {
+      "id": "universal-voice-encoder",
+      "title": "通用疾病声音 Encoder",
+      "baseline": {
+        "question": "能否学到跨疾病复用的声音表示，并检验模型是否依赖设备或采集来源等线索？",
+        "progress": "已有技术路线，覆盖声音功能分解、抗捷径预训练和跨疾病迁移，目标为 512 维声音表征。成果档案将该方向列为研究方案与开发阶段。",
+        "next": "形成可复用数据规范，开展功能表征与抗捷径训练，随后通过下游探针和跨疾病迁移检验学到的表示。",
+        "updated_at": "2026-10-29",
+        "url": "#directions?item=universal-voice-encoder"
+      },
+      "report_count": 0,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    },
+    {
+      "id": "voice-fused-head-v2",
+      "title": "中文声音情绪识别",
+      "baseline": {
+        "question": "怎样从中文语音中区分六类声音情绪，并将结果用作其他研究的辅助线索？",
+        "progress": "融合头 v2 使用 emotion2vec 的声音表征和类别概率。CSEMOTIONS 开发集覆盖 776 条记录，准确率为 78.48%，Macro-F1 为 0.7595。",
+        "next": "整理独立推理入口，在封存测试集与真实对话中检查表现变化。",
+        "updated_at": "2026-10-29",
+        "url": "#directions?item=voice-fused-head-v2"
+      },
+      "report_count": 0,
+      "done": [],
+      "results": [],
+      "blockers": [],
+      "next": []
+    }
+  ],
+  "unassigned": {
+    "done": [
+      {
+        "text": "何锋完成科研平台整体规划、数据分类与进度协调规则升级，并调研auto-research相关智能体。",
+        "source_ids": [
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "科研平台整体规划，升级数据分类、进度协调规则"
+          }
+        ]
+      },
+      {
+        "text": "陆梓健完成中文A类停顿四路注入、波形对照和英文B类间隔验证；靳驰骋完成voxmem卡点与音频副语言追踪分析。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "完成中文A类停顿四路注入初筛：使用Mandarin/Chou的215条看图描述录音、84个身份组"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "1. voxmem的卡点和准确率分析\n2. 音频模型在副语言信息追踪能力上的进一步验证。"
+          }
+        ]
+      }
+    ],
+    "results": [
+      {
+        "text": "陆梓健的所有停顿增益均未有稳定统计支持：A类四路注入校正后不显著、文字显式低于错配且差值区间跨0；波形减半复验95%区间跨0；B类间隔和重建减半区间均跨0。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "文字显式较基线上涨1.70个百分点，但比错配低2.14个百分点，差值区间跨0，尚不能把上涨归因于个人停顿信息。"
+          }
+        ]
+      },
+      {
+        "text": "靳驰骋完成voxmem实验分析并记录在飞书文档，但周报仅定性指出副语言和背景音时序捕捉差，未提供样本、指标或统计区间。",
+        "source_ids": [
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "实验分析：\n\n<https://wcn5kauqqbj1.feishu.cn/docx/EfVcdVuq6o1tWlxcD5RcsL1vnod>"
+          }
+        ]
+      }
+    ],
+    "blockers": [
+      {
+        "text": "陆梓健中文A类停顿缺少精确话语内时标，中文缺提问者时间轴，B类只能英文推断；Whisper可能不保留副语言差异，现有编码与池化未充分利用停顿信息。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "现用Whisper主要服务于语音识别，同一句话停顿、语速或重音不同转写仍可能相同"
+          }
+        ]
+      },
+      {
+        "text": "靳驰骋不确定背景音识别问题出在voxmem音频还是模型本身，且模型在voxmem副语言和背景音时序捕捉任务上表现很差；何锋尚未明确全流程agent体系和infra的卡点。",
+        "source_ids": [
+          "weekly:m_d42f95eadda34850b869:2026-W44",
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "音频模型对于背景音的识别是否准确？判断是voxmem音频的问题还是模型本身的问题"
+          },
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "一个好的全流程agent体系真正需要什么，什么是通用agent之外的卡点"
+          }
+        ]
+      }
+    ],
+    "next": [
+      {
+        "text": "陆梓健计划精读TextPro-SLM和VoxParadox，并在现有中文配对样本上冻结encoder加小探测头比较层、池化和停顿处理；靳驰骋计划CLAP/AudioLM/ecapa/emotion2vec及拒答与记忆方案优化，并赴珠海参会。",
+        "source_ids": [
+          "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+          "weekly:m_d42f95eadda34850b869:2026-W44"
+        ],
+        "evidence": [
+          {
+            "source_id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+            "quote": "精读TextPro-SLM，重点看WhisperPro如何用ASR与声学重建约束保留副语言信息"
+          },
+          {
+            "source_id": "weekly:m_d42f95eadda34850b869:2026-W44",
+            "quote": "背景音层面：尝试CLAP模型替代现有大模型做背景音识别"
+          }
+        ]
+      },
+      {
+        "text": "何锋计划整理infra之外的整体设计，并与舒颜、于翔、曹玫一起优化科研管理平台版图。",
+        "source_ids": [
+          "daily:m_65a349fc3c98481589f1:2026-11-14"
+        ],
+        "evidence": [
+          {
+            "source_id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+            "quote": "1.整理得出infra之外的整体设计\n2.和舒颜、于翔、曹玫一起优化和明确具体科研管理平台版图"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "daily:m_65a349fc3c98481589f1:2026-11-14",
+      "kind": "daily",
+      "member_id": "m_65a349fc3c98481589f1",
+      "date": "2026-11-14",
+      "title": "何锋 · 2026-11-14 日报",
+      "sha256": "bb242bfc705742c0cb08056ee2a978fc69e3eee6fd152051dad390cfe2e7f969",
+      "url": "#team?week=2026-W46&member=m_65a349fc3c98481589f1&date=2026-11-14"
+    },
+    {
+      "id": "direction:daily-text-risk",
+      "kind": "direction",
+      "title": "Daily Text Risk 日常文本风险",
+      "sha256": "f5c9835eb9a17bf607cacf4bda6c575fb93108a910ac0115971f29703a69f65b",
+      "url": "#directions?item=daily-text-risk"
+    },
+    {
+      "id": "direction:depalign-final",
+      "kind": "direction",
+      "title": "DepAlign 抑郁程度预测",
+      "sha256": "11ebcef67f3d9c1e53b23b57d7de7755b47e2660938670cc10722b516857e9b7",
+      "url": "#directions?item=depalign-final"
+    },
+    {
+      "id": "direction:mmpsy-v3-ensemble",
+      "kind": "direction",
+      "title": "MMPsy 中文文本评分",
+      "sha256": "f337fd85671ad3d0affd9d08c825afe611e6982a704e40764a0b841af17d16b2",
+      "url": "#directions?item=mmpsy-v3-ensemble"
+    },
+    {
+      "id": "direction:universal-voice-encoder",
+      "kind": "direction",
+      "title": "通用疾病声音 Encoder",
+      "sha256": "467f4debc8036872e8e99f07164dace43b30b747158419ecf8c433f5c2826b51",
+      "url": "#directions?item=universal-voice-encoder"
+    },
+    {
+      "id": "direction:voice-fused-head-v2",
+      "kind": "direction",
+      "title": "中文声音情绪识别",
+      "sha256": "61ea91720d30dd1336d904af336df7588938d2647fcc41deacbb9a482c9aa051",
+      "url": "#directions?item=voice-fused-head-v2"
+    },
+    {
+      "id": "weekly:m_760d85f8a05f40b1a7bc:2026-W45",
+      "kind": "weekly",
+      "member_id": "m_760d85f8a05f40b1a7bc",
+      "week": "2026-W45",
+      "title": "陆梓健 · 2026-W45 周报",
+      "sha256": "df38552b86d555abb81a7b8e9bd9ca5000016c875a7895930ba4df65acc7fb74",
+      "url": "#team?week=2026-W45&member=m_760d85f8a05f40b1a7bc&report=weekly"
+    },
+    {
+      "id": "weekly:m_d42f95eadda34850b869:2026-W44",
+      "kind": "weekly",
+      "member_id": "m_d42f95eadda34850b869",
+      "week": "2026-W44",
+      "title": "靳驰骋 · 2026-W44 周报",
+      "sha256": "4fead4d5649fd01ee343324f3e306c6602bb1c66a6f0ac90fc74b6e8f5ec22f7",
+      "url": "#team?week=2026-W44&member=m_d42f95eadda34850b869&report=weekly"
+    }
+  ],
+  "counts": {
+    "members": 4,
+    "active_members": 3,
+    "daily": 1,
+    "weekly": 2,
+    "directions": 5
+  }
+}

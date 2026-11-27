@@ -32,11 +32,11 @@ class InventoryTests(unittest.TestCase):
     def test_actual_catalog_is_fully_covered_without_merging_same_location_features(self):
         actual = json.loads((PROJECT / 'data' / 'catalog.json').read_text(encoding='utf-8'))
         mapping, _ = inventory.build_mapping(actual, now='2026-10-19T01:00:00Z')
-        self.assertEqual(len(actual['assets']), 228)
-        self.assertEqual(mapping['summary']['records'], 228)
+        self.assertEqual(len(actual['assets']), 229)
+        self.assertEqual(mapping['summary']['records'], 229)
         self.assertEqual({item['asset_id'] for item in mapping['items']}, {item['id'] for item in actual['assets']})
-        self.assertEqual(len({item['registry_id'] for item in mapping['items']}), 228)
-        self.assertEqual(mapping['summary']['unique_paths'], 221)
+        self.assertEqual(len({item['registry_id'] for item in mapping['items']}), 229)
+        self.assertEqual(mapping['summary']['unique_paths'], 222)
         features = [item for item in mapping['items'] if item['subtype'] == 'feature']
         self.assertEqual(len(features), 8)
         self.assertEqual(len({item['current_path'] for item in features}), 1)
@@ -46,7 +46,7 @@ class InventoryTests(unittest.TestCase):
             self.assertEqual(len(same_location), 7)
             self.assertTrue(all(relation['status'] == 'candidate' for relation in same_location))
             self.assertIsNone(item['identity']['logical_resource_id'])
-        self.assertEqual(sum(group['records'] for group in mapping['groups']), 228)
+        self.assertEqual(sum(group['records'] for group in mapping['groups']), 229)
         ledger_items = [item for item in mapping['items'] if item['documentation']['source_fields']]
         self.assertEqual(len(ledger_items), 198)
         for item in ledger_items:
@@ -264,7 +264,7 @@ class InventoryTests(unittest.TestCase):
                     if not any(entry['path'] == root or entry['path'].startswith(root + '/')
                                for root in talkbank_roots)}
         self.assertEqual(set(authored['entries']), expected)
-        self.assertEqual(len(expected), 86)
+        self.assertEqual(len(expected), 87)
         bundle = inventory.load_annotations(PROJECT, {entry['id'] for entry in actual['assets']}, inventory.clean_metadata, inventory.safe_url)
         mapped, _ = inventory.build_mapping(actual, annotations=bundle)
         self.assertTrue(all(item['documentation']['research']['contents'] and item['documentation']['research']['getting_started'] for item in mapped['items']))
@@ -272,7 +272,7 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(bge['subtype'], 'directory_collection')
         self.assertIsNone(bge['documentation']['quantity']['file_count'])
         self.assertEqual(bge['documentation']['research']['confidence'], 'family_context')
-        self.assertEqual(mapped['summary']['known_weights'], 7)
+        self.assertEqual(mapped['summary']['known_weights'], 8)
 
     def test_all_reviewed_explanations_cover_catalog_without_changing_local_evidence(self):
         actual = json.loads((PROJECT / 'data/catalog.json').read_text(encoding='utf-8'))

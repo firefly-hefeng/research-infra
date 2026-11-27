@@ -1,0 +1,219 @@
+{
+  "recorded_at": "2026-11-15T09:42:08.307Z",
+  "release": {
+    "stage": "/tmp/rmp-progress-digest-20261115-bd30f937",
+    "backup": "/var/backups/rmp-archive-alignment-20261115-v1"
+  },
+  "layouts": [
+    {
+      "requestedWidth": 1440,
+      "width": 1440,
+      "font": "16px",
+      "root": 1425,
+      "headingInset": 24.800003051757812,
+      "nameInset": 24.800003051757812,
+      "fieldInset": 24.800003051757812,
+      "sourceInset": 24.800003051757812,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 1440,
+      "width": 1440,
+      "font": "32px",
+      "root": 1425,
+      "headingInset": 24.800003051757812,
+      "nameInset": 24.800003051757812,
+      "fieldInset": 24.800003051757812,
+      "sourceInset": 24.800003051757812,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 1057,
+      "width": 1058,
+      "font": "16px",
+      "root": 1042,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 1057,
+      "width": 1058,
+      "font": "32px",
+      "root": 1042,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 390,
+      "width": 390,
+      "font": "16px",
+      "root": 375,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 390,
+      "width": 390,
+      "font": "32px",
+      "root": 375,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 320,
+      "width": 320,
+      "font": "16px",
+      "root": 305,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    },
+    {
+      "requestedWidth": 320,
+      "width": 320,
+      "font": "32px",
+      "root": 305,
+      "headingInset": 24.799999237060547,
+      "nameInset": 24.799999237060547,
+      "fieldInset": 24.799999237060547,
+      "sourceInset": 24.799999237060547,
+      "title": "成员周报摘要",
+      "sourceText": "来源 2026-W44 周报 · 来源校验 4fead4d5649f阅读周报正文与原件",
+      "duplicateStatusPanels": 0,
+      "overflow": []
+    }
+  ],
+  "empty_cta_before": {
+    "viewport": 390,
+    "font": "32px",
+    "root": 543,
+    "link": "阅读团队最近已发布周报 · 2026-W45 ↗",
+    "linkWidth": 525,
+    "linkScroll": 525
+  },
+  "empty_cta_after": {
+    "url": "https://rmp.wuwangwo.top/progress/#team?week=2026-W46&daily_week=2026-W46&daily_member=",
+    "viewport": 390,
+    "font": "32px",
+    "root": 375,
+    "link": "阅读团队最近已发布周报 · 2026-W45 ↗",
+    "linkWidth": 339,
+    "linkScroll": 339
+  },
+  "original_link": {
+    "url": "https://rmp.wuwangwo.top/progress/#team?week=2026-W44&member=m_d42f95eadda34850b869&report=weekly",
+    "daily": "2026-W46 · 2026-11-09 至 2026-11-15",
+    "dailyMember": "",
+    "weekly": "2026-W44 · 2026-10-26 至 2026-11-01",
+    "open": true,
+    "downloadLink": "api/report-source/weekly/m_d42f95eadda34850b869/2026-W44",
+    "archiveOpen": false
+  },
+  "original_download": {
+    "state": "complete",
+    "status": 200,
+    "bytes": 1327,
+    "sha256": "4fead4d5649fd01ee343324f3e306c6602bb1c66a6f0ac90fc74b6e8f5ec22f7"
+  },
+  "archived_report_files": [
+    {
+      "name": "2026-W44.json",
+      "bytes": 6236,
+      "sha256": "34480db3242dd5d16cb6c8a2facdfc3c04700c233c50a432b0ba098f4d3f8707"
+    },
+    {
+      "name": "2026-W44.md",
+      "bytes": 2842,
+      "sha256": "a0560d25187ed290eb5821c2b0fb16a2f78265ece8f824e43785c0026905d9a6"
+    },
+    {
+      "name": "2026-W45.json",
+      "bytes": 14266,
+      "sha256": "981c7d5a2a878e266429645b2ea50cf45535e3cd7dec05129776f4b5d8cf8244"
+    },
+    {
+      "name": "2026-W45.md",
+      "bytes": 6814,
+      "sha256": "b480395d9ac7d3a6c33265a3f225724ba3fdb9c726e70e98a9590a14b090629c"
+    }
+  ],
+  "archived_report_files_unchanged": true,
+  "daily_source_files_unchanged": true,
+  "research_brief": {
+    "sha256": "9ad0c3e7a1f2bbfc0bc285c736f9d24b853c6cc5e6ea422e46d90e5dd188b496",
+    "revision": 2,
+    "engine": "DeepSeek V4 Pro · Max"
+  },
+  "research_brief_unchanged": true,
+  "services": {
+    "research-data-center": "active",
+    "research-weekly-web": "active",
+    "research-weekly-intake.timer": "active",
+    "research-weekly-summary.timer": "active",
+    "research-platform-nginx": "active",
+    "paper-library": "active"
+  },
+  "tests": {
+    "archive_report": "1440/1057/390/320 x 100%/200%; nonempty members, aligned header/name/body/source, 16px card insets, two/one columns, long links/source IDs/quotes, empty and filtered empty, all-page and internal overflow, original report link preserving daily scope",
+    "report_views": "1440/390/320 including independent scopes, original files and attachments, legacy links, slow-response cross-links and 200% overflow",
+    "progress_digest": "1440/390/320 including opened long-URL source evidence and 200% internal overflow",
+    "session_recovery": "1440/390/320; draft and identity preservation"
+  },
+  "code_sha256": [
+    {
+      "path": "research-progress-next/web/app.js",
+      "sha256": "4a482da48f1990e5ee4aec9676d4ada6a1a0f76f8e4da814c9a07a18f0debcb5"
+    },
+    {
+      "path": "research-progress-next/web/style.css",
+      "sha256": "93fb9ff6d7af891ab5bbcbaeaed70208a66c857d713b81321a833ac6349da0bc"
+    },
+    {
+      "path": "research-progress-next/web/activity.css",
+      "sha256": "b1a97a6a4061a72c0b924caf8a331312f5a258d424587405e6e150e9a839e18c"
+    },
+    {
+      "path": "research-progress-next/tests/check_archive_report.cjs",
+      "sha256": "c180e814e7d9ebca8e7302b0a63fb4b225e9c9ace13c7e55fbc2a29de047abea"
+    },
+    {
+      "path": "research-progress-next/README.md",
+      "sha256": "ffc164cac6ce4bfaaee94dffc8fe7111f9d8b9eb7ad8d8c56ca9e0afae6ee04b"
+    }
+  ]
+}

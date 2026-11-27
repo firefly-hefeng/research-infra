@@ -259,7 +259,7 @@ def provision_namespaces():
     for name in members:
         entry = pwd.getpwnam(name)
         require(entry.pw_uid >= 1000 and '/' not in name and name not in ('.', '..'), 'Unexpected contributor identity')
-        new_directory(incoming / name, entry.pw_uid, SHARED_GID, 0o2750)
+        new_directory(incoming / name, entry.pw_uid, SHARED_GID, 0o2755)
     for path in targets[1:]:
         new_directory(path, UID, SHARED_GID, 0o2755)
     return {'incoming': str(incoming), 'local_member_buckets': members,

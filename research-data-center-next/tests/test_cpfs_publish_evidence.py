@@ -173,8 +173,8 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(before, {p.relative_to(self.project): p.read_bytes()
                                   for p in self.project.rglob('*') if p.is_file()})
         self.assertEqual(bundle['reports']['cleanup']['status'], 'not_completed')
-        self.assertEqual(len(bundle['manifest']['entries']), 228)
-        self.assertEqual(len(bundle['reports']['verification']['observations']), 221)
+        self.assertEqual(len(bundle['manifest']['entries']), 229)
+        self.assertEqual(len(bundle['reports']['verification']['observations']), 222)
         self.assertEqual(len(bundle['files']), 11)
         public = b'\n'.join(bundle['files'].values())
         for private in (b'PRIVATE_', b'923456', str(self.base).encode(), b'source-files.jsonl.gz'):
@@ -185,11 +185,11 @@ class PublisherTests(unittest.TestCase):
 
     def test_publish_matches_strict_schema_and_is_idempotent(self):
         result = publisher.publish_bundle(self.prepare())
-        self.assertEqual(result['observed_paths'], 221)
+        self.assertEqual(result['observed_paths'], 222)
         baseline, manifest, observed = migration.load_migration(
             self.project, self.project / 'data/path-migration.json', self.registry)
         self.assertEqual(manifest['state'], 'switched')
-        self.assertEqual(len(observed), 221)
+        self.assertEqual(len(observed), 222)
         self.assertEqual([a['id'] for a in baseline['assets']], [a['id'] for a in self.baseline['assets']])
         for name in publisher.REPORT_NAMES:
             reference = manifest['receipts'][name]['evidence']
@@ -215,7 +215,7 @@ class PublisherTests(unittest.TestCase):
         for reference, raw in old_objects.items():
             self.assertEqual((self.project / reference).read_bytes(), raw)
         # The old active manifest is still hash-verifiable after convenience reports update.
-        self.assertEqual(len(migration.validate_manifest(old_manifest, self.baseline, self.registry, self.project)), 221)
+        self.assertEqual(len(migration.validate_manifest(old_manifest, self.baseline, self.registry, self.project)), 222)
 
     def test_copy_log_tampering_or_manifest_misbinding_rejected(self):
         self.write('models-copy.log', raw=b'changed')
@@ -338,7 +338,7 @@ class PublisherTests(unittest.TestCase):
             with self.assertRaisesRegex(OSError, 'fixture write failure'):
                 publisher.publish_bundle(bundle)
         self.assertEqual((self.project / 'data/path-migration.json').read_bytes(), before)
-        self.assertEqual(len(migration.load_migration(self.project, self.project / 'data/path-migration.json', self.registry)[2]), 221)
+        self.assertEqual(len(migration.load_migration(self.project, self.project / 'data/path-migration.json', self.registry)[2]), 222)
 
     def test_symlink_input_and_output_refused(self):
         target = self.base / 'models-copy.log'

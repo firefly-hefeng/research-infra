@@ -1,20 +1,189 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-27T08:46:32.884422+00:00",
-  "reviewed_at": "2026-10-19",
-  "catalog_sha256": "a10ef7ecc7daad4a98e56fb2ba3334d04ad9d11686938d126928ba5a11628ae2",
-  "title": "先理解资料，再开始研究",
-  "introduction": "这座资料库以语音、语言与认知健康研究为主线：从真实交流语料，到已有研究项目，再到可复用特征和模型。下面按主要研究用途组织六个入口，帮助你先了解数据的来历与角色，再进入具体资料卡。",
+  "generated_at": "2026-10-30T19:56:11.620968+00:00",
+  "reviewed_at": "2026-10-31",
+  "catalog_sha256": "b1a573e1443a64d9330ef5ad163bc0b16ee629614a86bb32e998147119417fe3",
+  "title": "按疾病与研究方向找资料",
+  "introduction": "先按疾病或研究领域展开，再按原始数据、派生资料、特征、模型和实验工件理解资源角色。没有证据的类别明确留空，待确认资料不强行归类。",
   "coverage": {
-    "records": 228,
-    "category_count": 6,
-    "assignment": "每条登记记录归入一个主要导览类别；类别不是数据血缘或实验结论。"
+    "records": 229,
+    "category_count": 10,
+    "assignment": "每条登记记录归入一个主要疾病/研究领域；资源角色另列，类别不是数据血缘或实验结论。"
   },
   "categories": [
     {
-      "id": "language-development",
-      "label": "儿童语言与语音发展",
-      "intro": "以 CHILDES、PhonBank 和 HomeBank 分支为入口，理解儿童如何学习语言、形成发音，以及家庭交流环境中的语言使用。CHILDES 是长期积累的儿童语言研究资料体系；例如 Frogs 集合通过无字图画书诱发叙事，可帮助理解跨语言的故事表达研究。",
+      "id": "mood",
+      "label": "抑郁与情绪健康",
+      "intro": "当前清册暂无已确认的抑郁或情绪障碍专用数据。DepAlign、MMPsy 和 Daily Text Risk 的模型成果在成果进展中心展示，不用模型名称反推数据已入库。",
+      "use_cases": [
+        "后续接收经审核的抑郁访谈、严重度评分和情绪表达资料。"
+      ],
+      "first_steps": [
+        "先核对数据是否正式入库；研究成果与数据资源分开阅读。"
+      ],
+      "sources": [],
+      "group_ids": [],
+      "asset_ids": [],
+      "counts": {
+        "records": 0,
+        "unique_paths": 0
+      }
+    },
+    {
+      "id": "cognitive",
+      "label": "认知障碍与认知健康",
+      "intro": "包括 Pitt Cookie Theft 看图叙事、PARLO 目标话轮、认知语音质检和已有实验工件。原件、派生副本、代码和运行目录分别登记，适合追溯认知语音研究。",
+      "use_cases": [
+        "追溯认知语音实验的数据准备与处理过程。",
+        "复用已确认的目标话轮或质量检查结果，核对与原始资料的对应关系。"
+      ],
+      "first_steps": [
+        "先看资料角色：来源数据、派生音频、索引、代码或运行目录的使用方式不同。",
+        "优先从有明确来源和任务说明的条目开始；实验分支不是固定版本。"
+      ],
+      "sources": [
+        {
+          "label": "本地资源清册与原始台账",
+          "url": "/docs/resource-inventory.html",
+          "scope": "依据本地台账、有限目录观察及已读取的说明文件；未把候选素材认定为临床标签数据。"
+        }
+      ],
+      "group_ids": [
+        "group-1b13cc7466fe",
+        "group-7507db9d889a",
+        "group-cb34360f9484",
+        "group-5db6ec207b5e"
+      ],
+      "asset_ids": [
+        "asset-a93ad3d605a78bd5",
+        "asset-6cf3b0360634dff9",
+        "asset-fab732a6479bbf34",
+        "asset-cc0838f957d91df3",
+        "asset-fbeeb874ad3e4304",
+        "asset-d92e4965a6ca74da",
+        "asset-8d6530a389f84cfc",
+        "asset-e7a643f69f671e69",
+        "asset-33d75f9c4529c2e1",
+        "asset-aacd006093584755",
+        "asset-8b8469907e8fc457",
+        "asset-5839b29dc74fb7b4",
+        "asset-c0d2b0d1e98a001f",
+        "asset-583db0c0f40eea0d",
+        "asset-41e4bef461c76f61",
+        "asset-c330a79f7daf3aec",
+        "asset-4f6c014fcb1821c6",
+        "asset-646f0dc520c1e36a",
+        "asset-e4a70306da3ed46e",
+        "asset-0459efc7beb4c898",
+        "asset-761c849cf3ebedeb",
+        "asset-0a108078a4bff116",
+        "asset-332a3c729ce2ff70",
+        "asset-64e1630fd8556d26",
+        "asset-a746f34a86ccb726",
+        "asset-f8d0effe8e636863",
+        "asset-145611c693a4e34f",
+        "asset-f967a3f5f8cf7a43"
+      ],
+      "counts": {
+        "records": 28,
+        "unique_paths": 28
+      }
+    },
+    {
+      "id": "parkinson",
+      "label": "帕金森与运动障碍",
+      "intro": "当前清册暂无已确认的帕金森或运动障碍专用数据。",
+      "use_cases": [
+        "后续按正式来源接收相关语音与运动障碍资料。"
+      ],
+      "first_steps": [
+        "没有已确认资源时不生成代表性数据集或数量。"
+      ],
+      "sources": [],
+      "group_ids": [],
+      "asset_ids": [],
+      "counts": {
+        "records": 0,
+        "unique_paths": 0
+      }
+    },
+    {
+      "id": "speech-disorder",
+      "label": "病理言语、流畅性与嗓音",
+      "intro": "以 FluencyBank 流畅性研究材料为入口。这里按研究主题组织，不把流畅性材料扩写为特定疾病标签。",
+      "use_cases": [
+        "在任务和标签经过核对的条件下研究流畅性、发音或交流行为。"
+      ],
+      "first_steps": [
+        "先查看语料卡的研究背景、标注说明和来源，再确定分析指标。",
+        "确认受试者分组、采集任务及上游访问条件；目录名和语音表现不能替代标签证据。"
+      ],
+      "sources": [
+        {
+          "label": "FluencyBank：流畅性研究",
+          "url": "https://talkbank.org/fluency/",
+          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+        }
+      ],
+      "group_ids": [
+        "group-0901513d8842"
+      ],
+      "asset_ids": [
+        "asset-c8c6c24eb919188d",
+        "asset-258236310f524e00",
+        "asset-8a0b97c546570bcb",
+        "asset-771b1c166a8cd785",
+        "asset-4af59deb83dc114a",
+        "asset-cbc1f5095782ac74",
+        "asset-a077159e1ff8558f",
+        "asset-eba7e9c420a77ad1",
+        "asset-367d79bc46eeeebd"
+      ],
+      "counts": {
+        "records": 9,
+        "unique_paths": 9
+      }
+    },
+    {
+      "id": "respiratory",
+      "label": "呼吸、咳嗽与睡眠声音",
+      "intro": "当前清册暂无已确认的呼吸、咳嗽或睡眠声音专用数据。",
+      "use_cases": [
+        "后续接收有明确来源与使用条件的呼吸和睡眠声音资料。"
+      ],
+      "first_steps": [
+        "没有已确认资源时不生成代表性数据集或数量。"
+      ],
+      "sources": [],
+      "group_ids": [],
+      "asset_ids": [],
+      "counts": {
+        "records": 0,
+        "unique_paths": 0
+      }
+    },
+    {
+      "id": "cardiovascular",
+      "label": "心音与循环系统",
+      "intro": "当前清册暂无已确认的心音或循环系统专用数据。",
+      "use_cases": [
+        "后续接收心音、心电及循环系统相关研究资料。"
+      ],
+      "first_steps": [
+        "没有已确认资源时不生成代表性数据集或数量。"
+      ],
+      "sources": [],
+      "group_ids": [],
+      "asset_ids": [],
+      "counts": {
+        "records": 0,
+        "unique_paths": 0
+      }
+    },
+    {
+      "id": "development",
+      "label": "儿童语言与发育",
+      "intro": "以 ASDBank、CHILDES、PhonBank 和 HomeBank 为入口，理解儿童语言、发音和家庭交流环境中的发展研究。",
       "use_cases": [
         "研究词汇、句法与发音随发展阶段的变化。",
         "比较家庭互动、语言背景与儿童表达；先核对年龄、任务和标注是否可比。"
@@ -41,11 +210,15 @@
         }
       ],
       "group_ids": [
+        "group-cdc5bf469bb6",
         "group-a14eb659de70",
         "group-67ff685b1581",
         "group-b0dccc229820"
       ],
       "asset_ids": [
+        "asset-a57817547ebce578",
+        "asset-77a81341405837fb",
+        "asset-78f5827262267f1e",
         "asset-24a7d209effb9239",
         "asset-26ede326d50e2847",
         "asset-16ffb09087ec6b36",
@@ -87,16 +260,16 @@
         "asset-3f687150878bb5c1"
       ],
       "counts": {
-        "records": 39,
-        "unique_paths": 39
+        "records": 42,
+        "unique_paths": 42
       }
     },
     {
-      "id": "conversation-multilingual",
-      "label": "会话、多语与综合语料",
-      "intro": "覆盖自然对话、课堂互动、双语与第二语言学习等场景。例如 CORAAL 关注非裔美国英语的地区语言变异，适合认识方言、社会语言学及语音识别的误差差异。TalkBank 各子库承担不同研究任务，本类也保留整个镜像的导航入口。",
+      "id": "general-speech",
+      "label": "通用语音、多语与情绪",
+      "intro": "覆盖自然对话、课堂互动、双语、心理语言和一般语音材料。没有足够疾病证据的条目留在通用类，不强行归入临床类别。",
       "use_cases": [
-        "研究轮次交替、互动结构、课堂问答与多语交流。",
+        "研究轮次交替、互动结构、课堂问答、多语和一般语音表达。",
         "为转写、说话人处理或语言分析寻找与研究任务接近的材料。"
       ],
       "first_steps": [
@@ -116,16 +289,15 @@
         }
       ],
       "group_ids": [
-        "group-656b321b286d",
         "group-fd3b16f3f123",
+        "group-656b321b286d",
         "group-30018fcca874",
-        "group-067281459b50",
-        "group-47b134759f09",
         "group-4b7ad93e534f",
-        "group-9ad1c74bcbb8"
+        "group-89b08b25f6ef",
+        "group-067281459b50",
+        "group-47b134759f09"
       ],
       "asset_ids": [
-        "asset-c622379f185625da",
         "asset-755e196b85b4ee3d",
         "asset-1cd321f498bb488a",
         "asset-f938df462fcb6b5f",
@@ -192,6 +364,9 @@
         "asset-c41a5002d394a7c6",
         "asset-864c80ed1d6c8b2e",
         "asset-eb07126fd716a1a6",
+        "asset-03857880ea15beb5",
+        "asset-bd71c20f8324a01a",
+        "asset-5d3df738427c2db4",
         "asset-9c087f5985df8c70",
         "asset-93aef13938391d6e",
         "asset-a694fdd9823b0dbe",
@@ -215,123 +390,94 @@
         "asset-7eaf68d366a6a229"
       ],
       "counts": {
-        "records": 88,
-        "unique_paths": 88
+        "records": 90,
+        "unique_paths": 90
       }
     },
     {
-      "id": "speech-communication",
-      "label": "言语流畅性与交流研究",
-      "intro": "包含 FluencyBank 的流畅性研究材料、ASDBank 的交流互动材料，以及本地 PsyLing 命名分支。它们关注的研究对象、任务和访问条件各不相同；PsyLing 的具体实验身份需要按条目继续核对。",
+      "id": "cross-disease",
+      "label": "跨疾病与共享方法资源",
+      "intro": "包括 TalkBank 总入口、共享特征库、转写/对齐模型和通用模型资源。它们服务多种疾病与非疾病研究，资源角色必须与疾病标签分开理解。",
       "use_cases": [
-        "在任务和标签经过核对的条件下研究流畅性、发音或交流行为。",
-        "区分研究语料、教学示例和心理语言材料，选择与问题相符的比较对象。"
+        "比较传统声学描述量与学习型表示，减少重复提取。",
+        "为转写、对齐、文本处理与特征提取寻找已有模型，避免重复下载。"
       ],
       "first_steps": [
-        "先查看语料卡的研究背景、标注说明和来源，再确定分析指标。",
-        "确认受试者分组、采集任务及上游访问条件；目录名和语音表现不能替代标签证据。"
+        "核对原始音频或文本标识、截取窗口、工具版本与提取配置，再选择特征或模型。",
+        "确认 revision、运行依赖与使用条件后再运行；缓存或权重入口不代表推理验收完成。"
       ],
       "sources": [
         {
-          "label": "FluencyBank：流畅性研究",
-          "url": "https://talkbank.org/fluency/",
+          "label": "openSMILE：标准特征集与提取层级",
+          "url": "https://audeering.github.io/opensmile-python/",
           "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
         },
         {
-          "label": "ASDBank：交流互动资料",
-          "url": "https://talkbank.org/asd/",
-          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
-        },
-        {
-          "label": "PsyLing：官方站点当前定位",
-          "url": "https://talkbank.org/psyling/",
-          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
+          "label": "本地模型卡及逐模型官方链接",
+          "url": "/docs/resource-inventory.html",
+          "scope": "具体官方模型文档列在各模型卡；这里不把缓存集合认定为完整模型。"
         }
       ],
       "group_ids": [
-        "group-0901513d8842",
-        "group-cdc5bf469bb6",
-        "group-89b08b25f6ef"
+        "group-9ad1c74bcbb8",
+        "group-e6abe6192ac0",
+        "group-af20014a8361",
+        "group-e245b0f6e63d",
+        "group-c78eb669ab13"
       ],
       "asset_ids": [
-        "asset-a57817547ebce578",
-        "asset-77a81341405837fb",
-        "asset-78f5827262267f1e",
-        "asset-c8c6c24eb919188d",
-        "asset-258236310f524e00",
-        "asset-8a0b97c546570bcb",
-        "asset-771b1c166a8cd785",
-        "asset-4af59deb83dc114a",
-        "asset-cbc1f5095782ac74",
-        "asset-a077159e1ff8558f",
-        "asset-eba7e9c420a77ad1",
-        "asset-367d79bc46eeeebd",
-        "asset-03857880ea15beb5",
-        "asset-bd71c20f8324a01a",
-        "asset-5d3df738427c2db4"
+        "asset-f6247d8e175b3f75",
+        "asset-7c851cfae97bd720",
+        "asset-724db235516d5fe7",
+        "asset-ced7af47141d976e",
+        "asset-66e9529b590f475f",
+        "asset-74f9dd6b1e35b8e4",
+        "asset-2b298accdeb3966a",
+        "asset-94b4bee7165103d2",
+        "asset-4fee06b3660dfa2e",
+        "asset-062a19aca69b40ed",
+        "asset-c622379f185625da",
+        "model-f54564863fdd7670",
+        "model-38181e92d9264294",
+        "model-276cc8c43371a26f",
+        "model-8549969d8d8dd516",
+        "model-4ae9174e21aa77c6",
+        "model-69e327917ee18f4f",
+        "model-2516b91fb28de63d",
+        "discovered-abc38b748b9d52ba",
+        "discovered-3538fb6f4c85d186",
+        "discovered-95596d3a20fa94bb",
+        "model-midasheng-autonomous-20261030"
       ],
       "counts": {
-        "records": 15,
+        "records": 22,
         "unique_paths": 15
       }
     },
     {
-      "id": "cognitive-projects",
-      "label": "认知健康与项目研究资料",
-      "intro": "来自现有研究与应用流程：包括 Pitt Cookie Theft 看图叙事的实验副本、PARLO 目标话轮与处理工件，以及质检结果、候选公开音视频和通话流程资料。它们适合追溯已有实验；原件、派生副本、代码和运行目录分别登记。",
+      "id": "unconfirmed",
+      "label": "待确认的研究资料",
+      "intro": "包含公开候选素材、业务通话、量表交互录音、爬虫代码和运行目录。现有说明不足以确立具体疾病标签，不能整组提升为临床资源。",
       "use_cases": [
-        "追溯已有认知语音实验的数据准备与处理过程。",
-        "复用已确认的目标话轮或质量检查结果，核对与原始资料的对应关系。"
+        "逐条核对候选素材、运行工件和公开媒体的真实身份与使用条件。"
       ],
       "first_steps": [
-        "先看“资料角色”：来源数据、派生音频、索引、代码或运行目录的使用方式不同。",
-        "优先从有明确来源和任务说明的条目开始；prod / staging 只表示现有存放分支，不是固定实验版本。"
+        "先补齐资源名称、来源、角色和许可，再决定是否归入疾病类别。",
+        "未知类别不是低质量或不可用，只是当前证据不足。"
       ],
       "sources": [
         {
           "label": "本地资源清册与原始台账",
           "url": "/docs/resource-inventory.html",
-          "scope": "依据本地台账、有限目录观察及已读取的说明文件；未把候选素材认定为临床标签数据。"
+          "scope": "保留未知项和待补说明，不凭路径推断疾病或数据血缘。"
         }
       ],
       "group_ids": [
-        "group-1b13cc7466fe",
-        "group-7507db9d889a",
-        "group-cb34360f9484",
-        "group-5db6ec207b5e",
         "group-1f85c4123dd2",
         "group-fd89fdad6c19",
         "group-b465d04dc421"
       ],
       "asset_ids": [
-        "asset-a93ad3d605a78bd5",
-        "asset-6cf3b0360634dff9",
-        "asset-fab732a6479bbf34",
-        "asset-cc0838f957d91df3",
-        "asset-fbeeb874ad3e4304",
-        "asset-d92e4965a6ca74da",
-        "asset-8d6530a389f84cfc",
-        "asset-e7a643f69f671e69",
-        "asset-33d75f9c4529c2e1",
-        "asset-aacd006093584755",
-        "asset-8b8469907e8fc457",
-        "asset-5839b29dc74fb7b4",
-        "asset-c0d2b0d1e98a001f",
-        "asset-583db0c0f40eea0d",
-        "asset-41e4bef461c76f61",
-        "asset-c330a79f7daf3aec",
-        "asset-4f6c014fcb1821c6",
-        "asset-646f0dc520c1e36a",
-        "asset-e4a70306da3ed46e",
-        "asset-0459efc7beb4c898",
-        "asset-761c849cf3ebedeb",
-        "asset-0a108078a4bff116",
-        "asset-332a3c729ce2ff70",
-        "asset-64e1630fd8556d26",
-        "asset-a746f34a86ccb726",
-        "asset-f8d0effe8e636863",
-        "asset-145611c693a4e34f",
-        "asset-f967a3f5f8cf7a43",
         "asset-b936f8fb36de232a",
         "asset-fb072b92fd4cbbe7",
         "asset-ee836a566049fb74",
@@ -372,100 +518,15 @@
         "discovered-f16196c19879d508"
       ],
       "counts": {
-        "records": 66,
-        "unique_paths": 66
-      }
-    },
-    {
-      "id": "reusable-features",
-      "label": "可复用声学与语言特征",
-      "intro": "研究平台中已有声学描述量、语音表征和文本表征的派生缓存。eGeMAPS 属于预定义声学特征集；wav2vec 2.0、WavLM、Whisper 等条目对应不同的学习型表示。它们与原始录音、模型权重是不同层次的资源。",
-      "use_cases": [
-        "比较传统声学描述量与学习型表示，减少重复提取。",
-        "在来源、切分和提取配方一致时复用特征开展基线实验。"
-      ],
-      "first_steps": [
-        "核对原始音频或文本标识、截取窗口、工具版本与提取配置，再选择特征。",
-        "八种特征记录共享对象存储位置，不能把同一路径视为同一种特征，也不能将文件数相加当成样本数。"
-      ],
-      "sources": [
-        {
-          "label": "openSMILE：标准特征集与提取层级",
-          "url": "https://audeering.github.io/opensmile-python/",
-          "scope": "介绍上游项目背景；不证明本地副本完整或可直接使用。"
-        },
-        {
-          "label": "本地特征登记与路径映射",
-          "url": "/docs/resource-inventory.html",
-          "scope": "本地特征名称、对象位置和原台账证据；各配方与输出维度以条目说明为准。"
-        }
-      ],
-      "group_ids": [
-        "group-e6abe6192ac0"
-      ],
-      "asset_ids": [
-        "asset-f6247d8e175b3f75",
-        "asset-7c851cfae97bd720",
-        "asset-724db235516d5fe7",
-        "asset-ced7af47141d976e",
-        "asset-66e9529b590f475f",
-        "asset-74f9dd6b1e35b8e4",
-        "asset-2b298accdeb3966a",
-        "asset-94b4bee7165103d2",
-        "asset-4fee06b3660dfa2e",
-        "asset-062a19aca69b40ed"
-      ],
-      "counts": {
-        "records": 10,
-        "unique_paths": 3
-      }
-    },
-    {
-      "id": "models",
-      "label": "语言、语音与检索模型",
-      "intro": "按任务理解模型：Qwen3 用于文本生成，Qwen3-ASR 与 faster-whisper 用于语音转写，ForcedAligner 将已有文字与音频对齐；另有文本表示、检索和语音表示相关模型入口。具体卡片说明输入输出、已观察配置与本地缓存状态。",
-      "use_cases": [
-        "为转写、对齐、文本处理与特征提取寻找已有模型，避免重复下载。",
-        "比较参数规模、架构和已有配置，再安排独立的加载与小样本验证。"
-      ],
-      "first_steps": [
-        "从模型卡查看任务、输入输出、官方用法和已观察配置。",
-        "确认具体 revision、运行依赖与使用条件后再运行；发现权重文件并不代表已完成推理验收。"
-      ],
-      "sources": [
-        {
-          "label": "本地模型卡及逐模型官方链接",
-          "url": "/docs/resource-inventory.html",
-          "scope": "具体官方模型文档列在各模型卡；这里不把缓存集合认定为完整模型。"
-        }
-      ],
-      "group_ids": [
-        "group-af20014a8361",
-        "group-e245b0f6e63d",
-        "group-c78eb669ab13"
-      ],
-      "asset_ids": [
-        "model-f54564863fdd7670",
-        "model-38181e92d9264294",
-        "model-276cc8c43371a26f",
-        "model-8549969d8d8dd516",
-        "model-4ae9174e21aa77c6",
-        "model-69e327917ee18f4f",
-        "model-2516b91fb28de63d",
-        "discovered-abc38b748b9d52ba",
-        "discovered-3538fb6f4c85d186",
-        "discovered-95596d3a20fa94bb"
-      ],
-      "counts": {
-        "records": 10,
-        "unique_paths": 10
+        "records": 38,
+        "unique_paths": 38
       }
     }
   ],
   "newcomer_steps": [
     {
-      "title": "01 · 先选问题和资料角色",
-      "description": "先想清楚你要分析交流行为、做语音转写、提取特征还是复现实验。语料、派生结果、代码与模型权重分别服务这些步骤。"
+      "title": "01 · 先选疾病领域与资源角色",
+      "description": "先确定研究领域，再区分原始数据、派生资料、特征、模型和实验工件。不同角色服务不同研究步骤。"
     },
     {
       "title": "02 · 读一张完整资料卡",
@@ -498,6 +559,7 @@
     "数量先看单位：文件、音频、片段、参与者与目录记录是不同概念，不能互相代换。",
     "“经典”或“常用”应落实到具体语料与研究传统；本地保存、来源知名和质量验收是三件事。",
     "比较实验时先核对任务、语言、参与者切分和处理流程，避免把不同来源的差异误当成模型能力。",
-    "公共区表示团队共享存放范围；许可、账户读取权限和研究用途仍以具体条目及来源条件为准。"
+    "公共区表示团队共享存放范围；许可、账户读取权限和研究用途仍以具体条目及来源条件为准。",
+    "待确认只表示分类证据不足，不代表资料不可用；不得为了填满疾病类别而猜测。"
   ]
 }

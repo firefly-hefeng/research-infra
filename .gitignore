@@ -4,6 +4,10 @@ __pycache__/
 *$py.class
 *.so
 .venv/
+.venv-*/
+.browser-deps/
+.pytest-wsl-temp/
+.tools/
 venv/
 env/
 *.egg-info/
@@ -24,8 +28,9 @@ data/*.db
 .local-dev/
 *.tar.gz
 *.zip
-# Curated, source-only research code packages are release assets, not runtime archives.
+# Curated source/release assets, not runtime archives.
 !research-data-center-next/static/research-code/*.zip
+!research-data-center-next/docs/templates/standards-kit.zip
 
 # Secrets & environment
 .env

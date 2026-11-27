@@ -1,0 +1,23 @@
+digraph G {graph [bgcolor="transparent",pad="0.25",nodesep="0.30",ranksep="0.52",fontname="Microsoft YaHei",fontsize=14]; node [shape=box,style="rounded,filled",fillcolor="#eef5f6",color="#bfd2d7",fontname="Microsoft YaHei",fontsize=13,margin="0.20,0.15"]; edge [color="#597b86",arrowsize=0.65,fontname="Microsoft YaHei",fontsize=11]; rankdir=LR;
+ submit [label="成员交付
+payload 与 README",width="2.30"];
+ verify [label="管理员接手
+原件 清单 READY
+重新核验摘要",width="2.04"];
+ rights [label="用途与内容审查
+主体 许可 目标版本",width="2.31",fillcolor="#fff3dc",color="#bca367"];
+ approve [label="精确审批
+摘要 计划 版本
+政策修订绑定",width="1.90"];
+ publish [label="单协调器发布
+独立副本 不覆盖
+中断按回执对账",width="2.00"];
+ visible [label="正式资料卡
+版本与证据可查
+按授权可复用",width="1.89",fillcolor="#dcece7",color="#55977c"];
+ hold [label="待补充或受限原位
+保留状态与责任人
+不进入共享发布",width="2.09",fillcolor="#f5e6e2",color="#bf8f84"];
+ submit->verify->rights->approve->publish->visible;
+ rights->hold [label="未满足条件",width="1.48"];hold->verify [label="补齐后新核验",width="1.69",style=dashed];
+ }

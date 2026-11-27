@@ -1,67 +1,23 @@
-# 科研资源与协作门户
+# 科研资源门户
 
-面向组内的公共资料目录、服务器资源入口、科研进度和研究来源导航。普通成员从四份指南开始；完整数据集/模型说明、协议清单和发布版本由管理团队维护。
+[使用入口](docs/README.md) · [数据与模型](docs/data/README.md) · [团队方向与进展](docs/progress/README.md) · [基础学术委员会](docs/research-council.md)
 
-生产工作台通过飞书确认成员身份。本仓库的本地环境使用目录快照和演示数据。[平台使用与维护说明](../docs/platform-guide.md) · [本地联调](../dev/README.md)
+该模块提供统一首页、分类资料浏览、服务器状态、研究成果和文书阅读。文献与科研进度是独立应用，分别从 `/papers/` 和 `/progress/` 进入。按模块更新可以沿用原资料 ID 和页面链接。
 
-## 四个日常入口
-
-- [算力使用](docs/compute-guide.html)：查看服务器信息、选择资源、共享计算约定。
-- [科研进度](docs/progress-guide.html)：首次姓名登记、日报与周报、团队汇总与知识库；平台入口为 `/progress/`，日报为 `/progress/#daily`。
-- [文献与来源](docs/literature-guide.html)：在 `/papers/` 检索题录、收藏与笔记，另从资源参考查数据集、模型的官方说明。
-- [公共数据与模型](docs/data-guide.html)：查资料、复用输入、提交新增数据。
-
-四份指南均提供 `.md`、`.html` 和 `.txt` 版本；纯文本可直接粘贴到飞书。
-
-## 研究进展与模型成果
-
-首页 `#research` 以学术汇报结构展示研究问题、方法路线、核心效果、学术贡献、合作角色、落地效果、局限与下一步。DepAlign 是当前抑郁预测主线首选；MMPsy v3 与声音表达融合头仅按各自开发集范围展示，Daily Text Risk 仍是后续候选，通用疾病声音 Encoder 仍属研究方案/开发中。不同任务和量表的指标不得直接横向比较，PPT 中标注模拟的数据不得写入研究档案。
-
-研究档案维护在 `data/research-portfolio.json`，只读接口为 `/api/platform/research`。更新时须同时核对指标证据、验证范围、服务器路径和代码包 SHA-256；接口在代码包缺失或摘要不符时拒绝返回成果数据。产品内测、合作计划、媒体传播和模型指标属于不同证据层级；合作机构按学术指导、伦理通过、紧密联系、实验室共建材料等真实角色展示，不推定共同开发或临床验证。
-
-`static/research-assets/` 保存合作机构的原始 Logo 及来源/哈希清单，不重绘、不改色；白色透明 Logo 使用深色背景。`static/research-code/` 仅保存人工筛选的源码与说明压缩包，不包含模型权重、数据、预测结果或凭据。接口展示不等于公网推理服务，也不表示相关代码已整理成独立 SDK；日报与周报仍由 `/progress/` 独立应用处理。
-
-## 使用者的增补流程
-
-在 `/data/share/incoming/<用户名>/<提交名>/` 放入 `payload/` 和 `README.md`。README 只需名称、来源、用途、内容、使用限制；未知明确注明。全部传输完成后，在文末单独写“传输完成”，停止修改，并将路径交给管理员。
-
-[增补指南](docs/incoming-guide.html) · [README 模板](docs/templates/incoming-README.md)
-
-管理员负责检查、补充正式说明、准备后台协议清单和审核入库。文本完成标记不自动入队或发布。现有协议 2.0、规则校验与摘要绑定审批保留为管理工具，见 [管理员与 Agent 协议](docs/agent-protocol.md)。普通 README 到协议的转录由管理员处理，不能宣称现有 worker 已自动完成这一步。
-
-## 存储与状态
-
-- 正式资料：`/data/share/datasets`、`/data/share/models`，旧根保留兼容软链；实际位置与核验时间见逐项映射。
-- 实验输出：成员获准使用的个人工作目录，不写回正式资料库；系统不接管其他成员的目录。
-- 管理系统工作副本：`/var/lib/research-data-center/workspace`；本机 SQLite、队列和锁位于受控本地目录。
-- 持久发行与备份：`/data/share_cold/research-data-center`；运行代码使用 `/opt/research-data-center` 下已验证的本地发行。
-- 将研究归档移到冷盘时，沿用[冷盘迁移与飞书台账](docs/storage-catalog-workflow.md#7-冷盘迁移与飞书台账)的校验、路径兼容及回写步骤。
-
-三机设备规格见已采集的服务器快照。2026-10-28 在 47、101 检测到共享挂载，139 本次未检测到；成员 UID/GID 和资料权限仍需逐机确认，不能用同名账号推定同样权限。容量、服务和队列状态以接口及最新部署记录为准，文档不是实时监控。GPU 卡片另展示每卡 Unix 用户、脱敏任务名、PID、进程名和显存；固定探针不返回完整命令行、工作路径、环境变量或训练日志，也不会自动停止或重置任务。
-
-## 管理团队资料
-
-[规范中心](docs/standards.html)维护完整资料卡与说明体系；[资源清册](docs/resource-inventory.html)维护登记身份、来源证据、数量口径和实际位置。公共区位置不等于开放许可；目录入口可读不等于内容完整或模型可运行。
-
-[来源说明](docs/provenance.md)记录原台账、现场观察和研究说明的依据。[共享管理部署与恢复](deploy/SHARED-MANAGEMENT-OPERATIONS.md)说明本地运行、冷备份和异常处理；早期规划与迁移前规范保留作历史设计参考。
-
-## 只读接口与开发
-
-资源接口包括 `/api/summary`、`/api/assets`、`/api/resource-mapping`、`/api/research-guide`，研究成果接口为 `/api/platform/research`。Agent 先读 `/api/agent/manifest`；后台增补状态见 `/api/ingestion/manifest`、`/api/ingestion/status` 和 `/api/ingestion/published`。公共资料 API 不提供原始数据/权重下载、任意 shell 或无身份发布操作；仅提供上述审核代码包。周报提交由独立的 `/progress/` 应用处理。
+## 本地运行
 
 ```sh
+python catalog.py import --db var/catalog.sqlite3 --input data/catalog.json
+python server.py --db var/catalog.sqlite3 --host 127.0.0.1 --port 8765
 python -m unittest discover -s tests -v
 python tools/check_docs.py
-python catalog.py import --input data/catalog.json --db var/catalog.sqlite3
-python server.py --db var/catalog.sqlite3 --host 127.0.0.1 --port 8765
 ```
 
-目录重建仅处理已保存的公共元数据，不读取科研 payload。更新需保留 `data/resource-registry.json`、迁移回执、原始来源快照和研究说明证据。使用 SQLite backup API 生成一致备份，禁止把活跃 SQLite 或锁放在 NFS/OSS 上。部署与服务变更由维护人员执行，不要求普通成员操作运维命令。
+Agent 先读 [统一手册](docs/agent-guide.md)、[建设现状](docs/agent-status.md)，再从 `/api/agent/manifest` 发现接口。线上使用飞书登录，无成员自助 Agent token；无法访问浏览器时可在首页 Agent 区下载上下文，或使用已授权服务器连接。日常读 `/api/platform/library` 和 `/api/workspace-docs`，需要底层证据时读取 `/api/resource-mapping/{registry_id}`。首页复用 `/progress/api/progress-digest` 展示近期团队与全员动态进展，展开后回查来源。
 
-不要把密码、访问令牌或私有诊断放进源码、文档或公开导出。
+## 维护入口
 
-## 数据集、模型和飞书台账
-
-在生产工作台按一级研究标签、研究大类和细分类浏览数据与模型。仓库内的目录快照供本地开发；最新存放位置、领取条件与核验时间以飞书原记录为准。[分类目录说明](docs/resource-directory.md)
-
-共享目录新增规范与扫描工具见 [分类、资料卡与更新规范](docs/storage-catalog-workflow.md)。
+- 资料分类和描述见 [data/README.md](data/README.md)。飞书查看权限和增量刷新见[飞书台账刷新](docs/feishu-library-sync.md)。
+- 原始目录和研究成果继续使用现有 JSON 清册与证据。资料原件的接收见[现有入库协议](docs/agent-protocol.md)。
+- 成员工作区和成员共享区的普通新文件默认可互读。持续维护与实机测试见[新建文献长期互读](experiments/2026-11-23-new-document-readability.md)。
+- 运维读取[部署与恢复](deploy/SHARED-MANAGEMENT-OPERATIONS.md)、[监控细节及历史说明](docs/portal-history.md)。活跃 SQLite 在本机磁盘，服务继续绑定回环地址。

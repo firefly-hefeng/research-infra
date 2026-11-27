@@ -30,18 +30,21 @@ class Handler:
 
 class ProgressProxyTests(unittest.TestCase):
     def test_only_explicit_intake_endpoints_forward(self):
-        for endpoint in ['/api/uploads','/api/daily/uploads','/api/members']:
+        endpoints = {'/api/uploads': b'{}', '/api/daily/uploads': b'a' * 125_000, '/api/members': b'{}'}
+        for endpoint, body in endpoints.items():
             with self.subTest(endpoint=endpoint):
                 conn=mock.Mock();response=conn.getresponse.return_value
                 response.status=201;response.read.return_value=b'{"ok":true}'
                 response.getheader.return_value='application/json'
                 handler=Handler(endpoint)
+                handler.headers.replace_header('Content-Length', str(len(body)))
+                handler.rfile = io.BytesIO(body)
                 with mock.patch.object(progress_proxy,'HTTPConnection',return_value=conn):
                     progress_proxy.proxy_progress(handler)
                 self.assertEqual(handler.result[0],201)
                 args,kwargs=conn.request.call_args
                 self.assertEqual(args,('POST',endpoint))
-                self.assertEqual(kwargs['body'],b'{}')
+                self.assertEqual(kwargs['body'], body)
                 self.assertNotIn('Authorization',kwargs['headers'])
                 self.assertNotIn('Cookie',kwargs['headers'])
                 self.assertEqual(kwargs['headers']['X-Requested-With'],'ResearchWeekly')
@@ -56,8 +59,14 @@ class ProgressProxyTests(unittest.TestCase):
             for endpoint in ['/api/daily','/api/members/alice','/api/daily/uploads/','/api/summarize']:
                 handler=Handler(endpoint);progress_proxy.proxy_progress(handler)
                 self.assertEqual(handler.result[0],405)
-            handler=Handler('/api/daily/uploads');handler.headers.replace_header('Content-Length','100001')
-            progress_proxy.proxy_progress(handler);self.assertEqual(handler.result[0],413)
+            limits = {'/api/uploads': 100_000, '/api/members': 100_000,
+                      '/api/daily/uploads': progress_proxy.DAILY_UPLOAD_MAX_BODY}
+            for endpoint, limit in limits.items():
+                with self.subTest(endpoint=endpoint):
+                    handler = Handler(endpoint)
+                    handler.headers.replace_header('Content-Length', str(limit + 1))
+                    progress_proxy.proxy_progress(handler)
+                    self.assertEqual(handler.result[0], 413)
             conn.assert_not_called()
 
 

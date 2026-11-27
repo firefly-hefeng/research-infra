@@ -1,0 +1,17 @@
+{
+  "resource_id": "res-example-001",
+  "version": "v1",
+  "project_id": "prj-example-001",
+  "purpose": "academic_research",
+  "requested_actions": [
+    "metadata.read",
+    "content.read"
+  ],
+  "requested_until": "2026-12-31T15:59:59Z",
+  "basis_evidence": [
+    {
+      "evidence_id": "ev-example-001",
+      "relation": "supports"
+    }
+  ]
+}

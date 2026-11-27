@@ -1,0 +1,18 @@
+{
+  "project_ids": [
+    "prj-example-001"
+  ],
+  "task_ids": [
+    "task-example-001"
+  ],
+  "run_ids": [
+    "run-example-001"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev-example-001",
+      "relation": "supports"
+    }
+  ],
+  "corrections": "虚构示例 只完成开发集实验 尚未进行独立测试"
+}

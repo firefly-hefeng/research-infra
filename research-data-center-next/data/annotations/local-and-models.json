@@ -2878,6 +2878,40 @@
         "input": "符合模型采样要求的语音。",
         "output": "预训练语音表示；不是开箱即用的可信转写。"
       }
+    },
+    "model-midasheng-autonomous-20261030": {
+      "summary": "MiDasheng autonomous 继续训练与空间音频评测：continue-interface 最佳 checkpoint、正式评测回执与交付说明。",
+      "background": "空间音频问答继续训练项目，交付包含最佳权重、metadata、selection 和 final-host 审核证据。",
+      "research_uses": [
+        "复核 continue-interface 权重、评测指标与交付证据，开展空间音频问答研究。"
+      ],
+      "starter_notes": [
+        "dev 参与开发选模，不是独立盲测；先核对交付回执、权重哈希和复现环境。"
+      ],
+      "contents": [
+        "best.pt、metadata.json、selection.json",
+        "delivery-verification、final-host 与 report-review 回执"
+      ],
+      "caveats": [
+        "dev 参与开发选模，不是独立盲测或疾病结论。",
+        "真实录制子集未独立识别，单种子和不同预算比较不能外推为临床结论。"
+      ],
+      "modalities": ["空间音频", "音频问答"],
+      "languages": [],
+      "topics": ["models", "spatial-audio-qa", "unconfirmed"],
+      "provenance_note": "依据 public-migration.json 的迁移回执和 final-host 审核文件；未独立复跑训练。",
+      "sources": [],
+      "confidence": "local_evidence",
+      "evidence_basis": [
+        "data/public-migration.json / moved",
+        "delivery/delivery-verification.json",
+        "delivery/final-host-47.json",
+        "delivery/final-host-101.json"
+      ],
+      "inference_io": {
+        "input": "符合 continue-interface 输入协议的空间音频与问题。",
+        "output": "空间音频问答预测与两阶段准确率；尚未完成独立盲测。"
+      }
     }
   }
 }

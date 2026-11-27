@@ -1,0 +1,617 @@
+{
+  "items": [
+    {
+      "id": "research-wiki",
+      "title": "团队科研知识库",
+      "category": "科研入口",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/Md6wwmSJsi1CEhkgACWc3wYanvg",
+      "summary": "从研究路线、周会、科研探索、数据规格和算法研究五个分支进入。原件内的目录也收录后续新增的子文档。"
+    },
+    {
+      "id": "team-onboarding",
+      "title": "守忆科技｜新人入职手册",
+      "category": "科研入口",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/TYjZwc3J0iZDqnkSlHcc8F7gnve",
+      "summary": "第一次参与项目时，从研究方向、岗位分工、交接示例和周会节奏开始读。"
+    },
+    {
+      "id": "layered-metrics",
+      "title": "数据科研中台｜分层指标库 v0.1",
+      "category": "核心文书",
+      "updated_at": "2026-11-13",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/Bnfew3u4Xik4wZk6Bebc4UhVnYw",
+      "summary": "从声音或转写中的直接观察，到按规则计算出的指标，再到结合任务上下文的解读。每一层都保留可以回查的依据。",
+      "sections": [
+        {
+          "title": "L1 基础观测",
+          "paragraphs": [
+            "记录能定位到原声、转写或采集记录的观察，例如词语时间戳、说话人片段、声学读数、声音事件和模型候选标签。记录输入、测量方法和实现状态，尽可能保留对应原句或时间段。"
+          ]
+        },
+        {
+          "title": "L2 组合指标",
+          "paragraphs": [
+            "对同一范围内的基础观测按明确规则计算。例如按有效发声时长汇总多个片段的情绪分数，或统计咳嗽事件的段数和总时长。"
+          ]
+        },
+        {
+          "title": "L3 综合判断",
+          "paragraphs": [
+            "结合前两层指标与任务上下文给出解释。原文以心度的心理情况和勿忘我的认知情况为例。阅读时可以沿判断、指标、原始片段的顺序追查依据。"
+          ]
+        }
+      ],
+      "source_mode": "feishu_live"
+    },
+    {
+      "id": "workspace-guide",
+      "title": "科研平台使用指南",
+      "category": "平台指南",
+      "updated_at": "2026-11-13",
+      "url": "/docs/README.md",
+      "summary": "从同一个入口查数据和模型、读文献、看团队方向和成员周报、检查服务器资源。",
+      "sections": [
+        {
+          "title": "查找资料",
+          "paragraphs": [
+            "进入数据与模型，按研究大类和细分类查找。资料介绍给出数据或模型是什么、适合什么研究以及适用边界。申请状态及详细记录可回飞书原表核对。"
+          ],
+          "links": [
+            {
+              "label": "数据与模型",
+              "url": "/#data-platform"
+            },
+            {
+              "label": "文献管理",
+              "url": "/papers/"
+            },
+            {
+              "label": "服务器资源",
+              "url": "/#servers"
+            }
+          ]
+        },
+        {
+          "title": "查看科研进展",
+          "paragraphs": [
+            "按方向查看当前进展和下一步，按成员阅读已发布周报。提交方式仍由日报和周报页面提供。"
+          ],
+          "links": [
+            {
+              "label": "研究方向",
+              "url": "/progress/#directions"
+            },
+            {
+              "label": "团队周报",
+              "url": "/progress/#team"
+            },
+            {
+              "label": "写日报",
+              "url": "/progress/#daily"
+            },
+            {
+              "label": "提交周报",
+              "url": "/progress/#upload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-council",
+      "title": "基础学术委员会与合作规则",
+      "category": "合作规则",
+      "updated_at": "2026-11-13",
+      "url": "/docs/research-council.md",
+      "summary": "围绕研究问题、联系人、最新证据和下一步协作。委员会集中处理跨方向分歧、证据判断和会影响他人的变更。",
+      "sections": [
+        {
+          "title": "研究记录",
+          "paragraphs": [
+            "一个方向保留一个可引用的 README。已有周报可以直接作为过程记录，关键结果附数据版本、评估范围及证据链接。"
+          ]
+        },
+        {
+          "title": "议会如何工作",
+          "paragraphs": [
+            "方法、数据、研究协作、Agent 和前端各自提出具体改进。涉及数据许可、共享原件或公开研究结论时，由相应负责人进行复核。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agent-handbook",
+      "title": "Agent 协作与接入指南",
+      "category": "平台指南",
+      "updated_at": "2026-11-15",
+      "url": "/docs/agent-guide.md",
+      "summary": "从同一份说明理解平台能力、飞书访问、离线上下文、各模块接口及自动更新边界。",
+      "sections": [
+        {
+          "title": "先解决访问",
+          "paragraphs": [
+            "网页与浏览器 Agent 共用现有飞书认证，不需要额外的平台令牌。无法使用浏览器时，成员可在首页 Agent 区下载研究上下文，将本地文件路径交给 Agent；文件是导出时刻的快照。"
+          ],
+          "links": [
+            {
+              "label": "登录后下载研究上下文",
+              "url": "/#agent"
+            },
+            {
+              "label": "完整接入手册",
+              "url": "/docs/agent-guide.md"
+            }
+          ]
+        },
+        {
+          "title": "再按任务读证据",
+          "paragraphs": [
+            "从资料与模型、已核对成果、成员进展和研究方向开始，沿稳定 ID 回查报告、文献与原件。只读发现与报告提交、论文整理分别说明。"
+          ],
+          "links": [
+            {
+              "label": "模块接口与例子",
+              "url": "/docs/agent-modules.md"
+            },
+            {
+              "label": "机器可读合同",
+              "url": "/docs/agent-contract.json"
+            }
+          ]
+        },
+        {
+          "title": "看清已完成和边界",
+          "paragraphs": [
+            "已有材料整理与动态研究全景，尚无统一的自主科研实验执行器。资料位置不等于使用权限，模型摘要不等于已验证的科研结论。"
+          ],
+          "links": [
+            {
+              "label": "整体建设现状",
+              "url": "/docs/agent-status.md"
+            },
+            {
+              "label": "自动更新与维护",
+              "url": "/docs/agent-maintenance.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-planning",
+      "title": "整体规划",
+      "category": "团队方向",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/K75twFGO7iWzD8keM06cP5DqnBh",
+      "summary": "研究计划与分工的上层目录。时间较早的方案可用于理解选择依据，近期执行进展见成员周报。"
+    },
+    {
+      "id": "voice-research-assets",
+      "title": "语音智能研究资产手册｜疾病·副语言·全双工",
+      "category": "团队方向",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/QSdfw3YXLinCqoktgTLcUT65nqd",
+      "summary": "按研究任务梳理可用数据、标签、许可和模型基线，说明哪些比较需要复现和跨来源验证。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看数据与模型",
+              "url": "/#data-platform"
+            },
+            {
+              "label": "核对已登记的研究成果",
+              "url": "/#research"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cognition-lab-plan",
+      "title": "认知障碍三元闭环智能实验室：团队落地方案",
+      "category": "团队方向",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/HvwhwPFlzijjK3kTVSecufiznQc",
+      "summary": "规划科研与工程的共用基础、队列用途和验证方法。设计中的样本量与实施进度应分别核对。"
+    },
+    {
+      "id": "research-plan-1015",
+      "title": "1015-科研团队计划与安排（重要）",
+      "category": "团队方向",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/MCtjwmcqmiEeZ9kAncrcJAGJndh",
+      "summary": "保留团队当时的计划与安排，以飞书预览中的 HTML 原件查阅。"
+    },
+    {
+      "id": "weekly-seminar",
+      "title": "科研周会与会议原件",
+      "category": "周会与协作",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/CHpCw6POyiG5JFkWUGscuUmPnlh",
+      "summary": "会议按本周交流、个人进度、下周规划和本周总结组织。原件目录汇集各次周会，便于从份数统计回到讨论依据。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "按成员和日期阅读日报与周报",
+              "url": "/progress/#team"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-11-14",
+      "title": "科研周会 · 2026-11-14",
+      "category": "周会与协作",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/VDiYwc28xiMJ3Nkjv2wc1klOnXb",
+      "summary": "查看本次交流的署名、议题和演示材料，并对照平台同周的成员报告。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "对照 2026 年第 46 周成员周报",
+              "url": "/progress/#team?week=2026-W46"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-10-31",
+      "title": "科研周会 · 2026-10-31",
+      "category": "周会与协作",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/O8VuwkaORilwxgkBz4qcwrNQn7b",
+      "summary": "从周会记录回看 VoxMem 任务分析、补充材料和下一步验证。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "对照 2026 年第 44 周成员周报",
+              "url": "/progress/#team?week=2026-W44"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-exploration",
+      "title": "科研探索库",
+      "category": "问题与文献",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/MpvgwmyL4ivXfukbbbwcWBvknlc",
+      "summary": "围绕科研需求池记录待验证的问题，在文献共享管理库保存阅读线索与想法。"
+    },
+    {
+      "id": "research-question-pool",
+      "title": "科研需求池",
+      "category": "问题与文献",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/YK5wwVfaViOvTtkZYUscdvcEnUg",
+      "summary": "查找团队讨论过的研究问题、关联材料和仍待验证的线索。"
+    },
+    {
+      "id": "reading-room",
+      "title": "文献共享管理库",
+      "category": "问题与文献",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/Vts2wKqUOiqX45kF4FRcIx5Inkf",
+      "summary": "回到团队整理文献、选题与想法的原始记录，结合平台论文题录检索。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "检索论文和阅读笔记",
+              "url": "/papers/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-data-specs",
+      "title": "数据相关",
+      "category": "数据与测量",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/KEY0wXZiXiFRWHkd8xlcsPLln0e",
+      "summary": "数据格式、采集要求和公司台账的目录。使用具体数据前先核对原始授权和记录条件。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查数据与模型",
+              "url": "/#data-platform"
+            },
+            {
+              "label": "查看飞书台账",
+              "url": "/#feishu-ledger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-data-spec",
+      "title": "科研数据规格书",
+      "category": "数据与测量",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/BIhtw3xXliUTWzkLzGMc5nhdnFf",
+      "summary": "核对科研数据的字段、格式和交付要求；具体版本以飞书原件为准。"
+    },
+    {
+      "id": "research-collection-spec",
+      "title": "数据采集与建库规格书",
+      "category": "数据与测量",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/IadTwatKlibz5Zk0Wquc1Mfcnbd",
+      "summary": "查阅采集与建库的原始约定，作为团队协作和记录的依据。"
+    },
+    {
+      "id": "feature-dictionary",
+      "title": "传统特征指标数据库字段字典（基础必需评审稿）",
+      "category": "数据与测量",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/QU9Iwi9p8izUTJkfcPAcsLpSnbf",
+      "summary": "查阅传统特征字段的命名、含义和评审口径。"
+    },
+    {
+      "id": "algorithm-research",
+      "title": "算法研究",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/YSxewSCVPixosEkwNrBcROmdnae",
+      "summary": "各研究方向保留方法说明、参考资料与探索总结，可沿子目录查阅最新版本。"
+    },
+    {
+      "id": "voice-fundamentals",
+      "title": "语音基础知识学习资料",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/BmLiwEvs7io0fVkRKZWc47gunlZ",
+      "summary": "面向语音研究入门的学习资料和链接。"
+    },
+    {
+      "id": "speech-screening-modules",
+      "title": "五分钟语音认知筛查算法模块说明（可接入版 V1 / V1.5）",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/KIejwZP7iiH4QkkiJrXchNDznfe",
+      "summary": "从输入质量、音频与文本特征，到主模型和对照设计查阅模块说明。"
+    },
+    {
+      "id": "speech-state-context",
+      "title": "面向老年认知变化的语音特质—状态—情境解耦、个体动态建模与 A2A 实验方法研究",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/IyQ6wLPO6infPPkKdrccWfX1nYb",
+      "summary": "阅读个体变化建模的研究问题、方法与实验设计。"
+    },
+    {
+      "id": "cross-device-evidence",
+      "title": "声音证据能不能跨设备站住？——从特征解耦到强化学习",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/HPuewRDmDiPmXFkOCL2cKDR2nXf",
+      "summary": "按原件理解录音设备差异、特征解耦与验证条件。"
+    },
+    {
+      "id": "benchmark-board",
+      "title": "Benchmark 打榜看板",
+      "category": "算法与评测",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/L3EdwtF5Fi9GoXkeM3mchq87nah",
+      "summary": "查看团队的基准任务看板，跟进具体任务和评测入口。"
+    },
+    {
+      "id": "feishu-data-guide",
+      "title": "公共数据与模型使用指南",
+      "category": "平台指南",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/SF1gwcftpi5TFFk5dvTcmDYWnBd",
+      "summary": "查阅团队发布的飞书数据使用指引。当前资源位置和使用条件可回到数据与模型模块核对。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "打开数据与模型",
+              "url": "/#data-platform"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feishu-compute-guide",
+      "title": "科研服务器与算力使用指南",
+      "category": "平台指南",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/XtYhwsFQSiWNK5kmU92coONFnah",
+      "summary": "查阅飞书算力使用指引，近期状态以平台服务器观察记录为准。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看服务器最近状态",
+              "url": "/#servers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feishu-progress-guide",
+      "title": "科研进度平台使用指南",
+      "category": "平台指南",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/WNx2wpVBSicAulkcLrfc0UQqnzb",
+      "summary": "阅读飞书发布版本；报告格式与当前提交入口可从团队进展查看。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看当前进展和报告原件",
+              "url": "/progress/#team"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feishu-paper-guide",
+      "title": "文献与研究来源使用指南",
+      "category": "平台指南",
+      "source_mode": "feishu_live",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/J0gqwARwrikJE8kbM8IcPqoOnYc",
+      "summary": "阅读飞书文献指引，按原件和论文题录追溯研究依据。",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "打开文献库",
+              "url": "/papers/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-10-24",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/I7QHwMBE6i1exXkqLCgcUCNYnTb",
+      "title": "科研周会 · 2026-10-24",
+      "category": "周会与协作",
+      "summary": "交流空间音频挑战赛、看图说话认知风险筛查和记忆模型验证，原件保留指南、论文及汇报附件。",
+      "source_mode": "feishu_live",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看第 43 周的收件情况（尚无团队周报）",
+              "url": "/progress/#team?week=2026-W43"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-10-17",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/Gv20w94TUiSyIRkY2qlcVNpfn5F",
+      "title": "科研周会 · 2026-10-17",
+      "category": "周会与协作",
+      "summary": "查看语音健康与副语言评测的选题、科研平台规范和算法进展。会议中的队列规模与时间表是当时的计划。",
+      "source_mode": "feishu_live",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看第 42 周的收件情况（尚无团队周报）",
+              "url": "/progress/#team?week=2026-W42"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-10-10",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/T5Kdw5EvziXaiokfh83cWTkqnMc",
+      "title": "科研周会 · 2026-10-10",
+      "category": "周会与协作",
+      "summary": "讨论科研需求池、共享文献和纵向队列的采集与实验设计，记录团队仍需决定的问题。",
+      "source_mode": "feishu_live",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看第 41 周的收件情况（尚无团队周报）",
+              "url": "/progress/#team?week=2026-W41"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seminar-2026-10-03",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/BSsUwz50qiseVmkhGMDcHoYQnEy",
+      "title": "科研周会 · 2026-10-03",
+      "category": "周会与协作",
+      "summary": "团队首次集中讨论整体科研规划，原件保留交流议程、补充材料和两段会议录制的入口。",
+      "source_mode": "feishu_live",
+      "sections": [
+        {
+          "title": "平台关联",
+          "links": [
+            {
+              "label": "查看第 40 周的收件情况（尚无团队周报）",
+              "url": "/progress/#team?week=2026-W40"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voice-study-collection-plan",
+      "title": "研究采集方案",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/CihZwmXwji4S94kJP7Jcy9t9n8c",
+      "category": "数据与测量",
+      "summary": "围绕研究任务安排语音采集，说明设备和材料选择，并从原生目录关联具体训练方案。",
+      "source_mode": "feishu_window"
+    },
+    {
+      "id": "voice-study-material-evidence",
+      "title": "五病语音采集｜逐环节材料选型与证据表",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/VMulwKibfi7tJCkScRFc1KgynHg",
+      "category": "数据与测量",
+      "summary": "按五类疾病语音采集的各个环节比较任务和材料，列出选型依据与采集质量考虑。",
+      "source_mode": "feishu_live"
+    },
+    {
+      "id": "longitudinal-collection-handbook",
+      "title": "纵向队列采集操作手册",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/HXJnwlBRqipzQgkE1JNcjhjtnPf",
+      "category": "数据与测量",
+      "summary": "供现场人员核对知情同意、设备、量表、采集任务和登记步骤，具体材料版本以原件为准。",
+      "source_mode": "feishu_live"
+    },
+    {
+      "id": "hefei-voice-cohort-protocol",
+      "title": "合肥纵向语音队列实施方案（学术简版）",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/LG8twMeffikJEOkDKuQcbuSbnCg",
+      "category": "数据与测量",
+      "summary": "合肥纵向语音队列的学术实施方案。原件说明队列访视安排、采集任务和配套材料。",
+      "source_mode": "feishu_window"
+    },
+    {
+      "id": "hefei-multidevice-training-plan",
+      "title": "合肥队列｜多设备、多任务语音训练方案（算法执行版）",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/Sxl7wkTkpiVHS2kRxaXcfJJSnic",
+      "category": "算法与评测",
+      "summary": "合肥队列的算法执行稿，围绕多设备、多任务的语音样本组织训练与录音输入，作为复核后续实验的方案依据。",
+      "source_mode": "feishu_live"
+    },
+    {
+      "id": "voice-interview-agent-reading",
+      "title": "论文｜面向认知障碍老人的语音访谈 Agent",
+      "url": "https://wcn5kauqqbj1.feishu.cn/wiki/U69uw2t9ZiEgUvkOXRjck0L2neg",
+      "category": "问题与文献",
+      "summary": "团队对认知障碍老人语音访谈 Agent 论文的阅读笔记，梳理研究动机和方法，区分病史采集与疾病诊断。",
+      "source_mode": "feishu_live"
+    }
+  ]
+}

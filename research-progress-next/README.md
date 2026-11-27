@@ -1,205 +1,104 @@
-# 团队进展与科研周记
+# 科研进度
 
-线上成员使用飞书登录，从科研工作台进入日报、周报和团队进展。阅览范围和提交格式以生产页面为准。[平台使用与维护说明](../docs/platform-guide.md) · [打开团队进展](https://rmp.wuwangwo.top/progress/#team)
+[独立电子实验记录本](experiments/README.md)
 
-## 团队方向与方法
+先用周报看阶段成果，再用日报查每日推进。研究全景从研究问题、关键发现、共同瓶颈和验证优先级统筹近况，方向脉络与原始文书放在后面。
 
-打开 `/progress/direction-methods`，可从研究问题进入方法、对照、结果和来源。成员也可用[只读 MCP](../research-data-center-next/docs/progress-mcp.md)分别查询团队、成员、方向与方法。
+| 常用入口 | 使用方式 |
+| --- | --- |
+| `/progress/api/lab-review` | 成员直接阅读校审稿，按“实验室核心结论 → 研究主题 → 成员证据”三级金字塔导读逐层核对。Agent 在同一飞书会话加 `?format=json`，或加 `?format=json&version=auto` 阅读新材料的自动稿；引文按来源 ID 核对。 |
+| `/progress/direction-methods` | 首页顶部的算法核心地图按六类能力查看稳定方向 ID、方向/方法数和具体算法；进入方向详情核对指标、对照、范围、成员与证据。 |
+| `/progress/#team` | 周报阶段进展 → 日报每日推进 → 研究全景与全员 → 研究脉络。用 `#team?week=2026-W42` 引用具体周次 |
+| `/progress/#directions` | 各方向的研究问题、已知进展、下一步及证据范围。点击方向标题后可分享完整文档地址 |
+| `/progress/#daily` | 在线填写或上传 Markdown、TXT、CSV、Word、Excel、PowerPoint 或有文本的 PDF，可同时选择多个附件 |
+| `/progress/#upload` | 上传周报文件，扩展名不限。可以下载所选成员和周次对应的 Markdown 模板 |
 
-部署沿用已有成员身份验证。已有共享授权的部署通过 `security.team_reports_shared` 提供成员阅读入口。方向说明从团队根目录的 `directions/` 读取，方法索引从 `direction-methods.json` 读取，阶段复盘来自已发布的 `lab-review.json`。开启 `progress_digest.enabled` 后，进度接口会检查现有汇总版本与原报告是否匹配。首次部署可先阅读未发布提示，再由团队在自身存储中补充材料。示例格式见[合成接口测试](tests/test_direction_methods.py)。
+提交用登记姓名归档。报告写实际做了什么、可复核的结果、需要的协助和下一步。涉及某一方向时，写方向名称或链接。团队页每 30 秒读取记录，周报、日报各按个人名单列时间表，点击有记录的周次或日期即可读全文、下载原件与附件。尚无归档的日期淡显，不代表研究未推进。
 
-## 登记与提交流程
+周报与日报各自选择周次、成员，浏览筛选独立于提交表单的归档成员。页面链接中的 `week`、`member` 用于周报，`daily_week`、`daily_member` 用于日报；原有带 `date` 的日报链接继续可用。查看历史周报不会切走当前日报。
 
-1. 首次在网页填写姓名后加入；已有登记直接选择，同名者需附加组别等区分信息。原配置中的成员继续保留。
-2. 成员进入进度页，选择报告所属成员及日期或周次，再按页面支持的格式填写或上传。使用本仓库的独立模块时，可在线填写或上传模板 Markdown。
-3. 报告上传同时检查名单与目录是否存在；上传不会代为登记。姓名登记走独立接口，随机生成目录 ID，不接受用户指定路径。
-4. 报告按统一格式存入 `members/<id>/reports/YYYY-Www.md`。
-5. Agent / Skill 每周收集标准周报，发布团队概要及逐人进展。团队报告与知识库只读。
+阶段归档保留当时的成员周报摘要与来源校验，可跳回报告正文和原件；全员的当前记录仍从上方个人时间表查阅。
 
-日报单独保存到 `members/<id>/daily/YYYY-MM-DD.md`，包含今日完成、结果与证据、问题与阻塞、明日计划。日报不会自动转换为周报，也不会混入现有每周汇总输入。入口支持 `#daily` 直接定位。
+日报和周报正文在演示环境全员可读。正式部署确认统一登录保护 `/progress/` 及接口后，设 `security.team_reports_shared: true`，按同样规则读取新旧日报和已整理周报的正文。尚未整理的周报显示收件状态。附件最多 8 个，上传总量受配置限制且不超过 20 MiB。照片、扫描件可作为附件，原件由个人目录归档。
 
-新增姓名保存在配置的 `state` 根下 `members.json`，不修改服务配置。HTTP 服务和周报汇总命令均读取该持久名单；备份需同时包含 state 与 members。重名返回 409，不会认领已有目录。登记仅是成员标签，不是身份认证。
+## 更新研究方向
 
-新增接口：`POST /api/members`（JSON 只含 `name`）；`GET /api/daily-template?member_id=...&date=YYYY-MM-DD`；`POST /api/daily/uploads`（JSON 的 `member_id`、`date`、`fields`，或 multipart 的 `member_id`、`date`、一个 `file`）。所有写请求沿用 `X-Requested-With: ResearchWeekly` 和原来源限制。日报同日相同内容幂等返回 200，首次 201，不同内容 409。原周报接口不变。
+周会用[四栏写作说明](deploy/knowledge/02-周报怎么写.md)。阶段复盘由实验室核心结论展开到研究主题、成员证据和原件，顶部三级金字塔显示四栏判断数、主题数、署名覆盖及层间联系数。新增的批量复盘与已有的近期自动整理可以分别运行。[阶段复盘与项目盘核对](experiments/lab-review.md)
 
-生产环境由统一 HTTPS 入口验证飞书成员身份。独立模块的成员下拉框用于选择报告所属成员，报告目录检查用于验证该成员可提交。共享总结和文档由外层访问边界控制。个人原件的读取以当前部署启用的成员权限和入口为准。
+复盘中可从一条实验室结论跳到引用同一段原文的研究主题，再转到被引用成员及其原报告，也可从成员反查主题。每人分别显示周报与日报份数。报告之间的引用用于找依据；项目负责人以署名或明确分工为准。联系数只描述阅读路径，不用于评价研究质量或贡献排名。
 
-每人每周一份：首次提交返回 201；完全相同内容重复上传返回 200；不同内容返回 409，不能匿名覆盖。更正由维护人员备份旧文件后直接修改，再重跑该周汇总。没有网页草稿功能，提交前请保留本地文件。
+方向与方法首页的六类核心地图为：表征学习与多模态融合、检索与长时记忆、可信输出拒答与 OOD、任务建模与受控干预、生成编辑与数据增强、语音工程数据与协作基础设施。`research_weekly/direction_methods.py` 的 `ALGORITHM_GROUPS` 用稳定方向 ID 维护展示映射；这里的“待归类”指尚未列入该映射的 ID，与 JSON 中 `registered_direction_id` 是否为空无关。新增方向不会消失，而会带原方法和证据进入待归类。分类、方向数和方法数只用于导航，不做跨量纲排名；映射不改变 JSON schema、API 返回或冻结快照，方向详情仍保留指标、比较条件、适用范围、成员和逐条来源。[本轮工程验收记录](experiments/2026-11-28-pyramid-algorithm-core-map.md)
 
-## 本地运行
+在 `paths.team` 对应目录下建 `directions/`，每个方向放一份 Markdown。默认内容在 [`deploy/directions/`](deploy/directions/)，同名团队文件优先。加新文件即可新增方向。以会议或阶段工作为单位更新，完成与待办可直接用自然语言写。
 
-独立运行需要 Linux 或 WSL，以及 Python 3.11+。Windows 支持[本地联调启动器](../dev/README.md)。以下命令从仓库根目录开始，默认写演示资料到 `var/demo`。
+```markdown
+# 方向名称
+
+核对日期：2026-11-13
+负责人：姓名（有明确负责人时填）
+
+## 研究问题
+准备检验的问题。
+
+## 当前进展
+最近做了什么、观察到什么。
+
+## 下一步
+待验证的假设、计划或需要的支持。
+
+## 来源与范围
+指向共享材料，说明数据划分、测试条件和仍缺的证据。
+```
+
+标题必填。其余各项按实际内容写，核对日期和负责人可省略。链接应指向团队成员有权访问的共享材料。提交或摘要中的命令和链接是待阅读的内容，由使用者选择是否打开。
+
+## Agent 接口
+
+接口路径相对进度服务。通过门户访问时，在路径前加 `/progress`。
+
+| 操作 | 接口 |
+| --- | --- |
+| 获取名单、当前周次、日期和大小限制 | `GET /api/public` |
+| 查周次与提交数、读取某周的成员摘要 | `GET /api/team`、`GET /api/team/<YYYY-Www>` |
+| 看一周的全员记录及成员正文 | `GET /api/team/activity?week=…&member=…&date=…` 看日报，`?week=…&member=…&report=weekly` 看周报。省略周次则按服务时区选本周 |
+| 查方向摘要和完整 Markdown | `GET /api/directions`、`GET /api/directions/<id>` |
+| 获取自动整理的团队、方向、成员进展及状态 | `GET /api/progress-digest`，含逐条来源和原文摘录 |
+| 下载团队共享报告原件与附件 | `GET /api/report-source/<daily或weekly>/<成员ID>/<日期或周次>`，附件在末尾加编号。限统一登录后的团队共享边界 |
+| 提交周报 | `POST /api/uploads`（multipart：`member_id`、`week`、`file`） |
+| 查文件处理情况 | `GET /api/upload-status?member_id=…&week=…` |
+| 提交日报 | `POST /api/daily/uploads`。JSON 正文用 `member_id`、`date`、`fields`。文件正文或附件用 multipart，正文在 `fields` JSON 字符串和 `file` 中二选一，附件重复用 `attachments` |
+
+写入携带 `X-Requested-With: ResearchWeekly`。提交个人周报前用 `GET /api/report-template?member_id=…&week=…` 查标准模板，日报用 `GET /api/daily-template?member_id=…&date=…`。同内容重复提交返回 `200`，同一成员同一日期或周次的不同内容返回 `409`，需要更正时由维护人员保留旧原件并重跑相关周的汇总。入口部署在团队访问边界内，姓名登记用于归档。
+
+记录接口同时返回 `daily_records` 和 `weekly_reports`，供人和 Agent 按日期或阶段阅读，含成员、四栏正文及授权范围内的原件链接。`weekly_timetable` 给出所选周及此前三周的周次与记录入口，历史条目只查索引和原件信息，不批量读取正文。大范围正文超过预算时保留条目，标记 `content_deferred`，可用成员详情链接继续读全文。`daily_week` 等是页面筛选参数，调用接口时仍按各自周次分别请求 `week`。
+
+## 运行与维护
+
+在 Linux 或 WSL 的 `research-progress-next` 目录运行：
 
 ```bash
-cd research-progress-next
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock.txt
 .venv/bin/python -m research_weekly.cli demo
 .venv/bin/python -m research_weekly.cli serve
 ```
 
-演示数据初始化后，后续直接运行 `serve`，用浏览器访问 `http://127.0.0.1:8765`。和门户同时独立启动时，为进度服务选用 `--port 8766`。
-`demo` 是显式初始化示例目录、虚构周报和规则摘录的命令，不覆盖原始周报，但可能重新生成演示汇总。真实智能总结需配置 Agent 或模型 API。
+`demo` 使用 `config.demo.json` 与 `var/demo/`，生成可识别的演示报告。已有部署用现有配置直接 `serve`，按需用 `process-uploads --once` 处理原件，或 `summarize --week previous` 生成上一周摘要。`paths.members`、`paths.team`、`paths.knowledge` 和 `paths.state` 分别保存个人文件、团队摘要、共读说明和运行数据。迁移或备份时保留四个目录。原部署细节及兼容接口见 [历史部署说明](deploy/reference/README.previous.md)。
 
-## 登记成员与目录
+页面按周次提供共享链接，先展示摘要和成员，再展开报告口径和来源。使用清楚的标题与原生输入组件，参照 [GOV.UK Service Manual 的界面写作](https://www.gov.uk/service-manual/design/writing-for-user-interfaces)和 [W3C 的可读内容设计指南](https://www.w3.org/TR/coga-usable/)。
 
-修改配置中的 `members`：
+### 本地运行 DeepSeek 汇总
 
-```json
-[{"id":"lin","name":"林同学"},{"id":"chen","name":"陈同学"}]
-```
+复用 `process-uploads --once` 和 `summarize --week current`。在 `summary` 中设置 `mode: "api"`、`model` 和 `api_base`。本地兼容模型用回环地址，例如 `http://127.0.0.1:8000/v1`。远程 DeepSeek 用 `https://api.deepseek.com`，可配置 `deepseek-flash`，凭据从 `api_key_env` 指定的环境变量读取，例如 `DEEPSEEK_API_KEY`。现有服务通过私有 EnvironmentFile 注入。
 
-ID 为 2–32 位小写字母、数字、下划线或连字符，以字母开头。然后维护人员显式初始化：
+正式总结采用 `deepseek-v4-pro`、`thinking: {"type":"enabled"}`、`reasoning_effort: "max"`、`max_tokens: 65536`。团队研究全景可在 `progress_digest` 中覆盖同名模型参数；换模型或总结策略会重建版本。仅保存最终有据摘要，推理过程不返回或归档。
 
-```bash
-.venv/bin/python -m research_weekly.cli --config config.demo.json init
-```
+远程方式须按团队授权单独开启 `summary.allow_remote_summary`（标准周报正文）、`summary.allow_remote_intake`（周报原件提取文本）或 `summary.allow_remote_progress`（团队近期进度）。默认关闭。周报图片原件只支持本地模型。[DeepSeek API 文档](https://api-docs.deepseek.com/api/create-chat-completion/)
 
-`init` 为名单里的成员建立目录，不需要设置密码。修改名单后重启 Web 服务。
-也可以由维护人员手动建立 `members/<id>/`；上传时会在已存在的成员目录内建立 `reports/`。仅有目录但未在名单中登记也不能上传，保证 Agent 汇总名单一致。
-**`serve`、`prepare`、`summarize` 均不自动补建缺失成员目录。**
+### 团队进展自动更新
 
-目录路径由 `paths.members/team/knowledge/state` 配置。相对路径基于配置文件所在目录；四个根目录不能互相嵌套或使用符号链接。目录变化不会自动迁移数据。
+开启 `progress_digest.enabled: true` 后，现有每分钟收件任务在处理周报后检查近 28 天共享日报、相交周次的周报和方向文书。内容变化才调用模型；没有新内容不重复生成。团队、方向和全员各列出进展、成果、阻塞与下一步，每条附可核对的原文摘录。没有记录的成员保留显示，缺少方向依据的工作放入“待归类工作”。方向文书的既有基线独立保留。
 
-```text
-data/
-├── members/<id>/reports/YYYY-Www.md  # 个人正式周报，不开放 HTTP 读取
-├── team/weekly/YYYY-Www.md           # 共享总结
-├── team/weekly/YYYY-Www.json         # 前端元信息
-├── knowledge/*.md                   # 共享知识，维护人员更新
-└── .state/jobs/、history/            # 私有原始输入、结果及历史
-```
+`research_brief` 另给出研究大局、关键发现、共同瓶颈和验证优先级；建议与报告中已有安排明确区分，均附促成判断的报告来源。D3 记录图将日报按日、周报按周展示，可以回到原件；图中计数仅代表归档报告。
 
-## 模板 v1
-
-网页先选成员和周次，再点击“下载对应模板”。四个二级标题必须按以下顺序出现一次，内容不能为空；未知写“未说明”。下载的填写提示必须替换后才能提交。一级标题必须与配置姓名和目标周次匹配。
-
-```markdown
-# 林同学 · 2026-W42 科研周报
-
-## 本周完成
-完成语音样本字段检查，正在核对设备信息。
-
-## 结果与证据
-已生成数据核对清单；尚未进行模型性能对比。
-
-## 问题与阻塞
-部分设备信息需要补充。
-
-## 下周计划
-补齐字段后开展小批量特征提取验证。
-```
-
-模板规则在 `research_weekly/reports.py`，网页、API、Agent 收集器共用。既有示例报告兼容此格式。直接写磁盘的报告也必须合规，否则汇总失败，旧团队总结继续保留。单报告默认 64 KB，每栏目最多 12000 字；总汇总输入默认 512 KB。只支持 UTF-8 Markdown。
-
-## 前后端统一上传接口
-
-### 读取公开信息和模板
-
-```text
-GET /api/public
-GET /api/report-template?member_id=lin&week=2026-W43
-GET /api/team
-GET /api/team/2026-W42
-GET /api/knowledge
-GET /api/knowledge/01-欢迎加入.md
-```
-
-`/api/public` 返回当前可上传成员、周次、时区与大小限制，不返回磁盘绝对路径或原始周报。
-
-### 上传 Markdown 文件
-
-```bash
-curl --fail-with-body http://127.0.0.1:8765/api/uploads \
-  -H 'X-Requested-With: ResearchWeekly' \
-  -F 'member_id=lin' \
-  -F 'week=2026-W43' \
-  -F 'file=@./2026-W43.md'
-```
-
-必须是一个 `.md` 文件，标题须匹配林同学与 2026-W43。文件名不决定存储路径，后端统一按周次命名。
-
-### 后端脚本发送结构化字段
-
-```bash
-curl --fail-with-body http://127.0.0.1:8765/api/uploads \
-  -H 'Content-Type: application/json' \
-  -H 'X-Requested-With: ResearchWeekly' \
-  --data-binary @- <<'JSON'
-{
-  "member_id": "lin",
-  "week": "2026-W43",
-  "fields": {
-    "done": "完成样本字段检查",
-    "results": "生成数据核对清单，未进行性能对比",
-    "blockers": "设备信息需要补充",
-    "next": "补齐字段后验证特征提取"
-  }
-}
-JSON
-```
-
-网页在线表单使用同一个 JSON 接口，文件上传使用同一个 multipart 接口。不要把 `fields` 放进 multipart，也不要把文件路径放进 JSON。
-
-| 状态 | 含义 |
-|---|---|
-| 201 | 新报告已存入个人目录 |
-| 200 | 同内容已存在，幂等成功 |
-| 400 | 模板、字段、成员 ID、周次或编码错误 |
-| 403 | 成员未登记、目录不存在、缺请求头或 Origin 不允许 |
-| 409 | 同成员同周已有不同内容，禁止覆盖 |
-| 413 | 上传超过大小限制 |
-| 415 | 不支持的请求类型 |
-
-提交成功返回 `ok, duplicate, member_id, week, sha256, template_version`，不返回原始内容和服务器路径。
-没有会话 Cookie、密码或 CSRF Token。所有上传须带固定 `X-Requested-With`，浏览器的 Origin 须匹配配置；这用于阻止外站网页直接提交，不是用户身份认证。跨域前端暂不开放 CORS，当前网页与 API 同源部署；后端程序可直接调用。
-
-## Skill 与模型接入
-
-Skill：`skills/research-weekly-summary/SKILL.md`，环境变量 `RESEARCH_PROJECT` 为项目目录，`RESEARCH_CONFIG` 为配置绝对路径。
-
-手动工作流：
-
-```bash
-.venv/bin/python -m research_weekly.cli --config config.demo.json prepare --week 2026-W42
-# Agent 读取返回 job 内的 prompt.txt 与 manifest.json，写入 result.json
-.venv/bin/python -m research_weekly.cli --config config.demo.json publish \
-  --job /实际/job/路径 --result /实际/job/路径/result.json
-```
-
-自动工作流：
-
-```bash
-.venv/bin/python -m research_weekly.cli --config config.deepseek.local.json summarize --week previous
-```
-
-`current` 为配置时区本周，`previous` 为上一周，也支持明确 `YYYY-Www`。相同输入、同生成方式跳过发布；有意重跑用 `--force`。输入在运行中变化则拒绝发布旧结果。上传本身不会触发付费模型调用，也不会创建定时任务。
-
-- **API 模式**：`summary.mode=api`，配置 `api_base`、`model`、`api_key_env`。DeepSeek 本地配置引用 `DEEPSEEK_API_KEY` 环境变量，不保存密钥。程序请求 `{api_base}/chat/completions`，需要兼容 JSON 输出契约。
-- **CLI Agent**：`summary.mode=agent`，配置 argv 数组 `agent_command`。支持 `{prompt_file}`、`{result_file}`、`{work_dir}`、`{skill_file}`。适配程序读取提示词、调用 Agent、将纯 JSON 写入结果文件并返回 0。
-- **规则演示**：`summary.mode=extractive` 只允许演示环境，不是 AI 总结。
-
-## Linux 部署与定时
-
-1. 在 Linux 部署路径内用 Python 3.11+ 创建环境，安装 `requirements.lock.txt`。由专用服务账户维护可读写的数据根。
-2. 参考[演示配置](config.demo.json)创建独立的生产配置。设为 `demo=false`，设置 `security.https=true`，按反向代理实际传入的来源配置 `security.allowed_origins`。正式成员、数据根和模型配置由部署方维护，模型凭据从服务环境变量读取。
-3. 以服务账户运行 `init`，为配置中的成员初始化目录。将服务绑定回环地址，通过已有的 HTTPS 成员入口转发 `/progress/`。论文和门户可以使用独立端口。报告及工作目录由应用按权限提供入口。
-
-```bash
-.venv/bin/python -m research_weekly.cli --config /etc/research-weekly/config.json init
-.venv/bin/python -m research_weekly.cli --config /etc/research-weekly/config.json serve --host 127.0.0.1 --port 8766
-```
-
-使用现有服务管理器运行 Web 进程，并按团队需要调度已验收的 `summarize --week previous` 命令。服务账号使用自身的配置、模型凭据和绝对命令路径。备份覆盖个人、团队、知识和状态四个数据根。
-
-## 验证
-
-```bash
-.venv/bin/python -m pip install -r requirements-dev.txt
-.venv/bin/python -m pytest -q
-node --check web/app.js
-```
-
-测试覆盖无登录公开读取、原始报告不开放、目录不存在拒收、未知成员、模板及编码校验、JSON/文件上传一致、同内容幂等、禁止覆盖、路径与符号链接、来源版本、输入变化、Agent 命令与失败保留旧总结。模型归纳的科研事实仍须核对原文。
-
-生产入口和历史配置见[平台使用与维护说明](../docs/platform-guide.md)和[部署归档](../docs/科研平台部署说明_20261029.md)。
+本次团队授权使用 DeepSeek 整理共享报告正文和方向文书；日报附件、周报原始二进制文件不进入进展模型。输出写入 `paths.team/progress-digest.json` 和同名 Markdown，旧版留在 `paths.state/progress-digest-history/`。首页和团队页在可见时每 30 秒读取。整理失败保留上一版并显示更新状态，默认 5 分钟后重试。可用 `refresh-progress --force` 手动重跑；源记录和成员归属保持不变。

@@ -63,20 +63,22 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('/app.js')[0],200)
         self.assertIn("default-src 'self'",h['Content-Security-Policy'])
 
-    def test_public_catalog_and_pdf_do_not_require_login(self):
+    def test_catalog_and_pdf_require_login(self):
         self.assertEqual(self.request('/api/state',auth=False)[0],401)
-        code, body, _ = self.request('/api/catalog', auth=False)
+        self.assertEqual(self.request('/api/catalog', auth=False)[0], 401)
+        self.assertEqual(self.request('/api/papers/' + self.id + '/pdf', auth=False)[0], 401)
+        code, body, _ = self.request('/api/catalog')
         self.assertEqual(code, 200)
         data = json.loads(body)
         self.assertEqual(data['papers'][0]['id'], self.id)
         self.assertTrue(data['papers'][0]['fulltext_available'])
         self.assertFalse(data['access']['can_manage'])
         self.assertTrue(json.loads(self.request('/api/state')[1])['access']['can_manage'])
-        code, body, _ = self.request('/api/papers/'+self.id+'/pdf', auth=False)
+        code, body, _ = self.request('/api/papers/'+self.id+'/pdf')
         self.assertEqual(code, 200)
         self.assertEqual(body, pdf_bytes())
         code, body, _ = self.request('/api/papers/'+self.id+'/pdf',
-                                     headers={'Range': 'bytes=0-4'}, auth=False)
+                                     headers={'Range': 'bytes=0-4'})
         self.assertEqual((code, body), (206, b'%PDF-'))
         self.assertEqual(self.request('/manage', auth=False)[0], 200)
 
@@ -84,7 +86,7 @@ class HTTPTests(unittest.TestCase):
         before = self.library.record(self.id)
         self.library.edit(self.id, {'notes': 'private note marker', 'favorite': True})
         try:
-            code, body, _ = self.request('/api/catalog', auth=False)
+            code, body, _ = self.request('/api/catalog')
             self.assertEqual(code, 200)
             data = json.loads(body)
             paper = data['papers'][0]
@@ -101,6 +103,17 @@ class HTTPTests(unittest.TestCase):
         finally:
             self.library.edit(self.id, {'notes': before['notes'], 'favorite': before['favorite']})
 
+    def test_graph_uses_catalog_access_and_serves_assets(self):
+        self.assertEqual(self.request('/api/graph', auth=False)[0], 401)
+        status, body, _ = self.request('/api/graph')
+        self.assertEqual(status, 200)
+        self.assertEqual(set(json.loads(body)), {'schema_version', 'nodes', 'edges'})
+        self.assertNotIn(str(self.root).encode(), body)
+        for name, mime in [('graph.js', 'text/javascript'), ('graph.css', 'text/css')]:
+            status, _, headers = self.request('/' + name)
+            self.assertEqual(status, 200)
+            self.assertIn(mime, headers['Content-Type'])
+
     def test_public_read_does_not_authorize_management(self):
         for path, method, body in (
                 ('/api/state', 'GET', None), ('/api/settings', 'GET', None),
@@ -114,18 +127,18 @@ class HTTPTests(unittest.TestCase):
                 self.assertEqual(self.request(path, method, body, auth=False)[0], 401)
 
     def test_missing_and_unsafe_pdf_return_not_found(self):
-        self.assertEqual(self.request('/api/papers/' + '0' * 64 + '/pdf', auth=False)[0], 404)
+        self.assertEqual(self.request('/api/papers/' + '0' * 64 + '/pdf')[0], 404)
         file = self.library.pdf_path(self.id)
         original = file.read_bytes()
         file.unlink()
         try:
-            code, body, _ = self.request('/api/papers/' + self.id + '/pdf', auth=False)
+            code, body, _ = self.request('/api/papers/' + self.id + '/pdf')
             self.assertEqual(code, 404)
             self.assertNotIn(str(self.root).encode(), body)
-            catalog = json.loads(self.request('/api/catalog', auth=False)[1])
+            catalog = json.loads(self.request('/api/catalog')[1])
             self.assertFalse(catalog['papers'][0]['fulltext_available'])
             file.symlink_to('/etc/passwd')
-            self.assertEqual(self.request('/api/papers/' + self.id + '/pdf', auth=False)[0], 404)
+            self.assertEqual(self.request('/api/papers/' + self.id + '/pdf')[0], 404)
         finally:
             if file.is_symlink():
                 file.unlink()
@@ -161,7 +174,7 @@ class HTTPTests(unittest.TestCase):
                  'coverage': 'abstract', 'generated_by': 'codex'}
         try:
             self.library.commit_insight(self.id, value)
-            code, body, _ = self.request('/api/catalog', auth=False)
+            code, body, _ = self.request('/api/catalog')
             self.assertEqual(code, 200)
             insight = json.loads(body)['papers'][0]['insight']
             self.assertEqual(insight['abstract']['text'], source)

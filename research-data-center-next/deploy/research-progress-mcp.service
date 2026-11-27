@@ -1,0 +1,20 @@
+[Unit]
+Description=Member research progress MCP
+After=network.target research-platform-auth.service research-weekly-web.service
+
+[Service]
+DynamicUser=yes
+StateDirectory=research-progress-mcp
+StateDirectoryMode=0700
+WorkingDirectory=/opt/research-progress-mcp/current
+ExecStart=/opt/research-progress-mcp/venv-1.30.0-py314/bin/python -Bs progress_mcp_http.py --port 8772 --local-progress-origin http://127.0.0.1:8766 --oauth-db /var/lib/research-progress-mcp/authorization.sqlite3
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target

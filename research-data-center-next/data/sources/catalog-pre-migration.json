@@ -13973,6 +13973,40 @@
         "内容完整性": "未逐文件核验",
         "许可状态": "未核实；不影响公共区编目"
       }
+    },
+    {
+      "id": "model-midasheng-autonomous-20261030",
+      "name": "MiDasheng autonomous 继续训练与空间音频评测",
+      "kind": "model",
+      "server": "阿里云训练服务器",
+      "category": "模型权重",
+      "description": "continue-interface 最佳 checkpoint、评测回执与交付说明。dev 参与开发选模，不是独立盲测或疾病结论。",
+      "path": "/data/models/unconfirmed/midasheng-autonomous-20261030",
+      "owner": "hejingheng",
+      "formats": [".pt", ".json", ".md"],
+      "tags": ["midasheng", "spatial-audio-qa", "continue-training"],
+      "size_bytes": 225525531,
+      "file_count": 12,
+      "record_count": null,
+      "status": "verified",
+      "access": "rmp 可读取共享区目录入口；未据此推断所有子文件权限或模型可运行性。",
+      "source_url": "",
+      "source_ref": "public-migration.json / moved",
+      "verified_at": "2026-10-31T00:00:00+00:00",
+      "notes": "交付审核通过；dev 参与开发选模，不是独立盲测。",
+      "metadata": {
+        "subtype": "model_weights",
+        "disease_category": "unconfirmed",
+        "task_category": "spatial-audio-qa",
+        "上游revision": null,
+        "模型配置": {
+          "name": "continue-interface",
+          "task": "spatial-audio-qa",
+          "best_sha256": "6c7944a9a30a0d3a040b070f7ad1ec2a103389dcf73873f72468389fe662a408",
+          "test_evaluated": false,
+          "validation_scope": "official dev；参与开发选模，不是独立盲测"
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,17 @@
+[Unit]
+Description=Maintain lab shared storage read permissions
+RequiresMountsFor=/data/share
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/sbin/research-share-permissions.py
+UMask=0077
+Nice=15
+IOSchedulingClass=idle
+TimeoutStartSec=0
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/data/share /var/lib/research-share-permissions
+StateDirectory=research-share-permissions
+StateDirectoryMode=0700

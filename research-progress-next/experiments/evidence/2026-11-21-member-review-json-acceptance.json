@@ -1,0 +1,39 @@
+{
+  "auto": {
+    "claims": 217,
+    "corrected_claims": 18,
+    "direction_proof": 1,
+    "evidence": 418,
+    "known_evidence": true,
+    "members": 8,
+    "originals": 30,
+    "private_locations_found": false,
+    "redacted": 1,
+    "source_cards_without_private_fields": true,
+    "sources": 33,
+    "status": 200,
+    "topics": 12,
+    "withheld": 12
+  },
+  "default_html": true,
+  "invalid_format_status": 400,
+  "reviewed": {
+    "claims": 163,
+    "corrected_claims": 0,
+    "direction_proof": 0,
+    "evidence": 357,
+    "known_evidence": true,
+    "members": 8,
+    "originals": 30,
+    "private_locations_found": false,
+    "redacted": 0,
+    "source_cards_without_private_fields": true,
+    "sources": 30,
+    "status": 200,
+    "topics": 11,
+    "withheld": 9
+  },
+  "viewer": "authenticated member browser",
+  "unauthenticated_get_html": 401,
+  "unauthenticated_get_json": 401
+}

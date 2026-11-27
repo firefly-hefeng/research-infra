@@ -24,6 +24,9 @@ class Links(HTMLParser):
 
 
 def main():
+    home = (ROOT / 'static' / 'index.html').resolve()
+    docs_index = json.loads((ROOT / 'data' / 'workspace-docs.json').read_text(encoding='utf-8'))
+    app_routes = {'library-models', 'feishu-ledger'} | {f"documents/{item['id']}" for item in docs_index['items']}
     documents = list((ROOT / 'docs').rglob('*.html')) + [ROOT / 'static' / 'index.html']
     parsed, errors, checked = {}, [], 0
     for source in documents:
@@ -34,7 +37,14 @@ def main():
         for href in parser.links:
             value = urlsplit(href)
             # Independent loopback applications are mounted by the unified gateway.
-            if value.scheme or value.netloc or value.path.startswith('/api/') or value.path in ('/progress/', '/papers/'):
+            if value.scheme or value.netloc or value.path.startswith('/api/') or value.path in ('/progress', '/progress/', '/papers', '/papers/'):
+                continue
+            if value.path.startswith('/progress/assets/'):
+                shared_asset = value.path.removeprefix('/progress/assets/')
+                if shared_asset not in {'rhythm.js', 'rhythm.css', 'd3.v7.min.js'} or not (ROOT.parent / 'research-progress-next' / 'web' / shared_asset).is_file():
+                    errors.append(f'{source.relative_to(ROOT)} -> {href}: missing shared progress asset')
+                continue
+            if value.path.startswith(('/progress/', '/papers/')):
                 continue
             if value.path == '/':
                 target = ROOT / 'static' / 'index.html'
@@ -48,7 +58,8 @@ def main():
             checked += 1
             if not target.is_file():
                 errors.append(f'{source.relative_to(ROOT)} -> {href}: missing file')
-            elif value.fragment and target in parsed and unquote(value.fragment) not in parsed[target].ids:
+            elif (value.fragment and target in parsed and unquote(value.fragment) not in parsed[target].ids
+                  and not (target == home and unquote(value.fragment) in app_routes)):
                 errors.append(f'{source.relative_to(ROOT)} -> {href}: missing fragment')
     templates = ROOT / 'docs' / 'templates'
     for target in templates.glob('*.json'):

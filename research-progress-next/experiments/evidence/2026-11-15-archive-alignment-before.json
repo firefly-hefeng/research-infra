@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-11-15T09:28:31.680Z",
+  "observed": {
+    "viewport": 1440,
+    "panel": 80,
+    "heading": 101.80000305175781,
+    "name": 80.80000305175781,
+    "headingInset": 21.800003051757812,
+    "nameInset": 0.8000030517578125,
+    "padding": "0px",
+    "member": "靳驰骋"
+  },
+  "archived_report_files": [
+    {
+      "name": "2026-W44.json",
+      "bytes": 6236,
+      "sha256": "34480db3242dd5d16cb6c8a2facdfc3c04700c233c50a432b0ba098f4d3f8707"
+    },
+    {
+      "name": "2026-W44.md",
+      "bytes": 2842,
+      "sha256": "a0560d25187ed290eb5821c2b0fb16a2f78265ece8f824e43785c0026905d9a6"
+    },
+    {
+      "name": "2026-W45.json",
+      "bytes": 14266,
+      "sha256": "981c7d5a2a878e266429645b2ea50cf45535e3cd7dec05129776f4b5d8cf8244"
+    },
+    {
+      "name": "2026-W45.md",
+      "bytes": 6814,
+      "sha256": "b480395d9ac7d3a6c33265a3f225724ba3fdb9c726e70e98a9590a14b090629c"
+    }
+  ],
+  "empty_report_cta": {"viewport":390,"font":"32px","root":543,"link":"阅读团队最近已发布周报 · 2026-W45 ↗","linkWidth":525,"linkScroll":525},
+  "cause": "Zero horizontal padding on archive member grid/cards overrides the original card spacing while the bordered panel header retains 21px padding.",
+  "user_screenshot": "2026-11-15-archive-user-screenshot.png",
+  "reproduction_screenshot": "2026-11-15-archive-before-1440.png"
+}

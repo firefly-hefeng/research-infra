@@ -1,0 +1,24 @@
+{
+  "record_id": "reczz28Tkc0TVLBd",
+  "title": "MiDasheng autonomous 继续训练与空间音频评测",
+  "table": "tbl9Ggk0cGF0Zlxz",
+  "view": "vew5x8yw5H",
+  "field_id": "fld72hnCUh",
+  "field": "依据及更新时间",
+  "post_refresh_utc": "2026-11-21T05:11:18.739Z",
+  "historical_text_preserved": true,
+  "before_text_sha256": "f8a39233a0aa05c5d75211681aec3cfee4e74054f14a68a57f8f7308b93f6b20",
+  "after_text_sha256": "881f9324de145f12173fb0245d97c83712030917ab66fc13852bcf8d0dd741dc",
+  "other_cells_count": 1172,
+  "other_cells_unchanged_sha256": "00836939288510328fae4b282095ee24bc5460e8269673ac338b15513d019e72",
+  "directory_and_link_identity_verified_on": [
+    101,
+    47
+  ],
+  "data_models_alias_observed_on": [
+    101
+  ],
+  "ordinary_account_could_list_model_directory": false,
+  "weight_contents_read": false,
+  "license_or_permission_edited": false
+}

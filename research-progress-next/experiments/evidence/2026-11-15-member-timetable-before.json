@@ -1,0 +1,68 @@
+{
+  "files": [
+    {
+      "name": "attachment-1",
+      "bytes": 176695,
+      "sha256": "44183506802ff06574ea6775ba98719e47537680259c79b8a79ff003fddf1384"
+    },
+    {
+      "name": "attachment-2",
+      "bytes": 527,
+      "sha256": "d5d94edc98debe3cafb93dc51c1c1b67648602b2850d48acb46d86eb41d9a625"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 541,
+      "sha256": "4516565e22663f5c218e0eb709b37f6caea062b6e720a20b84cf4d93218429e0"
+    },
+    {
+      "name": "original",
+      "bytes": 473,
+      "sha256": "6f8d4ef3657ae0ced9bb77360866edcb7010944232215d8ed74213a4873ce592"
+    },
+    {
+      "name": "report.md",
+      "bytes": 526,
+      "sha256": "bb242bfc705742c0cb08056ee2a978fc69e3eee6fd152051dad390cfe2e7f969"
+    }
+  ],
+  "digest": {
+    "sha256": "9ad0c3e7a1f2bbfc0bc285c736f9d24b853c6cc5e6ea422e46d90e5dd188b496",
+    "revision": 2,
+    "engine": "DeepSeek V4 Pro · Max"
+  },
+  "members": [
+    {
+      "id": "m_233d0a339e114f5bbb9e",
+      "name": "刘思哲",
+      "days": []
+    },
+    {
+      "id": "m_d42f95eadda34850b869",
+      "name": "靳驰骋",
+      "days": []
+    },
+    {
+      "id": "m_65a349fc3c98481589f1",
+      "name": "何锋",
+      "days": [
+        "2026-11-14"
+      ]
+    },
+    {
+      "id": "m_760d85f8a05f40b1a7bc",
+      "name": "陆梓健",
+      "days": []
+    }
+  ],
+  "timetable_present": false,
+  "clipping": {
+    "viewport": 390,
+    "document_scroll_width": 452,
+    "trigger": "展开团队结果中靳驰骋 W44 周报来源及其长飞书链接引用",
+    "preview_fixed_limits": [
+      180,
+      95
+    ]
+  }
+}

@@ -10,7 +10,6 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 SERVERS = (
     {'id': 'server-47', 'name': '科研服务器 47', 'address': '47.117.138.84'},
     {'id': 'server-101', 'name': '科研服务器 101', 'address': '101.132.97.146'},
-    {'id': 'server-139', 'name': '科研服务器 139', 'address': '139.196.25.53'},
 )
 MOUNTS = {'/', '/data', '/data/share', '/data/share_cold'}
 STALE_SECONDS = 300
@@ -59,8 +58,10 @@ def metrics(raw):
         for gpu in raw['gpus'][:64]:
             if not isinstance(gpu, dict) or number(gpu.get('index'), 1024, True) is None:
                 continue
+            process_rows = gpu.get('processes')
+            processes_observed = isinstance(process_rows, list)
             processes = []
-            for process in gpu.get('processes', []) if isinstance(gpu.get('processes'), list) else []:
+            for process in process_rows if processes_observed else ():
                 if not isinstance(process, dict):
                     continue
                 pid = number(process.get('pid'), 2**31, True)
@@ -73,7 +74,8 @@ def metrics(raw):
                 'memory_total_bytes': number(gpu.get('memory_total_bytes'), integer=True),
                 'memory_used_bytes': number(gpu.get('memory_used_bytes'), integer=True),
                 'utilization_percent': number(gpu.get('utilization_percent'), 100),
-                'temperature_c': number(gpu.get('temperature_c'), 150), 'processes': processes[:64]})
+                'temperature_c': number(gpu.get('temperature_c'), 150),
+                'processes': processes[:64] if processes_observed else None})
     for row in raw.get('disks', []) if isinstance(raw.get('disks'), list) else []:
         if not isinstance(row, dict) or row.get('mount') not in MOUNTS:
             continue

@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "main_release": {
+    "stage": "/tmp/rmp-agent-docs-20261115-5b77f0d9",
+    "backup": "/var/backups/rmp-agent-docs-20261115-v1",
+    "count": 25
+  },
+  "static_release": {
+    "stage": "/tmp/rmp-agent-docs-20261115-67940658",
+    "backup": "/var/backups/rmp-agent-docs-20261115-static-v2",
+    "count": 3
+  },
+  "backend_surgical_patch": {
+    "functions": [
+      "agent_manifest",
+      "openapi_document"
+    ],
+    "call_sites": 2,
+    "original_sha256": "f555b4499315ba9af8dee15ba7b9e9e3c08f6847bdc56f98b472236542a2009c"
+  },
+  "actual_export": {
+    "audit": {
+      "bytes": 3255674,
+      "schema": "1.0",
+      "mode": "offline_snapshot",
+      "complete": true,
+      "generated_at": "2026-11-15T15:31:09.942Z",
+      "failures": [],
+      "sources": {
+        "catalog": {
+          "url": "/api/export.json",
+          "status": "ok",
+          "assets": 229
+        },
+        "research_guide": {
+          "url": "/api/research-guide",
+          "status": "ok"
+        },
+        "library": {
+          "url": "/api/platform/library",
+          "status": "ok",
+          "items": 298
+        },
+        "research": {
+          "url": "/api/platform/research",
+          "status": "ok"
+        },
+        "workspace_docs": {
+          "url": "/api/workspace-docs",
+          "status": "ok",
+          "items": 4
+        },
+        "servers": {
+          "url": "/api/platform/servers",
+          "status": "ok"
+        },
+        "progress_digest": {
+          "url": "/progress/api/progress-digest",
+          "status": "ok",
+          "revision": 3
+        },
+        "directions": {
+          "url": "/progress/api/directions",
+          "status": "ok",
+          "items": 5
+        },
+        "literature": {
+          "url": "/papers/api/export",
+          "status": "ok",
+          "papers": 336
+        },
+        "guide": {
+          "url": "/docs/agent-guide.md",
+          "status": "ok"
+        },
+        "contract": {
+          "url": "/docs/agent-contract.json",
+          "status": "ok"
+        }
+      },
+      "readme": "# 科研平台 Agent 使用手册\n\n核对日期：2026-11-15。入口：[科研平台](/#agent) · [接口与任务](agent-modules.md) · [建设现状](agent-sta",
+      "contract": "1.0"
+    },
+    "status": "研究上下文已下载：9 个研究来源及手册、接入约定。它是离线快照，请按每项来源的时间和范围使用。",
+    "errors": ""
+  },
+  "downloaded_file": {
+    "path": "C:/Users/22150/Downloads/research-context-2026-11-15T15-31-09-942Z.json",
+    "bytes": 3255674,
+    "sha256": "362bc80e23f9a6745cf31d898b88dad45eaab093726ee9b84a966c4769a84aa8"
+  },
+  "offline_client": {
+    "context": "passed",
+    "progress": "revision3 / DeepSeek V4 Pro Max / ready"
+  },
+  "anonymous_manifest_status": 401,
+  "live_layouts_first_check": [
+    {
+      "width": 1440,
+      "root": 1425,
+      "overflow": [],
+      "button": {
+        "w": 172.60000610351562,
+        "h": 44
+      }
+    },
+    {
+      "width": 390,
+      "root": 375,
+      "overflow": [],
+      "button": {
+        "w": 172.60000610351562,
+        "h": 44
+      }
+    },
+    {
+      "width": 320,
+      "root": 366,
+      "overflow": [],
+      "button": {
+        "w": 172.60000610351562,
+        "h": 44
+      }
+    }
+  ],
+  "live_320_after_fix": {
+    "width": 320,
+    "root": 305,
+    "cards": 12,
+    "matchedLiveName": true,
+    "overflows": []
+  },
+  "tests": {
+    "portal": "145 passed, 100 skipped, 551 subtests passed (Windows tests/)",
+    "agent_access": "4 passed",
+    "context_browser": "1440/390/320 and doubled actual font; complete/partial/401/403/HTML/redirect/failure recovery; only fixed GET; credential sentinels",
+    "home_browser": "1440/390/320 passed",
+    "links": "243 HTML, 1845 internal links, 0 errors"
+  },
+  "scope": "Documentation, metadata discovery and read-only snapshot export. No token issuance, gateway changes, model/config/data/report writes.",
+  "auth_copy_release": {
+    "stage": "/tmp/rmp-agent-docs-20261115-0da5d5de",
+    "backup": "/var/backups/rmp-agent-docs-20261115-auth-copy-v3",
+    "count": 5
+  },
+  "authentication_decision": "Reuse the same Feishu authentication for browser users and agents; no additional platform token system.",
+  "code_sha256": [
+    {
+      "Path": "C:\\Users\\22150\\小蜂相关资料\\科研基础组件\\research-data-center-next\\server.py",
+      "Hash": "6B488F5540CB3EB8A0C6C76075E68FE497EADEFFFE577DA9DA71D1C2D1E0C9BD"
+    },
+    {
+      "Path": "C:\\Users\\22150\\小蜂相关资料\\科研基础组件\\research-data-center-next\\static\\agent-context.js",
+      "Hash": "B5F597F04D0A7B1FF37A8BCAC4F0CB279F5D7AB0E34CC71A42E7059859D41445"
+    },
+    {
+      "Path": "C:\\Users\\22150\\小蜂相关资料\\科研基础组件\\research-data-center-next\\static\\app.js",
+      "Hash": "7FA85FCAD61A593CF77A0C9C1654F7900D0F7FA965C949EBD46D39FAD674182C"
+    },
+    {
+      "Path": "C:\\Users\\22150\\小蜂相关资料\\科研基础组件\\research-data-center-next\\static\\workspace.css",
+      "Hash": "854FFF803486DCC85F3FA051B3D499C47554FF8DF0BFEAFD80A83D418FD91F39"
+    },
+    {
+      "Path": "C:\\Users\\22150\\小蜂相关资料\\科研基础组件\\research-data-center-next\\tools\\agent_client.py",
+      "Hash": "AC67879C63DC1505FF7DB794FF8BBE88D0FCC0ADD8EF92E10AE1A35DA5FA4E75"
+    },
+    {
+      "Path": "C:\\Users\\22150\\AppData\\Local\\Temp\\agent-server-after.py",
+      "Hash": "5F7186252F395213A81AB9ACAD3FC951554E3E840C52777C463353C106DF022C"
+    }
+  ],
+  "final_services": "Portal, auth, progress, gateway, papers and intake timer active"
+}

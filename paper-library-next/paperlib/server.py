@@ -11,8 +11,13 @@ from urllib.parse import urlsplit
 from .worker import Scheduler, configuration
 from .providers import public_settings, save_settings
 from .insights import public_insight
+from .graph import literature_graph
 
 WEB = Path(__file__).resolve().parent.parent / 'web'
+
+
+def fulltext_restricted(paper):
+    return (paper.get('bibliography') or {}).get('fulltext_policy') == 'restricted'
 
 
 def catalog_paper(paper):
@@ -49,7 +54,7 @@ def catalog_paper(paper):
     if bibliography:
         result['bibliography'] = {key: bibliography[key] for key in (
             'title', 'summary', 'venue', 'doi', 'year', 'category', 'authors', 'tags',
-            'review_state', 'source_record_ids', 'imported_at'
+            'review_state', 'fulltext_policy', 'source_record_ids', 'imported_at'
         ) if key in bibliography}
         result['bibliography']['provenance'] = [
             {key: source[key] for key in ('label', 'sha256', 'record_id') if key in source}
@@ -155,21 +160,20 @@ def serve(library, host='127.0.0.1', port=4186):
                 secure = '; Secure' if public_origin.startswith('https:') else ''
                 self.json({'ok': True}, extra={'Set-Cookie': f'paper_session={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400{secure}'})
                 return
-            public_read = method == 'GET' and (path == '/api/catalog' or
-                re.fullmatch(r'/api/papers/[a-f0-9]{64}/pdf', path))
-            if path.startswith('/api/') and not public_read and not self.authenticated():
-                self.json({'error': '请登录后使用论文管理功能', 'login_required': True}, 401)
+            if path.startswith('/api/') and not self.authenticated():
+                self.json({'error': '请登录后访问文献库', 'login_required': True}, 401)
                 return
-            if path in ('/api/catalog', '/api/state') and method == 'GET':
+            if path == '/api/graph' and method == 'GET':
+                self.json(literature_graph(library.papers()))
+            elif path in ('/api/catalog', '/api/state') and method == 'GET':
                 papers = library.papers()
                 for item in papers:
                     try:
-                        library.pdf_path(item['id'])
+                        library.record_pdf_path(item)
                         item['available'] = True
                     except (ValueError, FileNotFoundError):
                         item['available'] = False
-                    # Import provenance is retained, but reading is open for every stored PDF.
-                    item['fulltext_available'] = item['available']
+                    item['fulltext_available'] = item['available'] and not fulltext_restricted(item)
                 if path == '/api/catalog':
                     self.json({'papers': [catalog_paper(item) for item in papers],
                                'jobs': [], 'agent': {'configured': False, 'enabled': False},
@@ -201,7 +205,12 @@ def serve(library, host='127.0.0.1', port=4186):
                 self.json(library.edit(path.split('/')[-1], self.body()))
             elif re.fullmatch(r'/api/papers/[a-f0-9]{64}/pdf', path) and method == 'GET':
                 try:
-                    pdf = library.pdf_path(path.split('/')[-2])
+                    paper_id = path.split('/')[-2]
+                    paper = library.record(paper_id)
+                    if fulltext_restricted(paper):
+                        self.json({'error': '此批导入仅开放题录；原文需按团队授权访问。'}, 403)
+                        return
+                    pdf = library.record_pdf_path(paper)
                 except (KeyError, ValueError, FileNotFoundError):
                     self.json({'error': '未找到这篇论文的 PDF 原文'}, 404)
                     return
@@ -210,11 +219,12 @@ def serve(library, host='127.0.0.1', port=4186):
                 self.json({'schema_version': 1, 'papers': library.papers()}, extra={'Content-Disposition': 'attachment; filename="paper-library.json"'})
             elif path == '/api/skill' and method == 'GET':
                 self.send_file(WEB.parent / 'skills/paper-curator/SKILL.md', 'text/plain; charset=utf-8')
-            elif method == 'GET' and path in ('/', '/manage', '/app.js', '/style.css'):
+            elif method == 'GET' and path in ('/', '/manage', '/app.js', '/style.css', '/graph.js', '/graph.css'):
                 file = WEB / ('index.html' if path in ('/', '/manage') else path[1:])
                 # Use stable types: Windows may associate .js with text/plain.
                 content_types = {'/': 'text/html', '/manage': 'text/html',
-                                 '/app.js': 'text/javascript', '/style.css': 'text/css'}
+                                 '/app.js': 'text/javascript', '/style.css': 'text/css',
+                                 '/graph.js': 'text/javascript', '/graph.css': 'text/css'}
                 self.send_file(file, content_types[path] + '; charset=utf-8')
             else:
                 self.json({'error': '接口不存在'}, 404)

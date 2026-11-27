@@ -16,6 +16,42 @@ STATUS = {'measured':'实测结果', 'reported':'报告记录', 'planned':'计�
 KINDS = {'daily':'原始日报', 'weekly':'原始周报', 'project_note':'共享项目摘录', 'direction_document':'方向文档',
          'aggregate_record':'聚合记录'}
 GROUPS = {'research':'研究方向', 'research_support':'研究支持', 'collaboration':'协作机制'}
+ALGORITHM_GROUPS = (
+    dict(id='representation', title='表征学习与多模态融合',
+         description='学习可复用的声音、文本与多模态表示，并比较融合方式或分类头。',
+         direction_ids=('universal-voice-encoder','depression-text-prosody','depalign-final',
+                        'mmpsy-v3-ensemble','voice-fused-head-v2','daily-text-risk')),
+    dict(id='retrieval-memory', title='检索与长时记忆',
+         description='从跨会话材料中定位证据，保留长时记忆与个性化线索。',
+         direction_ids=('audio-memory-retrieval','personalized-long-memory')),
+    dict(id='trustworthy-output', title='可信输出拒答与 OOD',
+         description='识别证据不足、不可答与分布外输入，分别核对误答和误拒。',
+         direction_ids=('answer-abstention','energy-models')),
+    dict(id='task-intervention', title='任务建模与受控干预',
+         description='围绕明确任务、基准和受控干预检验方法，保留数据划分与对照条件。',
+         direction_ids=('pause-cognition','spatial-audio','speech-health-benchmark')),
+    dict(id='generation-editing', title='生成编辑与数据增强',
+         description='迁移情绪与表达方式，核对内容、声线保持及数据增强边界。',
+         direction_ids=('paralinguistic-editing',)),
+    dict(id='speech-infrastructure', title='语音工程数据与协作基础设施',
+         description='建设语音处理、资源归档、标注和协作流程，支撑可复核研究。',
+         direction_ids=('speech-annotation','lab-infrastructure','dadan-collaboration','speech-resource-curation')),
+)
+
+
+def algorithm_core_map(directions):
+    """Group published rows for display only; unknown stable IDs stay unclassified."""
+    by_id={row['id']:row for row in directions}
+    mapped=set()
+    groups=[]
+    for spec in ALGORITHM_GROUPS:
+        rows=[by_id[key] for key in spec['direction_ids'] if key in by_id]
+        mapped.update(row['id'] for row in rows)
+        groups.append({k:spec[k] for k in ('id','title','description')} |
+                      dict(directions=rows,method_count=sum(len(row['methods']) for row in rows)))
+    pending=[row for row in directions if row['id'] not in mapped]
+    return dict(groups=groups,unclassified=pending,
+                unclassified_method_count=sum(len(row['methods']) for row in pending))
 
 
 def check(ok):
@@ -178,5 +214,5 @@ def direction_methods_page():
         listed=[d for d in listed if any(needle in t.casefold() for t in
                  [d['title'],d['question'],d['summary'],*(m['name'] for m in d['methods']),*(p['name'] for p in d['contributors'])])]
     return render_template('direction-methods.html',doc=doc,selected=row,directions=listed,query=query,
-                           counts=coverage(doc['directions'],doc['sources']),
+                           counts=coverage(doc['directions'],doc['sources']),core_map=algorithm_core_map(doc['directions']),
                            source_by_id={s['id']:s for s in doc['sources']},statuses=STATUS,kinds=KINDS,groups=GROUPS)

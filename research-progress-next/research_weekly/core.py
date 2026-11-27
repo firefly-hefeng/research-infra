@@ -115,19 +115,23 @@ def read_text(path, limit=65536):
     return data.decode("utf-8")
 
 
-def atomic_write(path, text):
+def atomic_write_bytes(path, data):
     path = no_symlinks(path)
     no_symlinks(path.parent).mkdir(parents=True, exist_ok=True, mode=0o700)
     fd, tmp = tempfile.mkstemp(prefix=".tmp-", dir=path.parent)
     try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="") as f:
-            f.write(text)
+        with os.fdopen(fd, "wb") as f:
+            f.write(data)
             f.flush()
             os.fsync(f.fileno())
         os.replace(tmp, path)
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+
+
+def atomic_write(path, text):
+    atomic_write_bytes(path, text.encode("utf-8"))
 
 
 def write_json(path, data):

@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically maintain lab shared storage read permissions
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=30min
+AccuracySec=15s
+Unit=research-share-permissions.service
+
+[Install]
+WantedBy=timers.target

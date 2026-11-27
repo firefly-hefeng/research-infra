@@ -20,12 +20,12 @@ BASE = Path('/data/rmp/research-data-center/var/cpfs-migration-20261027')
 SHARE = Path('/data/share')
 LIBRARIES = {'datasets': ('/data/datasets', '/data/share/datasets'),
              'models': ('/data/models', '/data/share/models')}
-BASELINE_SHA256 = '5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871'
+BASELINE_SHA256 = 'b61ffdebecf823016f3819a7c6eec9a5f92ce1e7bcfee916a6bbcc81e27bcfd9'
 MIGRATION_ID = 'cpfs-20261027'
 MOUNT_SOURCE = '10.0.0.202:/share'
 OBSERVER_UID = 1011
-EXPECTED_RECORDS = 228
-EXPECTED_PATHS = 221
+EXPECTED_RECORDS = 229
+EXPECTED_PATHS = 222
 OUTPUT_NAME = 'destination-entry-observations.json'
 
 

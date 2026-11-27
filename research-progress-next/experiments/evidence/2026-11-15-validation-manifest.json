@@ -1,0 +1,34 @@
+{
+  "experiment_id": "RMP-ELN-20261115-BRIEF-V2",
+  "recorded_at": "2026-11-15T07:56:06.155131+00:00",
+  "snapshot_sha256": "9ad0c3e7a1f2bbfc0bc285c736f9d24b853c6cc5e6ea422e46d90e5dd188b496",
+  "input_fingerprint": "860be4bdef1384a4ff47d074fadcd0158b1db9fae02d575e1947cb2912e6b08f",
+  "code_sha256": {
+    "research-progress-next/research_weekly/progress_digest.py": "b5adc2f9fb489d2510552ac37fdfc1d55775344bf4b0c97e6449126b299d227b",
+    "research-progress-next/research_weekly/model_api.py": "6a2a2149e3257a7f6eeab4b53fdb4266b8e8186bf28f51e2851a6e52bb50a385",
+    "research-progress-next/web/digest.js": "868bab3ad92a8ae808aea9a190ce3381ee31fa71d15f627b11152a787efc85e3",
+    "research-progress-next/web/activity.js": "64ae02c0e31c9041c222f0727946e041d23d27e478090192777233d5d12d90af",
+    "research-progress-next/web/rhythm.js": "964d6d6cdf7e636969d333a62fbac300a11acc180d70279c671beca33c5fa762",
+    "research-data-center-next/static/workspace.js": "acdfe2c11c8a8205a10b908a0149c638f84bf7189f61aff8bc2456547a66bc1d",
+    "research-data-center-next/static/platform-theme.css": "1843c9a643f731e69874f1cd69700cfd433ad7100ad77fe491a54e54085d0867"
+  },
+  "parameters": {
+    "model": "deepseek-v4-pro",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "max",
+    "max_tokens": 65536,
+    "window_days": 28,
+    "strategy": "research-brief-v2"
+  },
+  "backend_tests": 133,
+  "portal_tests": 14,
+  "portal_subtests": 6,
+  "browser_viewports": [
+    1440,
+    390,
+    320
+  ],
+  "live_verified_quotes": 51
+}

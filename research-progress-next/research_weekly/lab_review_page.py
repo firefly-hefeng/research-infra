@@ -111,15 +111,22 @@ def render(doc, embedded_css=None, companion=None):
         edition += f' · 已按原件校订 {amendments} 项'
     companion_link = {'auto':' · <a href="?version=auto">阅读新材料的自动复盘</a>',
                       'reviewed':' · <a href="?version=reviewed">返回人工校审稿</a>'}.get(companion,'')
+    lab_claims = sum(len(doc['lab'][key]) for key in ('progress','result','limit','next'))
+    lab_topic_links = sum(len(links) for rows in lab_links.values() for links in rows)
+    topic_member_links = sum(len(topic['report_member_ids']) for topic in topics)
     return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>实验室阶段复盘 · 科研平台</title>{css}</head><body><main>
 <header><a href="https://rmp.wuwangwo.top/progress/#team">团队进度</a><h1>实验室阶段复盘</h1>
 <p>{e(period.get("from","未注明"))} 至 {e(period.get("to","未注明"))} · {e(doc.get("engine",""))} · {edition}{companion_link}</p>
 <p>名册 {len(doc["members"])} 人，其中 {owners} 人有本期署名报告。{counts["daily"]} 份日报，{counts["weekly"]} 份周报，{counts["project_note"]} 篇项目记录。报告数仅表示来源覆盖。</p></header>
-<nav aria-label="报告目录"><a href="#lab">实验室判断</a><a href="#topics">研究问题</a><a href="#people">成员进度</a>{project_nav}<a href="#scope">核对范围</a></nav>
-<section id="lab"><h2>实验室判断</h2>{fields(doc['lab'], lab=True)}</section>
-<section id="topics"><h2>按研究问题阅读</h2>{panels(doc['topics'])}</section>
-<section id="people"><h2>按成员阅读</h2>{panels(doc['members'], True)}</section>{project_section}
+<section class="reading-guide" aria-labelledby="reading-guide-title"><h2 id="reading-guide-title">三级金字塔导读</h2><p>从实验室核心结论逐层追溯到研究主题和成员证据；数字只描述本版内容与阅读联系。</p>
+<ol class="pyramid"><li class="pyramid-lab"><span>第一级 · 结论</span><a href="#lab"><strong>实验室核心结论</strong><small>{lab_claims} 条四栏判断</small></a><p>先读整体进展、结果、局限和下一步，再沿同段引文下钻。</p></li>
+<li class="pyramid-topics"><span>第二级 · 主题</span><a href="#topics"><strong>研究主题</strong><small>{len(topics)} 个主题 · {lab_topic_links} 条结论联系</small></a><p>展开主题四栏，核对正式方向归属和被引用的署名报告。</p></li>
+<li class="pyramid-people"><span>第三级 · 证据</span><a href="#people"><strong>成员证据</strong><small>{owners} / {len(doc["members"])} 人有署名报告 · {topic_member_links} 条主题联系</small></a><p>回到成员四栏、逐条引文与原报告，确认证据范围和归属。</p></li></ol></section>
+<nav aria-label="报告目录"><a href="#lab">实验室核心结论</a><a href="#topics">研究主题</a><a href="#people">成员证据</a>{project_nav}<a href="#scope">核对范围</a></nav>
+<section id="lab"><h2>实验室核心结论</h2><p class="section-intro">按四栏阅读本版整体判断；每条结论可继续定位引用同一段原文的研究主题。</p>{fields(doc['lab'], lab=True)}</section>
+<section id="topics"><h2>按研究主题阅读</h2><p class="section-intro">主题承接实验室结论，并向下连接被引用的署名成员；关联数量不代表研究质量或贡献排名。</p>{panels(doc['topics'])}</section>
+<section id="people"><h2>按成员证据阅读</h2><p class="section-intro">保留每位成员的四栏记录、报告数量和引文，可反查引用其报告的研究主题。</p>{panels(doc['members'], True)}</section>{project_section}
 <footer id="scope"><h2>核对范围</h2><p>生成时间 {e(doc['generated_at'])}。{disk_scope}排除输入报告 {excluded} 份。{basis}科研结论需结合实验原件复核。不同量纲、数据切分和人群分别解读。</p></footer></main></body></html>'''
 
 

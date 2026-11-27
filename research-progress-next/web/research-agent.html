@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方向实验台 · 科研工作台</title><link rel="stylesheet" href="research-agent-assets/research-agent.css">
+<script defer src="assets/d3.v7.min.js"></script><script defer src="research-agent-assets/research-agent.js"></script></head>
+<body><nav aria-label="研究导航"><a href="/#overview">科研工作台</a><div><a href="/progress/#team">团队进展</a><a href="/papers/#graph">文献图谱</a></div></nav>
+<main><header><p class="kicker" lang="en">SOUNEX LAB / EXPERIMENTS</p><h1>方向实验台</h1>
+<p>输入研究方向，查找团队已有的成果、数据和文献，运行匹配的实验。每次运行都有一份可回看的记录。</p></header>
+<div class="layout"><article><form id="form"><label for="direction">研究方向</label>
+<div class="control"><input id="direction" name="query" maxlength="180" required list="team-directions" autocomplete="off" placeholder="例如：空间音频、语音健康或方向 ID"><datalist id="team-directions"></datalist><button id="run" type="submit">开始实验</button></div>
+<p class="form-help">当前支持文献检索对照，以及 MDVR-KCL 公开录音的预处理对照。</p></form>
+<p id="status" role="status" aria-live="polite"></p><section id="record" aria-label="实验记录" hidden></section></article>
+<aside><h2>近期实验</h2><ul id="history"></ul><p id="empty" class="muted">正在读取记录…</p></aside></div></main></body></html>

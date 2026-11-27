@@ -1,0 +1,27 @@
+digraph G {graph [bgcolor="transparent",pad="0.25",nodesep="0.30",ranksep="0.52",fontname="Microsoft YaHei",fontsize=14]; node [shape=box,style="rounded,filled",fillcolor="#eef5f6",color="#bfd2d7",fontname="Microsoft YaHei",fontsize=13,margin="0.20,0.15"]; edge [color="#597b86",arrowsize=0.65,fontname="Microsoft YaHei",fontsize=11]; rankdir=TB;
+ project [label="课题
+研究问题 与 验收基线",width="2.51",fillcolor="#163d4d",fontcolor="white"];
+ milestone [label="里程碑
+权重 期限 独立审核",width="2.31"];
+ task [label="任务
+负责人 依赖 完成定义",width="2.51"];
+ protocol [label="实验协议
+假设 划分 指标 与 测试边界",width="3.13"];
+ run [label="一次运行
+代码 环境 参数 种子 与 机器",width="3.24"];
+ input [label="输入资源版本
+原始数据 特征 模型
+内容清单与用途授权",width="2.31"];
+ output [label="输出与证据
+指标 工件 负结果 与 局限",width="2.93"];
+ paper [label="文献
+题录 原文 与 复现状态",width="2.62"];
+ report [label="日报和周报
+引用任务 运行 与 证据",width="2.62"];
+ project->milestone->task->protocol->run;
+ paper->protocol [label="方法与依据",width="1.48"];
+ input->run [label="固定版本",width="1.40"];
+ run->output [label="封存",width="1.40"];
+ output->milestone [label="独立验收",width="1.40",color="#307653",constraint=false];
+ report->task [label="状态说明",width="1.40",style=dashed,constraint=false];report->output [label="证据引用",width="1.40",style=dashed];
+ }

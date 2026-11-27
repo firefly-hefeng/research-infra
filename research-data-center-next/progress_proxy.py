@@ -2,6 +2,8 @@
 from http.client import HTTPConnection, HTTPException
 from urllib.parse import urlsplit
 
+DAILY_UPLOAD_MAX_BODY = 20 * 1024 * 1024 + 100_000
+
 
 def proxy_progress(handler):
     if not handler._valid_host() or not handler._same_origin():
@@ -14,8 +16,8 @@ def proxy_progress(handler):
     path=parsed.path[len('/progress'):]
     if not path.startswith('/') or path.startswith('//') or '\\' in path:
         return handler._json({'error':'无效路径'},400)
-    if handler.command not in ('GET','HEAD','POST') or (handler.command=='POST' and path not in {'/api/uploads','/api/daily/uploads','/api/members'}):
-        return handler._json({'error':'该模块只接受姓名登记和日报、周报上传，其余内容只读'},405)
+    if handler.command not in ('GET','HEAD','POST') or (handler.command=='POST' and path not in {'/api/uploads','/api/daily/uploads','/api/members','/api/research-experiments'}):
+        return handler._json({'error':'该路径不接受此操作'},405)
     body=None
     headers={}
     if handler.command=='POST':
@@ -23,7 +25,8 @@ def proxy_progress(handler):
             return handler._json({'error':'必须提供单个 Content-Length'},411)
         try: length=int(handler.headers['Content-Length'])
         except ValueError: return handler._json({'error':'无效长度'},400)
-        if not 0 <= length <= 100_000:
+        limit = DAILY_UPLOAD_MAX_BODY if path == '/api/daily/uploads' else 100_000
+        if not 0 <= length <= limit:
             return handler._json({'error':'上传超过大小限制'},413)
         handler.connection.settimeout(15)
         try: body=handler.rfile.read(length)

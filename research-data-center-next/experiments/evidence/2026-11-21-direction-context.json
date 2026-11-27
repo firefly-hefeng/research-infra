@@ -1,0 +1,230 @@
+{
+  "input_sha256": "362bc80e23f9a6745cf31d898b88dad45eaab093726ee9b84a966c4769a84aa8",
+  "input_exported_at": "2026-11-15T15:31:09.942Z",
+  "interpretation": "历史快照回归。计数是快照中的主题候选，不能用于判断当前进度或实际使用。",
+  "directions": [
+    {
+      "direction_id": "daily-text-risk",
+      "archive": "research_tracks",
+      "matched_archive_id": "daily-text-risk",
+      "reports_in_snapshot_window": 0,
+      "discovery_counts": {
+        "dataset": 4,
+        "model": 0,
+        "papers": 222
+      }
+    },
+    {
+      "direction_id": "depalign-final",
+      "archive": "models",
+      "matched_archive_id": "depalign-final",
+      "reports_in_snapshot_window": 0,
+      "discovery_counts": {
+        "dataset": 4,
+        "model": 0,
+        "papers": 222
+      }
+    },
+    {
+      "direction_id": "mmpsy-v3-ensemble",
+      "archive": "models",
+      "matched_archive_id": "mmpsy-v3-ensemble",
+      "reports_in_snapshot_window": 0,
+      "discovery_counts": {
+        "dataset": 0,
+        "model": 0,
+        "papers": 17
+      }
+    },
+    {
+      "direction_id": "universal-voice-encoder",
+      "archive": "research_tracks",
+      "matched_archive_id": "universal-voice-encoder",
+      "reports_in_snapshot_window": 0,
+      "discovery_counts": {
+        "dataset": 19,
+        "model": 1,
+        "papers": 1
+      }
+    },
+    {
+      "direction_id": "voice-fused-head-v2",
+      "archive": "models",
+      "matched_archive_id": "voice-fused-head-v2",
+      "reports_in_snapshot_window": 0,
+      "discovery_counts": {
+        "dataset": 12,
+        "model": 1,
+        "papers": 17
+      }
+    }
+  ],
+  "authenticated_portal_read": {
+    "checked_at_beijing": "2026-11-21T02:48:27+08:00",
+    "method": "已登录成员在同源浏览器读取 agent_client 的五个只读 JSON，逐个核对实际响应字节 SHA256。以相同响应在内存中运行 direction_pack 的实时分支，保留默认每类 5 项展示上限。",
+    "reads": {
+      "directions": {
+        "url": "/progress/api/directions",
+        "status": 200,
+        "bytes": 5459,
+        "sha256": "70692645070fb698207fbdfa9c2dd918da2fcc21f2f1a3c99aeb7c9f8ac5658d",
+        "read_at": "2026-11-20T18:48:28.044Z",
+        "direction_count": 5,
+        "record_update_dates": [
+          "2026-10-29"
+        ]
+      },
+      "research": {
+        "url": "/api/platform/research",
+        "status": 200,
+        "bytes": 24382,
+        "sha256": "dd7dd75fd849b1cf27327470d5ec98fe4e1f77f37c5a5338e5da8080539ba3bf",
+        "read_at": "2026-11-20T18:48:28.268Z",
+        "reviewed_at": "2026-10-29",
+        "model_count": 3,
+        "track_count": 2
+      },
+      "progress": {
+        "url": "/progress/api/progress-digest",
+        "status": 200,
+        "bytes": 72215,
+        "sha256": "5abd896b440f61f68ea28995ef25be69a569feec2ba481627e24fd3ddd890e9d",
+        "read_at": "2026-11-20T18:48:28.556Z",
+        "source_dates": {
+          "generated_at": "2026-11-21T00:56:18+08:00"
+        },
+        "associated_direction_count": 5,
+        "source_count": 35
+      },
+      "library": {
+        "url": "/api/platform/library",
+        "status": 200,
+        "bytes": 299473,
+        "sha256": "d6ec1fb419b291a10c4105cd6c14a69271a7e4edd6518023a6c7ec3ce604aa34",
+        "read_at": "2026-11-20T18:48:28.847Z",
+        "item_count": 298,
+        "source_dates": [
+          {
+            "id": "catalog",
+            "observed_at": "2026-10-30T19:56:10.699356+00:00",
+            "count": 229,
+            "mode": "snapshot"
+          },
+          {
+            "id": "feishu",
+            "observed_at": "2026-11-13T16:11:44.323Z",
+            "count": 69,
+            "mode": "snapshot"
+          }
+        ]
+      },
+      "papers": {
+        "url": "/papers/api/catalog",
+        "status": 200,
+        "bytes": 3750203,
+        "sha256": "761eb9ae47f914b172d86e66ed01b01bcd113ef74f35732ea5c18e2fc11bff46",
+        "read_at": "2026-11-20T18:48:29.615Z",
+        "paper_count": 336,
+        "catalog_generated_at": null
+      }
+    },
+    "period": {
+      "days": 28,
+      "from": "2026-10-25",
+      "to": "2026-11-21"
+    },
+    "directions": [
+      {
+        "direction_id": "daily-text-risk",
+        "updated_at": "2026-10-29",
+        "archive_types": [
+          "research_tracks"
+        ],
+        "sources_returned": 5,
+        "direction_in_digest": true,
+        "report_count_in_window": 0,
+        "cited_originals": 0,
+        "digest_claims": 0,
+        "claims_with_resolved_quote": 0,
+        "topic_candidate_counts": {
+          "dataset": 4,
+          "model": 0,
+          "papers": 240
+        }
+      },
+      {
+        "direction_id": "depalign-final",
+        "updated_at": "2026-10-29",
+        "archive_types": [
+          "models"
+        ],
+        "sources_returned": 5,
+        "direction_in_digest": true,
+        "report_count_in_window": 0,
+        "cited_originals": 0,
+        "digest_claims": 0,
+        "claims_with_resolved_quote": 0,
+        "topic_candidate_counts": {
+          "dataset": 4,
+          "model": 0,
+          "papers": 242
+        }
+      },
+      {
+        "direction_id": "mmpsy-v3-ensemble",
+        "updated_at": "2026-10-29",
+        "archive_types": [
+          "models"
+        ],
+        "sources_returned": 5,
+        "direction_in_digest": true,
+        "report_count_in_window": 0,
+        "cited_originals": 0,
+        "digest_claims": 0,
+        "claims_with_resolved_quote": 0,
+        "topic_candidate_counts": {
+          "dataset": 0,
+          "model": 0,
+          "papers": 32
+        }
+      },
+      {
+        "direction_id": "universal-voice-encoder",
+        "updated_at": "2026-10-29",
+        "archive_types": [
+          "research_tracks"
+        ],
+        "sources_returned": 5,
+        "direction_in_digest": true,
+        "report_count_in_window": 2,
+        "cited_originals": 2,
+        "digest_claims": 2,
+        "claims_with_resolved_quote": 2,
+        "topic_candidate_counts": {
+          "dataset": 19,
+          "model": 1,
+          "papers": 5
+        }
+      },
+      {
+        "direction_id": "voice-fused-head-v2",
+        "updated_at": "2026-10-29",
+        "archive_types": [
+          "models"
+        ],
+        "sources_returned": 5,
+        "direction_in_digest": true,
+        "report_count_in_window": 0,
+        "cited_originals": 0,
+        "digest_claims": 0,
+        "claims_with_resolved_quote": 0,
+        "topic_candidate_counts": {
+          "dataset": 12,
+          "model": 1,
+          "papers": 45
+        }
+      }
+    ],
+    "interpretation": "方向和归档成果按 ID 精确关联。报告数来自方向汇总；已解析引文要求报告 ID 与引文摘录一致。检索命中只表示候选，保留匹配总量。文献接口无顶层生成时间。五份响应正文仅在内存处理。"
+  }
+}

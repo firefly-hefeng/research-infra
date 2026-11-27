@@ -781,3 +781,11 @@ dialog { border-radius: var(--radius); }
   .reader-toolbar { padding:12px 18px; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } button,a,select,.paper-card { transition:none; } }
+
+.papers-notice { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-block:1rem; }
+.papers-notice p { margin:0; }
+.related-papers { margin:0; padding:0; list-style:none; }
+.related-papers li + li { margin-top:.75rem; }
+.related-title { display:block; min-height:44px; max-width:100%; border:0; background:transparent; color:var(--blue, #24558e); padding:.35rem 0; font:inherit; text-align:left; overflow-wrap:anywhere; cursor:pointer; }
+.related-title:hover { text-decoration:underline; }
+.related-papers small { display:block; overflow-wrap:anywhere; }

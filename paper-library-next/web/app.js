@@ -10,7 +10,9 @@ try {
   if (Array.isArray(saved)) localFavorites = new Set(saved.filter(id => /^[a-f0-9]{64}$/.test(id)));
 } catch { /* Browsing remains available when storage is disabled. */ }
 const loadLibrary = async () => {
-  const data = bibliographyState(await api(MANAGEMENT_VIEW ? '/api/state' : '/api/catalog'));
+  const response = await api(MANAGEMENT_VIEW ? '/api/state' : '/api/catalog');
+  if (!Array.isArray(response.papers) || !Array.isArray(response.jobs) || !response.agent) throw new Error('论文目录暂时无法读取。');
+  const data = bibliographyState(response);
   if (!MANAGEMENT_VIEW) data.papers = data.papers.map(p => ({...p, favorite: localFavorites.has(p.id)}));
   return data;
 };
@@ -22,7 +24,7 @@ const PAGE_SIZE = 12;
 let currentPage = 1, pageCount = 1;
 let providerRequest = 0, providerLoaded = false, providerBusy = false, providerSavePromise = null;
 let toastTimer, searchTimer, readingPoll, readingPolling = false, readingRequest = null, renderedCardVersion = null;
-let sessionRecovery;
+let sessionRecovery, libraryLoaded = false, libraryRefreshing = false;
 const noteDrafts = new Map();
 const readingSections = [
   ['background', '研究背景', '这项工作从哪里出发'],
@@ -59,7 +61,6 @@ function toast(message) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => notice.hidden = true, 5000);
 }
 function showSessionRecovery() {
-  if (!MANAGEMENT_VIEW) return;
   if (!sessionRecovery) {
     sessionRecovery = document.createElement('section');
     sessionRecovery.className = 'session-recovery';
@@ -83,8 +84,9 @@ function showSessionRecovery() {
       message.textContent = '正在确认登录状态…';
       try {
         rememberNote();
-        const current = await api('/api/state');
-        state = bibliographyState(current);
+        state = await loadLibrary();
+        libraryLoaded = true;
+        renderLibraryNotice();
         sessionRecovery.hidden = true;
         if (routeInitialized) render(); else applyRoute();
         if ($('detail').open && selected && cardVersion(state.papers.find(p => p.id === selected)) !== renderedCardVersion) openPaper(selected, true);
@@ -111,11 +113,12 @@ function placeSessionRecovery() {
   if (sessionRecovery.parentNode !== container) container.prepend(sessionRecovery);
 }
 async function api(path, options = {}) {
-  if (!MANAGEMENT_VIEW && (options.method && options.method !== 'GET' || !/^\/api\/catalog$/.test(path))) {
+  const loginRequest = path === '/api/login' && options.method === 'POST';
+  if (!MANAGEMENT_VIEW && !loginRequest && ((options.method || 'GET') !== 'GET' || !['/api/catalog', '/api/graph'].includes(path))) {
     throw new Error('请从管理入口使用此功能');
   }
   const response = await fetch(API_BASE + path, {...options, headers: {'Content-Type': 'application/json', 'X-Paper-Library': '1', ...(options.headers || {})}});
-  const data = await response.json();
+  const data = await response.json().catch(() => null);
   if (response.status === 401) {
     const reason = data?.error?.code || data?.code || data?.error;
     if (reason === 'feishu_login_required') {
@@ -124,19 +127,37 @@ async function api(path, options = {}) {
       error.feishuLoginRequired = true;
       throw error;
     }
-    if (MANAGEMENT_VIEW && !$('login').open) $('login').showModal();
-    throw new Error(typeof data.error === 'string' ? data.error : data.error?.message || '访问验证未通过');
+    if (data?.login_required && !$('login').open) $('login').showModal();
+    throw new Error(typeof data?.error === 'string' ? data.error : data?.error?.message || '访问验证未通过');
   }
-  if (!response.ok) throw new Error(data.error || '请求失败');
+  if (!response.ok) throw new Error(typeof data?.error === 'string' ? data.error : `请求失败（HTTP ${response.status}）`);
+  if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('服务返回了无法读取的响应。');
   return data;
 }
+function renderLibraryNotice(message = '', retry = false) {
+  $('papers-notice').hidden = !message;
+  $('papers-status').textContent = message;
+  $('retry-papers').hidden = !retry;
+}
 async function refresh(silent = false) {
+  if (libraryRefreshing) return;
+  libraryRefreshing = true;
+  if (!libraryLoaded) renderLibraryNotice('正在读取文献库。');
+  $('papers').setAttribute('aria-busy', String(!libraryLoaded));
   try {
     state = await loadLibrary();
+    libraryLoaded = true;
+    renderLibraryNotice();
     if (routeInitialized) render(); else applyRoute();
     if ($('detail').open && selected && cardVersion(state.papers.find(p => p.id === selected)) !== renderedCardVersion) openPaper(selected, true);
     if (!silent) toast('论文库已刷新');
-  } catch (error) { if (!$('login').open) toast(error.message); }
+  } catch (error) {
+    if ($('login').open || error.feishuLoginRequired) renderLibraryNotice('登录后可读取文献库。');
+    else renderLibraryNotice(libraryLoaded ? '刷新失败，当前显示上次读取的结果。' : '暂时无法读取文献库。', true);
+  } finally {
+    libraryRefreshing = false;
+    $('papers').setAttribute('aria-busy', 'false');
+  }
 }
 const ready = () => state.papers.filter(p => p.card);
 const pending = () => state.papers.filter(p => !p.card);
@@ -150,6 +171,7 @@ const countBy = (items, fn) => {
 };
 function readRoute(hash = window.location.hash || '') {
   const [path, query = ''] = hash.replace(/^#/, '').split('?');
+  if (path === 'graph') return {view: 'graph'};
   if (path === 'workspace') return {view: MANAGEMENT_VIEW ? 'workspace' : 'discover'};
   if (!['catalog', 'library-view', 'favorites'].includes(path)) return {view: 'discover'};
   const params = new URLSearchParams(query);
@@ -190,6 +212,11 @@ function applyRoute(scroll = false) {
   currentPage = route.filters?.page || 1;
   render(route.filters || {query: '', year: '', favorites: false, sort: 'newest'});
   if (scroll) {
+    if (pageView === 'graph') {
+      $('graph-title').focus({preventScroll: true});
+      $('graph-view').scrollIntoView({block: 'start', behavior: 'instant'});
+      return;
+    }
     const target = $(pageView === 'discover' ? 'discovery-view' : pageView === 'workspace' ? 'management' : 'section-title');
     target.setAttribute('tabindex', '-1');
     target.focus({preventScroll: true});
@@ -299,10 +326,12 @@ function render(routeFilters = null) {
     $('sort').value = routeFilters.sort;
   }
   $('discovery-view').hidden = pageView !== 'discover';
+  $('graph-view').hidden = pageView !== 'graph';
+  if (pageView === 'graph') window.LiteratureGraph?.show(api, state.papers);
   $('library-view').hidden = pageView !== 'catalog';
   $('management').hidden = pageView !== 'workspace' || !canManage();
-  const activeNav = pageView === 'workspace' ? 'workspace' : pageView === 'discover' ? 'discover' : $('favorites-only').checked ? 'favorites' : 'catalog';
-  ['discover', 'catalog', 'favorites', 'workspace'].forEach(name => {
+  const activeNav = pageView === 'catalog' && $('favorites-only').checked ? 'favorites' : pageView;
+  ['discover', 'graph', 'catalog', 'favorites', 'workspace'].forEach(name => {
     if (name === activeNav) $('nav-' + name).setAttribute('aria-current', 'page');
     else $('nav-' + name).removeAttribute('aria-current');
   });
@@ -314,13 +343,21 @@ function render(routeFilters = null) {
   $('run').textContent = state.running ? '正在整理…' : state.agent.configured ? '开始整理' : '请先配置整理方式';
   renderDiscovery(); renderPapers(); renderInbox(); renderJobs();
 }
+function normalizePaperQuery(query) {
+  let candidate = query.replace(/^doi:\s*/i, '');
+  if (/^https?:\/\/(?:dx\.)?doi\.org\//i.test(candidate)) {
+    try { candidate = decodeURIComponent(new URL(candidate).pathname.slice(1)); }
+    catch { return query; }
+  }
+  return /^10\.\d+\/\S+$/.test(candidate) ? candidate : query;
+}
 function renderPapers() {
-  const query = $('search').value.trim().toLowerCase();
+  const query = normalizePaperQuery($('search').value.trim()).toLowerCase();
   const year = $('year').value;
   let papers = ready().filter(p => (!$('favorites-only').checked || p.favorite) && (!category || p.card.category === category) && (!tag || paperTags(p).includes(tag)) && (!year || (year === 'unknown' ? !p.card.year : String(p.card.year) === year)));
   const terms = query.split(/\s+/).filter(Boolean);
   papers = papers.filter(p => {
-    const haystack = [p.card.title, ...p.card.authors, p.card.summary, ...p.card.contributions, ...authorKeywords(p), ...paperTags(p), p.card.venue, ...readingSections.map(([key]) => p.card.reading?.[key] || ''), p.insight?.abstract?.text, ...Object.values(p.insight?.summary || {}), p.notes].join(' ').toLowerCase();
+    const haystack = [p.card.title, ...p.card.authors, p.card.doi, p.card.summary, ...p.card.contributions, ...authorKeywords(p), ...paperTags(p), p.card.venue, ...readingSections.map(([key]) => p.card.reading?.[key] || ''), p.insight?.abstract?.text, ...Object.values(p.insight?.summary || {}), p.notes].join(' ').toLowerCase();
     return terms.every(q => haystack.includes(q));
   });
   if ($('sort').value === 'year') papers.sort((a,b) => (b.card.year || 0) - (a.card.year || 0));
@@ -346,8 +383,26 @@ function renderPapers() {
   $('papers-pagination').hidden = !papers.length;
   $('papers').innerHTML = papers.slice(offset, offset + PAGE_SIZE).map(p => paperCard(p)).join('') || `<div class="empty"><div class="empty-symbol">⌕</div><h3>${ready().length ? '没有找到匹配的论文' : '暂无论文'}</h3><p>${ready().length ? '试试其他关键词，或清除方向、主题标签与年份筛选。' : '论文收录后将在这里展示。'}</p></div>`;
 }
+function relatedPapers(paper) {
+  const terms = item => new Set([...topicTags(item), ...authorKeywords(item)]
+    .map(word => word.trim().toLowerCase()).filter(Boolean));
+  const labels = new Map();
+  for (const word of [...topicTags(paper), ...authorKeywords(paper)]) {
+    const key = word.trim().toLowerCase();
+    if (key && !labels.has(key)) labels.set(key, word);
+  }
+  const matches = [];
+  for (const candidate of ready()) {
+    if (candidate.id === paper.id) continue;
+    const keywords = terms(candidate);
+    const shared = [...labels].filter(([key]) => keywords.has(key)).map(([,label]) => label);
+    if (shared.length) matches.push({paper: candidate, shared});
+  }
+  return matches.sort((a,b) => b.shared.length - a.shared.length ||
+    a.paper.card.title.localeCompare(b.paper.card.title) || a.paper.id.localeCompare(b.paper.id)).slice(0, 3);
+}
 function paperSource(p) {
-  if (p.fulltext_available === true || (p.fulltext_available !== false && p.available === true)) {
+  if (p.fulltext_available === true && p.bibliography?.fulltext_policy !== 'restricted') {
     return {url: `${API_BASE}/api/papers/${p.id}/pdf`, local: true};
   }
   const doi = p.card?.doi || p.bibliography?.doi;
@@ -361,7 +416,7 @@ function paperSource(p) {
 function paperCard(p, recommended = false) {
   const c = p.card, source = paperSource(p);
   const tags = topicTags(p).slice(0, 3);
-  return `<article class="paper-card ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${recommended || !category ? esc(c.category) : ''}</span><span class="card-year">${c.year || '年份未注明'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者未注明')}</div><p class="summary">${esc(p.insight?.summary?.overview || c.reading?.takeaway || c.summary)}</p>${tags.length ? `<div class="card-tags"><span class="card-tag-label">主题标签</span>${tags.map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div>` : ''}<div class="card-bottom"><span class="journal" title="${esc(c.venue)}">${esc(c.venue || '')}</span><div class="card-links"><button data-open="${p.id}">详情</button>${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读原文' : '论文来源'}</a>` : '<span class="source-unavailable">暂无原文</span>'}</div></div></article>`;
+  return `<article class="paper-card ${recommended ? 'recommended-card' : ''}">${recommended ? '<span class="sr-only">随机推荐</span>' : ''}<div class="card-top"><span class="category-label">${recommended || !category ? esc(c.category) : ''}</span><span class="card-year">${c.year || '年份未注明'}</span><button class="favorite ${p.favorite ? 'on' : ''}" data-favorite="${p.id}" aria-label="${p.favorite ? '取消收藏' : '收藏'}：${esc(c.title)}" aria-pressed="${p.favorite}"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg></button></div><button class="card-title" data-open="${p.id}">${esc(c.title)}</button><div class="authors" title="${esc(c.authors.join(' · '))}">${esc(c.authors.join(' · ') || '作者未注明')}</div><p class="summary">${esc(p.insight?.summary?.overview || c.reading?.takeaway || c.summary)}</p>${tags.length ? `<div class="card-tags"><span class="card-tag-label">主题标签</span>${tags.map(t => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div>` : ''}<div class="card-bottom"><span class="journal" title="${esc(c.venue)}">${esc(c.venue || '')}</span><div class="card-links">${p.bibliography?.fulltext_policy === 'restricted' ? '<span class="source-unavailable">原件限阅</span>' : ''}<button data-open="${p.id}">详情</button>${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读原文' : '论文来源'}</a>` : p.bibliography?.fulltext_policy === 'restricted' ? '' : '<span class="source-unavailable">暂无原文</span>'}</div></div></article>`;
 }
 
 function renderInbox() {
@@ -453,10 +508,15 @@ function openPaper(id, keepPosition = false) {
   if (c.limitations.length) article += section('limitations', '适用范围与局限', '哪些结论还不能下', `<ul class="limitation-list">${c.limitations.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`, 'limitations');
   if (r.resources?.length) article += section('resources', '开源与研究资源', '论文提供的链接；可达性、许可证与复现结果尚未核验', `<div class="resource-list">${r.resources.map(x => { const url = externalURL(x.url); return url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><span class="resource-kind">${{code: '代码', data: '数据', project: '项目', other: '资源'}[x.kind] || '资源'}</span><span>${esc(x.label)}<small>${esc(new URL(url).hostname)}</small></span><span aria-hidden="true">↗</span></a>` : `<p>${esc(x.label)} · 链接不可用</p>`; }).join('')}</div>`, 'reading.resources');
   if (c.year_note) article += section('version', '版本说明', '', paragraphs(c.year_note));
-  if (!p.bibliography_only) article += section('evidence', '原文依据', '点击页码回到 PDF 核对；引文存在不代表解读必然正确', `<details id="evidence-details"><summary>${c.evidence.length} 条可追溯引用 <span>展开原文摘录</span></summary>${c.evidence.map((e, i) => `<div class="evidence" id="evidence-${i + 1}" tabindex="-1"><div><span class="evidence-index">[${i + 1}]</span> ${esc(fieldNames[e.field] || e.field)}<a href="${pdf}#page=${e.page}" target="_blank" rel="noopener">PDF 第 ${e.page} 页</a></div><blockquote>${esc(e.quote)}</blockquote></div>`).join('')}</details>`);
-  if (p.bibliography_only) article += section('bibliography', '题录来源', '', `<p class="reading-paragraph">标题、作者与索引简介来自以下已有文献索引。</p><ul class="bibliography-provenance">${(p.bibliography.provenance || []).map(source => `<li><strong>${esc(source.label)}</strong>${source.record_id ? `<span>记录 ${esc(source.record_id)}</span>` : ''}</li>`).join('')}</ul>`);
+  if (!p.bibliography_only) article += section('evidence', '原文依据', '点击页码回到 PDF 核对；引文存在不代表解读必然正确', `<details id="evidence-details"><summary>${c.evidence.length} 条可追溯引用 <span>展开原文摘录</span></summary>${c.evidence.map((e, i) => `<div class="evidence" id="evidence-${i + 1}" tabindex="-1"><div><span class="evidence-index">[${i + 1}]</span> ${esc(fieldNames[e.field] || e.field)}${pageLink(e.page)}</div><blockquote>${esc(e.quote)}</blockquote></div>`).join('')}</details>`);
+  if (p.bibliography_only) article += section('bibliography', '题录来源', '', `<p class="reading-paragraph">${p.bibliography.provenance?.length ? '标题、作者与索引简介来自以下已有文献索引。' : '此条题录尚未登记索引来源。'}</p><ul class="bibliography-provenance">${(p.bibliography.provenance || []).map(source => `<li><strong>${esc(source.label)}</strong>${source.record_id ? `<span>记录 ${esc(source.record_id)}</span>` : ''}</li>`).join('')}</ul>`);
+  const related = relatedPapers(p);
+  if (related.length) {
+    const links = related.map(({paper, shared}) => `<li><button type="button" class="related-title" data-open="${esc(paper.id)}">${esc(paper.card.title)}</button><small>共同关键词或主题 · ${shared.map(esc).join('、')}</small></li>`);
+    article += section('related', '相关阅读', '', `<ul class="related-papers">${links.join('')}</ul>`);
+  }
   if (canManage()) article += section('notes', '阅读笔记', '', `<textarea id="notes" aria-label="阅读笔记" placeholder="记录阅读笔记" maxlength="20000">${esc(noteDrafts.has(id) ? noteDrafts.get(id) : p.notes)}</textarea><div class="note-footer"><button class="secondary" id="save-notes">保存笔记</button><span id="notes-status" role="status">${noteDrafts.has(id) && noteDrafts.get(id) !== p.notes ? '有未保存的修改' : ''}</span></div>`);
-  $('detail-content').innerHTML = `<header class="reader-header"><div class="eyebrow">${esc(c.category)}</div><h2 id="detail-title">${esc(c.title)}</h2><p class="detail-authors">${esc(c.authors.join(' · ') || '作者未注明')}</p><div class="reader-byline"><span>${esc(c.venue || '出版信息未注明')}</span><span>${c.year || '年份未注明'}</span></div><div class="detail-actions">${source ? `<a class="primary" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读 PDF 原文' : '查看论文来源'}</a>${source.local ? `<a class="secondary" href="${pdf}" download="${esc(p.filename)}">下载 PDF</a>` : ''}` : '<span class="source-unavailable">暂未收录原文文件或来源链接</span>'}<button class="secondary" data-favorite="${id}">${p.favorite ? '已收藏' : '收藏'}</button></div>${c.needs_review && !p.bibliography_only ? `<p class="review-note">待核对：${esc(c.review_reason)}</p>` : ''}</header>
+  $('detail-content').innerHTML = `<header class="reader-header"><div class="eyebrow">${esc(c.category)}</div><h2 id="detail-title">${esc(c.title)}</h2><p class="detail-authors">${esc(c.authors.join(' · ') || '作者未注明')}</p><div class="reader-byline"><span>${esc(c.venue || '出版信息未注明')}</span><span>${c.year || '年份未注明'}</span></div><div class="detail-actions">${p.bibliography?.fulltext_policy === 'restricted' ? '<span class="source-unavailable">原件限阅</span>' : ''}${source ? `<a class="primary" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${source.local ? '阅读 PDF 原文' : '查看论文来源'}</a>${source.local ? `<a class="secondary" href="${pdf}" download="${esc(p.filename)}">下载 PDF</a>` : ''}` : p.bibliography?.fulltext_policy === 'restricted' ? '' : '<span class="source-unavailable">暂未收录原文文件或来源链接</span>'}<button class="secondary" data-favorite="${id}">${p.favorite ? '已收藏' : '收藏'}</button></div>${c.needs_review && !p.bibliography_only ? `<p class="review-note">待核对：${esc(c.review_reason)}</p>` : ''}</header>
     <div class="reader-columns"><main class="reader-article">${!insight && r.takeaway ? `<div class="reading-takeaway"><p>${esc(r.takeaway)}</p>${citations('reading.takeaway')}</div>` : ''}<div class="reading-update" ${!canManage() || p.bibliography_only ? 'hidden' : ''}><p id="reading-status" role="status"></p><button class="secondary" id="generate-reading" ${!canManage() || p.bibliography_only ? 'hidden' : ''} ${state.running || !state.agent.configured || !p.available ? 'disabled' : ''}>${hasReading(c) ? '更新详细解读' : '生成详细解读'}</button></div>${article}</main>
     <aside class="reader-aside"><div class="reader-aside-inner"><nav class="reader-toc" aria-label="本篇阅读目录"><p>目录</p>${sections.map(([key, title]) => `<button data-section="reader-${key}">${esc(title)}</button>`).join('')}</nav><div class="reader-facts"><h3>文献信息</h3><dl><dt>发表年份</dt><dd>${c.year || '未注明'}</dd>${c.doi ? `<dt>DOI</dt><dd><a href="https://doi.org/${esc(encodeURIComponent(c.doi))}" target="_blank" rel="noopener noreferrer">${esc(c.doi)}</a></dd>` : ''}<dt>更新时间</dt><dd>${date(insight?.updated_at || c.updated_at || p.updated)}</dd></dl><details><summary>文件信息</summary><p>${esc(p.filename)}</p>${canManage() && p.pdf ? `<p>位置：${esc(p.pdf)}</p>` : ''}<p>SHA-256：${id}</p></details></div></div></aside></div>`;
   if (!$('detail').open) $('detail').showModal();
@@ -556,13 +616,13 @@ $('grid-view').onclick = () => {$('papers').classList.remove('list'); $('grid-vi
 $('list-view').onclick = () => {$('papers').classList.add('list'); $('list-view').classList.add('selected'); $('grid-view').classList.remove('selected'); $('grid-view').setAttribute('aria-pressed', 'false'); $('list-view').setAttribute('aria-pressed', 'true');};
 $('guide-button').onclick = () => { if (canManage()) $('guide').showModal(); };
 $('close-guide').onclick = () => $('guide').close(); $('close-detail').onclick = () => $('detail').close();
-$('refresh').onclick = () => refresh();
+$('refresh').onclick = $('retry-papers').onclick = () => refresh();
 $('copy-path').onclick = async () => {try {await navigator.clipboard.writeText(state.inbox); toast('路径已复制');} catch {toast('请手动复制上方路径');}};
 $('scan').onclick = async () => { $('scan').disabled = true; try {const r = await api('/api/scan', {method:'POST',body:'{}'}); await refresh(true); toast(`发现 ${r.added} 篇新论文，归档 ${r.duplicates} 份重复文件${r.skipped.length ? '；' + r.skipped.join('；') : ''}`);} catch(e){toast(e.message);} finally {$('scan').disabled = false;} };
 $('run').onclick = async () => {try {await api('/api/run', {method:'POST',body:'{}'}); toast('整理任务已启动'); await refresh(true);} catch(e){toast(e.message);}};
 $('login-form').onsubmit = async e => {e.preventDefault(); try {await api('/api/login', {method:'POST',body:JSON.stringify({password:$('password').value})}); $('password').value=''; $('login').close(); await refresh(true);} catch(error){$('login-error').textContent=error.message;}};
 $('login').addEventListener('cancel', e => e.preventDefault());
-document.addEventListener('keydown', e => {if (e.key === '/' && pageView !== 'workspace' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable && !$('detail').open && !$('guide').open && !$('login').open && !$('provider-settings').open) {e.preventDefault(); $(pageView === 'discover' ? 'discovery-search' : 'search').focus();}});
+document.addEventListener('keydown', e => {if (e.key === '/' && pageView !== 'workspace' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable && !$('detail').open && !$('guide').open && !$('login').open && !$('provider-settings').open) {e.preventDefault(); $(pageView === 'graph' ? 'graph-query' : pageView === 'discover' ? 'discovery-search' : 'search').focus();}});
 setInterval(() => {if (!$('login').open && !$('detail').open && !document.hidden) refresh(true);}, 30000);
 refresh(true);
 

@@ -150,7 +150,7 @@ def cleanup(journal):
         # The caller must have verified ordinary-account access after the switch.
         receipt=json.loads((BASE/'destination-entry-observations.json').read_text())
         baseline_file=BASE/'catalog-baseline.json'
-        if digest(baseline_file)!='5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871':raise RuntimeError('Unexpected asset baseline')
+        if digest(baseline_file)!='b61ffdebecf823016f3819a7c6eec9a5f92ce1e7bcfee916a6bbcc81e27bcfd9':raise RuntimeError('Unexpected asset baseline')
         baseline=json.loads(baseline_file.read_text())
         expected_paths={a['path'].replace('/data/','/data/share/',1) for a in baseline['assets']}
         rows=receipt.get('observations',[])
@@ -159,7 +159,7 @@ def cleanup(journal):
                 or receipt.get('host')!=journal['host'] or receipt.get('account')!='rmp' or receipt.get('observer_uid')!=1011
                 or dt.datetime.fromisoformat(receipt['observed_at'])<dt.datetime.fromisoformat(journal['switched_at'])
                 or not all(x.get('readable') is True and x.get('exists') is True for x in rows)):
-            raise RuntimeError('All 221 destination entry observations are required')
+            raise RuntimeError('All 222 destination entry observations are required')
         journal['phase']='cleaning';journal['cleanup_started_at']=now()
         fs=os.statvfs('/data');journal['local_available_before_cleanup']=fs.f_bavail*fs.f_frsize;save(journal)
     for name in NAMES:

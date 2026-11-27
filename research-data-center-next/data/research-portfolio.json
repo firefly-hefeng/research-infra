@@ -40,6 +40,9 @@
   "models": [
     {
       "id": "depalign-final",
+      "disease_category": "mood",
+      "task_category": "depression-severity",
+      "sort_order": 10,
       "name": "DepAlign 最终版",
       "task": "访谈文本＋语音预测抑郁程度",
       "status": "validated",
@@ -97,6 +100,9 @@
     },
     {
       "id": "mmpsy-v3-ensemble",
+      "disease_category": "mood",
+      "task_category": "text-severity",
+      "sort_order": 20,
       "name": "MMPsy v3 集成",
       "task": "中文文本严重度评分",
       "status": "development",
@@ -155,6 +161,9 @@
     },
     {
       "id": "voice-fused-head-v2",
+      "disease_category": "emotion",
+      "task_category": "voice-emotion",
+      "sort_order": 30,
       "name": "中文声音表达融合头 v2",
       "task": "中文声音情绪识别",
       "status": "development",
@@ -213,6 +222,9 @@
   "research_tracks": [
     {
       "id": "daily-text-risk",
+      "disease_category": "mood",
+      "task_category": "daily-text-risk",
+      "sort_order": 40,
       "name": "Daily Text Risk",
       "status": "candidate",
       "status_label": "后续候选",
@@ -239,6 +251,9 @@
     },
     {
       "id": "universal-voice-encoder",
+      "disease_category": "cross-disease",
+      "task_category": "universal-encoder",
+      "sort_order": 50,
       "name": "通用疾病声音 Encoder",
       "status": "research_plan",
       "status_label": "研究方案 · 开发中",

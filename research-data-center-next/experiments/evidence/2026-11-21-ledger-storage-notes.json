@@ -1,0 +1,55 @@
+{
+  "table": "tbl9Ggk0cGF0Zlxz",
+  "view": "vew5x8yw5H",
+  "field": {
+    "id": "fld72hnCUh",
+    "name": "依据及更新时间",
+    "type": "一段纯文本"
+  },
+  "source_host": "101",
+  "observation_time": "2026-11-20T18:30:57.070854+00:00",
+  "inventory_receipt_sha256": "e1681ddf6381ae214679217aae645ae5d79d69877039877fd3e7265edccb19e8",
+  "backup_at": "2026-11-20T18:52:13.532Z",
+  "verified_after_forced_reload_at": "2026-11-20T18:53:03.529Z",
+  "verified_in_separate_tab_at": "2026-11-20T18:53:57.895Z",
+  "records": [
+    {
+      "record_id": "reczz28S4ElbQRQt",
+      "title": "Coswara",
+      "before_text_sha256": "aea5b804d0b2ed344e57f68171c9f26f43067d78bdb8612bbe23e3a84ac37cda",
+      "after_text_sha256": "8850172736faeca6e5080120a2c0d5f3cb6b3652521c5605ee9f07e6d3bf95d2",
+      "appended_text": "2026-11-21 02:30（北京时间），101 主机普通账户 rmp 核查：登记的 releases 目录该层有 43 个符号链接、0 个普通文件。本次只核对目录项，链接目标和发布包完整性待核。",
+      "original_prefix_matches": true,
+      "historical_license_text_exact": true,
+      "registered_path_still_present": true,
+      "historical_status_matches": true
+    },
+    {
+      "record_id": "reczz28S4ElbQPb1",
+      "title": "MDVR-KCL",
+      "before_text_sha256": "128c9f3230bc90765d31341dbde5b455a2eca039c0611136c11c4fa9335933ae",
+      "after_text_sha256": "9bcd350c0a4b658055ccb9c9a362bafbfed43755c34b63ddd690938fa4e5bec8",
+      "appended_text": "2026-11-21 02:30（北京时间），101 主机普通账户 rmp 核查：登记入口为可读项目目录，本次已查层级未匹配到独立发布包。原取得与封存记录见上。",
+      "original_prefix_matches": true,
+      "historical_license_text_exact": true,
+      "registered_path_still_present": true,
+      "historical_status_matches": true
+    },
+    {
+      "record_id": "reczz28SPSFA7Mro",
+      "title": "HF-Lung-V1",
+      "before_text_sha256": "e9a202a816b34f2b1589dfb69123b9e6ee0f5372f47116292a3a5192397792db",
+      "after_text_sha256": "7bf87ac45b4600f287f7d2c4e8269a0bcb5bffb022ce8483c8280c302682e379",
+      "appended_text": "2026-11-21 02:30（北京时间），101 主机普通账户 rmp 核查：在本机未找到登记入口。此前云端取得与逐文件复核记录见上，原主机的存放情况需在对应主机核对。",
+      "original_prefix_matches": true,
+      "historical_license_text_exact": true,
+      "registered_path_still_present": true,
+      "historical_status_matches": true
+    }
+  ],
+  "update_cells": 3,
+  "source_paths_changed": 0,
+  "other_cells_in_current_view": 1170,
+  "canonical_other_cells_sha256_in_both_refreshed_tabs": "97a79fa532b9e57f5c2508022e55405f962af4fc8092c87671c4b0d43f9c384f",
+  "verification_scope": "写入前逐个核对名称和三段原文；一次指令仅包含这三个记录的指定字段。两次重新读取的1170个其他单元格按键名归一后一致。写入前的全表原始序列指纹受飞书对象键顺序影响，不作跨版本等价结论。还将三行当前许可全文、登记路径与取得状态同本日早些时候的独立来源逐一复核。"
+}

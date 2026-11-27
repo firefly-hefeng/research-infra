@@ -1,4 +1,4 @@
-"""Explicit operator installer for the dedicated three-server read-only monitor.
+"""Explicit operator installer for the dedicated read-only server monitor.
 
 Passwords are prompted invisibly and remain in memory. Only the dedicated probe,
 restricted key line, private monitor key and two new systemd units are installed.
@@ -16,8 +16,10 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from platform_data import SERVERS
+
 CENTRAL = '101.132.97.146'
-HOSTS = (CENTRAL, '47.117.138.84', '139.196.25.53')
+HOSTS = (CENTRAL,) + tuple(server['address'] for server in SERVERS if server['address'] != CENTRAL)
 BOOTSTRAP = '/var/lib/research-data-center-monitor/bootstrap'
 KEYDIR = '/var/lib/research-data-center/state/monitor-ssh'
 WORKSPACE = '/var/lib/research-data-center/workspace'
@@ -81,7 +83,7 @@ print(json.dumps({'bootstrap':str(dest),'verified_files':len(hashes)}))
 
 def units():
     service = '''[Unit]
-Description=Read-only three-server resource snapshots
+Description=Read-only research server resource snapshots
 After=network-online.target
 RequiresMountsFor=/var/lib/research-data-center /data/services
 ConditionHost=iZuf6jc6bqdgxmhcci4k3wZ
@@ -180,7 +182,7 @@ print(json.dumps({'monitor_started':True}))
                 snapshot = json.loads(stream.read())
         finally:
             sftp.close()
-        from platform_data import public_server, SERVERS
+        from platform_data import public_server
         rows = {row['id']: row for row in snapshot['servers']}
         snapshot['servers'] = [public_server(rows.get(server['id']), server) for server in SERVERS]
         from tools.collect_server_resources import save_snapshot

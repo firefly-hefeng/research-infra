@@ -61,8 +61,9 @@ function check(condition) { assert.ok(condition); checks += 1; }
   subject.state.authEnabled = true;
   subject.state.authenticated = true;
   subject.updateAgentCode();
-  check(node("ingestion-agent-code").textContent.includes("Authorization: Bearer $DATA_CENTER_TOKEN"));
-  check(node("ingestion-agent-code").textContent.includes(origin + "/api/ingestion/status"));
+  check(node("ingestion-agent-code").textContent.includes('credentials: "same-origin"'));
+  check(!node("ingestion-agent-code").textContent.includes("Authorization: Bearer"));
+  check(node("ingestion-agent-code").textContent.includes('"/api/ingestion/status"'));
   subject.clearCatalog();
   check(subject.state.ingestion === null);
   check(node("ingestion-jobs").innerHTML === "");

@@ -1,21 +1,23 @@
+@import url("/platform-theme.css");
+
 :root {
   color-scheme: light;
-  --paper: #f7f6f0;
-  --surface: #fffefb;
-  --ink: #183248;
-  --muted: #5d6d78;
-  --line: #dce3df;
-  --teal: #167e78;
-  --teal-dark: #11625e;
-  --teal-light: #e8f4ef;
+  --paper: var(--rp-paper, #f2f5f6);
+  --surface: var(--rp-surface, #fff);
+  --ink: var(--rp-ink, #102633);
+  --muted: var(--rp-muted, #4d6470);
+  --line: var(--rp-line, #d6e0e1);
+  --teal: var(--rp-focus, #167b72);
+  --teal-dark: var(--rp-accent, #07665d);
+  --teal-light: var(--rp-accent-soft, #e3f4ef);
   --amber: #8c5f23;
   --amber-light: #faf0df;
-  --radius: 16px;
+  --radius: var(--rp-radius, 10px);
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 15px; line-height: 1.85; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--rp-font, system-ui, sans-serif); font-size: 15px; line-height: 1.85; }
 a { color: var(--teal-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--teal); }
 a:focus-visible, summary:focus-visible { outline: 3px solid var(--teal); outline-offset: 5px; border-radius: 3px; }

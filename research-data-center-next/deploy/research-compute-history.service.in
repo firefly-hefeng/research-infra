@@ -1,0 +1,21 @@
+[Unit]
+Description=Record compute usage and publish calendar reports
+After=research-server-monitor.service
+RequiresMountsFor=/var/lib/research-data-center /data/services
+
+[Service]
+Type=oneshot
+User=rmp
+Group=rmp
+ExecStart=/data/services/miniforge3/bin/python -B @RELEASE@/compute_history.py --root /var/lib/research-data-center/workspace --state-dir /var/lib/research-data-center/state
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/research-data-center/state
+Nice=19
+IOSchedulingClass=idle
+MemoryMax=128M
+CPUQuota=20%
+TimeoutStartSec=180

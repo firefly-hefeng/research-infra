@@ -2,6 +2,8 @@
 from http.client import HTTPConnection, HTTPException
 from urllib.parse import urlsplit
 
+DAILY_UPLOAD_MAX_BODY = 20 * 1024 * 1024 + 100_000
+
 
 def proxy_progress(handler):
     if not handler._valid_host() or not handler._same_origin():
@@ -23,7 +25,8 @@ def proxy_progress(handler):
             return handler._json({'error':'必须提供单个 Content-Length'},411)
         try: length=int(handler.headers['Content-Length'])
         except ValueError: return handler._json({'error':'无效长度'},400)
-        if not 0 <= length <= 100_000:
+        limit = DAILY_UPLOAD_MAX_BODY if path == '/api/daily/uploads' else 100_000
+        if not 0 <= length <= limit:
             return handler._json({'error':'上传超过大小限制'},413)
         handler.connection.settimeout(15)
         try: body=handler.rfile.read(length)

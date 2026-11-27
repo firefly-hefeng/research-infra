@@ -5,6 +5,8 @@ import sys
 import tempfile
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+if os.name != 'posix':
+    raise unittest.SkipTest('Storage monitor requires POSIX file locking and ownership')
 from tools.monitor_directory import run
 
 class MonitorTests(unittest.TestCase):

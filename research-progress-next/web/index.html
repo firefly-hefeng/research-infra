@@ -1,42 +1,224 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>科研周记 · Research Weekly</title><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
-<body><div id="toast" role="status" aria-live="polite" hidden></div>
-<div class="workspace">
-<aside class="sidebar"><div class="brand"><span class="brand-mark">研</span><div>科研周记<small>RESEARCH WEEKLY</small></div></div><div class="team-label" id="team-label">加载团队信息…</div><a id="registry-link" class="registry-link" hidden>← 公共科研资源中心</a><p class="nav-label">科研进度中心</p><nav aria-label="工作区导航"><button data-view="upload" class="nav-item active">↥ 提交周报</button><button data-view="daily" class="nav-item">◷ 提交日报</button><button data-view="team" class="nav-item">◫ 团队进度</button><button data-view="knowledge" class="nav-item">▧ 团队知识库</button></nav><div class="sidebar-bottom"><div class="scope-note"><strong>记录每天，回顾每周</strong><p>日报保留当天研究记录<br>周报用于团队进展汇总</p></div></div></aside>
-<div class="content-shell"><header class="topbar"><span>科研进度平台</span><div class="topbar-right"><span id="timezone-label"></span><span class="label-tag">无需登录</span></div></header>
-<main><section class="panel registration-panel" aria-labelledby="registration-heading"><form id="registration-form"><div><h2 id="registration-heading">首次使用，登记你的姓名</h2><p class="muted small">已有登记请直接选择成员。同名同学请加组别区分。姓名用于归档，不是身份验证。</p></div><label class="sr-only" for="registration-name">姓名（重名请附组别）</label><input id="registration-name" name="name" maxlength="80" placeholder="姓名（重名请附组别）" required autocomplete="name"><button id="register-member" class="secondary" type="submit">加入成员</button></form><p id="registration-feedback" class="upload-feedback" role="status" aria-live="polite"></p></section><section id="view-upload" class="view"><div class="page-heading"><div><p class="eyebrow">WEEKLY RESEARCH INTAKE</p><h1>这一周，研究走到了哪里？</h1><p class="muted">登记姓名后选择成员，按统一模板提交。个人原始报告不开放浏览。</p></div></div>
-<div class="mine-grid"><section class="panel report-panel"><div class="panel-heading"><h2>提交个人周报</h2><span class="label-tag">模板 v1</span></div>
-<form id="report-form"><div class="intake-identity"><label>报告所属成员<select id="member" required><option value="">加载中…</option></select></label><label>报告周次<input type="week" id="week" required></label></div><p class="muted small">首次使用可在上方登记姓名。选择姓名用于归档，不代表身份验证。</p>
-<div class="entry-tabs" role="group" aria-label="上传方式"><button type="button" id="mode-form" class="secondary active">在线填写</button><button type="button" id="mode-file" class="secondary">上传 Markdown 文件</button><button type="button" id="download-template" class="text-link">下载对应模板 ↓</button></div>
-<div id="fields-panel">
-<div class="editor-section"><div class="editor-label"><span>01</span><label for="field-done">本周完成</label></div><textarea id="field-done" rows="4" maxlength="12000" placeholder="说明完成和正在进行的工作，避免将计划写成成果。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>02</span><label for="field-results">结果与证据</label></div><textarea id="field-results" rows="3" maxlength="12000" placeholder="产物、数据版本、指标与结论；未知请写“未说明”。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>03</span><label for="field-blockers">问题与阻塞</label></div><textarea id="field-blockers" rows="2" maxlength="12000" placeholder="依赖、待解决的问题或需要的支持；未知请写“未说明”。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>04</span><label for="field-next">下周计划</label></div><textarea id="field-next" rows="2" maxlength="12000" placeholder="下一步行动与验证目标；未知请写“未说明”。" required></textarea></div></div>
-<div id="file-panel" class="upload-zone" hidden><label for="report-file">选择填写好的 .md 周报</label><input type="file" id="report-file" accept=".md,text/markdown"><p class="muted small" id="file-hint">请先下载所选成员、周次对应的模板。</p><pre id="file-preview" hidden></pre></div>
-<p class="submission-note">四个栏目均须填写。报告将参与团队汇总；已有不同内容的同周报告不能通过此入口覆盖。</p><p id="upload-feedback" class="upload-feedback" role="status" aria-live="polite"></p><div class="editor-footer"><span class="muted small">提交前请核对成员和周次</span><button type="submit" class="primary" id="submit-report" disabled>提交周报 ↗</button></div></form></section>
-<aside class="right-stack"><section class="panel"><div class="panel-heading"><h2>统一的报告，清晰的进展</h2></div><div class="intake-guide"><p><strong>01 · 登记姓名</strong><br>首次填写姓名后加入；已有登记直接选择。同名同学请加组别区分。</p><p><strong>02 · 再交周报</strong><br>在线填写或上传模板文件，每人每周一份。</p><p><strong>03 · 汇集团队</strong><br>Agent 按周读取正式周报，生成团队汇总。日报需自行整理为周报。</p></div></section><section class="guide-callout"><h3>程序也可以上传</h3><p>网页与后端脚本共用 <code id="upload-endpoint">POST api/uploads</code>，支持 JSON 字段与 Markdown 文件。</p><p>团队报告和知识库只读，原始个人报告不开放读取接口。</p></section></aside></div></section>
-<section id="view-daily" class="view" hidden><div class="page-heading"><div><p class="eyebrow">DAILY RESEARCH NOTES</p><h1>今天，向前推进了什么？</h1><p class="muted">留下可接续的日常记录。日报单独保存，不会自动生成周报。</p></div></div>
-<div class="mine-grid"><section class="panel report-panel"><div class="panel-heading"><h2>提交个人日报</h2><span class="label-tag">模板 v1</span></div>
-<form id="daily-form"><div class="intake-identity"><label>报告所属成员<select id="daily-member" required><option value="">加载中…</option></select></label><label>报告日期<input type="date" id="daily-date" required></label></div><p class="muted small">首次使用可在上方登记姓名。选择姓名用于归档，不代表身份验证。</p>
-<div class="entry-tabs" role="group" aria-label="上传方式"><button type="button" id="daily-mode-form" class="secondary active">在线填写</button><button type="button" id="daily-mode-file" class="secondary">上传 Markdown 文件</button><button type="button" id="daily-download-template" class="text-link">下载对应模板 ↓</button></div>
-<div id="daily-fields-panel">
-<div class="editor-section"><div class="editor-label"><span>01</span><label for="daily-field-done">今日完成</label></div><textarea id="daily-field-done" rows="4" maxlength="12000" placeholder="说明完成和正在进行的工作，避免将计划写成成果。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>02</span><label for="daily-field-results">结果与证据</label></div><textarea id="daily-field-results" rows="3" maxlength="12000" placeholder="产物、数据版本、指标与结论；未知请写“未说明”。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>03</span><label for="daily-field-blockers">问题与阻塞</label></div><textarea id="daily-field-blockers" rows="2" maxlength="12000" placeholder="依赖、待解决的问题或需要的支持；未知请写“未说明”。" required></textarea></div>
-<div class="editor-section"><div class="editor-label"><span>04</span><label for="daily-field-next">明日计划</label></div><textarea id="daily-field-next" rows="2" maxlength="12000" placeholder="下一步行动与验证目标；未知请写“未说明”。" required></textarea></div></div>
-<div id="daily-file-panel" class="upload-zone" hidden><label for="daily-file">选择填写好的 .md 日报</label><input type="file" id="daily-file" accept=".md,text/markdown"><p class="muted small" id="daily-file-hint">请先下载所选成员、日期对应的模板。</p><pre id="daily-file-preview" hidden></pre></div>
-<p class="submission-note">四个栏目均须填写。日报单独保存，不自动进入团队周报汇总；已有不同内容的同日报告不能通过此入口覆盖。</p><p id="daily-feedback" class="upload-feedback" role="status" aria-live="polite"></p><div class="editor-footer"><span class="muted small">提交前请核对成员和日期</span><button type="submit" class="primary" id="daily-submit" disabled>提交日报 ↗</button></div></form></section>
-<aside class="right-stack"><section class="panel"><div class="panel-heading"><h2>统一的报告，清晰的进展</h2></div><div class="intake-guide"><p><strong>01 · 登记姓名</strong><br>首次填写姓名后加入；同名同学请加组别区分。</p><p><strong>02 · 记录当天</strong><br>在线填写或上传模板文件，每人每天一份。</p><p><strong>03 · 每周回顾</strong><br>自行整理本周记录，另行提交周报；团队汇总仍只读取周报。</p></div></section><section class="guide-callout"><h3>程序也可以上传</h3><p>网页与后端脚本共用 <code id="daily-upload-endpoint">POST api/daily/uploads</code>，支持 JSON 字段与 Markdown 文件。</p><p>团队报告和知识库只读，原始个人报告不开放读取接口。</p></section></aside></div></section>
-<section id="view-team" class="view" hidden><div class="page-heading"><div><p class="eyebrow">TEAM RESEARCH DIGEST</p><h1>团队的这一周。</h1><p class="muted">Agent 生成的概要与逐人进展，公开阅读，不可编辑。</p></div><a class="registry-link" href="direction-methods">按方向查看方法与效果</a><button id="refresh-team" class="secondary">刷新报告</button></div><div class="shared-layout"><aside class="panel shared-index"><div class="panel-heading"><h2>每周汇总</h2></div><div id="team-list"></div></aside><article id="team-reader" class="panel document-panel"></article></div></section>
-<section id="view-knowledge" class="view" hidden>
-  <div class="page-heading"><div><p class="eyebrow">TEAM KNOWLEDGE</p><h1>团队知识库</h1><p class="muted">把经验留下，让研究有迹可循。基础知识、研究规范与新人指引。</p></div><span class="shared-badge">只读 · 统一维护</span></div>
-  <div class="knowledge-toolbar"><label class="knowledge-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">搜索知识文档标题或摘要</span><input id="knowledge-search" type="search" placeholder="搜索文档标题、摘要…" autocomplete="off"></label><span id="knowledge-count" role="status" aria-live="polite">正在加载文档…</span><button id="knowledge-back" type="button" class="secondary" hidden>← 全部文档</button></div>
-  <div id="knowledge-workspace" class="knowledge-workspace">
-    <nav id="knowledge-grid" class="knowledge-grid" aria-label="知识文档列表"></nav>
-    <div id="knowledge-document" class="knowledge-document" hidden><div class="knowledge-document-bar"><span id="knowledge-document-title"></span><span>团队知识文档</span></div><article id="knowledge-reader" class="document-panel" tabindex="-1" aria-live="polite"></article></div>
-    <aside id="knowledge-outline" class="knowledge-outline" hidden><h2>本文目录</h2><nav id="knowledge-toc" aria-label="知识文档正文目录"></nav><p>由维护人员统一更新</p></aside>
-  </div>
-</section>
-<footer class="page-footer"><span>科研周记 / RESEARCH WEEKLY</span><span>个人进展 · 团队进度 · 知识积累</span></footer></main></div></div></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>团队进度 · 科研管理平台</title>
+  <link rel="stylesheet" href="/platform-theme.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/activity.css">
+  <link rel="stylesheet" href="assets/digest.css">
+  <link rel="stylesheet" href="assets/rhythm.css">
+  <script src="assets/d3.v7.min.js" defer></script>
+  <script src="assets/rhythm.js" defer></script>
+  <script src="assets/digest.js" defer></script>
+  <script src="assets/activity.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="masthead">
+    <div class="platform-nav">
+      <div class="platform-nav-inner">
+        <a class="platform-nav-brand" id="registry-link" href="/">科研工作台</a>
+        <nav class="platform-nav-links" aria-label="科研平台模块">
+          <a href="/#data-platform">数据管理</a>
+          <a href="#team" aria-current="page">团队进度</a>
+          <a href="/papers/">文献管理</a>
+          <a href="/#servers">服务器资源</a>
+        </nav>
+      </div>
+    </div>
+    <div class="workspace-bar">
+      <nav class="workspace-nav" aria-label="科研进度导航">
+        <a href="#team" data-view="team" aria-current="page">团队进度</a>
+        <a href="#directions" data-view="directions">研究方向</a>
+        <a href="#daily" data-view="daily">提交日报</a>
+        <a href="#upload" data-view="upload">提交周报</a>
+        <a href="#knowledge" data-view="knowledge">使用说明</a>
+      </nav>
+      <span class="team-label" id="team-label"></span>
+    </div>
+  </header>
+  <main id="main-content" tabindex="-1">
+    <section id="session-recovery" class="session-recovery panel" aria-labelledby="session-recovery-heading" hidden>
+      <div>
+        <h2 id="session-recovery-heading">请重新登录飞书</h2>
+        <p id="session-recovery-message" role="status" aria-live="polite"></p>
+        <p class="muted">当前填写的内容和已选文件保留在此页面。</p>
+      </div>
+      <div class="session-recovery-actions">
+        <a id="session-login" class="primary" href="/auth/login" target="_blank" rel="noopener">在新标签重新登录 ↗</a>
+        <button id="session-resume" class="secondary" type="button">已登录，继续编辑</button>
+      </div>
+    </section>
+    <section id="view-team" class="view" aria-labelledby="team-heading">
+      <header class="page-heading">
+        <div><div class="section-name">RESEARCH / TEAM</div><h1 id="team-heading">团队进度</h1><p>从每周的阶段成果，到每天的研究推进。</p></div>
+        <div class="progress-heading-actions"><a href="#upload" class="secondary">提交周报 ↗</a><a href="#daily" class="secondary">记录今天 ↗</a></div>
+      </header>
+      <section id="weekly-progress" class="progress-section" aria-labelledby="weekly-heading">
+        <header class="progress-section-heading">
+          <div><p class="progress-kicker"><span>01</span> WEEKLY / 阶段记录</p><h2 id="weekly-heading">周报 · 阶段进展</h2><p>按成员选择周次，阅读完整周报与原件。</p></div>
+          <button id="refresh-team" type="button" class="text-link">刷新记录 ↻</button>
+        </header>
+        <div class="activity-header progress-period-controls">
+          <p class="muted" id="activity-week"></p>
+          <div class="activity-actions">
+            <button id="activity-prev" class="secondary" type="button" aria-label="查看上一周周报">上一周</button>
+            <button id="activity-current" class="secondary" type="button" aria-label="查看本周周报">本周</button>
+            <button id="activity-next" class="secondary" type="button" aria-label="查看下一周周报">下一周</button>
+          </div>
+          <label class="activity-filter">周报成员<select id="activity-member"><option value="">全部成员</option></select></label>
+          <a id="weekly-all-members" class="text-link" href="#team" aria-label="查看全部周报成员" hidden>全部成员</a>
+        </div>
+        <p id="activity-weekly-status" class="muted" role="status">正在读取周报。</p>
+        <div id="weekly-timetable" class="personal-timetable" aria-label="按成员查阅四周周报"></div>
+        <div id="activity-weekly-list" class="activity-weekly-list" aria-label="成员周报"></div>
+        <article id="activity-weekly-report" class="activity-selected-report" aria-label="选中的成员周报" hidden></article>
+        <details id="weekly-archive" class="weekly-archive">
+          <summary>阅读阶段汇总与周报归档</summary>
+          <div class="team-workspace">
+            <aside class="week-panel" aria-labelledby="week-heading">
+              <div class="panel-heading"><h3 id="week-heading">已发布周次</h3></div>
+              <div id="team-list"></div>
+            </aside>
+            <article id="team-reader" class="team-reader" aria-busy="true"><p class="empty">正在读取周报。</p></article>
+          </div>
+        </details>
+      </section>
+      <details id="activity-records" class="progress-section activity-panel" open>
+        <summary class="progress-section-heading"><div><p class="progress-kicker"><span>02</span> DAILY / 每日记录</p><h2 id="activity-heading">日报 · 每日推进</h2><p>按成员选择日期，阅读完整日报与原件。日报周次独立选择。</p></div></summary>
+        <div class="activity-header progress-period-controls">
+          <p class="muted" id="daily-week"></p>
+          <div class="activity-actions"><button id="daily-prev" class="secondary" type="button" aria-label="查看上一周日报">上一周</button><button id="daily-current" class="secondary" type="button" aria-label="查看本周日报">本周</button><button id="daily-next" class="secondary" type="button" aria-label="查看下一周日报">下一周</button></div>
+          <label class="activity-filter">日报成员<select id="daily-member-filter"><option value="">全部成员</option></select></label>
+          <a id="daily-all-members" class="text-link" href="#team" aria-label="查看全部日报成员" hidden>全部成员</a>
+        </div>
+        <p id="activity-status" class="muted" role="status">正在读取记录。</p>
+        <div id="activity-grid" class="personal-timetable" aria-label="按成员和日期查阅日报"></div>
+        <div id="daily-feed" class="report-feed" aria-label="已提交的成员日报"></div>
+        <article id="activity-report" class="activity-selected-report" aria-label="选中的成员日报" hidden></article>
+      </details>
+      <section id="progress-digest" class="progress-section digest-panel" aria-labelledby="digest-heading">
+        <header class="progress-section-heading digest-heading">
+          <div><p class="progress-kicker"><span>03</span> RESEARCH / 研究判断</p><h2 id="digest-heading">研究全景</h2><p id="digest-period" class="muted"></p></div>
+          <button id="digest-refresh" class="text-link" type="button">刷新全景 ↻</button>
+        </header>
+        <p id="digest-status" class="digest-status" role="status">正在读取研究全景。</p>
+        <a class="text-link" href="direction-methods#algorithm-map">算法核心地图 · 六类方向与具体方法</a>
+        <a id="lab-review-link" class="text-link" href="api/lab-review" hidden>阅读三级金字塔阶段复盘 · 结论、主题与成员证据</a>
+        <div id="digest-content"><p class="muted">基于近期报告，整理研究主线、已知结果、关键约束与下一步。</p></div>
+      </section>
+      <section id="research-context" class="progress-section" aria-labelledby="context-heading">
+        <header class="progress-section-heading"><div><p class="progress-kicker"><span>04</span> CONTEXT / 研究脉络</p><h2 id="context-heading">研究脉络</h2><p>把近期工作放回各方向的问题、已有基础与证据范围。</p></div><a href="#directions" class="text-link">全部方向文书 ↗</a></header>
+        <div id="digest-directions"></div>
+        <details class="activity-panel" id="activity-directions">
+          <summary><h3 id="activity-directions-heading">方向文书与既有基础</h3></summary>
+          <div id="activity-direction-list"><p class="muted">正在读取研究方向。</p></div>
+        </details>
+      </section>
+    </section>
+
+    <section id="view-directions" class="view" aria-labelledby="directions-heading" hidden>
+      <header class="page-heading">
+        <div><div class="section-name">进度中心</div><h1 id="directions-heading">研究方向</h1><p>从研究问题出发，查看每个方向已经确认的进展与待验证的下一步。</p></div>
+        <a href="/#research" id="research-link" class="secondary">成果档案 ↗</a>
+      </header>
+      <div id="direction-list" class="direction-list" aria-live="polite"></div>
+    </section>
+
+    <section id="registration-panel" class="panel registration-panel" aria-labelledby="registration-heading" hidden>
+      <details>
+        <summary id="registration-heading">首次提交？登记姓名</summary>
+        <form id="registration-form">
+          <label for="registration-name">姓名（同名请附组别）</label>
+          <div class="registration-fields">
+            <input id="registration-name" name="name" maxlength="80" required autocomplete="name">
+            <button id="register-member" class="secondary" type="submit">登记</button>
+          </div>
+          <p class="muted">姓名用于归档。请确认报告属于所选成员。</p>
+        </form>
+        <p id="registration-feedback" class="upload-feedback" role="status" aria-live="polite"></p>
+      </details>
+    </section>
+
+    <section id="view-upload" class="view" aria-labelledby="upload-heading" hidden>
+      <header class="page-heading">
+        <div><div class="section-name">个人记录</div><h1 id="upload-heading">提交周报</h1><p>选择成员和周次，提交 Word、PDF、Markdown 等现有文件。</p></div>
+        <a href="#team" class="secondary">查看团队进度</a>
+      </header>
+      <div class="form-workspace">
+        <section class="panel report-panel" aria-labelledby="weekly-file-heading">
+          <div class="panel-heading"><h2 id="weekly-file-heading">周报文件</h2><button type="button" id="download-template" class="text-link">下载模板 ↓</button></div>
+          <form id="report-form">
+            <div class="intake-identity">
+              <label>报告所属成员<select id="member" required><option value="">加载中…</option></select></label>
+              <label>报告周次<input type="week" id="week" required></label>
+            </div>
+            <div class="upload-zone" id="file-panel">
+              <label for="report-file">选择周报文件</label>
+              <input type="file" id="report-file" required>
+              <p class="muted" id="file-hint">先选择成员和周次。</p>
+            </div>
+            <p id="upload-feedback" class="upload-feedback" role="status" aria-live="polite"></p>
+            <div class="editor-footer"><button type="submit" class="primary" id="submit-report" disabled>上传周报</button></div>
+          </form>
+        </section>
+        <aside class="form-note"><h2>周报写什么</h2><p>实际做了什么、结果和证据、需要谁协助、下一步。涉及某个方向时，写上方向名或对应文档链接。</p><p>整理后的摘要会纳入团队进度。更正同一周的报告，请联系维护人员保留原件。</p><p class="agent-note">Agent 接口 <code id="upload-endpoint">POST api/uploads</code></p></aside>
+      </div>
+    </section>
+
+    <section id="view-daily" class="view" aria-labelledby="daily-heading" hidden>
+      <header class="page-heading">
+        <div><div class="section-name">个人记录</div><h1 id="daily-heading">提交日报</h1><p>记录当天开展的工作、观察到的结果和准备接着做的事。</p></div>
+        <a href="#upload" class="secondary">提交周报</a>
+      </header>
+      <div class="form-workspace">
+        <section class="panel report-panel" aria-labelledby="daily-note-heading">
+          <div class="panel-heading"><h2 id="daily-note-heading">日报内容</h2><button type="button" id="daily-download-template" class="text-link">下载模板 ↓</button></div>
+          <form id="daily-form">
+            <div class="intake-identity">
+              <label>报告所属成员<select id="daily-member" required><option value="">加载中…</option></select></label>
+              <label>报告日期<input type="date" id="daily-date" required></label>
+            </div>
+            <div class="entry-tabs" role="group" aria-label="日报提交方式">
+              <button type="button" id="daily-mode-form" class="secondary active" aria-pressed="true">在线填写</button>
+              <button type="button" id="daily-mode-file" class="secondary" aria-pressed="false">上传日报文件</button>
+            </div>
+            <div id="daily-fields-panel">
+              <div class="editor-section"><label for="daily-field-done">今日完成</label><textarea id="daily-field-done" rows="4" maxlength="12000" placeholder="今天实际做了什么？" required></textarea></div>
+              <div class="editor-section"><label for="daily-field-results">结果与证据</label><textarea id="daily-field-results" rows="3" maxlength="12000" placeholder="写下已观察到的结果或证据出处。" required></textarea></div>
+              <div class="editor-section"><label for="daily-field-blockers">问题与阻塞</label><textarea id="daily-field-blockers" rows="2" maxlength="12000" placeholder="有什么需要确认或协助？" required></textarea></div>
+              <div class="editor-section"><label for="daily-field-next">明日计划</label><textarea id="daily-field-next" rows="2" maxlength="12000" placeholder="下一步准备做什么？" required></textarea></div>
+            </div>
+            <div id="daily-file-panel" class="upload-zone" hidden>
+              <label for="daily-file">选择日报正文文件</label><input type="file" id="daily-file" accept=".md,.markdown,.txt,.csv,.docx,.xlsx,.pptx,.pdf">
+              <p class="muted" id="daily-file-hint"></p><pre id="daily-file-preview" hidden></pre>
+            </div>
+            <div class="editor-section">
+              <label for="daily-attachments">研究附件（可多选）</label>
+              <input type="file" id="daily-attachments" aria-describedby="daily-attachment-hint" multiple disabled>
+              <p class="muted" id="daily-attachment-hint">附件原件保存在个人目录。</p>
+              <ul id="daily-attachment-list" hidden></ul>
+            </div>
+            <p class="muted" id="daily-share-hint"></p>
+            <p id="daily-feedback" class="upload-feedback" role="status" aria-live="polite"></p>
+            <a id="daily-team-link" class="text-link" href="#team" hidden>查看这份日报和同周的周报</a>
+            <div class="editor-footer"><button type="submit" class="primary" id="daily-submit" disabled>保存日报</button></div>
+          </form>
+        </section>
+        <aside class="form-note"><h2>日报与周报</h2><p>信息暂缺时可写「未说明」。团队进度按周查看每位成员提交的日报和周报。日报不会自动生成周报，请继续单独提交每周总结。</p><p class="agent-note">Agent 接口 <code id="daily-upload-endpoint">POST api/daily/uploads</code></p></aside>
+      </div>
+    </section>
+
+    <section id="view-knowledge" class="view" aria-labelledby="knowledge-heading" hidden>
+      <header class="page-heading"><div><div class="section-name">进度中心</div><h1 id="knowledge-heading">使用说明</h1><p>团队维护的研究记录和报告指南。</p></div></header>
+      <div id="knowledge-grid" class="knowledge-grid"></div>
+      <article id="knowledge-reader" class="panel document-panel" hidden></article>
+    </section>
+    <footer class="page-footer"><span>科研管理平台 · 进度中心</span><span id="timezone-label"></span></footer>
+  </main>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

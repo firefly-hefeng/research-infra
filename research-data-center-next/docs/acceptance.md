@@ -1,5 +1,7 @@
 # 一期交付验收记录
 
+历史验收记录：以下说明各次验证当时的状态，不能代替当前鉴权与模块能力说明。当前入口见 [Agent 手册](agent-guide.md)和[建设现状](agent-status.md)。
+
 验收日期：2026-10-19（北京时间）。部署：`/data/rmp/research-data-center`。
 
 - 范围为 `/data/datasets` 与 `/data/models` 全部公共区资料。按已有台账与浅层目录入口整理，不代表逐文件内容核验。

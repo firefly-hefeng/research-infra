@@ -3,6 +3,8 @@ __pycache__/
 var/
 logs/
 .venv/
+.venv-mcp/
+.test-node/
 *.tar.gz
 data/sources/zip-response.json
 data/sources/assets-20261018.csv

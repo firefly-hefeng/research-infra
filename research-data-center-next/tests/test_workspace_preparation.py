@@ -111,7 +111,7 @@ class WorkspacePreparationTests(unittest.TestCase):
 
     def test_latest_switch_evidence_overrides_stale_candidate_without_changing_228_ids(self):
         original = (self.app / 'data/catalog.json').read_bytes()
-        self.assertEqual(self.prepare(), 228)
+        self.assertEqual(self.prepare(), 229)
         after = json.loads((self.workspace / 'data/catalog.json').read_text())
         before = json.loads(original)
         self.assertEqual({a['id']: a['path'] for a in before['assets']}, {a['id']: a['path'] for a in after['assets']})

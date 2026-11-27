@@ -11,6 +11,12 @@
 {% macro owner_label(o) -%}
 {% if o.status=='confirmed' %}负责人 · {{ o.name }}{% elif o.status=='suggested' %}建议负责人 · {{ o.name }}（待确认）{% elif o.status=='unassigned' %}负责人待指派{% else %}负责人待核对{% endif %}
 {%- endmacro %}
+{% macro algorithm_group(group) -%}
+<article class="algorithm-group algorithm-{{ group.id }}"><h3>{{ group.title }}</h3><p class="algorithm-description">{{ group.description }}</p>
+<p class="algorithm-count"><strong>{{ group.directions|length }}</strong> 个方向 <span><strong>{{ group.method_count }}</strong> 项方法</span></p>
+{% if group.directions %}<ul class="algorithm-directions">{% for d in group.directions %}<li><div class="algorithm-direction-title"><a href="direction-methods?direction={{ d.id }}">{{ d.title }}</a><code>{{ d.id }}</code></div>
+<ul class="algorithm-names">{% for m in d.methods %}<li>{{ m.name }}</li>{% endfor %}</ul></li>{% endfor %}</ul>{% else %}<p class="group-empty">当前已发布索引中暂无方向。</p>{% endif %}</article>
+{%- endmacro %}
 <a class="skip" href="#content">跳至主要内容</a>
 <header class="mast"><div><a href="/">科研工作台</a><nav aria-label="科研工作区"><a href="./#team">团队进度</a><a href="./research-agent">方向实验台</a></nav></div></header>
 <main id="content">
@@ -18,6 +24,9 @@
 {% if not selected %}
 <header class="intro"><div><h1>方向与方法</h1><p>从研究问题找到已尝试的方法，核对效果、比较条件与原始报告。</p>{% if doc.status=='published' %}<div class="source-count">{{ counts.methods }} 项方法记录 · {{ counts.cited_originals }} 份原始来源 · {{ counts.cited_passages }} 条引文</div>{% endif %}</div>
 {% if doc.as_of %}<div class="stamp"><span>证据整理日期</span><time datetime="{{ doc.as_of }}">{{ doc.as_of }}</time></div>{% endif %}</header>
+{% if doc.status=='published' %}<section class="algorithm-map" id="algorithm-map" aria-labelledby="algorithm-map-title"><div class="map-heading"><div><p class="map-kicker">ALGORITHM / CORE MAP</p><h2 id="algorithm-map-title">算法核心地图</h2><p>按研究能力组织方向与具体算法；方向和方法数量仅描述索引覆盖，不构成跨任务、指标或数据划分的排名。</p></div><a href="#overview-title">浏览全部方向 ↓</a></div>
+<div class="algorithm-grid">{% for group in core_map.groups %}{{ algorithm_group(group) }}{% endfor %}</div>
+{% if core_map.unclassified %}<div class="unclassified-wrap">{{ algorithm_group({'id':'unclassified','title':'待归类','description':'这些稳定方向 ID 尚未登记到六类核心地图；原有方向、方法与证据完整保留。','directions':core_map.unclassified,'method_count':core_map.unclassified_method_count}) }}</div>{% endif %}</section>{% endif %}
 <section aria-labelledby="overview-title">
 <div class="bar"><h2 id="overview-title">方向与专题 <small>{{ directions|length }}{% if query %} / {{ doc.directions|length }}{% endif %}</small></h2>
 <form action="direction-methods" method="get" role="search"><label class="sr" for="q">搜索研究方向、方法或署名成员</label><input type="search" name="q" id="q" value="{{ query }}" placeholder="搜索方向、方法或署名成员" maxlength="120"><button type="submit">搜索</button>{% if query %}<a href="direction-methods">清除</a>{% endif %}</form></div>

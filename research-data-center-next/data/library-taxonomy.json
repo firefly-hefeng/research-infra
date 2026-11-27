@@ -1,0 +1,69 @@
+{
+  "themes": [
+    {"id":"spatial-audio","label":"空间音频","subcategories":["spatial-audio"]},
+    {"id":"speech-emotion","label":"语音情绪","subcategories":["speech-emotion"]},
+    {"id":"speech-health","label":"语音健康","subcategories":["depression-interviews","mental-health-speech","picture-description","cognitive-cohorts","cognitive-features","cognitive-research","parkinson-speech","motor-speech","aphasia","dysarthria","fluency","voice-disorder","articulation","respiratory-speech","autism","pediatric-articulation","multi-condition"]},
+    {"id":"physiological-sounds","label":"生理声学","subcategories":["cough-breath","lung-sounds","sleep-breathing","heart-sounds","ecg-pcg"]},
+    {"id":"general-speech","label":"通用语音与语言","subcategories":["child-language","speech-sound","conversation","language-learning","linguistics-material","speech-recognition","language-models","audio-representation","shared-feature","voice-collection"]},
+    {"id":"unconfirmed","label":"待核对","subcategories":["application-material","candidate-material","directory-only"]}
+  ],
+  "categories": [
+    {"id": "mood", "label": "情绪与精神健康", "children": [
+      {"id": "depression-interviews", "label": "抑郁访谈与量表"},
+      {"id": "mental-health-speech", "label": "抑郁与焦虑语音"}
+    ]},
+    {"id": "cognitive", "label": "认知与老年健康", "children": [
+      {"id": "picture-description", "label": "看图叙事与认知筛查"},
+      {"id": "cognitive-cohorts", "label": "认知队列与录音"},
+      {"id": "cognitive-features", "label": "认知特征与纵向表"},
+      {"id": "cognitive-research", "label": "认知实验与整理资料"}
+    ]},
+    {"id": "parkinson", "label": "帕金森与运动障碍", "children": [
+      {"id": "parkinson-speech", "label": "帕金森语言与发声"},
+      {"id": "motor-speech", "label": "多类运动障碍言语"}
+    ]},
+    {"id": "speech-disorder", "label": "言语与嗓音障碍", "children": [
+      {"id": "aphasia", "label": "失语与卒中言语"},
+      {"id": "dysarthria", "label": "构音障碍与可访问语音"},
+      {"id": "fluency", "label": "口吃与言语流畅性"},
+      {"id": "voice-disorder", "label": "嗓音障碍与术后发声"},
+      {"id": "articulation", "label": "音系与构音研究"}
+    ]},
+    {"id": "respiratory", "label": "呼吸与肺部健康", "children": [
+      {"id": "cough-breath", "label": "咳嗽、呼吸与感染"},
+      {"id": "lung-sounds", "label": "肺音与听诊"},
+      {"id": "sleep-breathing", "label": "睡眠呼吸与多导信号"},
+      {"id": "respiratory-speech", "label": "呼吸疾病相关语音"}
+    ]},
+    {"id": "cardiovascular", "label": "心血管健康", "children": [
+      {"id": "heart-sounds", "label": "心音与杂音"},
+      {"id": "ecg-pcg", "label": "心电与心音联合采集"}
+    ]},
+    {"id": "development", "label": "儿童语言与发育", "children": [
+      {"id": "child-language", "label": "儿童语言与家庭互动"},
+      {"id": "speech-sound", "label": "语音发展与发音"},
+      {"id": "autism", "label": "自闭症与交流"},
+      {"id": "pediatric-articulation", "label": "儿童构音与言语障碍"}
+    ]},
+    {"id": "general-speech", "label": "通用语音与语言", "children": [
+      {"id": "conversation", "label": "自然对话与语言变体"},
+      {"id": "speech-emotion", "label": "情绪表达与多模态互动"},
+      {"id": "language-learning", "label": "课堂与语言学习"},
+      {"id": "linguistics-material", "label": "学术资料与语言样例"},
+      {"id": "speech-recognition", "label": "语音识别与对齐"},
+      {"id": "language-models", "label": "文本生成与文本表示"},
+      {"id": "audio-representation", "label": "语音表征模型"},
+      {"id": "spatial-audio", "label": "空间音频与问答"}
+    ]},
+    {"id": "cross-disease", "label": "跨疾病与共享资源", "children": [
+      {"id": "multi-condition", "label": "多病种语音与其他疾病"},
+      {"id": "shared-feature", "label": "共享声学与文本特征"},
+      {"id": "voice-collection", "label": "多语料入口与索引"},
+      {"id": "application-material", "label": "应用采集与研究整理"}
+    ]},
+    {"id": "unconfirmed", "label": "待核对资料", "children": [
+      {"id": "candidate-material", "label": "候选素材与实验工件"},
+      {"id": "directory-only", "label": "目录与内容待核对"}
+    ]}
+  ]
+}

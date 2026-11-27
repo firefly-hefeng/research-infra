@@ -29,8 +29,9 @@ def demo(cfg):
             atomic_write(p, f"# {m['name']}的研究备忘\n\n这是一份个人文件，不参与每周汇总。其他成员无法通过工作台访问。\n\n## 记录建议\n\n- 研究问题和待验证的假设\n- 实验配置与数据版本\n- 尚未准备纳入周报的个人笔记\n")
     docs = {
         "01-欢迎加入.md": "# 欢迎加入研究组\n\n从研究问题出发，留下可以接续的记录。\n\n## 第一天\n\n- 了解当前研究方向与负责人。\n- 确认自己可以使用的数据和计算资源。\n- 打开个人进展上传，按模板记录第一周计划。\n\n## 你的三个空间\n\n个人进展上传将标准周报存入已有成员目录；团队进度展示共享总结；团队知识库保存基础说明。\n\n## 团队约定\n\n不上传受试者身份、账号密钥等敏感信息。已提交周报的内容会被智能体读取，并可能出现在团队总结中。\n",
-        "02-周报怎么写.md": "# 一份可接续的科研周报\n\n写清楚做了什么、得到了什么，以及还缺什么。\n\n## 本周完成\n\n描述实际开展的工作，区分已完成与仍在进行的事项。\n\n## 结果与证据\n\n写明数据版本、配置、指标来源和可核对的产物。没有结论时如实说明。\n\n## 问题与阻塞\n\n说明依赖、失败和需要协助的事项。\n\n## 下周计划\n\n写明下一步验证的问题和所需条件。\n\n## 提交说明\n\n四个栏目必须完整填写；未知信息写“未说明”。下载对应成员和周次的模板，填写后提交。同周已有不同内容的报告需联系维护人员更正。\n",
-        "03-实验记录基础.md": "# 实验记录的基本要素\n\n让另一位同学能够理解并复跑你的实验。\n\n## 运行前\n\n- 记录研究问题、数据快照和划分。\n- 保存代码版本、环境、参数和随机种子。\n- 明确评测协议和资源预算。\n\n## 运行后\n\n- 保留输出、指标、失败项和日志。\n- 区分观察事实、个人解释和待验证的判断。\n- 用同一协议比较结果，保留负结果。\n"}
+        "02-周报怎么写.md": "# 一份可接续的科研周报\n\n写清楚做了什么、得到了什么，以及还缺什么。\n\n## 本周完成\n\n描述实际开展的工作，区分已完成与仍在进行的事项。\n\n## 结果与证据\n\n写明数据版本、配置、指标来源和可核对的产物。没有结论时如实说明。\n\n## 问题与阻塞\n\n说明依赖、失败和需要协助的事项。\n\n## 下周计划\n\n写明下一步验证的问题和所需条件。\n\n## 提交说明\n\n周报网页只上传文件，不限制扩展名。标准 Markdown 可直接校验，其他可解析格式由 Agent 整理为相同四栏。未知信息写“未说明”，同周不同内容需联系维护人员更正。\n",
+        "03-实验记录基础.md": "# 实验记录的基本要素\n\n让另一位同学能够理解并复跑你的实验。\n\n## 运行前\n\n- 记录研究问题、数据快照和划分。\n- 保存代码版本、环境、参数和随机种子。\n- 明确评测协议和资源预算。\n\n## 运行后\n\n- 保留输出、指标、失败项和日志。\n- 区分观察事实、个人解释和待验证的判断。\n- 用同一协议比较结果，保留负结果。\n",
+        "04-周报文件与智能归档.md": "# 周报文件与智能归档\n\n原件保存后，标准 Markdown 直接校验；文本、Office、PDF 和图片由 Agent 整理，其他格式转人工复核。\n\n## 进度口径\n\n已收原件不等于已入汇总。只有整理后通过成员、周次和四栏校验的正式周报才进入团队汇总；失败或冲突不覆盖旧报告。\n"}
     for filename, text in docs.items():
         p = child(cfg["roots"]["knowledge"], filename)
         if not p.exists():
@@ -51,6 +52,9 @@ def main():
     prepare = sub.add_parser("prepare"); prepare.add_argument("--week", default="previous")
     publish = sub.add_parser("publish"); publish.add_argument("--job", required=True); publish.add_argument("--result", required=True); publish.add_argument("--force", action="store_true")
     summary = sub.add_parser("summarize"); summary.add_argument("--week", default="previous"); summary.add_argument("--mode", choices=["extractive", "agent", "api"]); summary.add_argument("--force", action="store_true")
+    intake = sub.add_parser("process-uploads"); intake.add_argument("--once", action="store_true", help="处理一轮待整理周报后退出")
+    progress = sub.add_parser('refresh-progress', help='汇总近期日报、周报和方向文书')
+    progress.add_argument('--force', action='store_true', help='立即重试当前输入')
     args = parser.parse_args()
     try:
         cfg = load_config(args.config); init_dirs(cfg, provision_members=args.cmd == "init")
@@ -64,7 +68,8 @@ def main():
             from .app import create_app
             from waitress import serve as start
             print(f"科研周记运行于 http://{args.host}:{args.port}", flush=True)
-            start(create_app(args.config), host=args.host, port=args.port, threads=8, max_request_body_size=100_000)
+            maximum = cfg['summary'].get('max_upload_bytes', 20 * 1024 * 1024) + 100_000
+            start(create_app(args.config), host=args.host, port=args.port, threads=8, max_request_body_size=maximum)
         elif args.cmd == "prepare":
             job, manifest = summaries.prepare(cfg, args.week)
             print(json.dumps({"job": str(job), "week": manifest["week"], "submitted": len(manifest["reports"]), "missing": len(manifest["missing"]), "prompt": str(job / 'prompt.txt')}, ensure_ascii=False, indent=2))
@@ -80,6 +85,25 @@ def main():
         elif args.cmd == "summarize":
             doc, changed = summaries.summarize(cfg, args.week, args.mode, args.force)
             print(f"{doc['week']}：{'已发布' if changed else '内容未变'}，版本 {doc['revision']}；{doc['engine_label']}")
+            if args.week == 'previous' and cfg.get('lab_review', {}).get('weekly') is True:
+                from .lab_review import weekly_review
+                try:
+                    status = weekly_review(cfg)
+                except Exception as exc:
+                    # The ordinary weekly publication has already committed. Keep its job successful.
+                    print(json.dumps({'lab_review': 'failed', 'error_type': type(exc).__name__}), file=sys.stderr)
+                else:
+                    print(json.dumps({'lab_review': status}, ensure_ascii=False))
+        elif args.cmd == "process-uploads":
+            from . import intake as intake_worker
+            result = intake_worker.process_pending(cfg)
+            if cfg.get('progress_digest', {}).get('enabled', False):
+                from . import progress_digest
+                result['progress_digest'] = progress_digest.refresh(cfg)
+            print(json.dumps(result, ensure_ascii=False))
+        elif args.cmd == 'refresh-progress':
+            from . import progress_digest
+            print(json.dumps(progress_digest.refresh(cfg, force=args.force), ensure_ascii=False))
     except (ValueError, OSError, KeyError) as exc:
         print(f"失败：{exc}", file=sys.stderr)
         return 1

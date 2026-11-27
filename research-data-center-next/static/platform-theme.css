@@ -1,0 +1,71 @@
+:root {
+  color-scheme: light;
+  accent-color: var(--rp-accent);
+  --rp-nav: #090f18;
+  --rp-nav-hover: #192a40;
+  --rp-nav-text: #d6e0ed;
+  --rp-paper: #f7f8fa;
+  --rp-surface: #fff;
+  --rp-surface-subtle: #f2f5f9;
+  --rp-ink: #142132;
+  --rp-muted: #566577;
+  --rp-line: #d9dfe7;
+  --rp-accent: #174b83;
+  --rp-accent-hover: #10345b;
+  --rp-accent-soft: #eaf0f8;
+  --rp-accent-light: #b4d4fa;
+  --rp-accent-border: #a6bed9;
+  --rp-nav-line: #354255;
+  --rp-info: #174b83;
+  --rp-info-soft: #eaf0f8;
+  --rp-focus: #265f9e;
+  --rp-editorial: #db4638;
+  --rp-warning: #875518;
+  --rp-warning-soft: #fff4e4;
+  --rp-danger: #a3352e;
+  --rp-radius: 4px;
+  --rp-small-radius: 3px;
+  --rp-font: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --rp-gutter: clamp(18px, 4vw, 58px);
+  --rp-content-width: 1380px;
+  --rp-heading-size: clamp(32px, 4vw, 52px);
+  --rp-target: 44px;
+}
+
+::selection { background: var(--rp-accent-soft); color: var(--rp-ink); }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--rp-focus);
+  outline-offset: 3px;
+}
+
+.platform-nav { background: var(--rp-nav); color: var(--rp-nav-text); border-bottom: 1px solid var(--rp-nav-line); }
+.platform-nav-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 clamp(12px, 4vw, 46px);
+  max-width: var(--rp-content-width);
+  padding-inline: var(--rp-gutter);
+  margin-inline: auto;
+}
+.platform-nav-brand, .platform-nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 3px 8px;
+  color: inherit;
+  font: 650 14px/1.4 var(--rp-font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.platform-nav-brand { padding-left: 0; color: white; font-size: 17px; letter-spacing: -.025em; }
+.platform-nav-links { display: flex; flex-wrap: wrap; gap: 0 4px; }
+.platform-nav-links a:hover { background: var(--rp-nav-hover); color: white; }
+.platform-nav-links a[aria-current] { color: white; box-shadow: inset 0 -2px var(--rp-accent-light); }
+.platform-nav a:focus-visible { outline: 2px solid var(--rp-accent-light); outline-offset: -3px; }
+@media (max-width: 520px) {
+  .platform-nav-inner { align-items: flex-start; flex-direction: column; }
+  .platform-nav-links { margin-left: -8px; }
+  .platform-nav-links a { padding-inline: 8px; font-size: 13px; }
+}
+@media print { .platform-nav { display: none; } }

@@ -76,7 +76,7 @@ def save_settings(library, payload):
         fd, name = tempfile.mkstemp(prefix='providers-', suffix='.tmp', dir=path.parent)
         try:
             with os.fdopen(fd, 'w', encoding='utf-8') as stream:
-                os.fchmod(stream.fileno(), 0o600)
+                os.chmod(name, 0o600)
                 json.dump(values, stream, ensure_ascii=False, indent=2)
                 stream.flush()
                 os.fsync(stream.fileno())

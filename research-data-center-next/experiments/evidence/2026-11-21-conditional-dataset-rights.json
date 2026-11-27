@@ -1,0 +1,566 @@
+{
+  "checked": "2026-11-21",
+  "scope": "Publisher terms and file-identity checks for the approved noncommercial internal audience. Aggregate member-visible evidence only.",
+  "dataset_row_count": 9,
+  "published_checksums_algorithm": "MD5 where supplied by Zenodo or LINDAT; these are release fingerprints, not SHA-256.",
+  "individual_releases": [
+    {
+      "name": "RAVDESS Speech",
+      "record_id": "reczz28S4ElbQROC",
+      "release": "Zenodo 1188976 v1.0.0",
+      "url": "https://zenodo.org/records/1188976",
+      "publisher_usage_url": "https://affectivedatascience.com/licensing.html",
+      "license": "CC BY-NC-SA 4.0",
+      "files": [
+        {
+          "key": "Audio_Speech_Actors_01-24.zip",
+          "size": 208468073,
+          "checksum": "md5:bc696df654c87fed845eb13823edef8a"
+        }
+      ]
+    },
+    {
+      "name": "Czech-Laryngectomy",
+      "record_id": "reczz28SOytY5yog",
+      "url": "https://lindat.mff.cuni.cz/repository/items/5ba66397-f457-4ba3-846a-daac8e27130a",
+      "version": "11234/1-3142 (2019-12-20)",
+      "license": "cc-by-nc-sa-4.0",
+      "files": [
+        {
+          "name": "README.docx",
+          "bytes": 20389,
+          "checksum": {
+            "checkSumAlgorithm": "MD5",
+            "value": "00ad9d992f5eea033c14582ab4eb9db0"
+          },
+          "metadata_url": "https://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/6406cfab-215b-4493-8f57-3173180089bc"
+        },
+        {
+          "name": "speaker01.zip",
+          "bytes": 272268429,
+          "checksum": {
+            "checkSumAlgorithm": "MD5",
+            "value": "6b9c283206a1b9720bc74d313e7b8924"
+          },
+          "metadata_url": "https://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/e54cc467-30f6-4954-8b98-23fc2ba3704e"
+        },
+        {
+          "name": "speaker02.zip",
+          "bytes": 381814784,
+          "checksum": {
+            "checkSumAlgorithm": "MD5",
+            "value": "ea779a200462170fc19a833b754b7a29"
+          },
+          "metadata_url": "https://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/abc8f1fc-cda9-4635-ae68-ac980e56b44d"
+        },
+        {
+          "name": "speaker03.zip",
+          "bytes": 121001822,
+          "checksum": {
+            "checkSumAlgorithm": "MD5",
+            "value": "f23c4c148f7641e0add7c28c1a9f35fe"
+          },
+          "metadata_url": "https://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/2012a95f-8e29-40bd-bd5f-9b11c56323cc"
+        }
+      ],
+      "observed_local_names": [
+        "README.docx",
+        "speaker01.zip",
+        "speaker02.zip",
+        "speaker03.zip"
+      ],
+      "verified_opaque_bytes": [
+        {
+          "name": "README.docx",
+          "bytes": 20389,
+          "sha256": "bc37e135f84540de62e7f35b806bf7a9f442fb32895425396eed2faf1cc97aea",
+          "md5": "00ad9d992f5eea033c14582ab4eb9db0"
+        },
+        {
+          "name": "speaker01.zip",
+          "bytes": 272268429,
+          "sha256": "8a8a3205d2d7978031f9f9f526fd0cee41386fdf4696045fe680f82dfe70c9c0",
+          "md5": "6b9c283206a1b9720bc74d313e7b8924"
+        },
+        {
+          "name": "speaker02.zip",
+          "bytes": 381814784,
+          "sha256": "c262ae5a5e8e6ee8084ac16015232396d9c66724b2e7265a7beb073d10be0fc3",
+          "md5": "ea779a200462170fc19a833b754b7a29"
+        },
+        {
+          "name": "speaker03.zip",
+          "bytes": 121001822,
+          "sha256": "b74cceedf3c9a26e555b69e6fb05e92a8c5316d30199cb42768ac40a484d0252",
+          "md5": "f23c4c148f7641e0add7c28c1a9f35fe"
+        }
+      ]
+    },
+    {
+      "name": "BMD-HS",
+      "record_id": "reczz28SO6ntOKd9",
+      "url": "https://github.com/sani002/BMD-HS-Dataset/tree/4745751855d15ff5fc9aaed29c32ad3ec7a5d409",
+      "license": "cc-by-nc-nd-4.0",
+      "release": "4745751855d15ff5fc9aaed29c32ad3ec7a5d409",
+      "tree": "1258f64c8dcd34c69faff555930d92a96e72b099",
+      "tree_files": 877,
+      "wav_entries": 872,
+      "zip_commit_in_ledger": null,
+      "host47_original": {
+        "source_archive": "BMD-HS-4745751855d15ff5fc9aaed29c32ad3ec7a5d409.tar.gz",
+        "container_bytes": 126924002,
+        "upstream_commit": "4745751855d15ff5fc9aaed29c32ad3ec7a5d409",
+        "matching_blobs": 877,
+        "verified": true,
+        "archive_git_hint": "4745751855d15ff5fc9aaed29c32ad3ec7a5d409",
+        "observed_files": 877,
+        "matched_names": 877,
+        "publisher_blobs": 877,
+        "observed_wav": 872,
+        "md5": "ab73b1ac8f4613df5746d650a157900c",
+        "sha256": "4fc15c7173534d4cf9cea4c03d7880204913362139ad8e9920abbbab734222a5"
+      }
+    },
+    {
+      "name": "Oral-Cancer",
+      "record_id": "reczz28SRDSwLyCs",
+      "url": "https://zenodo.org/records/6308119",
+      "author_terms": "https://karkirowle.github.io/oral_cancer_corpus/",
+      "version": "Zenodo 6308119 v0.1.0",
+      "concept_id": "3732321",
+      "license_metadata": "CC BY 4.0",
+      "source_rights": "Original YouTube fair-use description, research and educational use only according to author; no broadening of third-party rights.",
+      "files": [
+        {
+          "key": "oral_cancer.zip",
+          "size": 5784059015,
+          "checksum": "md5:31f9d02a9d500adf4e33aba3056044e6"
+        }
+      ]
+    },
+    {
+      "name": "UK-COVID",
+      "record_id": "reczz28SRDVW6X8w",
+      "url": "https://zenodo.org/records/11167750",
+      "release": "openAccessv1.1",
+      "license": "OGL-UK-3.0",
+      "official_files": 30,
+      "last_ledger_verified_files": 6,
+      "observed_local_names": [
+        "DataDictionary_UKCOVID19VocalAudioDataset_OpenAccess.xlsx",
+        "README.md",
+        "audio_metadata.csv",
+        "participant_metadata.csv",
+        "train_test_splits.csv",
+        "covid_data.z01"
+      ],
+      "files": [
+        {
+          "key": "DataDictionary_UKCOVID19VocalAudioDataset_OpenAccess.xlsx",
+          "size": 18711,
+          "checksum": "md5:477ffb7cff05f3783fb899c57c838763"
+        },
+        {
+          "key": "README.md",
+          "size": 7101,
+          "checksum": "md5:75cc90beffe88f3ea90e3bd0002e7a25"
+        },
+        {
+          "key": "audio_metadata.csv",
+          "size": 23577280,
+          "checksum": "md5:5cf99371bd27edecafe508f2925f7e20"
+        },
+        {
+          "key": "covid_data.z01",
+          "size": 2147483648,
+          "checksum": "md5:d88b514d231be9a602c33f2720753edf"
+        },
+        {
+          "key": "covid_data.z02",
+          "size": 2147483648,
+          "checksum": "md5:4f04cc125c4e7ae394cf446fbbc4b8d7"
+        },
+        {
+          "key": "covid_data.z03",
+          "size": 2147483648,
+          "checksum": "md5:cab28f3d0542dffd87946254059dbbc4"
+        },
+        {
+          "key": "covid_data.z04",
+          "size": 2147483648,
+          "checksum": "md5:f112d63e26c73931578856cd569f301d"
+        },
+        {
+          "key": "covid_data.z05",
+          "size": 2147483648,
+          "checksum": "md5:574e96d974b20a111390b33e10b9f6c7"
+        },
+        {
+          "key": "covid_data.z06",
+          "size": 2147483648,
+          "checksum": "md5:1dd97704c0761941876f7102d585672c"
+        },
+        {
+          "key": "covid_data.z07",
+          "size": 2147483648,
+          "checksum": "md5:fb6c2070e65682f78b7db72fc922b000"
+        },
+        {
+          "key": "covid_data.z08",
+          "size": 2147483648,
+          "checksum": "md5:483b5c96e259a179889acbdcfd8ab66a"
+        },
+        {
+          "key": "covid_data.z09",
+          "size": 2147483648,
+          "checksum": "md5:28438fd0edc2e8fc1d93c6f23e4f1d4a"
+        },
+        {
+          "key": "covid_data.z10",
+          "size": 2147483648,
+          "checksum": "md5:e487e6c2e164e08db6985f671ab800bc"
+        },
+        {
+          "key": "covid_data.z11",
+          "size": 2147483648,
+          "checksum": "md5:5eb8407f58b27fab87ec3ef148e57474"
+        },
+        {
+          "key": "covid_data.z12",
+          "size": 2147483648,
+          "checksum": "md5:af8a326fb3cfae39c8bc5ab550ffe162"
+        },
+        {
+          "key": "covid_data.z13",
+          "size": 2147483648,
+          "checksum": "md5:8f801fd34d3d7873e72e8ac3d1187fa3"
+        },
+        {
+          "key": "covid_data.z14",
+          "size": 2147483648,
+          "checksum": "md5:5284db75d093cb655b8b7de0e7f9930a"
+        },
+        {
+          "key": "covid_data.z15",
+          "size": 2147483648,
+          "checksum": "md5:1e970dc83e3774466127870ba94cf661"
+        },
+        {
+          "key": "covid_data.z16",
+          "size": 2147483648,
+          "checksum": "md5:d5ef3bf9e7bf6b2b3fc7ac3032ae5a90"
+        },
+        {
+          "key": "covid_data.z17",
+          "size": 2147483648,
+          "checksum": "md5:80e811452d49ad52ba638710cb5d892c"
+        },
+        {
+          "key": "covid_data.z18",
+          "size": 2147483648,
+          "checksum": "md5:91a5bfbef7e5127d4bde083def811ebe"
+        },
+        {
+          "key": "covid_data.z19",
+          "size": 2147483648,
+          "checksum": "md5:02fde37a5ee65f7f0ea4a8825c75b827"
+        },
+        {
+          "key": "covid_data.z20",
+          "size": 2147483648,
+          "checksum": "md5:4d727704570f7caceabc44ffa93df091"
+        },
+        {
+          "key": "covid_data.z21",
+          "size": 2147483648,
+          "checksum": "md5:77b27aa3e486226711ceadada543546b"
+        },
+        {
+          "key": "covid_data.z22",
+          "size": 2147483648,
+          "checksum": "md5:ad373f8151ce30e77a8e88901b6feedd"
+        },
+        {
+          "key": "covid_data.z23",
+          "size": 2147483648,
+          "checksum": "md5:18cd0ecbb3645ba436bdf2d0abeba0e6"
+        },
+        {
+          "key": "covid_data.z24",
+          "size": 2147483648,
+          "checksum": "md5:1c096f5030db39fee6a66c716310bc15"
+        },
+        {
+          "key": "covid_data.zip",
+          "size": 2092112787,
+          "checksum": "md5:e24dbb0147355359adb1810912040496"
+        },
+        {
+          "key": "participant_metadata.csv",
+          "size": 11481792,
+          "checksum": "md5:c057b2f461c729583abb04634216e187"
+        },
+        {
+          "key": "train_test_splits.csv",
+          "size": 7270746,
+          "checksum": "md5:60b1f612c321e3dfb151e5d73d0d4c23"
+        }
+      ],
+      "verified_opaque_bytes": [
+        {
+          "name": "DataDictionary_UKCOVID19VocalAudioDataset_OpenAccess.xlsx",
+          "bytes": 18711,
+          "sha256": "333e654f2114adbddec4c909e6bb5906a5415d0cf40c9f666a3773e164e89bf7",
+          "md5": "477ffb7cff05f3783fb899c57c838763"
+        },
+        {
+          "name": "README.md",
+          "bytes": 7101,
+          "sha256": "81707b9288df56a72519b29f36c4fa9624f5816c9bd5a3f2438a391724aaacdf",
+          "md5": "75cc90beffe88f3ea90e3bd0002e7a25"
+        },
+        {
+          "name": "audio_metadata.csv",
+          "bytes": 23577280,
+          "sha256": "253910a8d624a13e8a117820b27218db1924d376f5b01d792e7a7de54031fa8e",
+          "md5": "5cf99371bd27edecafe508f2925f7e20"
+        },
+        {
+          "name": "participant_metadata.csv",
+          "bytes": 11481792,
+          "sha256": "29a8080d80cee667b813ccd3f9a9b307867c3b3454fa4a2f9f8d95d8721ce5e4",
+          "md5": "c057b2f461c729583abb04634216e187"
+        },
+        {
+          "name": "train_test_splits.csv",
+          "bytes": 7270746,
+          "sha256": "a6d8faf7342ad245f03caece0b26692247b2628378ab9a5eb5b0cb422915a02a",
+          "md5": "60b1f612c321e3dfb151e5d73d0d4c23"
+        },
+        {
+          "name": "covid_data.z01",
+          "bytes": 2147483648,
+          "sha256": "31588c7562b2f62cea132bf1d221fc45d546bb89811abffe4ad873d224bc6329",
+          "md5": "d88b514d231be9a602c33f2720753edf"
+        }
+      ]
+    }
+  ],
+  "ultrasuite": {
+    "license": "CC BY-NC 4.0",
+    "source": "https://ultrasuite.github.io/#license",
+    "manifest_location": "https://ultrasuite.github.io/download/",
+    "official_rsync_module": "ultrasuite-rsync.inf.ed.ac.uk::ultrasuite/",
+    "subsets": [
+      {
+        "id": "reczz28SP7zYt3M7",
+        "name": "UltraSuite-UXSSD",
+        "public_url": "https://ultrasuite.github.io/data/uxssd/",
+        "core": "core-uxssd",
+        "label_module": "labels-uxtd-uxssd-upx",
+        "expected_local_wav": 3729,
+        "host47_regular_files": 32123,
+        "host47_wav": 3729,
+        "host47_verified_against_publisher": {
+          "matched": 32123,
+          "selected": 32123,
+          "wav": 3729,
+          "private_receipt_sha256": "2e155cab930f0de6cac705e3e892a3cd4fe966be312917c4e7d9bcacfb9557b1"
+        },
+        "canonical_release": {
+          "published_by_47": true,
+          "bytes": 1653481603,
+          "directory_mode": "0750",
+          "file_mode": "0640",
+          "group_id": 992,
+          "reader_audit": {
+            "47": {
+              "release_manifest_sha256": "69e50fd901b31e0555f8c09671528030a1c35266fc8ce1aa6e1c9b9c044804c3",
+              "all_files_read_by_portal": 32123,
+              "each_of_two_member_accounts_read": 8,
+              "outside_reader_group_refusals": 8
+            },
+            "101": {
+              "release_manifest_sha256": "69e50fd901b31e0555f8c09671528030a1c35266fc8ce1aa6e1c9b9c044804c3",
+              "all_files_read_by_portal": 32123,
+              "each_of_two_member_accounts_read": 8,
+              "outside_reader_group_refusals": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "reczz28SP81y3wMy",
+        "name": "UltraSuite-UPX",
+        "public_url": "https://ultrasuite.github.io/data/upx/",
+        "core": "core-upx",
+        "label_module": "labels-uxtd-uxssd-upx",
+        "expected_local_wav": 5948,
+        "host47_regular_files": 46602,
+        "host47_wav": 5948,
+        "host47_verified_against_publisher": {
+          "matched": 46602,
+          "selected": 46602,
+          "wav": 5948,
+          "private_receipt_sha256": "0dc605a3b611b10d08e052c2c2106a53ce58dc6508663c9e42e266b6852bd4e7"
+        },
+        "canonical_release": {
+          "published_by_47": true,
+          "bytes": 2964968260,
+          "directory_mode": "0750",
+          "file_mode": "0640",
+          "group_id": 992,
+          "reader_audit": {
+            "47": {
+              "release_manifest_sha256": "a9158f9b1bc2a13ce11b34b2e6431d85c8efb2287b38f35be032e7ecd3013201",
+              "all_files_read_by_portal": 46602,
+              "each_of_two_member_accounts_read": 8,
+              "outside_reader_group_refusals": 8
+            },
+            "101": {
+              "release_manifest_sha256": "a9158f9b1bc2a13ce11b34b2e6431d85c8efb2287b38f35be032e7ecd3013201",
+              "all_files_read_by_portal": 46602,
+              "each_of_two_member_accounts_read": 8,
+              "outside_reader_group_refusals": 8
+            }
+          }
+        }
+      },
+      {
+        "id": "reczz28SP84Mgiwf",
+        "name": "UltraSuite-Cleft",
+        "public_url": "https://ultrasuite.github.io/data/cleft/",
+        "core": "core-cleft",
+        "label_module": "labels-cleft",
+        "expected_local_wav": 1441,
+        "host47_regular_files": 3179,
+        "host47_wav": 1441,
+        "host47_verified_against_publisher": {
+          "matched": 3179,
+          "selected": 3179,
+          "wav": 1441,
+          "private_receipt_sha256": "5eee5282e4166d38a6b474f265bb20903a0bb0f57aca9ad0ec3f5a3d48f9d810"
+        },
+        "canonical_release": {
+          "published_by_47": true,
+          "bytes": 650257191,
+          "directory_mode": "0750",
+          "file_mode": "0640",
+          "group_id": 992,
+          "reader_audit": {
+            "47": {
+              "release_manifest_sha256": "559abce53c4135d59f82cb0a4854144f3cc5eb99f4dd528c80eb0b83116f8902",
+              "all_files_read_by_portal": 3179,
+              "each_of_two_member_accounts_read": 6,
+              "outside_reader_group_refusals": 6
+            },
+            "101": {
+              "release_manifest_sha256": "559abce53c4135d59f82cb0a4854144f3cc5eb99f4dd528c80eb0b83116f8902",
+              "all_files_read_by_portal": 3179,
+              "each_of_two_member_accounts_read": 6,
+              "outside_reader_group_refusals": 6
+            }
+          }
+        }
+      },
+      {
+        "id": "reczz28SP86fpS7S",
+        "name": "UltraSuite-UX2020",
+        "public_url": "https://ultrasuite.github.io/data/ux2020/",
+        "core": "core-ux2020",
+        "label_module": "labels-ux2020",
+        "expected_local_wav": 2150,
+        "host47_regular_files": 5361,
+        "host47_wav": 2150,
+        "host47_verified_against_publisher": {
+          "matched": 5361,
+          "selected": 5361,
+          "wav": 2150,
+          "private_receipt_sha256": "6ee34c3077826904ecda5d4ece0a6624e3bd49341eae9292e86a8ccfaf8bb81f"
+        },
+        "canonical_release": {
+          "published_by_47": true,
+          "bytes": 694034638,
+          "directory_mode": "0750",
+          "file_mode": "0640",
+          "group_id": 992,
+          "reader_audit": {
+            "47": {
+              "release_manifest_sha256": "c6bef9ac00b4e36ca3a5a2e64711c76596a73f2d37c49590b65cf562113b5e5f",
+              "all_files_read_by_portal": 5361,
+              "each_of_two_member_accounts_read": 6,
+              "outside_reader_group_refusals": 6
+            },
+            "101": {
+              "release_manifest_sha256": "c6bef9ac00b4e36ca3a5a2e64711c76596a73f2d37c49590b65cf562113b5e5f",
+              "all_files_read_by_portal": 5361,
+              "each_of_two_member_accounts_read": 6,
+              "outside_reader_group_refusals": 6
+            }
+          }
+        }
+      }
+    ],
+    "release_version_markers": {
+      "core-uxssd": {
+        "status": 0,
+        "version": "1.0",
+        "md5": "e4c2e8edac362acab7123654b9e73432"
+      },
+      "core-upx": {
+        "status": 0,
+        "version": "1.0",
+        "md5": "e4c2e8edac362acab7123654b9e73432"
+      },
+      "core-cleft": {
+        "status": 23
+      },
+      "core-ux2020": {
+        "status": 23
+      },
+      "labels-uxtd-uxssd-upx": {
+        "status": 0,
+        "version": "1.2",
+        "md5": "56765472680401499c79732468ba4340"
+      },
+      "labels-cleft": {
+        "status": 0,
+        "version": "1.0",
+        "md5": "e4c2e8edac362acab7123654b9e73432"
+      },
+      "labels-ux2020": {
+        "status": 23
+      }
+    },
+    "public_checksum_method": "Official Edinburgh rsync dry-run, protocol 31 MD5 with checksum seed 0, matched individually against the existing selected files. SHA-256 pins the corresponding private verification receipt; no subject identifiers or relative sample names are included here.",
+    "citations": {
+      "uxssd_upx_ux2020_collection": "https://doi.org/10.21437/Interspeech.2018-1736",
+      "cleft_final_paper": "https://doi.org/10.1016/j.specom.2021.05.008",
+      "cleft_final_authors": [
+        "Aciel Eshky",
+        "Joanne Cleland",
+        "Manuel Sam Ribeiro",
+        "Eleanor Sugden",
+        "Korin Richmond",
+        "Steve Renals"
+      ],
+      "cleft_annotation_reference": "https://ultrasuite.github.io/data/cleft/#references"
+    }
+  },
+  "rights_decision": {
+    "noncommercial_use_and_existing_members_confirmed": [
+      "RAVDESS Speech",
+      "UltraSuite selected subsets",
+      "Czech-Laryngectomy",
+      "BMD-HS"
+    ],
+    "access": {
+      "dir_mode": "0750",
+      "file_mode": "0640",
+      "group_gid": 992,
+      "retain_source_owner": true
+    },
+    "oral_cancer": "No broadening of existing rights",
+    "uk_open_access": "Only individually verified released files"
+  }
+}

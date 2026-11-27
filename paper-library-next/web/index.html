@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090f18"><title>文献管理 · 科研工作台</title><link rel="stylesheet" href="./style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090f18"><title>文献管理 · 科研工作台</title><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./graph.css"></head>
 <body>
 <svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></symbol>
@@ -24,24 +24,42 @@
 <a class="skip-link" href="#main">跳至主要内容</a>
 <aside class="sidebar" aria-label="主导航">
   <a class="brand" href="/#overview" aria-label="科研工作台首页"><span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-layers"/></svg></span><span>科研工作台<small>SOUNEX LAB</small></span></a>
-  <nav class="platform-navigation" aria-label="科研工作区"><a class="nav-link" href="/#overview"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg>工作台</a><a class="nav-link" href="/#data-platform"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>数据管理</a><a class="nav-link" href="/progress/#team"><svg class="icon" aria-hidden="true"><use href="#icon-chart"/></svg>团队进度</a><a class="nav-link active" href="#discover" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg>文献管理</a><a class="nav-link" href="/#servers"><svg class="icon" aria-hidden="true"><use href="#icon-server"/></svg>服务器资源</a><a class="nav-link" href="/#research"><svg class="icon" aria-hidden="true"><use href="#icon-layers"/></svg>研究成果</a><a class="nav-link" href="/#documents"><svg class="icon" aria-hidden="true"><use href="#icon-file"/></svg>研究文书</a></nav>
-  <nav class="navigation-secondary" aria-label="文献快捷入口"><a href="#discover">发现文献</a><a href="#catalog">全部文献</a><a href="#favorites">我的收藏</a><a id="nav-workspace-secondary" href="#workspace" hidden>整理工作区</a></nav>
+  <nav class="platform-navigation" aria-label="科研工作区"><a class="nav-link" href="/#overview"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg>工作台</a><a class="nav-link" href="/#data-platform"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>数据管理</a><a class="nav-link" href="/progress/#team"><svg class="icon" aria-hidden="true"><use href="#icon-chart"/></svg>团队进度</a><a class="nav-link active" href="#discover" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg>文献管理</a><a class="nav-link" href="/#servers"><svg class="icon" aria-hidden="true"><use href="#icon-server"/></svg>服务器资源</a><a class="nav-link" href="/#research"><svg class="icon" aria-hidden="true"><use href="#icon-layers"/></svg>研究成果</a><a class="nav-link" href="/#documents"><svg class="icon" aria-hidden="true"><use href="#icon-file"/></svg>原点文档</a></nav>
+  <nav class="navigation-secondary" aria-label="文献快捷入口"><a href="#discover">发现文献</a><a href="#catalog">全部文献</a><a href="#graph">文献图谱</a><a href="#favorites">我的收藏</a><a id="nav-workspace-secondary" href="#workspace" hidden>整理工作区</a></nav>
   <div class="sidebar-bottom"><a class="nav-link" href="/#documents"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg>如何使用</a></div>
 </aside>
 <div class="workspace">
   <header class="topbar"><div class="breadcrumb">守忆科技 <span>/</span> <b>文献管理</b></div><div class="topbar-right"><a href="/progress/#daily">写日报</a><a href="/progress/#upload">交周报</a><button id="refresh" class="icon-button" aria-label="刷新论文库" title="刷新论文库"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg></button></div></header>
-  <main id="main" class="paper-module">
+  <main id="main" class="paper-module" tabindex="-1">
     <header class="module-header"><div><h1>文献管理</h1><p>按研究方向查找文献与阅读原文。</p></div><div class="actions"><a id="management-link" class="text-button" href="./manage#workspace">管理</a><a id="public-library-link" class="text-button" href="./" hidden>返回文献库</a><button id="guide-button" hidden class="secondary"><svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg>添加论文</button><button id="settings-button" hidden class="text-button"><svg class="icon" aria-hidden="true"><use href="#icon-settings"/></svg>整理设置</button></div></header>
     <nav class="library-tabs" aria-label="文献工作区">
       <a id="nav-discover" href="#discover" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg>发现文献</a>
       <a id="nav-catalog" href="#catalog"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg>全部文献 <span id="nav-all-count">0</span></a>
+      <a id="nav-graph" href="#graph"><svg class="icon" aria-hidden="true"><use href="#icon-network"/></svg>文献图谱</a>
       <a id="nav-favorites" href="#favorites"><svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg>我的收藏 <span id="nav-favorite-count">0</span></a>
       <a id="nav-workspace" hidden href="#workspace"><svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg>整理工作区 <span id="nav-pending-count">0</span></a>
     </nav>
     <div class="module-summary" aria-label="论文库统计"><span>已收录 <strong id="stat-ready">0</strong></span><span>研究分类 <strong id="stat-categories">0</strong></span><span>主题标签 <strong id="stat-tags">0</strong></span><span id="pending-stat" hidden>待整理 <strong id="stat-pending">0</strong></span></div>
+  <div class="papers-notice" id="papers-notice"><p role="status" id="papers-status">正在读取文献库。</p><button id="retry-papers" class="secondary" type="button" hidden>重试读取</button></div>
+  <section id="graph-view" aria-labelledby="graph-title" hidden>
+    <header class="graph-heading"><h2 id="graph-title" tabindex="-1">文献图谱</h2><p id="graph-count" aria-live="polite"></p></header>
+    <div class="graph-explorer">
+      <div class="graph-visual">
+        <svg id="graph-sphere" viewBox="0 0 480 380" tabindex="0" role="img" aria-label="文献关系球。拖动或用方向键旋转，加减键缩放。图中节点也可从相邻列表选择。"></svg>
+        <div class="graph-tools" aria-label="调整星图"><button type="button" id="graph-smaller" aria-label="缩小星图">−</button><button type="button" id="graph-larger" aria-label="放大星图">＋</button><button type="button" id="graph-reset">复位</button></div>
+        <p class="graph-key"><span class="key-direction">方向</span><span class="key-topic">主题</span><span class="key-byline">署名</span><span class="key-paper">论文</span></p>
+        <p id="graph-sample"></p>
+      </div>
+      <div class="graph-panel"><label class="graph-search" for="graph-query">搜索图谱<input id="graph-query" type="search" placeholder="方向、主题、作者署名或论文标题" autocomplete="off"></label>
+        <div class="graph-context"><a id="graph-back" href="#graph" hidden>返回全库</a><h3 id="graph-focus"></h3><p id="graph-description"></p><button id="graph-reader" class="secondary" type="button" hidden>打开论文详情</button></div>
+        <p id="graph-status" role="status"></p><ul id="graph-results" aria-label="图谱节点与关系依据"></ul><button type="button" id="graph-more" class="secondary" hidden>显示更多</button>
+        <button type="button" id="graph-retry" class="secondary" hidden>重新读取图谱</button>
+      </div>
+    </div>
+  </section>
   <section id="discovery-view" aria-label="发现论文">
     <div class="discovery-toolbar">
-      <form id="discovery-search-form" class="discovery-search" role="search"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="discovery-search" type="search" placeholder="搜索标题、作者、关键词或主题标签…" aria-label="搜索全部论文"></label><button type="submit" class="primary">搜索</button></form>
+      <form id="discovery-search-form" class="discovery-search" role="search"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="discovery-search" type="search" placeholder="搜索标题、作者、DOI 或关键词…" aria-label="搜索全部论文"></label><button type="submit" class="primary">搜索</button></form>
     </div>
     <section class="recommendations" aria-labelledby="recommendation-title">
       <div class="discovery-heading"><div><h2 id="recommendation-title">推荐阅读 <span id="recommendation-count">0</span></h2><p id="recommendation-note">随机选取 3 篇</p></div><div class="discovery-actions"><button id="shuffle-recommendations" class="secondary" type="button"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>换一批</button></div></div>
@@ -65,9 +83,9 @@
         </aside>
         <div class="catalog-main library-results">
           <div class="catalog-heading"><h2 id="section-title">全部论文 <span>0</span></h2><p id="catalog-description">可搜索作者关键词，或按主题标签筛选。</p></div>
-          <div id="catalog-search" class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、关键词或主题标签…" aria-label="搜索论文"><kbd>/</kbd></label></div></div>
+          <div id="catalog-search" class="catalog-search"><div class="toolbar"><label class="search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><input id="search" type="search" placeholder="搜索标题、作者、DOI 或关键词…" aria-label="搜索论文"><kbd>/</kbd></label></div></div>
           <div class="library-view-bar"><div class="view-switch"><button id="grid-view" aria-label="卡片视图" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg>卡片</button><button id="list-view" aria-label="列表视图" class="selected" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-list"/></svg>列表</button></div><label class="sort-filter"><span>排序</span><select id="sort" aria-label="排序"><option value="newest">最近收录</option><option value="year">年份 · 从新到旧</option><option value="title">标题 · A–Z</option></select></label></div>
-          <div id="filter-summary" class="filter-summary" role="status" hidden></div><p id="favorites-note" class="panel-hint" hidden>收藏保存在当前浏览器。</p><div class="cards list" id="papers" aria-live="polite"></div>
+          <div id="filter-summary" class="filter-summary" role="status" hidden></div><p id="favorites-note" class="panel-hint" hidden>收藏保存在当前浏览器。</p><div class="cards list" id="papers" aria-live="polite" aria-busy="true"></div>
 
           <nav id="papers-pagination" class="pagination" aria-label="文献分页"><span id="page-summary" role="status"></span><div><button id="papers-prev" class="secondary" disabled>上一页</button><span id="page-label">第 1 / 1 页</span><button id="papers-next" class="secondary" disabled>下一页</button></div></nav>
         </div>
@@ -103,5 +121,6 @@
 <dialog id="guide"><div class="guide-content"><button class="close-modal" id="close-guide" aria-label="关闭使用说明">×</button><h2>添加与整理论文</h2><div class="guide-step"><b>01</b><div><h3>放入待整理区</h3><p>在服务器上将 PDF 复制到下方目录，完成复制后点击“扫描新文件”。</p><code id="guide-path"></code><button class="text-button" id="copy-path">复制路径</button></div></div><div class="guide-step"><b>02</b><div><h3>让 Agent 读懂论文</h3><p>按照配套 skill 提取作者、年份、内容、贡献与标签；每项关键信息都保留原文页码和依据。在“整理设置”中选择 Agent 或自定义 API，也可设置 Agent 失败后自动切换 API。</p><a href="./api/skill" target="_blank" rel="noopener">查看整理 skill</a></div></div><div class="guide-step"><b>03</b><div><h3>搜索、阅读、建立联系</h3><p>按研究方向、标签和年份筛选；打开卡片查看贡献、核对原文，并记录自己的阅读笔记。</p></div></div><p class="guide-note">目录内文件按内容哈希去重。首次导入保留根目录原件；后续从待整理区归档。未核实的信息会单独提示。</p><a class="secondary export-link" href="./api/export" download>导出论文目录 JSON</a></div></dialog>
 <dialog id="login"><form id="login-form"><h2>进入你的论文库</h2><label>访问密码<input id="password" type="password" autocomplete="current-password" required></label><p id="login-error" role="alert"></p><button class="primary" type="submit">进入论文库</button></form></dialog>
 <div id="toast" role="status" hidden></div>
+<script src="./graph.js" defer></script>
 <script src="./app.js" defer></script>
 </body></html>

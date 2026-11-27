@@ -19,9 +19,11 @@ assert all(a['kind'] in ('dataset','model') and public_path(a['path']) for a in 
 for name in ('data/catalog.json','data/build-report.json','data/collection-config.json','data/resource-mapping.json','data/resource-mapping.csv',
              'data/sources/public-assets-20261018.csv','data/sources/live-public-metadata.json'):
     assert '/data/users/' not in (root/name).read_text(encoding='utf-8'), 'Private source path in '+name
-files = [root/p for p in ['resource_directory.py','tools/monitor_directory.py','data/resource-taxonomy.json','catalog.py','server.py','progress_proxy.py','ingestion.py','platform_data.py','research_portfolio.py','README.md','.gitignore',
-    'tools/build_catalog.py','tools/build_inventory.py','tools/research_annotations.py','tools/build_research_guide.py','tools/collect_metadata.py','tools/path_migration.py','tools/agent_client.py','tools/package_release.py','tools/install_release.py','tools/check_docs.py','tools/verify_deployment.py',
-    'data/resource-directory.json','data/catalog.json','data/build-report.json','data/collection-config.json',
+files = [root/p for p in ['catalog.py','server.py','progress_proxy.py','ingestion.py','platform_data.py','compute_history.py','research_portfolio.py','README.md','AGENTS.md','.gitignore',
+    'resource_library.py','tools/sync_feishu_library.py','tools/prepare_feishu_library.py',
+    'data/library-taxonomy.json','data/feishu-library.json','data/feishu-library-editorial.json','data/workspace-docs.json','data/README.md',
+    'tools/build_catalog.py','tools/build_inventory.py','tools/research_annotations.py','tools/build_research_guide.py','tools/collect_metadata.py','tools/path_migration.py','tools/agent_client.py','tools/direction_context.py','tools/package_release.py','tools/install_release.py','tools/check_docs.py','tools/verify_deployment.py',
+    'data/catalog.json','data/build-report.json','data/collection-config.json',
     'data/resource-registry.json','data/resource-mapping.json','data/resource-mapping.csv','data/research-guide.json','data/research-portfolio.json',
     'data/sources/public-assets-20261018.csv','data/sources/live-public-metadata.json']]
 for name in ('incoming_client.py','ingest_worker.py','ingest_cycle.py','cold_archive.py','activate_shared_management.py',
@@ -33,7 +35,7 @@ if (root/'data/server-resources.json').is_file():
 for folder in ['static','docs','tests','deploy']:
     files.extend(p for p in (root/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts)
 files.extend(sorted((root/'data/annotations').glob('*.json')))
-for name in ('data/sources/catalog-pre-migration.json','data/path-migration.json','data/physical-inventory.json','tools/build_physical_inventory.py'):
+for name in ('data/sources/catalog-pre-migration.json','data/path-migration.json','data/public-migration.json','data/physical-inventory.json','tools/build_physical_inventory.py'):
     if (root/name).is_file():
         files.append(root/name)
 for name in ('cpfs_link_audit.py','cpfs_transfer.py','cpfs_revalidate.py','cpfs_usage.py','cpfs_cutover.py',

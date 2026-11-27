@@ -92,8 +92,9 @@ def test_json_multipart_same_contract_and_idempotence(env):
 def test_malformed_markdown_rejected(env,mutate):
     cfg,app,_=env
     r=file_upload(app.test_client(),mutate(core.report_markdown('甲同学','2026-W42',FIELDS)))
-    assert r.status_code==400
+    assert r.status_code==201 and r.json['summary_status']=='queued'
     assert not (cfg['roots']['members']/'alice/reports/2026-W42.md').exists()
+    assert (cfg['roots']['members']/'alice/uploads/2026-W42.original.md').exists()
 
 
 def test_templates_json_validation_and_encoding(env):
@@ -103,11 +104,12 @@ def test_templates_json_validation_and_encoding(env):
     assert file_upload(c,t.json['markdown']).status_code==400 # Unfilled template.
     assert upload(c,fields={'done':'missing'}).status_code==400
     assert upload(c,fields={**FIELDS,'done':'## 额外栏目\ntext'}).status_code==400
-    assert file_upload(c,b'\xff\xfe').status_code==400
+    assert file_upload(c,b'\xff\xfe').status_code==201
     assert file_upload(c,'x',filename='../../team/weekly.md').status_code==400
     assert upload(c,uid='../bob').status_code==400
     assert upload(c,week='2026-W54').status_code==400
-    assert file_upload(c,'x'*65537).status_code==413
+    cfg['summary']['max_upload_bytes']=65536
+    assert file_upload(c,'x'*65537,uid='bob').status_code==413
     assert upload(c,fields={**FIELDS,'done':'x'*12001}).status_code==400
 
 

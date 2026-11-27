@@ -1,0 +1,264 @@
+{
+  "record_type": "scientific_protocol_run",
+  "protocol_version": "1.0.0",
+  "observed_at": "2026-11-21T07:49:04.973456+00:00",
+  "setting": "Windows workspace; historical member export. No live audio mount.",
+  "snapshot_generated_at": "2026-11-15T15:31:09.942Z",
+  "snapshot_sha256": "362bc80e23f9a6745cf31d898b88dad45eaab093726ee9b84a966c4769a84aa8",
+  "source_record_counts": {
+    "directions": 5,
+    "papers": 336,
+    "assets": 298
+  },
+  "source_file_sha256": {
+    "direction_context.py": "9f9607c314e08dc778fe9888c92c09b08728c05c90ad0e591482d5c4074b51c4",
+    "research_experiment.py": "f1743e926782abfac4e140da3b607effd153f394d79fdea34ee905df6027c435",
+    "research_experiment_audio.py": "b4032eaa9ec4bd3fecf3b25e28571981cb330af4fec3669f001012597accb514",
+    "run_research_experiment.py": "84b65dc547c0f32c39289f41323e0c6c0efcfe678c7f293aafa7a0b51355acaf"
+  },
+  "runs": [
+    {
+      "direction": {
+        "id": "daily-text-risk",
+        "title": "Daily Text Risk 日常文本风险",
+        "question": "日常短文本中是否有可以稳定识别的风险线索？"
+      },
+      "status": "completed",
+      "plan_fingerprint": "d637174e766332e385b5ca4982857908bfd8b785917d4c6901c01b8af6e4956f",
+      "result_fingerprint": "fbe74f1b7bfe73e0cc4dd002ba3b285e3f8d63003ec7984640f5a1f63a1c6835",
+      "parameters": {
+        "paper-retrieval-ablation": {
+          "terms": [
+            "抑郁",
+            "文本风险",
+            "depression",
+            "depressive"
+          ]
+        }
+      },
+      "input_fingerprints": {
+        "paper_metadata": "c86948b5a883f388268b71151e1dd6d67c2f260c21eed2f93dbf6700c5395478",
+        "archive_record": null
+      },
+      "results": [
+        {
+          "id": "paper-retrieval-ablation",
+          "status": "completed",
+          "metrics": {
+            "catalog_records": 336,
+            "with_titles": 336,
+            "title_matches": 222,
+            "expanded_matches": 222,
+            "incremental_matches": 0,
+            "expanded_with_doi": 210,
+            "expanded_doi_pct": 94.59
+          },
+          "observations": [
+            "在 336 条现有题录中，题名检索命中 222 条。扩展检索另找到 0 条候选，合计 222 条，其中 210 条登记了 DOI。"
+          ]
+        }
+      ]
+    },
+    {
+      "direction": {
+        "id": "depalign-final",
+        "title": "DepAlign 抑郁程度预测",
+        "question": "访谈文本和语音能否互相补充，用来估计 PHQ-8 分数？"
+      },
+      "status": "completed",
+      "plan_fingerprint": "9e80ca985bcbb59ec00370cbf81e7c37dff275cfed818a3105b06c6943e6b73b",
+      "result_fingerprint": "26f2e50dbdd6137e3f2fb1e619690f6886dec38733f576a05adc9b2f56cea4b0",
+      "parameters": {
+        "paper-retrieval-ablation": {
+          "terms": [
+            "depalign",
+            "phq-8",
+            "daic",
+            "抑郁",
+            "depression",
+            "depressive"
+          ]
+        }
+      },
+      "input_fingerprints": {
+        "paper_metadata": "c86948b5a883f388268b71151e1dd6d67c2f260c21eed2f93dbf6700c5395478",
+        "archive_record": null
+      },
+      "results": [
+        {
+          "id": "paper-retrieval-ablation",
+          "status": "completed",
+          "metrics": {
+            "catalog_records": 336,
+            "with_titles": 336,
+            "title_matches": 222,
+            "expanded_matches": 222,
+            "incremental_matches": 0,
+            "expanded_with_doi": 210,
+            "expanded_doi_pct": 94.59
+          },
+          "observations": [
+            "在 336 条现有题录中，题名检索命中 222 条。扩展检索另找到 0 条候选，合计 222 条，其中 210 条登记了 DOI。"
+          ]
+        }
+      ]
+    },
+    {
+      "direction": {
+        "id": "mmpsy-v3-ensemble",
+        "title": "MMPsy 中文文本评分",
+        "question": "怎样在中文对话中给出可追溯的严重度评分，并对证据不足的输入保留拒答？"
+      },
+      "status": "completed",
+      "plan_fingerprint": "08175fb768dc46434195f2b85deccbc731e70ccbdbfb616239822dc01d2b6118",
+      "result_fingerprint": "5adf6282a682f95758480d1b2794b6d2f6f569d44f0be01745689c21c3219155",
+      "parameters": {
+        "paper-retrieval-ablation": {
+          "terms": [
+            "mmpsy",
+            "phq-9",
+            "严重度",
+            "severity"
+          ]
+        }
+      },
+      "input_fingerprints": {
+        "paper_metadata": "c86948b5a883f388268b71151e1dd6d67c2f260c21eed2f93dbf6700c5395478",
+        "archive_record": null
+      },
+      "results": [
+        {
+          "id": "paper-retrieval-ablation",
+          "status": "completed",
+          "metrics": {
+            "catalog_records": 336,
+            "with_titles": 336,
+            "title_matches": 17,
+            "expanded_matches": 17,
+            "incremental_matches": 0,
+            "expanded_with_doi": 17,
+            "expanded_doi_pct": 100.0
+          },
+          "observations": [
+            "在 336 条现有题录中，题名检索命中 17 条。扩展检索另找到 0 条候选，合计 17 条，其中 17 条登记了 DOI。"
+          ]
+        }
+      ]
+    },
+    {
+      "direction": {
+        "id": "universal-voice-encoder",
+        "title": "通用疾病声音 Encoder",
+        "question": "能否学到跨疾病复用的声音表示，并检验模型是否依赖设备或采集来源等线索？"
+      },
+      "status": "partial",
+      "plan_fingerprint": "df9e76c5c05aabba07c7a91dd71938fe765c6860d4a5d730f2d539d2e5b79efa",
+      "result_fingerprint": "e78c68d80b764eba272f06093116bf417133d3fa14fcb44288bc52b370383dc5",
+      "parameters": {
+        "mdvr-input-sensitivity": {
+          "prefix_seconds": 2,
+          "frame_ms": 20,
+          "energy_gates_dbfs": [
+            -50,
+            -40
+          ],
+          "crop_seconds": [
+            10,
+            30
+          ],
+          "expected_wav_files": 73,
+          "archive_sha256": "45c43cdfa5d078833a6ac27574c471c9ca34d4cd4dea5877f31ebe93b1b5edf6"
+        },
+        "paper-retrieval-ablation": {
+          "terms": [
+            "跨疾病",
+            "声音表征",
+            "语音表征",
+            "speech representation",
+            "voice representation",
+            "cross-disease",
+            "疾病声音",
+            "pathological speech"
+          ]
+        }
+      },
+      "input_fingerprints": {
+        "paper_metadata": "c86948b5a883f388268b71151e1dd6d67c2f260c21eed2f93dbf6700c5395478",
+        "archive_record": "45c43cdfa5d078833a6ac27574c471c9ca34d4cd4dea5877f31ebe93b1b5edf6"
+      },
+      "results": [
+        {
+          "id": "mdvr-input-sensitivity",
+          "status": "unavailable",
+          "metrics": {},
+          "observations": [
+            "共享发行包无法读取或解码，请核对挂载、读取权限与版本。"
+          ]
+        },
+        {
+          "id": "paper-retrieval-ablation",
+          "status": "completed",
+          "metrics": {
+            "catalog_records": 336,
+            "with_titles": 336,
+            "title_matches": 1,
+            "expanded_matches": 1,
+            "incremental_matches": 0,
+            "expanded_with_doi": 1,
+            "expanded_doi_pct": 100.0
+          },
+          "observations": [
+            "在 336 条现有题录中，题名检索命中 1 条。扩展检索另找到 0 条候选，合计 1 条，其中 1 条登记了 DOI。"
+          ]
+        }
+      ]
+    },
+    {
+      "direction": {
+        "id": "voice-fused-head-v2",
+        "title": "中文声音情绪识别",
+        "question": "怎样从中文语音中区分六类声音情绪，并将结果用作其他研究的辅助线索？"
+      },
+      "status": "completed",
+      "plan_fingerprint": "f8380868baf18c77dc818126cb42e434e1a852cb19489eb0a7839f2b0583d9c5",
+      "result_fingerprint": "c4f5469311e4eaec697fe2ead0871b64cc6f58e930977a293dd6843c4843cd2c",
+      "parameters": {
+        "paper-retrieval-ablation": {
+          "terms": [
+            "emotion2vec",
+            "csemotions",
+            "情绪",
+            "emotion",
+            "emotional",
+            "声音表征",
+            "语音表征",
+            "speech representation",
+            "voice representation"
+          ]
+        }
+      },
+      "input_fingerprints": {
+        "paper_metadata": "c86948b5a883f388268b71151e1dd6d67c2f260c21eed2f93dbf6700c5395478",
+        "archive_record": null
+      },
+      "results": [
+        {
+          "id": "paper-retrieval-ablation",
+          "status": "completed",
+          "metrics": {
+            "catalog_records": 336,
+            "with_titles": 336,
+            "title_matches": 17,
+            "expanded_matches": 17,
+            "incremental_matches": 0,
+            "expanded_with_doi": 15,
+            "expanded_doi_pct": 88.24
+          },
+          "observations": [
+            "在 336 条现有题录中，题名检索命中 17 条。扩展检索另找到 0 条候选，合计 17 条，其中 15 条登记了 DOI。"
+          ]
+        }
+      ]
+    }
+  ]
+}

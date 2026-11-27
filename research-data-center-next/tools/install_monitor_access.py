@@ -23,8 +23,10 @@ try:
 except ImportError:
     fcntl = pwd = None
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from platform_data import SERVERS
+
 REMOTE_PROBE = Path(__file__).with_name('server_resource_probe.py').read_text(encoding='utf-8')
-SERVERS = ({'address': '47.117.138.84'}, {'address': '101.132.97.146'}, {'address': '139.196.25.53'})
 
 KEY_DIR = Path('/var/lib/research-data-center/state/monitor-ssh')
 PROBE_DIR = Path('/var/lib/research-data-center-monitor')

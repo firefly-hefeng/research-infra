@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-10-31",
+  "council_protocol": "/docs/agent-council.md",
+  "entries": [
+    {
+      "source": "/data/share/public/hejingheng/midasheng-autonomous-20261030/delivery",
+      "name": "MiDasheng autonomous 继续训练与空间音频评测",
+      "disease_category": "unconfirmed",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "model_weights",
+      "action": "moved",
+      "target": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+      "compatibility_link": "/data/share/public/hejingheng/midasheng-autonomous-20261030/delivery -> /data/share/models/unconfirmed/midasheng-autonomous-20261030",
+      "files": 12,
+      "bytes": 225525531,
+      "best_sha256": "6c7944a9a30a0d3a040b070f7ad1ec2a103389dcf73873f72468389fe662a408",
+      "evidence": ["delivery/delivery-verification.json", "delivery/final-host-47.json", "delivery/final-host-101.json", "delivery/report-review.json"],
+      "validation": "final-host 审核通过；dev 参与开发选模，不是独立盲测或疾病结论。",
+      "metrics": {"stage1_accuracy": 0.598, "stage2_accuracy": 0.4535, "a_gs2": 0.304}
+    },
+    {
+      "source": "/data/share/public/liusizhe/rms-aqa",
+      "name": "RMS-AQA 空间音频问答资源",
+      "disease_category": "general-speech",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "mixed",
+      "action": "registered_in_place",
+      "target": "/data/share/public/liusizhe/rms-aqa",
+      "evidence": ["docs/READY.json"],
+      "validation": "核心 official 资源已验证；external 部分不完整，不能宣称全量外部数据已下载。",
+      "notes": "保留现有规范根，避免破坏大量硬链接和复现配置。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/rms-aqa-qwen-official-20261027",
+      "name": "Qwen3-Omni + SpatialAug 官方复现工件",
+      "disease_category": "general-speech",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "experiment_artifact",
+      "action": "deferred",
+      "reason": "存在用户暂停标记，需负责人确认暂停工件边界后再归档。"
+    },
+    {
+      "source": "/data/share/public/hejingheng/midasheng-c-transfer-20261030",
+      "name": "MiDasheng C-transfer 迁移评测",
+      "disease_category": "unconfirmed",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "experiment_artifact",
+      "action": "deferred",
+      "reason": "结果、代码和资源目录对当前账号拒绝访问，无法核验 metrics、predictions 和 checkpoint 来源。"
+    },
+    {
+      "source": "/data/share/public/hejingheng/midasheng-official-repro-20261030",
+      "name": "MiDasheng 官方复现与 epoch extension",
+      "disease_category": "unconfirmed",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "experiment_artifact",
+      "action": "deferred",
+      "reason": "producer、trainer、迁移与 epoch cross-check claim 表明仍有活动复现流程。"
+    },
+    {
+      "source": "/data/share/public/luzijian/depression-tuning-20261028-r1",
+      "name": "depression-tuning 空目录",
+      "disease_category": "mood",
+      "task_category": "depression-severity",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/ad-audio-visual-grounding-20261025-r2",
+      "name": "AD audio visual grounding 空目录",
+      "disease_category": "cognitive",
+      "task_category": "cognitive-audio-visual",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/ad-passive-multiview-pmv-r1",
+      "name": "AD passive multiview 空目录",
+      "disease_category": "cognitive",
+      "task_category": "cognitive-audio-visual",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/ad-dynamic-residual-benchmark-r1",
+      "name": "AD dynamic residual benchmark 空目录",
+      "disease_category": "cognitive",
+      "task_category": "cognitive-audio-visual",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/ad-haren-ctc-r1",
+      "name": "AD Haren CTC 空目录",
+      "disease_category": "cognitive",
+      "task_category": "cognitive-audio-visual",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    },
+    {
+      "source": "/data/share/public/liusizhe/rms-aqa-spatial-omni-20261025",
+      "name": "RMS-AQA spatial omni 空目录",
+      "disease_category": "general-speech",
+      "task_category": "spatial-audio-qa",
+      "resource_role": "empty",
+      "action": "deferred",
+      "reason": "未发现内容，不创建 dataset/model 记录。"
+    }
+  ]
+}

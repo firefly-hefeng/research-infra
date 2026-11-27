@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically maintain read access to lab members' local workspaces
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=30min
+AccuracySec=15s
+Unit=research-workspace-read.service
+
+[Install]
+WantedBy=timers.target

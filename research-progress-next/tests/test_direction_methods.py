@@ -74,3 +74,43 @@ def test_suggested_and_unassigned_are_distinct_from_confirmed(atlas):
     owner.update(status='unassigned',name=None,source_ids=[])
     path.write_text(json.dumps(doc),encoding='utf8')
     assert '负责人待指派' in client.get('/direction-methods?direction=example').text
+
+
+def test_algorithm_core_map_groups_stable_ids_and_leaves_unknowns_pending(atlas):
+    from research_weekly.direction_methods import algorithm_core_map
+
+    _,client,path,doc=atlas
+    expected=[('representation','表征学习与多模态融合','depalign-final'),
+              ('retrieval-memory','检索与长时记忆','audio-memory-retrieval'),
+              ('trustworthy-output','可信输出拒答与 OOD','answer-abstention'),
+              ('task-intervention','任务建模与受控干预','pause-cognition'),
+              ('generation-editing','生成编辑与数据增强','paralinguistic-editing'),
+              ('speech-infrastructure','语音工程数据与协作基础设施','speech-annotation')]
+    rows=[dict(doc['directions'][0],id=direction_id,title=title) for _,title,direction_id in expected]
+    rows.append(dict(doc['directions'][0],id='new-unregistered-id',title='新方向'))
+    core=algorithm_core_map(rows)
+    assert [(g['id'],len(g['directions']),g['method_count']) for g in core['groups']]==[
+        (key,1,1) for key,_,_ in expected]
+    assert [row['id'] for row in core['unclassified']]==['new-unregistered-id']
+    assert core['unclassified_method_count']==1
+
+    doc['directions']=rows
+    path.write_text(json.dumps(doc),encoding='utf8')
+    html=client.get('/direction-methods').text
+    assert '算法核心地图' in html and '不构成跨任务、指标或数据划分的排名' in html
+    for _,title,direction_id in expected:
+        assert title in html and f'<code>{direction_id}</code>' in html
+    assert '待归类' in html and '<code>new-unregistered-id</code>' in html
+    assert html.count('可复核方法')==len(rows)
+    detail=client.get('/direction-methods?direction=depalign-final').text
+    assert 'id="algorithm-map"' not in detail and '准确率 82%' in detail
+    api=client.get('/api/direction-methods').json
+    assert 'core_map' not in api and len(api['directions'])==len(rows)
+
+
+def test_unmapped_direction_remains_visible_in_core_map_and_index(atlas):
+    _,client,_,_=atlas
+    html=client.get('/direction-methods').text
+    assert '待归类' in html and '<code>example</code>' in html
+    assert '这些稳定方向 ID 尚未登记到六类核心地图' in html
+    assert '示例研究方向' in html and '可复核方法' in html

@@ -1,0 +1,35 @@
+{
+  "experiment_id": "RMP-ELN-20261115-REPORT-DISCOVERY",
+  "member_id": "m_65a349fc3c98481589f1",
+  "date": "2026-11-14",
+  "files": {
+    "report.md": {
+      "bytes": 526,
+      "sha256": "bb242bfc705742c0cb08056ee2a978fc69e3eee6fd152051dad390cfe2e7f969"
+    },
+    "original": {
+      "bytes": 473,
+      "sha256": "6f8d4ef3657ae0ced9bb77360866edcb7010944232215d8ed74213a4873ce592"
+    },
+    "attachment-1": {
+      "bytes": 176695,
+      "sha256": "44183506802ff06574ea6775ba98719e47537680259c79b8a79ff003fddf1384"
+    },
+    "attachment-2": {
+      "bytes": 527,
+      "sha256": "d5d94edc98debe3cafb93dc51c1c1b67648602b2850d48acb46d86eb41d9a625"
+    },
+    "metadata.json": {
+      "bytes": 541,
+      "sha256": "4516565e22663f5c218e0eb709b37f6caea062b6e720a20b84cf4d93218429e0"
+    }
+  },
+  "reproduction": {
+    "before_url": "/progress/#team",
+    "before_daily_count": 1,
+    "action": "open 2026-W45 weekly archive",
+    "after_url": "/progress/#team?week=2026-W45",
+    "after_daily_count": 0,
+    "storage_unchanged": true
+  }
+}

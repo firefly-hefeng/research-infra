@@ -67,7 +67,7 @@ def source_text(library, paper_id):
     handle, temporary = tempfile.mkstemp(prefix='.source-', dir=cache.parent)
     try:
         with os.fdopen(handle, 'wb') as output:
-            os.fchmod(output.fileno(), 0o600)
+            os.chmod(temporary, 0o600)
             try:
                 subprocess.run([executable, str(source), '-'], stdout=output,
                                stderr=subprocess.PIPE, timeout=90, check=True)
@@ -376,7 +376,7 @@ def write_import_log(path, result):
     handle, temporary = tempfile.mkstemp(prefix='.import-', dir=path.parent)
     try:
         with os.fdopen(handle, 'w', encoding='utf-8') as stream:
-            os.fchmod(stream.fileno(), 0o600)
+            os.chmod(temporary, 0o600)
             json.dump(result, stream, ensure_ascii=False, indent=2)
             stream.flush()
             os.fsync(stream.fileno())

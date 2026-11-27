@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-21",
+  "scope": "已登录成员浏览器只读验收。未提交表单，未打开论文正文。",
+  "endpoints": [
+    {
+      "requested_viewport": 1440,
+      "page": "/#documents",
+      "document_width": 1425,
+      "usable_viewport": 1425,
+      "body_font": "14px",
+      "first_heading": "研究文书",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 1440,
+      "page": "/#feishu-ledger",
+      "document_width": 1425,
+      "usable_viewport": 1425,
+      "body_font": "14px",
+      "first_heading": "数据管理",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 1440,
+      "page": "/progress/#team",
+      "document_width": 1425,
+      "usable_viewport": 1425,
+      "body_font": "15px",
+      "first_heading": "团队进度",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 1440,
+      "page": "/papers/",
+      "document_width": 1425,
+      "usable_viewport": 1425,
+      "body_font": "15px",
+      "first_heading": "文献管理",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 390,
+      "page": "/#documents",
+      "document_width": 390,
+      "usable_viewport": 390,
+      "body_font": "14px",
+      "first_heading": "研究文书",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 390,
+      "page": "/#feishu-ledger",
+      "document_width": 390,
+      "usable_viewport": 390,
+      "body_font": "14px",
+      "first_heading": "数据管理",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 390,
+      "page": "/progress/#team",
+      "document_width": 390,
+      "usable_viewport": 390,
+      "body_font": "15px",
+      "first_heading": "团队进度",
+      "has_lab_review_entry": false,
+      "errors": []
+    },
+    {
+      "requested_viewport": 390,
+      "page": "/papers/",
+      "document_width": 390,
+      "usable_viewport": 390,
+      "body_font": "15px",
+      "first_heading": "文献管理",
+      "has_lab_review_entry": false,
+      "errors": []
+    }
+  ],
+  "documents": {
+    "page_title": "研究文书",
+    "visible_index_entries": 4
+  },
+  "ledger": {
+    "records": 69,
+    "classification_heading": "研究大类",
+    "mobile_scrollable_region": "飞书台账数据表",
+    "mobile_container_width": 351,
+    "mobile_table_width": 410,
+    "keyboard_tabindex": "0",
+    "far_right_readable_after_scroll": true
+  },
+  "progress": {
+    "first": "周报 · 阶段进展",
+    "second": "日报 · 每日推进",
+    "roster": 8,
+    "review_entry_visible": false
+  },
+  "papers": {
+    "catalog_count": 336,
+    "discovery": "发现文献",
+    "recommended_count": 3,
+    "category_count": 26,
+    "read_fulltext": false
+  }
+}

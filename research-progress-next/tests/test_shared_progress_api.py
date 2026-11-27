@@ -1,11 +1,12 @@
 import json
 
-from research_weekly import progress_digest
+from research_weekly import directions, progress_digest
 from test_system import env
 
 
-def test_member_api_reads_registered_material_and_flags_stale(env):
+def test_member_api_reads_registered_material_and_flags_stale(env, monkeypatch):
     cfg, app, _ = env
+    monkeypatch.setattr(directions, 'direction_roots', lambda config: (cfg['roots']['team'] / 'directions',))
     client = app.test_client()
     team = cfg['roots']['team']
     notes = team / 'directions'
@@ -37,5 +38,9 @@ def test_member_api_reads_registered_material_and_flags_stale(env):
 def test_private_sharing_stays_closed(env):
     _, app, _ = env
     app.config['RESEARCH'].update(demo=False, security={'team_reports_shared': False})
-    for path in ('/api/progress-digest', '/api/lab-review?format=json', '/api/directions', '/api/direction-methods'):
-        assert app.test_client().get(path).status_code == 403
+    client = app.test_client()
+    digest = client.get('/api/progress-digest')
+    assert digest.status_code == 200 and digest.json['has_lab_review'] is False
+    assert client.get('/api/directions').status_code == 200
+    for path in ('/api/lab-review?format=json', '/api/direction-methods'):
+        assert client.get(path).status_code == 403

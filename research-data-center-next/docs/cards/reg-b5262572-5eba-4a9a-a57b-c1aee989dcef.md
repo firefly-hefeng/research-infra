@@ -2,7 +2,7 @@
 
 公共区资源说明卡；一条来源记录一个登记 ID，不等于已确认的逻辑资源或发布版本。
 
-保存已有研究的资料清单和整理记录，方便查找原始数据、了解处理过程、复核实验使用了哪些材料。这里不是一批新采集的录音。
+clinical_other_roots_db_20260929_r363：已有研究数据的核查、索引或派生整理，具体来源需回原清单 本地台账主要数量为 1，计数单位是「全部可见文件（不等于数据样本）」。
 
 当前位置：/data/share/datasets/easystore/clinical_other_roots_db_20260929_r363
 
@@ -139,7 +139,7 @@
 
 ## 来源证据
 
-- 当前公共区目录快照：data/catalog.json / asset-e7a643f69f671e69；时间：2026-10-27T08:25:26.786190+00:00
+- 当前公共区目录快照：data/catalog.json / asset-e7a643f69f671e69；时间：2026-10-31T00:00:00+00:00
 - 公共区整理台账（非上游来源）：public-assets-20261018.csv #8；时间：2026-10-18T03:38:56.589945+00:00；[来源文档](https://wcn5kauqqbj1.feishu.cn/docx/UXRxdYjrcoyqKIx3DwAca9sPnbh)
 - 公共区入口元数据核验：data/sources/live-public-metadata.json / path_checks / /data/datasets/easystore/clinical_other_roots_db_20260929_r363；时间：2026-10-18T19:46:35.062887+00:00
 - 共享位置核验与切换回执（独立于历史数量）：data/migration-evidence/objects/044490e2fffe87a7308e0d2a004f4965bae2a02d37dccc1dbc3166d9b8d50ebb.json；时间：2026-10-27T08:27:50.187487+00:00
@@ -150,7 +150,7 @@
 - metadata.原始台账；原快照时间保持不变
 - data/catalog.json / asset-e7a643f69f671e69
 
-说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;93c0e0fcfefbb843c696bafb5c2193b4e82ee9aef3b68e85daa7772fb0d1a5f8&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 86<br>  }<br>\]
+说明文件与 SHA-256：\[<br>  {<br>    &quot;path&quot;: &quot;data/annotations/local-and-models.json&quot;,<br>    &quot;sha256&quot;: &quot;c13a1a0be89766894f0d33236ae3f483de2d360d890d9800aac419e68ae0f479&quot;,<br>    &quot;reviewed_at&quot;: &quot;2026-10-19&quot;,<br>    &quot;records&quot;: 87<br>  }<br>\]
 
 ## 关系候选
 
@@ -164,6 +164,6 @@
 - 资料维护人待确认：文件系统属主不是已确认的维护人或审批联系人。
 - 内容完整性未核验：尚未逐文件或逐样本核验完整性与内容；本地文件统计和官方背景不能替代该核验。
 
-目录快照：2026-10-27T08:25:26.786190+00:00
+目录快照：2026-10-31T00:00:00+00:00
 
 本说明生成过程不读取或修改源数据；位置变化以独立迁移回执为准。

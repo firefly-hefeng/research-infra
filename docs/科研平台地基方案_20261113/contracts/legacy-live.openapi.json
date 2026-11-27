@@ -1,0 +1,805 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Research Data Center",
+    "version": "1.2",
+    "description": "Read-only metadata API. Unknown counts are null. Entry registration is not a frozen release."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "cookieAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "rdc_session"
+      }
+    }
+  },
+  "paths": {
+    "/api/platform/servers": {
+      "get": {
+        "summary": "Read a central public hardware snapshot; never opens SSH",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/platform/compute-reports": {
+      "get": {
+        "summary": "List saved compute reports or read one calendar period",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/platform/research": {
+      "get": {
+        "summary": "Read the manually reviewed research and model portfolio; never invokes inference",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/platform/literature": {
+      "get": {
+        "summary": "Search existing annotation sources with linked resources; not personal reading progress",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Service and catalog readiness",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/session": {
+      "get": {
+        "summary": "Authentication state",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a browser session",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          },
+          "401": {
+            "description": "Invalid access token"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Clear the browser session cookie",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/summary": {
+      "get": {
+        "summary": "Catalog counts, scope and sources",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/assets": {
+      "get": {
+        "summary": "Search catalog metadata",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "server",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000,
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 30
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "kind",
+                          "status"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "dataset",
+                              "model",
+                              "feature",
+                              "annotation",
+                              "collection",
+                              "artifact"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "documented",
+                              "verified",
+                              "partial",
+                              "missing",
+                              "restricted"
+                            ]
+                          }
+                        },
+                        "additionalProperties": true
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "page_size": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/assets/{id}": {
+      "get": {
+        "summary": "Get complete asset metadata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "name",
+                    "kind",
+                    "status"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "dataset",
+                        "model",
+                        "feature",
+                        "annotation",
+                        "collection",
+                        "artifact"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "documented",
+                        "verified",
+                        "partial",
+                        "missing",
+                        "restricted"
+                      ]
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          },
+          "404": {
+            "description": "Asset not found"
+          }
+        }
+      }
+    },
+    "/api/export.json": {
+      "get": {
+        "summary": "Export the complete metadata snapshot",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/export.csv": {
+      "get": {
+        "summary": "Export standard metadata fields as formula-safe CSV",
+        "responses": {
+          "200": {
+            "description": "CSV (UTF-8 with BOM)",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agent/manifest": {
+      "get": {
+        "summary": "Agent usage and interpretation guidance",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/docs": {
+      "get": {
+        "summary": "Public planning documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/resource-mapping": {
+      "get": {
+        "summary": "In-place entry registry, evidence, relationships and documentation gaps",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/research-guide": {
+      "get": {
+        "summary": "Research categories, exact entry membership and newcomer reading guide",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/ingestion/manifest": {
+      "get": {
+        "summary": "Read-only submission guide and Agent integration contract; no execution",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/ingestion/published": {
+      "get": {
+        "summary": "New managed publications tracked separately while team documentation is pending",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/ingestion/status": {
+      "get": {
+        "summary": "Sanitized local rules-worker snapshot; never scans incoming or creates state",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "not-configured",
+                        "planned",
+                        "disabled",
+                        "active",
+                        "worker-stale"
+                      ]
+                    },
+                    "counts": {
+                      "type": "object",
+                      "nullable": true
+                    },
+                    "jobs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          }
+        }
+      }
+    },
+    "/api/resource-mapping.csv": {
+      "get": {
+        "summary": "Download the in-place resource mapping as formula-safe CSV",
+        "responses": {
+          "200": {
+            "description": "CSV (UTF-8 with BOM)",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resource-mapping/{registry_id}": {
+      "get": {
+        "summary": "Get a persistent registered entry (not a frozen release)",
+        "parameters": [
+          {
+            "name": "registry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query"
+          },
+          "503": {
+            "description": "Catalog unavailable"
+          },
+          "404": {
+            "description": "Registered entry not found"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Record a compute resource sample every five minutes
+
+[Timer]
+OnCalendar=*-*-* *:00/5:20
+AccuracySec=5s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

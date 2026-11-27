@@ -21,8 +21,8 @@ class ResearchGuideTests(unittest.TestCase):
         members = [entry for category in result['categories'] for entry in category['asset_ids']]
         self.assertEqual(set(members), {item['asset_id'] for item in self.mapping['items']})
         self.assertEqual(len(members), len(set(members)))
-        features = next(category for category in result['categories'] if category['id'] == 'reusable-features')
-        self.assertEqual(features['counts'], {'records': 10, 'unique_paths': 3})
+        features = next(category for category in result['categories'] if category['id'] == 'cross-disease')
+        self.assertEqual(features['counts'], {'records': 22, 'unique_paths': 15})
         self.assertEqual(self.mapping, before)
 
     def test_new_group_or_orphan_record_requires_editorial_review(self):

@@ -78,12 +78,12 @@ class MigrationTests(unittest.TestCase):
                 self.assertFalse(after['storage']['migration']['activated'])
                 self.assertEqual(after['storage']['legacy_aliases'], [])
 
-    def test_full_switch_preserves_228_identities_groups_counts_and_historical_evidence(self):
+    def test_full_switch_preserves_229_identities_groups_counts_and_historical_evidence(self):
         projected = self.project(self.switched())
         old_mapping, _ = build_inventory.build_mapping(self.baseline, self.registry, now='2026-10-27T10:00:00Z')
         new_mapping, registry = build_inventory.build_mapping(projected, self.registry, now='2026-10-27T10:00:00Z')
-        self.assertEqual(new_mapping['summary']['records'], 228)
-        self.assertEqual(new_mapping['summary']['unique_paths'], 221)
+        self.assertEqual(new_mapping['summary']['records'], 229)
+        self.assertEqual(new_mapping['summary']['unique_paths'], 222)
         self.assertEqual({g['id'] for g in old_mapping['groups']}, {g['id'] for g in new_mapping['groups']})
         for before, after in zip(old_mapping['items'], new_mapping['items']):
             self.assertEqual((before['asset_id'], before['registry_id'], before['group_id']),
@@ -92,8 +92,9 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(before['documentation']['quantity'], after['documentation']['quantity'])
             self.assertEqual(before['documentation']['model_configuration'], after['documentation']['model_configuration'])
             self.assertEqual(before['version']['upstream_revision'], after['version']['upstream_revision'])
-            self.assertEqual(before['evidence'][1:3], after['evidence'][1:3])
-            self.assertEqual(after['checks']['observed_at'], '2026-10-27T08:59:00Z')
+            self.assertEqual([{k: v for k, v in row.items() if k != 'observed_at'} for row in before['evidence']],
+                             [{k: v for k, v in row.items() if k != 'observed_at'} for row in after['evidence'][:len(before['evidence'])]])
+            self.assertIn(after['checks']['observed_at'], ('2026-10-27T08:59:00Z', '2026-10-31T00:00:00+00:00'))
             self.assertTrue(after['checks']['readable'])
             self.assertEqual(registry['entries'][after['asset_id']]['registry_id'], before['registry_id'])
         features = [item for item in new_mapping['items'] if item['subtype'] == 'feature']
@@ -106,7 +107,7 @@ class MigrationTests(unittest.TestCase):
             if entry.get('active'):
                 self.assertEqual(entry['path_history'][-1]['last_observed_at'], '2026-10-27T08:59:00Z')
 
-    def test_switch_preserves_228_research_evidence_dates_separate_from_location_checks(self):
+    def test_switch_preserves_229_research_evidence_dates_separate_from_location_checks(self):
         annotations = build_inventory.load_annotations(
             PROJECT, {asset['id'] for asset in self.baseline['assets']},
             build_inventory.clean_metadata, build_inventory.safe_url)
@@ -118,9 +119,9 @@ class MigrationTests(unittest.TestCase):
         rebuilt, _ = build_inventory.build_mapping(
             projected, registry, annotations=annotations, now='2026-10-28T10:00:00Z')
         prior_by_id = {item['asset_id']: item for item in before['items']}
-        self.assertEqual(len(prior_by_id), 228)
+        self.assertEqual(len(prior_by_id), 229)
         for current_mapping in (after, rebuilt):
-            self.assertEqual(len(current_mapping['items']), 228)
+            self.assertEqual(len(current_mapping['items']), 229)
             for item in current_mapping['items']:
                 with self.subTest(asset_id=item['asset_id'], generated_at=current_mapping['generated_at']):
                     prior = prior_by_id[item['asset_id']]
@@ -236,7 +237,7 @@ class MigrationTests(unittest.TestCase):
             first, _ = build_catalog.main(self.root)
             second, _ = build_catalog.main(self.root)
         self.assertEqual(first, second)
-        self.assertEqual(len(first['assets']), 228)
+        self.assertEqual(len(first['assets']), 229)
         self.assertFalse((self.root / 'data' / 'sources' / build_catalog.PUBLIC_CSV).exists())
         # JSON and CSV exports keep the independently dated storage projection.
         db = self.root / 'catalog.sqlite3'

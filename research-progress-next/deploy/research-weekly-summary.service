@@ -1,0 +1,22 @@
+[Unit]
+Description=Research Weekly DeepSeek team summary
+After=network.target
+RequiresMountsFor=/data/rmp/research-progress
+
+[Service]
+Type=oneshot
+User=rmp
+Group=rmp
+WorkingDirectory=/data/rmp/research-progress
+EnvironmentFile=-/etc/research-weekly/environment
+ExecStart=/data/rmp/research-progress/.venv/bin/python -m research_weekly.cli --config /data/rmp/research-progress/config.server.json summarize --week previous --mode api
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/data/rmp/research-progress/data
+Nice=10
+IOSchedulingClass=idle
+MemoryMax=512M
+CPUQuota=50%

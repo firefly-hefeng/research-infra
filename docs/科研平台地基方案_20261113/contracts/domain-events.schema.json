@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "稳定不透明标识 不从路径或姓名派生",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "resource.release.published",
+        "resource.metadata.revised",
+        "ingestion.payload.published",
+        "task.state.changed",
+        "milestone.accepted",
+        "run.finalized",
+        "report.confirmed",
+        "grant.changed",
+        "server.snapshot.recorded"
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor_id": {
+      "type": "string",
+      "description": "稳定不透明标识 不从路径或姓名派生",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "resource",
+        "submission",
+        "task",
+        "milestone",
+        "run",
+        "report",
+        "grant",
+        "server"
+      ]
+    },
+    "aggregate_id": {
+      "type": "string",
+      "description": "稳定不透明标识 不从路径或姓名派生",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "aggregate_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "project_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "稳定不透明标识 不从路径或姓名派生",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "稳定不透明标识 不从路径或姓名派生",
+        "minLength": 3,
+        "maxLength": 128,
+        "pattern": "^[A-Za-z0-9._:-]+$"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "actor_id",
+    "aggregate_type",
+    "aggregate_id",
+    "aggregate_revision",
+    "project_id",
+    "request_id",
+    "evidence_ids"
+  ],
+  "description": "目标事务outbox事件信封 至少一次投递 消费者按event_id去重 按aggregate_revision拒绝旧事件 业务详情经原中心受权接口读取 不广播文件路径或原文"
+}

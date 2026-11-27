@@ -1,0 +1,299 @@
+--- a/auth_service.py
++++ b/auth_service.py
+@@ -10,0 +11 @@
++import re
+@@ -39,0 +41,18 @@
++class Reverify(AuthError):
++    def __init__(self):
++        super().__init__(401, "请在平台页面通过飞书续验，之后可继续本次会话")
++
++
++def provider_error(status, code):
++    if status == 429 or status >= 500 or code in (20050, 20072, 99991400):
++        return AuthError(503, "飞书身份服务暂不可用，请稍后重试")
++    if code in (20006, 99991677):
++        return AuthError(401, "飞书访问凭证已过期")
++    # Only invalidate a saved session on a definitive authorization failure.
++    if status in (401, 403) or code in (20003, 20004, 20005, 20007, 20008, 20009, 20010,
++            20021, 20022, 20023, 20024, 20026, 20037, 20064, 20066, 20073,
++            99991663, 99991668, 99991671, 99991673, 99991674, 99991679):
++        return AuthError(401, "飞书账号或授权已失效，请重新登录")
++    return AuthError(503, "暂时无法核验飞书身份，请稍后重试")
++
++
+@@ -48,0 +68,2 @@
++    session_seconds: int = 30 * 24 * 60 * 60
++    offline_access: bool = False
+@@ -55,0 +77,2 @@
++        if self.session_seconds <= 0 or self.recheck_seconds <= 0:
++            raise ValueError("Positive session and recheck lifetimes required")
+@@ -72 +95 @@
+-    if u.scheme or u.netloc or u.path.startswith("/auth/"):
++    if u.scheme or u.netloc or (u.path.startswith("/auth/") and u.path != "/auth/account"):
+@@ -110,3 +133 @@
+-            if e.code >= 500 or e.code == 429:
+-                raise AuthError(503, "飞书身份服务暂不可用，请稍后重试") from None
+-            raise AuthError(401, "飞书授权已失效，请重新登录") from None
++            raise provider_error(e.code, error_code) from None
+@@ -120 +141 @@
+-            raise AuthError(401, "飞书账号或授权已失效，请重新登录")
++            raise provider_error(200, result.get("code"))
+@@ -131,0 +153,6 @@
++
++    def refresh(self, token: str):
++        return self.request(TOKEN, data={
++            "grant_type": "refresh_token", "refresh_token": token,
++            "client_id": self.config.client_id, "client_secret": self.config.client_secret,
++        })
+@@ -143,0 +171,2 @@
++              CREATE TABLE IF NOT EXISTS renewable_states (
++                state TEXT PRIMARY KEY REFERENCES oauth_states(state) ON DELETE CASCADE);
+@@ -146,0 +176,12 @@
++              CREATE TABLE IF NOT EXISTS session_renewals (
++                sid TEXT PRIMARY KEY REFERENCES sessions(sid) ON DELETE CASCADE,
++                refresh_token TEXT NOT NULL, refresh_expires REAL NOT NULL, access_expires REAL NOT NULL);
++              CREATE TABLE IF NOT EXISTS browser_sessions (
++                sid TEXT PRIMARY KEY REFERENCES sessions(sid) ON DELETE CASCADE,
++                access_expires REAL NOT NULL, persistent INTEGER NOT NULL, paused INTEGER NOT NULL DEFAULT 0);
++              CREATE TABLE IF NOT EXISTS session_challenges (
++                state TEXT PRIMARY KEY REFERENCES oauth_states(state) ON DELETE CASCADE, session_ref TEXT NOT NULL);
++              DELETE FROM browser_sessions WHERE sid NOT IN (SELECT sid FROM sessions);
++              DELETE FROM session_challenges WHERE state NOT IN (SELECT state FROM oauth_states);
++              DELETE FROM session_renewals WHERE sid NOT IN (SELECT sid FROM sessions);
++              DELETE FROM renewable_states WHERE state NOT IN (SELECT state FROM oauth_states);
+@@ -153,0 +195 @@
++        db.execute("PRAGMA foreign_keys = ON")
+@@ -167 +209,9 @@
+-    def begin(self, return_to):
++    def held(self, sid):
++        if not sid or len(sid) > 128:
++            return False
++        with self.db() as db:
++            return db.execute("SELECT 1 FROM sessions s JOIN browser_sessions b ON b.sid=s.sid "
++                              "WHERE s.sid=? AND s.expires>? AND b.persistent=1 AND b.paused=1",
++                              (digest(sid), time.time())).fetchone() is not None
++
++    def begin(self, return_to, persistent=True, prior_sid=""):
+@@ -174,0 +225,6 @@
++            if persistent:
++                db.execute("INSERT INTO renewable_states VALUES (?)", (digest(state),))
++            if prior_sid and len(prior_sid) <= 128:
++                ref = digest(prior_sid)
++                if db.execute("SELECT 1 FROM sessions WHERE sid=? AND expires>?", (ref,now)).fetchone():
++                    db.execute("INSERT INTO session_challenges VALUES (?,?)", (digest(state),ref))
+@@ -178,0 +235 @@
++            **({"scope": "offline_access"} if persistent and self.config.offline_access else {}),
+@@ -183 +240 @@
+-    def finish(self, state, browser, code):
++    def finish(self, state, browser, code, prior_sid=""):
+@@ -187 +244,3 @@
+-            row = db.execute("SELECT * FROM oauth_states WHERE state=?", (digest(state),)).fetchone()
++            row = db.execute("SELECT s.*, r.state AS persistent, c.session_ref FROM oauth_states s "
++                             "LEFT JOIN renewable_states r ON s.state=r.state "
++                             "LEFT JOIN session_challenges c ON c.state=s.state WHERE s.state=?", (digest(state),)).fetchone()
+@@ -189,0 +249,3 @@
++            if row["session_ref"] and (not prior_sid or len(prior_sid) > 128 or
++                                       not hmac.compare_digest(row["session_ref"], digest(prior_sid))):
++                raise AuthError(400, "登录浏览器会话已改变，请重试")
+@@ -193,2 +255,2 @@
+-        lifetime = min(int(token_result.get("expires_in", 0)), 28800)
+-        if not token or lifetime <= 0:
++        access_seconds = int(token_result.get("expires_in", 0))
++        if not token or access_seconds <= 0:
+@@ -196 +258,8 @@
+-        user = self.valid_user(self.provider.user(token))
++        identity = self.provider.user(token)
++        try:
++            user = self.valid_user(identity)
++        except AuthError:
++            if row["session_ref"] and isinstance(identity,dict) and identity.get("open_id"):
++                with self.lock, self.db() as db:
++                    db.execute("DELETE FROM sessions WHERE sid=? AND open_id=?", (row["session_ref"],identity["open_id"]))
++            raise
+@@ -197,0 +267,6 @@
++        refresh_token = token_result.get("refresh_token")
++        refresh_seconds = int(token_result.get("refresh_token_expires_in") or 0)
++        renewable = (row["persistent"] and self.config.offline_access and isinstance(refresh_token, str)
++                     and bool(refresh_token) and refresh_seconds > 0)
++        persistent = bool(row["persistent"])
++        lifetime = self.config.session_seconds if persistent else min(access_seconds, 28800)
+@@ -198,0 +274,15 @@
++            old = None
++            if row["session_ref"]:
++                old = db.execute("SELECT s.*, b.persistent FROM sessions s LEFT JOIN browser_sessions b ON b.sid=s.sid "
++                                 "WHERE s.sid=? AND s.expires>?", (row["session_ref"],now)).fetchone()
++                if not old:
++                    raise AuthError(401, "原会话已退出或到期，请重新登录")
++            if persistent and old and old["persistent"] and old["open_id"] == user["open_id"]:
++                sid = prior_sid
++                deadline = old["expires"]
++            else:
++                deadline = now + lifetime
++            if old:
++                # One transaction closes the old identity and publishes the new verified identity.
++                db.execute("DELETE FROM sessions WHERE sid=?", (row["session_ref"],))
++            key = digest(sid)
+@@ -200 +290,6 @@
+-                digest(sid), token, user["open_id"], user.get("name", "组织成员"), now + lifetime, now))
++                key, token, user["open_id"], user.get("name", "组织成员"), deadline, now))
++            db.execute("INSERT INTO browser_sessions (sid,access_expires,persistent) VALUES (?,?,?)",
++                       (key, now + access_seconds, int(persistent)))
++            if renewable:
++                db.execute("INSERT INTO session_renewals VALUES (?,?,?,?)", (
++                    digest(sid), refresh_token, now + refresh_seconds, now + access_seconds))
+@@ -202 +297 @@
+-        return sid, lifetime, row["return_to"]
++        return sid, max(0,int(deadline - now)), row["return_to"]
+@@ -208 +303 @@
+-    def session(self, sid):
++    def session(self, sid, migrate=False):
+@@ -210,0 +306,21 @@
++        return self.member_session(digest(sid), migrate=migrate)
++
++    def renew(self, key, row):
++        now = time.time()
++        if not row["refresh_token"] or row["refresh_expires"] <= now:
++            raise AuthError(401, "飞书登录授权已过期，请重新登录")
++        tokens = self.provider.refresh(row["refresh_token"])
++        token, new_refresh = tokens.get("access_token"), tokens.get("refresh_token")
++        access_seconds = int(tokens.get("expires_in") or 0)
++        refresh_seconds = int(tokens.get("refresh_token_expires_in") or 0)
++        if not token or not new_refresh or access_seconds <= 0 or refresh_seconds <= 0:
++            raise AuthError(401, "飞书未签发续期凭证，请重新登录")
++        # A refresh token rotates once. Save its successor before any later network call.
++        # verified=0 forces a membership check even after a temporary user_info failure.
++        with self.db() as db:
++            db.execute("UPDATE session_renewals SET refresh_token=?, refresh_expires=?, access_expires=? WHERE sid=?",
++                       (new_refresh, now + refresh_seconds, now + access_seconds, key))
++            db.execute("UPDATE sessions SET token=?,verified=0 WHERE sid=?", (token, key))
++        return token
++
++    def member_session(self, key, subject=None, migrate=False):
+@@ -213,3 +329,9 @@
+-                row = db.execute("SELECT * FROM sessions WHERE sid=?", (digest(sid),)).fetchone()
+-            if not row or row["expires"] <= time.time():
+-                self.logout(sid)
++                row = db.execute(
++                    "SELECT s.*,b.persistent,b.paused,COALESCE(r.access_expires,b.access_expires,s.expires) AS access_expires,"
++                    "r.refresh_token,r.refresh_expires FROM sessions s LEFT JOIN session_renewals r ON r.sid=s.sid "
++                    "LEFT JOIN browser_sessions b ON b.sid=s.sid WHERE s.sid=?", (key,)).fetchone()
++            now = time.time()
++            if not row or row["expires"] <= now:
++                if row:
++                    with self.db() as db:
++                        db.execute("DELETE FROM sessions WHERE sid=?", (key,))
+@@ -217 +339,9 @@
+-            if time.time() - row["verified"] >= self.config.recheck_seconds:
++            subject_id = digest(row["open_id"])
++            if subject is not None and not hmac.compare_digest(subject_id, subject):
++                raise AuthError(401, "登录身份不匹配")
++            if row["paused"]:
++                raise Reverify()
++            refresh_due = row["refresh_token"] and row["access_expires"] <= now + 30
++            expired = row["access_expires"] <= now
++            name = row["name"]
++            if refresh_due or expired or now - row["verified"] >= self.config.recheck_seconds:
+@@ -219 +349,10 @@
+-                    user = self.valid_user(self.provider.user(row["token"]))
++                    if expired and not row["refresh_token"]:
++                        raise Reverify()
++                    token = self.renew(key, row) if refresh_due else row["token"]
++                    try:
++                        user_info = self.provider.user(token)
++                    except AuthError as e:
++                        if e.status != 401 or refresh_due or not row["refresh_token"]:
++                            raise
++                        user_info = self.provider.user(self.renew(key, row))
++                    user = self.valid_user(user_info)
+@@ -222,0 +362,4 @@
++                    if e.status == 401 and (row["persistent"] or row["refresh_token"]):
++                        with self.db() as db:
++                            db.execute("INSERT OR REPLACE INTO browser_sessions VALUES (?,?,1,1)", (key,row["access_expires"]))
++                        raise Reverify() from None
+@@ -224 +367,2 @@
+-                        self.logout(sid)
++                        with self.db() as db:
++                            db.execute("DELETE FROM sessions WHERE sid=?", (key,))
+@@ -225,0 +370 @@
++                name = user.get("name", name)
+@@ -228,2 +373,10 @@
+-                        time.time(), user.get("name", row["name"]), digest(sid)))
+-            return dict(row)
++                        time.time(), name, key))
++            member = {"name": name, "subject": subject_id, "session_ref": key}
++            if migrate and row["persistent"] is None and not row["refresh_token"]:
++                # First verified use of a legacy cookie. The fixed deadline is set once.
++                deadline = now + self.config.session_seconds
++                with self.db() as db:
++                    db.execute("INSERT INTO browser_sessions VALUES (?,?,1,0)", (key,row["access_expires"]))
++                    db.execute("UPDATE sessions SET expires=? WHERE sid=?", (deadline,key))
++                member["cookie_seconds"] = self.config.session_seconds
++            return member
+@@ -294,2 +447,4 @@
+-            if urlsplit(self.path).path == "/auth/check":
+-                self.send(e.status)
++            path = urlsplit(self.path).path
++            if path == "/auth/check" or path.startswith("/internal/mcp/"):
++                headers = (("X-RMP-Session-State","reverify"),) if isinstance(e,Reverify) else ()
++                self.send(401 if path.startswith("/internal/mcp/") and e.status == 403 else e.status, headers=headers)
+@@ -317,0 +473,21 @@
++        if path.startswith("/internal/mcp/"):
++            if self.client_address[0] != "127.0.0.1":
++                raise AuthError(403, "仅供本机授权服务使用")
++            if path == "/internal/mcp/member" and self.command == "GET":
++                member = self.engine.session(sid)
++                return self.send(204, headers=(("X-RMP-Subject", member["subject"]),
++                                               ("X-RMP-Session-Ref", member["session_ref"])))
++            if path == "/internal/mcp/session" and self.command == "POST":
++                size = self.headers.get("Content-Length", "")
++                if self.headers.get_content_type() != "application/json" or not re.fullmatch(r"[1-9][0-9]{0,2}", size):
++                    raise AuthError(400, "授权会话参数无效")
++                try:
++                    binding = json.loads(self.rfile.read(int(size)))
++                except (UnicodeError, ValueError):
++                    raise AuthError(400, "授权会话格式无效") from None
++                if (not isinstance(binding, dict) or set(binding) != {"subject", "session_ref"} or
++                    not all(isinstance(v, str) and re.fullmatch(r"[0-9a-f]{64}", v) for v in binding.values())):
++                    raise AuthError(400, "授权会话参数无效")
++                self.engine.member_session(binding["session_ref"], binding["subject"])
++                return self.send(204)
++            return self.send(404)
+@@ -319,2 +495,3 @@
+-            self.engine.session(sid)
+-            if self.headers.get("X-Original-Method", "GET") not in ("GET", "HEAD", "OPTIONS"):
++            read_only = self.headers.get("X-Original-Method", "GET") in ("GET", "HEAD", "OPTIONS")
++            member = self.engine.session(sid, migrate=read_only)
++            if not read_only:
+@@ -322 +499,2 @@
+-            return self.send(204)
++            headers = (self.set_cookie(SESSION_COOKIE,sid,member["cookie_seconds"]),) if "cookie_seconds" in member else ()
++            return self.send(204, headers=headers)
+@@ -325,0 +504 @@
++            held = self.engine.held(sid)
+@@ -327 +506,4 @@
+-                return self.send(401, json.dumps({"error": "feishu_login_required", "login_url": "/auth/login"}), kind="application/json")
++                return self.send(401, json.dumps({"error": "feishu_login_required",
++                    "session_state": "reverify" if held else "signed_out", "login_url": "/auth/login"}), kind="application/json")
++            if held:
++                return self.redirect(self.config.origin + "/auth/start?" + urlencode({"return_to": original}))
+@@ -329,0 +512,3 @@
++            if self.engine.held(sid):
++                return self.redirect(self.config.origin + "/auth/start?" + urlencode({"return_to": next_page}))
++            params = html.escape(urlencode({"return_to": next_page}), quote=True)
+@@ -331,2 +516,2 @@
+-                             f"<a href='/auth/start?{html.escape(urlencode({'return_to': next_page}), quote=True)}'>飞书登录</a>"
+-                             "<p class=muted>登录后可使用科研资源、进度、文献与数据管理。</p>")
++                             f"<a href='/auth/start?{params}'>飞书登录</a>"
++                             f"<p class=muted>共用设备可选 <a href='/auth/start?mode=once&amp;{params}'>仅本次登录</a>。</p>")
+@@ -334 +519 @@
+-            url, browser = self.engine.begin(next_page)
++            url, browser = self.engine.begin(next_page, persistent=query.get("mode") != ["once"], prior_sid=sid)
+@@ -338 +523 @@
+-                query.get("state", [""])[0], self.cookie(STATE_COOKIE), query.get("code", [""])[0])
++                query.get("state", [""])[0], self.cookie(STATE_COOKIE), query.get("code", [""])[0], prior_sid=sid)
+@@ -342 +527,4 @@
+-            member = self.engine.session(sid)
++            try:
++                member = self.engine.session(sid)
++            except Reverify:
++                return self.redirect(self.config.origin + "/auth/start?" + urlencode({"return_to": "/auth/account"}))

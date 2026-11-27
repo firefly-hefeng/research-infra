@@ -1,0 +1,1479 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-11-13",
+  "timezone": "Asia/Shanghai",
+  "server_observed_at": "2026-11-13T13:01:18.110051+00:00",
+  "detail_observed_at": "2026-11-13T13:04:43.172202+00:00",
+  "feishu_observed_at": "2026-11-13T13:02:44.745Z",
+  "methods": [
+    "SSH bounded read-only metadata as rmp on server-101 and server-47",
+    "Feishu existing authenticated page loaded table model 69/69 records",
+    "loopback GET existing API and read-only SQLite aggregate queries"
+  ],
+  "limits": [
+    "No participant files model weights or private logs read",
+    "No verification of school Mingfan or historical server-139",
+    "No recursive full-server scan or new checksums of all datasets",
+    "PermissionError boundaries preserved",
+    "No production mutations or training actions"
+  ],
+  "managed_servers": [
+    "server-47",
+    "server-101"
+  ],
+  "portal_registration_count": 229,
+  "portal_identity_state": {
+    "unconfirmed": 229
+  },
+  "portal_version_state": {
+    "unconfirmed": 229
+  },
+  "portal_metadata_maintainer_state": {
+    "unknown": 229
+  },
+  "portal_metadata_license_state": {
+    "unknown": 229
+  },
+  "feishu_records": 69,
+  "feishu_followup_field_empty": 68,
+  "feishu_status_counts": {
+    "已取得并验收": 1,
+    "已验收": 25,
+    "群附件已确认": 1,
+    "文件已核实": 11,
+    "暂停不用": 1,
+    "原始文件已清点": 4,
+    "目录无读取权限": 1,
+    "发现空文件": 1,
+    "未定位服务器文件": 1,
+    "待申请": 1,
+    "部分已验收": 3,
+    "暂缓申请": 3,
+    "已申请待回复": 6,
+    "已获领取口令": 1,
+    "待补材料": 6,
+    "访问受限": 3
+  },
+  "papers": {
+    "total": 336,
+    "bibliography": 336,
+    "curation_jobs": 0
+  },
+  "formal_report_files_in_current_members_root": {
+    "weekly": 2,
+    "daily": 0
+  },
+  "ingestion_jobs": {
+    "failed": 1,
+    "published": 0
+  },
+  "live_health": {
+    "status": "ok",
+    "catalog": "ready",
+    "read_only": true,
+    "authentication_required": false
+  },
+  "storage_bytes": {
+    "101_data_total": 10735279144960,
+    "101_data_available": 46367342592,
+    "47_data_total": 10735279144960,
+    "47_data_available": 3989509234688,
+    "shared_total_once": 11701621620736,
+    "shared_available_once": 2963191889920,
+    "oss_capacity": null
+  },
+  "member_root_observation": {
+    "101.132.97.146": {
+      "observed_at": "2026-11-13T13:37:46.004295+00:00",
+      "roots": {
+        "/data": [
+          {
+            "name": ".rdc-rollback-20261027",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o700"
+          },
+          {
+            "name": "datasets",
+            "type": "link",
+            "uid": 0,
+            "mode": "0o777"
+          },
+          {
+            "name": "fmn",
+            "type": "link",
+            "uid": 0,
+            "mode": "0o777"
+          },
+          {
+            "name": "models",
+            "type": "link",
+            "uid": 0,
+            "mode": "0o777"
+          },
+          {
+            "name": "rmp",
+            "type": "dir",
+            "uid": 1011,
+            "mode": "0o700"
+          },
+          {
+            "name": "services",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "share",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o2755"
+          },
+          {
+            "name": "share_cold",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "shared",
+            "type": "dir",
+            "uid": 1003,
+            "mode": "0o2770"
+          },
+          {
+            "name": "users",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          }
+        ],
+        "/data/users": [
+          {
+            "name": "bailu",
+            "type": "dir",
+            "uid": 1015,
+            "mode": "0o755"
+          },
+          {
+            "name": "dengjixuan",
+            "type": "dir",
+            "uid": 1005,
+            "mode": "0o755"
+          },
+          {
+            "name": "guorui",
+            "type": "dir",
+            "uid": 1013,
+            "mode": "0o755"
+          },
+          {
+            "name": "hefeng",
+            "type": "dir",
+            "uid": 1008,
+            "mode": "0o755"
+          },
+          {
+            "name": "hejingheng",
+            "type": "dir",
+            "uid": 1014,
+            "mode": "0o755"
+          },
+          {
+            "name": "jinchicheng",
+            "type": "dir",
+            "uid": 1002,
+            "mode": "0o755"
+          },
+          {
+            "name": "lijiale",
+            "type": "dir",
+            "uid": 1009,
+            "mode": "0o755"
+          },
+          {
+            "name": "liusizhe",
+            "type": "dir",
+            "uid": 1001,
+            "mode": "0o755"
+          },
+          {
+            "name": "liyuanchao",
+            "type": "dir",
+            "uid": 1004,
+            "mode": "0o755"
+          },
+          {
+            "name": "luyonghua",
+            "type": "dir",
+            "uid": 1010,
+            "mode": "0o755"
+          },
+          {
+            "name": "luzijian",
+            "type": "dir",
+            "uid": 1006,
+            "mode": "0o755"
+          },
+          {
+            "name": "rmp",
+            "type": "dir",
+            "uid": 1011,
+            "mode": "0o755"
+          },
+          {
+            "name": "rongxiaobin",
+            "type": "dir",
+            "uid": 1016,
+            "mode": "0o755"
+          },
+          {
+            "name": "root",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "wanhongbo",
+            "type": "dir",
+            "uid": 1003,
+            "mode": "0o755"
+          },
+          {
+            "name": "yanzicheng",
+            "type": "dir",
+            "uid": 1000,
+            "mode": "0o755"
+          },
+          {
+            "name": "yuanxinchen",
+            "type": "dir",
+            "uid": 1012,
+            "mode": "0o755"
+          },
+          {
+            "name": "zhangyin",
+            "type": "dir",
+            "uid": 1007,
+            "mode": "0o755"
+          }
+        ]
+      }
+    },
+    "47.117.138.84": {
+      "observed_at": "2026-11-13T13:37:48.615818+00:00",
+      "roots": {
+        "/data": [
+          {
+            "name": "datasets",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "fmn",
+            "type": "link",
+            "uid": 0,
+            "mode": "0o777"
+          },
+          {
+            "name": "models",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "rmp",
+            "type": "dir",
+            "uid": 1011,
+            "mode": "0o700"
+          },
+          {
+            "name": "services",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "share",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o2755"
+          },
+          {
+            "name": "share_cold",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "shared",
+            "type": "dir",
+            "uid": 1003,
+            "mode": "0o2770"
+          },
+          {
+            "name": "users",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          }
+        ],
+        "/data/users": [
+          {
+            "name": "bailu",
+            "type": "dir",
+            "uid": 1015,
+            "mode": "0o775"
+          },
+          {
+            "name": "dengjixuan",
+            "type": "dir",
+            "uid": 1005,
+            "mode": "0o775"
+          },
+          {
+            "name": "guorui",
+            "type": "dir",
+            "uid": 1013,
+            "mode": "0o775"
+          },
+          {
+            "name": "hefeng",
+            "type": "dir",
+            "uid": 1008,
+            "mode": "0o775"
+          },
+          {
+            "name": "hejingheng",
+            "type": "dir",
+            "uid": 1014,
+            "mode": "0o775"
+          },
+          {
+            "name": "jinchicheng",
+            "type": "dir",
+            "uid": 1002,
+            "mode": "0o775"
+          },
+          {
+            "name": "lijiale",
+            "type": "dir",
+            "uid": 1009,
+            "mode": "0o775"
+          },
+          {
+            "name": "liusizhe",
+            "type": "dir",
+            "uid": 1001,
+            "mode": "0o775"
+          },
+          {
+            "name": "liyuanchao",
+            "type": "dir",
+            "uid": 1004,
+            "mode": "0o775"
+          },
+          {
+            "name": "luyonghua",
+            "type": "dir",
+            "uid": 1010,
+            "mode": "0o775"
+          },
+          {
+            "name": "luzijian",
+            "type": "dir",
+            "uid": 1006,
+            "mode": "0o775"
+          },
+          {
+            "name": "rmp",
+            "type": "dir",
+            "uid": 1011,
+            "mode": "0o775"
+          },
+          {
+            "name": "rongxiaobin",
+            "type": "dir",
+            "uid": 1016,
+            "mode": "0o775"
+          },
+          {
+            "name": "root",
+            "type": "dir",
+            "uid": 0,
+            "mode": "0o755"
+          },
+          {
+            "name": "wanhongbo",
+            "type": "dir",
+            "uid": 1003,
+            "mode": "0o775"
+          },
+          {
+            "name": "yanzicheng",
+            "type": "dir",
+            "uid": 1000,
+            "mode": "0o775"
+          },
+          {
+            "name": "yuanxinchen",
+            "type": "dir",
+            "uid": 1012,
+            "mode": "0o775"
+          },
+          {
+            "name": "zhangyin",
+            "type": "dir",
+            "uid": 1007,
+            "mode": "0o775"
+          }
+        ]
+      }
+    }
+  },
+  "source_hashes": {
+    "/var/lib/research-data-center/workspace/server.py": "745b9fd45bd830a4623f427adea60e4463f9ff3e3f952fedf91af22b82f955c9",
+    "/var/lib/research-data-center/workspace/platform_data.py": "06a2561b77dd9266017a96d4a7e840ca40cb2e21a7b1fc6d9488b0089d9d0376",
+    "/data/rmp/research-progress/research_weekly/app.py": "6bf57c06fb87637325c695a9b6b7fab7432317ef98f4a86ae74cb3b749ec5943",
+    "/data/rmp/paper-library/paperlib/server.py": "dedef62bbb43c0eb26381e1907d90a1284df1312dbdaa7b2d115bc49b5b1392c"
+  },
+  "latest_observed_backup": {
+    "schema_version": "1.0",
+    "created_at": "2026-11-12T19:42:57.097897+00:00",
+    "storage": {
+      "local": {
+        "target": "/var/lib/research-data-center/state",
+        "source": "/dev/nvme0n1p3[/var/lib/research-data-center/state]",
+        "fstype": "ext4",
+        "fsroot": "/var/lib/research-data-center/state"
+      },
+      "cold": {
+        "target": "/data/share_cold/research-data-center",
+        "source": "ossfs[/research-data-center]",
+        "fstype": "fuse.ossfs",
+        "fsroot": "/research-data-center"
+      }
+    },
+    "snapshot_id": "20261112T194256Z-b5aa99367ee243d3a924be385136a4a4",
+    "objects": [
+      {
+        "name": "release.tar.gz",
+        "sha256": "5ddee53148988a613074c6c3adf2a0a718261e5043c81512f2857bd698749b43",
+        "bytes": 2689909
+      },
+      {
+        "name": "catalog.sqlite3",
+        "sha256": "8fa520dd693b7c684fffb789a1126dc71f0b31d4d1613e41a511982a98864627",
+        "bytes": 2936832
+      },
+      {
+        "name": "ingestion.sqlite3",
+        "sha256": "f0d85f231410573597a0d33c54ba312c08e693bfc40ee06d7ae49ae7994fe637",
+        "bytes": 28672
+      }
+    ],
+    "live_state_on_oss": false,
+    "receipt_sha256": "750b7594d6ce0459b0892ecb60ce229c06784e03ec4002a48b6536c32b7230f2",
+    "cold_path": "/data/share_cold/research-data-center/snapshots/20261112T194256Z-b5aa99367ee243d3a924be385136a4a4"
+  },
+  "supplementary_records": [
+    {
+      "source_record_id": "reczz28S4ElbQPb1",
+      "title": "MDVR-KCL",
+      "status": "已取得并验收",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/data/users/dengjixuan/projects/speechdx_public_mdvr_20261026_v1"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "73条录音（不是人数）。压缩包606144431字节。展开1365139343字节。尚未建立正式训练、开发和测试划分。",
+      "pending_notes": "正式录音说明表、任务字段与人员隔离后的训练/开发/测试划分。实际跟进人待选择。",
+      "next_action_notes": "准备正式录音说明表、训练/开发/测试划分并核任务字段。取得文件不等于训练或榜单成绩。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQPly",
+      "title": "E-DAIC",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/E-DAIC"
+      ],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "官方清单278/278个文件，共113,482,893,083字节，其中276个gzip/TAR归档。源站字节数、gzip CRC/TAR遍历、全部文件独立SHA256及最终尺寸/0600权限复核通过；目录0700。278是文件数，不是参与者人数。当前验收未取得官方逐文件MD5/SHA清单，不能声称官方摘要比对通过。",
+      "pending_notes": "下载及归档完整性已验收；尚未逐音频解码。后续研究核参与者划分、标签和原始授权范围。",
+      "next_action_notes": "保留官方文件和逐文件验收收据，按原获批用途使用；继续其他获授权数据的云端下载。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQPpS",
+      "title": "IEMOCAP整理包",
+      "status": "群附件已确认",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "真实飞书窗口确认群附件名IEMOCAP.zip，显示573.7MB；显示大小不等于精确字节。远超说明TXT是他整理的标签/文本；完整5组双人录音、10演员覆盖仍没有验包证据。",
+      "pending_notes": "官方许可/具名成员范围及原申请日期；附件完整性、5组录音与原官方评审内容的对应、受控落盘入口。",
+      "next_action_notes": "通过可用的正常飞书附件下载完成验包；不重复提交已有申请，也不把显示附件当已验收语料。 2026-10-27补充：刘思哲已另获官方完整包下载凭据，云端任务见独立“IEMOCAP官方发布包”行；取得后核对整理TXT与官方标注。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQBZ",
+      "title": "DementiaBank既有抓取 / ADReSS-M版本核对",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/ad-labeled-dataset/raw/dementiabank_media",
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/collection_20260910_v1_2_iflytek/manifests/all_recordings.server_only.jsonl",
+        "/mnt/hd/data_liusizhe/hc_risk_two_track_20261017_v1/speechdx_official_input_20261030_v23/ADReSS-M.zip"
+      ],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "铭凡可读媒体库6906个非空媒体已清点并检查短文件头；含不同子库、格式及版本，不能当人数。旧多语benchmark目录本轮实盘只有小文件/索引，没有音频。学校3个既定ADReSS-M候选根未定位到正式完整包；所需英语训练237、希腊示例8、测试46条录音尚未验收到，不能用ADReSSo替代。\n\n【2026-10-30更新此前尚未验收到的状态】本次已取得并核验WAV整理包：291条WAV＝英语训练237条（健康115、AD122）＋希腊语开发8条（健康4、AD4）＋希腊语测试46条。ZIP 551,286,707字节、解压764,147,190字节；包内无CSV、README及MMSE标签。配套T7官方测试CSV已另在学校取得并46ID全匹配。它是WAV整理版，尚未证明与官方MP3文件字节同版；不与旧DementiaBank/Pitt等库存相加。",
+      "pending_notes": "原批准的账号、具名成员和项目/子库范围凭证；ADReSS-M真实授权原包的受控入口及版本。申请/获批/取得日期没有凭证，不补。\n\n【2026-10-30更新】本次WAV整理包的取得、校验与学校入口已落实，不再按未找到本包处理。仍需归档原批准账号、具名成员及项目/用途凭证；保留与原MP3版本未建立字节等同的说明。如开展T8认知量表预测，另需MMSE标签。申请日期与获批日期无凭证，继续不填。",
+      "next_action_notes": "核原批准材料和ADReSS-M真实发布包；测试标签继续封存，不因寻找文件而读测试标签或启动训练。\n\n【2026-10-30更新】使用已核验的WAV整理版及配套T7测试CSV推进所述AD评测范围，版本差异如实记录；原申请/获批材料继续归档，T8所需MMSE另补。后续测试答案的使用以对应实验记录为准，不把文件到位自动当成会员、机构许可或生产授权。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQH2",
+      "title": "Cambridge COVID-19 Sounds",
+      "status": "暂停不用",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "未取得。若不用该库。SpeechDx的T19–T23共5任务不记已覆盖。",
+      "pending_notes": "是否确定不做原榜5任务。或另列替代研究。不需要为本次暂停填造申请日期。",
+      "next_action_notes": "不重复同一申请。如用其他数据。另记任务与分母。不冒充原T19–T23结果。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQLY",
+      "title": "WLS",
+      "status": "原始文件已清点",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/WLS",
+        "/projects/ad-labeled-dataset/raw/dementiabank_media"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "标准化清单记载1368条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库WLS部分有1368个非空媒体，短文件头标记均通过。原始媒体与标准化WAV不作两批人数或相加。",
+      "pending_notes": "由目录管理人恢复对/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/WLS的正常读取，或提供已授权的受控入口；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "取得整理目录的正常读取权限后，只补本次未能检查的清单对应文件；已完成的原始库盘点不重复。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQQY",
+      "title": "Pitt",
+      "status": "原始文件已清点",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Pitt",
+        "/projects/ad-labeled-dataset/raw/dementiabank_media"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "标准化清单记载553条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库Pitt部分2381个媒体，另Pitt-orig部分1289个，均非空，包含不同格式或版本；不相加成独立人员。Pitt部分2个、Pitt-orig部分2个文件短头未确认，未据此判损坏。本机另有8份转写文件，不替代原音验收。",
+      "pending_notes": "由目录管理人恢复对/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Pitt的正常读取，或提供已授权的受控入口；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "取得整理目录的正常读取权限后，只补本次未能检查的清单对应文件；已完成的原始库盘点不重复。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQV8",
+      "title": "讯飞",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/iflytek_AD"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对514条录音：全部文件存在、非空，每条音频文件头均可解析。录音数不是人数。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQZD",
+      "title": "AD Beijing",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/school_beijing_raw"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对482条录音：全部文件存在、非空，每条音频文件头均可解析。旧表468人本次未重新按人核对；与北京原始/校正目录不能相加。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQc2",
+      "title": "燕达",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/school_yanda_raw"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对65条录音：全部文件存在、非空，每条音频文件头均可解析。人数本次未另核；原目录含派生切段，不能拿大目录WAV总数代替这65条。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQg0",
+      "title": "Dem@Care pilot",
+      "status": "目录无读取权限",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Dem_Care",
+        "/projects/ad-labeled-dataset/raw/dementiabank_media"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "标准化清单记载62条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。本轮没有验收到这62条标准化录音。另在可读原始媒体根的有限库名查找未定位Dem@Care，不能推断服务器没有。",
+      "pending_notes": "由目录管理人恢复对/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Dem_Care的正常读取，或提供已授权的受控入口；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "取得整理目录的正常读取权限后，只补本次未能检查的清单对应文件；已完成的原始库盘点不重复。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQjo",
+      "title": "江苏省机关医院：33条标准化录音/索引",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/school_nanjing_raw"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对33条录音：全部文件存在、非空，每条音频文件头均可解析。这是33条标准化录音；本机2116条原始录音另列，尚未核齐两者的对应，不能相加。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。 另缺原始包与33条整理录音的对应说明。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQq1",
+      "title": "USTC 学生",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/school_ustc_students_raw"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对19条录音：全部文件存在、非空，每条音频文件头均可解析。标准化副本19条齐全；较早原路径有18条可访问引用，不据此删掉第19条。学生录音不等同老年对照。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQtF",
+      "title": "南京卫生中心",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/data_liusizhe/cookie_theft_corpus/v1_2_20260910_iflytek/audio/school_nanjinghealthcenter_raw"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮按标准化总清单逐条核对5条录音：全部文件存在、非空，每条音频文件头均可解析。这是9月旧整理子集，不等同后续南京43人固定评估；原大目录含派生文件。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补齐来源许可与首次交付凭证；本轮文件检查已经完成，不重复旧实验。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQwH",
+      "title": "Kempler",
+      "status": "原始文件已清点",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Kempler",
+        "/projects/ad-labeled-dataset/raw/dementiabank_media"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "标准化清单记载2条录音；其精确整理目录当前账号无读取权限，因此未作逐条验收。铭凡可读原始媒体库Kempler部分21个非空媒体，短头检查通过；21个不同格式/版本文件不等于本条2条标准化子集或2个人。",
+      "pending_notes": "由目录管理人恢复对/projects/ad-labeled-dataset/experiments/cookie-theft-corpus-20260910-v1/release_v1_1/audio/Kempler的正常读取，或提供已授权的受控入口；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "取得整理目录的正常读取权限后，只补本次未能检查的清单对应文件；已完成的原始库盘点不重复。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQQz2",
+      "title": "袁老师方向：北京人工校正目录",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/AD_Beijing1/AD_corrected/AD校对完"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮完整盘点2897条WAV、2897份TSV校正表；全部WAV非空，零字节录音0。抽查256条非空WAV的文件头均可解析；未全量解码，也未检查校正表内容。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。 另需北京各整理版本的对应说明。",
+      "next_action_notes": "补正式交付与使用许可、版本对应说明；保留已盘点原件。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQR3L",
+      "title": "袁老师方向：北京原始目录",
+      "status": "发现空文件",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/mnt/hd/AD_BEIJING/ad_data-43847a"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本轮完整盘点24485个WAV、532个JSON；24380个WAV非空、105个WAV为零字节。抽查256个非空WAV的文件头全部可解析；未全量解码。旧24023个WAV、522个JSON仅作历史快照。",
+      "pending_notes": "105个空WAV的原始交付情况；与旧24023/522快照的增量对应；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "先在原位对照旧交付清单查105个空文件是否有完整原件；不删文件、不重做旧训练。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQR8M",
+      "title": "Novoic Storyteller处理特征表",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "13719433字节无扩展名ZIP，2个成员全部完整性检查通过。全表15878行、72列，8798个参与者编号；539是门诊子集，对应1672行；4640个编号有复测。全行、同人同时间点、同人同日期重复均0。无原音、独立诊断、MMSE或MoCA列。",
+      "pending_notes": "原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "补数据提供方的真实使用协议与交付凭证；不重复已完成的原包完整性和全表统计检查。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRCw",
+      "title": "江苏省机关医院：原始ZIP",
+      "status": "文件已核实",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "46个真实ZIP，2354个成员全部完整性检查通过。真实PCM WAV录音2116条，均为16kHz、单声道、16bit文件头；46份非附带信息的.json后缀文件（未解析内容）。2300个.wav后缀中184个实际是macOS附带信息文件，包内此类信息文件合计192个；上层另43个.zip后缀也是此类信息文件，不是真压缩包。未全量解码。",
+      "pending_notes": "旧47ZIP/2346WAV记录与当前原件差异；2116条原始录音与学校33条整理录音的对应；原提供人、正式许可及允许用途、具名使用成员；申请、获批和首次取得日期暂无凭证，留空。",
+      "next_action_notes": "原位对照旧交付清单，补版本对应与许可凭证；不删除macOS附带文件，不将其计入音频。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRIY",
+      "title": "自采老人语音 / 铭凡入口",
+      "status": "未定位服务器文件",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/projects/forget-me-not-ad-screening/data/storage",
+        "/projects/forget-me-not-ad-screening-dev/data/storage"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "上述两个通用存储目录分别11个、7个文件，识别音频0；不能因此推断整个服务器没有自采语料，也不能把其他中文样本自动认成自采老人数据。",
+      "pending_notes": "实际语料受控根、原始交付清单、采集负责人与同意/使用范围凭证；未知日期留空。",
+      "next_action_notes": "按采集或交付负责人的真实目录与清单核实，避免继续靠通用storage目录猜语料。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRLU",
+      "title": "TalkBank全库整理范围与其他索引",
+      "status": "原始文件已清点",
+      "followup_explicit": false,
+      "location_scope": "校内或铭凡线索",
+      "path_hints": [
+        "/data/datasets/talkbank/audio",
+        "/projects/ad-labeled-dataset/experiments/dementiabank-generalization-v1/outputs/manifest_v1/recording_manifest.jsonl"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "公司原始根60784个非空音频文件：33260 WAV、27220 MP3、304 AIF。逐文件短头检查中4个WAV类型未确认、121个MP3短头未确认，未直接判损坏；304个AIF仅确认非空短头。两层重叠根不重复相加。铭凡旧录音索引6941行、扩展索引2284行，不等于新增文件或人数；另一个人员整理索引当前账号无读取权限。",
+      "pending_notes": "4个WAV及121个MP3的格式/可解码确认；各子库的来源、版本对应和正式使用凭证；受限整理索引的正常读取入口。",
+      "next_action_notes": "只补格式未确认项与子库对应，不重复已完成的全根文件计数；不把代码或索引误当真实语料。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQROC",
+      "title": "RAVDESS Speech",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/RAVDESS-Speech"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Speech包208,468,073字节；官方MD5 bc696df654c87fed845eb13823edef8a、ZIP CRC（1464个成员含目录）及独立SHA256全部通过；最终尺寸与0600权限复核通过。健康演员情绪语音，用作情绪对照，不属于疾病病例录音。",
+      "pending_notes": "尚未逐音频解码；研究使用按官方CC BY-NC-SA4.0许可和24位演员划分。",
+      "next_action_notes": "保留官方Speech原包与验收收据；分析时按演员隔离并核许可。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRQt",
+      "title": "Coswara",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Coswara/releases"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "固定官方commit 4942c97e31de7180a93d17f2e7530a9c543cfd50。153个原始分片（不是153个完整归档）合12,981,984,019字节，已拼接为43个日期归档；另4个元数据/说明文件。157个Git对象校验、43包gzip CRC/TAR遍历及独立SHA-256全部通过，最终文件尺寸与0600权限复核通过。尚未音频解码。本榜后续仅使用两路counting及对应表。",
+      "pending_notes": "后续使用时核两路counting清单、参与者隔离与研究伦理；下载及归档完整性已验收。",
+      "next_action_notes": "按研究方案建立两路counting清单；保留官方原始文件与逐包收据，个人数据不公开再分发。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRTx",
+      "title": "AphasiaBank",
+      "status": "待申请",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本榜T9。精确子库、录音和预制说明表范围待核。",
+      "pending_notes": "实际申请/提供人、跟进人、真实申请及获批日期、取得日期、授权范围和验收记录。尚无实际提交回执。",
+      "next_action_notes": "先核TalkBank临床会员及真实负责人的申请路径。注册不是授权。公司路径需书面确认。T9预制录音说明表来源待核。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRWo",
+      "title": "UASpeech",
+      "status": "部分已验收",
+      "followup_explicit": false,
+      "location_scope": "101明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261016/datasets/UA-Speech-20261020"
+      ],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "官方8包中2包完成：original_C 2,135,146,808字节；normalized_C 3,391,287,853字节。两包gzip CRC/TAR遍历及本地/远端独立SHA-256一致，已清理对应Mac完整副本；尚未音频解码。其余6包未验收。",
+      "pending_notes": "Google官方只读OAuth尚未返回token；第一台数据盘低于100GiB余量，后续使用第二台。",
+      "next_action_notes": "用户完成官方Google只读OAuth后，在可用阿里云私有盘继续剩余6包；不重下已验收2包。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRZX",
+      "title": "KSoF完整版",
+      "status": "暂缓申请",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "口吃5597段完整版；已取官方EULA，正式长期任职人员签字待落实。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。\n历史团队记录：本榜T17–T18。需5597段完整版。不用4601段挑战子集替代。包字节未知。",
+      "pending_notes": "提供方10月27日明确为机构许可，要求正式长期任职人员签署EULA，再通过Zenodo申请。",
+      "next_action_notes": "用户日后统一交导师处理；当前不回复、不提交、不催签。提供方说明采用常规课题组访问控制，伦理按本地要求执行。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRd4",
+      "title": "AVFAD",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "葡萄牙语病理嗓音。提供方2026-10-28 19:27北京时间回信称已共享5个OneDrive目录，含数据库数据及分析脚本；具体目录清单、文件数与字节待邀请访问核验，尚未下载或验收。",
+      "pending_notes": "提供方已确认共享；当前连接的Gmail账号与用户指定的接收邮箱不一致，待用户转发OneDrive邀请至原USTC申请邮箱或提供共享入口。使用许可及境内私有云存储条件仍待核验。",
+      "next_action_notes": "取得共享入口后核对5目录的实际访问、完整清单和使用/私有云存储条件；条件齐备后从提供方直达第二台阿里云私有目录，按清单逐文件验收。导师/机构签署事项继续暂缓。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRfm",
+      "title": "TORGO",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/TORGO"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本次计划的官方F/FC/M/MC四包全部4/4验收，共9,577,194,346字节、83,055归档成员；源站HEAD精确尺寸、独立SHA256（Python与sha256sum一致）、bzip2 CRC/TAR完整遍历及安全路径、最终0700/0600通过。最终文件重新哈希与下载阶段完整归档校验收据一致；无官方MD5/SHA清单，不声称供方摘要比对。",
+      "pending_notes": "四计划数据包已验收，未逐语音解码或复核临床标签。包含构音障碍患者及匹配对照、双麦克风语音和部分EMA发音运动数据；成员数含非音频和目录，不能当作语音样本数。官方公开版不含视频，另链工具/辅助文件不纳入本次四包范围。",
+      "next_action_notes": "按官网学术非营利用途和强制论文引用条件使用；研究前核对患者/对照与受试者隔离，将双麦克风、不同session及发音运动数据按同一受试者关联，避免重复计样本或跨集合泄漏。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28S4ElbQRiQ",
+      "title": "DAIC-WOZ（普通版）",
+      "status": "部分已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/DAIC-WOZ"
+      ],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "DAIC-WOZ已验收195/196文件、91,327,761,652字节；唯一440_P.zip保留619,905,024字节part，尚未整库完成。",
+      "pending_notes": "2026-11-02重新验收：440_P.zip仍缺ZIP末尾目录；SHA256与旧坏包一致，官方尾部精确206响应与本地一致。源站坏包尚未修复。",
+      "next_action_notes": "保留已验收195项及坏源part；等待提供方修复证据，不重复下载未变坏包，不减少196项预期。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaDTifSt",
+      "title": "IEMOCAP官方发布包",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/IEMOCAP-official",
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/IEMOCAP-withoutVideos"
+      ],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "两个官方版本均已整包验收：含视频完整包17,695,884,032字节、168,188归档成员，MD5 521be1e5eec425ae21fdc27c763ca813；无视频包12,323,710,434字节、84,007归档成员，MD5 6f2e6ecb72dd45a9af6b801ee999cb5a。两包均通过官方MD5、gzip CRC/TAR完整遍历、安全路径、独立SHA256及精确尺寸/目录0700文件0600。两个版本存在重叠，不累计为独立参与者或独立语音样本。",
+      "pending_notes": "两个官方包下载及归档完整性验收完成，尚未逐音频/视频解码。其他团队成员许可与官方标注对应仍待核。",
+      "next_action_notes": "保留两个官方原始包和逐文件验收收据，按原批准研究范围使用；研究前核标签、参与者划分及音视频解码。下载已完成，无需续传或因领取凭据到期重复请求。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaFX4Ccd",
+      "title": "CMDC",
+      "status": "已获领取口令",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "官方页面列出part1.zip–part8.zip共8包；当前尚未云端下载。页面显示大小未作为精确字节或完成量。",
+      "pending_notes": "IEEE账号登录/下载权限；原EULA留档和私有云存储条件。口令仅私密处理。",
+      "next_action_notes": "登录已有IEEE账号取得正常下载入口；核对原EULA及私有云范围后直接下载到第二台。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaHHOi7A",
+      "title": "PROCESS",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "本申请尚未获得下载批准和已验收文件。",
+      "pending_notes": "正式数据共享协议、所需签署人/资格材料及账号门禁；本轮回复不是批准。",
+      "next_action_notes": "按提供方指定arXiv:2605.14888的数据共享协议核齐材料并走正式门禁。PROCESS原版需另核适用流程。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaIxJf9k",
+      "title": "PROCESS-2",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "本申请尚未获得下载批准和已验收文件。",
+      "pending_notes": "正式数据共享协议、所需签署人/资格材料及账号门禁；本轮回复不是批准。",
+      "next_action_notes": "按提供方指定arXiv:2605.14888的数据共享协议核齐材料并走正式门禁。PROCESS原版需另核适用流程。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaKWyC22",
+      "title": "MSP-Podcast",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "pending_notes": "正式协议、签署主体及许可范围；未代签。",
+      "next_action_notes": "使用作者提供的对应官方表格，由实际有权签署者完成协议后提交。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaMFrq5d",
+      "title": "MSP-Conversation",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "pending_notes": "正式协议、签署主体及许可范围；未代签。",
+      "next_action_notes": "使用作者提供的对应官方表格，由实际有权签署者完成协议后提交。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaNrO036",
+      "title": "MSP-IMPROV",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "本账号未取得官方下载批准；不把流程回复计为获批。",
+      "pending_notes": "正式协议、签署主体及许可范围；未代签。",
+      "next_action_notes": "使用作者提供的对应官方表格，由实际有权签署者完成协议后提交。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaQC1Ugo",
+      "title": "Bridge2AI-Voice Adult Cohort Audio（Synapse）",
+      "status": "访问受限",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "最新：此次科大申请因机构所在地被提供方明确拒绝；未获批、未取得受控音频。\n历史记录：成人受控原始录音，地区资格待官方确认；直连GEO_RESTRICTION仍有效。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。\n历史团队记录：已确认项目名称与ID；未取得音频清单、批准或文件。",
+      "pending_notes": "2026-10-29 21:48:58北京时间，提供方明确科大位于中国，此次申请不具DAC受理资格；后发拒绝回复覆盖21:43:59的通用申请流程说明。此次申请已停止，无需继续补签。原4份PDF、PI/ISO/伦理缺项和历史邮件保留。",
+      "next_action_notes": "尊重提供方明确拒绝，停止此次成人/儿童申请及后续联系，不重复追问所在地资格、不催签署或材料、不绕地区限制。衍生特征也未获此次邮件授权，不据此领取。现有个人身份和机构归属不变；无新的用户操作事项。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SKaRprUX9",
+      "title": "BIIC-NNIME",
+      "status": "待补材料",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "台账注明个人或机构具名范围 待逐人核对",
+      "quantity_notes": "已有PI待签材料；未获批准或取得数据。",
+      "pending_notes": "真实PI签名；不得代签。",
+      "next_action_notes": "由实际PI审阅并签署已备EULA；按官方渠道提交。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNTyddu5s",
+      "title": "APSAA",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/APSAA"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Zenodo14096541 v2.0全部1/1 ZIP、3,927,427,834字节验收；官方MD5、独立SHA256、全部290成员CRC/安全路径及最终0700/0600和精确尺寸通过。实存32 WAV、257 CSV、1 TXT；供方说明为32位受试者整夜音频与同步多导生理信号/人工事件标注。",
+      "pending_notes": "归档完整性已验收，未逐音频解码或复核临床标签。Zenodo元数据标CC BY4.0，但正文另限学术非商业用途、未经明确书面同意禁止向第三方再分发；按正文限制保留私有科研下载，不推定商业或团队再分发授权。",
+      "next_action_notes": "遵守供方学术非商业用途、署名及禁止未经书面同意再分发条款；研究前核对事件标签、同步关系和受试者隔离，区分音频与多导生理信号。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU0UmqJv",
+      "title": "COUGHVID",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/COUGHVID"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Zenodo4048312 v1.0完整ZIP 1/1包、951,442,487字节已验收；官方MD5 5c30a8b00c8bb7783a2c15a48cb8ea9e、独立SHA256、ZIP CRC/安全路径及最终0700/0600和精确尺寸通过。实存40,145成员：20,072段音频（19,213 WEBM、859 OGG）、20,072 JSON及1 CSV；数量为文件数，不等于独立参与者数。",
+      "pending_notes": "完整归档已验收；尚未逐音频解码或复核诊断标签。源为众包咳嗽及元数据，官方仅部分录音有专家标注，不将全部众包状态视为临床确诊；研究前核对参与者、来源与标签边界。",
+      "next_action_notes": "保留CC BY 4.0许可、v1.0原始ZIP及收据，按要求署名引用；后续研究按WEBM/OGG真实模态解码，区分众包状态与专家标注并核对参与者隔离。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU24HgGr",
+      "title": "Children-Heart-Sound",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Children-Heart-Sound"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "云端整库1/1个官方文件验收完成，共24,913,934字节，62个归档成员；62个成员官方SHA256、ZIP CRC及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。62个成员中60个WAV，另2个说明/元数据文件。",
+      "pending_notes": "归档完整性已验收；尚未逐音频解码，参与者划分和研究使用另核。",
+      "next_action_notes": "保留官方文件和逐文件验收凭证；使用时核标签、患者划分与音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU3oTVRG",
+      "title": "CirCor-DigiScope",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/CirCor-DigiScope"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方PhysioNet v1.0.3公开训练集ZIP 1/1文件、471,283,852字节已验收；10,435个归档成员，10,434个文件官方SHA256、固定官方清单与包内清单一致性、独立整包SHA256、ZIP CRC和安全路径通过，最终目录0700/文件0600及精确尺寸通过。实存3,163 WAV心音录音、对应HEA和分段TSV各3,163个，942名受试者说明文件及元数据相互对应。",
+      "pending_notes": "官方公开训练集整包验收，约占原队列60%，不含提供方保留的验证/测试集；为心音而非讲话语音。尚未逐音频解码或复核临床标签。",
+      "next_action_notes": "保留Open Data Commons Attribution License v1.0许可、原始归档和验收收据，按要求归属注明并引用原始论文及PhysioNet；研究前核对心音解码、杂音标签和患者划分；同一受试者的不同听诊部位不可跨训练/测试集合。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU5YNWpq",
+      "title": "HFrEF-ECG-PCG",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/HFrEF-ECG-PCG"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Zenodo 16934966全部2个ZIP（五折主数据与社区场景测试集）、362,791,315字节已验收；两个官方MD5、独立SHA256、ZIP CRC/安全路径、精确尺寸及最终0700/0600均通过。共4,974归档成员，含2,480个ECG WAV、2,480个PCG WAV及6个CSV，全部2,480对文件配对齐全。ECG为电信号，PCG为心音；不能将4,960个WAV全部计为心音或人声。",
+      "pending_notes": "官方归档完整性及ECG/PCG文件配对已验收；尚未逐信号解码或复核临床标签，研究时保留患者级五折和独立社区测试边界。",
+      "next_action_notes": "保留CC BY 4.0许可、官方Zenodo归档及逐文件验收凭证；按官方患者级五折与独立社区测试集开展后续研究，先核标签与信号解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU7YOrEN",
+      "title": "Indian-Stroke-Speech",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Indian-Stroke-Speech"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Zenodo 15675907全部2个文件（完整ZIP与ReadMe.txt）、172,666,396字节已验收；两个文件官方MD5、独立SHA256、ZIP CRC和安全路径、精确尺寸及最终目录0700/文件0600均通过。ZIP内3,806个成员，包括2,519个WAV、1个XLSX和2个LAB，其余为目录；文件数不代表参与者人数。",
+      "pending_notes": "官方归档完整性已验收；尚未逐音频解码，标签和患者划分在研究使用时另核。",
+      "next_action_notes": "保留CC BY 4.0许可、官方Zenodo归档与验收收据；使用前核对标签、参与者隔离和音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNU8z6xdf",
+      "title": "PhysioNet-CinC-2016",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/PhysioNet-CinC-2016"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "本次选定官方training.zip、validation.zip、annotations.zip共3/3包、219,034,340字节全部验收；源站Content-Length精确尺寸、独立SHA256、ZIP CRC/安全路径及最终0700/0600通过。实存训练3,240 WAV、验证301 WAV、标注12,612 MAT；验证301个WAV的SHA256全部与训练文件相同，不重复计样本或作为独立测试集。范围不含私有挑战测试集及参赛代码提交。",
+      "pending_notes": "所选三包完整性已验收；本次未取得官方逐文件MD5/SHA清单，根目录SHA256SUMS.txt返回404，不声称官方摘要比对。尚未逐音频解码或复核临床标签；官网正文旧计数与当前归档实存不同，采用当前归档清单计数，训练/验证重复关系须保留。",
+      "next_action_notes": "保留Open Data Commons Attribution License v1.0许可和验收收据，按要求归属注明及引用；研究前核对患者隔离、心音标签、更新标注版本，验证包与训练包不得当独立泛化评估。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUAklTb2",
+      "title": "Saarbruecken-Voice",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Saarbruecken-Voice"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Zenodo16874898全部73/73 ZIP、38,059,544,640字节验收；官方MD5、独立SHA256、全部归档成员CRC/安全路径及最终0700/0600和精确尺寸通过。实存60,791 NSP语音文件、60,791 EGG电声门图、72 CSV、1,389 TXT；按成员SHA256分别仅27,913种NSP内容、27,913种EGG内容，跨归档重复不累计为独立样本或人数。",
+      "pending_notes": "官方归档完整性已验收，尚未逐语音解码或复核临床标签。原始语音为NSP，EGG为电声门图；归档之间有内容重复，按记录与受试者关系去重，成员SHA256唯一数不等于人数。",
+      "next_action_notes": "保留CC BY4.0许可及官方引用，研究前核对疾病/健康标签和受试者隔离；NSP按官方工具转换，EGG单列；73归档的重叠内容先去重。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUC4q70e",
+      "title": "Spanish-Phonological",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Spanish-Phonological"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "云端整库1/1个官方文件验收完成，共41,937,271字节，701个归档成员；701个成员官方SHA256、ZIP CRC及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。701个WAV含增强录音，不能当作701个独立受试者或原始样本。",
+      "pending_notes": "归档完整性已验收；尚未逐音频解码，参与者划分和研究使用另核。",
+      "next_action_notes": "保留官方文件和逐文件验收凭证；使用时核标签、患者划分与音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUGsmDnW",
+      "title": "UGAkan-ImpairedSpeech",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UGAkan-ImpairedSpeech"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方Mendeley v4完整ZIP（1/1文件，720,976,054字节）已验收；5个内部官方文件的SHA256、外层ZIP CRC、4个嵌套TAR逐成员完整遍历、内部images.zip CRC、安全路径及独立SHA256均通过，最终目录0700/文件0600和精确尺寸通过。内部共14,312个MP3、4个CSV和1,027个JPG；文件数不代表参与者人数。",
+      "pending_notes": "官方归档及嵌套文件完整性已验收；尚未逐音频解码，标签、患者划分和图像用途在研究使用时另核。",
+      "next_action_notes": "保留CC BY 4.0许可、官方v4归档与验收收据；使用前核对标签、参与者隔离和音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUJIedC0",
+      "title": "VOICED",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/VOICED"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方PhysioNet v1.0.0完整ZIP 1/1文件、115,492,496字节已验收；834个归档成员，833个文件官方SHA256、包内摘要清单一致性、独立整包SHA256、ZIP CRC及安全路径通过，最终目录0700/文件0600和精确尺寸通过。208组WFDB记录，各含DAT、HEA、信号文本和info文件，另有RECORDS及SHA256SUMS.txt。官方说明为150条病理嗓音、58条健康嗓音，约5秒持续元音/a/，8000Hz；这些记录不是208个WAV文件。",
+      "pending_notes": "整库归档完整性已验收；尚未逐音频解码或复核临床标签。官方说明录音经过滤波，研究时保留采集与预处理限制；WFDB与文本为同一信号的两种格式，不重复计样本。",
+      "next_action_notes": "保留Open Data Commons Attribution License v1.0许可、原始归档和验收收据，按要求归属注明并引用原始论文及PhysioNet；研究前核对患者划分、标签及WFDB解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUMUiDWo",
+      "title": "Bridge2AI-Voice Pediatric Audio",
+      "status": "访问受限",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "最新：此次科大申请因机构所在地被提供方明确拒绝；未获批、未取得受控音频。\n历史记录：儿科原始录音。PhysioNet开放发布为衍生特征；原音频需机构sign-off。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "2026-10-29 21:48:58北京时间，提供方明确科大位于中国，此次申请不具DAC受理资格；后发拒绝回复覆盖21:43:59的通用申请流程说明。此次申请已停止，无需继续补签。原4份PDF、PI/ISO/伦理缺项和历史邮件保留。",
+      "next_action_notes": "尊重提供方明确拒绝，停止此次成人/儿童申请及后续联系，不重复追问所在地资格、不催签署或材料、不绕地区限制。衍生特征也未获此次邮件授权，不据此领取。现有个人身份和机构归属不变；无新的用户操作事项。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUONrIQs",
+      "title": "EWA-DB",
+      "status": "暂缓申请",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "AD、MCI、PD原始语音；请求当前EULA与学生资格。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "提供方10月27日明确要求部门合法授权代表签署EULA 1.2，填写职务并盖章；仅接受法人机构。尚无完成签署的材料。",
+      "next_action_notes": "按用户10月28日指示，签署类事项先不回复、不提交，由用户日后统一交导师协调有权签署人；保留原回信及EULA附件。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUPibxuX",
+      "title": "SONIVA原始录音",
+      "status": "暂缓申请",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "卒中失语录音。公开Helix包为转录和元数据；原始录音需伦理许可与机构协议。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "暂无适用本地伦理审批或豁免。用户已明确缺少材料的先不申请；当前不催办补件。",
+      "next_action_notes": "维持缺少伦理审批/豁免的申请暂停。10月27日仅收到休假自动回复（11月2日返回）；不回复自动邮件、不计为受理或批准。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUSNxTkS",
+      "title": "HUPA",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "440名受试者，239健康、201嗓音障碍；请求当前完整使用协议。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "提供方审批、当前协议与资格材料；邮件受理不等于已获准。",
+      "next_action_notes": "等待提供方回复，补齐相应协议和资格；授权后直接云端下载。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUU3CLKQ",
+      "title": "HeyJay",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "PD、ALS、共济失调等异常言语；官方作者邮件路径请求DUA。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "提供方审批、当前协议与资格材料；邮件受理不等于已获准。",
+      "next_action_notes": "等待提供方回复，补齐相应协议和资格；授权后直接云端下载。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SNUXO65nN",
+      "title": "CKD Speech Corpus",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "慢性肾病原始语音及允许的eGFR严重度标签；外部学术共享资格待确认。 初始访问/流程请求已被科大SMTP服务器接受；提供方尚未批准，正式协议尚未完成。",
+      "pending_notes": "提供方审批、当前协议与资格材料；邮件受理不等于已获准。",
+      "next_action_notes": "等待提供方回复，补齐相应协议和资格；授权后直接云端下载。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SO6mKAyU4",
+      "title": "Virufy",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Virufy"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "云端整库1/1个官方文件验收完成，共3,044,943字节，141个归档成员；0个成员官方SHA256、141个成员官方Git blob校验、归档CRC/遍历及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。137个MP3包含原始和分段文件，分段数不能计为人数。",
+      "pending_notes": "归档完整性已验收；尚未逐音频解码，参与者划分和研究使用另核。",
+      "next_action_notes": "保留官方文件和逐文件验收凭证；使用时核标签、患者划分与音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SO6ntOKd9",
+      "title": "BMD-HS",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/BMD-HS"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "云端整库1/1个官方文件验收完成，共126,924,002字节，877个归档成员；0个成员官方SHA256、877个成员官方Git blob校验、归档CRC/遍历及独立sha256sum全部通过；最终文件尺寸与0600权限复核通过。包含872个WAV，患者数量以官方临床标签表为准。",
+      "pending_notes": "归档完整性已验收；尚未逐音频解码，参与者划分和研究使用另核。",
+      "next_action_notes": "保留官方文件和逐文件验收凭证；使用时核标签、患者划分与音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SO6pQbQQg",
+      "title": "SpiroPhonia",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "呼吸疾病/COPD自发语音；论文201人（102疾病自述、99对照），并非统一临床确诊队列。已询问原始录音、来源使用许可及诊断核验。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "pending_notes": "提供方回复与正式申请/许可要求。",
+      "next_action_notes": "按既有申请等待回复并补齐真实材料；不重复联系、不代签。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SO6qrOFzJ",
+      "title": "DEPAC",
+      "status": "已申请待回复",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "抑郁及焦虑；原论文专有数据。已向作者咨询外部学术共享可能性与当前申请流程。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "pending_notes": "提供方回复与正式申请/许可要求。",
+      "next_action_notes": "按既有申请等待回复并补齐真实材料；不重复联系、不代签。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SO6s1xdhI",
+      "title": "Speech Accessibility Project / SAPC2",
+      "status": "访问受限",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "最新：SAP明确拒绝此次数据请求，未获批、未取得录音；下述官方规模不计为已取得量。\n历史记录：官方当前分发说明约1500小时、999人，含ALS、脑瘫、唐氏综合征、帕金森和卒中。2026-10-16已有资格咨询，本轮又发附未签名研究提案的重复询问，已合并同一申请，不再重发。 本轮邮件已获SMTP 250受理，提供方审批尚未完成。",
+      "pending_notes": "2026-10-30 02:19:49北京时间，SAP明确表示受适用美国政府数据访问与共享要求/限制影响，目前无法提供所请求数据。此次申请已停止，无需继续补签。原机构签署人缺项及未签材料保留为历史；提供方未要求新补件。",
+      "next_action_notes": "尊重明确拒绝，停止此次申请及后续联系；不重复追问资格或境内存储，不催签署或材料、不寻找规避入口。保留10月16日旧询问、10月27日关联重复询问及未签提案。Euphonia无公开分享许可，不能经已拒绝的SAP路线获取。无新的用户操作事项。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SOytY5yog",
+      "title": "Czech-Laryngectomy",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Czech-Laryngectomy"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方LINDAT全部4个文件（3个speaker ZIP与README.docx）、775,105,424字节已验收；4个官方MD5、逐文件独立SHA256、精确尺寸及最终0700/0600均通过，外层ZIP和6个嵌套ZIP及DOCX容器共10组CRC/安全路径检查通过。含3,980个WAV及对应音高标记，来自3位喉切除患者的术前声音保存语料；不描述为术后失声录音。",
+      "pending_notes": "官方归档完整性已验收；尚未逐音频解码，标签和患者划分在研究使用时另核。",
+      "next_action_notes": "保留CC BY-NC-SA 4.0许可、官方LINDAT归档与验收收据；使用前核对标签、参与者隔离和音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SP7zYt3M7",
+      "title": "UltraSuite-UXSSD",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UltraSuite-UXSSD"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "固定患者语音WAV、提示、说明和标签子集32,123/32,123文件，共1,653,481,603字节，包含3,729个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；158个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "pending_notes": "所选语音子集完整性已验收；提供方未发布逐文件密码学摘要，未声称官方SHA256比对。尚未逐音频解码，人工/自动标签和患者划分在研究前核对。",
+      "next_action_notes": "UltraSuite本轮选定UXSSD、UPX、Cleft、UX2020四个患者语音子集均已验收；保留CC BY-NC 4.0许可、固定清单和逐文件收据，按非商业研究条件使用；研究前核对标签及患者划分，排除超声和健康UXTD录音。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SP81y3wMy",
+      "title": "UltraSuite-UPX",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UltraSuite-UPX"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "固定患者语音WAV、提示、说明和标签子集46,602/46,602文件，共2,964,968,260字节，包含5,948个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；240个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "pending_notes": "所选语音子集完整性已验收；提供方未发布逐文件密码学摘要，未声称官方SHA256比对。尚未逐音频解码，人工/自动标签和患者划分在研究前核对。",
+      "next_action_notes": "UltraSuite本轮选定UXSSD、UPX、Cleft、UX2020四个患者语音子集均已验收；保留CC BY-NC 4.0许可、固定清单和逐文件收据，按非商业研究条件使用；研究前核对标签及患者划分，排除超声和健康UXTD录音。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SP84Mgiwf",
+      "title": "UltraSuite-Cleft",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UltraSuite-Cleft"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "固定患者语音WAV、提示、说明和标签子集3,179/3,179文件，共650,257,191字节，包含1,441个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；67个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "pending_notes": "所选语音子集完整性已验收；提供方未发布逐文件密码学摘要，未声称官方SHA256比对。尚未逐音频解码，人工/自动标签和患者划分在研究前核对。",
+      "next_action_notes": "UltraSuite本轮选定UXSSD、UPX、Cleft、UX2020四个患者语音子集均已验收；保留CC BY-NC 4.0许可、固定清单和逐文件收据，按非商业研究条件使用；研究前核对标签及患者划分，排除超声和健康UXTD录音。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SP86fpS7S",
+      "title": "UltraSuite-UX2020",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UltraSuite-UX2020"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "固定患者语音WAV、提示、说明和标签子集5,361/5,361文件，共694,034,638字节，包含2,150个WAV。逐文件精确尺寸、官方rsync --checksum及独立SHA256通过；44个目录0700、全部文件0600、完整清单无额外文件和整库原子无覆盖发布均已核验。未纳入超声影像或健康UXTD录音。",
+      "pending_notes": "所选语音子集完整性已验收；提供方未发布逐文件密码学摘要，未声称官方SHA256比对。尚未逐音频解码，人工/自动标签和患者划分在研究前核对。",
+      "next_action_notes": "UltraSuite本轮选定UXSSD、UPX、Cleft、UX2020四个患者语音子集均已验收；保留CC BY-NC 4.0许可、固定清单和逐文件收据，按非商业研究条件使用；研究前核对标签及患者划分，排除超声和健康UXTD录音。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SPSFA7Mro",
+      "title": "HF-Lung-V1",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "47明确",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/HF-Lung-V1"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方固定版本2a77d37230b1673d332645e6c6afeea29900bcf9全部16文件、1,174,794,763字节通过官方Git blob及独立SHA256，其中15文件同时通过官方原始文件SHA256；2组完整分卷7z通过CRC整体验证和安全路径检查；最终尺寸与0600权限复核通过。train.7z.005接口SHA256对应转换后的API内容，已保留证据；原始分卷按官方Git对象及精确尺寸验收。呼吸相及异常音标签由单标注员给出，供方明确非临床金标准。",
+      "pending_notes": "归档完整性已验收；尚未逐音频解码，参与者划分和研究使用另核。",
+      "next_action_notes": "保留官方文件和逐文件验收凭证；使用时核标签、患者划分与音频解码。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SRDSwLyCs",
+      "title": "Oral-Cancer",
+      "status": "已验收",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/Oral-Cancer"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方新版Zenodo6308119完整ZIP 1/1文件、5,784,059,015字节验收完成；16,108个归档成员，官方MD5、Python与sha256sum双实现SHA256、ZIP CRC及安全路径通过，最终目录0700/文件0600和精确尺寸通过。",
+      "pending_notes": "约3小时公开YouTube来源语音；归档完整性已验收，尚未逐音频解码、复核疾病标签依据或来源偏差。",
+      "next_action_notes": "保留CC BY 4.0来源、原始ZIP及验收凭证；研究前核音频解码、疾病标签依据、来源混杂和说话人划分。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28SRDVW6X8w",
+      "title": "UK-COVID",
+      "status": "部分已验收",
+      "followup_explicit": false,
+      "location_scope": "其他或待定位",
+      "path_hints": [
+        "/data/users/liusizhe/datasets/dataset-applications-20261027/datasets/UK-COVID"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "官方公开版30文件、53,674,075,969字节；6/30已验收（5元数据＋covid_data.z01），共2,189,839,278字节；covid_data.z02.part保留1,244,659,712字节。本轮有效续传565,182,464字节，音频整组未完成。",
+      "pending_notes": "2026-11-02 18:56:35北京时间，512KiB恢复在新分块遇curl22停止；该次保留的响应头与分块正文均0字节，具体HTTP状态无法由现有证据确定，不认定源文件损坏。6个最终文件官方MD5、双实现SHA256、尺寸权限重验通过；余24音频分卷及完整25卷7za未完成。",
+      "next_action_notes": "保留全部断点与收据；worker77969和supervisor77965均退出。原wave9各3/3、第一轮各1/1、本轮UK新增1/1均保留且用尽，不重启、不清零、不增加次数或延期；进一步恢复须新的明确授权及恢复方案。原截止UTC 2026-11-04 18:25:11保持。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    },
+    {
+      "source_record_id": "reczz28Tkc0TVLBd",
+      "title": "MiDasheng autonomous 继续训练与空间音频评测",
+      "status": "文件已核实",
+      "followup_explicit": true,
+      "location_scope": "其他或待定位",
+      "path_hints": [
+        "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+        "/data/share/public/hejingheng/midasheng-autonomous-20261030/delivery"
+      ],
+      "use_boundary": "按台账原始条款和凭证逐项确认",
+      "quantity_notes": "MiDasheng autonomous 继续训练与空间音频评测。stage1 0.598、stage2 0.4535、a_gs2 0.304；dev 参与选模，不作为独立盲测或疾病结论。",
+      "pending_notes": "2026-10-30",
+      "next_action_notes": "补独立盲测、真实录制子集识别和更多种子验证；证据见 public-migration.json、delivery-verification.json、final-host-47.json、final-host-101.json。",
+      "evidence_level": "Feishu ledger declaration; not content revalidation"
+    }
+  ]
+}

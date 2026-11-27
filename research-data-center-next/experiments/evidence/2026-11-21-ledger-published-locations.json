@@ -1,0 +1,79 @@
+{
+  "review_date": "2026-11-21",
+  "table": "tbl9Ggk0cGF0Zlxz",
+  "view": "vew5x8yw5H",
+  "receipts": [
+    {
+      "record_id": "reczz28S4ElbQPb1",
+      "title": "MDVR-KCL",
+      "reviewed_fields": [
+        "fld2kNvjKG",
+        "fld72hnCUh"
+      ],
+      "name_and_previous_text_preserved": true,
+      "old_project_zip_is_compatible_link": true,
+      "ordinary_reader_checked": true,
+      "canonical_zip": "/data/share/datasets/MDVR-KCL/26_29_09_2017_KCL.zip",
+      "bytes": 606144431,
+      "recordings": 73,
+      "official_md5": "98c51bdd2b092b93f8bb038dea4505fa",
+      "sha256": "45c43cdfa5d078833a6ac27574c471c9ca34d4cd4dea5877f31ebe93b1b5edf6",
+      "before_at": "2026-11-21T04:26:51.406Z",
+      "verified_after_forced_reload_at": "2026-11-21T04:37:38.349Z",
+      "protected_cells": 1169,
+      "protected_cells_canonical_sha256": "3b4a8b7931b11b7da010db7b556caf7885cc33d2c3aad910715b033acc19a65f",
+      "protected_cells_verified": true,
+      "protected_fields_sha256": "c7685facd57e0afe59be5867c3064f14da57b4122bb90da3857d3a500eb1327f"
+    },
+    {
+      "record_id": "reczz28SPSFA7Mro",
+      "title": "HF-Lung-V1",
+      "reviewed_fields": [
+        "fld2kNvjKG",
+        "fld72hnCUh"
+      ],
+      "name_and_previous_text_preserved": true,
+      "canonical_directory": "/data/share/datasets/HF-Lung-V1",
+      "upstream_commit": "2a77d37230b1673d332645e6c6afeea29900bcf9",
+      "source_entries_now_symlinks": 16,
+      "source_root_mode": "0700",
+      "archive_volumes": 13,
+      "other_files": 3,
+      "bytes": 1174794763,
+      "before_at": "2026-11-21T04:51:10.392Z",
+      "verified_after_forced_reload_at": "2026-11-21T04:51:44.387Z",
+      "protected_cells": 1171,
+      "protected_cells_canonical_sha256": "b476af90e4d77e07028159881919587edbaa918fa893da25faf05f78a0c5c795",
+      "protected_cells_verified": true,
+      "protected_fields_sha256": "554770cbf78f4f17d588cfa9d62746cac19920b22061f427b875e01154b0c94a"
+    },
+    {
+      "record_id": "reczz28S4ElbQRQt",
+      "title": "Coswara",
+      "reviewed_fields": [
+        "fld2kNvjKG",
+        "fld72hnCUh"
+      ],
+      "name_and_previous_text_preserved": true,
+      "canonical_directory": "/data/share/datasets/Coswara",
+      "parts_directory": "original_parts",
+      "date_archives": 43,
+      "archive_bytes": 12981984019,
+      "parts": 153,
+      "official_metadata": 4,
+      "parts_and_metadata_bytes": 12982364405,
+      "legacy_dates_links_on_47": 43,
+      "legacy_parts_and_metadata_links_on_47": 157,
+      "ordinary_readers_on": [
+        "101",
+        "47"
+      ],
+      "before_at": "2026-11-21T04:54:54.217Z",
+      "verified_after_forced_reload_at": "2026-11-21T04:55:26.356Z",
+      "protected_cells": 1171,
+      "protected_cells_canonical_sha256": "f3fd55b2228bf170ac3d2713b07c6a27317319a225ae9caa282e98afb26bd95e",
+      "protected_cells_verified": true,
+      "protected_fields_sha256": "d8dbc33fdf52be73b5729bbf9b631799fd452b26af8f2735c0a879b6360b2e7c"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ function bibliography(number, category) {
     {label: 'Existing index', sha256: 'b'.repeat(64), record_id: 'indexed-1'}]};
   result.card = null;
   result.status = 'bibliography';
-  result.fulltext_available = true;
+  result.fulltext_available = false;
   return result;
 }
 const stateFor = papers => ({papers, jobs: [], agent: {configured: false, enabled: false},
@@ -159,7 +159,7 @@ async function fullCollection(pathname) {
   check(node('discovery-view').hidden && !node('library-view').hidden, 'Category link opens the card list');
   equal(node('category').value, unusual, 'Encoded arbitrary category round-trips');
   equal(idsIn(node('papers').innerHTML), [identifier(3)], 'Category contains exactly its papers');
-  check(node('papers').innerHTML.includes('阅读原文') && !node('papers').innerHTML.includes('待原文核验'), 'Bibliography has a direct PDF action without repeated workflow labels');
+  check(node('papers').innerHTML.includes('原件限阅') && !node('papers').innerHTML.includes('/pdf'), 'Restricted bibliography has no PDF action');
   await app.inputSearch('no matching title');
   check(node('papers').innerHTML.includes('没有找到匹配的论文'), 'Search filters within the category');
   await app.click('clear-filters');
@@ -399,7 +399,7 @@ async function insightReading(pathname) {
   check(!html.includes('<h4>局限与适用范围</h4>'), 'Empty summary fields do not create empty headings');
   check(html.includes('Final abstract sentence &lt;not markup&gt;.'), 'Complete abstract tail is retained and escaped');
   check(html.includes('lang="en"') && html.includes('英文摘要'), 'The original abstract retains its language');
-  check(html.includes('/pdf#page=1') && html.includes('/pdf#page=2'), 'Abstract and evidence page references lead to the original PDF');
+  check(html.includes('原文第 1 页') && html.includes('原文第 2 页') && !html.includes('/pdf#page='), 'Restricted originals retain source page numbers without a download link');
   check(html.includes('We use &lt;contrastive&gt; alignment.'), 'Source evidence is escaped and available to inspect');
   check(html.includes('data-section="reader-abstract"') && html.includes('data-section="reader-chinese-summary"'), 'Reading navigation reaches the new sections');
   check(html.includes('查看原有索引简介'), 'Legacy index prose remains distinct from the original abstract');
@@ -469,6 +469,30 @@ async function sessionRecoveryFlow() {
   check(!brokenPublic.node('login').open && !brokenPublic.created.length, 'A catalog error never asks anonymous readers to authenticate');
 }
 
+async function relatedAndRetry() {
+  const one = paper(1), two = paper(2), other = paper(3);
+  one.card.tags = ['睡眠', '转录'];
+  two.card.tags = ['转录', '睡眠'];
+  other.card.tags = ['其他主题'];
+  let unavailable = true;
+  const app = await setup('/papers/', [one,two,other], '#catalog', {
+    stateResponse: () => unavailable ? response({error:'temporarily unavailable'},503) : null
+  });
+  check(!app.node('retry-papers').hidden && !app.node('papers-notice').hidden, 'Catalog failure keeps a visible retry');
+  unavailable = false;
+  await app.click('retry-papers');
+  check(app.node('papers-notice').hidden, 'Successful retry clears the notice');
+  await app.click('item-fixture', {open: one.id});
+  const html = app.node('detail-content').innerHTML;
+  check(html.includes('共同关键词或主题 · 睡眠、转录') && html.includes(two.id), 'Related reading states the shared terms');
+  check(!html.includes(other.id), 'Unrelated papers are excluded');
+  await app.click('item-fixture', {open: two.id});
+  check(app.node('detail-content').innerHTML.includes('Research 2'), 'Related title opens its source record');
+  unavailable = true;
+  await app.refresh();
+  check(app.node('papers-status').textContent.includes('上次读取') && !app.node('retry-papers').hidden, 'A failed refresh preserves the last good result');
+}
+
 async function publicReading(pathname) {
   const collection = [bibliography(1, 'Speech'), paper(2, 'Other')];
   const app = await setup(pathname, collection, '#catalog');
@@ -482,7 +506,7 @@ async function publicReading(pathname) {
   check(!node('provider-settings').open && !app.requests.some(call => call.url.endsWith('/settings')), 'Public settings events cannot load private configuration');
   await app.click('reading-fixture', {open:identifier(1)});
   const detail = node('detail-content').innerHTML;
-  check(detail.includes('阅读 PDF 原文') && detail.includes('下载 PDF'), 'Imported bibliography can read and download existing originals');
+  check(detail.includes('原件限阅') && !detail.includes('下载 PDF') && !detail.includes('/pdf'), 'Restricted bibliography keeps metadata without offering a local PDF');
   check(!detail.includes('团队权限') && !detail.includes('PAPER READING'), 'No obsolete permission or decorative reading labels');
   check(detail.includes('标题、作者与索引简介来自以下已有文献索引。'), 'Index metadata provenance remains in the detail');
   check(!detail.includes('id="notes"') && node('generate-reading').hidden, 'Public reader has no shared note editor or model action');
@@ -516,6 +540,7 @@ async function publicReading(pathname) {
     await providerRaces(pathname);
   }
   for (const pathname of ['/', '/papers/']) await publicReading(pathname);
+  await relatedAndRetry();
   await sessionRecoveryFlow();
   for (const pathname of ['/', '/papers/']) await insightReading(pathname);
   await insightRefreshPreservesNotes();

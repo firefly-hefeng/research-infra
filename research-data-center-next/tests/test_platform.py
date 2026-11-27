@@ -9,7 +9,7 @@ import unittest
 from unittest import mock
 
 from catalog import import_catalog
-from platform_data import SERVERS, literature, metrics, servers_snapshot
+from platform_data import literature, metrics, servers_snapshot
 from research_portfolio import research_portfolio
 from server import create_server
 from tools.collect_server_resources import collect, save_snapshot
@@ -120,6 +120,13 @@ class PlatformTests(unittest.TestCase):
         self.assertIsNone(result['gpus'][0]['utilization_percent'])
         self.assertIsNone(result['gpus'][0]['memory_total_bytes'])
 
+    def test_missing_gpu_process_observation_is_distinct_from_empty_list(self):
+        gpus = [{'index': 0}, {'index': 1, 'processes': None},
+                {'index': 2, 'processes': []}, {'index': 3, 'processes': 'invalid'}]
+        observed = metrics({'gpus': gpus})
+        self.assertEqual([gpu['processes'] for gpu in observed['gpus']], [None, None, [], None])
+        self.assertEqual(metrics(observed), observed)
+
     def test_missing_and_stale_snapshots_do_not_imply_zero_usage_or_online(self):
         result = servers_snapshot(self.root)
         self.assertEqual(result['mode'], 'not_configured')
@@ -145,6 +152,16 @@ class PlatformTests(unittest.TestCase):
         save_snapshot(self.root / 'data/server-resources.json', result)
         self.assertEqual(servers_snapshot(self.root)['servers'][1]['error_code'], 'timeout')
 
+    def test_retired_server_is_neither_probed_nor_returned(self):
+        old = {'schema_version': '1.0', 'servers': [{'id': 'server-139', 'status': 'online'}]}
+        probe = mock.Mock(return_value={'status': 'online'})
+        result = collect(old, {}, {'timeout': 20}, collector=probe)
+        active = ['server-47', 'server-101']
+        self.assertCountEqual([call.args[0]['id'] for call in probe.call_args_list], active)
+        self.assertEqual([row['id'] for row in result['servers']], active)
+        self.write('data/server-resources.json', old)
+        self.assertEqual([row['id'] for row in servers_snapshot(self.root)['servers']], active)
+
     def test_http_routes_are_readonly_authenticated_and_never_collect(self):
         database = self.root / 'catalog.sqlite3'
         import_catalog(self.catalog, database)
@@ -162,6 +179,11 @@ class PlatformTests(unittest.TestCase):
                     self.assertEqual(request(path, False)[0], 401)
                     self.assertEqual(request(path)[0], 200)
                     self.assertEqual(request(path, method='POST')[0], 405)
+                reports = '/api/platform/compute-reports'
+                self.assertEqual(request(reports, False)[0], 401)
+                self.assertEqual(json.loads(request(reports)[1])['reports'], [])
+                self.assertEqual(request(reports + '?kind=week&start=2026-11-09')[0], 404)
+                self.assertEqual(request(reports + '?kind=week&start=2026-11-09&start=x')[0], 400)
                 for path in ('/api/platform/servers?host=unknown', '/api/platform/research?file=/etc/passwd',
                              '/api/platform/literature?q=a&q=b', '/api/platform/literature?page=0',
                              '/api/platform/literature?page_size=101', '/api/platform/literature?file=/etc/passwd'):

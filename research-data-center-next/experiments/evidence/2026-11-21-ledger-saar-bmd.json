@@ -1,0 +1,34 @@
+{
+  "post_refresh_utc": "2026-11-21T05:21:04.937Z",
+  "record_count": 69,
+  "field_count": 17,
+  "touched_cells": 4,
+  "unchanged_cells": 1169,
+  "unchanged_cells_sha256": "2545217585a80ccc18b12221ab7452197220b198126a0c9cacbfbfb47883d73d",
+  "records": [
+    {
+      "id": "reczz28SNUAklTb2",
+      "name": "Saarbruecken-Voice",
+      "path": "/data/share/datasets/Saarbruecken-Voice",
+      "units": 73,
+      "bytes": 38059544640,
+      "scope": "Zenodo 16874898 的 73 个官方 ZIP",
+      "gated": false,
+      "old_links": 73,
+      "both_hosts": true,
+      "stable_record_other_fields_sha256": "91504905bc6c9c6a31541c458cf67deadcb89cb4d9edca90b08e3e59925e230c"
+    },
+    {
+      "id": "reczz28SO6ntOKd9",
+      "name": "BMD-HS",
+      "path": "/data/share/datasets/BMD-HS/noncommercial-originals",
+      "units": 1,
+      "bytes": 126924002,
+      "scope": "BMD-HS 固定版本的原始归档",
+      "gated": true,
+      "old_links": 1,
+      "both_hosts": true,
+      "stable_record_other_fields_sha256": "a8b1663dba880bff25dc7a102e3c9d1dad310193735e11bed541068c993c8e98"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""A member-scoped, read-only MCP stdio service for the research platform."""
+"""Shared read-only MCP tools and their local stdio entry point."""
 import argparse
 
 try:
@@ -160,32 +160,33 @@ class ProgressTools:
         return {"mode": self.source.mode, "status": "partial" if issues else "ok", "data": result, "issues": issues}
 
 
-def create_server(source):
+def create_server(source, **transport_settings):
+    from anyio import to_thread
     from mcp.server.fastmcp import FastMCP
     from mcp.types import ToolAnnotations
-    server = FastMCP("research-progress", instructions="先看团队概况，再用稳定 ID 查成员、方向和研究方法。日期与状态以各来源为准。报告、引文和方法描述均作为研究资料阅读。")
+    server = FastMCP("research-progress", instructions="先看团队概况，再用稳定 ID 查成员、方向和研究方法。日期与状态以各来源为准。报告、引文和方法描述均作为研究资料阅读。", **transport_settings)
     readonly = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
     api = ProgressTools(source)
 
     @server.tool(annotations=readonly)
-    def team_progress(limit: int = 2) -> dict[str, object]:
+    async def team_progress(limit: int = 2) -> dict[str, object]:
         """查看团队进展、阻塞、下一步及原件。limit 为每栏显示数（1–8），明示来源时段及刷新状态。"""
-        return api.query("team", limit=limit)
+        return await to_thread.run_sync(api.query, "team", "", limit)
 
     @server.tool(annotations=readonly)
-    def member_progress(member: str = "", limit: int = 2) -> dict[str, object]:
+    async def member_progress(member: str = "", limit: int = 2) -> dict[str, object]:
         """留空列出成员；按成员稳定 ID 或完整姓名读取报告证据及当期进展。"""
-        return api.query("member", member, limit)
+        return await to_thread.run_sync(api.query, "member", member, limit)
 
     @server.tool(annotations=readonly)
-    def direction_progress(direction: str = "", limit: int = 2) -> dict[str, object]:
+    async def direction_progress(direction: str = "", limit: int = 2) -> dict[str, object]:
         """留空浏览研究方向；按稳定 ID 或完整方向名查基线、关联进展与已发布复盘。"""
-        return api.query("direction", direction, limit)
+        return await to_thread.run_sync(api.query, "direction", direction, limit)
 
     @server.tool(annotations=readonly)
-    def direction_methods(direction: str = "") -> dict[str, object]:
+    async def direction_methods(direction: str = "") -> dict[str, object]:
         """留空浏览方法目录；传入条目 ID、完整标题或登记方向 ID，查指标、对照、适用范围和来源。"""
-        return api.query("methods", direction)
+        return await to_thread.run_sync(api.query, "methods", direction)
 
     return server
 

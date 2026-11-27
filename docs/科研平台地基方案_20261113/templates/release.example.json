@@ -1,0 +1,22 @@
+{
+  "version": "v1",
+  "upstream_revision": "example-fixed-revision",
+  "manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "file_count": 73,
+  "total_bytes": 1365139343,
+  "subject_count": null,
+  "recording_count": 73,
+  "duration_seconds": null,
+  "count_scope": "虚构模板示例 数量仅用于演示字段 不构成数据验收",
+  "parents": [],
+  "split_manifest_sha256": null,
+  "license_state": "unknown",
+  "license_id": null,
+  "rights_evidence": [
+    {
+      "evidence_id": "ev-example-001",
+      "relation": "supports"
+    }
+  ],
+  "metadata_revision": 1
+}

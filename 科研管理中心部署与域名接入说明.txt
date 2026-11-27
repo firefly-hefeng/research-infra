@@ -1,5 +1,21 @@
 科研管理中心部署与域名接入说明
-更新日期：2026年10月29日
+更新日期：2026年11月15日
+
+现行 Agent 入口：https://rmp.wuwangwo.top/#agent 。共读手册 /docs/agent-guide.md，建设现状 /docs/agent-status.md，维护约定 /docs/agent-maintenance.md。线上飞书登录，无成员自助 Agent token；无浏览器时下载研究上下文或使用已授权服务器连接。下列旧发布段落是当时记录，不代替各模块当前 README 和实际运行配置。
+
+2026年11月15日发布记录
+
+本轮已使用现有飞书账号实际登录，按截图保存何锋的 2026-11-14 日报。提交使用 TXT 正文和截图、文字转录两个附件，团队记录可打开；手机端重复提交同一文件包返回已提交，原件与附件哈希核验通过。该账号可读取陆梓健的 2026-W45 周报正文。桌面 1440px 与手机 390px、320px 已检查首页、数据、算力、成果、文书、进度与文献。
+
+验收修复包括飞书登录过期恢复、已保存表单离开判断、上次提交成员预填、手机文献导航和周报容量。登录恢复在新标签完成，原标签保留输入和文件，由成员主动重试提交。统一入口将 /progress/api/uploads 精确转发至 8766，上限 21 MiB，与日报入口一致；应用仍执行 20 MiB 正文及附件规则。隔离合成文件的 TXT、CSV、Word、文字 PDF 与双附件读取已通过。
+
+本轮验收修复备份为 /var/backups/rmp-acceptance-20261115-v1，包含 previous/、manifest.json 和 nginx.conf。前一轮页面和进度后台备份见下文。
+
+首页、进度、文献已使用统一视觉主题，首页使用哈勃影像。文献的发现、推荐、筛选和分享路由沿用线上版本。门户主题位于 workspace/static/platform-theme.css，文献主题已同步到中央网页目录和文献服务目录。
+
+团队登录后可查看全员日报与已整理周报正文。日报支持多格式正文和最多 8 个附件，正式环境以总量 20 MiB 为限。统一入口将精确匹配的 /progress/api/daily/uploads 转给回环进度服务，继续使用统一登录。Nginx 正文上限在该路由及登录子请求设为 21 MiB，以容纳附件和表单开销。进度定时器和已配置的 DeepSeek 周报处理继续运行。
+
+回滚目录为 /var/backups/rmp-ui-20261115-workspace-v5 和 /var/backups/rmp-ui-20261115-papers-v1。对应目录的 rollback.py 与 files.json 记录本轮恢复范围。回滚使用 /data/services/miniforge3/bin/python 执行对应的 rollback.py，以 rollback core 或 rollback papers 为参数，再将对应回滚目录连续传入两次。历史部署信息见下文。
 
 一、部署概况
 
@@ -11,9 +27,12 @@ SSH 登录方式：ssh rmp@101.132.97.146
 
 二、各模块位置
 
-1. 中心首页、研究进展、服务器监控、数据管理
+1. 中心首页、服务器资源、成果进展中心、数据管理
+   首页五个同级入口：服务器资源、成果进展中心、科研进度平台、文献管理、数据管理。
+   成果按“疾病/研究领域 → 研究任务 → 课题 → 证据”展开；数据按“疾病/研究领域 → 资源角色 → 资料卡”展开。
    前端：/var/lib/research-data-center/workspace/static/
-   后端版本：/opt/research-data-center/releases/20261029-gpu-monitor-v6/
+   当前运行后端：/opt/research-data-center/releases/20261111-compute-history-v1/（发布前以 systemctl 核对）
+   工作副本：/var/lib/research-data-center/workspace/
    监听：127.0.0.1:8765
    服务：research-data-center.service
 
@@ -22,6 +41,11 @@ SSH 登录方式：ssh rmp@101.132.97.146
    后端：/data/rmp/research-progress/
    监听：127.0.0.1:8766
    服务：research-weekly-web.service
+   周报仅上传文件，扩展名不限，原件默认上限 20 MiB；日报保持原有在线填写和 Markdown 上传。
+   智能整理：research-weekly-intake.service / .timer，每分钟处理排队原件。
+   团队汇总：research-weekly-summary.service / .timer，每周一 09:00 汇总上一周。
+   当前研究全景模型：DeepSeek V4 Pro / Max；实际收件与汇总参数以 config.server.json 为准。密钥仅在 /etc/research-weekly/environment（0600），通过 systemd EnvironmentFile 注入。
+   原始文件：data/members/<id>/uploads/；正式周报：data/members/<id>/reports/；状态与团队汇总分开统计。
 
 3. 文献管理
    当前网页：/data/rmp/unified-platform/site/papers/
@@ -45,7 +69,8 @@ SSH 登录方式：ssh rmp@101.132.97.146
 
 四、验收与数据保留
 
-验收首页、/#research、/api/platform/research、13 个合作机构 Logo、三个源码包下载、/progress/、/papers/，以及监控、数据列表、姓名登记和日报提交。不能只确认首页能打开。研究成果为人工审核快照，不提供公网推理。
+验收首页五个同级入口、/#research 疾病与任务手风琴、/api/platform/research、13 个合作机构 Logo、三个源码包下载、/progress/、/papers/，以及 GPU 监控、10 类数据导览、229 条登记、姓名登记和日报提交。不能只确认首页能打开。研究成果为人工审核快照，不提供公网推理。
+MiDasheng autonomous 交付已整理至 /data/share/models/unconfirmed/midasheng-autonomous-20261030，原 public/delivery 保留兼容软链；回执为 data/public-migration.json。飞书“公司数据与申请台账”已登记目标路径、数量、摘要和验证边界。运行中、无权限或空目录项目仍延期，不在本次发布中强行迁移。
 更新程序时保留生产配置、数据库及已有资料。主要数据位置为：
 公共资源：/data/share/datasets/ 和 /data/share/models/
 进度记录：/data/rmp/research-progress/data/

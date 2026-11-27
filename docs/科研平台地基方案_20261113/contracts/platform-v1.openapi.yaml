@@ -1,0 +1,5098 @@
+openapi: 3.1.0
+info:
+  title: 科研管理平台目标接口契约
+  version: 1.0.0-proposed
+  description: 2026-11-13方案设计。所有 /api/v1 路由均为待实现目标，不表示当前服务器已部署。现有接口另见 legacy-live.openapi.json。默认单主协调器，应用数据库在101本地盘；跨中心只通过受认证接口写入。
+servers:
+- url: https://rmp.wuwangwo.top/api/v1
+  description: 规划命名空间 尚未上线
+x-implementation-status: planned
+security:
+- sessionCookie: []
+- serviceBearer: []
+paths:
+  /me:
+    get:
+      summary: 当前认证身份与项目角色
+      operationId: get_me
+      tags:
+      - me
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters: []
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: &id001
+                type: string
+                description: 稳定不透明标识 不从路径或姓名派生
+                minLength: 3
+                maxLength: 128
+                pattern: ^[A-Za-z0-9._:-]+$
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+        '400': &id002
+          description: 参数或状态转换无效
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401': &id003
+          description: 未认证
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '403': &id004
+          description: 项目角色或用途授权不足
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '404': &id005
+          description: 不可见或不存在
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '409': &id006
+          description: 幂等冲突 内容漂移或版本目标冲突
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '412': &id007
+          description: If-Match 版本不匹配
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '413': &id008
+          description: 原件超过限制
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422': &id009
+          description: 业务校验或发布门禁未通过
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '428': &id010
+          description: 缺少 If-Match
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '429': &id011
+          description: 限流
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '503': &id012
+          description: 依赖 挂载或容量不可用
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /projects:
+    get:
+      summary: 查询可见课题
+      operationId: get_projects
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 建立课题与验收基线
+      operationId: post_projects
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: project_owner
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+  /projects/{project_id}:
+    get:
+      summary: 读取课题
+      operationId: get_projects_project_id
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    patch:
+      summary: 修订课题信息
+      operationId: patch_projects_project_id
+      tags:
+      - projects
+      description: 目标日期变更保留旧基线 不静默重算历史进度。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: project_owner
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectPatch'
+  /projects/{project_id}/milestones:
+    get:
+      summary: 读取里程碑
+      operationId: get_projects_project_id_milestones
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MilestoneList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 建立里程碑
+      operationId: post_projects_project_id_milestones
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: project_owner
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MilestoneCreate'
+  /milestones/{milestone_id}/decisions:
+    post:
+      summary: 独立审核里程碑
+      operationId: post_milestones_milestone_id_decisions
+      tags:
+      - milestones
+      description: 审核者不得是成果提交者 waiver 需要课题负责人核准并生成新基线 accepted 必须满足验收项及可访问证据。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: reviewer
+      parameters:
+      - name: milestone_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Decision'
+  /milestones/{milestone_id}:
+    get:
+      summary: 读取里程碑及当前修订
+      operationId: get_milestones_milestone_id
+      tags:
+      - milestones
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: milestone_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /projects/{project_id}/tasks:
+    get:
+      summary: 读取任务及依赖
+      operationId: get_projects_project_id_tasks
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 分配可验收任务
+      operationId: post_projects_project_id_tasks
+      tags:
+      - projects
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: project_owner
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+  /tasks/{task_id}:
+    patch:
+      summary: 更新任务状态和证据
+      operationId: patch_tasks_task_id
+      tags:
+      - tasks
+      description: accepted 只允许独立 reviewer 与验收证据 取消任务需课题负责人决定并保留基线变更。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: task_owner
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskPatch'
+    get:
+      summary: 读取任务及当前修订
+      operationId: get_tasks_task_id
+      tags:
+      - tasks
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /blockers:
+    get:
+      summary: 读取可见阻塞
+      operationId: get_blockers
+      tags:
+      - blockers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: project_id
+        in: query
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockerList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 登记阻塞与解阻责任人
+      operationId: post_blockers
+      tags:
+      - blockers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blocker'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockerCreate'
+  /blockers/{blocker_id}:
+    patch:
+      summary: 处置阻塞
+      operationId: patch_blockers_blocker_id
+      tags:
+      - blockers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: blocker_owner
+      parameters:
+      - name: blocker_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blocker'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockerPatch'
+  /resources:
+    get:
+      summary: 检索已确认逻辑资源
+      operationId: get_resources
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: kind
+        in: query
+        schema: &id028
+          type: string
+          enum:
+          - dataset
+          - model
+          - feature
+          - annotation
+          - code
+          - evaluation
+          - collection
+      - name: domain_id
+        in: query
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 确认逻辑资源身份
+      operationId: post_resources
+      tags:
+      - resources
+      description: 不将 registry_id 直接改名为 resource_id 候选归并必须携带证据。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceCreate'
+  /resources/{resource_id}:
+    get:
+      summary: 读取资源
+      operationId: get_resources_resource_id
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    patch:
+      summary: 更正资源说明
+      operationId: patch_resources_resource_id
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePatch'
+  /resources/{resource_id}/versions:
+    get:
+      summary: 读取内容版本
+      operationId: get_resources_resource_id_versions
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 登记版本草稿
+      operationId: post_resources_resource_id_versions
+      tags:
+      - resources
+      description: 同 resource_id/version 唯一 仅创建草稿 不触发复制或发布。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseDraft'
+  /resources/{resource_id}/versions/{version}:
+    get:
+      summary: 读取不可变版本及元数据修订
+      operationId: get_resources_resource_id_versions_version
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - name: version
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /resources/{resource_id}/versions/{version}/metadata:
+    patch:
+      summary: 修订版本说明并保留内容摘要
+      operationId: patch_resources_resource_id_versions_version_metadata
+      tags:
+      - resources
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - name: version
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseMetadataPatch'
+  /resources/{resource_id}/versions/{version}/decisions:
+    post:
+      summary: 审核科研可用版本或撤回可用标记
+      operationId: post_resources_resource_id_versions_version_decisions
+      tags:
+      - resources
+      description: 与增补物理发布分开；release需正式资料卡、质量与用途依据及已有内容回执，独立审核者不能为提交者；withdraw保留历史和原件，不删除文件。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: resource_reviewer
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - name: version
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseDecision'
+  /resources/{resource_id}/versions/{version}/locations:
+    get:
+      summary: 按用途授权读取存储位置
+      operationId: get_resources_resource_id_versions_version_locations
+      tags:
+      - resources
+      description: 用途和主体授权通过才返回私有 path 位置可达性不代表内容使用权。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema: *id001
+      - name: version
+        in: path
+        required: true
+        schema: *id001
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: project_id
+        in: query
+        schema: *id001
+      - name: purpose
+        in: query
+        schema: &id054
+          type: string
+          enum:
+          - academic_research
+          - internal_research
+          - commercial
+          - redistribution
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /locations:
+    post:
+      summary: 登记受控存储位置
+      operationId: post_locations
+      tags:
+      - locations
+      description: 只登记位置关系 不授予读取许可 不更改文件权限。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationCreate'
+  /registration-links:
+    post:
+      summary: 将旧台账关联到资源
+      operationId: post_registration_links
+      tags:
+      - registration-links
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: data_steward
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationLink'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationLink'
+  /submissions:
+    post:
+      summary: 接手已准备好的增补目录
+      operationId: post_submissions
+      tags:
+      - submissions
+      description: 调用现有受控协调器 保留协议2.0 READY和摘要语义 不从任意服务器绝对路径拉取。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: contributor
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '202':
+          description: 已接收异步操作 不是发布成功
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+            Location:
+              schema:
+                type: string
+                description: 操作查询地址 /api/v1/operations/{operation_id}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionRegister'
+  /submissions/{submission_id}:
+    get:
+      summary: 读取增补回执与当前状态
+      operationId: get_submissions_submission_id
+      tags:
+      - submissions
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: member
+      parameters:
+      - name: submission_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /submissions/{submission_id}/verify:
+    post:
+      summary: 重验未发布提交
+      operationId: post_submissions_submission_id_verify
+      tags:
+      - submissions
+      description: 重验清除未发布计划及审批 publishing/published 禁止重验。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: data_steward
+      parameters:
+      - name: submission_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '202':
+          description: 已接收异步操作 不是发布成功
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+            Location:
+              schema:
+                type: string
+                description: 操作查询地址 /api/v1/operations/{operation_id}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /submissions/{submission_id}/plans:
+    post:
+      summary: 生成确定目标的不可变计划
+      operationId: post_submissions_submission_id_plans
+      tags:
+      - submissions
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: data_steward
+      parameters:
+      - name: submission_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanCreate'
+  /submissions/{submission_id}/approvals:
+    post:
+      summary: 批准精确内容与计划
+      operationId: post_submissions_submission_id_approvals
+      tags:
+      - submissions
+      description: 批准者与提交者分离 审批绑定摘要 目标 版本 policy_revision 不授予外发权限。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: data_steward
+      parameters:
+      - name: submission_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalCreate'
+  /submissions/{submission_id}/publish:
+    post:
+      summary: 执行已批准计划
+      operationId: post_submissions_submission_id_publish
+      tags:
+      - submissions
+      description: 执行前复核摘要 授权 存储挂载 容量预算 与目标唯一性 中断按不可变回执对账。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: publisher_service
+      parameters:
+      - name: submission_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '202':
+          description: 已接收异步操作 不是发布成功
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+            Location:
+              schema:
+                type: string
+                description: 操作查询地址 /api/v1/operations/{operation_id}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishRequest'
+  /operations/{operation_id}:
+    get:
+      summary: 查询异步操作
+      operationId: get_operations_operation_id
+      tags:
+      - operations
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: member
+      parameters:
+      - name: operation_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /access-grants:
+    get:
+      summary: 查询本人或管理范围内用途授权
+      operationId: get_access_grants
+      tags:
+      - access-grants
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 申请具名主体和用途的访问
+      operationId: post_access_grants
+      tags:
+      - access-grants
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grant'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantRequest'
+  /access-grants/{grant_id}/decisions:
+    post:
+      summary: 授权 拒绝或撤销
+      operationId: post_access_grants_grant_id_decisions
+      tags:
+      - access-grants
+      description: 需要原始许可依据 应用授权不会自动改变 Unix 权限 权限配置另记执行回执。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: rights_reviewer
+      parameters:
+      - name: grant_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grant'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantDecision'
+  /experiments:
+    post:
+      summary: 预登记实验协议
+      operationId: post_experiments
+      tags:
+      - experiments
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: researcher
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperimentCreate'
+  /runs:
+    post:
+      summary: 登记一次可追溯运行
+      operationId: post_runs
+      tags:
+      - runs
+      description: 检查所有输入版本对该研究者及项目用途有效 不自动启动训练。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: researcher
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunCreate'
+  /runs/{run_id}:
+    get:
+      summary: 读取运行状态与输入
+      operationId: get_runs_run_id
+      tags:
+      - runs
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: run_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /runs/{run_id}/finalize:
+    post:
+      summary: 封存运行结果和局限
+      operationId: post_runs_run_id_finalize
+      tags:
+      - runs
+      description: 失败和负结果同样可封存 不允许把开发集选模指标标为独立测试。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: run_owner
+      parameters:
+      - name: run_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunFinalize'
+  /evidence:
+    post:
+      summary: 登记已存在证据定位和摘要
+      operationId: post_evidence
+      tags:
+      - evidence
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evidence'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceCreate'
+  /evidence/{evidence_id}:
+    get:
+      summary: 读取可见证据元数据
+      operationId: get_evidence_evidence_id
+      tags:
+      - evidence
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: evidence_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evidence'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /papers:
+    get:
+      summary: 检索文献投影
+      operationId: get_papers
+      tags:
+      - papers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: q
+        in: query
+        schema:
+          type: string
+          maxLength: 500
+      - name: state
+        in: query
+        schema: &id066
+          type: string
+          enum:
+          - bibliography
+          - fulltext_available
+          - reading_draft
+          - reviewed
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaperList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /papers/{paper_id}:
+    get:
+      summary: 读取文献及原文状态
+      operationId: get_papers_paper_id
+      tags:
+      - papers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: paper_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paper'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /paper-links:
+    post:
+      summary: 关联文献与课题实验
+      operationId: post_paper_links
+      tags:
+      - paper-links
+      description: 论文原件和笔记仍由文献库维护 关联成功不表示复现完成。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaperLink'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaperLink'
+  /daily-reports:
+    post:
+      summary: 提交本人日报
+      operationId: post_daily_reports
+      tags:
+      - daily-reports
+      description: author 从认证身份取得 同人同日相同摘要重放 不同内容走审计更正而非覆盖。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DailyCreate'
+  /reports/uploads:
+    post:
+      summary: 上传本人周报原件
+      operationId: post_reports_uploads
+      tags:
+      - reports
+      description: 仅 multipart 文件上传 保留现有20 MiB上限 文件不执行 不自动接受模型结论 原件保存后201 解析状态另查。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                week:
+                  type: string
+                  pattern: ^[0-9]{4}-W[0-9]{2}$
+                file:
+                  type: string
+                  format: binary
+              required:
+              - week
+              - file
+  /reports/{report_id}:
+    get:
+      summary: 读取本人或获准范围的报告状态
+      operationId: get_reports_report_id
+      tags:
+      - reports
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: report_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /reports/{report_id}/confirm:
+    post:
+      summary: 本人确认报告提取与证据关联
+      operationId: post_reports_report_id_confirm
+      tags:
+      - reports
+      description: 确认报告不直接修改任务里程碑状态 必须走任务和验收流程。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: report_author
+      parameters:
+      - name: report_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportConfirm'
+  /progress/overview:
+    get:
+      summary: 读取验收进度与风险
+      operationId: get_progress_overview
+      tags:
+      - progress
+      description: 百分比只按当前基线的已验收里程碑权重计算 自报 任务活跃度 日报篇数不代替验收。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: project_id
+        in: query
+        schema: *id001
+      - name: as_of
+        in: query
+        schema: &id013
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressOverview'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /servers:
+    get:
+      summary: 读取当前纳管范围
+      operationId: get_servers
+      tags:
+      - servers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /servers/{server_id}/metrics:
+    get:
+      summary: 读取带时间与缺测标志的快照
+      operationId: get_servers_server_id_metrics
+      tags:
+      - servers
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: server_id
+        in: path
+        required: true
+        schema: *id001
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerMetrics'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /compute-reports:
+    get:
+      summary: 读取有覆盖率的周期资源报告
+      operationId: get_compute_reports
+      tags:
+      - compute-reports
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: server_id
+        in: query
+        schema: *id001
+      - name: start
+        in: query
+        schema: &id015
+          type: string
+          format: date
+      - name: kind
+        in: query
+        schema:
+          type: string
+          enum:
+          - week
+          - month
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeReportList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+  /reservations:
+    get:
+      summary: 查询算力预约
+      operationId: get_reservations
+      tags:
+      - reservations
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: member
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+    post:
+      summary: 申请算力时段与预算
+      operationId: post_reservations
+      tags:
+      - reservations
+      description: 预约是管理记录 不自动启动 杀死 或抢占进程。 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: member
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '201':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationCreate'
+  /reservations/{reservation_id}/decisions:
+    post:
+      summary: 管理员处理预约
+      operationId: post_reservations_reservation_id_decisions
+      tags:
+      - reservations
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P2
+      x-required-permission: compute_admin
+      parameters:
+      - name: reservation_id
+        in: path
+        required: true
+        schema: *id001
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/CsrfToken'
+      - $ref: '#/components/parameters/IfMatch'
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDecision'
+  /audit-events:
+    get:
+      summary: 读取权限范围内审计事件
+      operationId: get_audit_events
+      tags:
+      - audit-events
+      description: 此接口为目标契约 尚未部署。
+      x-implementation-status: planned
+      x-phase: P1
+      x-required-permission: auditor
+      parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      - name: aggregate_id
+        in: query
+        schema: *id001
+      - name: since
+        in: query
+        schema: *id013
+      responses:
+        '200':
+          description: 成功 首次创建为201 同幂等请求重放原状态码与原响应
+          headers:
+            X-Request-Id:
+              schema: *id001
+            ETag:
+              schema:
+                type: string
+                description: 强 ETag 对应当前修订号
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditEventList'
+        '400': *id002
+        '401': *id003
+        '403': *id004
+        '404': *id005
+        '409': *id006
+        '412': *id007
+        '413': *id008
+        '422': *id009
+        '428': *id010
+        '429': *id011
+        '503': *id012
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: rmp_session
+      description: 目标统一具名会话 Secure HttpOnly SameSite；与当前统一入口共享口令区分
+    serviceBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 目标服务账号 短时效 audience与最小scope 不使用共享管理员口令
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 8
+        maxLength: 128
+      description: 主体+方法+规范路由+键唯一；保存请求体摘要与原响应至少7天 同键异体409
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 1
+      description: 强ETag 例如 "rev-3" 变更前校验 缺失428 冲突412
+    CsrfToken:
+      name: X-CSRF-Token
+      in: header
+      required: false
+      schema:
+        type: string
+        minLength: 16
+      description: Cookie写请求必须；Bearer服务调用不要求 请求来源仍需校验
+  schemas:
+    Problem:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          format: uri-reference
+        title: &id014
+          type: string
+          minLength: 1
+          maxLength: 12000
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+        detail: *id014
+        instance:
+          type: string
+          format: uri-reference
+        code:
+          type: string
+          enum:
+          - INVALID_ARGUMENT
+          - UNAUTHENTICATED
+          - FORBIDDEN
+          - NOT_FOUND
+          - IDEMPOTENCY_CONFLICT
+          - VERSION_CONFLICT
+          - PRECONDITION_REQUIRED
+          - POLICY_BLOCKED
+          - MOUNT_UNAVAILABLE
+          - CAPACITY_INSUFFICIENT
+          - CONTENT_DRIFT
+          - GRANT_REQUIRED
+          - DEPENDENCY_UNAVAILABLE
+          - RATE_LIMITED
+        request_id: *id001
+        retryable:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              field: *id014
+              reason: *id014
+            required:
+            - field
+            - reason
+      required:
+      - type
+      - title
+      - status
+      - code
+      - request_id
+      - retryable
+    EvidenceRef:
+      type: object
+      additionalProperties: false
+      properties:
+        evidence_id: *id001
+        relation:
+          type: string
+          enum:
+          - supports
+          - refutes
+          - context
+          - input
+          - output
+          - approval
+      required:
+      - evidence_id
+      - relation
+    ResourceVersionRef:
+      type: object
+      additionalProperties: false
+      properties:
+        resource_id: *id001
+        version:
+          type: string
+          minLength: 1
+          maxLength: 80
+        manifest_sha256: &id033
+          type: string
+          description: 原始文件字节的小写 SHA256
+          pattern: ^[a-f0-9]{64}$
+      required:
+      - resource_id
+      - version
+      - manifest_sha256
+    Actor:
+      type: object
+      additionalProperties: false
+      properties:
+        user_id: *id001
+        display_name: *id014
+        roles:
+          type: array
+          items:
+            type: string
+        project_ids:
+          type: array
+          items: *id001
+      required:
+      - user_id
+      - display_name
+      - roles
+      - project_ids
+    ProjectCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        title: *id014
+        research_question: *id014
+        hypothesis: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        success_criteria: &id016
+          type: array
+          items: *id014
+        stop_criteria: &id017
+          type: array
+          items: *id014
+        target_date: *id015
+        domain_ids: &id018
+          type: array
+          items: *id001
+      required:
+      - title
+      - research_question
+      - hypothesis
+      - owner_id
+      - reviewer_id
+      - success_criteria
+      - stop_criteria
+      - target_date
+    ProjectPatch:
+      type: object
+      additionalProperties: false
+      properties:
+        title: *id014
+        hypothesis: *id014
+        reviewer_id: *id001
+        target_date: *id015
+        change_reason: *id014
+      required:
+      - change_reason
+    Project:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        title: *id014
+        research_question: *id014
+        hypothesis: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        success_criteria: *id016
+        stop_criteria: *id017
+        target_date: *id015
+        domain_ids: *id018
+        status:
+          type: string
+          enum:
+          - draft
+          - active
+          - paused
+          - closed
+        baseline_revision:
+          type: integer
+          minimum: 1
+      required:
+      - id
+      - revision
+      - title
+      - owner_id
+      - reviewer_id
+      - status
+      - baseline_revision
+      - created_at
+      - updated_at
+    MilestoneCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        title: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        due_date: *id015
+        weight: &id019
+          type: number
+          exclusiveMinimum: 0
+        acceptance_criteria: &id020
+          type: array
+          items: *id014
+        depends_on: &id021
+          type: array
+          items: *id001
+      required:
+      - title
+      - owner_id
+      - reviewer_id
+      - due_date
+      - weight
+      - acceptance_criteria
+    Milestone:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        title: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        due_date: *id015
+        weight: *id019
+        acceptance_criteria: *id020
+        depends_on: *id021
+        project_id: *id001
+        state:
+          type: string
+          enum:
+          - planned
+          - active
+          - in_review
+          - accepted
+          - blocked
+          - waived
+        accepted_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        decision_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - revision
+      - project_id
+      - title
+      - state
+      - weight
+      - acceptance_criteria
+      - created_at
+      - updated_at
+    Decision:
+      type: object
+      additionalProperties: false
+      properties:
+        decision:
+          type: string
+          enum:
+          - accept
+          - request_changes
+          - reject
+          - waive
+        reason: *id014
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        baseline_revision:
+          type: integer
+          minimum: 1
+      required:
+      - decision
+      - reason
+      - evidence
+      - baseline_revision
+    TaskCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        milestone_id: *id001
+        title: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        due_date: *id015
+        acceptance_criteria: &id022
+          type: array
+          items: *id014
+        depends_on: &id023
+          type: array
+          items: *id001
+        planned_weight: &id024
+          type: number
+          exclusiveMinimum: 0
+      required:
+      - milestone_id
+      - title
+      - owner_id
+      - due_date
+      - acceptance_criteria
+      - planned_weight
+    TaskPatch:
+      type: object
+      additionalProperties: false
+      properties:
+        state: &id025
+          type: string
+          enum:
+          - todo
+          - active
+          - in_review
+          - accepted
+          - blocked
+          - cancelled
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        blocker_id:
+          type:
+          - string
+          - 'null'
+        change_reason: *id014
+      required:
+      - change_reason
+    Task:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        milestone_id: *id001
+        title: *id014
+        owner_id: *id001
+        reviewer_id: *id001
+        due_date: *id015
+        acceptance_criteria: *id022
+        depends_on: *id023
+        planned_weight: *id024
+        project_id: *id001
+        state: *id025
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        blocker_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - revision
+      - project_id
+      - milestone_id
+      - title
+      - owner_id
+      - state
+      - created_at
+      - updated_at
+    BlockerCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        project_id: *id001
+        task_id: &id026
+          type:
+          - string
+          - 'null'
+        title: *id014
+        owner_id: *id001
+        unblock_owner_id: *id001
+        severity: &id027
+          type: string
+          enum:
+          - critical
+          - high
+          - normal
+        next_action: *id014
+        next_check_at: *id013
+      required:
+      - project_id
+      - title
+      - owner_id
+      - unblock_owner_id
+      - severity
+      - next_action
+      - next_check_at
+    BlockerPatch:
+      type: object
+      additionalProperties: false
+      properties:
+        state:
+          type: string
+          enum:
+          - open
+          - resolved
+          - accepted_risk
+        resolution: *id014
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        next_check_at: *id013
+      required:
+      - state
+      - resolution
+    Blocker:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        project_id: *id001
+        task_id: *id026
+        title: *id014
+        owner_id: *id001
+        unblock_owner_id: *id001
+        severity: *id027
+        next_action: *id014
+        next_check_at: *id013
+        state:
+          type: string
+          enum:
+          - open
+          - resolved
+          - accepted_risk
+      required:
+      - id
+      - revision
+      - project_id
+      - title
+      - owner_id
+      - unblock_owner_id
+      - state
+      - created_at
+      - updated_at
+    ResourceCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        title: *id014
+        kind: *id028
+        maintainer_id: *id001
+        domain_ids: &id029
+          type: array
+          items: *id001
+        task_tags: &id030
+          type: array
+          items: *id014
+        source_record_refs: &id031
+          type: array
+          items: *id001
+        identity_basis: *id014
+        evidence: &id032
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - title
+      - kind
+      - maintainer_id
+      - identity_basis
+      - evidence
+    Resource:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        title: *id014
+        kind: *id028
+        maintainer_id: *id001
+        domain_ids: *id029
+        task_tags: *id030
+        source_record_refs: *id031
+        identity_basis: *id014
+        evidence: *id032
+        identity_state:
+          type: string
+          enum:
+          - confirmed
+          - disputed
+          - retired
+        aliases:
+          type: array
+          items: *id001
+      required:
+      - id
+      - revision
+      - title
+      - kind
+      - maintainer_id
+      - identity_state
+      - created_at
+      - updated_at
+    ResourcePatch:
+      type: object
+      additionalProperties: false
+      properties:
+        title: *id014
+        maintainer_id: *id001
+        domain_ids:
+          type: array
+          items: *id001
+        task_tags:
+          type: array
+          items: *id014
+        change_reason: *id014
+      required:
+      - change_reason
+    DataProfile:
+      type: object
+      additionalProperties: false
+      properties:
+        modalities:
+          type: array
+          items:
+            type: string
+            enum:
+            - audio
+            - video
+            - text
+            - tabular
+            - physiological
+        languages:
+          type: array
+          items: *id014
+        task_definitions:
+          type: array
+          items: *id014
+        record_schema_evidence_id: *id001
+        annotation_schema_evidence_id:
+          type:
+          - string
+          - 'null'
+        participant_key_policy: *id014
+        split_unit:
+          type: string
+          enum:
+          - participant
+          - session
+          - recording
+          - source_group
+          - not_defined
+        quality_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        known_issues:
+          type: array
+          items: *id014
+      required:
+      - modalities
+      - languages
+      - task_definitions
+      - record_schema_evidence_id
+      - annotation_schema_evidence_id
+      - participant_key_policy
+      - split_unit
+      - quality_evidence
+      - known_issues
+    ModelProfile:
+      type: object
+      additionalProperties: false
+      properties:
+        architecture: *id014
+        input_contract_evidence_id: *id001
+        output_contract_evidence_id: *id001
+        base_model_versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceVersionRef'
+        training_run_ids:
+          type: array
+          items: *id001
+        evaluation_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        intended_use: *id014
+        limitations: *id014
+      required:
+      - architecture
+      - input_contract_evidence_id
+      - output_contract_evidence_id
+      - base_model_versions
+      - training_run_ids
+      - evaluation_evidence
+      - intended_use
+      - limitations
+    ReleaseMetadataPatch:
+      type: object
+      additionalProperties: false
+      properties:
+        summary: *id014
+        usage_notes: *id014
+        rights_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        change_reason: *id014
+      required:
+      - change_reason
+      description: 仅修改说明 产生metadata_revision和新元数据摘要 不改变内容清单 数据 标签 划分或权重变动必须新内容版本
+    LocationCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        resource_id: *id001
+        version: *id014
+        server_id: *id001
+        storage_id: *id001
+        relative_path:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        role:
+          type: string
+          enum:
+          - canonical
+          - replica
+          - cache
+          - legacy_alias
+          - private_origin
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - resource_id
+      - version
+      - server_id
+      - storage_id
+      - relative_path
+      - role
+      - evidence
+      description: 仅元数据登记 相对路径须在预登记storage_id根内解析 拒绝..绝对路径及跨界链接 不复制数据
+    ReleaseDraft:
+      type: object
+      additionalProperties: false
+      properties:
+        version: &id034
+          type: string
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$
+        upstream_revision: &id035
+          type:
+          - string
+          - 'null'
+        manifest_sha256: *id033
+        file_count: &id036
+          type: integer
+          minimum: 0
+        total_bytes: &id037
+          type: integer
+          minimum: 0
+        subject_count: &id038
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        recording_count: &id039
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        duration_seconds: &id040
+          type:
+          - number
+          - 'null'
+          minimum: 0
+        count_scope: *id014
+        parents: &id041
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceVersionRef'
+        split_manifest_sha256: &id042
+          type:
+          - string
+          - 'null'
+          pattern: ^[a-f0-9]{64}$
+        license_state: &id043
+          type: string
+          enum:
+          - known
+          - unknown
+          - restricted
+        license_id: &id044
+          type:
+          - string
+          - 'null'
+        rights_evidence: &id045
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        metadata_revision: &id046
+          type: integer
+          minimum: 1
+        data_profile: &id047
+          oneOf:
+          - $ref: '#/components/schemas/DataProfile'
+          - type: 'null'
+        model_profile: &id048
+          oneOf:
+          - $ref: '#/components/schemas/ModelProfile'
+          - type: 'null'
+      required:
+      - version
+      - manifest_sha256
+      - file_count
+      - total_bytes
+      - subject_count
+      - recording_count
+      - count_scope
+      - parents
+      - license_state
+      - rights_evidence
+      - metadata_revision
+    Release:
+      type: object
+      additionalProperties: false
+      properties:
+        resource_id: *id001
+        version: *id034
+        upstream_revision: *id035
+        manifest_sha256: *id033
+        file_count: *id036
+        total_bytes: *id037
+        subject_count: *id038
+        recording_count: *id039
+        duration_seconds: *id040
+        count_scope: *id014
+        parents: *id041
+        split_manifest_sha256: *id042
+        license_state: *id043
+        license_id: *id044
+        rights_evidence: *id045
+        metadata_revision: *id046
+        data_profile: *id047
+        model_profile: *id048
+        state:
+          type: string
+          enum:
+          - draft
+          - review_required
+          - released
+          - withdrawn
+        published_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        publication_receipt_sha256:
+          type:
+          - string
+          - 'null'
+          pattern: ^[a-f0-9]{64}$
+      required:
+      - resource_id
+      - version
+      - manifest_sha256
+      - state
+      - metadata_revision
+      - file_count
+      - total_bytes
+      - count_scope
+    ReleaseDecision:
+      type: object
+      additionalProperties: false
+      properties:
+        decision:
+          type: string
+          enum:
+          - release
+          - request_changes
+          - withdraw
+        manifest_sha256: *id033
+        metadata_revision:
+          type: integer
+          minimum: 1
+        publication_receipt_sha256:
+          type:
+          - string
+          - 'null'
+          pattern: ^[a-f0-9]{64}$
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        reason: *id014
+      required:
+      - decision
+      - manifest_sha256
+      - metadata_revision
+      - publication_receipt_sha256
+      - evidence
+      - reason
+      description: 逻辑科研版本审核 与增补payload发布分开 不执行复制或删除 release时必须已有可核验发布回执及完整资料卡
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        location_id: *id001
+        resource_id: *id001
+        version: *id014
+        server_id: *id001
+        storage_id: *id001
+        path:
+          type:
+          - string
+          - 'null'
+          description: 仅向经授权用户返回 未获准时为 null
+        role:
+          type: string
+          enum:
+          - canonical
+          - replica
+          - cache
+          - legacy_alias
+          - private_origin
+        observed_at: *id013
+        access_state:
+          type: string
+          enum:
+          - readable
+          - denied
+          - missing
+          - unknown
+        content_verified_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        verified_manifest_sha256:
+          type:
+          - string
+          - 'null'
+          pattern: ^[a-f0-9]{64}$
+      required:
+      - location_id
+      - resource_id
+      - version
+      - server_id
+      - storage_id
+      - path
+      - role
+      - observed_at
+      - access_state
+    RegistrationLink:
+      type: object
+      additionalProperties: false
+      properties:
+        registry_id: *id001
+        source_system:
+          type: string
+          enum:
+          - portal
+          - feishu
+        source_record_id: *id001
+        resource_id: *id001
+        relation:
+          type: string
+          enum:
+          - same_resource
+          - collection_contains
+          - derived_from
+          - candidate
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - source_system
+      - source_record_id
+      - resource_id
+      - relation
+      - evidence
+    SubmissionRegister:
+      type: object
+      additionalProperties: false
+      properties:
+        incoming_submission_id:
+          type: string
+          pattern: ^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$
+        content_digest: *id033
+        kind:
+          type: string
+          enum:
+          - dataset
+          - model
+        project_id: *id001
+      required:
+      - incoming_submission_id
+      - content_digest
+      - kind
+      - project_id
+      description: 仅注册当前认证账户受控 incoming bucket 中已存在的 READY 不接收任意绝对路径
+    Submission:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        project_id: *id001
+        submitter_id: *id001
+        incoming_submission_id: *id001
+        content_digest: *id033
+        state:
+          type: string
+          enum:
+          - submitted
+          - validating
+          - needs_information
+          - review_required
+          - ready
+          - publishing
+          - published
+          - failed
+        reason_code:
+          type:
+          - string
+          - 'null'
+        plan_id:
+          type:
+          - string
+          - 'null'
+        published_resource:
+          oneOf:
+          - $ref: '#/components/schemas/ResourceVersionRef'
+          - type: 'null'
+      required:
+      - id
+      - revision
+      - project_id
+      - submitter_id
+      - content_digest
+      - state
+      - created_at
+      - updated_at
+    PlanCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        resource_id: *id001
+        version: &id049
+          type: string
+          pattern: ^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$
+        kind: &id050
+          type: string
+          enum:
+          - dataset
+          - model
+        content_digest: *id033
+        policy_revision: *id001
+        metadata_revision: &id051
+          type: integer
+          minimum: 1
+      required:
+      - resource_id
+      - version
+      - kind
+      - content_digest
+      - policy_revision
+      - metadata_revision
+      description: 服务器从白名单根生成目标 managed 路径 用户不能指定文件路径或覆盖策略
+    Plan:
+      type: object
+      additionalProperties: false
+      properties:
+        plan_id: *id001
+        resource_id: *id001
+        version: *id049
+        kind: *id050
+        content_digest: *id033
+        policy_revision: *id001
+        metadata_revision: *id051
+        plan_sha256: *id033
+        estimated_bytes:
+          type: integer
+          minimum: 0
+        validation_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        created_at: *id013
+      required:
+      - plan_id
+      - resource_id
+      - version
+      - kind
+      - content_digest
+      - plan_sha256
+      - policy_revision
+      - metadata_revision
+      - estimated_bytes
+      - created_at
+    ApprovalCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        plan_id: *id001
+        plan_sha256: *id033
+        content_digest: *id033
+        rights_decision: &id052
+          type: string
+          enum:
+          - management_authorized_team_use
+        rights_evidence: &id053
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        reason: *id014
+      required:
+      - plan_id
+      - plan_sha256
+      - content_digest
+      - rights_decision
+      - rights_evidence
+      - reason
+    Approval:
+      type: object
+      additionalProperties: false
+      properties:
+        approval_id: *id001
+        plan_id: *id001
+        plan_sha256: *id033
+        content_digest: *id033
+        rights_decision: *id052
+        rights_evidence: *id053
+        reason: *id014
+        approved_by: *id001
+        approved_at: *id013
+      required:
+      - approval_id
+      - plan_id
+      - plan_sha256
+      - content_digest
+      - rights_decision
+      - approved_by
+      - approved_at
+    PublishRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        plan_id: *id001
+        plan_sha256: *id033
+        approval_id: *id001
+        content_digest: *id033
+      required:
+      - plan_id
+      - plan_sha256
+      - approval_id
+      - content_digest
+    Operation:
+      type: object
+      additionalProperties: false
+      properties:
+        operation_id: *id001
+        kind:
+          type: string
+          enum:
+          - verify_submission
+          - publish_release
+          - parse_report
+        state:
+          type: string
+          enum:
+          - queued
+          - running
+          - succeeded
+          - failed
+          - needs_review
+        resource_id:
+          type:
+          - string
+          - 'null'
+        request_id: *id001
+        created_at: *id013
+        updated_at: *id013
+        result_ref:
+          type:
+          - string
+          - 'null'
+        error:
+          oneOf:
+          - $ref: '#/components/schemas/Problem'
+          - type: 'null'
+      required:
+      - operation_id
+      - kind
+      - state
+      - request_id
+      - created_at
+      - updated_at
+      - result_ref
+      - error
+    GrantRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        resource_id: *id001
+        version: *id014
+        project_id: *id001
+        purpose: *id054
+        requested_actions: &id055
+          type: array
+          items:
+            type: string
+            enum:
+            - metadata.read
+            - content.read
+            - derive
+            - export
+        requested_until: *id013
+        basis_evidence: &id056
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - resource_id
+      - version
+      - project_id
+      - purpose
+      - requested_actions
+      - requested_until
+      - basis_evidence
+    GrantDecision:
+      type: object
+      additionalProperties: false
+      properties:
+        decision:
+          type: string
+          enum:
+          - approve
+          - reject
+          - revoke
+        subject_ids:
+          type: array
+          items: *id001
+        allowed_actions:
+          type: array
+          items:
+            type: string
+            enum:
+            - metadata.read
+            - content.read
+            - derive
+            - export
+        purpose: *id054
+        expires_at: *id013
+        rights_evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        reason: *id014
+      required:
+      - decision
+      - subject_ids
+      - allowed_actions
+      - purpose
+      - expires_at
+      - rights_evidence
+      - reason
+    Grant:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        resource_id: *id001
+        version: *id014
+        project_id: *id001
+        purpose: *id054
+        requested_actions: *id055
+        requested_until: *id013
+        basis_evidence: *id056
+        requester_id: *id001
+        state:
+          type: string
+          enum:
+          - requested
+          - active
+          - rejected
+          - expired
+          - revoked
+        decision:
+          oneOf:
+          - $ref: '#/components/schemas/GrantDecision'
+          - type: 'null'
+      required:
+      - id
+      - revision
+      - resource_id
+      - version
+      - project_id
+      - requester_id
+      - state
+      - created_at
+      - updated_at
+    ExperimentCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        project_id: *id001
+        task_id: *id001
+        hypothesis: *id014
+        protocol: *id014
+        primary_metric: *id014
+        dataset_versions: &id057
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceVersionRef'
+        split_manifest_sha256: *id033
+        evaluation_scope: &id058
+          type: string
+          enum:
+          - train
+          - development
+          - held_out_test
+          - external_test
+        reviewer_id: *id001
+      required:
+      - project_id
+      - task_id
+      - hypothesis
+      - protocol
+      - primary_metric
+      - dataset_versions
+      - split_manifest_sha256
+      - evaluation_scope
+      - reviewer_id
+    Experiment:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        project_id: *id001
+        task_id: *id001
+        hypothesis: *id014
+        protocol: *id014
+        primary_metric: *id014
+        dataset_versions: *id057
+        split_manifest_sha256: *id033
+        evaluation_scope: *id058
+        reviewer_id: *id001
+      required:
+      - id
+      - revision
+      - project_id
+      - task_id
+      - hypothesis
+      - protocol
+      - primary_metric
+      - dataset_versions
+      - split_manifest_sha256
+      - evaluation_scope
+      - reviewer_id
+      - created_at
+      - updated_at
+    RunCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        experiment_id: *id001
+        server_id: *id001
+        git_commit: &id059
+          type: string
+          pattern: ^[a-f0-9]{40,64}$
+        config_sha256: *id033
+        environment_digest: *id014
+        seed: &id060
+          type: integer
+        input_versions: &id061
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceVersionRef'
+        split_manifest_sha256: *id033
+        output_location_id: *id001
+        reservation_id: &id062
+          type:
+          - string
+          - 'null'
+      required:
+      - experiment_id
+      - server_id
+      - git_commit
+      - config_sha256
+      - environment_digest
+      - seed
+      - input_versions
+      - split_manifest_sha256
+      - output_location_id
+    Metric:
+      type: object
+      additionalProperties: false
+      properties:
+        name: *id014
+        value:
+          type: number
+        unit: *id014
+        split:
+          type: string
+          enum:
+          - train
+          - development
+          - held_out_test
+          - external_test
+        n_subjects:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        n_records:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        aggregation: *id014
+        evidence_id: *id001
+      required:
+      - name
+      - value
+      - unit
+      - split
+      - n_subjects
+      - n_records
+      - aggregation
+      - evidence_id
+    RunFinalize:
+      type: object
+      additionalProperties: false
+      properties:
+        state:
+          type: string
+          enum:
+          - succeeded
+          - failed
+          - cancelled
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metric'
+        artifacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceVersionRef'
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        conclusion: *id014
+        limitations: *id014
+      required:
+      - state
+      - metrics
+      - artifacts
+      - evidence
+      - conclusion
+      - limitations
+    Run:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        experiment_id: *id001
+        server_id: *id001
+        git_commit: *id059
+        config_sha256: *id033
+        environment_digest: *id014
+        seed: *id060
+        input_versions: *id061
+        split_manifest_sha256: *id033
+        output_location_id: *id001
+        reservation_id: *id062
+        state:
+          type: string
+          enum:
+          - registered
+          - running
+          - succeeded
+          - failed
+          - cancelled
+        final_result:
+          oneOf:
+          - $ref: '#/components/schemas/RunFinalize'
+          - type: 'null'
+      required:
+      - id
+      - revision
+      - experiment_id
+      - server_id
+      - state
+      - input_versions
+      - created_at
+      - updated_at
+    EvidenceCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        kind: &id063
+          type: string
+          enum:
+          - source_document
+          - manifest
+          - result_table
+          - code_commit
+          - approval
+          - review
+          - publication_receipt
+        title: *id014
+        location_id: &id064
+          type:
+          - string
+          - 'null'
+        content_sha256: *id033
+        source_ref: *id014
+        observed_at: *id013
+        classification: &id065
+          type: string
+          enum:
+          - team
+          - project
+          - restricted
+        summary: *id014
+      required:
+      - kind
+      - title
+      - location_id
+      - content_sha256
+      - source_ref
+      - observed_at
+      - classification
+      - summary
+      description: 外部 URL 仅作为证据定位 不自动抓取 不执行 不接收凭据
+    Evidence:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        kind: *id063
+        title: *id014
+        location_id: *id064
+        content_sha256: *id033
+        source_ref: *id014
+        observed_at: *id013
+        classification: *id065
+        summary: *id014
+        created_by: *id001
+      required:
+      - id
+      - revision
+      - kind
+      - title
+      - content_sha256
+      - observed_at
+      - classification
+      - created_by
+      - created_at
+      - updated_at
+    Paper:
+      type: object
+      additionalProperties: false
+      properties:
+        paper_id: *id001
+        legacy_paper_id: *id001
+        title: *id014
+        doi:
+          type:
+          - string
+          - 'null'
+        state: *id066
+        fulltext_sha256:
+          type:
+          - string
+          - 'null'
+          pattern: ^[a-f0-9]{64}$
+        evidence_ids:
+          type: array
+          items: *id001
+      required:
+      - paper_id
+      - legacy_paper_id
+      - title
+      - state
+      - fulltext_sha256
+    PaperLink:
+      type: object
+      additionalProperties: false
+      properties:
+        paper_id: *id001
+        project_id: *id001
+        experiment_id:
+          type:
+          - string
+          - 'null'
+        relation:
+          type: string
+          enum:
+          - background
+          - method
+          - baseline
+          - dataset_source
+          - reproduced
+          - failed_reproduction
+        note: *id014
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - paper_id
+      - project_id
+      - relation
+      - note
+      - evidence
+    DailyCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        date: *id015
+        project_ids:
+          type: array
+          items: *id001
+        task_ids:
+          type: array
+          items: *id001
+        completed: *id014
+        results_and_evidence: *id014
+        blockers: *id014
+        next_plan: *id014
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+      required:
+      - date
+      - project_ids
+      - task_ids
+      - completed
+      - results_and_evidence
+      - blockers
+      - next_plan
+      - evidence
+    ReportConfirm:
+      type: object
+      additionalProperties: false
+      properties:
+        project_ids:
+          type: array
+          items: *id001
+        task_ids:
+          type: array
+          items: *id001
+        run_ids:
+          type: array
+          items: *id001
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceRef'
+        corrections:
+          type: string
+          maxLength: 12000
+      required:
+      - project_ids
+      - task_ids
+      - run_ids
+      - evidence
+      - corrections
+    Report:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        author_id: *id001
+        kind:
+          type: string
+          enum:
+          - daily
+          - weekly
+        period: *id014
+        original_sha256: *id033
+        state:
+          type: string
+          enum:
+          - uploaded
+          - parsing
+          - needs_review
+          - confirmed
+        extraction:
+          oneOf:
+          - $ref: '#/components/schemas/DailyCreate'
+          - type: 'null'
+        links:
+          oneOf:
+          - $ref: '#/components/schemas/ReportConfirm'
+          - type: 'null'
+      required:
+      - id
+      - revision
+      - author_id
+      - kind
+      - period
+      - original_sha256
+      - state
+      - created_at
+      - updated_at
+    ProgressOverview:
+      type: object
+      additionalProperties: false
+      properties:
+        as_of: *id013
+        project_id:
+          type:
+          - string
+          - 'null'
+        baseline_revision:
+          type: integer
+          minimum: 1
+        accepted_weight:
+          type: number
+          minimum: 0
+        total_weight:
+          type: number
+          exclusiveMinimum: 0
+        accepted_percent:
+          type: number
+          minimum: 0
+          maximum: 100
+        active_blockers:
+          type: integer
+          minimum: 0
+        overdue_milestones:
+          type: integer
+          minimum: 0
+        report_coverage_percent:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+          maximum: 100
+        evidence_coverage_percent:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+          maximum: 100
+        health:
+          type: string
+          enum:
+          - green
+          - amber
+          - red
+          - unknown
+        health_reasons:
+          type: array
+          items: *id014
+        forecast_date:
+          type:
+          - string
+          - 'null'
+          format: date
+        source_observed_at: *id013
+      required:
+      - as_of
+      - project_id
+      - baseline_revision
+      - accepted_weight
+      - total_weight
+      - accepted_percent
+      - active_blockers
+      - overdue_milestones
+      - report_coverage_percent
+      - evidence_coverage_percent
+      - health
+      - health_reasons
+      - source_observed_at
+    Server:
+      type: object
+      additionalProperties: false
+      properties:
+        server_id: *id001
+        display_name: *id014
+        role:
+          type: string
+          enum:
+          - portal_and_compute
+          - compute
+          - external_reference
+        managed:
+          type: boolean
+        observed_at: *id013
+        stale:
+          type: boolean
+        gpu_count:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+      required:
+      - server_id
+      - display_name
+      - role
+      - managed
+      - observed_at
+      - stale
+      - gpu_count
+    GpuMetric:
+      type: object
+      additionalProperties: false
+      properties:
+        gpu_index:
+          type: integer
+          minimum: 0
+        utilization_percent:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+          maximum: 100
+        memory_used_bytes:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        memory_total_bytes:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        run_ids:
+          type: array
+          items: *id001
+      required:
+      - gpu_index
+      - utilization_percent
+      - memory_used_bytes
+      - memory_total_bytes
+      - run_ids
+    ServerMetrics:
+      type: object
+      additionalProperties: false
+      properties:
+        server_id: *id001
+        observed_at: *id013
+        stale:
+          type: boolean
+        gpus:
+          type: array
+          items:
+            $ref: '#/components/schemas/GpuMetric'
+        storage:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              storage_id: *id001
+              used_percent:
+                type:
+                - number
+                - 'null'
+                minimum: 0
+                maximum: 100
+              available_bytes:
+                type:
+                - integer
+                - 'null'
+                minimum: 0
+              capacity_semantics:
+                type: string
+                enum:
+                - filesystem
+                - object_store_unknown
+            required:
+            - storage_id
+            - used_percent
+            - available_bytes
+            - capacity_semantics
+      required:
+      - server_id
+      - observed_at
+      - stale
+      - gpus
+      - storage
+    ComputeReport:
+      type: object
+      additionalProperties: false
+      properties:
+        server_id: *id001
+        period_start: *id015
+        period_end: *id015
+        complete:
+          type: boolean
+        coverage_ratio:
+          type: number
+          minimum: 0
+          maximum: 1
+        observed_gpu_hours:
+          type: number
+          minimum: 0
+        busy_gpu_hours:
+          type: number
+          minimum: 0
+        utilization_rule: *id014
+        missing_intervals:
+          type: integer
+          minimum: 0
+        method_revision: *id001
+      required:
+      - server_id
+      - period_start
+      - period_end
+      - complete
+      - coverage_ratio
+      - observed_gpu_hours
+      - busy_gpu_hours
+      - utilization_rule
+      - missing_intervals
+      - method_revision
+    ReservationCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        project_id: *id001
+        run_intent: *id014
+        server_id: *id001
+        gpu_count: &id067
+          type: integer
+          minimum: 1
+          maximum: 8
+        minimum_memory_bytes: &id068
+          type: integer
+          minimum: 1
+        start_at: *id013
+        end_at: *id013
+        priority: &id069
+          type: string
+          enum:
+          - normal
+          - deadline
+        estimated_output_bytes: &id070
+          type: integer
+          minimum: 0
+      required:
+      - project_id
+      - run_intent
+      - server_id
+      - gpu_count
+      - minimum_memory_bytes
+      - start_at
+      - end_at
+      - priority
+      - estimated_output_bytes
+    Reservation:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *id001
+        revision:
+          type: integer
+          minimum: 1
+        created_at: *id013
+        updated_at: *id013
+        project_id: *id001
+        run_intent: *id014
+        server_id: *id001
+        gpu_count: *id067
+        minimum_memory_bytes: *id068
+        start_at: *id013
+        end_at: *id013
+        priority: *id069
+        estimated_output_bytes: *id070
+        owner_id: *id001
+        state:
+          type: string
+          enum:
+          - requested
+          - approved
+          - rejected
+          - expired
+          - released
+      required:
+      - id
+      - revision
+      - owner_id
+      - project_id
+      - server_id
+      - state
+      - start_at
+      - end_at
+      - created_at
+      - updated_at
+    ReservationDecision:
+      type: object
+      additionalProperties: false
+      properties:
+        decision:
+          type: string
+          enum:
+          - approve
+          - reject
+          - release
+        reason: *id014
+      required:
+      - decision
+      - reason
+    AuditEvent:
+      type: object
+      additionalProperties: false
+      properties:
+        event_id: *id001
+        occurred_at: *id013
+        actor_id: *id001
+        action: *id014
+        aggregate_type: *id014
+        aggregate_id: *id001
+        aggregate_revision:
+          type: integer
+          minimum: 1
+        request_id: *id001
+        outcome:
+          type: string
+          enum:
+          - success
+          - denied
+          - failed
+        evidence_hashes:
+          type: array
+          items: *id033
+      required:
+      - event_id
+      - occurred_at
+      - actor_id
+      - action
+      - aggregate_type
+      - aggregate_id
+      - aggregate_revision
+      - request_id
+      - outcome
+    ProjectList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    MilestoneList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Milestone'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    TaskList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    BlockerList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Blocker'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    ResourceList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    ReleaseList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    LocationList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    GrantList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Grant'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    PaperList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Paper'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    ServerList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Server'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    ComputeReportList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComputeReport'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    ReservationList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of
+    AuditEventList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEvent'
+        next_cursor:
+          type:
+          - string
+          - 'null'
+        as_of: *id013
+      required:
+      - items
+      - next_cursor
+      - as_of

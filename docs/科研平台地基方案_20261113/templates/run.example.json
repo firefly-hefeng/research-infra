@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp-example-001",
+  "server_id": "server-47",
+  "git_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "environment_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "seed": 42,
+  "input_versions": [
+    {
+      "resource_id": "res-example-001",
+      "version": "v1",
+      "manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "split_manifest_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "output_location_id": "loc-example-run-001",
+  "reservation_id": null
+}

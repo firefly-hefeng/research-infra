@@ -8,8 +8,8 @@ import sys
 import tempfile
 import time
 import unittest
-from urllib.error import URLError
-from urllib.request import urlopen
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 from paperlib.import_bundle import import_bundle, validate_bundle
 from paperlib.library import Library, digest
 from test_library import pdf_bytes
@@ -138,7 +138,7 @@ class BundleTests(unittest.TestCase):
         self.assertTrue(json.loads(output)['valid'])
         self.assertFalse(target.exists())
 
-    def test_imported_fulltext_is_public_without_rewriting_provenance(self):
+    def test_imported_fulltext_remains_restricted_after_login(self):
         root = self.base / 'papers'
         import_bundle(Library(root), self.bundle)
         with socket.socket() as sock:
@@ -152,20 +152,27 @@ class BundleTests(unittest.TestCase):
             base = 'http://127.0.0.1:' + str(port)
             for _ in range(60):
                 try:
-                    with urlopen(base + '/api/catalog') as response:
-                        data = json.load(response)
+                    with urlopen(base + '/') as response:
+                        self.assertEqual(response.status, 200)
                     break
                 except URLError:
                     time.sleep(.05)
             else:
                 self.fail('Preview server did not start')
-            paper = data['papers'][0]
+            login = Request(base + '/api/login', data=json.dumps({'password':'management-password'}).encode(),
+                            headers={'Content-Type':'application/json', 'X-Paper-Library':'1'})
+            with urlopen(login) as response:
+                headers = {'Cookie': response.headers['Set-Cookie'].split(';')[0]}
+            with urlopen(Request(base + '/api/catalog', headers=headers)) as response:
+                paper = json.load(response)['papers'][0]
             self.assertIsNone(paper['card'])
             self.assertEqual(paper['bibliography']['review_state'], 'bibliography_only')
-            self.assertTrue(paper['fulltext_available'])
-            with urlopen(base + '/api/papers/' + self.ident + '/pdf') as response:
-                self.assertEqual(response.status, 200)
-                self.assertEqual(response.read(), pdf_bytes())
+            self.assertFalse(paper['fulltext_available'])
+            self.assertEqual(paper['bibliography']['fulltext_policy'], 'restricted')
+            for request_headers, expected in [({},401), (headers,403), ({**headers,'Range':'bytes=0-4'},403)]:
+                with self.assertRaises(HTTPError) as error:
+                    urlopen(Request(base + '/api/papers/' + self.ident + '/pdf', headers=request_headers))
+                self.assertEqual(error.exception.code, expected)
             # Historical import metadata remains an accurate record of the import.
             stored = Library(root).record(self.ident)
             self.assertEqual(stored['bibliography']['fulltext_policy'], 'restricted')

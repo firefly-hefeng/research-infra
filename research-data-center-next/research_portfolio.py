@@ -114,6 +114,8 @@ def model(raw, root):
         raise ValueError("invalid_research_model")
     return {
         "id": text(raw.get("id"), 100), "name": text(raw.get("name"), 200),
+        "disease_category": text(raw.get("disease_category"), 100),
+        "task_category": text(raw.get("task_category"), 100), "sort_order": raw.get("sort_order") if type(raw.get("sort_order")) is int else 999,
         "task": text(raw.get("task"), 300), "status": raw["status"],
         "status_label": text(raw.get("status_label"), 100), "recommended": raw.get("recommended") is True,
         "summary": text(raw.get("summary")), "report": report(raw.get("report")),
@@ -136,6 +138,8 @@ def track(raw):
         raise ValueError("invalid_research_track")
     return {
         "id": text(raw.get("id"), 100), "name": text(raw.get("name"), 200), "status": raw["status"],
+        "disease_category": text(raw.get("disease_category"), 100),
+        "task_category": text(raw.get("task_category"), 100), "sort_order": raw.get("sort_order") if type(raw.get("sort_order")) is int else 999,
         "status_label": text(raw.get("status_label"), 100), "summary": text(raw.get("summary")),
         "report": report(raw.get("report")), "path": server_path(raw.get("path")), "next_step": text(raw.get("next_step")),
         "milestones": [milestone(row) for row in entries(raw.get("milestones"), 12)],

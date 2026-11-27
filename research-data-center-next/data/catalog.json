@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-27T08:25:26.786190+00:00",
+  "generated_at": "2026-10-31T00:00:00+00:00",
   "scope": {
     "公共根": [
       "/data/share/datasets",
@@ -9,7 +9,7 @@
     "根入口定位": "两根入口及其全部内容均属于编目范围；未逐项展开的内容由所属目录入口定位，不因未细分而排除。根本身不额外增加资源计数。",
     "范围": "纳入两处公共区全部内容，不按版权、开源程度或业务用途筛选；域外路径和跨界符号链接不纳入。",
     "公共区含义": "公共区是服务器存放位置，不代表内容已获公开许可或当前账号可以读取。",
-    "说明": "198 条公共区台账记录（191 个路径）+ 7 个新增权重入口 + 23 个未覆盖目录集合入口；共 228 条目录记录。",
+    "说明": "198 条公共区台账记录（191 个路径）+ 8 个新增权重入口 + 23 个未覆盖目录集合入口；共 229 条目录记录。",
     "核验范围": "登记身份与研究说明沿用原台账及有限目录发现；另附本次逐文件元数据清单的物理统计，范围、时间和完整性口径见physical_inventory。",
     "统计口径": "目录入口不是独立数据集或样本数；台账父子目录、原件和派生物可能重叠。未知为null，0仅保留已有来源的真实零值，不求和全库容量。",
     "分支覆盖": "保留已有台账；其他已发现分支以未覆盖最浅目录代表，根及已覆盖的容器不重复计数。代表入口不证明其所有后代文件已被枚举。",
@@ -36860,6 +36860,88 @@
           ".incomplete": 1
         },
         "observed_path": "/data/models/huggingface/hub/models--facebook--wav2vec2-large-xlsr-53"
+      }
+    },
+    {
+      "id": "model-midasheng-autonomous-20261030",
+      "name": "MiDasheng autonomous 继续训练与空间音频评测",
+      "kind": "model",
+      "server": "阿里云训练服务器",
+      "category": "模型权重",
+      "description": "continue-interface 最佳 checkpoint、评测回执与交付说明。dev 参与开发选模，不是独立盲测或疾病结论。",
+      "path": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+      "owner": "hejingheng",
+      "formats": [".pt", ".json", ".md"],
+      "tags": ["midasheng", "spatial-audio-qa", "continue-training"],
+      "size_bytes": 225525531,
+      "file_count": 12,
+      "record_count": null,
+      "status": "verified",
+      "access": "rmp 可读取共享区目录入口；未据此推断所有子文件权限或模型可运行性。",
+      "source_url": "",
+      "source_ref": "public-migration.json / moved",
+      "verified_at": "2026-10-31T00:00:00+00:00",
+      "notes": "交付审核通过；dev 参与开发选模，不是独立盲测。兼容路径保留在 public/hejingheng/midasheng-autonomous-20261030/delivery。",
+      "metadata": {
+        "subtype": "model_weights",
+        "disease_category": "unconfirmed",
+        "task_category": "spatial-audio-qa",
+        "上游revision": null,
+        "元数据采集完整": true,
+        "模型配置": {
+          "name": "continue-interface",
+          "task": "spatial-audio-qa",
+          "best_sha256": "6c7944a9a30a0d3a040b070f7ad1ec2a103389dcf73873f72468389fe662a408",
+          "test_evaluated": false,
+          "validation_scope": "official dev；参与开发选模，不是独立盲测"
+        },
+        "migration": {
+          "source": "/data/share/public/hejingheng/midasheng-autonomous-20261030/delivery",
+          "compatibility_link": "/data/share/public/hejingheng/midasheng-autonomous-20261030/delivery -> /data/share/models/unconfirmed/midasheng-autonomous-20261030",
+          "best_sha256": "6c7944a9a30a0d3a040b070f7ad1ec2a103389dcf73873f72468389fe662a408"
+        },
+        "metrics": {
+          "stage1_accuracy": 0.598,
+          "stage2_accuracy": 0.4535,
+          "a_gs2": 0.304
+        }
+      },
+      "storage": {
+        "logical_root": "models",
+        "canonical_path": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+        "current_host": "iZuf6jc6bqdgxmhcci4k3wZ",
+        "planned_path": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+        "legacy_aliases": [],
+        "migration": {
+          "migration_id": "cpfs-20261027",
+          "state": "switched",
+          "activated": true,
+          "cutover_at": "2026-10-27T08:25:26.786190+00:00",
+          "verification_ref": "data/migration-evidence/objects/044490e2fffe87a7308e0d2a004f4965bae2a02d37dccc1dbc3166d9b8d50ebb.json"
+        },
+        "observations": [
+          {
+            "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+            "path": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+            "realpath": "/data/share/models/unconfirmed/midasheng-autonomous-20261030",
+            "observed_at": "2026-10-31T00:00:00+00:00",
+            "account": "rmp",
+            "exists": true,
+            "readable": true,
+            "kind": "directory",
+            "owner": "hejingheng",
+            "mode": "0o750",
+            "mount": {
+              "target": "/data/share",
+              "source": "10.0.0.202:/share",
+              "fstype": "nfs"
+            }
+          }
+        ],
+        "historical": {
+          "path": "/data/models/unconfirmed/midasheng-autonomous-20261030",
+          "observed_at": "2026-10-31T00:00:00+00:00"
+        }
       }
     }
   ],

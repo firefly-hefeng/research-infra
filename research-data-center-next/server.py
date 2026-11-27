@@ -21,10 +21,12 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path, PurePosixPath
 from urllib.parse import parse_qs, unquote, urlsplit
 
-from resource_directory import query_directory, load_directory, resource_readme
 from progress_proxy import proxy_progress
+from compute_history import KINDS as REPORT_KINDS, read_reports
 from platform_data import literature, servers_snapshot
 from research_portfolio import research_portfolio
+from resource_library import library_payload
+from resource_directory import load_directory, query_directory, resource_readme
 
 from catalog import CatalogError, KINDS, STATUSES, export_catalog, export_csv, get_asset, get_summary, open_catalog, query_assets
 
@@ -165,9 +167,17 @@ def loopback_host(host: str) -> str:
     return str(address)
 
 
-def agent_manifest() -> dict:
+def agent_manifest(auth_enabled: bool = False) -> dict:
     return {
-        "name": "Research Data Center", "version": "1.2", "mode": "read_only_metadata",
+        "name": "Research Data Center", "version": "1.4", "mode": "read_only_metadata",
+        "documentation": {"start": "/docs/agent-guide.md", "modules": "/docs/agent-modules.md",
+                          "contract": "/docs/agent-contract.json", "status": "/docs/agent-status.md",
+                          "maintenance": "/docs/agent-maintenance.md", "progress_mcp": "/docs/progress-mcp.md",
+                          "ingestion_admin_only": "/docs/agent-protocol.md"},
+        "modules": {"data": "/api/platform/library", "research": "/api/platform/research",
+                    "progress": "/progress/api/progress-digest", "directions": "/progress/api/directions",
+                    "papers": "/papers/api/export", "documents": "/api/workspace-docs",
+                    "servers": "/api/platform/servers"},
         "description": "科研资料元数据目录。返回的数据路径是资料定位信息，不代表当前进程可访问或已核实。",
         "endpoints": {
             "summary": "/api/summary", "search": "/api/assets?q={query}&kind={kind}&page=1&page_size=30",
@@ -176,17 +186,41 @@ def agent_manifest() -> dict:
             "resource_mapping": "/api/resource-mapping", "resource_mapping_csv": "/api/resource-mapping.csv",
             "registered_entry": "/api/resource-mapping/{registry_id}", "standards": "/docs/standards.html",
             "research_guide": "/api/research-guide",
-            "classified_resources": "/api/classified-resources",
             "ingestion_manifest": "/api/ingestion/manifest", "ingestion_status": "/api/ingestion/status",
             "ingestion_published": "/api/ingestion/published",
-            "platform_servers": "/api/platform/servers", "platform_literature": "/api/platform/literature",
+            "platform_servers": "/api/platform/servers", "compute_reports": "/api/platform/compute-reports",
+            "platform_literature": "/api/platform/literature",
             "platform_research": "/api/platform/research",
+            "library": "/api/platform/library", "workspace_docs": "/api/workspace-docs",
         },
         "query": {"filters": ["q", "kind", "server", "status", "category"],
                   "search": "Unicode casefold literal substring search; whitespace-separated terms are ANDed.",
                   "pagination": {"default_page_size": 30, "max_page_size": 200, "first_page": 1}},
-        "authentication": {"agent": "Authorization: Bearer <token>", "browser": "POST /api/session with JSON {token}; HttpOnly session lasts 12 hours",
-                           "configuration": "Authentication is enabled when the server is started with --token-file. Never put tokens in URL query strings."},
+        "mcp": {
+            "guide": "/docs/progress-mcp.md",
+            "remote_url": "https://rmp.wuwangwo.top/mcp",
+            "resource": "https://rmp.wuwangwo.top/mcp",
+            "issuer": "https://rmp.wuwangwo.top/mcp/oauth",
+            "discovery": {
+                "resource": "https://rmp.wuwangwo.top/.well-known/oauth-protected-resource/mcp",
+                "authorization_server": "https://rmp.wuwangwo.top/.well-known/oauth-authorization-server/mcp/oauth",
+            },
+            "transports": ["streamable_http", "stdio"],
+            "stdio_entrypoint": "tools/progress_mcp.py",
+            "oauth": {"scope": "progress.read", "pkce": "S256", "callback": "desktop_loopback_http"},
+            "tools": ["team_progress", "member_progress", "direction_progress", "direction_methods"],
+            "read_only": True,
+            "team_shared_not_per_member_rbac": True,
+            "boundary": "Only team-shared progress records, method comparisons and evidence references; no writes, original-file downloads or experiment execution.",
+        },
+        "authentication": {"guide": "/docs/agent-guide.md#access", "catalog_token_enabled": bool(auth_enabled),
+                           "self_service_agent_tokens": False,
+                           "public_platform": "rmp.wuwangwo.top uses an outer Feishu login session. The platform has no self-service static personal Agent token endpoint.",
+                           "browser": "Use the existing signed-in browser session, or download research context from /#agent for offline reading.",
+                           "agent": "Use remote OAuth MCP, an authorized server/SSH connection or an exported offline snapshot according to the documented access mode.",
+                           "backend_bearer": "Only catalog deployments started with --token-file accept an administrator-configured Authorization: Bearer token; this does not bypass the outer Feishu gateway and is not an MCP credential.",
+                           "mcp_oauth_bearer": "The remote MCP accepts only its OAuth access token for resource https://rmp.wuwangwo.top/mcp with scope progress.read; never substitute the catalog administrator bearer token.",
+                           "configuration": "GET /api/session describes this catalog service only, not the outer gateway. Never put credentials in URLs or chat."},
         "kinds": list(KINDS), "statuses": {
             "documented": "文档记载，尚未完成服务器核验", "verified": "rmp 可读取目录入口，不代表全部文件可读或内容完整",
             "partial": "仅部分信息或范围已核验", "missing": "核验时未找到", "restricted": "访问受限",
@@ -203,7 +237,7 @@ def agent_manifest() -> dict:
             "resource-mapping joins existing asset_id to documentation, evidence, candidate relationships and explicit gaps; candidates are not verified lineage.",
             "Use the source observation timestamps, not inventory generation time, when describing the server state. Filesystem owner is not a confirmed resource maintainer.",
             "Read /api/ingestion/manifest and /api/ingestion/status for the submission contract and configured worker state. This portal never accepts uploads, approves submissions or publishes resources.",
-            "Ingestion uses a rules worker; no LLM service is configured. Formal dataset/model documentation is maintained by management, not required in full from contributors.",
+            "Ingestion uses a rules worker without an LLM. This statement is scoped to ingestion; the separate progress service can use its configured model. Formal dataset/model documentation is maintained by management, not required in full from contributors.",
             "ingestion/published tracks newly published managed resources independently. It does not amend the frozen migration baseline; team_card_pending means formal documentation is still being curated.",
             "research-guide provides editorial research categories and newcomer guidance; use its asset_ids for exact membership. Category counts are inventory entries, not independent datasets.",
             "documentation.research distinguishes official resource context, family-level context and local evidence. Upstream descriptions do not establish local content completeness, license or runtime readiness.",
@@ -211,7 +245,7 @@ def agent_manifest() -> dict:
     }
 
 
-def openapi_document() -> dict:
+def openapi_document(auth_enabled: bool = False) -> dict:
     asset_schema = {"type": "object", "required": ["id", "name", "kind", "status"],
                     "properties": {"id": {"type": "string"}, "name": {"type": "string"},
                                    "kind": {"type": "string", "enum": list(KINDS)},
@@ -221,7 +255,12 @@ def openapi_document() -> dict:
                                "400": {"description": "Invalid query"}, "503": {"description": "Catalog unavailable"}}
     paths = {
         "/api/platform/servers": {"get": {"summary": "Read a central public hardware snapshot; never opens SSH", "responses": response({"type": "object"})}},
+        "/api/platform/compute-reports": {"get": {"summary": "List saved compute reports or read one calendar period",
+            "parameters": [{"name": key, "in": "query", "schema": {"type": "string"}} for key in ("kind", "start")],
+            "responses": response({"type": "object"})}},
         "/api/platform/research": {"get": {"summary": "Read the manually reviewed research and model portfolio; never invokes inference", "responses": response({"type": "object"})}},
+        "/api/platform/library": {"get": {"summary": "Browse datasets and models by research topic, including the curated Feishu view", "responses": response({"type": "object"})}},
+        "/api/workspace-docs": {"get": {"summary": "Read the editorial document index and short reading notes", "responses": response({"type": "object"})}},
         "/api/platform/literature": {"get": {"summary": "Search existing annotation sources with linked resources; not personal reading progress",
             "parameters": [{"name": key, "in": "query", "schema": {"type": "string"}} for key in ("q", "category", "domain", "asset_id", "page", "page_size")],
             "responses": response({"type": "object"})}},
@@ -260,8 +299,9 @@ def openapi_document() -> dict:
             "parameters": [{"name": "registry_id", "in": "path", "required": True, "schema": {"type": "string"}}],
             "responses": {**response({"type": "object"}), "404": {"description": "Registered entry not found"}}}},
     }
-    return {"openapi": "3.0.3", "info": {"title": "Research Data Center", "version": "1.2", "description": "Read-only metadata API. Unknown counts are null. Entry registration is not a frozen release."},
-            "servers": [{"url": "/"}], "security": [{"bearerAuth": []}, {"cookieAuth": []}],
+    return {"openapi": "3.0.3", "info": {"title": "Research Data Center", "version": "1.3", "description": "Catalog service contract, not a full-platform execution API. Public access also requires the outer Feishu gateway; backend Bearer does not bypass it. Start at /docs/agent-guide.md. Unknown counts are null; entry registration is not a frozen release."},
+            "externalDocs": {"description": "Platform Agent handbook", "url": "/docs/agent-guide.md"},
+            "servers": [{"url": "/"}], "security": [{"bearerAuth": []}, {"cookieAuth": []}] if auth_enabled else [],
             "components": {"securitySchemes": {"bearerAuth": {"type": "http", "scheme": "bearer"},
                                                "cookieAuth": {"type": "apiKey", "in": "cookie", "name": SESSION_COOKIE}}},
             "paths": paths}
@@ -285,7 +325,8 @@ class CatalogHandler(BaseHTTPRequestHandler):
         self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Cross-Origin-Resource-Policy", "same-origin")
         self.send_header("X-Frame-Options", "DENY")
-        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+        frame_policy = "frame-src 'self' https://wcn5kauqqbj1.feishu.cn; " if urlsplit(self.path).path in ("/", "/index.html") else ""
+        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; " + frame_policy + "object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
         if status == 405:
             self.send_header("Allow", "GET, HEAD")
         if attachment:
@@ -389,21 +430,45 @@ class CatalogHandler(BaseHTTPRequestHandler):
             self._error(503, "catalog_unavailable", "Catalog unavailable. Import a metadata snapshot and check service configuration.")
 
     def _api(self, path: str, query: str):
-        if path == "/api/classified-resources":
-            return self._json(query_directory(self.server.root, query))
-        if path.startswith("/api/classified-resources/"):
+        if path == "/api/platform/library":
             if query:
-                raise ValueError("No detail query parameters")
-            identity = path.removeprefix("/api/classified-resources/")
-            markdown = identity.endswith("/README.md")
-            if markdown:
-                identity = identity.removesuffix("/README.md")
-            item = next((i for i in load_directory(self.server.root)["items"] if i["id"] == identity), None)
-            if item is None:
-                return self._error(404, "not_found", "Resource not found")
-            if markdown:
-                return self._send(200, resource_readme(item).encode("utf-8"), "text/plain; charset=utf-8")
-            return self._json(item)
+                return self._error(400, "invalid_query", "The library does not accept query parameters.")
+            data_dir = self.server.root / "data"
+            if self.server.state_dir is not None:
+                try:
+                    snapshot = (self.server.state_dir / "feishu-library-sync.json").read_text(encoding="utf-8")
+                    return self._json(library_payload(data_dir, ledger_override=json.loads(snapshot)))
+                except (ValueError, OSError, TypeError, KeyError):
+                    pass
+            try:
+                return self._json(library_payload(data_dir))
+            except (ValueError, OSError, TypeError, KeyError):
+                return self._error(503, "library_unavailable", "The curated resource library is unavailable.")
+        if path == "/api/workspace-docs":
+            if query:
+                return self._error(400, "invalid_query", "The document index does not accept query parameters.")
+            try:
+                path = self.server.root / "data" / "workspace-docs.json"
+                return self._json(json.loads(path.read_text(encoding="utf-8")))
+            except (ValueError, OSError):
+                return self._error(503, "workspace_docs_unavailable", "The document index is unavailable.")
+        if path == "/api/platform/compute-reports":
+            params = parse_qs(query, keep_blank_values=True, max_num_fields=2)
+            kind = start = None
+            if query:
+                if set(params) != {"kind", "start"} or any(len(values) != 1 for values in params.values()):
+                    return self._error(400, "invalid_query", "Specify a report kind and start date.")
+                kind, start = params["kind"][0], params["start"][0]
+                if kind not in REPORT_KINDS or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", start, re.ASCII):
+                    return self._error(400, "invalid_query", "Use week or month with an ISO start date.")
+                dt.date.fromisoformat(start)
+            try:
+                report = read_reports(self.server.state_dir, kind, start)
+            except (OSError, ValueError, sqlite3.Error):
+                return self._error(503, "compute_reports_unavailable", "Saved compute reports are unavailable.")
+            if report is None:
+                return self._error(404, "report_not_found", "There is no saved report for this period.")
+            return self._json(report)
         if path == "/api/platform/research":
             if query:
                 return self._error(400, "invalid_query", "Research portfolio does not accept query parameters.")
@@ -449,9 +514,9 @@ class CatalogHandler(BaseHTTPRequestHandler):
             except (ValueError, OSError, sqlite3.Error, ImportError):
                 return self._error(503, "ingestion_unavailable", "Submission status is unavailable; no worker action was taken.")
         if path == "/api/agent/manifest":
-            return self._json(agent_manifest())
+            return self._json(agent_manifest(self.server.auth_token is not None))
         if path == "/api/openapi.json":
-            return self._json(openapi_document())
+            return self._json(openapi_document(self.server.auth_token is not None))
         if path == "/api/research-guide":
             if query:
                 return self._error(400, "invalid_query", "This endpoint does not accept query parameters.")
@@ -476,6 +541,22 @@ class CatalogHandler(BaseHTTPRequestHandler):
             except (ValueError, UnicodeError):
                 return self._error(503, "guide_unavailable", "The research guide is invalid; rebuild it from the inventory.")
             return self._json(guide)
+        endpoint = "/api/classified-resources"
+        if path == endpoint or path.startswith(endpoint + "/"):
+            if path == endpoint:
+                return self._json(query_directory(self.server.root, query))
+            if query:
+                return self._error(400, "invalid_query", "Resource README does not accept query parameters.")
+            relative = path.removeprefix(endpoint + "/")
+            if not relative.endswith("/README.md"):
+                return self._error(404, "not_found", "Classified resource not found.")
+            identity = relative.removesuffix("/README.md")
+            if not identity or "/" in identity:
+                return self._error(404, "not_found", "Classified resource not found.")
+            item = next((entry for entry in load_directory(self.server.root)["items"] if entry["id"] == identity), None)
+            if item is None:
+                return self._error(404, "not_found", "Classified resource not found.")
+            return self._send(200, resource_readme(item).encode("utf-8"), "text/markdown; charset=utf-8")
         if path in ("/api/resource-mapping", "/api/resource-mapping.csv") or path.startswith("/api/resource-mapping/"):
             if query:
                 return self._error(400, "invalid_query", "This endpoint does not accept query parameters.")

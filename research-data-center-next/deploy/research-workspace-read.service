@@ -1,0 +1,17 @@
+[Unit]
+Description=Maintain read access to lab members' local workspaces
+RequiresMountsFor=/data/users
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/sbin/research-workspace-read.py --state-directory /var/lib/research-workspace-read
+UMask=0077
+Nice=15
+IOSchedulingClass=idle
+TimeoutStartSec=0
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/data/users
+StateDirectory=research-workspace-read
+StateDirectoryMode=0700

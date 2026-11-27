@@ -1,0 +1,3335 @@
+{
+  "review_date": "2026-11-21",
+  "scope": "Feishu ledger metadata, sealed storage receipts and read-only path observations on server 101; no new physical migration",
+  "source": {
+    "table": "tbl9Ggk0cGF0Zlxz",
+    "view": "vew5x8yw5H",
+    "redacted_ledger_projection_sha256": "bc3d5c5d4c14232fb508c2aa1c5a7c903e8eb20901478d31d26141f6ff5a5278",
+    "records": 69,
+    "records_with_extracted_paths": 40,
+    "distinct_extracted_paths": 46
+  },
+  "historical": {
+    "migration_id": "cpfs-20261027",
+    "manifest_sha256": "8de32d487de5ca572c5d3aa4a4907449976f7992b834aff855192742919fa46e",
+    "validated_baseline_sha256": "5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871",
+    "records": 228,
+    "unique_observed_paths": 221,
+    "kind_counts": {
+      "datasets": 218,
+      "models": 10
+    },
+    "cutover_at": "2026-10-27T08:25:26.786190+00:00",
+    "legacy_roots": [
+      {
+        "logical_root": "datasets",
+        "source_root": "/data/datasets",
+        "target_root": "/data/share/datasets"
+      },
+      {
+        "logical_root": "models",
+        "source_root": "/data/models",
+        "target_root": "/data/share/models"
+      }
+    ],
+    "validated_receipt_hashes": {
+      "copy": "cf3c6488fba3b68921cbe8ff7c8ba044bbb1aad33e9b858076192817f3ddd916",
+      "verification": "044490e2fffe87a7308e0d2a004f4965bae2a02d37dccc1dbc3166d9b8d50ebb",
+      "cutover": "89bf603f68b3f9e3956a4b5b90faf9868733bb5e4571755d4f012f286ca938a2",
+      "cleanup": "d05e38dfc3931398709f44034c7dfb8b745164ac23fe9aa3d2de35088bd6fbcc",
+      "preflight": "6d9c95d99fef3fa4754f19eb53e225fd689642478537b167c64e0753c1a4ff62"
+    }
+  },
+  "physical_moves_this_review": 21,
+  "source_paths_updated_this_review": 21,
+  "disposition_counts": {
+    "access_or_package_unconfirmed": 33,
+    "historical_link": 1,
+    "no_extracted_absolute_path": 29,
+    "verify_edition_and_access": 1,
+    "verify_noncommercial_scope": 1,
+    "verify_recording_rights": 1,
+    "verify_release_scope": 3
+  },
+  "records": [
+    {
+      "record_id": "reczz28S4ElbQPb1",
+      "source_path_count": 1,
+      "disposition": "verify_release_scope",
+      "resource": "MDVR-KCL",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQPly",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQPpS",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQBZ",
+      "source_path_count": 3,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101",
+        "not_found_on_101",
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied",
+        "2": "absent_here",
+        "3": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQH2",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQLY",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQQY",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQV8",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQZD",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQc2",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQg0",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQjo",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQq1",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQtF",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQQwH",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQQz2",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQR3L",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "absent_here"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQR8M",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRCw",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRIY",
+      "source_path_count": 2,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101",
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied",
+        "2": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQRLU",
+      "source_path_count": 2,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible",
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "exists_limited",
+        "2": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQROC",
+      "source_path_count": 1,
+      "disposition": "verify_noncommercial_scope",
+      "resource": "RAVDESS Speech",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQRQt",
+      "source_path_count": 1,
+      "disposition": "verify_release_scope",
+      "resource": "Coswara",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQRTx",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRWo",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRZX",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRd4",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28S4ElbQRfm",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28S4ElbQRiQ",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SKaDTifSt",
+      "source_path_count": 2,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101",
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied",
+        "2": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SKaFX4Ccd",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaHHOi7A",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaIxJf9k",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaKWyC22",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaMFrq5d",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaNrO036",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaQC1Ugo",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SKaRprUX9",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNTyddu5s",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU0UmqJv",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU24HgGr",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU3oTVRG",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU5YNWpq",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU7YOrEN",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNU8z6xdf",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNUAklTb2",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNUC4q70e",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNUGsmDnW",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNUJIedC0",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SNUMUiDWo",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNUONrIQs",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNUPibxuX",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNUSNxTkS",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNUU3CLKQ",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SNUXO65nN",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SO6mKAyU4",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SO6ntOKd9",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "directory_accessible"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SO6pQbQQg",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SO6qrOFzJ",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SO6s1xdhI",
+      "source_path_count": 0,
+      "disposition": "no_extracted_absolute_path"
+    },
+    {
+      "record_id": "reczz28SOytY5yog",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SP7zYt3M7",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SP81y3wMy",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SP84Mgiwf",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SP86fpS7S",
+      "source_path_count": 1,
+      "disposition": "access_or_package_unconfirmed",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SPSFA7Mro",
+      "source_path_count": 1,
+      "disposition": "verify_release_scope",
+      "resource": "HF-Lung-V1",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SRDSwLyCs",
+      "source_path_count": 1,
+      "disposition": "verify_recording_rights",
+      "resource": "Oral-Cancer",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28SRDVW6X8w",
+      "source_path_count": 1,
+      "disposition": "verify_edition_and_access",
+      "resource": "UK-COVID",
+      "ordered_path_observations_101": [
+        "not_found_on_101"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied"
+      }
+    },
+    {
+      "record_id": "reczz28Tkc0TVLBd",
+      "source_path_count": 2,
+      "disposition": "historical_link",
+      "resource": "MiDasheng",
+      "ordered_path_observations_101": [
+        "access_denied",
+        "access_denied"
+      ],
+      "path_presence_by_ordinal_47": {
+        "1": "permission_denied",
+        "2": "permission_denied"
+      }
+    }
+  ],
+  "nov21_host_observation": {
+    "observer": "rmp",
+    "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+    "observed_at": "2026-11-20T18:26:21.510803+00:00",
+    "evidence_sha256": "ffe65a2d2e3a4f7ab526cd2c1ee2c48043d6bf0f24c2196221bbd9487121c48b",
+    "path_counts": {
+      "directory_accessible": 13,
+      "not_found_on_101": 31,
+      "access_denied": 2
+    },
+    "mounts": {
+      "/data/share": {
+        "kind": "directory",
+        "mode": "0o2755",
+        "readable": true,
+        "device": 51,
+        "mount": "/data/share 10.0.0.202:/share nfs",
+        "available_bytes": 117365014528
+      },
+      "/data/shared": {
+        "kind": "directory",
+        "mode": "0o2770",
+        "readable": false,
+        "device": 66305,
+        "mount": "/data  /dev/nvme1n1p1 xfs",
+        "available_bytes": 154924179456
+      },
+      "/data_share": {
+        "error": "FileNotFoundError",
+        "errno": 2
+      },
+      "/data/datasets": {
+        "kind": "link",
+        "links_to": "/data/share/datasets",
+        "mode": "0o755",
+        "readable": true,
+        "device": 51,
+        "mount": "/data/share 10.0.0.202:/share nfs",
+        "available_bytes": 117365014528
+      },
+      "/data/models": {
+        "kind": "link",
+        "links_to": "/data/share/models",
+        "mode": "0o755",
+        "readable": true,
+        "device": 51,
+        "mount": "/data/share 10.0.0.202:/share nfs",
+        "available_bytes": 117365014528
+      },
+      "/data/share/datasets": {
+        "kind": "directory",
+        "mode": "0o755",
+        "readable": true,
+        "device": 51,
+        "mount": "/data/share 10.0.0.202:/share nfs",
+        "available_bytes": 117365014528
+      },
+      "/data/share/models": {
+        "kind": "directory",
+        "mode": "0o755",
+        "readable": true,
+        "device": 51,
+        "mount": "/data/share 10.0.0.202:/share nfs",
+        "available_bytes": 117365014528
+      },
+      "/data/share/dataset": {
+        "error": "FileNotFoundError",
+        "errno": 2
+      },
+      "/data/share/model": {
+        "error": "FileNotFoundError",
+        "errno": 2
+      },
+      "/data/shared/dataset": {
+        "error": "PermissionError",
+        "errno": 13
+      },
+      "/data/shared/model": {
+        "error": "PermissionError",
+        "errno": 13
+      }
+    },
+    "members_in_roster": 8,
+    "progress_inventory": "First pass: filenames only in specifically named audio projects in team-shared buckets. 3 verified member projects and 4 observed candidate texts in the named Liu workspace; 3 projects in a different bucket did not match the roster. No second host was inspected.",
+    "second_pass": {
+      "observed_at": "2026-11-20T18:30:57.070854+00:00",
+      "receipt_sha256": "e1681ddf6381ae214679217aae645ae5d79d69877039877fd3e7265edccb19e8",
+      "reachable_roots": 17,
+      "total_roots": 24,
+      "named_files": 2,
+      "limits": {
+        "excluded_headers": 56,
+        "listing_truncated": 2
+      },
+      "packages": [
+        {
+          "record_id": "reczz28S4ElbQRQt",
+          "is_readable_directory": true,
+          "manifest_names": [],
+          "release_candidates": [
+            {
+              "relative": ".",
+              "regular_entries": 0,
+              "bytes": 0,
+              "symlinks": 43,
+              "unreadable": 0,
+              "truncated": false,
+              "extensions": {}
+            }
+          ]
+        },
+        {
+          "record_id": "reczz28SPSFA7Mro",
+          "is_readable_directory": false,
+          "manifest_names": [],
+          "release_candidates": []
+        },
+        {
+          "record_id": "reczz28S4ElbQPb1",
+          "is_readable_directory": true,
+          "manifest_names": [],
+          "release_candidates": []
+        }
+      ],
+      "notes_indexed_before_content_eligibility": 91,
+      "members": {
+        "何锋": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 0,
+          "team_candidates_before_fulltext_review": 0
+        },
+        "靳驰骋": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 0,
+          "team_candidates_before_fulltext_review": 0
+        },
+        "陆梓健": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 7,
+          "team_candidates_before_fulltext_review": 0
+        },
+        "刘思哲": {
+          "reachable_roots": 3,
+          "expected_roots": 3,
+          "header_candidates": 68,
+          "team_candidates_before_fulltext_review": 1
+        },
+        "严梓诚": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 6,
+          "team_candidates_before_fulltext_review": 1
+        },
+        "邓霁轩": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 10,
+          "team_candidates_before_fulltext_review": 0
+        },
+        "陆永骅": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 0,
+          "team_candidates_before_fulltext_review": 0
+        },
+        "屠宇航": {
+          "reachable_roots": 2,
+          "expected_roots": 3,
+          "header_candidates": 0,
+          "team_candidates_before_fulltext_review": 0
+        }
+      },
+      "candidate_visibility": {
+        "team_header_candidates": 2,
+        "internal_header_candidates": 89,
+        "has_validated_deepseek_inputs": false,
+        "distinction": "Internal project work may be evaluated under the assigned analytical scope. Team-facing output must omit private paths, raw excerpts, and retrieval links."
+      },
+      "other_host": {
+        "observed": false,
+        "effect": "ENOENT on 101 is host-specific. Separate hosts named in Feishu remain outside the evidence."
+      },
+      "followup": {
+        "status": "observed",
+        "observed_at": "2026-11-21T04:20:04.577749+00:00",
+        "source_receipt_sha256": "978d639cbf045bbba857ed33f1460004b64c8ff7df8759e49c688647305250a5",
+        "members": {
+          "何锋": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 0,
+            "internal": 1,
+            "member_bylines": 0
+          },
+          "靳驰骋": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 0,
+            "internal": 2,
+            "member_bylines": 0
+          },
+          "陆梓健": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 0,
+            "internal": 13,
+            "member_bylines": 0
+          },
+          "刘思哲": {
+            "accessible_roots": 3,
+            "declared_roots": 3,
+            "team": 7,
+            "internal": 101,
+            "member_bylines": 0
+          },
+          "严梓诚": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 5,
+            "internal": 12,
+            "member_bylines": 0
+          },
+          "邓霁轩": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 2,
+            "internal": 11,
+            "member_bylines": 0
+          },
+          "陆永骅": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 0,
+            "internal": 2,
+            "member_bylines": 0
+          },
+          "屠宇航": {
+            "accessible_roots": 2,
+            "declared_roots": 3,
+            "team": 0,
+            "internal": 0,
+            "member_bylines": 0
+          }
+        },
+        "skipped_after_reread": 0,
+        "approved_for_internal_review": 142,
+        "team_workspace_candidates": 14,
+        "named_files_without_signed_member": 156,
+        "fully_traversed_large_listings": [
+          3564,
+          11484
+        ],
+        "unreadable_listings_count": 0,
+        "time_limited_scopes_count": 0,
+        "team_exact_file_manifest_sha256": "c2915a58e8baf9983ca74544cd3003f8f090d5f841750d95eccc319dada3f1bc",
+        "internal_exact_file_manifest_sha256": "1e607a56dc8cc1c28934902746a849c8e855868e728b539cc0b45534e52fd5f8"
+      }
+    }
+  },
+  "no_path_identity_review": {
+    "feishu_rows": 29,
+    "portal_catalog_rows": 229,
+    "portal_feishu_rows": 69,
+    "historical_migration_rows": 228,
+    "stable_feishu_ids_found_in_catalog_registry_mapping_migration_or_physical_snapshot": 0,
+    "source_reference_urls_in_the_29": 18,
+    "exact_source_url_matches_in_the_229_catalog_rows": 0,
+    "safe_path_updates": 0,
+    "relationships": [
+      {
+        "source_id": "reczz28S4ElbQQQY",
+        "related_id": "asset-332a3c729ce2ff70",
+        "relationship": "Pitt Cookie Theft research derivative",
+        "basis": "The catalog explicitly describes a normalized interpretability experiment with 294 candidate files. The Feishu source records 553 standardised recordings."
+      },
+      {
+        "source_id": "reczz28S4ElbQRCw",
+        "related_id": "reczz28S4ElbQQjo",
+        "relationship": "Raw delivery and standardized subset",
+        "basis": "46 ZIPs and 2,116 recordings vs 33 standardized recordings. Both Feishu descriptions name the source institution and the dependency."
+      },
+      {
+        "source_id": "reczz28S4ElbQPpS",
+        "related_id": "reczz28SKaDTifSt",
+        "relationship": "Curated material and original release",
+        "basis": "The group attachment and the two official packages have different descriptions and acquisition evidence."
+      },
+      {
+        "source_id": "reczz28S4ElbQRTx",
+        "related_id": "reczz28S4ElbQRLU",
+        "relationship": "Sub-corpus and a wider index",
+        "basis": "AphasiaBank is marked awaiting application. The consolidated TalkBank index does not document access to this sub-corpus."
+      }
+    ]
+  },
+  "confirmed_destination_roots": {
+    "dataset": "/data/share/datasets",
+    "model": "/data/share/models",
+    "basis": "explicit confirmation by the project owner",
+    "access_scope": "separate from evidence of permissions and package-level integrity"
+  },
+  "confirmed_library_live_check_101": {
+    "observed_at": "2026-11-21T04:23:07.401515+00:00",
+    "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+    "receipt_sha256": "59302a45c168245a59f05d5345987c19d1151a63059ab954416a79d5f1088d04",
+    "inventory_sha256": "91c876af134459e3897c30d956de61d8ca28504c8ff519ebde49984933796322",
+    "observer_uid": 1011,
+    "roots": {
+      "dataset": {
+        "mode": "0o755",
+        "available_bytes": 66605547520,
+        "read": true,
+        "search": true,
+        "write": false
+      },
+      "model": {
+        "mode": "0o755",
+        "available_bytes": 66605547520,
+        "read": true,
+        "search": true,
+        "write": false
+      }
+    },
+    "historical": {
+      "registered_ids": 228,
+      "distinct_paths": 221,
+      "verified_current_compatible": 221
+    },
+    "coswara": {
+      "resolving_date_links": 43,
+      "outside_registered_tree": 43,
+      "contents_assessed": false,
+      "observed_at": "2026-11-21T04:27:12.360768+00:00",
+      "refined_receipt_sha256": "65e9aae21bbc73aae79bc7bb0b93f3b550961e52b7817e02671361a83d0d33de",
+      "release_dates": 43,
+      "unique_regular_content_objects": 43,
+      "all_64_hex_names": true,
+      "named_object_store": "shared incoming batch",
+      "apparent_bytes": 12981984019,
+      "allocated_bytes": 12982132736,
+      "rmp_can_write_old_link_parent": false,
+      "rmp_can_write_object_parent": false,
+      "upstream_date_confirmation": {
+        "url": "https://github.com/iiscleap/Coswara-Data",
+        "website_directory_count": 43,
+        "matched_disk_dates": 43,
+        "server_extra_dates": [],
+        "official_extra_dates": [],
+        "official_html_sha256": "cd61f87bf9546c7f1806a7fb11346cf0c4092f902e39e9723113e414daa3b428"
+      },
+      "published_license": "CC BY 4.0",
+      "content_checksum_confirmed_by_stat": false,
+      "physical_apply_attempt": {
+        "migrated": false,
+        "result": "ValueError: destination conflict; no changes made",
+        "receipt_sha256": "f38f6cde7214c54dbfa0cfd836ccb9016409fa61141535d91a1228b6e1d46073"
+      },
+      "original_parts_observation": {
+        "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+        "observed_at": "2026-11-21T04:34:54.382814+00:00",
+        "registered_original_parts_errno": 2,
+        "named_locations_unavailable": 5,
+        "matching_transfer_metadata": 0,
+        "receipt_sha256": "f6c76fd8bf54bbbcccbc753d9ae580c953222c2a86151056fb155dce87d75f9e",
+        "official_parts": 153,
+        "official_commit": "4942c97e31de7180a93d17f2e7530a9c543cfd50",
+        "delivery_time_claim": "2026-10-27 15:03:49 +08:00",
+        "summary": "Source reported 153 source parts, four metadata files, 157 Git blob checks and 43 concatenated archives. This host proof does not reestablish 153 separate current files."
+      },
+      "existing_library_baseline": {
+        "observed_at": "2026-11-21T04:42:25.982512+00:00",
+        "receipt_sha256": "3c62822c5bddb701e3f05e2e285303801b48ea70cb81be0abeb71a8ddb7f5b3e",
+        "root_inherited_since": "2026-11-14T04:03:27.258218+00:00",
+        "actual_dates_sha256_verified": 43,
+        "official_git_blobs_verified": 153,
+        "canonical_entries_type": "43 symlinks to incoming; not independent files at this observation",
+        "same_inode_as_old": 43,
+        "content_address_label_is_checksum": false
+      },
+      "physical_migration": {
+        "ok": true,
+        "status": "applied",
+        "destination": "/data/share/datasets/Coswara",
+        "bytes_copied": 12981984019,
+        "archives": 43,
+        "verified_parts": 153,
+        "legacy_verified": 43,
+        "legacy_switched": 43,
+        "independent_regular_files": 43,
+        "created_docs": [
+          "manifest.json",
+          "LICENSE.md",
+          "README.md"
+        ],
+        "method": {
+          "replace": 43,
+          "exchange": 43
+        },
+        "manifest_sha256": "e2272037652ed51c908df119858538b74855f6dd79dfd034d55fbb1cd9c452e8",
+        "incoming_unchanged": true,
+        "private_rollback_journal_recorded": true,
+        "receipt_sha256": "04e810e54b5ddf1d8b4adfa84d9959b0ee0cff0afc1e9a08c8873bc617e6520a"
+      }
+    },
+    "mdvr": {
+      "archive_count": 1,
+      "archive_bytes": 606144431,
+      "published_name": "26_29_09_2017_KCL.zip",
+      "published_size": 606144431,
+      "published_md5": "98c51bdd2b092b93f8bb038dea4505fa",
+      "published_license": "CC BY 4.0",
+      "publisher_metadata": "https://zenodo.org/api/records/2867216",
+      "local_checksum_verified": true,
+      "archive_relative_dir": ".",
+      "exact_name": true,
+      "zip_index_stats": {
+        "files": 73,
+        "wave_entries": 73,
+        "uncompressed_bytes": 1365139343,
+        "metadata_count_by_extension": {
+          ".wav": 73
+        }
+      },
+      "followup_observed_at": "2026-11-21T04:25:50.230308+00:00",
+      "followup_receipt_sha256": "5056a5f3d407df2a3299b3d8a7f6a79227c6c8aa0956006820fb1edd657bb49a",
+      "migration": {
+        "target": "/data/share/datasets/MDVR-KCL/26_29_09_2017_KCL.zip",
+        "bytes": 606144431,
+        "md5": "98c51bdd2b092b93f8bb038dea4505fa",
+        "sha256": "45c43cdfa5d078833a6ac27574c471c9ca34d4cd4dea5877f31ebe93b1b5edf6",
+        "uid": 1005,
+        "gid": 1005,
+        "mode": "0o644",
+        "effective_legacy_read_acl_preserved": true,
+        "old_and_new_same": true,
+        "ordinary_rmp_verified": true,
+        "backup_recorded": true,
+        "receipt_sha256": "3969a64f7a82043d3fac150322cb936c8e5f7a5c2ab62df592a65797ebbefed4"
+      }
+    },
+    "midasheng": {
+      "old_errno": 13,
+      "new_errno": 13
+    },
+    "hf_ledger_path_errno": 2,
+    "named_search": {
+      "visited": 6,
+      "unreadable": 1,
+      "unsearched_other_subtrees": 40,
+      "truncated": false
+    },
+    "any_source_parent_writable": false
+  },
+  "nov21_host47_observation": {
+    "host": "iZuf6hoqxac6cp0ymyoqkbZ",
+    "observed_at": "2026-11-21T04:41:45.676460+00:00",
+    "receipt_sha256": "ad783859db086767e9834b558776bbd960099f451b19c9dafa33b92a1730ce9a",
+    "path_counts": {
+      "permission_denied": 34,
+      "absent_here": 11,
+      "exists_limited": 1
+    },
+    "shared_mount": "10.0.0.202:/share",
+    "mdvr_ordinary_reader": {
+      "read": true,
+      "size": 606144431,
+      "inode": 8285374
+    },
+    "privileged_scope_receipt_sha256": "46fab3d1ce9d6ebe34987e7dc7230e4af66dacc040ea8a0fd238e6a0d345b463",
+    "privileged_observed_at": "2026-11-21T04:45:11.207636+00:00",
+    "hf_official_commit": "2a77d37230b1673d332645e6c6afeea29900bcf9",
+    "hf_source_verified_public_blobs": 16,
+    "hf_bytes": 1174794763,
+    "hf_attribution": "Heroic-Faith Medical Science Co. Ltd.; CC BY 4.0; preserve original disclaimer and citation.",
+    "coswara_official_commit": "4942c97e31de7180a93d17f2e7530a9c543cfd50",
+    "coswara_standalone_original_parts": {
+      "verified": 153,
+      "missing": 0,
+      "failed": 0,
+      "bytes": 12981984019,
+      "date_groups": 43
+    },
+    "hf_physical_migration": {
+      "ok": true,
+      "task": "hf",
+      "files": 16,
+      "bytes": 1174794763,
+      "old_links": 16,
+      "source_root_mode": "0o700",
+      "target": "/data/share/datasets/HF-Lung-V1",
+      "optional_publisher_documents_not_located": [],
+      "copy": true,
+      "private_rollback_journal_recorded": true,
+      "receipt_sha256": "fba3948bb122b005c01e47c0c46e37330cae5026feed4550c1effbba4a44f07e"
+    },
+    "coswara_157_physical_files": {
+      "ok": true,
+      "task": "parts",
+      "files": 157,
+      "bytes": 12982364405,
+      "old_links": 157,
+      "source_root_mode": "0o700",
+      "target": "/data/share/datasets/Coswara/original_parts",
+      "optional_publisher_documents_not_located": [],
+      "copy": true,
+      "private_journal_recorded": true,
+      "receipt_sha256": "734515ebe6897ec861c9eebc32418c7d2656cbe75efae2b17814ac968554eaf3"
+    },
+    "coswara_old_archive_links": {
+      "ok": true,
+      "task": "coslinks",
+      "files": 43,
+      "bytes": 12981984019,
+      "old_links": 43,
+      "source_root_mode": "0o700",
+      "target": "/data/share/datasets/Coswara",
+      "optional_publisher_documents_not_located": [],
+      "copy": false,
+      "private_journal_recorded": true,
+      "receipt_sha256": "936845d55770b3768cb1405d27910636df76c48aeb6f1b27c0073dd80613cef5"
+    }
+  },
+  "physical_move_count_basis": "Distinct Feishu dataset IDs with official payload placed physically under the confirmed dataset library. Alternate Coswara representations count once.",
+  "final_ordinary_shared_validation": [
+    {
+      "sha256": "83aae45c541d156c4c67e04c30c8bd3791ec2da05fa25dccde5c89f1c3355618",
+      "host": "iZuf6jc6bqdgxmhcci4k3wZ",
+      "actor": 1011,
+      "mdvr": {
+        "expected": 1,
+        "readable": 1,
+        "regular_files": 1,
+        "bytes": 606144431
+      },
+      "hf": {
+        "expected": 16,
+        "readable": 16,
+        "regular_files": 16,
+        "bytes": 1174794763
+      },
+      "coswara": {
+        "expected": 43,
+        "readable": 43,
+        "regular_files": 43,
+        "bytes": 12981984019
+      },
+      "coswara_parts": {
+        "expected": 153,
+        "readable": 153,
+        "regular_files": 153,
+        "bytes": 12981984019
+      },
+      "space_available": 38734397440
+    },
+    {
+      "sha256": "0f03856092b68b0940fdf95021205e8845ea675b801c5ab608753652235b04de",
+      "host": "iZuf6hoqxac6cp0ymyoqkbZ",
+      "actor": 1011,
+      "mdvr": {
+        "expected": 1,
+        "readable": 1,
+        "regular_files": 1,
+        "bytes": 606144431
+      },
+      "hf": {
+        "expected": 16,
+        "readable": 16,
+        "regular_files": 16,
+        "bytes": 1174794763
+      },
+      "coswara": {
+        "expected": 43,
+        "readable": 43,
+        "regular_files": 43,
+        "bytes": 12981984019
+      },
+      "coswara_parts": {
+        "expected": 153,
+        "readable": 153,
+        "regular_files": 153,
+        "bytes": 12981984019
+      },
+      "space_available": 38734397440
+    }
+  ],
+  "extended_public_package_scope": {
+    "white_list_sha256": "4f1f3f1308d41c080777136f2ade2d0761f0b9a174f907a8b7e90ce4fe84d188",
+    "first_pass_release_scope_count": 10,
+    "first_pass_release_scope_bytes": 41140082785,
+    "package_candidates": [
+      {
+        "id": "reczz28SNUAklTb2",
+        "title": "Saarbruecken-Voice",
+        "licensing_source": "https://zenodo.org/records/16874898",
+        "license": "cc-by-4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 73,
+        "published_selection_bytes": 38059544640,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "16874898",
+        "publisher_credit": [
+          "Pützer, Manfred",
+          "Barry, William J."
+        ],
+        "official_doi": "10.5281/zenodo.16874898",
+        "published_artifacts": [
+          {
+            "name": "Cyste.zip",
+            "bytes": 37076331,
+            "digest": "1260f56391977795b6deb3f552c13fa2",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Poltersyndrom.zip",
+            "bytes": 22665539,
+            "digest": "e9ed9a059affed5142b496a4e9f3fdef",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Sängerstimme.zip",
+            "bytes": 23563674,
+            "digest": "9032bb816310e8a41ed4b186308210fa",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Frontolaterale Teilresektion.zip",
+            "bytes": 334466436,
+            "digest": "c4a432f959d1b24cdf0acee032445ec8",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Morbus Parkinson.zip",
+            "bytes": 5523857,
+            "digest": "032819b4221492a5e49c1a0dfc6cf2a6",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Kehlkopftumor.zip",
+            "bytes": 36227423,
+            "digest": "2ffca8ec2078d7804de4317c5c2bf282",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Sigmatismus.zip",
+            "bytes": 36745262,
+            "digest": "ff2f823b9a43d02ae25621ee8d163413",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Reinke Ödem.zip",
+            "bytes": 576076357,
+            "digest": "9e4db5992bb9f7e2bd7b11bf5ca42423",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Granulom.zip",
+            "bytes": 16901765,
+            "digest": "81381cf90d6fa49141755ad2d727e3ad",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Morbus Down.zip",
+            "bytes": 8967085,
+            "digest": "e0d743c1a8a349d5fc2c003f924b1005",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dysarthrophonie.zip",
+            "bytes": 143813534,
+            "digest": "0cbe7683addea8a939dc8309c5e2be40",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Epiglottiskarzinom.zip",
+            "bytes": 9641112,
+            "digest": "d343a4f0a5803b3ed7f5143ad832da42",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "data.zip",
+            "bytes": 17881176281,
+            "digest": "8314013ccf4830ca732486206fbed9e6",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Mediale Halscyste.zip",
+            "bytes": 7593358,
+            "digest": "eac27299c6757ba4cc95bf05050e18a1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Intubationsschaden.zip",
+            "bytes": 22740511,
+            "digest": "a55caad74ffcadc4cd3237bb8e6d7238",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Rhinophonie clausa.zip",
+            "bytes": 12703736,
+            "digest": "a52def2ef3b04d4c988ed978e6312bd5",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Synechie.zip",
+            "bytes": 23322126,
+            "digest": "a54c920fa1d5210a23ddeba638efaed9",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Taschenfaltenhyperplasie.zip",
+            "bytes": 23177000,
+            "digest": "9001a0de3c0d6dea8dfda22e5aad6322",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Stimmlippenpolyp.zip",
+            "bytes": 385385712,
+            "digest": "32992f4001925118cd3e2bd6b071ea9a",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Psychogene Mikrophonie.zip",
+            "bytes": 8638974,
+            "digest": "378921dea813d51b7cdf319a0609375d",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Hyperasthenie.zip",
+            "bytes": 10938677,
+            "digest": "b5c0de546c7f14508043c93e18e3226f",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Zentral-laryngale Bewegungsstörung.zip",
+            "bytes": 133163619,
+            "digest": "4f36742c4830aa7c270c352250f6e8be",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Hyperfunktionelle Dysphonie.zip",
+            "bytes": 1928321725,
+            "digest": "d90d6da2812815c21a8964661a69c28d",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Intubationsgranulom.zip",
+            "bytes": 33237346,
+            "digest": "70012788ddf30f8694a6f2e377c91bf1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Chondrom.zip",
+            "bytes": 6501414,
+            "digest": "0c3b4e67823f8bf20b0cc82212a10383",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Taschenfaltenstimme.zip",
+            "bytes": 94922042,
+            "digest": "5747eddc71409d22c9086d1a5435260b",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Phonationsknötchen.zip",
+            "bytes": 165637772,
+            "digest": "4e896739bf715ce1771cfcefe3f87b2a",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Hypotone Dysphonie.zip",
+            "bytes": 45938573,
+            "digest": "d581e31d0a676fa3c4abc682afa83586",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "N. laryngeus superior Neuralgie.zip",
+            "bytes": 23424218,
+            "digest": "55c92e45ed6b64e2e4f7fcb86c117cd1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Laryngitis.zip",
+            "bytes": 1193637707,
+            "digest": "cd24a85c8658d584c83c7af0877dd0a8",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Leukoplakie.zip",
+            "bytes": 359098957,
+            "digest": "926b5d545c2d77214703bc9b58ec69c4",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Balbuties.zip",
+            "bytes": 161092812,
+            "digest": "34704c5184df33bc8b4dacacb44af340",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Rhinophonie aperta.zip",
+            "bytes": 142225684,
+            "digest": "b77dfbc2cb36cf151a07d62235ea2ef4",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Rhinophonie mixta.zip",
+            "bytes": 11785456,
+            "digest": "11483aa18867d55f8a9c9032c4a801c2",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Vox senilis.zip",
+            "bytes": 331841464,
+            "digest": "4d3bf9b957e5671c268e156099cc2331",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Amyotrophe Lateralsklerose.zip",
+            "bytes": 14184694,
+            "digest": "f3097def7175779dfe95f89b7258cde8",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dysodie.zip",
+            "bytes": 517591827,
+            "digest": "f01b3c3bcf69d76faa83415ef11b3044",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Bulbärparalyse.zip",
+            "bytes": 25480779,
+            "digest": "515e03ea78b978fc6456300b5c2d38df",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Funktionelle Dysphonie.zip",
+            "bytes": 938925325,
+            "digest": "3224c46eba997cc4eed28034b4c940f0",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Rekurrensparese.zip",
+            "bytes": 1900446365,
+            "digest": "c9508746f31802b2ed49b4433fd15de3",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Orofaciale Dyspraxie.zip",
+            "bytes": 9695206,
+            "digest": "3050ac571668de8416a02ee38658ba71",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "healthy.zip",
+            "bytes": 6020018616,
+            "digest": "67789ec89a161ce26d562719bc8d1aaa",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Spasmodische Dysphonie.zip",
+            "bytes": 492672059,
+            "digest": "94cdf92eabd657c9e518cd523d4a13b4",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dysphonie.zip",
+            "bytes": 861922001,
+            "digest": "3a986e44267e9cfc5ab47fad1fda9c93",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Stimmlippenkarzinom.zip",
+            "bytes": 199011156,
+            "digest": "3457859b59a0979f652926bad45c618c",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Mutationsfistelstimme.zip",
+            "bytes": 91894053,
+            "digest": "2997a4df0ace0564871d0b9c074ddeec",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "N. laryngeus superior Läsion.zip",
+            "bytes": 24188776,
+            "digest": "e3c93e3f443d1f39cd97038693289c8c",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Fibrom.zip",
+            "bytes": 18377332,
+            "digest": "706993f8e7b96420efbb8d727bbfdb54",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "GERD.zip",
+            "bytes": 32647358,
+            "digest": "2ffff008316e54aa197e08a8449d5de7",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dysplastischer Kehlkopf.zip",
+            "bytes": 10826394,
+            "digest": "dc78e6b9dbf80803178ed8bab18fe364",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Carcinoma in situ.zip",
+            "bytes": 7811041,
+            "digest": "0daf721189aa403591a5f2ab5709b5cf",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dish-Syndrom.zip",
+            "bytes": 9228560,
+            "digest": "d1919ac474b8ec4b63610370c298cfcb",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Gesangsstimme.zip",
+            "bytes": 174608284,
+            "digest": "8bfb66f791ddfa909686ff9b0028bd51",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Monochorditis.zip",
+            "bytes": 26393349,
+            "digest": "df4e1ca6b02ae8039c67fab7e3556f82",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Psychogene Aphonie.zip",
+            "bytes": 10014343,
+            "digest": "6a41981aced292fc89df0e84e4702834",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Mutatio.zip",
+            "bytes": 19888157,
+            "digest": "8a196781d64f78fa5eada11194788e27",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Psychogene Dysphonie.zip",
+            "bytes": 780742039,
+            "digest": "58a52ae73e69ebaad426311013bc5c69",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Velopharyngoplastik.zip",
+            "bytes": 19990356,
+            "digest": "ace8afe1328df00c2ea1453472b3adfa",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Valleculacyste.zip",
+            "bytes": 7407564,
+            "digest": "f8516a5e9d92c5774c865da21f2ce837",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Juvenile Dysphonie.zip",
+            "bytes": 8628460,
+            "digest": "9d01da4fbbc64df9af52277617541f30",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Hypofunktionelle Dysphonie.zip",
+            "bytes": 136332652,
+            "digest": "59244604f47ac67d0bd4fb6af6a3b74c",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Hypopharynxtumor.zip",
+            "bytes": 56907705,
+            "digest": "1f1f6ed13ce7cafc7b40bf7c1ae69acf",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Internusschwäche.zip",
+            "bytes": 10522276,
+            "digest": "e92e6b1f46a8ff94e2b2c8dadf25b630",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Kontaktpachydermie.zip",
+            "bytes": 618664484,
+            "digest": "bccbae7de1c331d267527d5c134877cd",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Laryngozele.zip",
+            "bytes": 27604154,
+            "digest": "5cae0f3ff2efd3e69f0a05bcfada2cf1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Aryluxation.zip",
+            "bytes": 54166512,
+            "digest": "318797ceda36f5b9c9cebc49bb4c12b2",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Dysplastische Dysphonie.zip",
+            "bytes": 10605905,
+            "digest": "87d3546418e9f5c38c91d371e82103fb",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Non-fluency-Syndrom.zip",
+            "bytes": 22775118,
+            "digest": "c488d5f9544fabd9c2d8ff79dc1e510a",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Chordektomie.zip",
+            "bytes": 486826197,
+            "digest": "f40980362aec47093d1e658a64112dd8",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Phonasthenie.zip",
+            "bytes": 90324372,
+            "digest": "62d6d71dd8a2ba9c247371624584c69f",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Papillom.zip",
+            "bytes": 8459669,
+            "digest": "f6abdc99335bc6197aea1b737736b5b1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Diplophonie.zip",
+            "bytes": 42185995,
+            "digest": "f07a643ec91b46120b32ccb7dcc3c9f7",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "Mesopharynxtumor.zip",
+            "bytes": 13401968,
+            "digest": "9b5c586d04e81f98e05ba4b9b00c0049",
+            "authority": "publisher MD5",
+            "archive": true
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU7YOrEN",
+        "title": "Indian-Stroke-Speech",
+        "licensing_source": "https://zenodo.org/records/15675907",
+        "license": "cc-by-4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 2,
+        "published_selection_bytes": 172666396,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "15675907",
+        "publisher_credit": [
+          "D, Govind"
+        ],
+        "official_doi": "10.5281/zenodo.15675907",
+        "published_artifacts": [
+          {
+            "name": "CorrectedPhae1_June_2025.zip",
+            "bytes": 172664187,
+            "digest": "23d0c9c988bd88c0a934003a36e07371",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "ReadMe.txt",
+            "bytes": 2209,
+            "digest": "3e90513d0781323dd1975e793a8b3b8f",
+            "authority": "publisher MD5",
+            "archive": false
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU0UmqJv",
+        "title": "COUGHVID",
+        "licensing_source": "https://zenodo.org/records/4048312",
+        "license": "cc-by-4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 951442487,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "1.0",
+        "publisher_credit": [
+          "Lara Orlandic",
+          "Tomas Teijeiro",
+          "David Atienza"
+        ],
+        "official_doi": "10.5281/zenodo.4048312",
+        "published_artifacts": [
+          {
+            "name": "public_dataset.zip",
+            "bytes": 951442487,
+            "digest": "5c30a8b00c8bb7783a2c15a48cb8ea9e",
+            "authority": "publisher MD5",
+            "archive": true
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU5YNWpq",
+        "title": "HFrEF-ECG-PCG",
+        "licensing_source": "https://zenodo.org/records/16934966",
+        "license": "cc-by-4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 2,
+        "published_selection_bytes": 362791315,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "16934966",
+        "publisher_credit": [
+          "Ma, Fei",
+          "Zhang, Haobo",
+          "Fang, Siyi",
+          "Wang, Qimei",
+          "Lin, Fan",
+          "Chao, Lianying",
+          "Wang, Zhiwei",
+          "Li, Qiang",
+          "Zhang, Peng"
+        ],
+        "official_doi": "10.5281/zenodo.16934966",
+        "published_artifacts": [
+          {
+            "name": "HFrEF_community_scenario_test_set.zip",
+            "bytes": 71335832,
+            "digest": "184483385b61e55a0dc3608f63acece1",
+            "authority": "publisher MD5",
+            "archive": true
+          },
+          {
+            "name": "HFrEF_5_folds.zip",
+            "bytes": 291455483,
+            "digest": "a84763772612104afb2c2b4bcabcedd8",
+            "authority": "publisher MD5",
+            "archive": true
+          }
+        ]
+      },
+      {
+        "id": "reczz28S4ElbQROC",
+        "title": "RAVDESS Speech",
+        "licensing_source": "https://zenodo.org/records/1188976",
+        "license": "cc-by-nc-sa-4.0",
+        "selection": "noncommercial research only; confirm use scope; attribution and share-alike",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 208468073,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "published_version": "1.0.0",
+        "publisher_credit": [
+          "Livingstone, Steven R.",
+          "Russo, Frank A."
+        ],
+        "official_doi": "10.5281/zenodo.1188976",
+        "published_artifacts": [
+          {
+            "name": "Audio_Speech_Actors_01-24.zip",
+            "bytes": 208468073,
+            "digest": "bc696df654c87fed845eb13823edef8a",
+            "authority": "publisher MD5",
+            "archive": true
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNUGsmDnW",
+        "title": "UGAkan-ImpairedSpeech",
+        "licensing_source": "https://data.mendeley.com/datasets/vc84vdw8tb/4",
+        "license": "CC BY 4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 720976054,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "4",
+        "publisher_credit": [
+          "Wiafe, Isaac",
+          "Abdulai, Jamal-Deen",
+          "Salihs, Sumaya Ahmed",
+          "Ekpezu, Akon Obu",
+          "Atsakpo, Elikem Doe",
+          "Winful, Fiifi Baffoe Payin",
+          "Ayoka, Gifty",
+          "Tomanek, Katrin",
+          "Holloway, Catherine",
+          "Cave, Richard"
+        ],
+        "official_doi": "10.17632/vc84vdw8tb.4",
+        "published_artifacts": [
+          {
+            "name": "vc84vdw8tb-4.zip",
+            "bytes": 720976054,
+            "digest": "02d16dfcf85c6109a0ad072d20859406-4",
+            "preferred_part_bytes": 209715200,
+            "authority": "Mendeley versioned distribution S3 ETag",
+            "url": "https://data.mendeley.com/public-api/zip/vc84vdw8tb/download/4"
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNUC4q70e",
+        "title": "Spanish-Phonological",
+        "licensing_source": "https://data.mendeley.com/datasets/z7dznk98t8/1",
+        "license": "CC BY 4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 41937271,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "1",
+        "publisher_credit": [
+          "Tafur Gonzales , Josty Gerardo"
+        ],
+        "official_doi": "10.17632/z7dznk98t8.1",
+        "published_artifacts": [
+          {
+            "name": "z7dznk98t8-1.zip",
+            "bytes": 41937271,
+            "digest": "05e021a04e5091c71078056acf6d6a88",
+            "preferred_part_bytes": 209715200,
+            "authority": "Mendeley versioned distribution S3 ETag",
+            "url": "https://data.mendeley.com/public-api/zip/z7dznk98t8/download/1"
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU24HgGr",
+        "title": "Children-Heart-Sound",
+        "licensing_source": "https://data.mendeley.com/datasets/5447z7m2rr/1",
+        "license": "CC BY 4.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 24913934,
+        "publisher_licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "published_version": "1",
+        "publisher_credit": [
+          "Md Riadul Islam"
+        ],
+        "official_doi": "10.17632/5447z7m2rr.1",
+        "published_artifacts": [
+          {
+            "name": "5447z7m2rr-1.zip",
+            "bytes": 24913934,
+            "digest": "407b907ec43568f15a5d294706b29a5a",
+            "preferred_part_bytes": 209715200,
+            "authority": "Mendeley versioned distribution S3 ETag",
+            "url": "https://data.mendeley.com/public-api/zip/5447z7m2rr/download/1"
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNUJIedC0",
+        "title": "VOICED",
+        "licensing_source": "https://physionet.org/content/voiced/1.0.0/",
+        "license": "Open Data Commons Attribution 1.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 115492496,
+        "publisher_licence_url": "https://physionet.org/content/voiced/view-license/1.0.0/",
+        "published_version": "1.0.0",
+        "publisher_credit": [
+          "When using this resource, please cite the original publication: U. Cesari, G. De Pietro, E. Marciano, C. Niri, G. Sannino, and L. Verde. A new database of healthy and pathological voices. Computers & Electrical Engineering, vol. 68, pp. 310-321, 5 2018. https://doi.org/10.1016/j.compeleceng.2018.04.008 Please include the standard citation for PhysioNet: Cite Copy BibTeX Pollard, T., Moody, B. E., Lehman, L., Gow, B., Fernandes, C., Xie, C., Johnson, A., Mark, R. G., & Heldt, T. (2026). PhysioNet as a global platform for biomedical research. Nature Health. https://doi.org/10.1038/s44360-026-00096-z . Available from: https://pmc.ncbi.nlm.nih.go"
+        ],
+        "official_doi": "10.13026/C25Q2N",
+        "published_artifacts": [
+          {
+            "name": "voiced-1.0.0.zip",
+            "bytes": 115492496,
+            "digest": "fa2810f56f77070f8b8fc75a065a1c25-14",
+            "preferred_part_bytes": 8388608,
+            "authority": "PhysioNet publisher versioned S3 ETag",
+            "url": "https://physionet.org/content/voiced/get-zip/1.0.0/"
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU3oTVRG",
+        "title": "CirCor-DigiScope",
+        "licensing_source": "https://physionet.org/content/circor-heart-sound/1.0.3/",
+        "license": "Open Data Commons Attribution 1.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 1,
+        "published_selection_bytes": 471283852,
+        "publisher_licence_url": "https://physionet.org/content/circor-heart-sound/view-license/1.0.3/",
+        "published_version": "1.0.3",
+        "publisher_credit": [
+          "Oliveira, Jorge",
+          "Renna, Francesco",
+          "Costa, Paulo",
+          "Nogueira, Marcelo",
+          "Oliveira, Ana Cristina",
+          "Elola, Andoni",
+          "Ferreira, Carlos",
+          "Jorge, Alipio",
+          "Bahrami Rad, Ali",
+          "Reyna, Matthew",
+          "Sameni, Reza",
+          "Clifford, Gari",
+          "Coimbra, Miguel"
+        ],
+        "official_doi": "10.13026/tshs-mw03",
+        "published_artifacts": [
+          {
+            "name": "circor-heart-sound-1.0.3.zip",
+            "bytes": 471283852,
+            "digest": "3d26093b4f327145559ff8c06cc5549a-57",
+            "preferred_part_bytes": 8388608,
+            "authority": "PhysioNet publisher versioned S3 ETag",
+            "url": "https://physionet.org/content/circor-heart-sound/get-zip/1.0.3/"
+          }
+        ]
+      },
+      {
+        "id": "reczz28SNU8z6xdf",
+        "title": "PhysioNet-CinC-2016",
+        "licensing_source": "https://physionet.org/content/challenge-2016/1.0.0/",
+        "license": "Open Data Commons Attribution 1.0",
+        "selection": "unmodified public distribution; retain attribution, notices and private source directory control",
+        "published_artifact_count": 3,
+        "published_selection_bytes": 219034340,
+        "publisher_licence_url": "https://physionet.org/content/challenge-2016/view-license/1.0.0/",
+        "published_version": "1.0.0",
+        "publisher_credit": [
+          "When using this resource, please cite the original publication: Liu C, Springer D, Li Q, Moody B, Juan RA, Chorro FJ, Castells F, Roig JM, Silva I, Johnson AE, Syed Z, Schmidt SE, Papadaniil CD, Hadjileontiadis L, Naseri H, Moukadem A, Dieterlen A, Brandt C, Tang H, Samieinasab M, Samieinasab MR, Sameni R, Mark RG, Clifford GD. An open access database for the evaluation of heart sound algorithms. Physiol Meas.2016 Dec;37(12):2181-2213 https://doi.org/10.1088/0967-3334/37/12/2181 Please include the standard citation for PhysioNet: Cite Copy BibTeX Pollard, T., Moody, B. E., Lehman, L., Gow, B., Fernandes, C., Xie, C., Johnson, A., Mark, R. G.,"
+        ],
+        "official_doi": null,
+        "published_artifacts": [
+          {
+            "name": "training.zip",
+            "bytes": 190112103,
+            "digest": "c2566b4bf1708bd2fac650ec68e672c3-23",
+            "preferred_part_bytes": 8388608,
+            "authority": "PhysioNet versioned S3 ETag",
+            "url": "https://physionet.org/files/challenge-2016/1.0.0/training.zip"
+          },
+          {
+            "name": "validation.zip",
+            "bytes": 18379542,
+            "digest": "978df9ffd504d94b23f81a0d1b788281-3",
+            "preferred_part_bytes": 8388608,
+            "authority": "PhysioNet versioned S3 ETag",
+            "url": "https://physionet.org/files/challenge-2016/1.0.0/validation.zip"
+          },
+          {
+            "name": "annotations.zip",
+            "bytes": 10542695,
+            "digest": "6bcc01440f4f2055ec0e149e1ec7cf28-2",
+            "preferred_part_bytes": 8388608,
+            "authority": "PhysioNet versioned S3 ETag",
+            "url": "https://physionet.org/files/challenge-2016/1.0.0/annotations.zip"
+          }
+        ]
+      }
+    ]
+  },
+  "two_host_publisher_evidence": {
+    "47": {
+      "scope": "10 CC BY / ODC distributions plus RAVDESS Speech. Count only verified official artifacts.",
+      "receipt_sha256": "2f53270ab71a6bbcff610cc24e16bcc050c424a287c4f38930524a9b173c19f6",
+      "checked_at": "2026-11-21T05:07:00.441847+00:00",
+      "source_verified": {
+        "Saarbruecken-Voice": 73,
+        "Indian-Stroke-Speech": 2,
+        "COUGHVID": 1,
+        "HFrEF-ECG-PCG": 2,
+        "RAVDESS Speech": 1,
+        "UGAkan-ImpairedSpeech": 1,
+        "Spanish-Phonological": 1,
+        "Children-Heart-Sound": 1,
+        "VOICED": 1,
+        "CirCor-DigiScope": 1,
+        "PhysioNet-CinC-2016": 3
+      },
+      "old_shared_verified": {
+        "Saarbruecken-Voice": 65,
+        "Indian-Stroke-Speech": 1,
+        "COUGHVID": 0,
+        "HFrEF-ECG-PCG": 0,
+        "RAVDESS Speech": 0,
+        "UGAkan-ImpairedSpeech": 1,
+        "Spanish-Phonological": 0,
+        "Children-Heart-Sound": 0,
+        "VOICED": 0,
+        "CirCor-DigiScope": 1,
+        "PhysioNet-CinC-2016": 1
+      }
+    },
+    "101": {
+      "scope": "10 CC BY / ODC distributions plus RAVDESS Speech. Count only verified official artifacts.",
+      "receipt_sha256": "90d42d242356388d4210af57c0dd6b244456611e47ff80ce8b50790952d713c4",
+      "checked_at": "2026-11-21T05:09:56.364401+00:00",
+      "source_verified": {
+        "Saarbruecken-Voice": 65,
+        "Indian-Stroke-Speech": 1,
+        "COUGHVID": 0,
+        "HFrEF-ECG-PCG": 0,
+        "RAVDESS Speech": 1,
+        "UGAkan-ImpairedSpeech": 1,
+        "Spanish-Phonological": 0,
+        "Children-Heart-Sound": 0,
+        "VOICED": 0,
+        "CirCor-DigiScope": 1,
+        "PhysioNet-CinC-2016": 1
+      },
+      "old_shared_verified": {
+        "Saarbruecken-Voice": 65,
+        "Indian-Stroke-Speech": 1,
+        "COUGHVID": 0,
+        "HFrEF-ECG-PCG": 0,
+        "RAVDESS Speech": 0,
+        "UGAkan-ImpairedSpeech": 1,
+        "Spanish-Phonological": 0,
+        "Children-Heart-Sound": 0,
+        "VOICED": 0,
+        "CirCor-DigiScope": 1,
+        "PhysioNet-CinC-2016": 1
+      }
+    }
+  },
+  "selected_conditional_source_proof": {
+    "Czech-Laryngectomy": {
+      "expected": 4,
+      "files": [
+        {
+          "publisher_file": "README.docx",
+          "bytes": 20389,
+          "md5": "00ad9d992f5eea033c14582ab4eb9db0",
+          "sha256": "bc37e135f84540de62e7f35b806bf7a9f442fb32895425396eed2faf1cc97aea"
+        },
+        {
+          "publisher_file": "speaker01.zip",
+          "bytes": 272268429,
+          "md5": "6b9c283206a1b9720bc74d313e7b8924",
+          "sha256": "8a8a3205d2d7978031f9f9f526fd0cee41386fdf4696045fe680f82dfe70c9c0"
+        },
+        {
+          "publisher_file": "speaker02.zip",
+          "bytes": 381814784,
+          "md5": "ea779a200462170fc19a833b754b7a29",
+          "sha256": "c262ae5a5e8e6ee8084ac16015232396d9c66724b2e7265a7beb073d10be0fc3"
+        },
+        {
+          "publisher_file": "speaker03.zip",
+          "bytes": 121001822,
+          "md5": "f23c4c148f7641e0add7c28c1a9f35fe",
+          "sha256": "b74cceedf3c9a26e555b69e6fb05e92a8c5316d30199cb42768ac40a484d0252"
+        }
+      ]
+    },
+    "UK-COVID": {
+      "expected": 30,
+      "files": [
+        {
+          "publisher_file": "DataDictionary_UKCOVID19VocalAudioDataset_OpenAccess.xlsx",
+          "bytes": 18711,
+          "md5": "477ffb7cff05f3783fb899c57c838763",
+          "sha256": "333e654f2114adbddec4c909e6bb5906a5415d0cf40c9f666a3773e164e89bf7"
+        },
+        {
+          "publisher_file": "README.md",
+          "bytes": 7101,
+          "md5": "75cc90beffe88f3ea90e3bd0002e7a25",
+          "sha256": "81707b9288df56a72519b29f36c4fa9624f5816c9bd5a3f2438a391724aaacdf"
+        },
+        {
+          "publisher_file": "audio_metadata.csv",
+          "bytes": 23577280,
+          "md5": "5cf99371bd27edecafe508f2925f7e20",
+          "sha256": "253910a8d624a13e8a117820b27218db1924d376f5b01d792e7a7de54031fa8e"
+        },
+        {
+          "publisher_file": "participant_metadata.csv",
+          "bytes": 11481792,
+          "md5": "c057b2f461c729583abb04634216e187",
+          "sha256": "29a8080d80cee667b813ccd3f9a9b307867c3b3454fa4a2f9f8d95d8721ce5e4"
+        },
+        {
+          "publisher_file": "train_test_splits.csv",
+          "bytes": 7270746,
+          "md5": "60b1f612c321e3dfb151e5d73d0d4c23",
+          "sha256": "a6d8faf7342ad245f03caece0b26692247b2628378ab9a5eb5b0cb422915a02a"
+        },
+        {
+          "publisher_file": "covid_data.z01",
+          "bytes": 2147483648,
+          "md5": "d88b514d231be9a602c33f2720753edf",
+          "sha256": "31588c7562b2f62cea132bf1d221fc45d546bb89811abffe4ad873d224bc6329"
+        }
+      ]
+    }
+  },
+  "extended_publisher_transactions": {
+    "reczz28SOytY5yog": {
+      "id": "reczz28SOytY5yog",
+      "name": "Czech-Laryngectomy",
+      "target": "/data/share/datasets/Czech-Laryngectomy/noncommercial-originals",
+      "files": 4,
+      "payload_bytes": 775105424,
+      "copied_bytes": 775105424,
+      "hardlinked_bytes": 0,
+      "old_links": 4,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "c49cab954be2ac7b9b5e746951ca17413a3545924b8a6874bb6acbe3c9b5d988",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNU0UmqJv": {
+      "id": "reczz28SNU0UmqJv",
+      "name": "COUGHVID",
+      "target": "/data/share/datasets/COUGHVID",
+      "files": 1,
+      "payload_bytes": 951442487,
+      "copied_bytes": 951442487,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "f158df577d8e9af06f09ffd2acc3efabe3b9f16ab2fa0ba50f452ffd46abab95",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNU5YNWpq": {
+      "id": "reczz28SNU5YNWpq",
+      "name": "HFrEF-ECG-PCG",
+      "target": "/data/share/datasets/HFrEF-ECG-PCG/publisher-originals",
+      "files": 2,
+      "payload_bytes": 362791315,
+      "copied_bytes": 362791315,
+      "hardlinked_bytes": 0,
+      "old_links": 2,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "debb00138b96af69b00c644d71197c47890a09f614790c02713402e8906cf038",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNUGsmDnW": {
+      "id": "reczz28SNUGsmDnW",
+      "name": "UGAkan-ImpairedSpeech",
+      "target": "/data/share/datasets/UGAkan-ImpairedSpeech",
+      "files": 1,
+      "payload_bytes": 720976054,
+      "copied_bytes": 0,
+      "hardlinked_bytes": 720976054,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "50cd125c80d8b1956a1cfc08e571fcd7916cd7145abfc7b49eeae4f8423e8110",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNUC4q70e": {
+      "id": "reczz28SNUC4q70e",
+      "name": "Spanish-Phonological",
+      "target": "/data/share/datasets/Spanish-Phonological",
+      "files": 1,
+      "payload_bytes": 41937271,
+      "copied_bytes": 41937271,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "37e689259da489f775b3b2dd4e591fe0efe4067161d859ae4a1a34c86249b98d",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNU24HgGr": {
+      "id": "reczz28SNU24HgGr",
+      "name": "Children-Heart-Sound",
+      "target": "/data/share/datasets/Children-Heart-Sound",
+      "files": 1,
+      "payload_bytes": 24913934,
+      "copied_bytes": 24913934,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "3c4bfd2aa2ae57c2fc0beee6fc0ebe487d93c2d48dd3390af67d431fa2502b97",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNUJIedC0": {
+      "id": "reczz28SNUJIedC0",
+      "name": "VOICED",
+      "target": "/data/share/datasets/VOICED",
+      "files": 1,
+      "payload_bytes": 115492496,
+      "copied_bytes": 115492496,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "b0741007738883cf9e1900c6133b37c92732d2e49bad4a2f0ba9f57a22730cc8",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNU3oTVRG": {
+      "id": "reczz28SNU3oTVRG",
+      "name": "CirCor-DigiScope",
+      "target": "/data/share/datasets/CirCor-DigiScope",
+      "files": 1,
+      "payload_bytes": 471283852,
+      "copied_bytes": 0,
+      "hardlinked_bytes": 471283852,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "a1e492d54fedd0582438cf918431dcc5a0549466cddbb6420391742cadaa1d2f",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNU8z6xdf": {
+      "id": "reczz28SNU8z6xdf",
+      "name": "PhysioNet-CinC-2016",
+      "target": "/data/share/datasets/PhysioNet-CinC-2016",
+      "files": 3,
+      "payload_bytes": 219034340,
+      "copied_bytes": 28922237,
+      "hardlinked_bytes": 190112103,
+      "old_links": 3,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "1454fba77c7c01cf478019d970aafc70b286b3bae8d55b6d4da590e1e475b252",
+      "receipt_sha256": "2cf9d9242ab0e83c7c3401232fd38dbdd006669258021d3dc7ccf3833e5cf84c"
+    },
+    "reczz28SNUAklTb2": {
+      "id": "reczz28SNUAklTb2",
+      "name": "Saarbruecken-Voice",
+      "target": "/data/share/datasets/Saarbruecken-Voice",
+      "files": 73,
+      "payload_bytes": 38059544640,
+      "copied_bytes": 6131044446,
+      "hardlinked_bytes": 31928500194,
+      "old_links": 73,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "d302f7d2397e65ae6cdfd74b5289c7304a0cd0c1db95dca831f7258e9e5e3912",
+      "receipt_sha256": "37510e7dedd42649d1e412278943ce0c7be597c95e03f9f4c89a1b575e9956c7"
+    },
+    "reczz28SO6ntOKd9": {
+      "id": "reczz28SO6ntOKd9",
+      "name": "BMD-HS",
+      "target": "/data/share/datasets/BMD-HS/noncommercial-originals",
+      "files": 1,
+      "payload_bytes": 126924002,
+      "copied_bytes": 126924002,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "aaf7ec2615bf4bd9f69023796f2265cb42f13e2c23a94e9422333acf88de15bc",
+      "receipt_sha256": "4e3fabf39b79e8d8a2ec8f3c1f9ded04ee8cd7299f411915a1ce531700a7fbb0"
+    },
+    "reczz28SNU7YOrEN": {
+      "id": "reczz28SNU7YOrEN",
+      "name": "Indian-Stroke-Speech",
+      "target": "/data/share/datasets/Indian-Stroke-Speech",
+      "files": 2,
+      "payload_bytes": 172666396,
+      "copied_bytes": 2209,
+      "hardlinked_bytes": 172664187,
+      "old_links": 2,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "f74ebb8dfe66d63c8b78b348f2893e20c24143c6a01401e79255cf36197e7264",
+      "receipt_sha256": "3cfa3768f559ba71cf937b28c06244306e022a2ebd7adcccf910d4051341b8de"
+    },
+    "reczz28S4ElbQROC": {
+      "id": "reczz28S4ElbQROC",
+      "name": "RAVDESS Speech",
+      "target": "/data/share/datasets/RAVDESS-Speech/noncommercial-originals",
+      "files": 1,
+      "payload_bytes": 208468073,
+      "copied_bytes": 208468073,
+      "hardlinked_bytes": 0,
+      "old_links": 1,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "941fd76926aa08d9881f0a6810429707510bf8c24002a9b3d188cfae94b67cad",
+      "receipt_sha256": "09278abe699ea6e061fc9d08949f83187f2960607bc03aeda07801cf32511dab"
+    },
+    "reczz28SRDVW6X8w": {
+      "id": "reczz28SRDVW6X8w",
+      "name": "UK-COVID",
+      "target": "/data/share/datasets/UK-COVID/openAccessv1.1",
+      "files": 6,
+      "payload_bytes": 2189839278,
+      "copied_bytes": 2189839278,
+      "hardlinked_bytes": 0,
+      "old_links": 6,
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "public_publisher_artifact",
+      "manifest_sha256": "51c2b254aeef4d658fc05ad488f3a705b79a4bf0dad4a59fe7ad2b0a9f71a5dc",
+      "receipt_sha256": "ba59d6df90c43ae96b4b7e8de43dd2bdb15d6b46273b4af2063fa09568907920"
+    },
+    "reczz28SP84Mgiwf": {
+      "id": "reczz28SP84Mgiwf",
+      "name": "UltraSuite-Cleft",
+      "target": "/data/share/datasets/UltraSuite-Cleft/noncommercial-originals",
+      "files": 3179,
+      "payload_bytes": 650257191,
+      "copied_bytes": 650257191,
+      "hardlinked_bytes": 0,
+      "old_links": 2,
+      "old_link_unit": "module directory; every underlying relative path remains valid",
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "559abce53c4135d59f82cb0a4854144f3cc5eb99f4dd528c80eb0b83116f8902",
+      "verified_source_manifest_sha256": "5eee5282e4166d38a6b474f265bb20903a0bb0f57aca9ad0ec3f5a3d48f9d810",
+      "receipt_sha256": "1b4da22a091e0e686ca1ca75ec23ac43280a8168195f39a1e85250ad6d636002"
+    },
+    "reczz28SP81y3wMy": {
+      "id": "reczz28SP81y3wMy",
+      "name": "UltraSuite-UPX",
+      "target": "/data/share/datasets/UltraSuite-UPX/noncommercial-originals",
+      "files": 46602,
+      "payload_bytes": 2964968260,
+      "copied_bytes": 2964968260,
+      "hardlinked_bytes": 0,
+      "old_links": 2,
+      "old_link_unit": "module directory; every underlying relative path remains valid",
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "a9158f9b1bc2a13ce11b34b2e6431d85c8efb2287b38f35be032e7ecd3013201",
+      "verified_source_manifest_sha256": "0dc605a3b611b10d08e052c2c2106a53ce58dc6508663c9e42e266b6852bd4e7",
+      "receipt_sha256": "b060555fb2fb61fa18d419135aaf5ab75214f84cbb7721c43f39db5dfc39ca7a"
+    },
+    "reczz28SP86fpS7S": {
+      "id": "reczz28SP86fpS7S",
+      "name": "UltraSuite-UX2020",
+      "target": "/data/share/datasets/UltraSuite-UX2020/noncommercial-originals",
+      "files": 5361,
+      "payload_bytes": 694034638,
+      "copied_bytes": 694034638,
+      "hardlinked_bytes": 0,
+      "old_links": 2,
+      "old_link_unit": "module directory; every underlying relative path remains valid",
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "c6bef9ac00b4e36ca3a5a2e64711c76596a73f2d37c49590b65cf562113b5e5f",
+      "verified_source_manifest_sha256": "6ee34c3077826904ecda5d4ece0a6624e3bd49341eae9292e86a8ccfaf8bb81f",
+      "receipt_sha256": "cd488e369e768bf16f830ce6ff1c28c7ddf8a48ea487c3c0e80987292f79a341"
+    },
+    "reczz28SP7zYt3M7": {
+      "id": "reczz28SP7zYt3M7",
+      "name": "UltraSuite-UXSSD",
+      "target": "/data/share/datasets/UltraSuite-UXSSD/noncommercial-originals",
+      "files": 32123,
+      "payload_bytes": 1653481603,
+      "copied_bytes": 1653481603,
+      "hardlinked_bytes": 0,
+      "old_links": 2,
+      "old_link_unit": "module directory; every underlying relative path remains valid",
+      "all_sha256_verified": true,
+      "official_checksums_verified": true,
+      "writer_scope": "member_group_only",
+      "manifest_sha256": "69e50fd901b31e0555f8c09671528030a1c35266fc8ce1aa6e1c9b9c044804c3",
+      "verified_source_manifest_sha256": "2e155cab930f0de6cac705e3e892a3cd4fe966be312917c4e7d9bcacfb9557b1",
+      "receipt_sha256": "cdf4fce6edf21fff69fee2523e5aa85bc488f7a2a0523ffc449204a7c46702d5"
+    }
+  },
+  "confirmed_feishu_source_paths": [
+    "reczz28S4ElbQPb1",
+    "reczz28S4ElbQROC",
+    "reczz28S4ElbQRQt",
+    "reczz28SNU0UmqJv",
+    "reczz28SNU24HgGr",
+    "reczz28SNU3oTVRG",
+    "reczz28SNU5YNWpq",
+    "reczz28SNU7YOrEN",
+    "reczz28SNU8z6xdf",
+    "reczz28SNUAklTb2",
+    "reczz28SNUC4q70e",
+    "reczz28SNUGsmDnW",
+    "reczz28SNUJIedC0",
+    "reczz28SO6ntOKd9",
+    "reczz28SOytY5yog",
+    "reczz28SP7zYt3M7",
+    "reczz28SP81y3wMy",
+    "reczz28SP84Mgiwf",
+    "reczz28SP86fpS7S",
+    "reczz28SPSFA7Mro",
+    "reczz28SRDVW6X8w"
+  ],
+  "extended_ordinary_readback": {
+    "reczz28SNU7YOrEN": {
+      "101": {
+        "members": {
+          "rmp": 2,
+          "hefeng": 2,
+          "liusizhe": 2
+        },
+        "unaffiliated_read": 2,
+        "unaffiliated_eacces": 0,
+        "files": 2,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 2,
+          "hefeng": 2,
+          "liusizhe": 2
+        },
+        "unaffiliated_read": 2,
+        "unaffiliated_eacces": 0,
+        "files": 2,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNU0UmqJv": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNU5YNWpq": {
+      "101": {
+        "members": {
+          "rmp": 2,
+          "hefeng": 2,
+          "liusizhe": 2
+        },
+        "unaffiliated_read": 2,
+        "unaffiliated_eacces": 0,
+        "files": 2,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 2,
+          "hefeng": 2,
+          "liusizhe": 2
+        },
+        "unaffiliated_read": 2,
+        "unaffiliated_eacces": 0,
+        "files": 2,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28S4ElbQROC": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 1,
+        "files": 1,
+        "member_group_only": true,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 1,
+        "files": 1,
+        "member_group_only": true,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNUGsmDnW": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNUC4q70e": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNU24HgGr": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNUJIedC0": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNU3oTVRG": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 1,
+        "unaffiliated_eacces": 0,
+        "files": 1,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNU8z6xdf": {
+      "101": {
+        "members": {
+          "rmp": 3,
+          "hefeng": 3,
+          "liusizhe": 3
+        },
+        "unaffiliated_read": 3,
+        "unaffiliated_eacces": 0,
+        "files": 3,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 3,
+          "hefeng": 3,
+          "liusizhe": 3
+        },
+        "unaffiliated_read": 3,
+        "unaffiliated_eacces": 0,
+        "files": 3,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SOytY5yog": {
+      "101": {
+        "members": {
+          "rmp": 4,
+          "hefeng": 4,
+          "liusizhe": 4
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 4,
+        "files": 4,
+        "member_group_only": true,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 4,
+          "hefeng": 4,
+          "liusizhe": 4
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 4,
+        "files": 4,
+        "member_group_only": true,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SRDVW6X8w": {
+      "101": {
+        "members": {
+          "rmp": 6,
+          "hefeng": 6,
+          "liusizhe": 6
+        },
+        "unaffiliated_read": 6,
+        "unaffiliated_eacces": 0,
+        "files": 6,
+        "member_group_only": false,
+        "receipt_sha256": "e0fa1331c0f729e50a24db7d5c2045d9098ce7e31aba8596dafee5aff2ca236b"
+      },
+      "47": {
+        "members": {
+          "rmp": 6,
+          "hefeng": 6,
+          "liusizhe": 6
+        },
+        "unaffiliated_read": 6,
+        "unaffiliated_eacces": 0,
+        "files": 6,
+        "member_group_only": false,
+        "receipt_sha256": "45e10e4a32a615dae725e98d3251f8eae7ea7cf0924c640d1d5a086b8917ac9c"
+      }
+    },
+    "reczz28SNUAklTb2": {
+      "101": {
+        "members": {
+          "rmp": 73,
+          "hefeng": 73,
+          "liusizhe": 73
+        },
+        "unaffiliated_read": 73,
+        "unaffiliated_eacces": 0,
+        "files": 73,
+        "member_group_only": false,
+        "receipt_sha256": "05137b1c3511685a20b41018f5bb04d5ecd53d36ef4d642d7abd3b33d94d3728"
+      },
+      "47": {
+        "members": {
+          "rmp": 73,
+          "hefeng": 73,
+          "liusizhe": 73
+        },
+        "unaffiliated_read": 73,
+        "unaffiliated_eacces": 0,
+        "files": 73,
+        "member_group_only": false,
+        "receipt_sha256": "2fb7d97744cb35297b8b1b102cdbd00c5cc665751d3e4084868c3398bcd07ce9"
+      }
+    },
+    "reczz28SO6ntOKd9": {
+      "101": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 1,
+        "files": 1,
+        "member_group_only": true,
+        "receipt_sha256": "05137b1c3511685a20b41018f5bb04d5ecd53d36ef4d642d7abd3b33d94d3728"
+      },
+      "47": {
+        "members": {
+          "rmp": 1,
+          "hefeng": 1,
+          "liusizhe": 1
+        },
+        "unaffiliated_read": 0,
+        "unaffiliated_eacces": 1,
+        "files": 1,
+        "member_group_only": true,
+        "receipt_sha256": "2fb7d97744cb35297b8b1b102cdbd00c5cc665751d3e4084868c3398bcd07ce9"
+      }
+    }
+  },
+  "bmd_release_proof": {
+    "source_archive": "BMD-HS-4745751855d15ff5fc9aaed29c32ad3ec7a5d409.tar.gz",
+    "container_bytes": 126924002,
+    "upstream_commit": "4745751855d15ff5fc9aaed29c32ad3ec7a5d409",
+    "matching_blobs": 877,
+    "publisher_blobs": 877,
+    "observed_wav": 872,
+    "md5": "ab73b1ac8f4613df5746d650a157900c",
+    "sha256": "4fc15c7173534d4cf9cea4c03d7880204913362139ad8e9920abbbab734222a5"
+  },
+  "recovery_maintenance": {
+    "location": "var/releases/2026-11-21/on-host-receipts/",
+    "utilities": {
+      "rmp-public-package-migrate-rollback.py": "f368724a5008963d9a7c6bf2571756d29277b55de0a6ddeaafaf69827d71989e",
+      "rmp-uk-open-release-migrate-rollback.py": "eeb8364812b4ec83516dcdf34e4085593a9e38feac5ab2e20314f2da7d9af09a",
+      "rmp-bmd-gated-migrate-rollback.py": "e5c6012c78864c938e6400581f5c6d9ab1aabfbd5eb9ee5aa587b725debbc3c0"
+    },
+    "order": "When both hosts changed old entries, reverse 101 first, then 47. Preserve signed-off private journal, its backup and source parent permissions; stop on unrelated changes or inaccessible former source."
+  },
+  "compatibility_101_release_fallbacks": {
+    "reczz28SOytY5yog": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNU0UmqJv": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNU5YNWpq": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNUGsmDnW": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNUC4q70e": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNU24HgGr": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNUJIedC0": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNU3oTVRG": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNU8z6xdf": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "6c733c0a09c026a41bcfdefa87df7b96523ebac978c1300a068fd45786eb0f8d"
+    },
+    "reczz28SNUAklTb2": {
+      "status": "applied",
+      "verified_local_links_checked": 65,
+      "links_retargeted": 65,
+      "receipt_sha256": "7e7bdf25e1bae7be0f8f8af369b285f3b672ffc4c47b61b97fad2ffc9c3d0306"
+    },
+    "reczz28S4ElbQROC": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "ce7be37e52818e381c85bc489f10767a6326f04a8ad06d1648df88c95055dc31"
+    },
+    "reczz28SNU7YOrEN": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "ce7be37e52818e381c85bc489f10767a6326f04a8ad06d1648df88c95055dc31"
+    },
+    "reczz28SO6ntOKd9": {
+      "status": "applied",
+      "verified_local_links_checked": 1,
+      "links_retargeted": 1,
+      "receipt_sha256": "9e71bbafbbb7505231b12b32f08807c2228c7f8b76551c4d9829d46f6db98925"
+    },
+    "reczz28SRDVW6X8w": {
+      "status": "no_registered_101_source",
+      "verified_local_links_checked": 0,
+      "links_retargeted": 0,
+      "receipt_sha256": "255f86c5265518ef056198876f572e7865e210b15d4c0f6a4fc879efdaa38bf9"
+    }
+  },
+  "ultrasuite_source_observations": {
+    "UltraSuite-UXSSD": {
+      "id": "reczz28SP7zYt3M7",
+      "registered_host_101": "ENOENT",
+      "source_regular_files": 32123,
+      "source_wavs": 3729,
+      "skipped_links": 0
+    },
+    "UltraSuite-UPX": {
+      "id": "reczz28SP81y3wMy",
+      "registered_host_101": "ENOENT",
+      "source_regular_files": 46602,
+      "source_wavs": 5948,
+      "skipped_links": 0
+    },
+    "UltraSuite-Cleft": {
+      "id": "reczz28SP84Mgiwf",
+      "registered_host_101": "ENOENT",
+      "source_regular_files": 3179,
+      "source_wavs": 1441,
+      "skipped_links": 0
+    },
+    "UltraSuite-UX2020": {
+      "id": "reczz28SP86fpS7S",
+      "registered_host_101": "ENOENT",
+      "source_regular_files": 5361,
+      "source_wavs": 2150,
+      "skipped_links": 0
+    }
+  },
+  "ultrasuite_uxssd_pilot": {
+    "checked_source_files": 32123,
+    "verified_files": 5,
+    "wav_files": 3729,
+    "full_tree": false,
+    "pilot": true,
+    "origin": "ultrasuite-rsync.inf.ed.ac.uk::ultrasuite"
+  },
+  "ultrasuite_release_checks": {
+    "UltraSuite-Cleft": {
+      "id": "reczz28SP84Mgiwf",
+      "publisher_md5_files": 3179,
+      "source_wav_count": 1441,
+      "source_manifest_sha256": "5eee5282e4166d38a6b474f265bb20903a0bb0f57aca9ad0ec3f5a3d48f9d810",
+      "source_receipt_sha256": "7061c08d8ebfa1918c82f6e0625e99c052dac2cc1f0f17eb110c4e1d45eef5de",
+      "full_publisher_check": true,
+      "hosts": {
+        "101": {
+          "payload_files": 3179,
+          "selected_wavs": 1441,
+          "bytes": 650257191,
+          "dirs": 67,
+          "manifest_sha256": "559abce53c4135d59f82cb0a4854144f3cc5eb99f4dd528c80eb0b83116f8902",
+          "type_module_sample": 6,
+          "access_counts": {
+            "rmp": {
+              "read": 3179
+            },
+            "liusizhe": {
+              "read": 6
+            },
+            "hefeng": {
+              "read": 6
+            },
+            "nobody": {
+              "13": 6
+            }
+          },
+          "legacy": {
+            "registered_root_absent": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "539f5ca4f28a373abeb3f50daf3863f15ec6e548c05e71a931d7ada47a801a7c"
+        },
+        "47": {
+          "payload_files": 3179,
+          "selected_wavs": 1441,
+          "bytes": 650257191,
+          "dirs": 67,
+          "manifest_sha256": "559abce53c4135d59f82cb0a4854144f3cc5eb99f4dd528c80eb0b83116f8902",
+          "type_module_sample": 6,
+          "access_counts": {
+            "rmp": {
+              "read": 3179
+            },
+            "liusizhe": {
+              "read": 6
+            },
+            "hefeng": {
+              "read": 6
+            },
+            "nobody": {
+              "13": 6
+            }
+          },
+          "legacy": {
+            "core-cleft": true,
+            "labels-cleft": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "4525ba9a3348980b19998edacedfe06751abd705f6bd36a1bd5407fa74690b03"
+        }
+      },
+      "published": true,
+      "bytes": 650257191,
+      "published_receipt_sha256": "1b4da22a091e0e686ca1ca75ec23ac43280a8168195f39a1e85250ad6d636002"
+    },
+    "UltraSuite-UPX": {
+      "id": "reczz28SP81y3wMy",
+      "publisher_md5_files": 46602,
+      "source_wav_count": 5948,
+      "source_manifest_sha256": "0dc605a3b611b10d08e052c2c2106a53ce58dc6508663c9e42e266b6852bd4e7",
+      "source_receipt_sha256": "5949ab5537b854f3423ab4d6ded2592c812572fec5625b8bcc5122def923f76e",
+      "full_publisher_check": true,
+      "hosts": {
+        "101": {
+          "payload_files": 46602,
+          "selected_wavs": 5948,
+          "bytes": 2964968260,
+          "dirs": 240,
+          "manifest_sha256": "a9158f9b1bc2a13ce11b34b2e6431d85c8efb2287b38f35be032e7ecd3013201",
+          "type_module_sample": 8,
+          "access_counts": {
+            "rmp": {
+              "read": 46602
+            },
+            "liusizhe": {
+              "read": 8
+            },
+            "hefeng": {
+              "read": 8
+            },
+            "nobody": {
+              "13": 8
+            }
+          },
+          "legacy": {
+            "registered_root_absent": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "54460c4b614255387d1c04498458727222fb4ef0d6b597da43f686c06edeed9c"
+        },
+        "47": {
+          "payload_files": 46602,
+          "selected_wavs": 5948,
+          "bytes": 2964968260,
+          "dirs": 240,
+          "manifest_sha256": "a9158f9b1bc2a13ce11b34b2e6431d85c8efb2287b38f35be032e7ecd3013201",
+          "type_module_sample": 8,
+          "access_counts": {
+            "rmp": {
+              "read": 46602
+            },
+            "liusizhe": {
+              "read": 8
+            },
+            "hefeng": {
+              "read": 8
+            },
+            "nobody": {
+              "13": 8
+            }
+          },
+          "legacy": {
+            "core-upx": true,
+            "labels-uxtd-uxssd-upx": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "2dadf8304734642306d0dc0865b53a730ac2c0f02ae0afeaa74ccd942106926a"
+        }
+      },
+      "published": true,
+      "bytes": 2964968260,
+      "published_receipt_sha256": "b060555fb2fb61fa18d419135aaf5ab75214f84cbb7721c43f39db5dfc39ca7a"
+    },
+    "UltraSuite-UX2020": {
+      "id": "reczz28SP86fpS7S",
+      "publisher_md5_files": 5361,
+      "source_wav_count": 2150,
+      "source_manifest_sha256": "6ee34c3077826904ecda5d4ece0a6624e3bd49341eae9292e86a8ccfaf8bb81f",
+      "source_receipt_sha256": "7768a8bff0b8c96e595f629fd526e05bed8d1c3163397df9203c09b12403bd75",
+      "full_publisher_check": true,
+      "hosts": {
+        "101": {
+          "payload_files": 5361,
+          "selected_wavs": 2150,
+          "bytes": 694034638,
+          "dirs": 44,
+          "manifest_sha256": "c6bef9ac00b4e36ca3a5a2e64711c76596a73f2d37c49590b65cf562113b5e5f",
+          "type_module_sample": 6,
+          "access_counts": {
+            "rmp": {
+              "read": 5361
+            },
+            "liusizhe": {
+              "read": 6
+            },
+            "hefeng": {
+              "read": 6
+            },
+            "nobody": {
+              "13": 6
+            }
+          },
+          "legacy": {
+            "registered_root_absent": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "6eefbc06fe31063c7142c548a08ec655f9347d3f01671a9c5b157fd11aed0eaa"
+        },
+        "47": {
+          "payload_files": 5361,
+          "selected_wavs": 2150,
+          "bytes": 694034638,
+          "dirs": 44,
+          "manifest_sha256": "c6bef9ac00b4e36ca3a5a2e64711c76596a73f2d37c49590b65cf562113b5e5f",
+          "type_module_sample": 6,
+          "access_counts": {
+            "rmp": {
+              "read": 5361
+            },
+            "liusizhe": {
+              "read": 6
+            },
+            "hefeng": {
+              "read": 6
+            },
+            "nobody": {
+              "13": 6
+            }
+          },
+          "legacy": {
+            "core-ux2020": true,
+            "labels-ux2020": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "3c3771766d330871376f5bb30c69086c930f3dbad7ff9cb926c18915fc9e701a"
+        }
+      },
+      "published": true,
+      "bytes": 694034638,
+      "published_receipt_sha256": "cd488e369e768bf16f830ce6ff1c28c7ddf8a48ea487c3c0e80987292f79a341"
+    },
+    "UltraSuite-UXSSD": {
+      "id": "reczz28SP7zYt3M7",
+      "publisher_md5_files": 32123,
+      "source_wav_count": 3729,
+      "source_manifest_sha256": "2e155cab930f0de6cac705e3e892a3cd4fe966be312917c4e7d9bcacfb9557b1",
+      "source_receipt_sha256": "5565e45db99a172ff972018aa71d8bc54035ced244fe2400ba321faad867dddd",
+      "full_publisher_check": true,
+      "hosts": {
+        "101": {
+          "payload_files": 32123,
+          "selected_wavs": 3729,
+          "bytes": 1653481603,
+          "dirs": 158,
+          "manifest_sha256": "69e50fd901b31e0555f8c09671528030a1c35266fc8ce1aa6e1c9b9c044804c3",
+          "type_module_sample": 8,
+          "access_counts": {
+            "rmp": {
+              "read": 32123
+            },
+            "liusizhe": {
+              "read": 8
+            },
+            "hefeng": {
+              "read": 8
+            },
+            "nobody": {
+              "13": 8
+            }
+          },
+          "legacy": {
+            "registered_root_absent": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "bc17e2d87ac81dff75d690ad11b5d83c39ab57d6fbee1e3cb9901debf23a121b"
+        },
+        "47": {
+          "payload_files": 32123,
+          "selected_wavs": 3729,
+          "bytes": 1653481603,
+          "dirs": 158,
+          "manifest_sha256": "69e50fd901b31e0555f8c09671528030a1c35266fc8ce1aa6e1c9b9c044804c3",
+          "type_module_sample": 8,
+          "access_counts": {
+            "rmp": {
+              "read": 32123
+            },
+            "liusizhe": {
+              "read": 8
+            },
+            "hefeng": {
+              "read": 8
+            },
+            "nobody": {
+              "13": 8
+            }
+          },
+          "legacy": {
+            "core-uxssd": true,
+            "labels-uxtd-uxssd-upx": true
+          },
+          "all_file_modes": "0640",
+          "all_directory_modes": "0750",
+          "gid": 992,
+          "receipt_sha256": "aeea8f1d935d01c6f4089e9cfc82dc88118f7de81e09fb41552178bca7bf51ce"
+        }
+      },
+      "published": true,
+      "bytes": 1653481603,
+      "published_receipt_sha256": "cdf4fce6edf21fff69fee2523e5aa85bc488f7a2a0523ffc449204a7c46702d5"
+    }
+  },
+  "protected_execution_digests": {
+    "rmp-ultrasuite-tree-transaction-20261121.py": "8ccdedf33133f09d4d7fd7f4ec7a55a793cbcdcb1b40fee3058f67bf88b8852e",
+    "rmp-ultrasuite-101-entrances.py": "9a7c38b1a92866c6897be8b92e363061e5737c260564dda010b08355970f54ac",
+    "rmp-conditional-special-candidates-20261121.json": "3b8b1215655b5eebcb3e48c210f7b98a291559077a1d95fcf3eb92feeb39c3bb"
+  }
+}

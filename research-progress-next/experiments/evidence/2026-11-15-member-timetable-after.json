@@ -1,0 +1,216 @@
+{
+  "recorded_at": "2026-11-15T09:22:13.289Z",
+  "release": {
+    "backups": [
+      "/var/backups/rmp-member-timetable-20261115-v1",
+      "/var/backups/rmp-member-timetable-20261115-v2",
+      "/var/backups/rmp-member-timetable-20261115-v3"
+    ],
+    "scope": "team activity metadata, member timetable and report reading; no source report or model configuration writes"
+  },
+  "original_files": [
+    {
+      "name": "attachment-1",
+      "bytes": 176695,
+      "sha256": "44183506802ff06574ea6775ba98719e47537680259c79b8a79ff003fddf1384"
+    },
+    {
+      "name": "attachment-2",
+      "bytes": 527,
+      "sha256": "d5d94edc98debe3cafb93dc51c1c1b67648602b2850d48acb46d86eb41d9a625"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 541,
+      "sha256": "4516565e22663f5c218e0eb709b37f6caea062b6e720a20b84cf4d93218429e0"
+    },
+    {
+      "name": "original",
+      "bytes": 473,
+      "sha256": "6f8d4ef3657ae0ced9bb77360866edcb7010944232215d8ed74213a4873ce592"
+    },
+    {
+      "name": "report.md",
+      "bytes": 526,
+      "sha256": "bb242bfc705742c0cb08056ee2a978fc69e3eee6fd152051dad390cfe2e7f969"
+    }
+  ],
+  "research_brief": {
+    "sha256": "9ad0c3e7a1f2bbfc0bc285c736f9d24b853c6cc5e6ea422e46d90e5dd188b496",
+    "revision": 2,
+    "engine": "DeepSeek V4 Pro · Max"
+  },
+  "original_files_unchanged": true,
+  "research_brief_unchanged": true,
+  "downloads": [
+    {
+      "path": "daily/m_65a349fc3c98481589f1/2026-11-14",
+      "status": 200,
+      "bytes": 473,
+      "sha256": "6f8d4ef3657ae0ced9bb77360866edcb7010944232215d8ed74213a4873ce592"
+    },
+    {
+      "path": "daily/m_65a349fc3c98481589f1/2026-11-14/1",
+      "status": 200,
+      "bytes": 176695,
+      "sha256": "44183506802ff06574ea6775ba98719e47537680259c79b8a79ff003fddf1384"
+    },
+    {
+      "path": "daily/m_65a349fc3c98481589f1/2026-11-14/2",
+      "status": 200,
+      "bytes": 527,
+      "sha256": "d5d94edc98debe3cafb93dc51c1c1b67648602b2850d48acb46d86eb41d9a625"
+    },
+    {
+      "path": "weekly/m_760d85f8a05f40b1a7bc/2026-W45",
+      "status": 200,
+      "bytes": 50435,
+      "sha256": "a3c2d1c2788130f18197d086586de46e7d67a21d785727436e17363266305620"
+    },
+    {
+      "path": "weekly/m_d42f95eadda34850b869/2026-W44",
+      "status": 200,
+      "bytes": 1327,
+      "sha256": "4fead4d5649fd01ee343324f3e306c6602bb1c66a6f0ac90fc74b6e8f5ec22f7"
+    }
+  ],
+  "anonymous_original_status": 401,
+  "online_layouts": [
+    {
+      "width": 1440,
+      "font": "16px",
+      "root": 1425,
+      "overflow": []
+    },
+    {
+      "width": 1440,
+      "font": "32px",
+      "root": 1425,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "font": "16px",
+      "root": 375,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "font": "32px",
+      "root": 375,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "font": "16px",
+      "root": 305,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "font": "32px",
+      "root": 305,
+      "overflow": []
+    }
+  ],
+  "rendered_weekly_text": {
+    "state": "complete",
+    "paragraphs": 4,
+    "originalLength": 613,
+    "previewLength": 95,
+    "allCharactersRetained": true
+  },
+  "intermediate_link_regression": {
+    "url": "https://rmp.wuwangwo.top/progress/#team?week=2026-W46&daily_week=2026-W46&daily_member=",
+    "weekly": "2026-W46 · 2026-11-09 至 2026-11-15",
+    "daily": "2026-W46 · 2026-11-09 至 2026-11-15",
+    "weeklyState": "2026-W46",
+    "dailyTimeLink": "#team?week=2026-W45&daily_week=2026-W46&daily_member=m_65a349fc3c98481589f1&date=2026-11-14",
+    "weeklyLinks": [
+      "#team?week=2026-W44&daily_week=2026-W46&daily_member=&member=m_d42f95eadda34850b869&report=weekly",
+      "#team?week=2026-W45&daily_week=2026-W46&daily_member=&member=m_760d85f8a05f40b1a7bc&report=weekly"
+    ]
+  },
+  "corrected_cross_links": [
+    {
+      "case": "weekly46_then_daily14",
+      "url": "https://rmp.wuwangwo.top/progress/#team?week=2026-W46&daily_week=2026-W46&daily_member=m_65a349fc3c98481589f1&date=2026-11-14",
+      "weekly": "2026-W46 · 2026-11-09 至 2026-11-15",
+      "daily": "2026-W46 · 2026-11-09 至 2026-11-15",
+      "dailyMember": "m_65a349fc3c98481589f1",
+      "open": true,
+      "downloads": 3
+    },
+    {
+      "case": "daily45_then_weekly44_result",
+      "url": "https://rmp.wuwangwo.top/progress/#team?week=2026-W44&member=m_d42f95eadda34850b869&daily_week=2026-W45&daily_member=m_65a349fc3c98481589f1&report=weekly",
+      "weekly": "2026-W44 · 2026-10-26 至 2026-11-01",
+      "daily": "2026-W45 · 2026-11-02 至 2026-11-08",
+      "dailyMember": "m_65a349fc3c98481589f1",
+      "weeklyOpen": true
+    }
+  ],
+  "tests": {
+    "progress_pytest": "141 passed",
+    "portal_pytest": "10 passed, 6 subtests passed",
+    "documentation": "243 HTML, 1841 internal links, no errors",
+    "report_views": "1440/390/320 px; 100%/200% font; 4-week/7-day timetables, long text/URLs/attachments, old links, selection, source downloads, drafts, slow response cross-links",
+    "progress_digest": "1440/390/320 px; open all sources; long unbroken quote URLs; 100%/200% internal and root widths; safe text, polling, record links",
+    "session_recovery": "1440/390/320 px",
+    "portal_home": "1440/390/320 px"
+  },
+  "services": {
+    "research-data-center": "active",
+    "research-weekly-web": "active",
+    "research-weekly-intake.timer": "active",
+    "research-weekly-summary.timer": "active",
+    "research-platform-nginx": "active",
+    "paper-library": "active"
+  },
+  "code_sha256": [
+    {
+      "path": "research-progress-next/research_weekly/team_activity.py",
+      "sha256": "524bd5cd3372990d70af5342f662bc1357cbafa09a50448272340f5447c95622"
+    },
+    {
+      "path": "research-progress-next/web/index.html",
+      "sha256": "c147343b15e55bff9bef7e0de58afc7418ccfdf3073bf04412a2157cea891abc"
+    },
+    {
+      "path": "research-progress-next/web/activity.js",
+      "sha256": "c931c5da641a1343a7251e800b0aaf615d69736e0713524e2c28a4c8f1f85fe4"
+    },
+    {
+      "path": "research-progress-next/web/activity.css",
+      "sha256": "987b55ae1ed052fb775dabbadc381f314d19c9e56a6b429f32b6873cc4a95896"
+    },
+    {
+      "path": "research-progress-next/web/style.css",
+      "sha256": "3269c203d9b879117d230589b3cda2ea6b19c23daa03633ce7e71604772a4074"
+    },
+    {
+      "path": "research-progress-next/web/digest.css",
+      "sha256": "33d24ed9fc9b680f971c4bd41b05095d691fe6e818c2e273c3f515d068b5e124"
+    },
+    {
+      "path": "research-progress-next/tests/test_team_activity.py",
+      "sha256": "5bd28b4fff49b2efc686384a4a8bb0c27c68d3622b7ddc235a420799b76b1df9"
+    },
+    {
+      "path": "research-progress-next/tests/check_report_views.cjs",
+      "sha256": "7b50aa5a2598c799592830b8f47387e99fbf63f0ef045c69b6048f0b86ef0adb"
+    },
+    {
+      "path": "research-progress-next/tests/check_progress_digest.cjs",
+      "sha256": "467f50537873a795672c7f0727f899c7e9f12705120cb84082f18342c660476c"
+    },
+    {
+      "path": "research-progress-next/tests/check_session_recovery.cjs",
+      "sha256": "3ccbfa7a201ef1d0a3226d08a63d08fcdb5c40cbbfd8c82d0a7bf4183a37239f"
+    },
+    {
+      "path": "research-progress-next/README.md",
+      "sha256": "73e11838d540a3c05923bd287486b6f9464deebe664bef4cdcdbee60eb0870b8"
+    }
+  ]
+}

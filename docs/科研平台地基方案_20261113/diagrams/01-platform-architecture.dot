@@ -1,0 +1,34 @@
+digraph G {graph [bgcolor="transparent",pad="0.25",nodesep="0.30",ranksep="0.52",fontname="Microsoft YaHei",fontsize=14]; node [shape=box,style="rounded,filled",fillcolor="#eef5f6",color="#bfd2d7",fontname="Microsoft YaHei",fontsize=13,margin="0.20,0.15"]; edge [color="#597b86",arrowsize=0.65,fontname="Microsoft YaHei",fontsize=11]; rankdir=TB;
+ portal [label="统一科研门户
+HTTPS 与入口登录",width="2.13",fillcolor="#163d4d",fontcolor="white"];
+ subgraph cluster_modules {label="现有四个业务中心";color="#d8e1e5";style="rounded";
+ data [label="数据管理
+目录与增补协议",width="1.89"]; paper [label="文献管理
+题录与阅读证据",width="1.89"]; progress [label="进度管理
+日报 周报 成果",width="1.90"]; compute [label="服务器资源
+47 与 101 监控",width="1.95"];
+ }
+ foundation [label="拟新增的统一协作层
+具名身份 课题 任务 版本
+证据 授权 审计",width="2.82",fillcolor="#dcece7",color="#55977c",penwidth=1.5];
+ gateway [label="目标 API v1 与事务事件
+旧接口保留
+新写入按权限逐步开放",width="2.75",fillcolor="#f3f1e8",color="#baa56b"];
+ subgraph cluster_storage {label="复用现有存储边界";color="#d8e1e5";style="rounded";
+ local [label="101 本地应用状态
+SQLite 与队列
+审计与监控历史",width="2.12"];
+ shared [label="共享 NFS 资料库
+datasets 与 models
+受控 incoming",width="2.41"];
+ private [label="受限原件与工作区
+按主体与用途
+保留原位",width="2.09"];
+ cold [label="OSS 冷归档
+不可变对象
+完成回执",width="1.51"];
+ }
+ portal -> {data paper progress compute};
+ {data paper progress compute} -> foundation [style=dashed];foundation->gateway [style=dashed];
+ gateway->{local shared private cold} [style=dashed];
+ }

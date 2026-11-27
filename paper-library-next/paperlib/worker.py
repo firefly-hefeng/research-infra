@@ -22,7 +22,7 @@ def write_job_json(library, relative, value, secret=''):
     fd, name = tempfile.mkstemp(prefix='job-', suffix='.tmp', dir=path.parent)
     try:
         with os.fdopen(fd, 'w', encoding='utf-8') as stream:
-            os.fchmod(stream.fileno(), 0o600)
+            os.chmod(name, 0o600)
             stream.write(raw)
             stream.flush()
             os.fsync(stream.fileno())

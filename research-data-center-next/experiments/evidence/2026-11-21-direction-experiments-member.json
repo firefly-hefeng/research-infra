@@ -1,0 +1,162 @@
+{
+  "setting": "47 existing shared data mount; ordinary rmp account",
+  "source_registry": "feishu-library.json",
+  "registry_observed_at": "2026-11-20T17:51:31.660Z",
+  "source_modules_sha256": {
+    "research_experiment.py": "f1743e926782abfac4e140da3b607effd153f394d79fdea34ee905df6027c435",
+    "research_experiment_audio.py": "b4032eaa9ec4bd3fecf3b25e28571981cb330af4fec3669f001012597accb514",
+    "direction_context.py": "9f9607c314e08dc778fe9888c92c09b08728c05c90ad0e591482d5c4074b51c4"
+  },
+  "user": 1011,
+  "python": "3.14.7",
+  "records": [
+    {
+      "direction": "MDVR-KCL",
+      "version": "1.0.0",
+      "status": "completed",
+      "plan_fingerprint": "7aa0b818a08a5c2ef2e161e7c50bc03539179bf21bbe9fb305c2be4a1a2b9e67",
+      "result_fingerprint": "7d5dc53eb742010015a40c724c32b483cef7fac1f4291dc4f2e2231e067e758d",
+      "started_at": "2026-11-21T07:50:31.427758+00:00",
+      "finished_at": "2026-11-21T07:50:33.858409+00:00",
+      "results": [
+        {
+          "id": "mdvr-input-sensitivity",
+          "title": "录音预处理的门限与截取对照",
+          "question": "在同一批录音上，提高低能量门限会舍弃多少片段？固定截取 10 或 30 秒能覆盖多少录音时长？",
+          "method": "读取已核验的 MDVR-KCL 公开发行包。每条录音前两秒按 20 ms 分帧，所有声道共同计算 RMS；逐录音配对比较 −50 与 −40 dBFS 保留率。",
+          "parameters": {
+            "prefix_seconds": 2,
+            "frame_ms": 20,
+            "energy_gates_dbfs": [
+              -50,
+              -40
+            ],
+            "crop_seconds": [
+              10,
+              30
+            ],
+            "expected_wav_files": 73,
+            "archive_sha256": "45c43cdfa5d078833a6ac27574c471c9ca34d4cd4dea5877f31ebe93b1b5edf6"
+          },
+          "sources": [
+            {
+              "id": "reczz28S4ElbQPb1",
+              "title": "MDVR-KCL",
+              "url": "https://zenodo.org/records/2867216",
+              "credit": "Hagen Jaeger, Dhaval Trivedi, Michael Stadtschnitzer",
+              "license": "CC BY 4.0"
+            }
+          ],
+          "limitations": [
+            "仅分析这个发行包。统计单位为录音，未按参与者去重。",
+            "能量门限仅作用于各录音开头最多两秒。保留比例不代表全段语音比例或人声检测准确率。",
+            "截取覆盖量按 WAV 原始时长计算。未测试转录质量、模型性能或临床效度。"
+          ],
+          "status": "completed",
+          "metrics": {
+            "wav_files": 73,
+            "analyzed_recordings": 73,
+            "exclusions": {},
+            "sample_rates_hz": {
+              "44100": 73
+            },
+            "channels": {
+              "1": 73
+            },
+            "frames": 7300,
+            "recorded_seconds": 10318.489,
+            "median_recording_seconds": 141.292,
+            "retained_frame_pct": {
+              "-50": 14.726,
+              "-40": 3.466
+            },
+            "changed_recordings": 54,
+            "paired_median_loss_pp": 10.0,
+            "crop_retained_duration_pct": {
+              "10": 7.075,
+              "30": 21.224
+            }
+          },
+          "observations": [
+            "共同分析 73/73 条录音，共 7300 个短时帧。门限从 −50 提至 −40 dBFS 后，54 条录音的保留帧数发生变化，逐录音保留率降幅中位数为 10.0 个百分点。",
+            "从每条录音起点截取 10 秒、30 秒，分别覆盖样本总时长的 7.075% 和 21.224%。"
+          ],
+          "next": "可按受试者及录音任务分层，比较整段不同位置的窗口，并用人工标注核对低能量帧中的有效语音。"
+        }
+      ]
+    },
+    {
+      "direction": "RAVDESS Speech",
+      "version": "1.0.0",
+      "status": "completed",
+      "plan_fingerprint": "da00bb9e5d817063a138d83f2ab754d0b09f0377019794371e85dfe29664a55c",
+      "result_fingerprint": "423efdab54bddc92a51e0239bd33a0af65393266a8eff23bc15e3782a6ebdd12",
+      "started_at": "2026-11-21T07:50:33.859075+00:00",
+      "finished_at": "2026-11-21T07:50:34.389493+00:00",
+      "results": [
+        {
+          "id": "ravdess-speaker-split",
+          "title": "情绪识别评测的演员隔离对照",
+          "question": "同一批语音按录音或按演员分折，训练和测试之间的演员重叠及类别比例分别怎样？",
+          "method": "只读获准使用的 RAVDESS 语音发行包索引。固定种子构造两种六折划分，比较测试录音的训练演员重叠率和单折类别占比最大偏差。",
+          "parameters": {
+            "folds": 6,
+            "seed": "rmp-ravdess-speaker-v1",
+            "expected_recordings": 1440,
+            "archive_sha256": "5d208e01632cc3e5242106fa2af3273e6dc5239fb8143131979ac74c4aa40657"
+          },
+          "sources": [
+            {
+              "id": "reczz28S4ElbQROC",
+              "title": "RAVDESS Speech",
+              "url": "https://zenodo.org/records/1188976",
+              "credit": "Steven R. Livingstone, Frank A. Russo",
+              "license": "CC BY-NC-SA 4.0 · 实验室获准的非商业研究"
+            }
+          ],
+          "limitations": [
+            "分析对象是固定台词的演员语音，只比较拆分策略产生的说话人重叠及类别比例。",
+            "按演员隔离不会消除录制环境、台词或语言等其他混杂；本实验没有估计情绪识别性能。"
+          ],
+          "status": "completed",
+          "metrics": {
+            "recordings": 1440,
+            "actors": 24,
+            "emotion_categories": 8,
+            "recording": {
+              "seen_actor_recordings": 1440,
+              "seen_actor_pct": 100.0,
+              "max_emotion_share_deviation_pp": 4.583,
+              "fold_sizes": [
+                240,
+                240,
+                240,
+                240,
+                240,
+                240
+              ]
+            },
+            "speaker": {
+              "seen_actor_recordings": 0,
+              "seen_actor_pct": 0.0,
+              "max_emotion_share_deviation_pp": 0.0,
+              "fold_sizes": [
+                240,
+                240,
+                240,
+                240,
+                240,
+                240
+              ]
+            }
+          },
+          "observations": [
+            "同一批 1440 条录音、24 位演员，在六折对照中，按录音拆分时有 100.0% 的测试录音在训练集中出现过同一演员，按演员拆分时为 0.0%。",
+            "两种拆分下，单折情绪类别占比偏离全库比例最多分别为 4.583 和 0.0 个百分点。"
+          ],
+          "next": "如要测试跨说话人的情绪识别，可固定同一组演员互斥折，在相同训练预算下比较基线并逐折报告性能。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "version": "1.0-proposed",
+  "date": "2026-11-13",
+  "files": [
+    {
+      "path": "02_接口与数据契约.html",
+      "bytes": 110972,
+      "sha256": "2a1a00fb9ce3b087e130d01e733f39579bd01071a77a3bf43855825a67073f5e"
+    },
+    {
+      "path": "03_协作与运营规范.html",
+      "bytes": 21095,
+      "sha256": "23ff32e219083688cbc46ce794b86cfd5dd5757572b1439476a1ba2e42b204f7"
+    },
+    {
+      "path": "04_资源核对清单.html",
+      "bytes": 83759,
+      "sha256": "39a564811159cb7dbe9ceb1bff16d9a5961b60f93634d4773619d14d7ca99d84"
+    },
+    {
+      "path": "index.html",
+      "bytes": 26822,
+      "sha256": "6ab9350082b993c24c09b3a53c183a71d4220b7f5c40715927ad09f92b737965"
+    },
+    {
+      "path": "contracts/domain-events.schema.json",
+      "bytes": 2668,
+      "sha256": "c12d90107a687724ab83ec8e9c7f78f60fa404c4e21419ed8df70be78b3b5db2"
+    },
+    {
+      "path": "contracts/legacy-live.openapi.json",
+      "bytes": 20911,
+      "sha256": "1f4930684a612f85ca56281f5c9c8fd61087f52610da5fe2cc7aec1fa19681e9"
+    },
+    {
+      "path": "contracts/platform-v1.openapi.json",
+      "bytes": 449548,
+      "sha256": "24f2026f41959b27f2fb3bd7f80fe7c46b8a9c977dd6e437001fb0116a336d09"
+    },
+    {
+      "path": "contracts/platform-v1.openapi.yaml",
+      "bytes": 139543,
+      "sha256": "141f3f55194094322d3976529d4d42febc2901c6e97046d790b79cf637bf6bb7"
+    },
+    {
+      "path": "diagrams/01-platform-architecture.dot",
+      "bytes": 1766,
+      "sha256": "0b08ce40667bc2b7d7a1bf39fbee700a78ab985049e829532d91f5362ad87b9e"
+    },
+    {
+      "path": "diagrams/01-platform-architecture.png",
+      "bytes": 462486,
+      "sha256": "a9c89451d10a1fd945a76c4f969bb49a5686370d8cfa4b7fe2b294c136d7a802"
+    },
+    {
+      "path": "diagrams/01-platform-architecture.svg",
+      "bytes": 14672,
+      "sha256": "1233d82f81953d990b62dc33db77322200af3899dbb16288d4e670e118d9e376"
+    },
+    {
+      "path": "diagrams/02-research-lineage.dot",
+      "bytes": 1524,
+      "sha256": "8b9586bf2d7a90739123eefd525b349fb054631a0e7dfc1edccac9cd6ca1c18f"
+    },
+    {
+      "path": "diagrams/02-research-lineage.svg",
+      "bytes": 11656,
+      "sha256": "0c57d43a89c75ed726e763784e1e9993c2a2382883835910262e4237b45c1b4d"
+    },
+    {
+      "path": "diagrams/03-controlled-release.dot",
+      "bytes": 1238,
+      "sha256": "21f370d29aa70ef0e7a00be0b8ac96ecbcaed5dabd4eab2243e684756b14e1eb"
+    },
+    {
+      "path": "diagrams/03-controlled-release.svg",
+      "bytes": 8665,
+      "sha256": "06680036acf33d0bc081fea5bc08abfe04f4079924670d44a6fe6b76663064f0"
+    },
+    {
+      "path": "evidence/audit-summary.json",
+      "bytes": 90736,
+      "sha256": "e74871bda871d8374823ee3b678f0a16abfe297e0062fc416bdc198b7b5b1f09"
+    },
+    {
+      "path": "templates/grant-request.example.json",
+      "bytes": 364,
+      "sha256": "364e4b9b6d11bbf43334459a30bd8b21b5544eda2016d6a91238ff8cfb63b343"
+    },
+    {
+      "path": "templates/project.example.json",
+      "bytes": 575,
+      "sha256": "09af8a2f370768192c8e93f2de6e6b60f9c8d1af6e179874f981c92ff70d9b81"
+    },
+    {
+      "path": "templates/release.example.json",
+      "bytes": 632,
+      "sha256": "afb4956d84b6f2c4f3d98e4389daeabd45b25cb33ffce57f51fb57ba7f5c0ca9"
+    },
+    {
+      "path": "templates/run.example.json",
+      "bytes": 707,
+      "sha256": "52cddb28a2874473f82c76113853f3d74d7ce6265b9cbff2a8f7b99e6fc468e9"
+    },
+    {
+      "path": "templates/weekly-links.example.json",
+      "bytes": 335,
+      "sha256": "5cfb55fcf128653ab884e440600005f9734702b2c1e4fc6a65044a8458a4eb23"
+    }
+  ],
+  "validation": {
+    "openapi": "passed",
+    "examples": 5,
+    "event_schema": "passed",
+    "local_links": "passed",
+    "planned_operations": 59,
+    "feishu_rows": 69
+  }
+}

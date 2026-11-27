@@ -1,0 +1,357 @@
+{
+  "observation": "2026-11-20T17:55:53.566Z",
+  "source": {
+    "table": "tbl9Ggk0cGF0Zlxz",
+    "view": "vew5x8yw5H"
+  },
+  "before": {
+    "field_order": [
+      "fld2esGU8R",
+      "fldXJlzpVr",
+      "fldl05R4zA",
+      "fld4B3p5ZG",
+      "fld1jV0RGx",
+      "fld1VYXpYD",
+      "fld4bh2hu6",
+      "fld77UEilA",
+      "fld5nhmIw1",
+      "fld2kNvjKG",
+      "fld2rcn5RL",
+      "fld6uLYs9G",
+      "fld9b6Uq4m",
+      "fld684MOzc",
+      "fld72hnCUh",
+      "fld3D26rDQ"
+    ],
+    "record_count": 69,
+    "sort": [],
+    "auto_sort": false
+  },
+  "after": {
+    "field_order": [
+      "fld2esGU8R",
+      "fld19blJ1W",
+      "fldXJlzpVr",
+      "fldl05R4zA",
+      "fld4B3p5ZG",
+      "fld1jV0RGx",
+      "fld1VYXpYD",
+      "fld4bh2hu6",
+      "fld77UEilA",
+      "fld5nhmIw1",
+      "fld2kNvjKG",
+      "fld2rcn5RL",
+      "fld6uLYs9G",
+      "fld9b6Uq4m",
+      "fld684MOzc",
+      "fld72hnCUh",
+      "fld3D26rDQ"
+    ],
+    "active_tag_field": "fld19blJ1W",
+    "sort": [
+      {
+        "fieldId": "fld19blJ1W",
+        "desc": false
+      }
+    ],
+    "auto_sort": true,
+    "counts": {
+      "空间音频": 1,
+      "语音情绪": 7,
+      "语音健康": 48,
+      "生理声学": 12,
+      "通用语音与语言": 1
+    },
+    "order": [
+      "空间音频",
+      "语音情绪",
+      "语音健康",
+      "生理声学",
+      "通用语音与语言"
+    ]
+  },
+  "rows": [
+    {
+      "record_id": "reczz28S4ElbQQBZ",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUAklTb2",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SP81y3wMy",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28Tkc0TVLBd",
+      "tag": "空间音频"
+    },
+    {
+      "record_id": "reczz28S4ElbQQwH",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaFX4Ccd",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaKWyC22",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28S4ElbQRLU",
+      "tag": "通用语音与语言"
+    },
+    {
+      "record_id": "reczz28S4ElbQRQt",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SKaDTifSt",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28SO6mKAyU4",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SP86fpS7S",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQz2",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQR3L",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQRZX",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQRd4",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUXO65nN",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SPSFA7Mro",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQQZD",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQRWo",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNTyddu5s",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SNUU3CLKQ",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SO6s1xdhI",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQV8",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SOytY5yog",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQPpS",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28S4ElbQRfm",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaRprUX9",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28SO6ntOKd9",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQQtF",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNU7YOrEN",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SP84Mgiwf",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SRDVW6X8w",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQQq1",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUPibxuX",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQRCw",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaNrO036",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28SNU0UmqJv",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SNU5YNWpq",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SNUC4q70e",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQRTx",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaHHOi7A",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaIxJf9k",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUMUiDWo",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUONrIQs",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUSNxTkS",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQH2",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQRIY",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQROC",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28S4ElbQRiQ",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaQC1Ugo",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNU8z6xdf",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQPb1",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNU24HgGr",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28SNU3oTVRG",
+      "tag": "生理声学"
+    },
+    {
+      "record_id": "reczz28S4ElbQPly",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQLY",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQQY",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQg0",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SKaMFrq5d",
+      "tag": "语音情绪"
+    },
+    {
+      "record_id": "reczz28SO6pQbQQg",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SP7zYt3M7",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SRDSwLyCs",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQc2",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQQjo",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28S4ElbQR8M",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUGsmDnW",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SNUJIedC0",
+      "tag": "语音健康"
+    },
+    {
+      "record_id": "reczz28SO6qrOFzJ",
+      "tag": "语音健康"
+    }
+  ],
+  "path_changes": [],
+  "quantity_verification": {
+    "record_id": "reczz28S4ElbQRWo",
+    "source_date": "2026-11-20",
+    "count": "8/8 个分发包（6 个音频包、2 个视频包）"
+  }
+}

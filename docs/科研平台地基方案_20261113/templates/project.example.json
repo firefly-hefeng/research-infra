@@ -1,0 +1,17 @@
+{
+  "title": "通用疾病声音 Encoder 试点",
+  "research_question": "固定参与者划分后预训练能否改善外部泛化",
+  "hypothesis": "功能分解表示在既定评测协议下优于冻结基线",
+  "owner_id": "usr-example-researcher",
+  "reviewer_id": "usr-example-reviewer",
+  "success_criteria": [
+    "同协议完成基线与消融并提交可核验报告"
+  ],
+  "stop_criteria": [
+    "授权不满足用途或无法建立参与者隔离时停止训练"
+  ],
+  "target_date": "2026-12-11",
+  "domain_ids": [
+    "general-speech"
+  ]
+}

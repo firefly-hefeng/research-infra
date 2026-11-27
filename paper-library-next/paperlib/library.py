@@ -1,5 +1,5 @@
 import contextlib
-import fcntl
+import errno
 import hashlib
 import ipaddress
 import json
@@ -124,6 +124,25 @@ def title_folder(title, number=0):
     return title + (f'（{number}）' if number else '')
 
 
+PAPER_SELECT = """SELECT p.*, b.metadata AS bibliography_json, b.collection_id,
+                        b.manifest_sha256, b.imported_at, i.content AS insight_json
+                 FROM papers p
+                 LEFT JOIN bibliographic_imports b ON b.paper_id = p.id
+                 LEFT JOIN paper_insights i ON i.paper_id = p.id"""
+
+
+def decode_record(row):
+    result = dict(row)
+    result['card'] = json.loads(result['card']) if result['card'] else None
+    result['favorite'] = bool(result['favorite'])
+    bibliography = result.pop('bibliography_json')
+    provenance = {key: result.pop(key) for key in ('collection_id', 'manifest_sha256', 'imported_at')}
+    result['bibliography'] = {**json.loads(bibliography), **provenance} if bibliography else None
+    insight = result.pop('insight_json')
+    result['insight'] = json.loads(insight) if insight else None
+    return result
+
+
 class Library:
     def __init__(self, root):
         self.root = Path(root).absolute()
@@ -181,36 +200,44 @@ class Library:
     def lock(self, name='write', blocking=True):
         path = self.safe('.paperlib/' + name + '.lock')
         with path.open('a') as f:
-            fcntl.flock(f, fcntl.LOCK_EX | (0 if blocking else fcntl.LOCK_NB))
-            try:
-                yield
-            finally:
-                fcntl.flock(f, fcntl.LOCK_UN)
+            if os.name == 'nt':
+                import msvcrt
+                f.seek(0)
+                while True:
+                    try:
+                        msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+                        break
+                    except OSError as exc:
+                        if exc.errno not in (errno.EACCES, errno.EDEADLK):
+                            raise
+                        if not blocking:
+                            raise BlockingIOError(errno.EAGAIN, '文件锁已被占用') from exc
+                        time.sleep(0.05)
+                try:
+                    yield
+                finally:
+                    f.seek(0)
+                    msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                import fcntl
+                fcntl.flock(f, fcntl.LOCK_EX | (0 if blocking else fcntl.LOCK_NB))
+                try:
+                    yield
+                finally:
+                    fcntl.flock(f, fcntl.LOCK_UN)
 
     def record(self, paper_id):
         if not isinstance(paper_id, str) or not ID.fullmatch(paper_id):
             raise ValueError('无效论文 ID')
         with self.db() as db:
-            row = db.execute('SELECT * FROM papers WHERE id=?', (paper_id,)).fetchone()
-            bibliography = db.execute('SELECT metadata,collection_id,manifest_sha256,imported_at FROM bibliographic_imports WHERE paper_id=?', (paper_id,)).fetchone()
-            insight = db.execute('SELECT content FROM paper_insights WHERE paper_id=?', (paper_id,)).fetchone()
+            row = db.execute(PAPER_SELECT + ' WHERE p.id=?', (paper_id,)).fetchone()
         if not row:
             raise KeyError('论文不存在')
-        result = dict(row)
-        result['card'] = json.loads(result['card']) if result['card'] else None
-        result['favorite'] = bool(result['favorite'])
-        result['bibliography'] = None
-        result['insight'] = json.loads(insight['content']) if insight else None
-        if bibliography:
-            result['bibliography'] = json.loads(bibliography['metadata'])
-            result['bibliography'].update(collection_id=bibliography['collection_id'],
-                manifest_sha256=bibliography['manifest_sha256'], imported_at=bibliography['imported_at'])
-        return result
+        return decode_record(row)
 
     def papers(self):
         with self.db() as db:
-            ids = [r[0] for r in db.execute('SELECT id FROM papers ORDER BY created DESC, filename')]
-        return [self.record(i) for i in ids]
+            return [decode_record(row) for row in db.execute(PAPER_SELECT + ' ORDER BY p.created DESC, p.filename')]
 
     def bootstrap(self):
         """Copy initial root PDFs once; keep originals untouched."""
@@ -255,7 +282,7 @@ class Library:
                     if (stat.st_size, stat.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
                         result['skipped'].append(name + ': 文件正在变化')
                         continue
-                    rel = str(path.relative_to(self.root))
+                    rel = path.relative_to(self.root).as_posix()
                     with self.db() as db:
                         existing = db.execute('SELECT source, pdf FROM papers WHERE id=?', (ident,)).fetchone()
                         if existing:
@@ -276,7 +303,9 @@ class Library:
         return result
 
     def pdf_path(self, paper_id):
-        item = self.record(paper_id)
+        return self.record_pdf_path(self.record(paper_id))
+
+    def record_pdf_path(self, item):
         path = self.safe(item['pdf'] or item['source'])
         if not path.is_file():
             raise FileNotFoundError('论文原件缺失，请检查服务器目录')
@@ -415,8 +444,9 @@ class Library:
             directory.mkdir(exist_ok=True)
             stamp = str(time.time_ns())
             backup = self.safe('.paperlib/migrations/' + stamp + '-catalog.sqlite3')
-            with self.db() as source_db, sqlite3.connect(backup) as backup_db:
-                source_db.backup(backup_db)
+            with self.db() as source_db, contextlib.closing(sqlite3.connect(backup)) as backup_db:
+                with backup_db:
+                    source_db.backup(backup_db)
             report = self.safe('.paperlib/migrations/' + stamp + '-title-directories.json')
             journal = {'started': now(), 'status': 'prepared', 'database_backup': str(backup.relative_to(self.root)), 'items': plan}
             atomic_json(report, journal)

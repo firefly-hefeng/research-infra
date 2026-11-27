@@ -6,8 +6,8 @@ let checks = 0;
 const check = value => { assert.ok(value); checks++; };
 const source = fs.readFileSync('web/app.js', 'utf8').split("document.addEventListener('click'")[0];
 const raw = {id:'a'.repeat(64), filename:'source.pdf', status:'bibliography', card:null,
-  available:true, fulltext_available:true, notes:'', favorite:false,
-  bibliography:{title:'<script>Existing title</script>', authors:['Alice'], year:2024,
+  available:true, fulltext_available:false, notes:'', favorite:false,
+  bibliography:{title:'<script>Existing title</script>', authors:['Alice'], year:2024, doi:'10.5555/Example',
     venue:'Indexed venue', summary:'Previously recorded purpose', category:'Clinical speech',
     tags:['Speech'], review_state:'bibliography_only', fulltext_policy:'restricted',
     provenance:[{label:'Curated index',sha256:'b'.repeat(64),record_id:'A01'}]}};
@@ -35,8 +35,18 @@ async function run(pathname) {
   subject.renderPapers();
   check(node('papers').innerHTML.includes('&lt;script&gt;'));
   check(!node('papers').innerHTML.includes('<script>'));
-  check(node('papers').innerHTML.includes('阅读原文'));
+  check(node('papers').innerHTML.includes('原件限阅'));
   check(!node('papers').innerHTML.includes('待原文核验'));
+  for (const query of ['10.5555/example','DOI: 10.5555/EXAMPLE','https://doi.org/10.5555%2FExample?ref=copy#note']) {
+    node('search').value = query;
+    subject.renderPapers();
+    check(node('papers').innerHTML.includes(raw.id));
+  }
+  for (const query of ['https://doi.org/10.5555%ZZ', 'https://unrelated.example/10.5555/Example']) {
+    node('search').value = query;
+    subject.renderPapers();
+    check(node('papers').innerHTML.includes('没有找到匹配的论文'));
+  }
   subject.openPaper(raw.id);
   const html=node('detail-content').innerHTML;
   check(html.includes('索引简介'));
@@ -44,8 +54,8 @@ async function run(pathname) {
   check(html.includes('<h3>主题标签</h3>') && !html.includes('作者关键词'));
   check(html.includes('标题、作者与索引简介来自以下已有文献索引。'));
   check(html.includes('Curated index'));
-  check(html.includes('下载 PDF'));
-  check(html.includes('/api/papers/'));
+  check(!html.includes('下载 PDF'));
+  check(!html.includes('/api/papers/'));
   check(node('generate-reading').hidden===true);
   check(node('reading-status').textContent === '');
   await subject.api('/api/catalog');

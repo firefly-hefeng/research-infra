@@ -1,0 +1,56 @@
+{
+  "experiment_id": "RMP-ELN-20261115-REPORT-DISCOVERY",
+  "recorded_at": "2026-11-15T08:22:48.876495+00:00",
+  "archived_files_unchanged": true,
+  "files": {
+    "report.md": {
+      "bytes": 526,
+      "sha256": "bb242bfc705742c0cb08056ee2a978fc69e3eee6fd152051dad390cfe2e7f969"
+    },
+    "original": {
+      "bytes": 473,
+      "sha256": "6f8d4ef3657ae0ced9bb77360866edcb7010944232215d8ed74213a4873ce592"
+    },
+    "attachment-1": {
+      "bytes": 176695,
+      "sha256": "44183506802ff06574ea6775ba98719e47537680259c79b8a79ff003fddf1384"
+    },
+    "attachment-2": {
+      "bytes": 527,
+      "sha256": "d5d94edc98debe3cafb93dc51c1c1b67648602b2850d48acb46d86eb41d9a625"
+    },
+    "metadata.json": {
+      "bytes": 541,
+      "sha256": "4516565e22663f5c218e0eb709b37f6caea062b6e720a20b84cf4d93218429e0"
+    }
+  },
+  "code_sha256": {
+    "research-progress-next/research_weekly/team_activity.py": "bd7c75d6faa6c2207ddda9e8a70b0ed24c59c7ee2684391d5e225a7b81bf21fc",
+    "research-progress-next/web/activity.js": "4da6a279aed08f6491e81296d387c180e2d4b71548a7adcb50b7faa76c151d66",
+    "research-progress-next/web/activity.css": "5b30f08168abdf31b3a3202aa122ce238a6cf5172f0d74e282118ab92a2299be",
+    "research-progress-next/web/index.html": "84a482b47260b09002fcfaca520455ff2b23b72970ae96dba81fee8af25efaf2",
+    "research-progress-next/web/app.js": "d284bdb1eac23d1aae95be7590e755b30ad9a393f1d2e26188701ef430f8a4c2",
+    "research-data-center-next/static/index.html": "eb7e404446833ecc507e0df42634b57117d1187efca678c91e36784a0ea21a24",
+    "research-data-center-next/static/workspace.css": "88939262a2fc55ad203a42c9cb68d7ef12fdda79eeb2767f0badc03cc9bc69e8"
+  },
+  "backend_tests": 138,
+  "browser_viewports": [
+    1440,
+    390,
+    320
+  ],
+  "live_checks": {
+    "weekly_W45_and_W44_keep_daily_W46": true,
+    "daily_W45_keeps_weekly_W44": true,
+    "legacy_daily_link_keeps_weekly_W45_and_reads_He": true,
+    "read_Lu_keeps_submission_member_He": true,
+    "daily_original_and_two_attachments_http_status": [
+      200,
+      200,
+      200
+    ],
+    "home_and_team_image_credit_links": 0,
+    "body_horizontal_overflow": false
+  },
+  "source_note": "After-file checksums verified on the live server against the before snapshot; no report was resubmitted."
+}

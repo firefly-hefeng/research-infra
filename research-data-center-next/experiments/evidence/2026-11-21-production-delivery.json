@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-21",
+  "host": "server-101",
+  "release_artifacts": [
+    {
+      "scope": "paper-content",
+      "file_sha256": "8349c665e33ac7503751d83a4a4810ad01acbe496f53132141f2953f89a65cd8",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-184356f6ad.json"
+    },
+    {
+      "scope": "paper-runtime",
+      "file_sha256": "85da69e810f52f3375c6fe52888cd6199753bb6b928548c286be062782a32173",
+      "web_restart_verified": true,
+      "local_receipt": "rmp-release-receipt-184356f6ad.json"
+    },
+    {
+      "scope": "portal-runtime",
+      "file_sha256": "5814a20026270fa961f4390633d08efd35f1f0bc9c81f6ab52a477638b4e2d57",
+      "web_restart_verified": true,
+      "local_receipt": "rmp-release-receipt-184356f6ad.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "09058e8d4c95722eeadc5b12b3ba08949bbbe88781de59aa58b7061bdc154a8d",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-61d8d040df.json"
+    },
+    {
+      "scope": "progress",
+      "file_sha256": "933eece6eeace6f1cce0404ff07971932dedae4f035928ef7ed33834b2bac88a",
+      "web_restart_verified": true,
+      "local_receipt": "rmp-release-receipt-51f1667f45.json"
+    },
+    {
+      "scope": "portal-runtime",
+      "file_sha256": "2cba37807cdde5fcffbd865b56c25ef22aa9e387877c800a4b2b5a5a9ed128ca",
+      "web_restart_verified": true,
+      "local_receipt": "rmp-release-receipt-acc75affe5.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "1a10264c080035cde594c9a721f90698e62ee22ee1d739f57b60205d6aae69f2",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-1339f07121.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "273b3f07fe93d23304138d0128c2955272c5836aa97c31520ed3c5bb2cf02ade",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-7328cbd190.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "a642928fe2a7168aae35ef3a968738dd99a8b428eb83bdbad5981f52b54967b4",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-f726f9e547.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "339b73abbe75b879fefdb68c60163bb9767c40dbe79436d9200722071edab2fa",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-ff1b06e46b.json"
+    },
+    {
+      "scope": "portal-content",
+      "file_sha256": "aa49d06d3ea18b1f236a9447a1bb2c7dff33c532b741c6a7ee037983b0594e2c",
+      "web_restart_verified": false,
+      "local_receipt": "rmp-release-receipt-20a0575593.json"
+    }
+  ],
+  "recovery_receipts_private": "var/releases/2026-11-21/on-host-receipts",
+  "frontend_regression": {
+    "route": "/api/platform/library",
+    "symptom": "HTTP 502 on new library route",
+    "cause": "undefined taxonomy in production merge",
+    "patch_package_sha256": "2cba37807cdde5fcffbd865b56c25ef22aa9e387877c800a4b2b5a5a9ed128ca",
+    "after": {
+      "http": 200,
+      "items": 298,
+      "feishu_records": 69,
+      "themes_including_catalog_fallback": 6
+    }
+  },
+  "viewports": [
+    1440,
+    390
+  ],
+  "papers": {
+    "records": 336,
+    "checked_paths": [
+      "/papers/",
+      "/papers/manage"
+    ],
+    "fulltext_available_in_member_catalog": 0
+  },
+  "team": {
+    "members": 8,
+    "topics": 11,
+    "weekly_download_http": 200,
+    "daily_download_http": 200,
+    "review_source_reports": 30,
+    "candidate_sources": 33,
+    "project_excerpts": 3,
+    "project_verbatim_extracts": 11,
+    "online_model_requests": 10,
+    "members_with_signed_reports": 8,
+    "corrections": 18,
+    "candidate_evidence_quotes": 418,
+    "direction_anchor_quotes": 1,
+    "schedule": "Monday 09:00 Asia/Shanghai",
+    "team_automatic_sha256": "99e323d083aa069eb714cc1282caa4b5d1e23676581330dc32635c749fba7a4f",
+    "team_reviewed_sha256": "28c640ec04ae8912f7a732eaa4397bc8f982d548531722690cf215c020869631",
+    "provider_draft_original_sha256": "55b53d102170805ef76757c29f7c6445bba06acd7c2a7c2f3f59f33484b78643",
+    "basis_check": {
+      "sources": 33,
+      "members": 8,
+      "registered_directions": 5,
+      "existing_corrections_match": true
+    },
+    "signed_html_acceptance": {
+      "corrected_claims_visible": 18,
+      "expected": 18,
+      "desktop_width": 1440,
+      "mobile_width": 390,
+      "visible_correction_credit": true,
+      "reviewed_and_auto_navigation": true,
+      "whole_page_horizontal_overflow": false,
+      "actual_signed_versions": {
+        "http": 200,
+        "matched": 18,
+        "projectScope": true,
+        "reviewReturn": true,
+        "total": 18
+      }
+    },
+    "member_json_contract": "../../research-progress-next/experiments/evidence/2026-11-21-member-review-json-acceptance.json"
+  },
+  "documents": {
+    "portal_entries": 40,
+    "feishu_originals_checked": 37,
+    "local_markdown_checked": 3,
+    "public_access_without_login": "401 or Feishu login redirect",
+    "updated_originals": "live Feishu reader; access is per original",
+    "category_count": 9,
+    "source_body_verified_new": {
+      "in_embedded_reader": 8,
+      "in_original_window": 2
+    },
+    "production_viewports": [
+      1440,
+      390
+    ],
+    "new_document_ids": [
+      "seminar-2026-10-03",
+      "seminar-2026-10-10",
+      "seminar-2026-10-17",
+      "seminar-2026-10-24",
+      "voice-study-collection-plan",
+      "voice-study-material-evidence",
+      "longitudinal-collection-handbook",
+      "hefei-voice-cohort-protocol",
+      "hefei-multidevice-training-plan",
+      "voice-interview-agent-reading"
+    ],
+    "origin_index_maintenance": "read-only comparison using an editor session, reviewed changes only"
+  },
+  "internal_disk_review": {
+    "server_observations": [
+      156,
+      79
+    ],
+    "distinct_documents": 193,
+    "research_lines": 6068,
+    "signed_member_reports": 30,
+    "research_questions": 8,
+    "cited_findings": 84,
+    "project_directories": 102,
+    "access": "scoped local and server maintenance copy",
+    "excluded": "hefeng TFBS"
+  },
+  "storage_evidence": "2026-11-21-public-storage-audit.json",
+  "storage_scope": {
+    "feishu_original_records": 69,
+    "physical_dataset_ids": 21,
+    "line_items_checked_in_published_portal": 21,
+    "partial_uk_open_access_volumes": [
+      6,
+      30
+    ],
+    "existing_model_checked": 1,
+    "ultrasuite_published_files": 87265,
+    "ultrasuite_wavs": 13268
+  },
+  "inter_module_routes": {
+    "portal": "/#research",
+    "machine": "/docs/agent-contract.json",
+    "catalog": "/api/platform/library",
+    "member_review": "/progress/api/lab-review?format=json&version=auto"
+  }
+}

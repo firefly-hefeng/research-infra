@@ -1,0 +1,701 @@
+{
+  "observed_on": "2026-11-21",
+  "environment": "Local portal with a real, signed-in Feishu browser; source UI observations only",
+  "catalog_count": 30,
+  "feishu_live_count": 27,
+  "local_markdown_count": 3,
+  "index_only_offline": true,
+  "access_check": {
+    "signed_in": "source_ui_readable",
+    "isolated_browser_new_session": "redirect_to_accounts.feishu.cn",
+    "isolated_frame_private_heading": false
+  },
+  "checked_sources": [
+    {
+      "id": "research-wiki",
+      "status": "source_ui_readable",
+      "observed_text_characters": 740,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "team-onboarding",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1500,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-planning",
+      "status": "source_ui_readable",
+      "observed_text_characters": 368,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "voice-research-assets",
+      "status": "source_ui_readable",
+      "observed_text_characters": 29204,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "cognition-lab-plan",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1500,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-plan-1015",
+      "status": "source_ui_readable",
+      "observed_text_characters": 369,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "weekly-seminar",
+      "status": "source_ui_readable",
+      "observed_text_characters": 607,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "seminar-2026-11-14",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1413,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "seminar-2026-10-31",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1033,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-exploration",
+      "status": "source_ui_readable",
+      "observed_text_characters": 421,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-question-pool",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1389,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "reading-room",
+      "status": "source_ui_readable",
+      "observed_text_characters": 7347,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-data-specs",
+      "status": "source_ui_readable",
+      "observed_text_characters": 365,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-data-spec",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1500,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "research-collection-spec",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1500,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "feature-dictionary",
+      "status": "source_ui_readable",
+      "observed_text_characters": 12787,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "algorithm-research",
+      "status": "source_ui_readable",
+      "observed_text_characters": 445,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "voice-fundamentals",
+      "status": "source_ui_readable",
+      "observed_text_characters": 798,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "speech-screening-modules",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1500,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "speech-state-context",
+      "status": "source_ui_readable",
+      "observed_text_characters": 23857,
+      "reader_reported_complete": false,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "cross-device-evidence",
+      "status": "source_ui_readable",
+      "observed_text_characters": 3356,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "benchmark-board",
+      "status": "source_ui_readable",
+      "observed_text_characters": 300,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "feishu-data-guide",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1223,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "feishu-compute-guide",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1377,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "feishu-progress-guide",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1089,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "feishu-paper-guide",
+      "status": "source_ui_readable",
+      "observed_text_characters": 1185,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    },
+    {
+      "id": "layered-metrics",
+      "status": "source_ui_readable",
+      "observed_text_characters": 659,
+      "reader_reported_complete": true,
+      "scope": "source view; attachment bodies not compared"
+    }
+  ],
+  "regression": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "mobile_touch_emulation": true,
+    "synthetic_permission_denied": true,
+    "source_revision_reopen": true,
+    "source_origin_allowlist": true,
+    "prior_ids": true,
+    "template_link_check": {
+      "html": 243,
+      "internal_links": 1845
+    },
+    "targeted_tests": 19,
+    "subtests": 45
+  },
+  "deployment": "guarded_release_applied_and_member_portal_verified",
+  "production": {
+    "plan_sha256": "e5017b69c3b8d1dce431d682d16ae90fb66d56b5ecf0308a31e62582f0502de8",
+    "bundle_sha256": "1a10264c080035cde594c9a721f90698e62ee22ee1d739f57b60205d6aae69f2",
+    "catalog_count": 30,
+    "source_origins": {
+      "feishu_member_originals_observed_on_portal_before_switch": 27,
+      "local_markdown": 3
+    },
+    "source_ids_sha256": "71ef0d404e22a251bae4a70e197e232cb8f4f9b78b71b57db9680c9799f0c265",
+    "native_portal_reader_after_switch": {
+      "desktop": {
+        "route": "#documents/voice-research-assets",
+        "linkedOriginal": true,
+        "frameWidth": 771,
+        "sourceChars": 20846,
+        "matchedTitle": true,
+        "outline": true,
+        "entry": "desktop link",
+        "layout": {
+          "vw": 1440,
+          "doc": 1425,
+          "overflows": false,
+          "metaViewport": true,
+          "mainVisible": true,
+          "origin": "https://rmp.wuwangwo.top"
+        },
+        "checkedAt": "2026-11-21T04:42:42.979090+00:00"
+      },
+      "phone": {
+        "route": "#documents/layered-metrics",
+        "linkedOriginal": true,
+        "frameWidth": 311,
+        "sourceChars": 688,
+        "matchedTitle": true,
+        "outline": false,
+        "entry": "mobile select",
+        "layout": {
+          "vw": 390,
+          "doc": 390,
+          "overflows": false,
+          "metaViewport": true,
+          "mainVisible": true,
+          "origin": "https://rmp.wuwangwo.top"
+        },
+        "checkedAt": "2026-11-21T04:42:40.769293+00:00"
+      }
+    },
+    "local_markdown_as_rendered": {
+      "workspace-guide": {
+        "directSourcePath": "/docs/README.md",
+        "origin": true,
+        "status": 200,
+        "media": "text/plain",
+        "shownChars": 737,
+        "identical": true,
+        "hash": "69e605b00a4353a7d2ea2a9b40749a88f873a53d69e70fad06cf6a8d56a58ae5",
+        "nativeFrames": 0
+      },
+      "research-council": {
+        "directSourcePath": "/docs/research-council.md",
+        "origin": true,
+        "status": 200,
+        "media": "text/plain",
+        "shownChars": 1172,
+        "identical": true,
+        "hash": "f73dcc613b185446215893a6c55dfec5d058898ecd8e2ed50a418349a7661ef1",
+        "nativeFrames": 0
+      },
+      "agent-handbook": {
+        "directSourcePath": "/docs/agent-guide.md",
+        "origin": true,
+        "status": 200,
+        "media": "text/plain",
+        "shownChars": 3592,
+        "identical": true,
+        "hash": "f922d8af8af605cba3badd405f0ce25db3387f65c83dc6bcdd9274274bc40997",
+        "nativeFrames": 0
+      }
+    },
+    "without_session": {
+      "checked_at": "2026-11-21T04:42:57.670903+00:00",
+      "resources": {
+        "portal_index": {
+          "access": "access_denied",
+          "status": 401,
+          "hosts": [
+            "rmp.wuwangwo.top"
+          ]
+        },
+        "portal_local_doc": {
+          "access": "access_denied",
+          "status": 401,
+          "hosts": [
+            "rmp.wuwangwo.top"
+          ]
+        },
+        "feishu_original": {
+          "access": "sign_in_redirect",
+          "status": 302,
+          "hosts": [
+            "wcn5kauqqbj1.feishu.cn",
+            "accounts.feishu.cn"
+          ]
+        }
+      }
+    }
+  },
+  "live_viewports": [
+    {
+      "viewport_px": 1440,
+      "page_width_px": 1425,
+      "source_frame_width_px": 771,
+      "mobile_selector": false,
+      "native_source_text_observed": true
+    },
+    {
+      "viewport_px": 390,
+      "page_width_px": 375,
+      "source_frame_width_px": 296,
+      "mobile_selector": true,
+      "native_source_text_observed": true
+    }
+  ],
+  "directory_observation": {
+    "collected_utc": [
+      "2026-11-21T05:39:52.209086+00:00",
+      "2026-11-21T05:41:21.139248+00:00"
+    ],
+    "scope": "Research root and immediate visible children of its five selected research branches using an existing member browser. Other branches and deeper levels are outside the observation.",
+    "index_sha256": "bd4805b2db1dcb426ca8d5829c6fbd52d6130096a6e3bc0efa59dac05043bc81",
+    "section_visible_child_counts": {
+      "research-wiki": 6,
+      "research-planning": 3,
+      "weekly-seminar": 6,
+      "research-exploration": 2,
+      "research-data-specs": 5,
+      "algorithm-research": 4
+    },
+    "counts": {
+      "portal_entries_seen": 21,
+      "portal_entries_outside_observation": 6,
+      "unlisted_visible": 6,
+      "new_in_observed_sections": 0,
+      "source_title_changed": 0,
+      "no_longer_observed": 0,
+      "sections_incomplete": 0
+    },
+    "merge_replay": {
+      "existing_approved": 1,
+      "all_index_entries_unchanged": 30,
+      "stable_urls_and_sections_preserved": true
+    },
+    "schedule": "Operator-invoked. No verified background index writer or directory scheduler. Member-visible content stays with the provider."
+  },
+  "deep_directory_review": {
+    "collected_utc": "2026-11-21T05:52:23.209322+00:00",
+    "scope": "All nine expandable navigation sections observed beneath the member-visible research root. No other wiki space, individual forms, operational rows or file attachments traversed.",
+    "directories_observed": 9,
+    "incomplete": 0,
+    "unique_visible_nodes": 36,
+    "previously_curated_in_tree": 21,
+    "previously_curated_outside_tree": 6,
+    "unlisted_nodes_reviewed": 15,
+    "independent_originals_selected": 10,
+    "reason_counts_for_remaining": {
+      "empty_navigation_parent": 1,
+      "existing_data_module": 1,
+      "administrative_or_operational_source_only": 3
+    },
+    "week_route_check": {
+      "2026-W40": 404,
+      "2026-W41": 404,
+      "2026-W42": 404,
+      "2026-W43": 404,
+      "meaning": "Each client-side period route loaded. The corresponding team weekly-report API had no archive at the time of inspection."
+    },
+    "release_candidate": {
+      "index_sha256": "e430c77c189c274c85ce4790854372f7943f364c38de7e4dd37bba85fb0442a2",
+      "plan_sha256": "c501598335652df51dbe085f534ef65adde9259d6739ff81843df30d03ebff3b",
+      "bundle_sha256": "aa49d06d3ea18b1f236a9447a1bb2c7dff33c532b741c6a7ee037983b0594e2c",
+      "total": 40,
+      "modes": {
+        "feishu_live": 35,
+        "local": 3,
+        "feishu_window": 2
+      },
+      "added": {
+        "seminar-2026-10-24": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 894,
+          "meeting_agenda_heading": true,
+          "date_in_reader": true
+        },
+        "seminar-2026-10-17": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 1288,
+          "meeting_agenda_heading": true,
+          "date_in_reader": true
+        },
+        "seminar-2026-10-10": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 1240,
+          "meeting_agenda_heading": true,
+          "date_in_reader": true
+        },
+        "seminar-2026-10-03": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 736,
+          "meeting_agenda_heading": true,
+          "date_in_reader": true
+        },
+        "voice-study-collection-plan": {
+          "mode": "feishu_window",
+          "native_tab_verified": true,
+          "frame_read": false,
+          "source_native_read": true,
+          "window_direct": true
+        },
+        "voice-study-material-evidence": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 2242,
+          "research_topic_match": true,
+          "source_title_match": true
+        },
+        "longitudinal-collection-handbook": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 1226,
+          "research_topic_match": true,
+          "source_title_match": true
+        },
+        "hefei-voice-cohort-protocol": {
+          "mode": "feishu_window",
+          "native_tab_verified": true,
+          "frame_read": false,
+          "source_native_read": true,
+          "window_direct": true
+        },
+        "hefei-multidevice-training-plan": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 777,
+          "research_topic_match": true,
+          "source_title_match": true
+        },
+        "voice-interview-agent-reading": {
+          "mode": "feishu_live",
+          "native_tab_verified": true,
+          "frame_read": true,
+          "source_body_chars": 3697,
+          "research_topic_match": true,
+          "source_title_match": true
+        }
+      },
+      "existing_records_unchanged": 30
+    },
+    "online_after_release": {
+      "desktop": {
+        "checked": "2026-11-21T06:01:14.508908+00:00",
+        "routes": {
+          "seminar-2026-10-24": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W43",
+            "native_read_chars": 1462
+          },
+          "seminar-2026-10-17": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W42"
+          },
+          "seminar-2026-10-10": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W41",
+            "native_read_chars": 1407
+          },
+          "seminar-2026-10-03": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W40"
+          },
+          "voice-study-collection-plan": {
+            "entry": "desktop link",
+            "mode": "feishu_window",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 0,
+            "source_link_correct": true,
+            "week": null,
+            "new_tab_source_headings_matched": 4
+          },
+          "voice-study-material-evidence": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": null
+          },
+          "longitudinal-collection-handbook": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": null,
+            "native_read_chars": 2974
+          },
+          "hefei-voice-cohort-protocol": {
+            "entry": "desktop link",
+            "mode": "feishu_window",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 0,
+            "source_link_correct": true,
+            "week": null,
+            "new_tab_source_headings_matched": 2
+          },
+          "hefei-multidevice-training-plan": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": null,
+            "native_read_chars": 11799
+          },
+          "voice-interview-agent-reading": {
+            "entry": "desktop link",
+            "mode": "feishu_live",
+            "viewport": 1440,
+            "document_width": 1425,
+            "frame_width": 771,
+            "source_link_correct": true,
+            "week": null
+          }
+        }
+      },
+      "phone": {
+        "checked": "2026-11-21T06:02:06.529270+00:00",
+        "routes": {
+          "seminar-2026-10-24": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W43"
+          },
+          "seminar-2026-10-17": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W42",
+            "native_read_chars": 2313
+          },
+          "seminar-2026-10-10": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W41"
+          },
+          "seminar-2026-10-03": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": "#team?week=2026-W40",
+            "native_read_chars": 903
+          },
+          "voice-study-collection-plan": {
+            "entry": "mobile select",
+            "mode": "feishu_window",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 0,
+            "source_link_correct": true,
+            "week": null,
+            "new_tab_source_headings_matched": 4
+          },
+          "voice-study-material-evidence": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": null,
+            "native_read_chars": 5455
+          },
+          "longitudinal-collection-handbook": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": null
+          },
+          "hefei-voice-cohort-protocol": {
+            "entry": "mobile select",
+            "mode": "feishu_window",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 0,
+            "source_link_correct": true,
+            "week": null,
+            "new_tab_source_headings_matched": 2
+          },
+          "hefei-multidevice-training-plan": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": null
+          },
+          "voice-interview-agent-reading": {
+            "entry": "mobile select",
+            "mode": "feishu_live",
+            "viewport": 390,
+            "document_width": 390,
+            "frame_width": 311,
+            "source_link_correct": true,
+            "week": null,
+            "native_read_chars": 9817
+          }
+        }
+      },
+      "production_items": 40,
+      "categories": 9,
+      "new_native_content_confirmed_across_tested_widths": 8,
+      "new_external_sources_confirmed_at_each_width": 2,
+      "new_dates_linked_at_each_width": 4
+    }
+  }
+}

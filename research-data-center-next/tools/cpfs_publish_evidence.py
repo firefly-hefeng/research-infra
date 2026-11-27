@@ -27,7 +27,7 @@ BASE = PROJECT / 'var/cpfs-migration-20261027'
 HOST = 'iZuf6jc6bqdgxmhcci4k3wZ'
 STAGE = '/data/share/.rdc-migration-20261027'
 MIGRATION_ID = 'cpfs-20261027'
-BASELINE_SHA256 = '5c05f387cf328e27367380a28db9fad9e8a92fd9e301349babfa4eaf9d903871'
+BASELINE_SHA256 = 'b61ffdebecf823016f3819a7c6eec9a5f92ce1e7bcfee916a6bbcc81e27bcfd9'
 MANIFEST_SHA256 = 'abf15d245255a9d8927ce6078dee9160c81dc7b88e1c0ae5bfdd0469990f4220'
 BASELINE_REF = 'data/sources/catalog-pre-migration.json'
 REPORT_NAMES = ('copy', 'verification', 'cutover', 'cleanup', 'preflight')
@@ -43,7 +43,7 @@ class PublishError(ValueError):
 class Policy:
     def __init__(self, project=PROJECT, base=BASE, host=HOST, stage=STAGE,
                  baseline_sha256=BASELINE_SHA256, manifest_sha256=MANIFEST_SHA256,
-                 record_count=228, path_count=221,
+                 record_count=229, path_count=222,
                  root_counts=None):
         self.project = Path(project).absolute()
         self.base = Path(base).absolute()
