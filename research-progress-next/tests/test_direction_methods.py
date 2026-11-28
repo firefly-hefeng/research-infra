@@ -28,12 +28,19 @@ def test_readable_direction_and_original(atlas):
     _,client,_,_=atlas
     index=client.get('/direction-methods')
     assert index.status_code==200 and '示例研究方向' in index.text
+    assert index.text.count('<details class="algorithm-group')==7
+    assert index.text.count('class="direction-browser"')==1
+    assert '<details class="direction-browser" id="direction-browser">' in index.text
     html=client.get('/direction-methods?direction=example')
     assert '准确率 82%' in html.text and '相同输入及评分协议' in html.text and '待核对' in html.text
+    assert '<details class="method"><summary><span class="status status-measured">实测结果</span><span class="method-title">可复核方法</span></summary>' in html.text
+    assert html.text.index('<div class="method-body">')>html.text.index('<details class="method"><summary>')
     assert '/progress/api/direction-methods?source=ref-raw' in html.text
     assert client.get('/assets/direction-methods.css').mimetype=='text/css'
-    assert '没有找到' in client.get('/direction-methods?q=nothing-matches').text
-    assert '示例研究方向' in client.get('/direction-methods?q=可复核方法').text
+    missing=client.get('/direction-methods?q=nothing-matches')
+    assert '没有找到' in missing.text and '<details class="direction-browser" id="direction-browser" open>' in missing.text
+    found=client.get('/direction-methods?q=可复核方法')
+    assert '示例研究方向' in found.text and '<details class="direction-browser" id="direction-browser" open>' in found.text
     data=client.get('/api/direction-methods?direction=example').json
     assert len(data['directions'])==len(data['sources'])==1
     source=client.get('/api/direction-methods?source=ref-raw').json['source']
@@ -102,6 +109,7 @@ def test_algorithm_core_map_groups_stable_ids_and_leaves_unknowns_pending(atlas)
         assert title in html and f'<code>{direction_id}</code>' in html
     assert '待归类' in html and '<code>new-unregistered-id</code>' in html
     assert html.count('可复核方法')==len(rows)
+    assert html.count('<details class="algorithm-group')==len(rows)
     detail=client.get('/direction-methods?direction=depalign-final').text
     assert 'id="algorithm-map"' not in detail and '准确率 82%' in detail
     api=client.get('/api/direction-methods').json

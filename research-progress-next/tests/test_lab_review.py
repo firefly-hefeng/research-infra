@@ -182,7 +182,9 @@ def test_pyramid_guide_counts_levels_and_preserves_evidence_links():
              members=[dict(id='a',name='甲',**fields),dict(id='b',name='乙',**fields)],
              scope={},sources=[src],generated_at='now')
     html=lab_review_page.render(doc,companion='auto')
-    assert '三级金字塔导读' in html
+    assert '三级金字塔导读' in html and 'class="guide-heading"' in html
+    assert html.count('class="pyramid-')==3
+    assert 'class="section-intro"' not in html
     assert '1 条四栏判断' in html
     assert '1 个主题 · 1 条结论联系' in html
     assert '1 / 2 人有署名报告 · 1 条主题联系' in html

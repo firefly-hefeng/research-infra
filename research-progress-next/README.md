@@ -7,7 +7,7 @@
 | 常用入口 | 使用方式 |
 | --- | --- |
 | `/progress/api/lab-review` | 成员直接阅读校审稿，按“实验室核心结论 → 研究主题 → 成员证据”三级金字塔导读逐层核对。Agent 在同一飞书会话加 `?format=json`，或加 `?format=json&version=auto` 阅读新材料的自动稿；引文按来源 ID 核对。 |
-| `/progress/direction-methods` | 首页顶部的算法核心地图按六类能力查看稳定方向 ID、方向/方法数和具体算法；进入方向详情核对指标、对照、范围、成员与证据。 |
+| `/progress/direction-methods` | 六类算法卡片先显示简述和方向/方法数，展开后看稳定方向 ID 与具体算法；方向总索引默认折叠，带 `q` 搜索时自动展开。方向详情的方法条目先显示状态和名称，展开核对结果、指标、对照、范围与证据。 |
 | `/progress/#team` | 周报阶段进展 → 日报每日推进 → 研究全景与全员 → 研究脉络。用 `#team?week=2026-W42` 引用具体周次 |
 | `/progress/#directions` | 各方向的研究问题、已知进展、下一步及证据范围。点击方向标题后可分享完整文档地址 |
 | `/progress/#daily` | 在线填写或上传 Markdown、TXT、CSV、Word、Excel、PowerPoint 或有文本的 PDF，可同时选择多个附件 |
@@ -23,11 +23,11 @@
 
 ## 更新研究方向
 
-周会用[四栏写作说明](deploy/knowledge/02-周报怎么写.md)。阶段复盘由实验室核心结论展开到研究主题、成员证据和原件，顶部三级金字塔显示四栏判断数、主题数、署名覆盖及层间联系数。新增的批量复盘与已有的近期自动整理可以分别运行。[阶段复盘与项目盘核对](experiments/lab-review.md)
+周会用[四栏写作说明](deploy/knowledge/02-周报怎么写.md)。阶段复盘由实验室核心结论展开到研究主题、成员证据和原件，顶部三级金字塔在同一容器内桌面三列、移动纵向，显示四栏判断数、主题数、署名覆盖及层间联系数。新增的批量复盘与已有的近期自动整理可以分别运行。[阶段复盘与项目盘核对](experiments/lab-review.md)
 
 复盘中可从一条实验室结论跳到引用同一段原文的研究主题，再转到被引用成员及其原报告，也可从成员反查主题。每人分别显示周报与日报份数。报告之间的引用用于找依据；项目负责人以署名或明确分工为准。联系数只描述阅读路径，不用于评价研究质量或贡献排名。
 
-方向与方法首页的六类核心地图为：表征学习与多模态融合、检索与长时记忆、可信输出拒答与 OOD、任务建模与受控干预、生成编辑与数据增强、语音工程数据与协作基础设施。`research_weekly/direction_methods.py` 的 `ALGORITHM_GROUPS` 用稳定方向 ID 维护展示映射；这里的“待归类”指尚未列入该映射的 ID，与 JSON 中 `registered_direction_id` 是否为空无关。新增方向不会消失，而会带原方法和证据进入待归类。分类、方向数和方法数只用于导航，不做跨量纲排名；映射不改变 JSON schema、API 返回或冻结快照，方向详情仍保留指标、比较条件、适用范围、成员和逐条来源。[本轮工程验收记录](experiments/2026-11-28-pyramid-algorithm-core-map.md)
+方向与方法首页的六类核心地图为：表征学习与多模态融合、检索与长时记忆、可信输出拒答与 OOD、任务建模与受控干预、生成编辑与数据增强、语音工程数据与协作基础设施。`research_weekly/direction_methods.py` 的 `ALGORITHM_GROUPS` 用稳定方向 ID 维护展示映射；这里的“待归类”指尚未列入该映射的 ID，与 JSON 中 `registered_direction_id` 是否为空无关。新增方向不会消失，而会带原方法和证据进入待归类。分类、方向数和方法数只用于导航，不做跨量纲排名；映射不改变 JSON schema、API 返回或冻结快照，方向详情仍保留指标、比较条件、适用范围、成员和逐条来源。[核心地图工程验收](experiments/2026-11-28-pyramid-algorithm-core-map.md) · [紧凑化工程验收](experiments/2026-11-28-compact-progress-visualization.md)
 
 在 `paths.team` 对应目录下建 `directions/`，每个方向放一份 Markdown。默认内容在 [`deploy/directions/`](deploy/directions/)，同名团队文件优先。加新文件即可新增方向。以会议或阶段工作为单位更新，完成与待办可直接用自然语言写。
 

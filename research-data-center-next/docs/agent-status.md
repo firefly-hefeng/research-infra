@@ -4,7 +4,7 @@
 
 统计日期为 2026-11-21。飞书台账按原始记录 ID 计数，成员报告按署名和日期计数，项目材料按内容去重。
 
-2026-11-28 只读服务器复核：门户、进度、文献和统一登录仍在 `101.132.97.146` 正常运行，方向方法线上数据为 18 个方向、39 项方法。生产机当前没有 `research-progress-mcp.service`，8772 未监听，公网 MCP discovery 和 `/mcp` 仍跳转登录；因此远程 OAuth MCP 是**仓库已实现、线上尚未开通**，本机 stdio 与普通平台 API 不受此结论影响。三级金字塔、六类算法地图和补齐后的 MCP 机器合同也尚未发布。详见[服务器实现核验](../experiments/2026-11-28-server-platform-audit.md)。
+2026-11-28 服务器复核与发布：门户、进度、文献和统一登录仍在 `101.132.97.146` 正常运行，方向方法线上数据为 18 个方向、39 项方法。三级金字塔和六类算法核心地图已发布，并进一步收束为折叠卡片；生产目标测试 34 项通过，reviewed/auto 复盘与页面均返回 200。详见[收束版验收](../../research-progress-next/experiments/2026-11-28-compact-progress-visualization.md)。生产机当前没有 `research-progress-mcp.service`，8772 未监听，公网 MCP discovery 和 `/mcp` 仍跳转登录；因此远程 OAuth MCP 是**仓库已实现、线上尚未开通**，本机 stdio 与普通平台 API 不受此结论影响。补齐后的 MCP 机器合同尚未发布到门户。此前只读核验见[服务器实现核验](../experiments/2026-11-28-server-platform-audit.md)。
 
 | 板块 | 当前已有 | 仍需建设或核对 |
 | --- | --- | --- |

@@ -12,24 +12,24 @@
 {% if o.status=='confirmed' %}负责人 · {{ o.name }}{% elif o.status=='suggested' %}建议负责人 · {{ o.name }}（待确认）{% elif o.status=='unassigned' %}负责人待指派{% else %}负责人待核对{% endif %}
 {%- endmacro %}
 {% macro algorithm_group(group) -%}
-<article class="algorithm-group algorithm-{{ group.id }}"><h3>{{ group.title }}</h3><p class="algorithm-description">{{ group.description }}</p>
-<p class="algorithm-count"><strong>{{ group.directions|length }}</strong> 个方向 <span><strong>{{ group.method_count }}</strong> 项方法</span></p>
-{% if group.directions %}<ul class="algorithm-directions">{% for d in group.directions %}<li><div class="algorithm-direction-title"><a href="direction-methods?direction={{ d.id }}">{{ d.title }}</a><code>{{ d.id }}</code></div>
-<ul class="algorithm-names">{% for m in d.methods %}<li>{{ m.name }}</li>{% endfor %}</ul></li>{% endfor %}</ul>{% else %}<p class="group-empty">当前已发布索引中暂无方向。</p>{% endif %}</article>
+<details class="algorithm-group algorithm-{{ group.id }}"><summary><span class="algorithm-title">{{ group.title }}</span><span class="algorithm-description">{{ group.description }}</span>
+<span class="algorithm-count"><span><strong>{{ group.directions|length }}</strong> 个方向</span><span><strong>{{ group.method_count }}</strong> 项方法</span></span></summary>
+<div class="algorithm-body">{% if group.directions %}<ul class="algorithm-directions">{% for d in group.directions %}<li><div class="algorithm-direction-title"><a href="direction-methods?direction={{ d.id }}">{{ d.title }}</a><code>{{ d.id }}</code></div>
+<ul class="algorithm-names">{% for m in d.methods %}<li>{{ m.name }}</li>{% endfor %}</ul></li>{% endfor %}</ul>{% else %}<p class="group-empty">当前已发布索引中暂无方向。</p>{% endif %}</div></details>
 {%- endmacro %}
 <a class="skip" href="#content">跳至主要内容</a>
 <header class="mast"><div><a href="/">科研工作台</a><nav aria-label="科研工作区"><a href="./#team">团队进度</a><a href="./research-agent">方向实验台</a></nav></div></header>
 <main id="content">
 <nav class="crumb" aria-label="当前位置"><a href="./#team">团队进度</a><span aria-hidden="true">/</span>{% if selected %}<a href="direction-methods">方向与方法</a><span aria-hidden="true">/</span><span>方向详情</span>{% else %}<span>方向与方法</span>{% endif %}</nav>
 {% if not selected %}
-<header class="intro"><div><h1>方向与方法</h1><p>从研究问题找到已尝试的方法，核对效果、比较条件与原始报告。</p>{% if doc.status=='published' %}<div class="source-count">{{ counts.methods }} 项方法记录 · {{ counts.cited_originals }} 份原始来源 · {{ counts.cited_passages }} 条引文</div>{% endif %}</div>
+<header class="intro"><div><h1>方向与方法</h1>{% if doc.status=='published' %}<div class="source-count">{{ counts.methods }} 项方法记录 · {{ counts.cited_originals }} 份原始来源 · {{ counts.cited_passages }} 条引文</div>{% endif %}</div>
 {% if doc.as_of %}<div class="stamp"><span>证据整理日期</span><time datetime="{{ doc.as_of }}">{{ doc.as_of }}</time></div>{% endif %}</header>
-{% if doc.status=='published' %}<section class="algorithm-map" id="algorithm-map" aria-labelledby="algorithm-map-title"><div class="map-heading"><div><p class="map-kicker">ALGORITHM / CORE MAP</p><h2 id="algorithm-map-title">算法核心地图</h2><p>按研究能力组织方向与具体算法；方向和方法数量仅描述索引覆盖，不构成跨任务、指标或数据划分的排名。</p></div><a href="#overview-title">浏览全部方向 ↓</a></div>
+{% if doc.status=='published' %}<section class="algorithm-map" id="algorithm-map" aria-labelledby="algorithm-map-title"><div class="map-heading"><h2 id="algorithm-map-title">算法核心地图 <small>数量仅描述覆盖，不构成跨任务、指标或数据划分的排名</small></h2></div>
 <div class="algorithm-grid">{% for group in core_map.groups %}{{ algorithm_group(group) }}{% endfor %}</div>
 {% if core_map.unclassified %}<div class="unclassified-wrap">{{ algorithm_group({'id':'unclassified','title':'待归类','description':'这些稳定方向 ID 尚未登记到六类核心地图；原有方向、方法与证据完整保留。','directions':core_map.unclassified,'method_count':core_map.unclassified_method_count}) }}</div>{% endif %}</section>{% endif %}
-<section aria-labelledby="overview-title">
-<div class="bar"><h2 id="overview-title">方向与专题 <small>{{ directions|length }}{% if query %} / {{ doc.directions|length }}{% endif %}</small></h2>
-<form action="direction-methods" method="get" role="search"><label class="sr" for="q">搜索研究方向、方法或署名成员</label><input type="search" name="q" id="q" value="{{ query }}" placeholder="搜索方向、方法或署名成员" maxlength="120"><button type="submit">搜索</button>{% if query %}<a href="direction-methods">清除</a>{% endif %}</form></div>
+<section class="direction-directory" aria-labelledby="overview-title">
+<div class="bar"><form action="direction-methods" method="get" role="search"><label class="sr" for="q">搜索研究方向、方法或署名成员</label><input type="search" name="q" id="q" value="{{ query }}" placeholder="搜索方向、方法或署名成员" maxlength="120"><button type="submit">搜索</button>{% if query %}<a href="direction-methods">清除</a>{% endif %}</form></div>
+<details class="direction-browser" id="direction-browser"{% if query %} open{% endif %}><summary><span id="overview-title">方向与专题</span><small>{{ directions|length }}{% if query %} / {{ doc.directions|length }}{% endif %}</small></summary><div class="directory-body">
 {% for kind, group_title in groups.items() %}{% set rows=directions|selectattr('kind','equalto',kind)|list %}{% if rows %}<h3 class="group-title">{{ group_title }} <small>{{ rows|length }}</small></h3>
 <div class="index">{% for d in rows %}
 <article class="index-row"><div><h3><a href="direction-methods?direction={{ d.id }}">{{ d.title }}</a></h3><p>{{ d.summary }}</p></div>
@@ -37,7 +37,7 @@
 <a class="row-arrow" href="direction-methods?direction={{ d.id }}" aria-label="查看{{ d.title }}的方法与证据">↗</a></article>
 {% endfor %}</div>{% endif %}{% endfor %}
 {% if not directions %}<p class="empty">{% if doc.status=='not_published' %}团队的方向方法索引尚未发布。可先<a href="./api/lab-review">阅读阶段复盘</a>，查看已有报告与证据。{% elif query %}没有找到“{{ query }}”。可以更换研究问题、方法或成员姓名。{% else %}当前尚无已核定的方向方法记录。{% endif %}</p>{% endif %}
-</section>
+</div></details></section>
 {% else %}
 <header class="intro detail-intro"><div><h1>{{ selected.title }}</h1><p>{{ selected.question }}</p></div><div class="stamp"><span>证据整理日期</span><time datetime="{{ doc.as_of }}">{{ doc.as_of }}</time></div></header>
 <nav class="anchors" aria-label="方向内容"><a href="#context">目前进展与分工</a><a href="#method-title">方法与效果</a></nav>
@@ -49,10 +49,10 @@
 {% if selected.next_step %}<h2 class="next-title">下一步{% if selected.next_step_basis %} <small>{{ selected.next_step_basis }}</small>{% endif %}</h2><p>{{ selected.next_step }}</p>{% endif %}
 <a class="all" href="direction-methods">← 全部方向</a></aside>
 <section class="methods" aria-labelledby="method-title"><h2 id="method-title">方法与效果 <small>{{ selected.methods|length }}</small></h2>
-{% for m in selected.methods %}<article class="method"><div class="method-top"><span class="status status-{{ m.status }}">{{ statuses[m.status] }}</span></div>
-<h3>{{ m.name }}</h3><p class="result">{{ m.result }}</p>
+{% for m in selected.methods %}<details class="method"><summary><span class="status status-{{ m.status }}">{{ statuses[m.status] }}</span><span class="method-title">{{ m.name }}</span></summary>
+<div class="method-body"><p class="result">{{ m.result }}</p>
 <dl class="conditions"><div><dt>指标</dt><dd>{{ m.metric or '资料未列出具体指标。' }}</dd></div><div><dt>比较条件</dt><dd>{{ m.comparison or '暂无可核对的同条件比较。' }}</dd></div><div><dt>适用范围</dt><dd>{{ m.scope or '当前资料尚未明确。' }}</dd></div></dl>
-{{ evidence(m.source_ids,'核对本项证据') }}</article>
+{{ evidence(m.source_ids,'核对本项证据') }}</div></details>
 {% else %}<p class="empty">此方向尚无可核对的方法记录。</p>{% endfor %}
 </section></div>
 {% endif %}
